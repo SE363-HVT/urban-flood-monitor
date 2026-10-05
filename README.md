@@ -175,6 +175,5 @@ def evaluate_content_ai(self, event: Dict[str, Any]) -> Dict[str, Any]:
 ---
 
 ## 👥 Nhóm tác giả & Đóng góp (Credits)
-* **Đề tài:** SE363 - Nhóm Đồ án Kỹ nghệ Tri thức TP.HCM.
 * **Tổ chức GitHub:** [SE363 - HVT](https://github.com/SE363-HVT)
 * **Repository:** [urban-flood-monitor](https://github.com/SE363-HVT/urban-flood-monitor)
