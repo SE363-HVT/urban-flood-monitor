@@ -574,5 +574,21 @@
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "phạm đình toái": {
+    "matched_keyword": "Phạm Đình Toái",
+    "display_name": "Đường Phạm Đình Toái",
+    "ward": "Phường Xuân Hòa",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7761,
+    "lon": 106.6861,
+    "heat_points": [
+      [
+        10.7761,
+        106.6861
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
   }
 }

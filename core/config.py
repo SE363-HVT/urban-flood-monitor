@@ -49,18 +49,33 @@ DEFAULT_SEARCH_QUERIES = [
 ]
 
 # ==========================================
-# 2. Cấu hình Actor cào Facebook
+# 2. Cấu hình Actor cào Facebook (Chuyên sâu TP.HCM & Tiết kiệm tối đa)
 # ==========================================
-FB_SEARCH_PPR_ACTOR_ID = "danek~facebook-search-ppr"
-FB_ACTOR_ID = FB_SEARCH_PPR_ACTOR_ID
+FB_ACTOR_ID = "scraper_one~facebook-posts-search"
+FB_SEARCH_PPR_ACTOR_ID = FB_ACTOR_ID
 FB_CRAWL_STRATEGY = os.environ.get("FB_CRAWL_STRATEGY", "search")
 
+# 5 Fanpage trọng điểm uy tín tại TP.HCM được chọn lọc
+FB_TARGET_PAGES = [
+    "https://www.facebook.com/phapluattp.vn",       # Báo Pháp Luật TP.HCM
+    "https://www.facebook.com/thanhnien",           # Báo Thanh Niên
+    "https://www.facebook.com/nguoilaodong",        # Báo Người Lao Động
+    "https://www.facebook.com/congdongvnexpress",   # VnExpress
+    "https://www.facebook.com/SGCT1"               # Sài Gòn Của Tôi
+]
+
+FB_TARGET_PAGE_IDENTIFIERS = [
+    "phapluattp.vn", "thanhnien", "nguoilaodong", "congdongvnexpress", "sgct1",
+    "pháp luật tp.hcm", "thanh niên", "người lao động", "vnexpress", "sài gòn của tôi"
+]
+
 FB_SEARCH_QUERIES = [
-    "mưa ngập Sài Gòn",
+    "mưa ngập TP.HCM",
+    "ngập đường Sài Gòn",
     "triều cường ngập Sài Gòn",
-    "ngập xe chết máy Sài Gòn",
+    "ngập xe chết máy",
     "#ngapsaigon",
-    "đường ngập bì bõm Sài Gòn"
+    "#muangap"
 ]
 
 FB_SEARCH_LOCATIONS = ["Ho Chi Minh City"]

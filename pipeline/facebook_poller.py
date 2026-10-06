@@ -1,17 +1,20 @@
 ﻿"""
 pipeline/facebook_poller.py - Module Thu Thập Dữ Liệu Ngập Lụt Từ Facebook
-Tối ưu hóa tập trung duy nhất 1 Actor Search tối ưu chống checkpoint & bypass block:
-1. Facebook Search Scraper (danek/facebook-search-ppr):
-   - Chuyên tìm kiếm bài đăng người dùng & cộng đồng gần thời gian thực.
-   - Sử dụng 1 truy vấn hợp nhất duy nhất (Consolidated Search): Gom chung cả hiện tượng ngập lụt & địa bàn TP.HCM (ví dụ: 'mưa ngập Sài Gòn').
-   - Tăng quy mô thu thập trong 1 lần cào (max_posts=40..50) để tối đa hóa xác suất lấy bài chuẩn xác.
-   - Không chạy quét lần 2 gây phân mảnh và tốn thời gian.
+Tối ưu hóa thu thập thời gian thực với Actor chuyên sâu:
+1. Facebook Posts Search (scraper_one/facebook-posts-search):
+   - Tìm kiếm bài đăng ngập lụt, triều cường thời gian thực tại TP.HCM (location="Ho Chi Minh City", searchType="latest").
+   - Chi phí cực thấp (~$0.04 / lần chạy), tiết kiệm tối đa usage Apify.
+   - Nhận diện và gán trọng số ưu tiên cho 5 Fanpage uy tín trọng điểm:
+     + Báo Pháp Luật TP.HCM (phapluattp.vn)
+     + Báo Thanh Niên (thanhnien)
+     + Báo Người Lao Động (nguoilaodong)
+     + VnExpress (congdongvnexpress)
+     + Sài Gòn Của Tôi (SGCT1)
 2. Chuẩn Live Mode 100% Thực Tế:
-   - Trong chế độ LIVE, chỉ trả về bài đăng thật do người dùng đăng gần đây được cào từ Facebook.
-   - Tuyệt đối KHÔNG fallback về kho dữ liệu có sẵn hay giả lập.
-   - Kho bài đăng dataset có sẵn chỉ được dùng cho chế độ SIMULATION MODE.
+   - Chỉ trả về bài đăng thật từ Facebook được cào gần đây.
+   - Khớp nối chính xác với Gazetteer và OpenStreetMap để đảm bảo 100% sự kiện hợp lệ có tọa độ hiển thị trên Heatmap.
 3. Bộ lọc kiểm duyệt khắt khe:
-   - Chặn đứng 100% bẫy chữ "deal ngập tràn", "ưu đãi ngập tràn", "pass phòng", "cho thuê phòng", "xe lướt không ngập nước".
+   - Loại bỏ triệt để tin rác BĐS ("cho thuê", "bán nhà"), bán xe ô tô ("không ngập nước", "odo"), bẫy chữ "ngập tràn deal/ưu đãi".
 """
 
 import os
@@ -24,9 +27,11 @@ from datetime import datetime, timezone
 
 from core.config import (
     APIFY_TOKEN,
-    FB_SEARCH_PPR_ACTOR_ID,
+    FB_ACTOR_ID,
     FB_SEARCH_QUERIES,
     FB_SEARCH_LOCATIONS,
+    FB_TARGET_PAGES,
+    FB_TARGET_PAGE_IDENTIFIERS,
     DEFAULT_WINDOW_MINUTES
 )
 from core.state_manager import StateManager
@@ -38,7 +43,7 @@ LAST_CRAWL_FB_FILE = os.path.join("data", "last_crawled_facebook.json")
 
 FLOOD_INTENT_KEYWORDS = [
     "ngập", "triều cường", "chết máy", "bì bõm", "lút bánh",
-    "dắt bộ", "biến thành sông", "nước dâng", "mưa ngập", "thất thủ", "ngập úng"
+    "dắt bộ", "biến thành sông", "nước dâng", "mưa ngập", "thất thủ", "ngập úng", "lênh láng"
 ]
 
 STRICT_SPAM_KEYWORDS = [
@@ -68,6 +73,17 @@ def load_real_facebook_flood_pool() -> List[Dict[str, Any]]:
 def extract_facebook_media_urls(item: Dict[str, Any]) -> List[str]:
     """Trích xuất liên kết hình ảnh hoặc video từ bài viết Facebook."""
     urls = []
+
+    # 1. Định dạng attachments từ scraper_one
+    attachments = item.get("attachments", [])
+    if isinstance(attachments, list):
+        for att in attachments:
+            if isinstance(att, dict) and att.get("url"):
+                u = att["url"]
+                if u not in urls:
+                    urls.append(u)
+
+    # 2. Định dạng media từ các scraper truyền thống
     media_list = item.get("media", [])
     if isinstance(media_list, list):
         for m in media_list:
@@ -91,10 +107,11 @@ def process_facebook_item(item: Dict[str, Any], reference_time: Optional[int] = 
     """
     Chuẩn hóa bài viết Facebook sang sự kiện ngập lụt tiêu chuẩn.
     Chỉ chấp nhận bài viết có URL thật từ Facebook, tuyệt đối không tạo URL ảo.
+    Nhận diện Fanpage chính thống (Báo Thanh Niên, Báo Người Lao Động, Báo Pháp Luật TP.HCM, VnExpress, Sài Gòn Của Tôi).
     """
-    raw_text = item.get("text", "") or item.get("post_text", "") or item.get("message", "")
+    raw_text = item.get("postText", "") or item.get("text", "") or item.get("message", "")
     if not raw_text and isinstance(item.get("sharedPost"), dict):
-        raw_text = item["sharedPost"].get("text", "")
+        raw_text = item["sharedPost"].get("postText", "") or item["sharedPost"].get("text", "")
 
     if not raw_text or len(raw_text.strip()) < 15:
         return None
@@ -129,7 +146,18 @@ def process_facebook_item(item: Dict[str, Any], reference_time: Optional[int] = 
     if "_curated" in str(post_url):
         return None
 
-    create_time = item.get("createTime") or item.get("timestamp")
+    # Thời gian đăng bài (Epoch seconds)
+    create_time = item.get("timestamp") or item.get("createTime")
+    if create_time:
+        try:
+            val = int(create_time)
+            # Nếu timestamp ở dạng milliseconds (13 chữ số)
+            if val > 100000000000:
+                val = int(val / 1000)
+            create_time = val
+        except Exception:
+            create_time = None
+
     if not create_time and item.get("time"):
         try:
             time_str = str(item["time"]).replace("Z", "+00:00")
@@ -139,22 +167,25 @@ def process_facebook_item(item: Dict[str, Any], reference_time: Optional[int] = 
             create_time = None
 
     if reference_time is not None:
-        if not create_time or (reference_time - create_time) > 432000: # 5 ngày bao quát đợt ngập gần nhất
+        if not create_time or (reference_time - create_time) > 432000:  # 5 ngày bao quát đợt ngập gần nhất
             return None
 
+    # Thông tin tác giả
     author_name = "Facebook Community"
-    author_raw = item.get("user") or item.get("author") or item.get("pageName")
+    author_url = ""
+    author_raw = item.get("author") or item.get("user") or item.get("pageName")
     if isinstance(author_raw, dict):
         author_name = author_raw.get("name") or author_raw.get("username") or "Facebook User"
+        author_url = author_raw.get("profileUrl") or ""
     elif author_raw:
         author_name = str(author_raw)
 
     post_id = item.get("postId") or item.get("post_id") or item.get("id") or create_time or int(time.time())
 
     media_urls = extract_facebook_media_urls(item)
-    likes = item.get("likes") or item.get("reactionLikeCount", 0) or item.get("reactions_count", 0) or 0
-    comments = item.get("comments") or item.get("comments_count", 0) or 0
-    shares = item.get("shares") or item.get("reshare_count", 0) or 0
+    likes = item.get("reactionsCount") or item.get("likes") or item.get("reactionLikeCount", 0) or 0
+    comments = item.get("commentsCount") or item.get("comments", 0) or 0
+    shares = item.get("sharesCount") or item.get("shares", 0) or 0
 
     weight = analysis["weight"]
     if media_urls:
@@ -162,11 +193,24 @@ def process_facebook_item(item: Dict[str, Any], reference_time: Optional[int] = 
     if likes > 50 or comments > 20:
         weight += 0.1
 
+    # Kiểm tra xem có thuộc 5 Fanpage trọng điểm TP.HCM hay không
+    is_verified_fanpage = False
+    source_check_str = f"{author_name.lower()} {author_url.lower()} {str(post_url).lower()}"
+    for ident in FB_TARGET_PAGE_IDENTIFIERS:
+        if ident in source_check_str:
+            is_verified_fanpage = True
+            break
+
+    if is_verified_fanpage:
+        weight += 0.25  # Tăng mạnh trọng số cho nguồn báo chí / fanpage lớn uy tín
+
     event = {
         "id": f"fb_{post_id}",
         "platform": "facebook",
-        "media_type": "post" if not media_urls else ("video" if any("mp4" in u or "video" in u for u in media_urls) else "image_post"),
+        "media_type": "post" if not media_urls else ("video" if any("mp4" in u or "video" in u or "reel" in str(post_url) for u in media_urls) else "image_post"),
         "author": author_name,
+        "is_verified_source": is_verified_fanpage,
+        "source_badge": "Báo chí / Fanpage uy tín TP.HCM" if is_verified_fanpage else "Cộng đồng mạng xã hội",
         "text": cleaned_text,
         "create_time": create_time or int(time.time()),
         "created_at_iso": datetime.fromtimestamp(create_time, timezone.utc).isoformat() if create_time else "",
@@ -201,9 +245,9 @@ def process_facebook_item(item: Dict[str, Any], reference_time: Optional[int] = 
 class FacebookPoller:
     """
     Bộ thu thập dữ liệu ngập lụt từ Facebook:
-    - Thu thập 100% bài đăng thực tế của người dùng & cộng đồng qua Facebook Search Scraper.
-    - Truy vấn hợp nhất duy nhất (Single Consolidated Search) kết hợp hiện tượng ngập lụt + Sài Gòn.
-    - Không fallback vào dữ liệu giả lập trong chế độ Live Mode.
+    - Thu thập bài đăng người dùng & Fanpage qua scraper_one/facebook-posts-search (chuyên sâu, siêu tiết kiệm).
+    - Hỗ trợ tìm kiếm theo từ khóa mưa ngập kết hợp nhắm mục tiêu địa bàn TP.HCM (location='Ho Chi Minh City').
+    - Ưu tiên và nhận diện 5 Fanpage trọng điểm (Pháp Luật TP.HCM, Thanh Niên, Người Lao Động, VnExpress, Sài Gòn Của Tôi).
     """
     def __init__(self, apify_token: Optional[str] = None, state_manager: Optional[StateManager] = None):
         self.apify_token = apify_token or APIFY_TOKEN
@@ -231,24 +275,25 @@ class FacebookPoller:
         resp.raise_for_status()
         return resp.json()
 
-    def poll_search_posts_ppr(
+    def poll_search_posts(
         self,
-        query: str = "mưa ngập Sài Gòn",
-        max_posts: int = 40
+        query: str = "mưa ngập TP.HCM",
+        max_posts: int = 10
     ) -> List[Dict[str, Any]]:
         """
-        Cào tìm kiếm bài đăng người dùng qua danek/facebook-search-ppr
-        (Actor chạy ổn định, bypass login checkpoint, hỗ trợ lọc bài mới).
+        Cào tìm kiếm bài đăng Facebook thời gian thực qua scraper_one/facebook-posts-search.
+        Tối ưu tuyệt đối: location='Ho Chi Minh City', searchType='latest'.
+        Chi phí: ~$0.04/lần chạy (siêu tiết kiệm).
         """
         if not self.apify_token:
             return []
 
-        url = f"https://api.apify.com/v2/acts/{FB_SEARCH_PPR_ACTOR_ID}/runs?token={self.apify_token}"
+        url = f"https://api.apify.com/v2/acts/{FB_ACTOR_ID}/runs?token={self.apify_token}"
         run_input = {
             "query": query,
-            "search_type": "posts",
-            "recent_posts": True,
-            "max_posts": max_posts
+            "resultsCount": max_posts,
+            "searchType": "latest",
+            "location": "Ho Chi Minh City"
         }
 
         try:
@@ -257,48 +302,47 @@ class FacebookPoller:
             run_data = resp.json().get("data", {})
             run_id = run_data.get("id")
             dataset_id = run_data.get("defaultDatasetId")
-            print(f"[Facebook Search PPR] Actor đang chạy cho '{query}' (Run ID: {run_id})...")
+            print(f"[Facebook Search] Actor đang chạy cho '{query}' (Run ID: {run_id})...")
 
             status = self._wait_for_run(run_id, timeout_sec=80)
             if status != "SUCCEEDED":
-                print(f"[Facebook Search PPR] Run {run_id} kết thúc với trạng thái: {status}")
+                print(f"[Facebook Search] Run {run_id} kết thúc với trạng thái: {status}")
                 return []
 
             raw = self._fetch_dataset_items(dataset_id)
-            print(f"[Facebook Search PPR] Đã thu thập {len(raw)} kết quả cho '{query}'.")
+            print(f"[Facebook Search] Đã thu thập {len(raw)} kết quả cho '{query}'.")
             return raw
         except Exception as e:
-            print(f"[Facebook Search PPR] Lỗi khi cào query '{query}': {e}")
+            print(f"[Facebook Search] Lỗi khi cào query '{query}': {e}")
             return []
 
     def poll_live_apify(
         self,
         search_queries: Optional[List[str]] = None,
-        max_posts: int = 40,
+        max_posts: int = 12,
         window_minutes: int = DEFAULT_WINDOW_MINUTES
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
         Cào Facebook thời gian thực chuẩn LIVE MODE:
-        - Sử dụng duy nhất 1 lần cào hợp nhất (Single Consolidated Search) cho 'mưa ngập Sài Gòn'.
-        - Không chia nhỏ 2 lần quét gây phân mảnh.
-        - Tự động bao quát đợt ngập gần nhất (trong vòng 72h-96h).
-        - Tuyệt đối KHÔNG fallback sang kho dataset cũ trong LIVE MODE.
+        - Quét bài đăng mới nhất có liên quan đến ngập lụt, triều cường tại TP.HCM.
+        - Khớp địa danh chuẩn mực qua Gazetteer và OSM Geocoder để đưa lên Heatmap.
+        - Tự động nhận diện và gia tăng trọng số uy tín cho 5 Fanpage lớn.
         """
-        print(f"\n[Facebook Live] Bắt đầu cào bài đăng người dùng Facebook thời gian thực qua Search Actor...")
+        print(f"\n[Facebook Live] Bắt đầu cào bài đăng Facebook thời gian thực qua '{FB_ACTOR_ID}'...")
         raw_items = []
         queries = search_queries or FB_SEARCH_QUERIES
 
-        # Chạy cào tập trung DUY NHẤT 1 lần cho truy vấn hợp nhất hàng đầu
-        primary_query = queries[0] if queries else "mưa ngập Sài Gòn"
-        print(f"[Facebook Live] Thực thi 1 truy vấn hợp nhất duy nhất: '{primary_query}' (Dung lượng: {max_posts} bài)...")
+        # Chạy 1 truy vấn kết hợp thông minh duy nhất để kiểm soát chặt chẽ ngân sách
+        primary_query = queries[0] if queries else "mưa ngập TP.HCM"
+        print(f"[Facebook Live] Thực thi truy vấn trọng tâm: '{primary_query}' (Dung lượng: {max_posts} bài)...")
         try:
-            items = self.poll_search_posts_ppr(query=primary_query, max_posts=max_posts)
+            items = self.poll_search_posts(query=primary_query, max_posts=max_posts)
             raw_items.extend(items)
         except Exception as eq:
             print(f"[Facebook Live] Lỗi query '{primary_query}': {eq}")
 
         now = int(time.time())
-        # Cửa sổ thời gian thích ứng: ít nhất 72h (3 ngày) để đảm bảo không bỏ sót đợt ngập vừa qua
+        # Cửa sổ thời gian thích ứng: ít nhất 72h (3 ngày) để không bỏ sót đợt mưa ngập gần nhất
         max_age_sec = max(259200, window_minutes * 60)
         events = []
         seen = set()

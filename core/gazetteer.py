@@ -1142,7 +1142,7 @@ OUT_OF_SCOPE_LOCATIONS = [
 ]
 
 ROAD_PATTERN = re.compile(
-    r'(?:đường|duong|tuyến\s+đường|tuyen\s+duong|đại\s+lộ|dai\s+lo|cầu|cau|ngã\s+(?:tư|ba)|nga\s+(?:tu|ba)|vòng\s+xoay|vong\s+xoay|nút\s+giao)\s+([A-ZÀ-Ỹa-zà-ỹ0-9\s\.\-]+?)(?=[,\.\n;]|(?:\s+(?:quận|quan|huyện|huyen|phường|phuong|thị\s+trấn|tp|đang|dang|bị\s+ngập|bi\s+ngap|nước|nuoc|kẹt|ket|ngập|ngap|xe|lút|chết|nguy|mọi|bà\s+con|rất|quá|lắm))|$)',
+    r'(?:đường|duong|tuyến\s+đường|tuyen\s+duong|đại\s+lộ|dai\s+lo|cầu|cau|ngã\s+(?:tư|ba)|nga\s+(?:tu|ba)|vòng\s+xoay|vong\s+xoay|nút\s+giao|hẻm(?:\s+\d+)?|hem(?:\s+\d+)?|phố)\s+(?!ngập|nước|kẹt|lội|sâu)([A-ZÀ-Ỹa-zà-ỹ0-9\s\.\-]+?)(?=[,\.\n;:]|(?:\s+(?:quận|quan|huyện|huyen|phường|phuong|thị\s+trấn|tp|đang|dang|bị\s+ngập|bi\s+ngap|nước|nuoc|kẹt|ket|ngập|ngap|xe|lút|chết|nguy|mọi|bà\s+con|rất|quá|lắm))|$)',
     re.IGNORECASE
 )
 
