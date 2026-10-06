@@ -11,6 +11,7 @@ import json
 import os
 import sys
 import time
+import threading
 from typing import List, Dict, Any
 
 if sys.platform == "win32":
@@ -37,7 +38,7 @@ VERACITY_CHECKER = VeracityChecker(window_minutes=60, radius_meters=500.0, enabl
 GLOBAL_STATE = {
     "mode": "live",
     "window_minutes": DEFAULT_WINDOW_MINUTES,
-    "active_window": "2 giờ qua",
+    "active_window": "Đang kết nối dữ liệu...",
     "events": [],
     "last_updated": None,
     "poller": None
@@ -174,42 +175,54 @@ def start_server(port: int = DEFAULT_PORT, mode: str = "live", apify_token: str 
     print(f"[SE363] HỆ THỐNG CẢNH BÁO NGẬP LỤT ĐA NỀN TẢNG (TIKTOK + FACEBOOK)")
     print(f"        Chế độ (Mode): {mode.upper()}")
     print(f"        Cửa sổ lọc (Window): {window_minutes // 60} giờ ({window_minutes} phút)")
-    print(f"        Chiến lược Facebook: {fb_strategy.upper()} (Search PPR Chống Checkpoint)")
+    print(f"        Chiến lược Facebook: {fb_strategy.upper()} (Chuyên sâu TP.HCM)")
     print(f"        Xác thực tin giả (Veracity): BẬT (Khung 60p, Trạm khí tượng Open-Meteo)")
     print(f"        Apify Token: {token[:15]}...")
     print(f"=======================================================")
 
-    if mode == "live":
-        print(f"[Worker] Đang thu thập dữ liệu gần thời gian thực từ TikTok & Facebook...")
-        try:
-            raw_events, stats = poller.poll_live(window_minutes=window_minutes)
-        except Exception as e:
-            print(f"[Worker] Lỗi cào trực tiếp: {e}")
-            raw_events = []
-            stats = {
-                "mode": "live",
-                "total_events": 0,
-                "active_window": f"{window_minutes // 60} giờ qua (0 sự kiện)"
-            }
-    else:
-        print(f"[Worker] Đang mô phỏng dòng dữ liệu trôi động đa nền tảng...")
-        raw_events, stats = poller.poll_simulation(window_minutes=window_minutes, batch_size=15)
+    def run_initial_ingest():
+        if mode == "live":
+            print(f"[Worker] Đang thu thập dữ liệu gần thời gian thực từ TikTok & Facebook qua Apify...")
+            try:
+                raw_events, stats = poller.poll_live(window_minutes=window_minutes)
+            except Exception as e:
+                print(f"[Worker] Lỗi cào trực tiếp: {e}")
+                raw_events = []
+                stats = {
+                    "mode": "live",
+                    "total_events": 0,
+                    "active_window": f"{window_minutes // 60} giờ qua (0 sự kiện)"
+                }
+        else:
+            print(f"[Worker] Đang mô phỏng dòng dữ liệu trôi động đa nền tảng...")
+            raw_events, stats = poller.poll_simulation(window_minutes=window_minutes, batch_size=15)
 
-    events = enrich_events_with_veracity(raw_events)
-    GLOBAL_STATE["events"] = events
-    GLOBAL_STATE["active_window"] = stats.get("active_window", f"{window_minutes // 60} giờ qua")
-    GLOBAL_STATE["last_updated"] = int(time.time())
+        events = enrich_events_with_veracity(raw_events)
+        GLOBAL_STATE["events"] = events
+        GLOBAL_STATE["active_window"] = stats.get("active_window", f"{window_minutes // 60} giờ qua")
+        GLOBAL_STATE["last_updated"] = int(time.time())
 
-    print(f"[Worker] Đã nạp {len(events)} sự kiện ngập lụt lên bản đồ (Cửa sổ: {GLOBAL_STATE['active_window']}):")
-    for ev in events[:6]:
-        loc = ev["location"]
-        v = ev.get("veracity", {})
-        print(f"   * [{ev['platform'].upper()}] {loc['street']} ({loc['ward']}) -> {ev['opinion']} | {v.get('status_label', '')} ({int(v.get('confidence_score', 0)*100)}%)")
+        print(f"\n[Worker] Đã nạp thành công {len(events)} sự kiện ngập lụt lên bản đồ (Cửa sổ: {GLOBAL_STATE['active_window']}):")
+        for ev in events[:6]:
+            loc = ev.get("location", {})
+            v = ev.get("veracity", {})
+            print(f"   * [{ev.get('platform', '').upper()}] {loc.get('street', '')} ({loc.get('ward', '')}) -> {ev.get('opinion', '')} | {v.get('status_label', '')} ({int(v.get('confidence_score', 0)*100)}%)")
+
+    # Khởi động luồng thu thập dữ liệu ngầm để Web Server phản hồi ngay lập tức (không chặn cổng 8050)
+    ingest_thread = threading.Thread(target=run_initial_ingest, daemon=True)
+    ingest_thread.start()
 
     server_address = ("", port)
     socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.ThreadingTCPServer(server_address, HeatmapRequestHandler) as httpd:
-        print(f"\n>> Bản đồ nhiệt đang chạy tại: http://localhost:{port}")
+    try:
+        httpd = socketserver.ThreadingTCPServer(server_address, HeatmapRequestHandler)
+    except OSError as err:
+        print(f"\n[Cảnh báo] Cổng {port} đang bận ({err}). Đang tự động thử lại sau 1.5 giây...")
+        time.sleep(1.5)
+        httpd = socketserver.ThreadingTCPServer(server_address, HeatmapRequestHandler)
+
+    with httpd:
+        print(f"\n>> Bản đồ nhiệt đang hoạt động tại: http://localhost:{port}")
         print(f"   (Mở trình duyệt vào địa chỉ trên để xem)")
         print(f"   (Nhấn Ctrl+C trong terminal để dừng server)\n")
         try:
