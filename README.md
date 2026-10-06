@@ -14,7 +14,7 @@
 
 Hệ thống **Giám sát & Cảnh báo Ngập lụt Đô thị Đa nền tảng** là giải pháp thu thập, phân tích và trực quan hóa dữ liệu thời gian thực phục vụ cảnh báo ngập lụt tại TP. Hồ Chí Minh. 
 
-Hệ thống kết hợp sức mạnh từ dòng dữ liệu mạng xã hội (TikTok, Facebook, Threads), đối soát tự động với trạm khí tượng vệ tinh **Open-Meteo**, giải quyết triệt để vấn đề tin giả / báo cáo sai lệch (**Data Veracity**) và trực quan hóa thành bản đồ nhiệt (**Heatmap**) cảnh báo trực quan.
+Hệ thống kết hợp sức mạnh từ dòng dữ liệu mạng xã hội (TikTok, Facebook), đối soát tự động với trạm khí tượng vệ tinh **Open-Meteo**, giải quyết triệt để vấn đề tin giả / báo cáo sai lệch (**Data Veracity**) và trực quan hóa thành bản đồ nhiệt (**Heatmap**) cảnh báo trực quan.
 
 ---
 
@@ -25,7 +25,6 @@ flowchart TD
     subgraph DataSources ["1. NGUỒN DỮ LIỆU ĐA NỀN TẢNG"]
         TT["TikTok Video Scraper"]
         FB["Facebook Search Scraper (PPR)"]
-        TH["Meta Threads Scraper"]
     end
 
     subgraph Pipeline ["2. TIỀN XỬ LÝ & BÓC TÁCH THỰC THỂ"]
@@ -64,7 +63,6 @@ flowchart TD
 ### 1. Thu thập đa nền tảng gần thời gian thực (Multi-Platform Ingestion)
 * **TikTok Video:** Cào các video cảnh báo ngập lụt thực tế theo bộ Hashtags và từ khóa tìm kiếm tiếng Việt tối ưu.
 * **Facebook Search PPR:** Ứng dụng cơ chế Consolidated Search giúp chống checkpoint và bypass rate-limit.
-* **Meta Threads:** Cào bài đăng thảo luận nhanh từ người dân đô thị với chi phí tối ưu.
 
 ### 2. Định danh địa lý đa tầng & Tự động Geocoding (Precision GIS)
 * **Kho tri thức hạt nhân (Seed Gazetteer):** Tích hợp sẵn hơn 80+ điểm nóng ngập lụt kinh điển của TP.HCM (*Nguyễn Hữu Cảnh, Chợ Thủ Đức, Ung Văn Khiêm, Cây Bàng, Võ Văn Ngân, Lê Văn Lương...*) với tọa độ tim đường và phân cấp Phường/Xã chuẩn sau sáp nhập.
@@ -111,7 +109,7 @@ python run_pipeline_test.py --mode simulation --window 120
 ```
 
 #### 🔹 Chế độ 2: Chế độ Thời gian thực (Live Mode - Cào trực tiếp từ mạng xã hội)
-> Gọi trực tiếp Apify API để cào bài đăng thời gian thực từ TikTok, Facebook và Threads, đo thời tiết thực tế ngoài trời.
+> Gọi trực tiếp Apify API để cào bài đăng thời gian thực từ TikTok và Facebook, đo thời tiết thực tế ngoài trời.
 
 ```bash
 python run_pipeline_test.py --mode live --window 120
@@ -135,7 +133,6 @@ urban-flood-monitor/
 │   ├── event_processor.py          # Lọc rác BĐS, phân tích sắc thái cảm xúc ngập lụt
 │   ├── tiktok_poller.py            # Module thu thập và phân tầng video TikTok
 │   ├── facebook_poller.py          # Module thu thập bài đăng Facebook Search PPR
-│   ├── threads_poller.py           # Module thu thập bài đăng Meta Threads
 │   ├── multi_poller.py             # Bộ điều phối hợp nhất dữ liệu đa nền tảng
 │   └── veracity_checker.py         # Module xác thực tin giả & đối soát khí tượng Open-Meteo
 ├── dashboard/                      # Giao diện người dùng & Web Server

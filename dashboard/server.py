@@ -1,7 +1,7 @@
 ﻿"""
 dashboard/server.py - Máy chủ Web phục vụ Bản Đồ Nhiệt Cảnh Báo Ngập Lụt Đa Nền Tảng (Port 8050)
 Cung cấp giao diện trực quan và REST API: /api/realtime-heatmap, /api/trigger-poll, /api/toggle-mode.
-Tích hợp thu thập Video TikTok + Bài đăng Facebook + Threads.
+Tích hợp thu thập Video TikTok + Bài đăng Facebook.
 Tích hợp Module Xác thực dữ liệu & Phòng chống tin giả (VeracityChecker).
 """
 
@@ -171,7 +171,7 @@ def start_server(port: int = DEFAULT_PORT, mode: str = "live", apify_token: str 
     fb_strategy = os.environ.get("FB_CRAWL_STRATEGY", FB_CRAWL_STRATEGY)
 
     print(f"\n=======================================================")
-    print(f"[SE363] HỆ THỐNG CẢNH BÁO NGẬP LỤT ĐA NỀN TẢNG (TIKTOK + FACEBOOK + THREADS)")
+    print(f"[SE363] HỆ THỐNG CẢNH BÁO NGẬP LỤT ĐA NỀN TẢNG (TIKTOK + FACEBOOK)")
     print(f"        Chế độ (Mode): {mode.upper()}")
     print(f"        Cửa sổ lọc (Window): {window_minutes // 60} giờ ({window_minutes} phút)")
     print(f"        Chiến lược Facebook: {fb_strategy.upper()} (Search PPR Chống Checkpoint)")
@@ -180,7 +180,7 @@ def start_server(port: int = DEFAULT_PORT, mode: str = "live", apify_token: str 
     print(f"=======================================================")
 
     if mode == "live":
-        print(f"[Worker] Đang thu thập dữ liệu gần thời gian thực từ TikTok, Facebook & Threads...")
+        print(f"[Worker] Đang thu thập dữ liệu gần thời gian thực từ TikTok & Facebook...")
         try:
             raw_events, stats = poller.poll_live(window_minutes=window_minutes)
         except Exception as e:
