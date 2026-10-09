@@ -1,3 +1,4 @@
+from core.admin_resolver import RESOLVER
 """
 core/gazetteer.py - Cơ sở tri thức địa lý ngập lụt Đại đô thị TP. Hồ Chí Minh
 Hệ thống tự động phát hiện địa danh mới (Dynamic Location Discovery) & Tự động Geocoding từ OpenStreetMap:
@@ -1077,7 +1078,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["quận 3", "quan 3", "quan3"],
         "display_name": "Khu vực Quận 3",
         "priority": 1,
-        "ward": "Phường Võ Thị Sáu",
+        "ward": "Phường Xuân Hòa",
         "district": "Quận 3",
         "region": "TPHCM",
         "lat": 10.7810, "lon": 106.6800,
@@ -1087,7 +1088,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["quận 4", "quan 4", "quan4", "bến vân đồn"],
         "display_name": "Khu vực Quận 4",
-        "ward": "Phường 13",
+        "ward": "Phường Xóm Chiếu",
         "district": "Quận 4",
         "region": "TPHCM",
         "lat": 10.7620, "lon": 106.7050,
@@ -1097,7 +1098,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["quận 5", "quan 5", "quan5", "chợ lớn"],
         "display_name": "Khu vực Quận 5 (Chợ Lớn)",
-        "ward": "Phường 11",
+        "ward": "Phường An Đông",
         "district": "Quận 5",
         "region": "TPHCM",
         "lat": 10.7540, "lon": 106.6620,
@@ -1107,7 +1108,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["quận 6", "quan 6", "quan6"],
         "display_name": "Khu vực Quận 6",
-        "ward": "Phường 1",
+        "ward": "Phường Bình Tiên",
         "district": "Quận 6",
         "region": "TPHCM",
         "lat": 10.7480, "lon": 106.6450,
@@ -1118,7 +1119,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["quận 10", "quan 10", "quan10"],
         "display_name": "Khu vực Quận 10",
         "priority": 1,
-        "ward": "Phường 14",
+        "ward": "Phường Diên Hồng",
         "district": "Quận 10",
         "region": "TPHCM",
         "lat": 10.7720, "lon": 106.6650,
@@ -1366,6 +1367,17 @@ def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
     save_dynamic_cache()
     return res
 
+def _finalize_match(res: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    if not res:
+        return None
+    cur_w = res.get("ward", "")
+    cur_d = res.get("district", "")
+    off_w = RESOLVER.resolve_to_official_ward(cur_w, cur_d)
+    if off_w:
+        res["ward"] = off_w
+        res["administrative_unit"] = off_w
+    return res
+
 def normalize_text(text: str) -> str:
     if not text:
         return ""
@@ -1423,7 +1435,7 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
                 explicit_outside = True
                 break
         if not explicit_outside:
-            return best_match
+            return _finalize_match(best_match)
 
     # TẦNG 2: Kiểm duyệt loại trừ ngoại tỉnh đối với các bài chưa khớp địa danh cấp cao
     for out_loc in OUT_OF_SCOPE_LOCATIONS:
@@ -1432,7 +1444,7 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
             return None
 
     if best_match:
-        return best_match
+        return _finalize_match(best_match)
 
     # TẦNG 2: So khớp danh mục hạt nhân TP.HCM
     # Thuật toán phân cấp không gian chuẩn mực (Spatial Hierarchy Priority + Longest Matching):
@@ -1465,13 +1477,13 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
                         "source": hotspot.get("source", "seed")
                     }
     if best_match:
-        return best_match
+        return _finalize_match(best_match)
 
     # TẦNG 3: So khớp bộ nhớ đệm tự học (Dynamic Cache)
     for cached_kw, cached_data in DYNAMIC_CACHE.items():
         pattern = r'(?:\b|^|#)' + re.escape(cached_kw) + r'(?:\b|$|[#\s.,!?])'
         if re.search(pattern, clean_text):
-            return cached_data
+            return _finalize_match(cached_data)
 
     # TẦNG 4: Tự động phát hiện thực thể địa danh mới & Tự học (Zero-Shot Discovery & Self-Learning)
     # Tự động truy vấn OpenStreetMap trong phạm vi bounding-box TP.HCM mà không cần người đăng phải gõ chữ 'Sài Gòn/TPHCM'
@@ -1487,6 +1499,6 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
             continue
         dynamic_spot = geocode_osm_dynamic(cleaned_cand)
         if dynamic_spot:
-            return dynamic_spot
+            return _finalize_match(dynamic_spot)
 
     return None

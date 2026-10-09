@@ -929,22 +929,7 @@
                     </div>
                 `;
 
-                // 1. Vẽ đoạn đường cảnh báo ngập (Segment Polyline viền nét đứt dạ quang)
-                if (spot.heat_points && spot.heat_points.length >= 2) {
-                    const polyline = L.polyline(spot.heat_points, {
-                        color: '#f59e0b',
-                        weight: 6,
-                        opacity: 0.85,
-                        dashArray: '8, 6',
-                        lineCap: 'round'
-                    });
-                    polyline.bindPopup(popupContent);
-                    polyline.on('mouseover', function() { this.setStyle({ weight: 9, opacity: 1, color: '#d97706' }); });
-                    polyline.on('mouseout', function() { this.setStyle({ weight: 6, opacity: 0.85, color: '#f59e0b' }); });
-                    csgtMarkersGroup.addLayer(polyline);
-                }
-
-                // 2. Ghim icon khiên cảnh báo tại trung điểm đoạn đường
+                // Ghim icon khiên cảnh báo chuẩn xác tại tọa độ điểm ngập CSGT
                 const icon = L.divIcon({
                     className: 'csgt-custom-div-icon',
                     html: `<div class="csgt-marker-pin" title="${spot.street}">⚠️</div>`,

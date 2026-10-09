@@ -43,7 +43,7 @@ DISTRICT_OLD_TO_NEW = {
     },
     # Quận 4
     "quan 4": {
-        "13": "Phường Xóm Chiếu", "16": "Phường Xóm Chiếu", "18": "Phường Xóm Chiếu",
+        "13": "Phường Xóm Chiếu", "14": "Phường Xóm Chiếu", "12": "Phường Xóm Chiếu", "16": "Phường Xóm Chiếu", "18": "Phường Xóm Chiếu", "10": "Phường Khánh Hội", "6": "Phường Khánh Hội",
         "8": "Phường Khánh Hội", "9": "Phường Khánh Hội", "15": "Phường Khánh Hội",
         "1": "Phường Vĩnh Hội", "3": "Phường Vĩnh Hội", "2": "Phường Vĩnh Hội", "4": "Phường Vĩnh Hội"
     },

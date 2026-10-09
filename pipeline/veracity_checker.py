@@ -201,10 +201,9 @@ class VeracityChecker:
                     plausible = True
                     desc = f"Trạm khí tượng lịch sử đối soát: Có mưa ({val} mm/h lúc {hour}h ngày {date_str})"
                 else:
-                    val = 24.5
-                    score = 1.0
+                    score = 0.50
                     plausible = True
-                    desc = f"Trạm khí tượng lịch sử đối soát: Mưa lớn thực tế ({val} mm/h lúc {hour}h ngày {date_str})"
+                    desc = f"Trạm khí tượng lịch sử ghi nhận không mưa (0.0 mm/h lúc {hour}h ngày {date_str})"
 
                 res = {
                     "checked": True,
@@ -216,16 +215,15 @@ class VeracityChecker:
                 self.weather_cache[cache_key] = res
                 return res
 
-            except Exception:
+            except Exception as e:
                 date_str = datetime.fromtimestamp(timestamp, timezone.utc).strftime("%d/%m/%Y")
                 hour = datetime.fromtimestamp(timestamp, timezone.utc).hour
-                val = 24.5
                 res = {
-                    "checked": True,
-                    "precipitation_mm": val,
-                    "score": 1.0,
+                    "checked": False,
+                    "precipitation_mm": 0.0,
+                    "score": 0.60,
                     "plausible": True,
-                    "reason": f"Trạm khí tượng lịch sử đối soát: Mưa lớn thực tế ({val} mm/h lúc {hour}h ngày {date_str})"
+                    "reason": f"Không có dữ liệu trạm khí tượng lưu trữ lúc {hour}h ngày {date_str}"
                 }
                 self.weather_cache[cache_key] = res
                 return res
