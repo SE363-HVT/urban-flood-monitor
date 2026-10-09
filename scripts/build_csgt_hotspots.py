@@ -588,7 +588,7 @@ RAW_CSGT_DATA = [
         "cause": "rain",
         "street": "Nguyễn Văn Khối",
         "segment": "Từ Lê Văn Thọ đến trước UBND P. Thông Tây Hội",
-        "ward": "Phường 8 (Thông Tây Hội)", "district": "Quận Gò Vấp",
+        "ward": "Phường 8", "district": "Quận Gò Vấp",
         "lat": 10.8460, "lon": 106.6530,
         "extra_kw": ["nguyễn văn khối", "thông tây hội", "nguyễn văn khối lê văn thọ", "phường 8 gò vấp"]
     },
@@ -970,7 +970,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Phan Phú Tiên",
         "segment": "Đường Phan Phú Tiên (Quận 5)",
-        "ward": "Phường 11 (sau sáp nhập)", "district": "Quận 5",
+        "ward": "Phường 11", "district": "Quận 5",
         "lat": 10.7535, "lon": 106.6610,
         "extra_kw": ["phan phú tiên", "phường 10 quận 5", "phường 11 quận 5"]
     },
@@ -979,7 +979,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Võ Văn Kiệt",
         "segment": "Từ Phạm Phú Thứ đến Bình Tiên",
-        "ward": "Phường 3", "district": "Quận 6",
+        "ward": "Phường 1", "district": "Quận 6",
         "lat": 10.7430, "lon": 106.6480,
         "extra_kw": ["võ văn kiệt phạm phú thứ", "bình tiên", "phường 3 quận 6"]
     },
@@ -988,7 +988,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Phạm Phú Thứ",
         "segment": "Từ Võ Văn Kiệt đến Phạm Văn Chí",
-        "ward": "Phường 3", "district": "Quận 6",
+        "ward": "Phường 1", "district": "Quận 6",
         "lat": 10.7450, "lon": 106.6470,
         "extra_kw": ["phạm phú thứ phạm văn chí", "phường 3 quận 6"]
     },
@@ -997,7 +997,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Song Hành Lớn",
         "segment": "Đường Song Hành Lớn (P. Bình Phú)",
-        "ward": "Phường Bình Phú (P.10 cũ)", "district": "Quận 6",
+        "ward": "Phường 10", "district": "Quận 6",
         "lat": 10.7460, "lon": 106.6350,
         "extra_kw": ["song hành lớn", "bình phú", "phường bình phú"]
     },
@@ -1015,7 +1015,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Chân cầu Lò Gốm",
         "segment": "Chân cầu Lò Gốm (Quận 6)",
-        "ward": "Phường 11 (sau sáp nhập)", "district": "Quận 6",
+        "ward": "Phường 11", "district": "Quận 6",
         "lat": 10.7410, "lon": 106.6410,
         "extra_kw": ["chân cầu lò gốm", "cầu lò gốm", "phường 11 quận 6"]
     },
@@ -1024,7 +1024,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Mai Xuân Thưởng",
         "segment": "Đường Mai Xuân Thưởng",
-        "ward": "Phường 2 (sau sáp nhập)", "district": "Quận 6",
+        "ward": "Phường 2", "district": "Quận 6",
         "lat": 10.7480, "lon": 106.6520,
         "extra_kw": ["mai xuân thưởng", "phường 2 quận 6", "phường 6 quận 6"]
     },
@@ -1042,7 +1042,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "An Bình",
         "segment": "Đường An Bình (Quận 5)",
-        "ward": "Phường 5 (sau sáp nhập)", "district": "Quận 5",
+        "ward": "Phường 5", "district": "Quận 5",
         "lat": 10.7510, "lon": 106.6710,
         "extra_kw": ["đường an bình", "phường 5 quận 5", "phường 6 quận 5"]
     },
@@ -1060,7 +1060,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Trần Hưng Đạo",
         "segment": "Từ Nguyễn Biểu đến Nguyễn Tri Phương",
-        "ward": "Phường 7 (sau sáp nhập)", "district": "Quận 5",
+        "ward": "Phường 7", "district": "Quận 5",
         "lat": 10.7520, "lon": 106.6740,
         "extra_kw": ["trần hưng đạo nguyễn biểu", "nguyễn tri phương", "phường 7 quận 5", "phường 8 quận 5"]
     },
@@ -1078,7 +1078,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Dương Bá Trạc",
         "segment": "Đường Dương Bá Trạc (Chân cầu Kênh Xáng)",
-        "ward": "Phường Rạch Ông (P.1 cũ)", "district": "Quận 8",
+        "ward": "Phường Rạch Ông", "district": "Quận 8",
         "lat": 10.7460, "lon": 106.6880,
         "extra_kw": ["dương bá trạc", "cầu kênh xáng", "rạch ông", "phường 1 quận 8"]
     },
@@ -1141,7 +1141,7 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Bờ kè Lô F Cư xá Thanh Đa",
         "segment": "Bờ kè Lô F, cư xá Thanh Đa (Phường 27 / Bình Quới)",
-        "ward": "Phường 27 (Thanh Đa)", "district": "Quận Bình Thạnh",
+        "ward": "Phường 27", "district": "Quận Bình Thạnh",
         "lat": 10.8220, "lon": 106.7260,
         "extra_kw": ["cư xá thanh đa", "lô f thanh đa", "bờ kè thanh đa", "bình quới", "phường 27 bình thạnh"]
     },
