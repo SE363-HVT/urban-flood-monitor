@@ -282,4 +282,34 @@ def start_server(port: int = DEFAULT_PORT, mode: str = "live", apify_token: str 
             print("\n[Server] Đang tắt máy chủ...")
 
 if __name__ == "__main__":
-    start_server()
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="SE363 - Máy chủ Web Bản đồ Nhiệt Cảnh báo Ngập lụt (Heatmap Dashboard)"
+    )
+    parser.add_argument(
+        "--mode",
+        choices=["simulation", "live"],
+        default="live",
+        help="Chế độ chạy: 'live' (mặc định) hoặc 'simulation'"
+    )
+    parser.add_argument(
+        "--window",
+        type=int,
+        default=DEFAULT_WINDOW_MINUTES,
+        help="Cửa sổ thời gian lọc dữ liệu (phút) - Mặc định: 120 phút (2 giờ)"
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=DEFAULT_PORT,
+        help="Cổng mở giao diện Web (Mặc định: 8050)"
+    )
+    parser.add_argument(
+        "--token",
+        type=str,
+        default=None,
+        help="Apify API Token (Mặc định tự động lấy từ core/config.py)"
+    )
+
+    args = parser.parse_args()
+    start_server(port=args.port, mode=args.mode, apify_token=args.token, window_minutes=args.window)
