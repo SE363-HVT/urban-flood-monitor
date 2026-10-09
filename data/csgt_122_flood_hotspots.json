@@ -183,7 +183,9 @@
       "tran dai nghia",
       "tran dai nghia so 4",
       "trần đại nghĩa",
-      "trần đại nghĩa số 4"
+      "trần đại nghĩa số 4",
+      "xa tan nhut",
+      "xã tân nhựt"
     ]
   },
   {
@@ -219,7 +221,9 @@
       "tran van giau",
       "tran van giau vuon thom",
       "trần văn giàu",
-      "trần văn giàu vườn thơm"
+      "trần văn giàu vườn thơm",
+      "xa binh loi",
+      "xã bình lợi"
     ]
   },
   {
@@ -230,7 +234,7 @@
     "street": "Vĩnh Lộc",
     "segment": "Từ Trần Văn Giàu đến Lại Hùng Cường (ngập nặng từ Trần Văn Giàu đến cầu Bà Tri)",
     "display_name": "Vĩnh Lộc (Từ Trần Văn Giàu đến Lại Hùng Cường (ngập nặng từ Trần Văn Giàu đến cầu Bà Tri))",
-    "ward": "Xã Vĩnh Lộc B",
+    "ward": "Xã Tân Vĩnh Lộc",
     "district": "Huyện Bình Chánh",
     "region": "TPHCM",
     "lat": 10.785,
@@ -256,8 +260,12 @@
       "cầu bà tri",
       "lai hung cuong",
       "lại hùng cường",
+      "tan vinh loc",
+      "tân vĩnh lộc",
       "vinh loc",
-      "vĩnh lộc"
+      "vinh loc b",
+      "vĩnh lộc",
+      "vĩnh lộc b"
     ]
   },
   {
@@ -268,7 +276,7 @@
     "street": "Võ Văn Vân",
     "segment": "Từ số 700 đến 730 (khu vực giao lộ đường Trục Tổ 7)",
     "display_name": "Võ Văn Vân (Từ số 700 đến 730 (khu vực giao lộ đường Trục Tổ 7))",
-    "ward": "Xã Vĩnh Lộc B",
+    "ward": "Xã Tân Vĩnh Lộc",
     "district": "Huyện Bình Chánh",
     "region": "TPHCM",
     "lat": 10.782,
@@ -290,10 +298,14 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "tan vinh loc",
+      "tân vĩnh lộc",
+      "vinh loc b",
       "vo van van",
       "vo van van 700",
       "võ văn vân",
-      "võ văn vân 700"
+      "võ văn vân 700",
+      "vĩnh lộc b"
     ]
   },
   {
@@ -326,6 +338,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "ba diem",
+      "bà điểm",
       "le quang dao",
       "lê quang đạo",
       "nguyen thi soc",
@@ -342,7 +356,7 @@
     "street": "Lê Quang Đạo - Trần Văn Mười",
     "segment": "Giao lộ Lê Quang Đạo - Trần Văn Mười",
     "display_name": "Lê Quang Đạo - Trần Văn Mười (Giao lộ Lê Quang Đạo - Trần Văn Mười)",
-    "ward": "Xã Xuân Thới Thượng",
+    "ward": "Xã Bà Điểm",
     "district": "Huyện Hóc Môn",
     "region": "TPHCM",
     "lat": 10.852,
@@ -364,10 +378,14 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "ba diem",
+      "bà điểm",
       "le quang dao - tran van muoi",
       "le quang dao tran van muoi",
       "lê quang đạo - trần văn mười",
-      "lê quang đạo trần văn mười"
+      "lê quang đạo trần văn mười",
+      "xuan thoi thuong",
+      "xuân thới thượng"
     ]
   },
   {
@@ -378,7 +396,7 @@
     "street": "Trần Văn Mười",
     "segment": "Từ Lê Quang Đạo đến Xuân Thới 2",
     "display_name": "Trần Văn Mười (Từ Lê Quang Đạo đến Xuân Thới 2)",
-    "ward": "Xã Xuân Thới Đông",
+    "ward": "Xã Xuân Thới Sơn",
     "district": "Huyện Hóc Môn",
     "region": "TPHCM",
     "lat": 10.856,
@@ -403,7 +421,11 @@
       "tran van muoi",
       "trần văn mười",
       "xuan thoi 2",
-      "xuân thới 2"
+      "xuan thoi dong",
+      "xuan thoi son",
+      "xuân thới 2",
+      "xuân thới sơn",
+      "xuân thới đông"
     ]
   },
   {
@@ -438,7 +460,9 @@
     "keywords": [
       "nguyen thi thu",
       "nguyễn thị thử",
+      "xuan thoi son",
       "xuan thoi son 5",
+      "xuân thới sơn",
       "xuân thới sơn 5"
     ]
   },
@@ -450,7 +474,7 @@
     "street": "Song hành Quốc lộ 22",
     "segment": "Từ Đỗ Mười đến Bà Triệu",
     "display_name": "Song hành Quốc lộ 22 (Từ Đỗ Mười đến Bà Triệu)",
-    "ward": "Thị trấn Hóc Môn",
+    "ward": "Xã Hóc Môn",
     "district": "Huyện Hóc Môn",
     "region": "TPHCM",
     "lat": 10.878,
@@ -475,7 +499,11 @@
       "song hanh ql22",
       "song hanh quoc lo 22",
       "song hành ql22",
-      "song hành quốc lộ 22"
+      "song hành quốc lộ 22",
+      "thi tran hoc mon",
+      "thị trấn hóc môn",
+      "xa hoc mon",
+      "xã hóc môn"
     ]
   },
   {
@@ -486,7 +514,7 @@
     "street": "Nguyễn Ảnh Thủ",
     "segment": "Từ Lê Quang Đạo đến Đồng Tâm",
     "display_name": "Nguyễn Ảnh Thủ (Từ Lê Quang Đạo đến Đồng Tâm)",
-    "ward": "Xã Trung Chánh",
+    "ward": "Xã Bà Điểm",
     "district": "Huyện Hóc Môn",
     "region": "TPHCM",
     "lat": 10.862,
@@ -508,9 +536,13 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "ba diem",
+      "bà điểm",
       "dong tam",
       "nguyen anh thu",
       "nguyễn ảnh thủ",
+      "trung chanh",
+      "trung chánh",
       "đồng tâm"
     ]
   },
@@ -522,7 +554,7 @@
     "street": "Bà Triệu",
     "segment": "Từ giao lộ Quang Trung đến giao lộ Song hành",
     "display_name": "Bà Triệu (Từ giao lộ Quang Trung đến giao lộ Song hành)",
-    "ward": "Thị trấn Hóc Môn",
+    "ward": "Xã Hóc Môn",
     "district": "Huyện Hóc Môn",
     "region": "TPHCM",
     "lat": 10.8848,
@@ -549,7 +581,11 @@
       "ba trieu song hanh",
       "bà triệu",
       "bà triệu hóc môn",
-      "bà triệu song hành"
+      "bà triệu song hành",
+      "thi tran hoc mon",
+      "thị trấn hóc môn",
+      "xa hoc mon",
+      "xã hóc môn"
     ]
   },
   {
@@ -560,7 +596,7 @@
     "street": "Trưng Nữ Vương",
     "segment": "Từ giao lộ Quang Trung đến giao lộ Đỗ Văn Dậy",
     "display_name": "Trưng Nữ Vương (Từ giao lộ Quang Trung đến giao lộ Đỗ Văn Dậy)",
-    "ward": "Thị trấn Hóc Môn",
+    "ward": "Xã Hóc Môn",
     "district": "Huyện Hóc Môn",
     "region": "TPHCM",
     "lat": 10.889,
@@ -583,8 +619,12 @@
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
       "do van day",
+      "thi tran hoc mon",
+      "thị trấn hóc môn",
       "trung nu vuong",
       "trưng nữ vương",
+      "xa hoc mon",
+      "xã hóc môn",
       "đỗ văn dậy"
     ]
   },
@@ -670,8 +710,8 @@
     "cause": "rain",
     "cause_label": "Mưa lớn, nước không thoát kịp",
     "street": "Cầu Bình Phước",
-    "segment": "Hai bên cầu Bình Phước, trước số 2 (P. Hiệp Bình)",
-    "display_name": "Cầu Bình Phước (Hai bên cầu Bình Phước, trước số 2 (P. Hiệp Bình))",
+    "segment": "Hai bên cầu Bình Phước, trước số 2 (P. Hiệp Bình Phước)",
+    "display_name": "Cầu Bình Phước (Hai bên cầu Bình Phước, trước số 2 (P. Hiệp Bình Phước))",
     "ward": "Phường Hiệp Bình Phước",
     "district": "TP. Thủ Đức",
     "region": "TPHCM",
@@ -697,7 +737,9 @@
       "cau binh phuoc",
       "cầu bình phước",
       "hai ben cau binh phuoc",
-      "hai bên cầu bình phước"
+      "hai bên cầu bình phước",
+      "hiep binh phuoc",
+      "hiệp bình phước"
     ]
   },
   {
@@ -735,6 +777,8 @@
       "chợ đầu mối nông sản thủ đức",
       "chợ đầu mối thủ đức",
       "dau moi nong san thu duc",
+      "tam binh",
+      "tam bình",
       "đầu mối nông sản thủ đức"
     ]
   },
@@ -770,6 +814,8 @@
     "keywords": [
       "do muoi - duong 17",
       "do muoi duong 17",
+      "tam binh",
+      "tam bình",
       "đỗ mười - đường 17",
       "đỗ mười đường 17"
     ]
@@ -809,7 +855,9 @@
       "ham chui ben cat",
       "ham chui cau ben cat",
       "hầm chui bến cát",
-      "hầm chui cầu bến cát"
+      "hầm chui cầu bến cát",
+      "thoi an",
+      "thới an"
     ]
   },
   {
@@ -844,6 +892,8 @@
     "keywords": [
       "binh phuoc",
       "bình phước",
+      "hiep binh phuoc",
+      "hiệp bình phước",
       "nga tu binh phuoc",
       "ngã tư bình phước",
       "vong xoay binh phuoc",
@@ -884,6 +934,8 @@
       "bình phước",
       "duoi cau vuot binh phuoc",
       "dưới cầu vượt bình phước",
+      "hiep binh phuoc",
+      "hiệp bình phước",
       "nga tu binh phuoc",
       "ngã tư bình phước"
     ]
@@ -918,6 +970,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "an khanh",
+      "an khánh",
       "cau trang",
       "cầu trắng",
       "vo nguyen giap",
@@ -956,6 +1010,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "an phu",
+      "an phú",
       "vo nguyen giap",
       "vo nguyen giap cau rach chiec",
       "võ nguyên giáp",
@@ -992,6 +1048,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "an phu",
+      "an phú",
       "song hanh vo nguyen giap",
       "song hành võ nguyên giáp",
       "vo truong toan",
@@ -1030,6 +1088,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "an khanh",
+      "an khánh",
       "chan cau rach chiec",
       "chan cau rach chiec (metro rach chiec)",
       "chân cầu rạch chiếc",
@@ -1072,6 +1132,8 @@
       "mai chi tho to huu",
       "mai chí thọ - tố hữu",
       "mai chí thọ tố hữu",
+      "thu thiem",
+      "thủ thiêm",
       "to huu mai chi tho",
       "tố hữu mai chí thọ"
     ]
@@ -1106,6 +1168,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "an phu",
+      "an phú",
       "luong dinh cua",
       "lương định của",
       "mai chi tho - luong dinh cua",
@@ -1144,6 +1208,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "an phu",
+      "an phú",
       "cau vuot a",
       "cau vuot mai chi tho",
       "cầu vượt a",
@@ -1182,6 +1248,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "linh tay",
+      "linh tây",
       "to ngoc van",
       "to ngoc van - pham van dong",
       "to ngoc van pham van dong",
@@ -1220,6 +1288,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "linh dong",
+      "linh đông",
       "to ngoc van - linh dong",
       "to ngoc van linh dong",
       "tô ngọc vân - linh đông",
@@ -1256,6 +1326,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "linh tay",
+      "linh tây",
       "to ngoc van - duong 35",
       "to ngoc van duong 35",
       "tô ngọc vân - đường 35",
@@ -1292,6 +1364,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "linh dong",
+      "linh đông",
       "pham van dong - linh dong",
       "pham van dong linh dong",
       "phạm văn đồng - linh đông",
@@ -1330,8 +1404,10 @@
     "keywords": [
       "69 trinh thi doi",
       "69 trịnh thị dối",
+      "dong thanh",
       "trinh thi doi",
-      "trịnh thị dối"
+      "trịnh thị dối",
+      "đông thạnh"
     ]
   },
   {
@@ -1364,6 +1440,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "phuoc long b",
+      "phước long b",
       "vo chi cong",
       "vo chi cong - duong so 5",
       "vo chi cong duong so 5",
@@ -1445,6 +1523,8 @@
       "do xuan hop",
       "do xuan hop - tay hoa",
       "do xuan hop tay hoa",
+      "phuoc long a",
+      "phước long a",
       "đỗ xuân hợp",
       "đỗ xuân hợp - tây hòa",
       "đỗ xuân hợp tây hòa"
@@ -1455,9 +1535,9 @@
     "source": "PC08_CSGT_TPHCM",
     "cause": "rain",
     "cause_label": "Mưa lớn, nước không thoát kịp",
-    "street": "Đường số 2 (Thủ Đức)",
-    "segment": "Đường số 2 (Phường Thủ Đức/Trường Thọ)",
-    "display_name": "Đường số 2 (Thủ Đức) (Đường số 2 (Phường Thủ Đức/Trường Thọ))",
+    "street": "Đường số 2 (Trường Thọ)",
+    "segment": "Đường số 2 (Phường Trường Thọ, TP. Thủ Đức)",
+    "display_name": "Đường số 2 (Trường Thọ) (Đường số 2 (Phường Trường Thọ, TP. Thủ Đức))",
     "ward": "Phường Trường Thọ",
     "district": "TP. Thủ Đức",
     "region": "TPHCM",
@@ -1480,12 +1560,14 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
-      "duong so 2 (thu duc)",
+      "duong so 2 (truong tho)",
       "duong so 2 thu duc",
       "duong so 2 truong tho",
-      "so 2 (thu duc)",
-      "số 2 (thủ đức)",
-      "đường số 2 (thủ đức)",
+      "so 2 (truong tho)",
+      "số 2 (trường thọ)",
+      "truong tho",
+      "trường thọ",
+      "đường số 2 (trường thọ)",
       "đường số 2 thủ đức",
       "đường số 2 trường thọ"
     ]
@@ -1563,6 +1645,8 @@
       "dang thi ranh",
       "duong van cam",
       "dương văn cam",
+      "linh tay",
+      "linh tây",
       "thu duc",
       "thủ đức",
       "đặng thị rành"
@@ -1598,6 +1682,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "linh dong",
+      "linh đông",
       "ly te xuyen",
       "lý tế xuyên"
     ]
@@ -1632,6 +1718,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "binh chieu",
+      "bình chiểu",
       "cong kcn song than",
       "cổng kcn sóng thần",
       "kcn song than",
@@ -1644,10 +1732,10 @@
     "cause": "rain",
     "cause_label": "Mưa lớn, nước không thoát kịp",
     "street": "ĐT743A - Mỹ Phước Tân Vạn",
-    "segment": "Đường ĐT743A giao Mỹ Phước Tân Vạn (giáp cửa ngõ)",
-    "display_name": "ĐT743A - Mỹ Phước Tân Vạn (Đường ĐT743A giao Mỹ Phước Tân Vạn (giáp cửa ngõ))",
+    "segment": "Đường ĐT743A giao Mỹ Phước Tân Vạn (giáp cửa ngõ Thủ Đức)",
+    "display_name": "ĐT743A - Mỹ Phước Tân Vạn (Đường ĐT743A giao Mỹ Phước Tân Vạn (giáp cửa ngõ Thủ Đức))",
     "ward": "Phường Bình Thắng",
-    "district": "TP. Dĩ An / TP. Thủ Đức",
+    "district": "TP. Dĩ An (Cửa ngõ TP. Thủ Đức)",
     "region": "TPHCM",
     "lat": 10.892,
     "lon": 106.785,
@@ -1668,6 +1756,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "binh thang",
+      "bình thắng",
       "dt743a",
       "dt743a - my phuoc tan van",
       "my phuoc tan van",
@@ -1711,7 +1801,9 @@
       "le van viet dinh phong phu",
       "lã xuân oai",
       "lê văn việt",
-      "lê văn việt đình phong phú"
+      "lê văn việt đình phong phú",
+      "tang nhon phu a",
+      "tăng nhơn phú a"
     ]
   },
   {
@@ -1746,6 +1838,8 @@
     "keywords": [
       "cau go cong",
       "cầu gò công",
+      "long thanh my",
+      "long thạnh mỹ",
       "nguyen xien",
       "nguyen xien go cong",
       "nguyễn xiển",
@@ -1761,8 +1855,8 @@
     "street": "Quốc lộ 50",
     "segment": "Từ Nguyễn Văn Linh về cầu Chánh Hưng",
     "display_name": "Quốc lộ 50 (Từ Nguyễn Văn Linh về cầu Chánh Hưng)",
-    "ward": "Phường 5",
-    "district": "Quận 8",
+    "ward": "Xã Bình Hưng",
+    "district": "Huyện Bình Chánh",
     "region": "TPHCM",
     "lat": 10.732,
     "lon": 106.665,
@@ -1784,6 +1878,8 @@
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
       "50",
+      "binh hung",
+      "bình hưng",
       "ql50 chanh hung",
       "ql50 chánh hưng",
       "quoc lo 50",
@@ -1800,7 +1896,7 @@
     "street": "Văn Tiến Dũng",
     "segment": "Đường Văn Tiến Dũng",
     "display_name": "Văn Tiến Dũng (Đường Văn Tiến Dũng)",
-    "ward": "Xã Tân Thới Nhì",
+    "ward": "Xã Xuân Thới Sơn",
     "district": "Huyện Hóc Môn",
     "region": "TPHCM",
     "lat": 10.875,
@@ -1822,8 +1918,12 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "tan thoi nhi",
+      "tân thới nhì",
       "van tien dung",
-      "văn tiến dũng"
+      "văn tiến dũng",
+      "xuan thoi son",
+      "xuân thới sơn"
     ]
   },
   {
@@ -1858,6 +1958,8 @@
     "keywords": [
       "cau rach chim",
       "cầu rạch chim",
+      "hiep phuoc",
+      "hiệp phước",
       "nguyen van tao",
       "nguyen van tao cau kenh lo",
       "nguyễn văn tạo",
@@ -1894,6 +1996,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "hiep phuoc",
+      "hiệp phước",
       "nguyen binh - le van luong",
       "nguyen binh le van luong",
       "nguyễn bình - lê văn lương",
@@ -1933,7 +2037,9 @@
       "huynh tan phat - phu thuan",
       "huynh tan phat phu thuan",
       "huỳnh tấn phát - phú thuận",
-      "huỳnh tấn phát phú thuận"
+      "huỳnh tấn phát phú thuận",
+      "phu thuan",
+      "phú thuận"
     ]
   },
   {
@@ -1971,7 +2077,9 @@
       "nguyen van linh (cau ong lon)",
       "nguyen van linh cau ong lon",
       "nguyễn văn linh (cầu ông lớn)",
-      "nguyễn văn linh cầu ông lớn"
+      "nguyễn văn linh cầu ông lớn",
+      "tan phong",
+      "tân phong"
     ]
   },
   {
@@ -2009,7 +2117,9 @@
       "nguyen van linh (lan sf)",
       "nguyen van linh pham van nghi",
       "nguyễn văn linh (làn sf)",
-      "nguyễn văn linh phạm văn nghị"
+      "nguyễn văn linh phạm văn nghị",
+      "tan phong",
+      "tân phong"
     ]
   },
   {
@@ -2048,6 +2158,8 @@
       "d1 - cầu chui rmit",
       "duong d1 - cau chui rmit",
       "duong d1 rmit",
+      "tan phong",
+      "tân phong",
       "đường d1 - cầu chui rmit",
       "đường d1 rmit"
     ]
@@ -2085,6 +2197,8 @@
       "d6",
       "duong d6",
       "duong d6 tan phong",
+      "tan phong",
+      "tân phong",
       "đường d6",
       "đường d6 tân phong"
     ]
@@ -2124,7 +2238,9 @@
       "hoang trong mau",
       "hoang trong mau (cau d1 him lam)",
       "hoàng trọng mậu",
-      "hoàng trọng mậu (cầu d1 him lam)"
+      "hoàng trọng mậu (cầu d1 him lam)",
+      "tan hung",
+      "tân hưng"
     ]
   },
   {
@@ -2133,8 +2249,8 @@
     "cause": "rain",
     "cause_label": "Mưa lớn, nước không thoát kịp",
     "street": "Đặng Thùy Trâm",
-    "segment": "Đường Đặng Thùy Trâm (P. Bình Lợi Trung)",
-    "display_name": "Đặng Thùy Trâm (Đường Đặng Thùy Trâm (P. Bình Lợi Trung))",
+    "segment": "Đường Đặng Thùy Trâm (Phường 13 / Bình Lợi Trung)",
+    "display_name": "Đặng Thùy Trâm (Đường Đặng Thùy Trâm (Phường 13 / Bình Lợi Trung))",
     "ward": "Phường 13",
     "district": "Quận Bình Thạnh",
     "region": "TPHCM",
@@ -2160,6 +2276,8 @@
       "binh loi trung",
       "bình lợi trung",
       "dang thuy tram",
+      "phuong 13 binh thanh",
+      "phường 13 bình thạnh",
       "đặng thùy trâm"
     ]
   },
@@ -2193,6 +2311,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "phuong 25 binh thanh",
+      "phường 25 bình thạnh",
       "ung van khiem",
       "ung van khiem nguyen gia tri",
       "ung văn khiêm",
@@ -2207,7 +2327,7 @@
     "street": "Nguyễn Văn Khối",
     "segment": "Từ Lê Văn Thọ đến trước UBND P. Thông Tây Hội",
     "display_name": "Nguyễn Văn Khối (Từ Lê Văn Thọ đến trước UBND P. Thông Tây Hội)",
-    "ward": "Phường 8",
+    "ward": "Phường 8 (Thông Tây Hội)",
     "district": "Quận Gò Vấp",
     "region": "TPHCM",
     "lat": 10.846,
@@ -2233,6 +2353,8 @@
       "nguyen van khoi le van tho",
       "nguyễn văn khối",
       "nguyễn văn khối lê văn thọ",
+      "phuong 8 go vap",
+      "phường 8 gò vấp",
       "thong tay hoi",
       "thông tây hội"
     ]
@@ -2271,6 +2393,8 @@
       "hẻm 2695 phạm thế hiển",
       "pham the hien (hem 2695 - le boi)",
       "pham the hien le boi",
+      "phuong 7 quan 8",
+      "phường 7 quận 8",
       "phạm thế hiển (hẻm 2695 - lê bôi)",
       "phạm thế hiển lê bôi"
     ]
@@ -2309,6 +2433,8 @@
       "cầu bà tàng",
       "pham the hien (cau ba tang)",
       "pham the hien 2377",
+      "phuong 7 quan 8",
+      "phường 7 quận 8",
       "phạm thế hiển (cầu bà tàng)",
       "phạm thế hiển 2377"
     ]
@@ -2348,7 +2474,9 @@
       "phan van khai tan an hoi",
       "phan văn khải",
       "phan văn khải 534",
-      "phan văn khải tân an hội"
+      "phan văn khải tân an hội",
+      "tan an hoi",
+      "tân an hội"
     ]
   },
   {
@@ -2384,7 +2512,9 @@
       "phan van khai",
       "phan van khai 437",
       "phan văn khải",
-      "phan văn khải 437"
+      "phan văn khải 437",
+      "tan an hoi",
+      "tân an hội"
     ]
   },
   {
@@ -2393,8 +2523,8 @@
     "cause": "rain",
     "cause_label": "Mưa lớn, nước không thoát kịp",
     "street": "Phan Văn Khải",
-    "segment": "Số 124 (xã Củ Chi / TT. Củ Chi)",
-    "display_name": "Phan Văn Khải (Số 124 (xã Củ Chi / TT. Củ Chi))",
+    "segment": "Số 124 (Thị trấn Củ Chi)",
+    "display_name": "Phan Văn Khải (Số 124 (Thị trấn Củ Chi))",
     "ward": "Thị trấn Củ Chi",
     "district": "Huyện Củ Chi",
     "region": "TPHCM",
@@ -2422,7 +2552,9 @@
       "phan van khai cu chi",
       "phan văn khải",
       "phan văn khải 124",
-      "phan văn khải củ chi"
+      "phan văn khải củ chi",
+      "thi tran cu chi",
+      "thị trấn củ chi"
     ]
   },
   {
@@ -2434,7 +2566,7 @@
     "segment": "Hướng từ ngã 3 trường tiểu học An Tây đến chợ An Tây",
     "display_name": "ĐT744 (Hướng từ ngã 3 trường tiểu học An Tây đến chợ An Tây)",
     "ward": "Xã An Tây",
-    "district": "TP. Bến Cát / Cửa ngõ TP.HCM",
+    "district": "TP. Bến Cát (Giáp Củ Chi)",
     "region": "TPHCM",
     "lat": 11.125,
     "lon": 106.518,
@@ -2455,6 +2587,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "an tay",
+      "an tây",
       "cho an tay",
       "chợ an tây",
       "dt744",
@@ -2470,7 +2604,7 @@
     "segment": "Hướng từ ngã 3 Rạch Bắp đến đầu chợ Bưng Còng",
     "display_name": "ĐT744 (Hướng từ ngã 3 Rạch Bắp đến đầu chợ Bưng Còng)",
     "ward": "Xã An Điền",
-    "district": "TP. Bến Cát",
+    "district": "TP. Bến Cát (Giáp Củ Chi)",
     "region": "TPHCM",
     "lat": 11.135,
     "lon": 106.505,
@@ -2491,6 +2625,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "an dien",
+      "an điền",
       "bung cong",
       "bưng còng",
       "dt744",
@@ -2532,7 +2668,9 @@
       "bui thanh khiet",
       "bùi thanh khiết",
       "cho dem tan nhut",
-      "chợ đệm tân nhựt"
+      "chợ đệm tân nhựt",
+      "xa tan nhut",
+      "xã tân nhựt"
     ]
   },
   {
@@ -2567,6 +2705,8 @@
     "keywords": [
       "cau ba to",
       "cầu ba tơ",
+      "phuong 7 quan 8",
+      "phường 7 quận 8",
       "trinh quang nghi",
       "trịnh quang nghị"
     ]
@@ -2601,6 +2741,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "binh tri dong a",
+      "bình trị đông a",
       "ma lo",
       "ma lo huong lo 2",
       "mã lò",
@@ -2637,8 +2779,10 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Mưa lớn, nước không thoát kịp)",
     "keywords": [
+      "binh tri dong",
       "binh tri dong - chien luoc",
       "binh tri dong chien luoc",
+      "bình trị đông",
       "bình trị đông - chiến lược",
       "bình trị đông chiến lược",
       "chien luoc binh tan",
@@ -2654,7 +2798,7 @@
     "segment": "Km43+300 đến Km43+800 (P. Phú Mỹ, hướng Đồng Nai về Phú Mỹ)",
     "display_name": "Quốc lộ 51 (Km43+300 đến Km43+800 (P. Phú Mỹ, hướng Đồng Nai về Phú Mỹ))",
     "ward": "Phường Phú Mỹ",
-    "district": "Thị xã Phú Mỹ / Tuyến liên kết",
+    "district": "Thị xã Phú Mỹ (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.585,
     "lon": 107.052,
@@ -2692,7 +2836,7 @@
     "segment": "Km44+300 đến Km44+600 (P. Phú Mỹ, hướng Đồng Nai về Phú Mỹ)",
     "display_name": "Quốc lộ 51 (Km44+300 đến Km44+600 (P. Phú Mỹ, hướng Đồng Nai về Phú Mỹ))",
     "ward": "Phường Phú Mỹ",
-    "district": "Thị xã Phú Mỹ",
+    "district": "Thị xã Phú Mỹ (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.578,
     "lon": 107.055,
@@ -2728,7 +2872,7 @@
     "segment": "Km49+100 đến Km49+700 (P. Tân Phước, hướng đi Đồng Nai)",
     "display_name": "Quốc lộ 51 (Km49+100 đến Km49+700 (P. Tân Phước, hướng đi Đồng Nai))",
     "ward": "Phường Tân Phước",
-    "district": "Thị xã Phú Mỹ",
+    "district": "Thị xã Phú Mỹ (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.542,
     "lon": 107.078,
@@ -2765,7 +2909,7 @@
     "segment": "Km52+300 đến Km52+800 (ngã tư Hội Bài, P. Tân Hải, hướng đi Đồng Nai)",
     "display_name": "Quốc lộ 51 (Km52+300 đến Km52+800 (ngã tư Hội Bài, P. Tân Hải, hướng đi Đồng Nai))",
     "ward": "Phường Tân Hải",
-    "district": "Thị xã Phú Mỹ",
+    "district": "Thị xã Phú Mỹ (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.518,
     "lon": 107.098,
@@ -2804,7 +2948,7 @@
     "segment": "Km68+900 đến Km69+400 (P. Phước Thắng, hướng Vũng Tàu đi Bà Rịa)",
     "display_name": "Quốc lộ 51 (Km68+900 đến Km69+400 (P. Phước Thắng, hướng Vũng Tàu đi Bà Rịa))",
     "ward": "Phường Phước Thắng",
-    "district": "TP. Vũng Tàu",
+    "district": "TP. Vũng Tàu (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.425,
     "lon": 107.125,
@@ -2841,7 +2985,7 @@
     "segment": "Km73+500 (ngã tư Ẹo Ông Từ, P. Phước Thắng, hướng Vũng Tàu đi Bà Rịa)",
     "display_name": "Quốc lộ 51 (Km73+500 (ngã tư Ẹo Ông Từ, P. Phước Thắng, hướng Vũng Tàu đi Bà Rịa))",
     "ward": "Phường Phước Thắng",
-    "district": "TP. Vũng Tàu",
+    "district": "TP. Vũng Tàu (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.408,
     "lon": 107.138,
@@ -2880,7 +3024,7 @@
     "segment": "Đường Lê Hồng Phong nối dài",
     "display_name": "Lê Hồng Phong nối dài (Đường Lê Hồng Phong nối dài)",
     "ward": "Phường Thắng Tam",
-    "district": "TP. Vũng Tàu / Cửa ngõ duyên hải",
+    "district": "TP. Vũng Tàu (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.355,
     "lon": 107.085,
@@ -2914,7 +3058,7 @@
     "segment": "Đoạn từ cảng Dầu khí đến chợ Thắng Nhất",
     "display_name": "Đường 30/4 (Đoạn từ cảng Dầu khí đến chợ Thắng Nhất)",
     "ward": "Phường Thắng Nhất",
-    "district": "TP. Vũng Tàu",
+    "district": "TP. Vũng Tàu (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.382,
     "lon": 107.108,
@@ -2953,7 +3097,7 @@
     "segment": "Đường 2/9",
     "display_name": "Đường 2/9",
     "ward": "Phường 11",
-    "district": "TP. Vũng Tàu",
+    "district": "TP. Vũng Tàu (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.395,
     "lon": 107.115,
@@ -2988,7 +3132,7 @@
     "segment": "Đường Nguyễn An Ninh",
     "display_name": "Nguyễn An Ninh (Đường Nguyễn An Ninh)",
     "ward": "Phường 7",
-    "district": "TP. Vũng Tàu",
+    "district": "TP. Vũng Tàu (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.358,
     "lon": 107.082,
@@ -3022,7 +3166,7 @@
     "segment": "Đường Trương Công Định",
     "display_name": "Trương Công Định (Đường Trương Công Định)",
     "ward": "Phường 3",
-    "district": "TP. Vũng Tàu",
+    "district": "TP. Vũng Tàu (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.352,
     "lon": 107.078,
@@ -3056,7 +3200,7 @@
     "segment": "Đường Nguyễn Tất Thành (xã Long Hải)",
     "display_name": "Nguyễn Tất Thành (Đường Nguyễn Tất Thành (xã Long Hải))",
     "ward": "Xã Long Hải",
-    "district": "Huyện Long Điền",
+    "district": "Huyện Long Điền (Cửa ngõ liên tỉnh)",
     "region": "TPHCM",
     "lat": 10.375,
     "lon": 107.242,
@@ -3091,7 +3235,7 @@
     "street": "Lê Khả Phiêu (Song hành)",
     "segment": "Đoạn song hành, hướng từ Hưng Nhơn về Dương Đình Cúc",
     "display_name": "Lê Khả Phiêu (Song hành) (Đoạn song hành, hướng từ Hưng Nhơn về Dương Đình Cúc)",
-    "ward": "Xã Tân Kiên",
+    "ward": "Xã Tân Nhựt",
     "district": "Huyện Bình Chánh",
     "region": "TPHCM",
     "lat": 10.718,
@@ -3120,7 +3264,11 @@
       "le kha phieu",
       "le kha phieu (song hanh)",
       "lê khả phiêu",
-      "lê khả phiêu (song hành)"
+      "lê khả phiêu (song hành)",
+      "tan kien",
+      "tan nhut",
+      "tân kiên",
+      "tân nhựt"
     ]
   },
   {
@@ -3131,7 +3279,7 @@
     "street": "Lê Khả Phiêu - Hoàng Đạo Thúy",
     "segment": "Giao Hoàng Đạo Thúy, hướng từ Nguyễn Văn Linh đi cầu Bình Điền",
     "display_name": "Lê Khả Phiêu - Hoàng Đạo Thúy (Giao Hoàng Đạo Thúy, hướng từ Nguyễn Văn Linh đi cầu Bình Điền)",
-    "ward": "Xã Tân Kiên",
+    "ward": "Xã Tân Nhựt",
     "district": "Huyện Bình Chánh",
     "region": "TPHCM",
     "lat": 10.712,
@@ -3158,7 +3306,11 @@
       "hoang dao thuy",
       "hoàng đạo thúy",
       "le kha phieu - hoang dao thuy",
-      "lê khả phiêu - hoàng đạo thúy"
+      "lê khả phiêu - hoàng đạo thúy",
+      "tan kien",
+      "tan nhut",
+      "tân kiên",
+      "tân nhựt"
     ]
   },
   {
@@ -3197,7 +3349,9 @@
       "so 4 ben nghe",
       "số 4 bến nghé",
       "tan thuan",
+      "tan thuan dong",
       "tân thuận",
+      "tân thuận đông",
       "đường bến nghé"
     ]
   },
@@ -3233,8 +3387,10 @@
     "keywords": [
       "lam van ben",
       "lâm văn bền",
+      "tan kieng",
       "tran xuan soan",
-      "trần xuân soạn"
+      "trần xuân soạn",
+      "tân kiểng"
     ]
   },
   {
@@ -3272,7 +3428,9 @@
       "nguyen thi thap tan my",
       "nguyễn thị thập",
       "nguyễn thị thập - tân mỹ",
-      "nguyễn thị thập tân mỹ"
+      "nguyễn thị thập tân mỹ",
+      "tan phu",
+      "tân phú"
     ]
   },
   {
@@ -3308,7 +3466,9 @@
       "nguyen thi thap - le van luong",
       "nguyen thi thap le van luong",
       "nguyễn thị thập - lê văn lương",
-      "nguyễn thị thập lê văn lương"
+      "nguyễn thị thập lê văn lương",
+      "tan quy",
+      "tân quy"
     ]
   },
   {
@@ -3344,7 +3504,9 @@
       "le van luong",
       "le van luong nha be",
       "lê văn lương",
-      "lê văn lương nhà bè"
+      "lê văn lương nhà bè",
+      "xa nha be",
+      "xã nhà bè"
     ]
   },
   {
@@ -3355,7 +3517,7 @@
     "street": "Lê Văn Lương (Cầu Rạch Tôm)",
     "segment": "Khoảng 250m trước công trình cầu Rạch Tôm, hướng đi Tây Ninh/trung tâm",
     "display_name": "Lê Văn Lương (Cầu Rạch Tôm) (Khoảng 250m trước công trình cầu Rạch Tôm, hướng đi Tây Ninh/trung tâm)",
-    "ward": "Xã Nhơn Đức",
+    "ward": "Xã Hiệp Phước",
     "district": "Huyện Nhà Bè",
     "region": "TPHCM",
     "lat": 10.678,
@@ -3379,10 +3541,14 @@
     "keywords": [
       "cau rach tom",
       "cầu rạch tôm",
+      "hiep phuoc",
+      "hiệp phước",
       "le van luong (cau rach tom)",
       "le van luong rach tom",
       "lê văn lương (cầu rạch tôm)",
-      "lê văn lương rạch tôm"
+      "lê văn lương rạch tôm",
+      "nhon duc",
+      "nhơn đức"
     ]
   },
   {
@@ -3420,6 +3586,8 @@
       "huỳnh tấn phát - phạm hữu lầu",
       "huỳnh tấn phát phạm hữu lầu",
       "pham huu lau",
+      "phu my",
+      "phú mỹ",
       "phạm hữu lầu"
     ]
   },
@@ -3458,7 +3626,9 @@
       "huynh tan phat - hoang quoc viet",
       "huynh tan phat hoang quoc viet",
       "huỳnh tấn phát - hoàng quốc việt",
-      "huỳnh tấn phát hoàng quốc việt"
+      "huỳnh tấn phát hoàng quốc việt",
+      "phu thuan",
+      "phú thuận"
     ]
   },
   {
@@ -3494,7 +3664,9 @@
       "nguyen luong bang - hoang quoc viet",
       "nguyen luong bang hoang quoc viet",
       "nguyễn lương bằng - hoàng quốc việt",
-      "nguyễn lương bằng hoàng quốc việt"
+      "nguyễn lương bằng hoàng quốc việt",
+      "phu my",
+      "phú mỹ"
     ]
   },
   {
@@ -3530,7 +3702,9 @@
       "nguyen luong bang - pham huu lau",
       "nguyen luong bang pham huu lau",
       "nguyễn lương bằng - phạm hữu lầu",
-      "nguyễn lương bằng phạm hữu lầu"
+      "nguyễn lương bằng phạm hữu lầu",
+      "phu my",
+      "phú mỹ"
     ]
   },
   {
@@ -3567,6 +3741,8 @@
       "cầu phước long",
       "pham huu lau",
       "pham huu lau cau phuoc long",
+      "phu my",
+      "phú mỹ",
       "phạm hữu lầu",
       "phạm hữu lầu cầu phước long"
     ]
@@ -3579,7 +3755,7 @@
     "street": "Nguyễn Hữu Thọ",
     "segment": "Từ giao lộ Phạm Hữu Lầu đến cầu Rạch Đỉa 2 (hướng từ Nhà Bè vào trung tâm)",
     "display_name": "Nguyễn Hữu Thọ (Từ giao lộ Phạm Hữu Lầu đến cầu Rạch Đỉa 2 (hướng từ Nhà Bè vào trung tâm))",
-    "ward": "Xã Phước Kiển",
+    "ward": "Xã Nhà Bè",
     "district": "Huyện Nhà Bè",
     "region": "TPHCM",
     "lat": 10.718,
@@ -3606,7 +3782,11 @@
       "nguyen huu tho",
       "nguyen huu tho cau rach dia",
       "nguyễn hữu thọ",
-      "nguyễn hữu thọ cầu rạch đỉa"
+      "nguyễn hữu thọ cầu rạch đỉa",
+      "phuoc kien",
+      "phước kiển",
+      "xa nha be",
+      "xã nhà bè"
     ]
   },
   {
@@ -3617,7 +3797,7 @@
     "street": "Nguyễn Bình",
     "segment": "Từ giao lộ Huỳnh Tấn Phát đến cầu Mương Chuối",
     "display_name": "Nguyễn Bình (Từ giao lộ Huỳnh Tấn Phát đến cầu Mương Chuối)",
-    "ward": "Xã Phú Xuân",
+    "ward": "Xã Nhà Bè",
     "district": "Huyện Nhà Bè",
     "region": "TPHCM",
     "lat": 10.685,
@@ -3644,7 +3824,11 @@
       "nguyen binh",
       "nguyen binh cau muong chuoi",
       "nguyễn bình",
-      "nguyễn bình cầu mương chuối"
+      "nguyễn bình cầu mương chuối",
+      "phu xuan",
+      "phú xuân",
+      "xa nha be",
+      "xã nhà bè"
     ]
   },
   {
@@ -3677,6 +3861,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Triều cường dâng cao)",
     "keywords": [
+      "hiep phuoc",
+      "hiệp phước",
       "le thi tam",
       "lê thị tám"
     ]
@@ -3714,7 +3900,9 @@
       "hong cau phu my",
       "hông cầu phú mỹ",
       "nguyen van quy",
-      "nguyễn văn quỳ"
+      "nguyễn văn quỳ",
+      "phu thuan",
+      "phú thuận"
     ]
   },
   {
@@ -3747,9 +3935,13 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Triều cường dâng cao)",
     "keywords": [
+      "cho lon",
+      "chợ lớn",
       "duong go cong quan 5",
       "go cong",
       "gò công",
+      "phuong 13 quan 5",
+      "phường 13 quận 5",
       "đường gò công quận 5"
     ]
   },
@@ -3761,7 +3953,7 @@
     "street": "Phan Phú Tiên",
     "segment": "Đường Phan Phú Tiên (Quận 5)",
     "display_name": "Phan Phú Tiên (Đường Phan Phú Tiên (Quận 5))",
-    "ward": "Phường 10",
+    "ward": "Phường 11 (sau sáp nhập)",
     "district": "Quận 5",
     "region": "TPHCM",
     "lat": 10.7535,
@@ -3784,7 +3976,11 @@
     "type": "Điểm cảnh báo CSGT (Triều cường dâng cao)",
     "keywords": [
       "phan phu tien",
-      "phan phú tiên"
+      "phan phú tiên",
+      "phuong 10 quan 5",
+      "phuong 11 quan 5",
+      "phường 10 quận 5",
+      "phường 11 quận 5"
     ]
   },
   {
@@ -3819,6 +4015,8 @@
     "keywords": [
       "binh tien",
       "bình tiên",
+      "phuong 3 quan 6",
+      "phường 3 quận 6",
       "vo van kiet",
       "vo van kiet pham phu thu",
       "võ văn kiệt",
@@ -3857,6 +4055,8 @@
     "keywords": [
       "pham phu thu",
       "pham phu thu pham van chi",
+      "phuong 3 quan 6",
+      "phường 3 quận 6",
       "phạm phú thứ",
       "phạm phú thứ phạm văn chí"
     ]
@@ -3869,7 +4069,7 @@
     "street": "Song Hành Lớn",
     "segment": "Đường Song Hành Lớn (P. Bình Phú)",
     "display_name": "Song Hành Lớn (Đường Song Hành Lớn (P. Bình Phú))",
-    "ward": "Phường Bình Phú",
+    "ward": "Phường Bình Phú (P.10 cũ)",
     "district": "Quận 6",
     "region": "TPHCM",
     "lat": 10.746,
@@ -3893,6 +4093,8 @@
     "keywords": [
       "binh phu",
       "bình phú",
+      "phuong binh phu",
+      "phường bình phú",
       "song hanh lon",
       "song hành lớn"
     ]
@@ -3928,6 +4130,8 @@
     "type": "Điểm cảnh báo CSGT (Triều cường dâng cao)",
     "keywords": [
       "duong 32",
+      "phuong 10 quan 6",
+      "phường 10 quận 6",
       "tran van kieu",
       "tran van kieu - duong 32",
       "trần văn kiểu",
@@ -3943,7 +4147,7 @@
     "street": "Chân cầu Lò Gốm",
     "segment": "Chân cầu Lò Gốm (Quận 6)",
     "display_name": "Chân cầu Lò Gốm (Quận 6)",
-    "ward": "Phường 11",
+    "ward": "Phường 11 (sau sáp nhập)",
     "district": "Quận 6",
     "region": "TPHCM",
     "lat": 10.741,
@@ -3968,7 +4172,9 @@
       "cau lo gom",
       "chan cau lo gom",
       "chân cầu lò gốm",
-      "cầu lò gốm"
+      "cầu lò gốm",
+      "phuong 11 quan 6",
+      "phường 11 quận 6"
     ]
   },
   {
@@ -3979,7 +4185,7 @@
     "street": "Mai Xuân Thưởng",
     "segment": "Đường Mai Xuân Thưởng",
     "display_name": "Mai Xuân Thưởng (Đường Mai Xuân Thưởng)",
-    "ward": "Phường 2",
+    "ward": "Phường 2 (sau sáp nhập)",
     "district": "Quận 6",
     "region": "TPHCM",
     "lat": 10.748,
@@ -4002,7 +4208,11 @@
     "type": "Điểm cảnh báo CSGT (Triều cường dâng cao)",
     "keywords": [
       "mai xuan thuong",
-      "mai xuân thưởng"
+      "mai xuân thưởng",
+      "phuong 2 quan 6",
+      "phuong 6 quan 6",
+      "phường 2 quận 6",
+      "phường 6 quận 6"
     ]
   },
   {
@@ -4038,6 +4248,8 @@
       "cao dat",
       "cao đạt",
       "duong cao dat",
+      "phuong 1 quan 5",
+      "phường 1 quận 5",
       "đường cao đạt"
     ]
   },
@@ -4049,7 +4261,7 @@
     "street": "An Bình",
     "segment": "Đường An Bình (Quận 5)",
     "display_name": "An Bình (Đường An Bình (Quận 5))",
-    "ward": "Phường 5",
+    "ward": "Phường 5 (sau sáp nhập)",
     "district": "Quận 5",
     "region": "TPHCM",
     "lat": 10.751,
@@ -4074,6 +4286,10 @@
       "an binh",
       "an bình",
       "duong an binh",
+      "phuong 5 quan 5",
+      "phuong 6 quan 5",
+      "phường 5 quận 5",
+      "phường 6 quận 5",
       "đường an bình"
     ]
   },
@@ -4110,6 +4326,8 @@
       "duong nguyen bieu",
       "nguyen bieu",
       "nguyễn biểu",
+      "phuong 1 quan 5",
+      "phường 1 quận 5",
       "đường nguyễn biểu"
     ]
   },
@@ -4121,7 +4339,7 @@
     "street": "Trần Hưng Đạo",
     "segment": "Từ Nguyễn Biểu đến Nguyễn Tri Phương",
     "display_name": "Trần Hưng Đạo (Từ Nguyễn Biểu đến Nguyễn Tri Phương)",
-    "ward": "Phường 7",
+    "ward": "Phường 7 (sau sáp nhập)",
     "district": "Quận 5",
     "region": "TPHCM",
     "lat": 10.752,
@@ -4145,6 +4363,10 @@
     "keywords": [
       "nguyen tri phuong",
       "nguyễn tri phương",
+      "phuong 7 quan 5",
+      "phuong 8 quan 5",
+      "phường 7 quận 5",
+      "phường 8 quận 5",
       "tran hung dao",
       "tran hung dao nguyen bieu",
       "trần hưng đạo",
@@ -4184,6 +4406,8 @@
       "pham the hien (trieu cuong)",
       "pham the hien quan 8",
       "pham the hien trieu cuong",
+      "phuong 4 quan 8",
+      "phường 4 quận 8",
       "phạm thế hiển (triều cường)",
       "phạm thế hiển quận 8",
       "phạm thế hiển triều cường"
@@ -4197,7 +4421,7 @@
     "street": "Dương Bá Trạc",
     "segment": "Đường Dương Bá Trạc (Chân cầu Kênh Xáng)",
     "display_name": "Dương Bá Trạc (Đường Dương Bá Trạc (Chân cầu Kênh Xáng))",
-    "ward": "Phường 1",
+    "ward": "Phường Rạch Ông (P.1 cũ)",
     "district": "Quận 8",
     "region": "TPHCM",
     "lat": 10.746,
@@ -4222,7 +4446,11 @@
       "cau kenh xang",
       "cầu kênh xáng",
       "duong ba trac",
-      "dương bá trạc"
+      "dương bá trạc",
+      "phuong 1 quan 8",
+      "phường 1 quận 8",
+      "rach ong",
+      "rạch ông"
     ]
   },
   {
@@ -4259,6 +4487,8 @@
       "chan cau rach chiec xe may",
       "chân cầu rạch chiếc (làn xe máy)",
       "chân cầu rạch chiếc xe máy",
+      "phuoc long a",
+      "phước long a",
       "rmk"
     ]
   },
@@ -4292,6 +4522,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Triều cường dâng cao)",
     "keywords": [
+      "an khanh",
+      "an khánh",
       "chung cu new city",
       "chung cư new city",
       "mai chi tho (new city)",
@@ -4375,7 +4607,9 @@
       "nguyen van huong",
       "nguyen van huong thao dien",
       "nguyễn văn hưởng",
-      "nguyễn văn hưởng thảo điền"
+      "nguyễn văn hưởng thảo điền",
+      "thao dien",
+      "thảo điền"
     ]
   },
   {
@@ -4410,6 +4644,8 @@
     "keywords": [
       "cay xang kim long 813",
       "cây xăng kim long 813",
+      "long truong",
+      "long trường",
       "nguyen duy trinh",
       "nguyễn duy trinh"
     ]
@@ -4449,7 +4685,9 @@
       "lien phuong - bung ong thoan",
       "lien phuong bung ong thoan",
       "liên phường - bưng ông thoàn",
-      "liên phường bưng ông thoàn"
+      "liên phường bưng ông thoàn",
+      "phu huu",
+      "phú hữu"
     ]
   },
   {
@@ -4458,9 +4696,9 @@
     "cause": "tide",
     "cause_label": "Triều cường dâng cao",
     "street": "Bờ kè Lô F Cư xá Thanh Đa",
-    "segment": "Bờ kè Lô F, cư xá Thanh Đa (P. Bình Quới / P. 27 Bình Thạnh)",
-    "display_name": "Bờ kè Lô F Cư xá Thanh Đa (Bờ kè Lô F, cư xá Thanh Đa (P. Bình Quới / P. 27 Bình Thạnh))",
-    "ward": "Phường 27",
+    "segment": "Bờ kè Lô F, cư xá Thanh Đa (Phường 27 / Bình Quới)",
+    "display_name": "Bờ kè Lô F Cư xá Thanh Đa (Bờ kè Lô F, cư xá Thanh Đa (Phường 27 / Bình Quới))",
+    "ward": "Phường 27 (Thanh Đa)",
     "district": "Quận Bình Thạnh",
     "region": "TPHCM",
     "lat": 10.822,
@@ -4482,14 +4720,18 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Triều cường dâng cao)",
     "keywords": [
+      "binh quoi",
       "bo ke lo f cu xa thanh da",
       "bo ke thanh da",
+      "bình quới",
       "bờ kè lô f cư xá thanh đa",
       "bờ kè thanh đa",
       "cu xa thanh da",
       "cư xá thanh đa",
       "lo f thanh da",
-      "lô f thanh đa"
+      "lô f thanh đa",
+      "phuong 27 binh thanh",
+      "phường 27 bình thạnh"
     ]
   },
   {
@@ -4522,6 +4764,8 @@
     "priority": 3,
     "type": "Điểm cảnh báo CSGT (Triều cường dâng cao)",
     "keywords": [
+      "an phu dong",
+      "an phú đông",
       "ha huy giap",
       "ha huy giap an phu dong",
       "hà huy giáp",
