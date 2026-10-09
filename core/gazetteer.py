@@ -94,7 +94,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["đỗ xuân hợp", "do xuan hop", "doxuanhop"],
         "display_name": "Đường Đỗ Xuân Hợp (Thủ Đức)",
-        "ward": "Phường Phước Long B",
+        "ward": "Phường Phước Long",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.8220, "lon": 106.7720,
@@ -597,6 +597,24 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "lat": 10.7180, "lon": 106.6620,
         "heat_points": [[10.7100, 106.6630], [10.7180, 106.6620]],
         "type": "ngập triều kết hợp mưa lũ"
+    },
+
+    # --- PHƯỜNG MỚI TP. THỦ ĐỨC SAU SÁP NHẬP ---
+    {
+        # Phường Phước Long (Sáp nhập Phước Long A + Phước Long B + Phước Bình)
+        "keywords": [
+            "phường phước long", "phuong phuoc long", "phước long", "phuoc long",
+            "phước long a", "phuoc long a", "phước long b", "phuoc long b",
+            "phước bình", "phuoc binh", "p. phước long"
+        ],
+        "display_name": "Khu vực Phường Phước Long",
+        "ward": "Phường Phước Long",
+        "priority": 2,
+        "district": "TP. Thủ Đức",
+        "region": "TPHCM",
+        "lat": 10.8200, "lon": 106.7700,
+        "heat_points": [[10.8200, 106.7700]],
+        "type": "ngập diện rộng khu vực Phước Long"
     },
 
     # --- CÁC ĐIỂM NÓNG THEO QUẬN/HUYỆN CỤ THỂ TRONG TP.HCM ---

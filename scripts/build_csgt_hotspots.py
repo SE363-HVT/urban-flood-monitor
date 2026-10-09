@@ -381,9 +381,9 @@ RAW_CSGT_DATA = [
         "cause": "rain",
         "street": "Võ Chí Công - Đường số 5",
         "segment": "Đường Võ Chí Công giao đường số 5",
-        "ward": "Phường Phước Long B", "district": "TP. Thủ Đức",
+        "ward": "Phường Phước Long", "district": "TP. Thủ Đức",
         "lat": 10.8010, "lon": 106.7820,
-        "extra_kw": ["võ chí công đường số 5", "võ chí công", "phước long b"]
+        "extra_kw": ["võ chí công đường số 5", "võ chí công", "phước long", "phước long b"]
     },
     {
         "id": "csgt_rain_38",
@@ -399,9 +399,9 @@ RAW_CSGT_DATA = [
         "cause": "rain",
         "street": "Đỗ Xuân Hợp - Tây Hòa",
         "segment": "Giao lộ Đỗ Xuân Hợp - Tây Hòa",
-        "ward": "Phường Phước Long A", "district": "TP. Thủ Đức",
+        "ward": "Phường Phước Long", "district": "TP. Thủ Đức",
         "lat": 10.8220, "lon": 106.7680,
-        "extra_kw": ["đỗ xuân hợp tây hòa", "đỗ xuân hợp", "phước long a"]
+        "extra_kw": ["đỗ xuân hợp tây hòa", "đỗ xuân hợp", "phước long", "phước long a"]
     },
     {
         "id": "csgt_rain_40",
@@ -1087,9 +1087,9 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Chân cầu Rạch Chiếc (Làn xe máy)",
         "segment": "Chân cầu Rạch Chiếc, hướng từ Võ Nguyên Giáp đi RMK (làn xe máy)",
-        "ward": "Phường Phước Long A", "district": "TP. Thủ Đức",
+        "ward": "Phường Phước Long", "district": "TP. Thủ Đức",
         "lat": 10.8170, "lon": 106.7580,
-        "extra_kw": ["chân cầu rạch chiếc xe máy", "rmk", "phước long a"]
+        "extra_kw": ["chân cầu rạch chiếc làn xe máy", "chân cầu rạch chiếc xe máy", "rmk", "phước long", "phước long a"]
     },
     {
         "id": "csgt_tide_33",
