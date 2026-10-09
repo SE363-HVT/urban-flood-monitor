@@ -1186,11 +1186,38 @@ HOTSPOTS: List[Dict[str, Any]] = [
     }
 ]
 
-# Tích hợp 168 đơn vị hành chính chuẩn hóa NQ 1685 và 122 điểm ngập CSGT vào danh mục nhận diện
-if ADMIN_HOTSPOTS:
-    HOTSPOTS = ADMIN_HOTSPOTS + HOTSPOTS
+# PHÂN TÁCH 3 THỨ BẬC KHÔNG GIAN (SPATIAL ENTITY HIERARCHY):
+# Cấp 3 (Cao nhất): STREET_HOTSPOTS - Các tuyến đường cụ thể chuẩn tim đường OSM (122 CSGT + Seed Streets)
+# Cấp 2: ADMIN_HOTSPOTS - 168 Đơn vị hành chính Phường/Xã mới sau sáp nhập
+# Cấp 1 (Fallback): CITYWIDE_HOTSPOTS - Cấp Quận/Huyện chung & Toàn thành phố
+STREET_HOTSPOTS: List[Dict[str, Any]] = []
+CITYWIDE_HOTSPOTS: List[Dict[str, Any]] = []
+
 if CSGT_HOTSPOTS:
-    HOTSPOTS = CSGT_HOTSPOTS + HOTSPOTS
+    for s in CSGT_HOTSPOTS:
+        s_copy = dict(s)
+        s_copy["priority"] = 3
+        s_copy["street"] = s_copy.get("street") or s_copy.get("display_name", "")
+        STREET_HOTSPOTS.append(s_copy)
+
+for h in HOTSPOTS:
+    h_copy = dict(h)
+    disp = h_copy.get("display_name", "")
+    prio = h_copy.get("priority")
+    
+    # Kiểm tra rõ ràng các mục cấp Quận / Huyện / Toàn thành phố -> Cấp 1
+    if prio == 1 or prio == 0 or disp.startswith("Khu vực Quận") or disp.startswith("Khu vực Huyện") or disp.startswith("Khu vực TP.") or disp.startswith("Khu vực Toàn"):
+        h_copy["priority"] = 1
+        h_copy["street"] = ""
+        CITYWIDE_HOTSPOTS.append(h_copy)
+    elif prio == 2 or disp.startswith("Khu vực Phường") or disp.startswith("Khu vực Xã"):
+        h_copy["priority"] = 2
+        h_copy["street"] = ""
+        ADMIN_HOTSPOTS.append(h_copy)
+    else:
+        h_copy["priority"] = 3
+        h_copy["street"] = h_copy.get("street") or disp
+        STREET_HOTSPOTS.append(h_copy)
 
 # TOÀN BỘ CÁC TỈNH/THÀNH PHỐ NGOÀI TP. HỒ CHÍ MINH (LOẠI BỎ TRIỆT ĐỂ KHÔNG CHỪA SƠ HỞ)
 OUT_OF_SCOPE_LOCATIONS = [
@@ -1386,119 +1413,151 @@ def normalize_text(text: str) -> str:
 
 def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
     """
-    Bộ bóc tách thực thể địa lý đa tầng (Multi-tier Location Resolution):
-    Tầng 1: So khớp ưu tiên danh mục hạt nhân trọng điểm TP.HCM (Seed Gazetteer chuẩn tim đường).
-    Tầng 2: Kiểm duyệt ngữ cảnh tỉnh ngoài (tránh bỏ sót khi người dùng chỉ so sánh ẩn dụ hoặc hashtag cá nhân).
-    Tầng 3: So khớp bộ nhớ đệm tự học (Dynamic Cache).
-    Tầng 4: Nhận diện thực thể tên đường mới qua Regex & Tự động Geocoding OpenStreetMap.
+    Bộ bóc tách thực thể địa lý đa tầng chuẩn mực (Strict Spatial Hierarchy):
+    Quy tắc cốt lõi:
+    1. Khi bài viết có TÊN ĐƯỜNG -> Ưu tiên TUYỆT ĐỐI hiển thị tên đường (Yếu tố chính).
+       Phường/Xã chỉ đóng vai trò yếu tố phụ (Metadata).
+    2. Khi bài viết KHÔNG CÓ TÊN ĐƯỜNG -> Mới hiển thị Phường/Xã làm yếu tố chính.
+    3. Khi bài viết KHÔNG CÓ CẢ ĐƯỜNG LẪN PHƯỜNG -> Hiển thị Toàn thành phố làm yếu tố chính.
     """
     if not text:
         return None
     
     clean_text = normalize_text(text)
 
-    # TẦNG 1: So khớp danh mục hạt nhân TP.HCM (Spatial Hierarchy Priority + Longest Matching)
-    best_match = None
-    best_score = (-1, 0)
-    for hotspot in HOTSPOTS:
-        prio = hotspot.get("priority", 3)
-        for kw in hotspot["keywords"]:
+    # BƯỚC 0: Kiểm tra loại trừ khẳng định tỉnh ngoài rõ rệt (tránh tin ngập Hà Nội, Đà Nẵng...)
+    for out_loc in ["hà nội", "huế", "đà nẵng", "hải phòng", "thái nguyên", "quảng ninh", "nghệ an", "thanh hóa", "lào cai", "yên bái"]:
+        pat = r'(?:ở|tại|tp\.?|thành phố|tỉnh)\s+' + re.escape(out_loc)
+        if re.search(pat, clean_text):
+            # Nếu có nhắc rõ tỉnh ngoài mà không có từ khóa TPHCM thì loại bỏ
+            if not any(k in clean_text for k in ["tphcm", "tp hcm", "tp.hcm", "sài gòn", "sai gon", "bình dương", "vũng tàu"]):
+                return None
+
+    # =========================================================================
+    # TẦNG 1: ƯU TIÊN SỐ 1 - BÓC TÁCH TUYẾN ĐƯỜNG (STREET-FIRST RESOLUTION)
+    # =========================================================================
+    best_street = None
+    best_street_len = 0
+
+    # 1.A: So khớp với danh mục 122 điểm CSGT & các tuyến đường hạt nhân (Priority 3)
+    for spot in STREET_HOTSPOTS:
+        for kw in spot.get("keywords", []):
             pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
             if re.search(pattern, clean_text):
-                score = (prio, len(kw))
-                if score > best_score:
-                    best_score = score
-                    best_match = {
+                if len(kw) > best_street_len:
+                    best_street_len = len(kw)
+                    st_name = spot.get("street") or spot.get("display_name", "")
+                    best_street = {
                         "matched_keyword": kw,
-                        "display_name": hotspot["display_name"],
-                        "ward": hotspot["ward"],
-                        "administrative_unit": hotspot.get("ward", ""),
-                        "district": hotspot.get("district", ""), 
-                        "region": hotspot["region"],
-                        "lat": hotspot["lat"],
-                        "lon": hotspot["lon"],
-                        "heat_points": hotspot.get("heat_points", [[hotspot["lat"], hotspot["lon"]]]),
-                        "type": hotspot["type"],
-                        "cause": hotspot.get("cause", "rain"),
-                        "cause_label": hotspot.get("cause_label", "Mưa lớn, nước không thoát kịp"),
-                        "source": hotspot.get("source", "seed")
+                        "street": st_name,
+                        "display_name": spot.get("display_name") or st_name,
+                        "ward": spot.get("ward", ""),
+                        "administrative_unit": spot.get("ward", ""),
+                        "district": spot.get("district", "TP.HCM"), 
+                        "region": spot.get("region", "TPHCM"),
+                        "lat": spot["lat"],
+                        "lon": spot["lon"],
+                        "heat_points": spot.get("heat_points", [[spot["lat"], spot["lon"]]]),
+                        "priority": 3,
+                        "type": spot.get("type", f"Điểm cảnh báo tuyến đường {st_name}"),
+                        "cause": spot.get("cause", "rain"),
+                        "cause_label": spot.get("cause_label", "Mưa lớn, nước không thoát kịp"),
+                        "source": spot.get("source", "csgt_or_seed")
                     }
 
-    # Nếu đã khớp địa danh cụ thể tại TP.HCM (Cấp 2 hoặc Cấp 3: đường/phường/xã)
-    if best_match and best_score[0] >= 1:
-        # Kiểm tra xem bài có THỰC SỰ là tin ngập ở tỉnh ngoài hay chỉ so sánh ví von
-        # Chỉ loại nếu bài viết khẳng định ngập ở tỉnh ngoài rõ ràng (ví dụ: 'ngập ở hà nội', 'mưa lũ tại huế')
-        explicit_outside = False
-        for out_loc in ["hà nội", "huế", "đà nẵng", "hải phòng", "thái nguyên", "quảng ninh", "nghệ an", "thanh hóa", "lào cai", "yên bái"]:
-            pat = r'(?:ở|tại|tp\.?|thành phố|tỉnh)\s+' + re.escape(out_loc)
-            if re.search(pat, clean_text):
-                explicit_outside = True
+    # 1.B: So khớp với bộ nhớ đệm tự học tuyến đường (Dynamic Cache)
+    if not best_street:
+        for cached_kw, cached_data in DYNAMIC_CACHE.items():
+            pattern = r'(?:\b|^|#)' + re.escape(cached_kw) + r'(?:\b|$|[#\s.,!?])'
+            if re.search(pattern, clean_text):
+                c_data = dict(cached_data)
+                c_data["street"] = c_data.get("display_name", cached_kw)
+                c_data["priority"] = 3
+                best_street = c_data
                 break
-        if not explicit_outside:
-            return _finalize_match(best_match)
 
-    # TẦNG 2: Kiểm duyệt loại trừ ngoại tỉnh đối với các bài chưa khớp địa danh cấp cao
+    # 1.C: Nhận diện thực thể tên đường mới qua ROAD_PATTERN & OSM Geocoding
+    if not best_street:
+        matches = ROAD_PATTERN.findall(text)
+        for cand in matches:
+            cleaned_cand = clean_road_candidate(cand)
+            cand_low = cleaned_cand.lower()
+            if len(cleaned_cand) < 4 or len(cleaned_cand.split()) > 5:
+                continue
+            if any(sw in cand_low for sw in ["tp hcm", "tphcm", "sài gòn", "saigon", "ngập", "ngap", "này", "kia", "đó", "xe", "nhà", "lội", "loi", "tại", "tai", "thuộc", "trũng", "na3", "mưa", "khu vực", "khu vuc", "trung tâm", "trung tam", "mọi người", "moi nguoi", "cứu", "né"]):
+                continue
+            if cand_low in STOP_CANDIDATE_WORDS:
+                continue
+            dynamic_spot = geocode_osm_dynamic(cleaned_cand)
+            if dynamic_spot:
+                d_copy = dict(dynamic_spot)
+                d_copy["street"] = d_copy.get("display_name", cleaned_cand)
+                d_copy["priority"] = 3
+                best_street = d_copy
+                break
+
+    # KẾT QUẢ TẦNG 1: Nếu đã tìm thấy TÊN ĐƯỜNG -> Tuyến đường là YẾU TỐ CHÍNH!
+    if best_street:
+        # Nếu điểm đường này chưa có phường xác định (ví dụ đường mới phát hiện qua OSM):
+        # Mới quét tìm xem bài viết có đề cập Phường / Xã cụ thể nào không
+        if not best_street.get("ward") or best_street.get("ward") == "Đô thị TP.HCM":
+            for u in ADMIN_HOTSPOTS:
+                for kw in u.get("keywords", []):
+                    pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
+                    if re.search(pattern, clean_text):
+                        best_street["ward"] = u["ward"]
+                        best_street["administrative_unit"] = u["ward"]
+                        best_street["district"] = u.get("district", best_street.get("district", "TP.HCM"))
+                        break
+        return _finalize_match(best_street)
+
+    # =========================================================================
+    # TẦNG 2: NẾU KHÔNG CÓ TÊN ĐƯỜNG -> SO KHỚP ĐƠN VỊ HÀNH CHÍNH (PHƯỜNG / XÃ)
+    # =========================================================================
+    best_ward = None
+    best_ward_len = 0
+    for u in ADMIN_HOTSPOTS:
+        for kw in u.get("keywords", []):
+            pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
+            if re.search(pattern, clean_text):
+                if len(kw) > best_ward_len:
+                    best_ward_len = len(kw)
+                    best_ward = {
+                        "matched_keyword": kw,
+                        "street": "", # KHÔNG CÓ TÊN ĐƯỜNG
+                        "display_name": u["display_name"],
+                        "ward": u["ward"],
+                        "administrative_unit": u["ward"],
+                        "district": u.get("district", "TP.HCM"),
+                        "region": "TPHCM",
+                        "lat": u["lat"],
+                        "lon": u["lon"],
+                        "heat_points": [[u["lat"], u["lon"]]],
+                        "priority": 2,
+                        "type": u.get("type", f"Khu vực {u['ward']}"),
+                        "cause": "rain",
+                        "cause_label": "Khu vực địa giới hành chính",
+                        "source": "admin_units_168"
+                    }
+
+    if best_ward:
+        return _finalize_match(best_ward)
+
+    # =========================================================================
+    # TẦNG 3: NẾU KHÔNG CÓ CẢ ĐƯỜNG LẪN PHƯỜNG -> TOÀN THÀNH PHỐ / CẤP QUẬN
+    # =========================================================================
     for out_loc in OUT_OF_SCOPE_LOCATIONS:
         pattern = r'(?:\b|^|#)' + re.escape(out_loc) + r'(?:\b|$|[#\s.,!?])'
         if re.search(pattern, clean_text):
             return None
 
-    if best_match:
-        return _finalize_match(best_match)
-
-    # TẦNG 2: So khớp danh mục hạt nhân TP.HCM
-    # Thuật toán phân cấp không gian chuẩn mực (Spatial Hierarchy Priority + Longest Matching):
-    # - Cấp 3: Tên tuyến đường cụ thể (priority = 3)
-    # - Cấp 2: Đơn vị hành chính Phường / Xã mới sau sáp nhập (priority = 2)
-    # - Cấp 1: Khu vực fallback chung (priority = 1)
-    best_match = None
-    best_score = (-1, 0)
-    for hotspot in HOTSPOTS:
-        prio = hotspot.get("priority", 3)
-        for kw in hotspot["keywords"]:
+    for spot in CITYWIDE_HOTSPOTS:
+        for kw in spot.get("keywords", []):
             pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
             if re.search(pattern, clean_text):
-                score = (prio, len(kw))
-                if score > best_score:
-                    best_score = score
-                    best_match = {
-                        "matched_keyword": kw,
-                        "display_name": hotspot["display_name"],
-                        "ward": hotspot["ward"],
-                        "administrative_unit": hotspot.get("ward", ""),
-                        "district": hotspot.get("district", ""), 
-                        "region": hotspot["region"],
-                        "lat": hotspot["lat"],
-                        "lon": hotspot["lon"],
-                        "heat_points": hotspot.get("heat_points", [[hotspot["lat"], hotspot["lon"]]]),
-                        "type": hotspot["type"],
-                        "cause": hotspot.get("cause", "rain"),
-                        "cause_label": hotspot.get("cause_label", "Mưa lớn, nước không thoát kịp"),
-                        "source": hotspot.get("source", "seed")
-                    }
-    if best_match:
-        return _finalize_match(best_match)
-
-    # TẦNG 3: So khớp bộ nhớ đệm tự học (Dynamic Cache)
-    for cached_kw, cached_data in DYNAMIC_CACHE.items():
-        pattern = r'(?:\b|^|#)' + re.escape(cached_kw) + r'(?:\b|$|[#\s.,!?])'
-        if re.search(pattern, clean_text):
-            return _finalize_match(cached_data)
-
-    # TẦNG 4: Tự động phát hiện thực thể địa danh mới & Tự học (Zero-Shot Discovery & Self-Learning)
-    # Tự động truy vấn OpenStreetMap trong phạm vi bounding-box TP.HCM mà không cần người đăng phải gõ chữ 'Sài Gòn/TPHCM'
-    matches = ROAD_PATTERN.findall(text)
-    for cand in matches:
-        cleaned_cand = clean_road_candidate(cand)
-        cand_low = cleaned_cand.lower()
-        if len(cleaned_cand) < 4 or len(cleaned_cand.split()) > 5:
-            continue
-        if any(sw in cand_low for sw in ["tp hcm", "tphcm", "sài gòn", "saigon", "ngập", "ngap", "này", "kia", "đó", "xe", "nhà", "lội", "loi", "tại", "tai", "thuộc", "trũng", "na3", "mưa", "khu vực", "khu vuc", "trung tâm", "trung tam", "mọi người", "moi nguoi", "cứu", "né"]):
-            continue
-        if cand_low in STOP_CANDIDATE_WORDS:
-            continue
-        dynamic_spot = geocode_osm_dynamic(cleaned_cand)
-        if dynamic_spot:
-            return _finalize_match(dynamic_spot)
+                res = dict(spot)
+                res["street"] = ""
+                res["priority"] = 1
+                return _finalize_match(res)
 
     return None

@@ -1,0 +1,724 @@
+{
+  "csgt_rain_01": {
+    "lat": 10.77406,
+    "lon": 106.65717,
+    "osm_name": "Lý Thường Kiệt, Khu phố 12, Phường Diên Hồng, Thành phố Hồ C",
+    "query": "Đường Lý Thường Kiệt, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_02": {
+    "lat": 10.77886,
+    "lon": 106.64885,
+    "osm_name": "Thiền Đường Hải Tịnh, 565, Lạc Long Quân, Phường Bảy Hiền, T",
+    "query": "Đường Bảy Hiền, Quận Tân Bình, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_03": {
+    "lat": 10.74061,
+    "lon": 106.59929,
+    "osm_name": "Đường Lê Đức Anh, Khu phố 28, Phường Tân Tạo, Thành phố Hồ C",
+    "query": "Đường Lê Đức Anh, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_04": {
+    "lat": 10.75748,
+    "lon": 106.61838,
+    "osm_name": "Da Sà mới, Tỉnh Lộ 10, Khu phố 36, Phường Bình Trị Đông, Thà",
+    "query": "Đường Tỉnh lộ 10, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_05": {
+    "lat": 10.74023,
+    "lon": 106.54736,
+    "osm_name": "Đường Trần Đại Nghĩa, Khu công nghiệp Lê Minh Xuân, Xã Bình ",
+    "query": "Đường Trần Đại Nghĩa, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_06": {
+    "lat": 10.75168,
+    "lon": 106.60434,
+    "osm_name": "Trần Văn Giàu, Khu phố 12, Phường An Lạc, Thành phố Hồ Chí M",
+    "query": "Đường Trần Văn Giàu, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_07": {
+    "lat": 10.79287,
+    "lon": 106.55635,
+    "osm_name": "Đường Vĩnh Lộc, Ấp 13, Xã Tân Vĩnh Lộc, Thành phố Hồ Chí Min",
+    "query": "Đường Vĩnh Lộc, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_08": {
+    "lat": 10.78487,
+    "lon": 106.57466,
+    "osm_name": "Đường Võ Văn Vân, Ấp 32, Xã Tân Vĩnh Lộc, Thành phố Hồ Chí M",
+    "query": "Đường Võ Văn Vân, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_09": {
+    "lat": 10.84432,
+    "lon": 106.61397,
+    "osm_name": "Đường Lê Quang Đạo, Ấp Đông Lân 1, Xã Bà Điểm, Thành phố Hồ ",
+    "query": "Đường Lê Quang Đạo, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_10": {
+    "lat": 10.84432,
+    "lon": 106.61397,
+    "osm_name": "Đường Lê Quang Đạo, Ấp Đông Lân 1, Xã Bà Điểm, Thành phố Hồ ",
+    "query": "Đường Lê Quang Đạo, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_11": {
+    "lat": 10.87418,
+    "lon": 106.59028,
+    "osm_name": "Trần Văn Mười, Ấp Xuân Thới Đông 4, Xã Xuân Thới Sơn, Thành ",
+    "query": "Trần Văn Mười, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_12": {
+    "lat": 10.86792,
+    "lon": 106.57903,
+    "osm_name": "Nguyễn Thị Thử, Ấp Nam Xuân 2, Xã Xuân Thới Sơn, Thành phố H",
+    "query": "Nguyễn Thị Thử, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_13": {
+    "lat": 10.8969,
+    "lon": 106.58915,
+    "osm_name": "Đường Song Hành Quốc Lộ 22, Ấp 22, Xã Hóc Môn, Thành phố Hồ ",
+    "query": "Đường Song hành Quốc lộ 22, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_14": {
+    "lat": 10.87104,
+    "lon": 106.6214,
+    "osm_name": "Hẻm 973 Đường Nguyễn Ảnh Thủ, Khu phố 16, Phường Trung Mỹ Tâ",
+    "query": "Đường Nguyễn Ảnh Thủ, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_15": {
+    "lat": 10.7573,
+    "lon": 106.66244,
+    "osm_name": "Bà Triệu, Khu phố 1, Phường Chợ Lớn, Thành phố Hồ Chí Minh, ",
+    "query": "Đường Bà Triệu, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_16": {
+    "lat": 10.89186,
+    "lon": 106.59686,
+    "osm_name": "Đường Trưng Nữ Vương, Ấp 13, Xã Hóc Môn, Thành phố Hồ Chí Mi",
+    "query": "Đường Trưng Nữ Vương, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_17": {
+    "lat": 10.86196,
+    "lon": 106.65536,
+    "osm_name": "Đường Đỗ Mười, Khu phố 3, Phường Thới An, Thành phố Hồ Chí M",
+    "query": "Đường Đỗ Mười, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_18": {
+    "lat": 10.87596,
+    "lon": 106.75712,
+    "osm_name": "Đông Dương Palace, Đỗ Mười, Khu phố Bình Đường 4, Phường Dĩ ",
+    "query": "Đường Đỗ Mười, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_19": {
+    "lat": 10.66108,
+    "lon": 106.73481,
+    "osm_name": "Cầu Bình Khánh, Ấp Bà Chồi, Xã Hiệp Phước, Thành phố Hồ Chí ",
+    "query": "Đường Cầu Bình Phước, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_20": {
+    "lat": 10.86816,
+    "lon": 106.72906,
+    "osm_name": "Chợ Đầu mối Nông sản Thủ Đức, Đỗ Mười, Khu phố 17, Phường Ta",
+    "query": "đầu mối nông sản Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_21": {
+    "lat": 10.87596,
+    "lon": 106.75712,
+    "osm_name": "Đông Dương Palace, Đỗ Mười, Khu phố Bình Đường 4, Phường Dĩ ",
+    "query": "Đường Đỗ Mười, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_22": {
+    "lat": 10.8498,
+    "lon": 106.6791
+  },
+  "csgt_rain_23": {
+    "lat": 10.80406,
+    "lon": 106.74605,
+    "osm_name": "A40.05 Aspen Tower, Gateway, 177 Hanoi Highway, Phường Thảo ",
+    "query": "Đường Bình Phước, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_24": {
+    "lat": 10.80406,
+    "lon": 106.74605,
+    "osm_name": "A40.05 Aspen Tower, Gateway, 177 Hanoi Highway, Phường Thảo ",
+    "query": "Đường Bình Phước, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_25": {
+    "lat": 10.82508,
+    "lon": 106.75998,
+    "osm_name": "Đường Võ Nguyên Giáp, Khu phố 46, Phường Thủ Đức, Thành phố ",
+    "query": "Đường Võ Nguyên Giáp, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_26": {
+    "lat": 10.82508,
+    "lon": 106.75998,
+    "osm_name": "Đường Võ Nguyên Giáp, Khu phố 46, Phường Thủ Đức, Thành phố ",
+    "query": "Đường Võ Nguyên Giáp, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_27": {
+    "lat": 10.80435,
+    "lon": 106.74726,
+    "osm_name": "21, Đường Võ Trường Toản T1-12b.03 Q2TD, Phường Thảo Điền, T",
+    "query": "Đường Võ Trường Toản, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_28": {
+    "lat": 10.79214,
+    "lon": 106.76879,
+    "osm_name": "Đường B7, Khu phố 9, Phường Bình Trưng, Thành phố Hồ Chí Min",
+    "query": "Đường Rạch Chiếc, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_29": {
+    "lat": 10.79442,
+    "lon": 106.75225,
+    "osm_name": "Đường Mai Chí Thọ, Khu phố 8, Phường Bình Trưng, Thành phố H",
+    "query": "Đường Mai Chí Thọ, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_30": {
+    "lat": 10.79442,
+    "lon": 106.75225,
+    "osm_name": "Đường Mai Chí Thọ, Khu phố 8, Phường Bình Trưng, Thành phố H",
+    "query": "Đường Mai Chí Thọ, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_31": {
+    "lat": 10.79442,
+    "lon": 106.75225,
+    "osm_name": "Đường Mai Chí Thọ, Khu phố 8, Phường Bình Trưng, Thành phố H",
+    "query": "Đường Mai Chí Thọ, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_32": {
+    "lat": 10.84179,
+    "lon": 106.74478,
+    "osm_name": "Đường 30, Phạm Văn Đồng, Khu phố 34, Phường Thủ Đức, Thành p",
+    "query": "Đường Phạm Văn Đồng, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_33": {
+    "lat": 10.85897,
+    "lon": 106.75536,
+    "osm_name": "Đại học Cảnh sát Nhân dân Thành phố Hồ Chí Minh, Đường số 9,",
+    "query": "Đường Linh Đông, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_34": {
+    "lat": 10.84941,
+    "lon": 106.66974,
+    "osm_name": "Trường Mầm non Pathway Tuệ Đức - Cơ sở Lê Đức Thọ, Quận Gò V",
+    "query": "Đường Đường 35, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_35": {
+    "lat": 10.84179,
+    "lon": 106.74478,
+    "osm_name": "Đường 30, Phạm Văn Đồng, Khu phố 34, Phường Thủ Đức, Thành p",
+    "query": "Đường Phạm Văn Đồng, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_36": {
+    "lat": 10.89703,
+    "lon": 106.63996,
+    "osm_name": "Trịnh Thị Dối, Ấp 28, Xã Đông Thạnh, Thành phố Hồ Chí Minh, ",
+    "query": "Trịnh Thị Dối, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_37": {
+    "lat": 10.85409,
+    "lon": 106.75949,
+    "osm_name": "Ký túc xá Cao đẳng nghề Thành phố Hồ Chí Minh, Đường số 17, ",
+    "query": "Đường Đường số 5, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_38": {
+    "lat": 10.80435,
+    "lon": 106.74726,
+    "osm_name": "21, Đường Võ Trường Toản T1-12b.03 Q2TD, Phường Thảo Điền, T",
+    "query": "Đường Thảo Điền, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_39": {
+    "lat": 10.82857,
+    "lon": 106.76974,
+    "osm_name": "Hẻm 145 Đường Đỗ Xuân Hợp, Khu phố 13, Phường Phước Long, Th",
+    "query": "Đường Đỗ Xuân Hợp, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_40": {
+    "lat": 10.83137,
+    "lon": 106.75829,
+    "osm_name": "Đường số 2, Khu phố 46, Phường Thủ Đức, Thành phố Hồ Chí Min",
+    "query": "Đường số 2, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_41": {
+    "lat": 10.73617,
+    "lon": 106.67455,
+    "osm_name": "Đường 783 Tạ Quang Bửu, Ấp 32, Phường Chánh Hưng, Xã Bình Hư",
+    "query": "Đường Tạ Quang Bửu, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_42": {
+    "lat": 10.8564,
+    "lon": 106.7624,
+    "osm_name": "Trường ĐH Ngân Hàng Thành phố Hồ Chí Minh, Đường số 17, Khu ",
+    "query": "Đường Thủ Đức, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_43": {
+    "lat": 10.85662,
+    "lon": 106.74469,
+    "osm_name": "Lý Tế Xuyên, Khu phố 47, Phường Hiệp Bình, Thành phố Hồ Chí ",
+    "query": "Lý Tế Xuyên, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_44": {
+    "lat": 10.9006,
+    "lon": 106.75442,
+    "osm_name": "Đường số 18, Khu công nghiệp Sóng Thần, Phường Dĩ An, Thành ",
+    "query": "Đường KCN Sóng Thần, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_45": {
+    "lat": 11.00832,
+    "lon": 106.66879
+  },
+  "csgt_rain_46": {
+    "lat": 10.84677,
+    "lon": 106.79447,
+    "osm_name": "Phân hiệu Trường Đại học Giao thông Vận tải tại Thành phố Hồ",
+    "query": "Đường Lê Văn Việt, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_47": {
+    "lat": 10.8836,
+    "lon": 106.83425,
+    "osm_name": "Đường Nguyễn Xiển, Phường Long Bình, Thành phố Hồ Chí Minh, ",
+    "query": "Đường Nguyễn Xiển, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_48": {
+    "lat": 10.85966,
+    "lon": 106.72217,
+    "osm_name": "50, Đường Quốc lộ 13 cũ, Khu phố 5, Phường Hiệp Bình, Thành ",
+    "query": "Đường Quốc lộ 50, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_49": {
+    "lat": 10.67356,
+    "lon": 106.6508,
+    "osm_name": "Ngã ba đường 3S, Văn Tiến Dũng, Ấp 18, Xã Hưng Long, Thành p",
+    "query": "Đường Văn Tiến Dũng, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_50": {
+    "lat": 10.61637,
+    "lon": 106.73922,
+    "osm_name": "Đường Nguyễn Văn Tạo, Ấp Hiệp Phước Đông, Xã Hiệp Phước, Thà",
+    "query": "Đường Nguyễn Văn Tạo, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_51": {
+    "lat": 10.67105,
+    "lon": 106.71168,
+    "osm_name": "Hẻm 745 Đường Nguyễn Bình, Ấp Nhơn Phú, Xã Hiệp Phước, Thành",
+    "query": "Đường Nguyễn Bình, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_52": {
+    "lat": 10.59912,
+    "lon": 107.05098,
+    "osm_name": "Đường Huỳnh Tấn Phát, Ngọc Hà, Vạn Hạnh, Phường Phú Mỹ, Thàn",
+    "query": "Đường Huỳnh Tấn Phát, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_53": {
+    "lat": 10.72891,
+    "lon": 106.70044,
+    "osm_name": "Đường Nguyễn Văn Linh, Khu phố 30, Phường Tân Hưng, Thành ph",
+    "query": "Đường Nguyễn Văn Linh, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_54": {
+    "lat": 10.72891,
+    "lon": 106.70044,
+    "osm_name": "Đường Nguyễn Văn Linh, Khu phố 30, Phường Tân Hưng, Thành ph",
+    "query": "Đường Nguyễn Văn Linh, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_55": {
+    "lat": 10.83763,
+    "lon": 106.81303,
+    "osm_name": "Đường D1, Khu phố 47, Phường Tăng Nhơn Phú, Thành phố Hồ Chí",
+    "query": "Đường D1, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_56": {
+    "lat": 10.77092,
+    "lon": 106.72146,
+    "osm_name": "Đường D6, Khu phố 26, Phường An Khánh, Thành phố Hồ Chí Minh",
+    "query": "Đường D6, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_57": {
+    "lat": 10.73519,
+    "lon": 106.69534,
+    "osm_name": "Hoàng Trọng Mậu, Khu phố 30, Phường Tân Hưng, Thành phố Hồ C",
+    "query": "Hoàng Trọng Mậu, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_58": {
+    "lat": 11.00681,
+    "lon": 106.72205,
+    "osm_name": "Đường Đặng Thuỳ Trâm, Khu phố Khánh Hòa, Phường Tân Khánh, T",
+    "query": "Đường Đặng Thùy Trâm, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_59": {
+    "lat": 10.80256,
+    "lon": 106.72338,
+    "osm_name": "Hẻm 289 Đường Ung Văn Khiêm, Khu phố 29, Phường Thạnh Mỹ Tây",
+    "query": "Đường Ung Văn Khiêm, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_60": {
+    "lat": 10.8438,
+    "lon": 106.64812,
+    "osm_name": "WinMart+, 392, Nguyễn Văn Khối, Khu phố 25, Phường Thông Tây",
+    "query": "Đường Nguyễn Văn Khối, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_61": {
+    "lat": 10.74222,
+    "lon": 106.66498,
+    "osm_name": "Thuế cơ sở 8 Thành phố Hồ Chí Minh, 1079, Phạm Thế Hiển, Khu",
+    "query": "Đường Phạm Thế Hiển, Quận 8, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_62": {
+    "lat": 10.74222,
+    "lon": 106.66498,
+    "osm_name": "Thuế cơ sở 8 Thành phố Hồ Chí Minh, 1079, Phạm Thế Hiển, Khu",
+    "query": "Đường Phạm Thế Hiển, Quận 8, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_63": {
+    "lat": 10.92121,
+    "lon": 106.56081,
+    "osm_name": "Đường Phan Văn Khải, Ấp Trạm Bơm, Xã Củ Chi, Thành phố Hồ Ch",
+    "query": "Đường Phan Văn Khải, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_64": {
+    "lat": 10.92121,
+    "lon": 106.56081,
+    "osm_name": "Đường Phan Văn Khải, Ấp Trạm Bơm, Xã Củ Chi, Thành phố Hồ Ch",
+    "query": "Đường Phan Văn Khải, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_65": {
+    "lat": 10.92121,
+    "lon": 106.56081,
+    "osm_name": "Đường Phan Văn Khải, Ấp Trạm Bơm, Xã Củ Chi, Thành phố Hồ Ch",
+    "query": "Đường Phan Văn Khải, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_66": {
+    "lat": 11.16305,
+    "lon": 106.46158,
+    "osm_name": "QA-Cô Nga-DT744-Xóm Bến- Thanh Tuyền-TT.Dầu Tiếng-Bình Dương",
+    "query": "Đường ĐT744, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_67": {
+    "lat": 11.16305,
+    "lon": 106.46158,
+    "osm_name": "QA-Cô Nga-DT744-Xóm Bến- Thanh Tuyền-TT.Dầu Tiếng-Bình Dương",
+    "query": "Đường ĐT744, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_68": {
+    "lat": 10.68414,
+    "lon": 106.57678,
+    "osm_name": "Đường dẫn Cao tốc, Bùi Thanh Khiết, Ấp 1, Xã Tân Nhựt, Thành",
+    "query": "Đường Bùi Thanh Khiết, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_69": {
+    "lat": 10.69775,
+    "lon": 106.64472,
+    "osm_name": "Đường Trịnh Quang Nghị, Ấp 3, Xã Bình Hưng, Thành phố Hồ Chí",
+    "query": "Đường Trịnh Quang Nghị, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_70": {
+    "lat": 10.75954,
+    "lon": 106.60568,
+    "osm_name": "Đường Mã Lò, Khu phố 21, Phường Bình Trị Đông, Thành phố Hồ ",
+    "query": "Đường Mã Lò, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_71": {
+    "lat": 10.77213,
+    "lon": 106.60925,
+    "osm_name": "Đường Bình Trị Đông, Khu phố 12, Phường Bình Trị Đông, Thành",
+    "query": "Đường Bình Trị Đông, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_72": {
+    "lat": 10.57115,
+    "lon": 107.05476,
+    "osm_name": "Thánh đường Giáo xứ Song Vĩnh, Quốc lộ 51, Song Vĩnh, Phường",
+    "query": "Đường Quốc lộ 51, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_73": {
+    "lat": 10.57115,
+    "lon": 107.05476,
+    "osm_name": "Thánh đường Giáo xứ Song Vĩnh, Quốc lộ 51, Song Vĩnh, Phường",
+    "query": "Đường Quốc lộ 51, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_74": {
+    "lat": 10.57115,
+    "lon": 107.05476,
+    "osm_name": "Thánh đường Giáo xứ Song Vĩnh, Quốc lộ 51, Song Vĩnh, Phường",
+    "query": "Đường Quốc lộ 51, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_75": {
+    "lat": 10.57115,
+    "lon": 107.05476,
+    "osm_name": "Thánh đường Giáo xứ Song Vĩnh, Quốc lộ 51, Song Vĩnh, Phường",
+    "query": "Đường Quốc lộ 51, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_76": {
+    "lat": 10.57115,
+    "lon": 107.05476,
+    "osm_name": "Thánh đường Giáo xứ Song Vĩnh, Quốc lộ 51, Song Vĩnh, Phường",
+    "query": "Đường Quốc lộ 51, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_77": {
+    "lat": 10.57115,
+    "lon": 107.05476,
+    "osm_name": "Thánh đường Giáo xứ Song Vĩnh, Quốc lộ 51, Song Vĩnh, Phường",
+    "query": "Đường Quốc lộ 51, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_78": {
+    "lat": 10.3604,
+    "lon": 107.07739
+  },
+  "csgt_rain_79": {
+    "lat": 10.38139,
+    "lon": 107.09328,
+    "osm_name": "Đường 30 Tháng 4, Khu Thông Tin, Phường Tam Thắng, Thành phố",
+    "query": "Đường 30/4, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_80": {
+    "lat": 10.7445,
+    "lon": 106.58882,
+    "osm_name": "Đường 2, Khu công nghiệp Tân Tạo, Phường Tân Tạo, Thành phố ",
+    "query": "Đường 2/9, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_81": {
+    "lat": 10.80497,
+    "lon": 106.69662,
+    "osm_name": "Đường Nguyễn An Ninh, Khu phố 2, Phường Bình Thạnh, Thành ph",
+    "query": "Đường Nguyễn An Ninh, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_82": {
+    "lat": 10.7732,
+    "lon": 106.69495,
+    "osm_name": "Trương Định, Khu phố 2, Phường Bến Thành, Thành phố Hồ Chí M",
+    "query": "Đường Trương Công Định, Thành phố Hồ Chí Minh"
+  },
+  "csgt_rain_83": {
+    "lat": 10.76367,
+    "lon": 106.70789,
+    "osm_name": "Nguyễn Tất Thành, Phường Xóm Chiếu, Thành phố Hồ Chí Minh, 7",
+    "query": "Đường Nguyễn Tất Thành, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_01": {
+    "lat": 10.69664,
+    "lon": 106.59667,
+    "osm_name": "Đường Lê Khả Phiêu, Ấp 3, Xã Tân Nhựt, Thành phố Hồ Chí Minh",
+    "query": "Đường Lê Khả Phiêu, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_02": {
+    "lat": 10.69664,
+    "lon": 106.59667,
+    "osm_name": "Đường Lê Khả Phiêu, Ấp 3, Xã Tân Nhựt, Thành phố Hồ Chí Minh",
+    "query": "Đường Lê Khả Phiêu, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_03": {
+    "lat": 10.77226,
+    "lon": 106.70273,
+    "osm_name": "Sova Café Ho Chi Minh, 119, Tôn Thất Đạm, Khu phố 7, Phường ",
+    "query": "Đường Bến Nghé, Quận 7, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_04": {
+    "lat": 10.75105,
+    "lon": 106.71451,
+    "osm_name": "Hẻm 253 Đường Trần Xuân Soạn, Khu phố 1, Phường Tân Hưng, Th",
+    "query": "Đường Trần Xuân Soạn, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_05": {
+    "lat": 10.7164,
+    "lon": 106.73462,
+    "osm_name": "Đường Số 1, Phường Tân Mỹ, Nhà Bè, Thành phố Hồ Chí Minh, 72",
+    "query": "Đường Tân Mỹ, Quận 7, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_06": {
+    "lat": 10.74079,
+    "lon": 106.69883,
+    "osm_name": "Đường Nguyễn Thị Thập, Khu phố 23, Phường Tân Hưng, Thành ph",
+    "query": "Đường Nguyễn Thị Thập, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_07": {
+    "lat": 10.74295,
+    "lon": 106.70331,
+    "osm_name": "Hẻm 264 Đường Lê Văn Lương, Khu phố 22, Phường Tân Hưng, Thà",
+    "query": "Đường Lê Văn Lương, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_08": {
+    "lat": 10.74295,
+    "lon": 106.70331,
+    "osm_name": "Hẻm 264 Đường Lê Văn Lương, Khu phố 22, Phường Tân Hưng, Thà",
+    "query": "Đường Lê Văn Lương, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_09": {
+    "lat": 10.59912,
+    "lon": 107.05098,
+    "osm_name": "Đường Huỳnh Tấn Phát, Ngọc Hà, Vạn Hạnh, Phường Phú Mỹ, Thàn",
+    "query": "Đường Huỳnh Tấn Phát, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_10": {
+    "lat": 10.59912,
+    "lon": 107.05098,
+    "osm_name": "Đường Huỳnh Tấn Phát, Ngọc Hà, Vạn Hạnh, Phường Phú Mỹ, Thàn",
+    "query": "Đường Huỳnh Tấn Phát, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_11": {
+    "lat": 10.59854,
+    "lon": 107.05183,
+    "osm_name": "Đường Nguyễn Lương Bằng, Ngọc Hà, Vạn Hạnh, Phường Phú Mỹ, T",
+    "query": "Đường Nguyễn Lương Bằng, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_12": {
+    "lat": 10.59854,
+    "lon": 107.05183,
+    "osm_name": "Đường Nguyễn Lương Bằng, Ngọc Hà, Vạn Hạnh, Phường Phú Mỹ, T",
+    "query": "Đường Nguyễn Lương Bằng, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_13": {
+    "lat": 10.70433,
+    "lon": 106.73011,
+    "osm_name": "Đường 15B, Phạm Hữu Lầu, Phường Tân Mỹ, Nhà Bè, Thành phố Hồ",
+    "query": "Đường Phạm Hữu Lầu, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_14": {
+    "lat": 10.40803,
+    "lon": 107.23734,
+    "osm_name": "Nguyễn Hữu Thọ, Ấp Hải An, Xã Long Hải, Thành phố Hồ Chí Min",
+    "query": "Đường Nguyễn Hữu Thọ, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_15": {
+    "lat": 10.67105,
+    "lon": 106.71168,
+    "osm_name": "Hẻm 745 Đường Nguyễn Bình, Ấp Nhơn Phú, Xã Hiệp Phước, Thành",
+    "query": "Đường Nguyễn Bình, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_16": {
+    "lat": 10.67878,
+    "lon": 106.70654,
+    "osm_name": "Đường Lê Thị Tám, Ấp Nhơn Phú, Xã Hiệp Phước, Thành phố Hồ C",
+    "query": "Đường Lê Thị Tám, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_17": {
+    "lat": 10.73686,
+    "lon": 106.73345,
+    "osm_name": "Hẻm 88 Đường Nguyễn Văn Quỳ, Khu phố 3, Phường Phú Thuận, Th",
+    "query": "Đường Nguyễn Văn Quỳ, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_18": {
+    "lat": 10.74892,
+    "lon": 106.65504,
+    "osm_name": "Gò Công, Khu phố 21, Phường Chợ Lớn, Thành phố Hồ Chí Minh, ",
+    "query": "Đường Gò Công, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_19": {
+    "lat": 10.751,
+    "lon": 106.66571,
+    "osm_name": "Đường Phan Phú Tiên, Khu phố 4, Phường Chợ Lớn, Thành phố Hồ",
+    "query": "Đường Phan Phú Tiên, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_20": {
+    "lat": 10.75248,
+    "lon": 106.68074,
+    "osm_name": "Võ Văn Kiệt, Khu phố 6, Phường Chợ Quán, Thành phố Hồ Chí Mi",
+    "query": "Đường Võ Văn Kiệt, Quận 6, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_21": {
+    "lat": 10.74464,
+    "lon": 106.64377,
+    "osm_name": "Phạm Phú Thứ, Khu phố 9, Phường Bình Tiên, Thành phố Hồ Chí ",
+    "query": "Đường Phạm Phú Thứ, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_22": {
+    "lat": 10.74265,
+    "lon": 106.63271
+  },
+  "csgt_tide_23": {
+    "lat": 10.73716,
+    "lon": 106.63785,
+    "osm_name": "Công ty Cổ phần Lương thực Thành phố Hồ Chí Minh, 1610, Võ V",
+    "query": "Đường Trần Văn Kiểu, Quận 6, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_24": {
+    "lat": 10.74269,
+    "lon": 106.63667,
+    "osm_name": "Lò Gốm, Khu phố 13, Phường Bình Tiên, Thành phố Hồ Chí Minh,",
+    "query": "Đường Lò Gốm, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_25": {
+    "lat": 10.74954,
+    "lon": 106.64749,
+    "osm_name": "Đường Mai Xuân Thưởng, Khu phố 2, Phường Bình Tây, Thành phố",
+    "query": "Đường Mai Xuân Thưởng, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_26": {
+    "lat": 10.75476,
+    "lon": 106.68284,
+    "osm_name": "Hẻm 188 Đường Cao Đạt, Khu phố 5, Phường Chợ Quán, Thành phố",
+    "query": "Đường Cao Đạt, Quận 5, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_27": {
+    "lat": 10.87142,
+    "lon": 106.75512,
+    "osm_name": "Đường An Bình, Khu phố Bình Đường 7, Phường Dĩ An, Thành phố",
+    "query": "Đường An Bình, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_28": {
+    "lat": 10.75529,
+    "lon": 106.6839,
+    "osm_name": "Nguyễn Biểu, Khu phố 5, Phường Chợ Quán, Thành phố Hồ Chí Mi",
+    "query": "Đường Nguyễn Biểu, Quận 5, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_29": {
+    "lat": 10.75585,
+    "lon": 106.68331,
+    "osm_name": "Trần Hưng Đạo, Khu phố 5, Phường Chợ Quán, Thành phố Hồ Chí ",
+    "query": "Đường Trần Hưng Đạo, Quận 5, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_30": {
+    "lat": 10.74222,
+    "lon": 106.66498,
+    "osm_name": "Thuế cơ sở 8 Thành phố Hồ Chí Minh, 1079, Phạm Thế Hiển, Khu",
+    "query": "Đường Phạm Thế Hiển, Quận 8, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_31": {
+    "lat": 10.74535,
+    "lon": 106.69206,
+    "osm_name": "Hẻm 231 Đường Dương Bá Trạc, Khu phố 14, Phường Chánh Hưng, ",
+    "query": "Đường Dương Bá Trạc, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_32": {
+    "lat": 10.79214,
+    "lon": 106.76879,
+    "osm_name": "Đường B7, Khu phố 9, Phường Bình Trưng, Thành phố Hồ Chí Min",
+    "query": "Đường Rạch Chiếc, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_33": {
+    "lat": 10.79442,
+    "lon": 106.75225,
+    "osm_name": "Đường Mai Chí Thọ, Khu phố 8, Phường Bình Trưng, Thành phố H",
+    "query": "Đường Mai Chí Thọ, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_34": {
+    "lat": 10.84713,
+    "lon": 106.76408,
+    "osm_name": "Đường Số 4, Khu phố 29, Phường Thủ Đức, Thành phố Hồ Chí Min",
+    "query": "Đường R12, TP. Thủ Đức, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_35": {
+    "lat": 10.81642,
+    "lon": 106.72826,
+    "osm_name": "Nguyễn Văn Hưởng, Khu phố 10, Phường An Khánh, Thành phố Hồ ",
+    "query": "Đường Nguyễn Văn Hưởng, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_36": {
+    "lat": 10.79082,
+    "lon": 106.78605,
+    "osm_name": "Đường Nguyễn Duy Trinh, Phường Long Trường, Thành phố Hồ Chí",
+    "query": "Đường Nguyễn Duy Trinh, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_37": {
+    "lat": 10.8327,
+    "lon": 106.77413,
+    "osm_name": "Hẻm 8/15 Đường Liên Phường, Khu phố 6, Phường Phước Long, Th",
+    "query": "Đường Liên Phường, Thành phố Hồ Chí Minh"
+  },
+  "csgt_tide_38": {
+    "lat": 10.81715,
+    "lon": 106.71701
+  },
+  "csgt_tide_39": {
+    "lat": 10.8915,
+    "lon": 106.68477,
+    "osm_name": "Hẻm 827 Đường Hà Huy Giáp, Khu phố 16, Phường Thới An, Thành",
+    "query": "Đường Hà Huy Giáp, Thành phố Hồ Chí Minh"
+  }
+}

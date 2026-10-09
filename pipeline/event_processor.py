@@ -466,7 +466,8 @@ def process_tiktok_item(item: Dict[str, Any], reference_time: Optional[int] = No
         "created_at_iso": item.get("createTimeISO") or (datetime.fromtimestamp(create_time, timezone.utc).isoformat() if create_time else ""),
         "relative_time": format_relative_time(create_time, reference_time),
         "location": {
-            "street": hotspot["display_name"],
+            "street": hotspot.get("street") or (hotspot["display_name"] if hotspot.get("priority", 3) >= 3 else ""),
+            "display_name": hotspot.get("display_name", ""),
             "ward": hotspot["ward"],
             "administrative_unit": hotspot.get("ward", ""),
             "district": hotspot.get("district", ""),
@@ -474,6 +475,7 @@ def process_tiktok_item(item: Dict[str, Any], reference_time: Optional[int] = No
             "lat": hotspot["lat"],
             "lon": hotspot["lon"],
             "heat_points": hotspot.get("heat_points", [[hotspot["lat"], hotspot["lon"]]]),
+            "priority": hotspot.get("priority", 3),
             "type": hotspot["type"],
             "cause": hotspot.get("cause", "rain"),
             "cause_label": hotspot.get("cause_label", "Mưa lớn, nước không thoát kịp"),

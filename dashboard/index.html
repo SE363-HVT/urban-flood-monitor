@@ -969,9 +969,32 @@
                 const lon = loc.lon || ev.lon;
                 if (!lat || !lon) return;
 
-                const isCitywide = (loc.ward || '').includes('Toàn thành phố') || loc.display_name === 'Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)';
+                const rawStreet = loc.street || '';
+                const rawWard = loc.ward || '';
+                const rawDistrict = loc.district || '';
+                const isCitywide = rawWard.includes('Toàn thành phố') || (!rawStreet && !rawWard) || loc.display_name === 'Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)';
                 const platform = (ev.platform || 'facebook').toLowerCase();
                 const isHigh = ev.severity === 'high';
+
+                // Phân cấp thực thể địa lý chuẩn:
+                // 1) Khi bài viết có tên đường -> Tên đường là yếu tố chính (tiêu đề to rõ), Phường là yếu tố phụ
+                // 2) Khi không có tên đường -> Phường là yếu tố chính
+                // 3) Khi không có cả 2 -> Toàn thành phố là yếu tố chính
+                const hasStreet = rawStreet && rawStreet.trim() && !rawStreet.toLowerCase().startsWith('khu vực') && !rawStreet.toLowerCase().startsWith('toàn');
+
+                let primaryTitle = '';
+                let secondarySubtitle = '';
+
+                if (hasStreet) {
+                    primaryTitle = rawStreet;
+                    secondarySubtitle = `<b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${rawWard || 'Toàn TP'}</span> (${rawDistrict || 'TP.HCM'})`;
+                } else if (rawWard && !isCitywide) {
+                    primaryTitle = `${rawWard} (${rawDistrict || 'TP.HCM'})`;
+                    secondarySubtitle = `<span style="color: #64748b; font-style: italic;">Khu vực ĐVHC (Không có tên đường cụ thể)</span>`;
+                } else {
+                    primaryTitle = `Toàn thành phố Hồ Chí Minh`;
+                    secondarySubtitle = `<span style="color: #64748b; font-style: italic;">Tin cảnh báo diện rộng (Chưa rõ đường/phường)</span>`;
+                }
                 
                 // Trích xuất đầy đủ thông tin xác thực dữ liệu (Veracity)
                 const v = ev.veracity || {};
@@ -1011,9 +1034,9 @@
                             <span>🔴 SỰ CỐ THỜI GIAN THỰC</span>
                             <span>${ev.relative_time || 'Gần đây'}</span>
                         </div>
-                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 4px; color: #0f172a;">${loc.display_name || 'Điểm ngập'}</div>
+                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 4px; color: #0f172a;">${primaryTitle}</div>
                         <div style="font-size: 11px; color: #475569; margin-bottom: 6px;">
-                            <b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${loc.ward || 'Toàn TP'}</span> (${loc.district || 'TP.HCM'})
+                            ${secondarySubtitle}
                         </div>
                         <div style="background: #f1f5f9; padding: 6px 8px; border-radius: 4px; font-size: 11px; color: #334155; margin-bottom: 6px; font-style: italic; max-height: 80px; overflow-y: auto;">
                             "${ev.text || ev.title || 'Người dân phản ánh ngập lụt'}"
@@ -1059,11 +1082,11 @@
 
                 card.innerHTML = `
                     <div class="feed-card-header">
-                        <div class="feed-location">${isCitywide ? '🌐 ' : '📍 '}${loc.display_name || 'Điểm ngập'}</div>
+                        <div class="feed-location">${isCitywide ? '🌐 ' : '📍 '}${primaryTitle}</div>
                         <span class="severity-badge ${ev.severity || 'medium'}">${ev.severity === 'high' ? 'Ngập nặng' : 'Ngập'}</span>
                     </div>
                     <div style="font-size: 11px; color: #38bdf8; margin-bottom: 4px;">
-                        Phường: <b>${loc.ward || 'Toàn TP'}</b>
+                        ${secondarySubtitle}
                     </div>
                     <div class="feed-text">${ev.text || ev.title || ''}</div>
                     <div style="font-size: 11px; color: #94a3b8; margin: 4px 0;">
@@ -1201,13 +1224,17 @@
             // 1. Tìm trong sự kiện Live
             currentEvents.forEach(ev => {
                 const loc = ev.location || {};
-                const name = (loc.display_name || '').toLowerCase();
+                const rawSt = loc.street || '';
+                const rawWd = loc.ward || '';
+                const rawDist = loc.district || '';
+                const searchTitle = (rawSt && !rawSt.toLowerCase().startsWith('khu vực') && !rawSt.toLowerCase().startsWith('toàn')) ? rawSt : (rawWd ? `${rawWd} (${rawDist || 'TP.HCM'})` : (loc.display_name || 'Điểm ngập Live'));
+                const name = searchTitle.toLowerCase();
                 const text = (ev.text || '').toLowerCase();
-                if (name.includes(q) || text.includes(q)) {
+                if (name.includes(q) || text.includes(q) || rawSt.toLowerCase().includes(q) || rawWd.toLowerCase().includes(q)) {
                     results.push({
                         type: 'live',
-                        title: loc.display_name || 'Điểm ngập Live',
-                        subtitle: `🔴 Sự cố Live • Phường: ${loc.ward || 'Toàn TP'}`,
+                        title: searchTitle,
+                        subtitle: `🔴 Sự cố Live • ĐVHC: ${rawWd || 'Toàn TP'} (${rawDist || 'TP.HCM'})`,
                         lat: loc.lat || ev.lat,
                         lon: loc.lon || ev.lon
                     });
@@ -1352,14 +1379,17 @@
                 nearbyLive.forEach(item => {
                     const ev = item.event;
                     const loc = ev.location || {};
+                    const rawSt = loc.street || '';
+                    const rawWd = loc.ward || '';
+                    const proxTitle = (rawSt && !rawSt.toLowerCase().startsWith('khu vực') && !rawSt.toLowerCase().startsWith('toàn')) ? rawSt : (rawWd ? `${rawWd} (${loc.district || 'TP.HCM'})` : (loc.display_name || 'Điểm ngập Live'));
                     const div = document.createElement('div');
                     div.className = 'prox-item';
                     div.innerHTML = `
                         <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
-                            <b style="color: #f8fafc; font-size: 12px;">${loc.display_name || 'Điểm ngập Live'}</b>
+                            <b style="color: #f8fafc; font-size: 12px;">${proxTitle}</b>
                             <span class="prox-dist">Cách bạn ${item.dist} m</span>
                         </div>
-                        <div style="font-size: 11px; color: #94a3b8;">Phường: ${loc.ward || 'Toàn TP'} • Báo ${ev.relative_time || 'gần đây'}</div>
+                        <div style="font-size: 11px; color: #94a3b8;">ĐVHC: ${rawWd || 'Toàn TP'} • Báo ${ev.relative_time || 'gần đây'}</div>
                     `;
                     liveListEl.appendChild(div);
                 });
