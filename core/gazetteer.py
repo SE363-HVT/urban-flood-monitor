@@ -19,6 +19,7 @@ from typing import Optional, Dict, Any, List
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 CACHE_FILE = os.path.join(DATA_DIR, "gazetteer_dynamic_cache.json")
 CSGT_FILE = os.path.join(DATA_DIR, "csgt_122_flood_hotspots.json")
+ADMIN_UNITS_FILE = os.path.join(DATA_DIR, "hcmc_168_administrative_units.json")
 
 def load_csgt_hotspots() -> List[Dict[str, Any]]:
     if os.path.exists(CSGT_FILE):
@@ -30,6 +31,38 @@ def load_csgt_hotspots() -> List[Dict[str, Any]]:
     return []
 
 CSGT_HOTSPOTS: List[Dict[str, Any]] = load_csgt_hotspots()
+
+def load_admin_hotspots() -> List[Dict[str, Any]]:
+    """Tải động 168 đơn vị hành chính chuẩn hóa theo NQ 1685/NQ-UBTVQH15."""
+    if os.path.exists(ADMIN_UNITS_FILE):
+        try:
+            with open(ADMIN_UNITS_FILE, "r", encoding="utf-8") as f:
+                units = json.load(f)
+            admin_spots = []
+            for u in units:
+                admin_spots.append({
+                    "keywords": u.get("keywords", []),
+                    "display_name": u["name"],
+                    "ward": u["name"],
+                    "administrative_unit": u["name"],
+                    "district": u.get("region_cluster", "TP.HCM"),
+                    "region": "TPHCM",
+                    "lat": u["lat"],
+                    "lon": u["lon"],
+                    "heat_points": [[u["lat"], u["lon"]]],
+                    "priority": 2,
+                    "type": f"khu vực {u['name']} ({u.get('cluster_detail', 'ĐVHC mới')})",
+                    "source": "admin_units_168",
+                    "cause": "rain",
+                    "cause_label": "Khu vực địa giới hành chính",
+                    "clause": u.get("clause", "")
+                })
+            return admin_spots
+        except Exception:
+            return []
+    return []
+
+ADMIN_HOTSPOTS: List[Dict[str, Any]] = load_admin_hotspots()
 
 DYNAMIC_CACHE: Dict[str, Dict[str, Any]] = {}
 FAILED_DYNAMIC_CACHE = set()
@@ -1149,7 +1182,9 @@ HOTSPOTS: List[Dict[str, Any]] = [
     }
 ]
 
-# Tích hợp 122 điểm ngập chuẩn hóa từ PC08 CSGT Công an TP.HCM vào đầu danh mục ưu tiên
+# Tích hợp 168 đơn vị hành chính chuẩn hóa NQ 1685 và 122 điểm ngập CSGT vào danh mục nhận diện
+if ADMIN_HOTSPOTS:
+    HOTSPOTS = ADMIN_HOTSPOTS + HOTSPOTS
 if CSGT_HOTSPOTS:
     HOTSPOTS = CSGT_HOTSPOTS + HOTSPOTS
 
@@ -1179,12 +1214,10 @@ OUT_OF_SCOPE_LOCATIONS = [
     "kon tum", "kontum", "gia lai", "gialai", "pleiku", "đắk lắk", "dak lak", "daklak", "đắc lắc", "buôn ma thuột", "bmt",
     "đắk nông", "dak nong", "daknong", "lâm đồng", "lam dong", "lamdong", "đà lạt", "da lat", "dalat", "bảo lộc", "tây nguyên", "tay nguyen",
 
-    # Đông Nam Bộ & Lân cận TP.HCM
+    # Đông Nam Bộ & Lân cận TP.HCM (Ngoại trừ Bình Dương & Bà Rịa - Vũng Tàu đã sáp nhập vào TP.HCM theo NQ 1685)
     "đồng nai", "dong nai", "dongnai", "biên hòa", "bien hoa", "bienhoa", "trảng bom", "trang bom", "trangbom",
     "long thành", "long thanh", "nhơn trạch", "nhon trach", "vĩnh cửu", "định quán", "long khánh", "xuân lộc",
-    "bình dương", "binh duong", "binhduong", "thủ dầu một", "thu dau mot", "dĩ an", "di an", "dian", "thuận an", "thuan an",
-    "bến cát", "tân uyên", "bàu bàng", "dầu tiếng",
-    "bà rịa", "ba ria", "baria", "vũng tàu", "vung tau", "vungtau", "long hải", "long hai", "longhai", "xuyên mộc", "châu đức", "phú mỹ", "côn đảo", "biển vũng tàu",
+    "bình phước", "binh phuoc", "đồng xoài", "dong xoai",
     "tây ninh", "tay ninh", "tayninh",
 
     # Miền Tây (ĐBSCL)

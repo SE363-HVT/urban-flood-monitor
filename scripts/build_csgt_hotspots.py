@@ -14,6 +14,9 @@ import json
 import unicodedata
 import re
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from core.admin_resolver import RESOLVER
+
 try:
     sys.stdout.reconfigure(encoding="utf-8")
 except Exception:
@@ -1180,7 +1183,16 @@ def build_hotspots_dataset():
             [round(lat - 0.0015, 4), round(lon - 0.0015, 4)]
         ]
         
-        kws = make_keywords(street, item.get("extra_kw", []))
+        cur_ward = item["ward"]
+        district = item.get("district", "")
+        official_ward = RESOLVER.resolve_to_official_ward(cur_ward, district) or cur_ward
+        
+        extra_kws = list(item.get("extra_kw", []))
+        if official_ward != cur_ward:
+            extra_kws.append(cur_ward)
+            extra_kws.append(f"{cur_ward} {district}")
+            
+        kws = make_keywords(street, extra_kws)
         
         processed.append({
             "id": item["id"],
@@ -1190,8 +1202,8 @@ def build_hotspots_dataset():
             "street": street,
             "segment": segment,
             "display_name": display_name,
-            "ward": item["ward"],
-            "district": item["district"],
+            "ward": official_ward,
+            "district": district,
             "region": "TPHCM",
             "lat": lat,
             "lon": lon,

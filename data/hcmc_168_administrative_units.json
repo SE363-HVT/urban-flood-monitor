@@ -1,0 +1,4600 @@
+[
+  {
+    "id": "HCM_U_001",
+    "clause_number": 1,
+    "clause": "Khoản 1, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Sài Gòn",
+    "short_name": "Sài Gòn",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.784,
+    "lon": 106.68,
+    "merged_from": [
+      "Bến Nghé",
+      "Đa Kao",
+      "Nguyễn Thái Bình"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Bến Nghé và một phần diện tích tự nhiên, quy mô dân số của phường Đa Kao, phường Nguyễn Thái Bình thành phường mới có tên gọi là phường Sài Gòn.",
+    "keywords": [
+      "ben nghe",
+      "bến nghé",
+      "da kao",
+      "nguyen thai binh",
+      "nguyễn thái bình",
+      "p. sài gòn",
+      "p.sài gòn",
+      "phuong sai gon",
+      "phường sài gòn",
+      "sai gon",
+      "sài gòn",
+      "đa kao"
+    ]
+  },
+  {
+    "id": "HCM_U_002",
+    "clause_number": 2,
+    "clause": "Khoản 2, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Định",
+    "short_name": "Tân Định",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.792,
+    "lon": 106.69,
+    "merged_from": [
+      "Tân Định",
+      "Đa Kao"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Tân Định (Quận 1) và phần còn lại của phường Đa Kao sau khi sắp xếp theo quy định tại khoản 1 Điều này thành phường mới có tên gọi là phường Tân Định.",
+    "keywords": [
+      "da kao",
+      "p. tân định",
+      "p.tân định",
+      "phuong tan dinh",
+      "phường tân định",
+      "tan dinh",
+      "tân định",
+      "đa kao"
+    ]
+  },
+  {
+    "id": "HCM_U_003",
+    "clause_number": 3,
+    "clause": "Khoản 3, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bến Thành",
+    "short_name": "Bến Thành",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.8,
+    "lon": 106.7,
+    "merged_from": [
+      "Bến Thành",
+      "Phạm Ngũ Lão",
+      "Cầu Ông Lãnh",
+      "Nguyễn Thái Bình"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Bến Thành, phường Phạm Ngũ Lão và một phần diện tích tự nhiên, quy mô dân số của phường Cầu Ông Lãnh, phần còn lại của phường Nguyễn Thái Bình sau khi sắp xếp theo quy định tại khoản 1 Điều này thành phường mới có tên gọi là phường Bến Thành.",
+    "keywords": [
+      "ben thanh",
+      "bến thành",
+      "cau ong lanh",
+      "cầu ông lãnh",
+      "nguyen thai binh",
+      "nguyễn thái bình",
+      "p. bến thành",
+      "p.bến thành",
+      "pham ngu lao",
+      "phuong ben thanh",
+      "phường bến thành",
+      "phạm ngũ lão"
+    ]
+  },
+  {
+    "id": "HCM_U_004",
+    "clause_number": 4,
+    "clause": "Khoản 4, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Cầu Ông Lãnh",
+    "short_name": "Cầu Ông Lãnh",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.808,
+    "lon": 106.71,
+    "merged_from": [
+      "Nguyễn Cư Trinh",
+      "Cầu Ông Lãnh"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Nguyễn Cư Trinh, Cầu Kho, Cô Giang và phần còn lại của phường Cầu Ông Lãnh sau khi sắp xếp theo quy định tại khoản 3 Điều này thành phường mới có tên gọi là phường Cầu Ông Lãnh.",
+    "keywords": [
+      "cau ong lanh",
+      "cầu ông lãnh",
+      "nguyen cu trinh",
+      "nguyễn cư trinh",
+      "p. cầu ông lãnh",
+      "p.cầu ông lãnh",
+      "phuong cau ong lanh",
+      "phường cầu ông lãnh"
+    ]
+  },
+  {
+    "id": "HCM_U_005",
+    "clause_number": 5,
+    "clause": "Khoản 5, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bàn Cờ",
+    "short_name": "Bàn Cờ",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.816,
+    "lon": 106.72,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1, Phường 2, Phường 3, Phường 5 và một phần diện tích tự nhiên, quy mô dân số của Phường 4 (Quận 3) thành phường mới có tên gọi là phường Bàn Cờ.",
+    "keywords": [
+      "ban co",
+      "bàn cờ",
+      "p. bàn cờ",
+      "p.bàn cờ",
+      "phuong ban co",
+      "phường bàn cờ"
+    ]
+  },
+  {
+    "id": "HCM_U_006",
+    "clause_number": 6,
+    "clause": "Khoản 6, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Xuân Hòa",
+    "short_name": "Xuân Hòa",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.824,
+    "lon": 106.73,
+    "merged_from": [
+      "Võ Thị Sáu"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Võ Thị Sáu và phần còn lại của Phường 4 (Quận 3) sau khi sắp xếp theo quy định tại khoản 5 Điều này thành phường mới có tên gọi là phường Xuân Hòa.",
+    "keywords": [
+      "p. xuân hòa",
+      "p.xuân hòa",
+      "phuong xuan hoa",
+      "phường xuân hòa",
+      "vo thi sau",
+      "võ thị sáu",
+      "xuan hoa",
+      "xuân hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_007",
+    "clause_number": 7,
+    "clause": "Khoản 7, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Nhiêu Lộc",
+    "short_name": "Nhiêu Lộc",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.832,
+    "lon": 106.74,
+    "merged_from": [
+      "11",
+      "12",
+      "14"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 9, Phường 11, Phường 12 và Phường 14 (Quận 3) thành phường mới có tên gọi là phường Nhiêu Lộc.",
+    "keywords": [
+      "nhieu loc",
+      "nhiêu lộc",
+      "p. nhiêu lộc",
+      "p.nhiêu lộc",
+      "phuong nhieu loc",
+      "phường nhiêu lộc"
+    ]
+  },
+  {
+    "id": "HCM_U_008",
+    "clause_number": 8,
+    "clause": "Khoản 8, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Xóm Chiếu",
+    "short_name": "Xóm Chiếu",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.67,
+    "merged_from": [
+      "13",
+      "16",
+      "18",
+      "15"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 13, Phường 16, Phường 18 và một phần diện tích tự nhiên, quy mô dân số của Phường 15 (Quận 4) thành phường mới có tên gọi là phường Xóm Chiếu.",
+    "keywords": [
+      "p. xóm chiếu",
+      "p.xóm chiếu",
+      "phuong xom chieu",
+      "phường xóm chiếu",
+      "xom chieu",
+      "xóm chiếu"
+    ]
+  },
+  {
+    "id": "HCM_U_009",
+    "clause_number": 9,
+    "clause": "Khoản 9, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Khánh Hội",
+    "short_name": "Khánh Hội",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.848,
+    "lon": 106.68,
+    "merged_from": [
+      "15"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 8 và Phường 9 (Quận 4), một phần diện tích tự nhiên, quy mô dân số của Phường 2 và Phường 4 (Quận 4), phần còn lại của Phường 15 (Quận 4) sau khi sắp xếp theo quy định tại khoản 8 Điều này thành phường mới có tên gọi là phường Khánh Hội.",
+    "keywords": [
+      "khanh hoi",
+      "khánh hội",
+      "p. khánh hội",
+      "p.khánh hội",
+      "phuong khanh hoi",
+      "phường khánh hội"
+    ]
+  },
+  {
+    "id": "HCM_U_010",
+    "clause_number": 10,
+    "clause": "Khoản 10, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Vĩnh Hội",
+    "short_name": "Vĩnh Hội",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.776,
+    "lon": 106.69,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1 và Phường 3 (Quận 4), phần còn lại của Phường 2 và Phường 4 (Quận 4) sau khi sắp xếp theo quy định tại khoản 9 Điều này thành phường mới có tên gọi là phường Vĩnh Hội.",
+    "keywords": [
+      "p. vĩnh hội",
+      "p.vĩnh hội",
+      "phuong vinh hoi",
+      "phường vĩnh hội",
+      "vinh hoi",
+      "vĩnh hội"
+    ]
+  },
+  {
+    "id": "HCM_U_011",
+    "clause_number": 11,
+    "clause": "Khoản 11, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Chợ Quán",
+    "short_name": "Chợ Quán",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.784,
+    "lon": 106.7,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1, Phường 2 và Phường 4 (Quận 5) thành phường mới có tên gọi là phường Chợ Quán.",
+    "keywords": [
+      "cho quan",
+      "chợ quán",
+      "p. chợ quán",
+      "p.chợ quán",
+      "phuong cho quan",
+      "phường chợ quán"
+    ]
+  },
+  {
+    "id": "HCM_U_012",
+    "clause_number": 12,
+    "clause": "Khoản 12, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường An Đông",
+    "short_name": "An Đông",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.792,
+    "lon": 106.71,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 5, Phường 7 và Phường 9 (Quận 5) thành phường mới có tên gọi là phường An Đông.",
+    "keywords": [
+      "an dong",
+      "an đông",
+      "p. an đông",
+      "p.an đông",
+      "phuong an dong",
+      "phường an đông"
+    ]
+  },
+  {
+    "id": "HCM_U_013",
+    "clause_number": 13,
+    "clause": "Khoản 13, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Chợ Lớn",
+    "short_name": "Chợ Lớn",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.8,
+    "lon": 106.72,
+    "merged_from": [
+      "11",
+      "12",
+      "13",
+      "14"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 11, Phường 12, Phường 13 và Phường 14 (Quận 5) thành phường mới có tên gọi là phường Chợ Lớn.",
+    "keywords": [
+      "cho lon",
+      "chợ lớn",
+      "p. chợ lớn",
+      "p.chợ lớn",
+      "phuong cho lon",
+      "phường chợ lớn"
+    ]
+  },
+  {
+    "id": "HCM_U_014",
+    "clause_number": 14,
+    "clause": "Khoản 14, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Tây",
+    "short_name": "Bình Tây",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.808,
+    "lon": 106.73,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 2 và Phường 9 (Quận 6) thành phường mới có tên gọi là phường Bình Tây.",
+    "keywords": [
+      "binh tay",
+      "bình tây",
+      "p. bình tây",
+      "p.bình tây",
+      "phuong binh tay",
+      "phường bình tây"
+    ]
+  },
+  {
+    "id": "HCM_U_015",
+    "clause_number": 15,
+    "clause": "Khoản 15, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Tiên",
+    "short_name": "Bình Tiên",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.816,
+    "lon": 106.74,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1, Phường 7 và Phường 8 (Quận 6) thành phường mới có tên gọi là phường Bình Tiên.",
+    "keywords": [
+      "binh tien",
+      "bình tiên",
+      "p. bình tiên",
+      "p.bình tiên",
+      "phuong binh tien",
+      "phường bình tiên"
+    ]
+  },
+  {
+    "id": "HCM_U_016",
+    "clause_number": 16,
+    "clause": "Khoản 16, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Phú",
+    "short_name": "Bình Phú",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.824,
+    "lon": 106.67,
+    "merged_from": [
+      "10",
+      "11",
+      "16"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 10 và Phường 11 (Quận 6), một phần diện tích tự nhiên, quy mô dân của Phường 16 (Quận 8) thành phường mới có tên gọi là phường Bình Phú.",
+    "keywords": [
+      "binh phu",
+      "bình phú",
+      "p. bình phú",
+      "p.bình phú",
+      "phuong binh phu",
+      "phường bình phú"
+    ]
+  },
+  {
+    "id": "HCM_U_017",
+    "clause_number": 17,
+    "clause": "Khoản 17, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú Lâm",
+    "short_name": "Phú Lâm",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.832,
+    "lon": 106.68,
+    "merged_from": [
+      "12",
+      "13",
+      "14"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 12, Phường 13 và Phường 14 (Quận 6) thành phường mới có tên gọi là phường Phú Lâm.",
+    "keywords": [
+      "p. phú lâm",
+      "p.phú lâm",
+      "phu lam",
+      "phuong phu lam",
+      "phú lâm",
+      "phường phú lâm"
+    ]
+  },
+  {
+    "id": "HCM_U_018",
+    "clause_number": 18,
+    "clause": "Khoản 18, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Thuận",
+    "short_name": "Tân Thuận",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.69,
+    "merged_from": [
+      "Bình Thuận"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Bình Thuận, Tân Thuận Đông và Tân Thuận Tây thành phường mới có tên gọi là phường Tân Thuận.",
+    "keywords": [
+      "binh thuan",
+      "bình thuận",
+      "p. tân thuận",
+      "p.tân thuận",
+      "phuong tan thuan",
+      "phường tân thuận",
+      "tan thuan",
+      "tân thuận"
+    ]
+  },
+  {
+    "id": "HCM_U_019",
+    "clause_number": 19,
+    "clause": "Khoản 19, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú Thuận",
+    "short_name": "Phú Thuận",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.848,
+    "lon": 106.7,
+    "merged_from": [
+      "Phú Thuận",
+      "Phú Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Phú Thuận và một phần diện tích tự nhiên, quy mô dân số của phường Phú Mỹ (Quận 7) thành phường mới có tên gọi là phường Phú Thuận.",
+    "keywords": [
+      "p. phú thuận",
+      "p.phú thuận",
+      "phu my",
+      "phu thuan",
+      "phuong phu thuan",
+      "phú mỹ",
+      "phú thuận",
+      "phường phú thuận"
+    ]
+  },
+  {
+    "id": "HCM_U_020",
+    "clause_number": 20,
+    "clause": "Khoản 20, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Mỹ",
+    "short_name": "Tân Mỹ",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.776,
+    "lon": 106.71,
+    "merged_from": [
+      "Tân Phú",
+      "Phú Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Tân Phú (Quận 7) và phần còn lại của phường Phú Mỹ (Quận 7) sau khi sắp xếp theo quy định tại khoản 19 Điều này thành phường mới có tên gọi là phường Tân Mỹ.",
+    "keywords": [
+      "p. tân mỹ",
+      "p.tân mỹ",
+      "phu my",
+      "phuong tan my",
+      "phú mỹ",
+      "phường tân mỹ",
+      "tan my",
+      "tan phu",
+      "tân mỹ",
+      "tân phú"
+    ]
+  },
+  {
+    "id": "HCM_U_021",
+    "clause_number": 21,
+    "clause": "Khoản 21, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Hưng",
+    "short_name": "Tân Hưng",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.784,
+    "lon": 106.72,
+    "merged_from": [
+      "Tân Phong"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Tân Phong, Tân Quy, Tân Kiểng và Tân Hưng thành phường mới có tên gọi là phường Tân Hưng.",
+    "keywords": [
+      "p. tân hưng",
+      "p.tân hưng",
+      "phuong tan hung",
+      "phường tân hưng",
+      "tan hung",
+      "tan phong",
+      "tân hưng",
+      "tân phong"
+    ]
+  },
+  {
+    "id": "HCM_U_022",
+    "clause_number": 22,
+    "clause": "Khoản 22, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Chánh Hưng",
+    "short_name": "Chánh Hưng",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.744,
+    "lon": 106.678,
+    "merged_from": [
+      "Hưng Phú"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Phường 4 (Quận 8), Rạch Ông, phường Hưng Phú và một phần diện tích tự nhiên, quy mô dân số của Phường 5 (Quận 8) thành phường mới có tên gọi là phường Chánh Hưng.",
+    "keywords": [
+      "chanh hung",
+      "chánh hưng",
+      "hung phu",
+      "hưng phú",
+      "p. chánh hưng",
+      "p.chánh hưng",
+      "phuong chanh hung",
+      "phường chánh hưng"
+    ]
+  },
+  {
+    "id": "HCM_U_023",
+    "clause_number": 23,
+    "clause": "Khoản 23, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú Định",
+    "short_name": "Phú Định",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.739,
+    "lon": 106.635,
+    "merged_from": [
+      "14",
+      "15",
+      "Xóm Củi",
+      "16"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 14 và Phường 15 (Quận 8), phường Xóm Củi và một phần diện tích tự nhiên, quy mô dân số của Phường 16 (Quận 8) thành phường mới có tên gọi là phường Phú Định.",
+    "keywords": [
+      "p. phú định",
+      "p.phú định",
+      "phu dinh",
+      "phuong phu dinh",
+      "phú định",
+      "phường phú định",
+      "xom cui",
+      "xóm củi"
+    ]
+  },
+  {
+    "id": "HCM_U_024",
+    "clause_number": 24,
+    "clause": "Khoản 24, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Đông",
+    "short_name": "Bình Đông",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.731,
+    "lon": 106.643,
+    "merged_from": [
+      "An Phú Tây"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 6 (Quận 8), một phần diện tích tự nhiên, quy mô dân số của Phường 7 (Quận 8), xã An Phú Tây và phần còn lại của Phường 5 (Quận 8) sau khi sắp xếp theo quy định tại khoản 22 Điều này thành phường mới có tên gọi là phường Bình Đông.",
+    "keywords": [
+      "an phu tay",
+      "an phú tây",
+      "binh dong",
+      "bình đông",
+      "p. bình đông",
+      "p.bình đông",
+      "phuong binh dong",
+      "phường bình đông"
+    ]
+  },
+  {
+    "id": "HCM_U_025",
+    "clause_number": 25,
+    "clause": "Khoản 25, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Diên Hồng",
+    "short_name": "Diên Hồng",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.816,
+    "lon": 106.68,
+    "merged_from": [
+      "14"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 6 và Phường 8 (Quận 10), một phần diện tích tự nhiên, quy mô dân số của Phường 14 (Quận 10) thành phường mới có tên gọi là phường Diên Hồng.",
+    "keywords": [
+      "dien hong",
+      "diên hồng",
+      "p. diên hồng",
+      "p.diên hồng",
+      "phuong dien hong",
+      "phường diên hồng"
+    ]
+  },
+  {
+    "id": "HCM_U_026",
+    "clause_number": 26,
+    "clause": "Khoản 26, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Vườn Lài",
+    "short_name": "Vườn Lài",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.824,
+    "lon": 106.69,
+    "merged_from": [
+      "10"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1, Phường 2, Phường 4, Phường 9 và Phường 10 (Quận 10) thành phường mới có tên gọi là phường Vườn Lài.",
+    "keywords": [
+      "p. vườn lài",
+      "p.vườn lài",
+      "phuong vuon lai",
+      "phường vườn lài",
+      "vuon lai",
+      "vườn lài"
+    ]
+  },
+  {
+    "id": "HCM_U_027",
+    "clause_number": 27,
+    "clause": "Khoản 27, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Hòa Hưng",
+    "short_name": "Hòa Hưng",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.832,
+    "lon": 106.7,
+    "merged_from": [
+      "12",
+      "13",
+      "15",
+      "14"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 12, Phường 13 và Phường 15 (Quận 10), phần còn lại của Phường 14 (Quận 10) sau khi sắp xếp theo quy định tại khoản 25 Điều này thành phường mới có tên gọi là phường Hòa Hưng.",
+    "keywords": [
+      "hoa hung",
+      "hòa hưng",
+      "p. hòa hưng",
+      "p.hòa hưng",
+      "phuong hoa hung",
+      "phường hòa hưng"
+    ]
+  },
+  {
+    "id": "HCM_U_028",
+    "clause_number": 28,
+    "clause": "Khoản 28, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Minh Phụng",
+    "short_name": "Minh Phụng",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.71,
+    "merged_from": [
+      "16"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1, Phường 7 và Phường 16 (Quận 11) thành phường mới có tên gọi là phường Minh Phụng.",
+    "keywords": [
+      "minh phung",
+      "minh phụng",
+      "p. minh phụng",
+      "p.minh phụng",
+      "phuong minh phung",
+      "phường minh phụng"
+    ]
+  },
+  {
+    "id": "HCM_U_029",
+    "clause_number": 29,
+    "clause": "Khoản 29, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Thới",
+    "short_name": "Bình Thới",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.848,
+    "lon": 106.72,
+    "merged_from": [
+      "10"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 3 và Phường 10 (Quận 11), một phần diện tích tự nhiên, quy mô dân số của Phường 8 (Quận 11) thành phường mới có tên gọi là phường Bình Thới.",
+    "keywords": [
+      "binh thoi",
+      "bình thới",
+      "p. bình thới",
+      "p.bình thới",
+      "phuong binh thoi",
+      "phường bình thới"
+    ]
+  },
+  {
+    "id": "HCM_U_030",
+    "clause_number": 30,
+    "clause": "Khoản 30, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Hòa Bình",
+    "short_name": "Hòa Bình",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.776,
+    "lon": 106.73,
+    "merged_from": [
+      "14"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 5 và Phường 14 (Quận 11) thành phường mới có tên gọi là phường Hòa Bình.",
+    "keywords": [
+      "hoa binh",
+      "hòa bình",
+      "p. hòa bình",
+      "p.hòa bình",
+      "phuong hoa binh",
+      "phường hòa bình"
+    ]
+  },
+  {
+    "id": "HCM_U_031",
+    "clause_number": 31,
+    "clause": "Khoản 31, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú Thọ",
+    "short_name": "Phú Thọ",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.784,
+    "lon": 106.74,
+    "merged_from": [
+      "11",
+      "15"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 11 và Phường 15 (Quận 11), phần còn lại của Phường 8 (Quận 11) sau khi sắp xếp theo quy định tại khoản 29 Điều này thành phường mới có tên gọi là phường Phú Thọ.",
+    "keywords": [
+      "p. phú thọ",
+      "p.phú thọ",
+      "phu tho",
+      "phuong phu tho",
+      "phú thọ",
+      "phường phú thọ"
+    ]
+  },
+  {
+    "id": "HCM_U_032",
+    "clause_number": 32,
+    "clause": "Khoản 32, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Đông Hưng Thuận",
+    "short_name": "Đông Hưng Thuận",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.792,
+    "lon": 106.67,
+    "merged_from": [
+      "Tân Thới Nhất"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Tân Thới Nhất, Tân Hưng Thuận và Đông Hưng Thuận thành phường mới có tên gọi là phường Đông Hưng Thuận.",
+    "keywords": [
+      "dong hung thuan",
+      "p. đông hưng thuận",
+      "p.đông hưng thuận",
+      "phuong dong hung thuan",
+      "phường đông hưng thuận",
+      "tan thoi nhat",
+      "tân thới nhất",
+      "đông hưng thuận"
+    ]
+  },
+  {
+    "id": "HCM_U_033",
+    "clause_number": 33,
+    "clause": "Khoản 33, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Trung Mỹ Tây",
+    "short_name": "Trung Mỹ Tây",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.8,
+    "lon": 106.68,
+    "merged_from": [
+      "Tân Chánh Hiệp",
+      "Trung Mỹ Tây"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Tân Chánh Hiệp và phường Trung Mỹ Tây thành phường mới có tên gọi là phường Trung Mỹ Tây.",
+    "keywords": [
+      "p. trung mỹ tây",
+      "p.trung mỹ tây",
+      "phuong trung my tay",
+      "phường trung mỹ tây",
+      "tan chanh hiep",
+      "trung my tay",
+      "trung mỹ tây",
+      "tân chánh hiệp"
+    ]
+  },
+  {
+    "id": "HCM_U_034",
+    "clause_number": 34,
+    "clause": "Khoản 34, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Thới Hiệp",
+    "short_name": "Tân Thới Hiệp",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.808,
+    "lon": 106.69,
+    "merged_from": [
+      "Hiệp Thành",
+      "Tân Thới Hiệp"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Hiệp Thành (Quận 12) và phường Tân Thới Hiệp thành phường mới có tên gọi là phường Tân Thới Hiệp.",
+    "keywords": [
+      "hiep thanh",
+      "hiệp thành",
+      "p. tân thới hiệp",
+      "p.tân thới hiệp",
+      "phuong tan thoi hiep",
+      "phường tân thới hiệp",
+      "tan thoi hiep",
+      "tân thới hiệp"
+    ]
+  },
+  {
+    "id": "HCM_U_035",
+    "clause_number": 35,
+    "clause": "Khoản 35, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Thới An",
+    "short_name": "Thới An",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.816,
+    "lon": 106.7,
+    "merged_from": [
+      "Thạnh Xuân",
+      "Thới An"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Thạnh Xuân và phường Thới An thành phường mới có tên gọi là phường Thới An.",
+    "keywords": [
+      "p. thới an",
+      "p.thới an",
+      "phuong thoi an",
+      "phường thới an",
+      "thanh xuan",
+      "thoi an",
+      "thạnh xuân",
+      "thới an"
+    ]
+  },
+  {
+    "id": "HCM_U_036",
+    "clause_number": 36,
+    "clause": "Khoản 36, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường An Phú Đông",
+    "short_name": "An Phú Đông",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.824,
+    "lon": 106.71,
+    "merged_from": [
+      "Thạnh Lộc",
+      "An Phú Đông"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Thạnh Lộc và phường An Phú Đông thành phường mới có tên gọi là phường An Phú Đông.",
+    "keywords": [
+      "an phu dong",
+      "an phú đông",
+      "p. an phú đông",
+      "p.an phú đông",
+      "phuong an phu dong",
+      "phường an phú đông",
+      "thanh loc",
+      "thạnh lộc"
+    ]
+  },
+  {
+    "id": "HCM_U_037",
+    "clause_number": 37,
+    "clause": "Khoản 37, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường An Lạc",
+    "short_name": "An Lạc",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.832,
+    "lon": 106.72,
+    "merged_from": [
+      "Bình Trị Đông B"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Bình Trị Đông B, An Lạc A và An Lạc thành phường mới có tên gọi là phường An Lạc.",
+    "keywords": [
+      "an lac",
+      "an lạc",
+      "binh tri dong b",
+      "bình trị đông b",
+      "p. an lạc",
+      "p.an lạc",
+      "phuong an lac",
+      "phường an lạc"
+    ]
+  },
+  {
+    "id": "HCM_U_038",
+    "clause_number": 38,
+    "clause": "Khoản 38, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Tân",
+    "short_name": "Bình Tân",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.73,
+    "merged_from": [
+      "Bình Hưng Hòa B",
+      "Bình Trị Đông A",
+      "Tân Tạo"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Bình Hưng Hòa B và một phần diện tích tự nhiên, quy mô dân số của phường Bình Trị Đông A, phường Tân Tạo thành phường mới có tên gọi là phường Bình Tân.",
+    "keywords": [
+      "binh hung hoa b",
+      "binh tan",
+      "binh tri dong a",
+      "bình hưng hòa b",
+      "bình trị đông a",
+      "bình tân",
+      "p. bình tân",
+      "p.bình tân",
+      "phuong binh tan",
+      "phường bình tân",
+      "tan tao",
+      "tân tạo"
+    ]
+  },
+  {
+    "id": "HCM_U_039",
+    "clause_number": 39,
+    "clause": "Khoản 39, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Tạo",
+    "short_name": "Tân Tạo",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.848,
+    "lon": 106.74,
+    "merged_from": [
+      "Tân Tạo A",
+      "Tân Tạo",
+      "Tân Kiên"
+    ],
+    "description": "Sắp xếp một phần diện tích tự nhiên, quy mô dân số của phường Tân Tạo A, phường Tân Tạo và xã Tân Kiên thành phường mới có tên gọi là phường Tân Tạo.",
+    "keywords": [
+      "p. tân tạo",
+      "p.tân tạo",
+      "phuong tan tao",
+      "phường tân tạo",
+      "tan kien",
+      "tan tao",
+      "tan tao a",
+      "tân kiên",
+      "tân tạo",
+      "tân tạo a"
+    ]
+  },
+  {
+    "id": "HCM_U_040",
+    "clause_number": 40,
+    "clause": "Khoản 40, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Trị Đông",
+    "short_name": "Bình Trị Đông",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.776,
+    "lon": 106.67,
+    "merged_from": [
+      "Bình Trị Đông",
+      "Bình Hưng Hòa A",
+      "Bình Trị Đông A"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Bình Trị Đông, một phần diện tích tự nhiên, quy mô dân số của phường Bình Hưng Hòa A và phần còn lại của phường Bình Trị Đông A sau khi sắp xếp theo quy định tại khoản 38 của Điều này thành phường mới có tên gọi là phường Bình Trị Đông.",
+    "keywords": [
+      "binh hung hoa a",
+      "binh tri dong",
+      "binh tri dong a",
+      "bình hưng hòa a",
+      "bình trị đông",
+      "bình trị đông a",
+      "p. bình trị đông",
+      "p.bình trị đông",
+      "phuong binh tri dong",
+      "phường bình trị đông"
+    ]
+  },
+  {
+    "id": "HCM_U_041",
+    "clause_number": 41,
+    "clause": "Khoản 41, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Hưng Hòa",
+    "short_name": "Bình Hưng Hòa",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.784,
+    "lon": 106.68,
+    "merged_from": [
+      "Bình Hưng Hòa",
+      "Sơn Kỳ",
+      "Bình Hưng Hòa A"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Bình Hưng Hòa, một phần diện tích tự nhiên của phường Sơn Kỳ và phần còn lại của phường Bình Hưng Hòa A sau khi sắp xếp theo quy định tại khoản 40 Điều này thành phường mới có tên gọi là phường Bình Hưng Hòa.",
+    "keywords": [
+      "binh hung hoa",
+      "binh hung hoa a",
+      "bình hưng hòa",
+      "bình hưng hòa a",
+      "p. bình hưng hòa",
+      "p.bình hưng hòa",
+      "phuong binh hung hoa",
+      "phường bình hưng hòa",
+      "son ky",
+      "sơn kỳ"
+    ]
+  },
+  {
+    "id": "HCM_U_042",
+    "clause_number": 42,
+    "clause": "Khoản 42, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Gia Định",
+    "short_name": "Gia Định",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.792,
+    "lon": 106.69,
+    "merged_from": [
+      "17"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1, Phường 2, Phường 7 và Phường 17 (quận Bình Thạnh) thành phường mới có tên gọi là phường Gia Định.",
+    "keywords": [
+      "gia dinh",
+      "gia định",
+      "p. gia định",
+      "p.gia định",
+      "phuong gia dinh",
+      "phường gia định"
+    ]
+  },
+  {
+    "id": "HCM_U_043",
+    "clause_number": 43,
+    "clause": "Khoản 43, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Thạnh",
+    "short_name": "Bình Thạnh",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.8,
+    "lon": 106.7,
+    "merged_from": [
+      "12",
+      "14",
+      "26"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 12 và Phường 14 (quận Bình Thạnh), Phường 26 thành phường mới có tên gọi là phường Bình Thạnh.",
+    "keywords": [
+      "binh thanh",
+      "bình thạnh",
+      "p. bình thạnh",
+      "p.bình thạnh",
+      "phuong binh thanh",
+      "phường bình thạnh"
+    ]
+  },
+  {
+    "id": "HCM_U_044",
+    "clause_number": 44,
+    "clause": "Khoản 44, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Lợi Trung",
+    "short_name": "Bình Lợi Trung",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.808,
+    "lon": 106.71,
+    "merged_from": [
+      "11",
+      "13"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 5, Phường 11 và Phường 13 (quận Bình Thạnh) thành phường mới có tên gọi là phường Bình Lợi Trung.",
+    "keywords": [
+      "binh loi trung",
+      "bình lợi trung",
+      "p. bình lợi trung",
+      "p.bình lợi trung",
+      "phuong binh loi trung",
+      "phường bình lợi trung"
+    ]
+  },
+  {
+    "id": "HCM_U_045",
+    "clause_number": 45,
+    "clause": "Khoản 45, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Thạnh Mỹ Tây",
+    "short_name": "Thạnh Mỹ Tây",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.816,
+    "lon": 106.72,
+    "merged_from": [
+      "19",
+      "22",
+      "25"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 19, Phường 22 và Phường 25 thành phường mới có tên gọi là phường Thạnh Mỹ Tây.",
+    "keywords": [
+      "p. thạnh mỹ tây",
+      "p.thạnh mỹ tây",
+      "phuong thanh my tay",
+      "phường thạnh mỹ tây",
+      "thanh my tay",
+      "thạnh mỹ tây"
+    ]
+  },
+  {
+    "id": "HCM_U_046",
+    "clause_number": 46,
+    "clause": "Khoản 46, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Quới",
+    "short_name": "Bình Quới",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.824,
+    "lon": 106.73,
+    "merged_from": [
+      "27",
+      "28"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 27 và Phường 28 thành phường mới có tên gọi là phường Bình Quới.",
+    "keywords": [
+      "binh quoi",
+      "bình quới",
+      "p. bình quới",
+      "p.bình quới",
+      "phuong binh quoi",
+      "phường bình quới"
+    ]
+  },
+  {
+    "id": "HCM_U_047",
+    "clause_number": 47,
+    "clause": "Khoản 47, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Hạnh Thông",
+    "short_name": "Hạnh Thông",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.832,
+    "lon": 106.74,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1 và Phường 3 (quận Gò Vấp) thành phường mới có tên gọi là phường Hạnh Thông.",
+    "keywords": [
+      "hanh thong",
+      "hạnh thông",
+      "p. hạnh thông",
+      "p.hạnh thông",
+      "phuong hanh thong",
+      "phường hạnh thông"
+    ]
+  },
+  {
+    "id": "HCM_U_048",
+    "clause_number": 48,
+    "clause": "Khoản 48, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường An Nhơn",
+    "short_name": "An Nhơn",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.67,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 5 và Phường 6 (quận Gò Vấp) thành phường mới có tên gọi là phường An Nhơn.",
+    "keywords": [
+      "an nhon",
+      "an nhơn",
+      "p. an nhơn",
+      "p.an nhơn",
+      "phuong an nhon",
+      "phường an nhơn"
+    ]
+  },
+  {
+    "id": "HCM_U_049",
+    "clause_number": 49,
+    "clause": "Khoản 49, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Gò Vấp",
+    "short_name": "Gò Vấp",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.848,
+    "lon": 106.68,
+    "merged_from": [
+      "10",
+      "17"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 10 và Phường 17 (quận Gò Vấp) thành phường mới có tên gọi là phường Gò Vấp.",
+    "keywords": [
+      "go vap",
+      "gò vấp",
+      "p. gò vấp",
+      "p.gò vấp",
+      "phuong go vap",
+      "phường gò vấp"
+    ]
+  },
+  {
+    "id": "HCM_U_050",
+    "clause_number": 50,
+    "clause": "Khoản 50, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường An Hội Đông",
+    "short_name": "An Hội Đông",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.776,
+    "lon": 106.69,
+    "merged_from": [
+      "15",
+      "16"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 15 và Phường 16 (quận Gò Vấp) thành phường mới có tên gọi là phường An Hội Đông.",
+    "keywords": [
+      "an hoi dong",
+      "an hội đông",
+      "p. an hội đông",
+      "p.an hội đông",
+      "phuong an hoi dong",
+      "phường an hội đông"
+    ]
+  },
+  {
+    "id": "HCM_U_051",
+    "clause_number": 51,
+    "clause": "Khoản 51, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Thông Tây Hội",
+    "short_name": "Thông Tây Hội",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.784,
+    "lon": 106.7,
+    "merged_from": [
+      "11"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 8 và Phường 11 (quận Gò Vấp) thành phường mới có tên gọi là phường Thông Tây Hội.",
+    "keywords": [
+      "p. thông tây hội",
+      "p.thông tây hội",
+      "phuong thong tay hoi",
+      "phường thông tây hội",
+      "thong tay hoi",
+      "thông tây hội"
+    ]
+  },
+  {
+    "id": "HCM_U_052",
+    "clause_number": 52,
+    "clause": "Khoản 52, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường An Hội Tây",
+    "short_name": "An Hội Tây",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.792,
+    "lon": 106.71,
+    "merged_from": [
+      "12",
+      "14"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 12 và Phường 14 (quận Gò Vấp) thành phường mới có tên gọi là phường An Hội Tây.",
+    "keywords": [
+      "an hoi tay",
+      "an hội tây",
+      "p. an hội tây",
+      "p.an hội tây",
+      "phuong an hoi tay",
+      "phường an hội tây"
+    ]
+  },
+  {
+    "id": "HCM_U_053",
+    "clause_number": 53,
+    "clause": "Khoản 53, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Đức Nhuận",
+    "short_name": "Đức Nhuận",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.8,
+    "lon": 106.72,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 4, Phường 5 và Phường 9 (quận Phú Nhuận) thành phường mới có tên gọi là phường Đức Nhuận.",
+    "keywords": [
+      "duc nhuan",
+      "p. đức nhuận",
+      "p.đức nhuận",
+      "phuong duc nhuan",
+      "phường đức nhuận",
+      "đức nhuận"
+    ]
+  },
+  {
+    "id": "HCM_U_054",
+    "clause_number": 54,
+    "clause": "Khoản 54, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Cầu Kiệu",
+    "short_name": "Cầu Kiệu",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.808,
+    "lon": 106.73,
+    "merged_from": [
+      "15"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1, Phường 2 và Phường 7 (quận Phú Nhuận), một phần diện tích tự nhiên, quy mô dân số của Phường 15 (quận Phú Nhuận) thành phường mới có tên gọi là phường Cầu Kiệu.",
+    "keywords": [
+      "cau kieu",
+      "cầu kiệu",
+      "p. cầu kiệu",
+      "p.cầu kiệu",
+      "phuong cau kieu",
+      "phường cầu kiệu"
+    ]
+  },
+  {
+    "id": "HCM_U_055",
+    "clause_number": 55,
+    "clause": "Khoản 55, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú Nhuận",
+    "short_name": "Phú Nhuận",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.816,
+    "lon": 106.74,
+    "merged_from": [
+      "10",
+      "11",
+      "13",
+      "15"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 8, Phường 10, Phường 11 và Phường 13 (quận Phú Nhuận), phần còn lại của Phường 15 (quận Phú Nhuận) sau khi sắp xếp theo quy định tại khoản 54 Điều này thành phường mới có tên gọi là phường Phú Nhuận.",
+    "keywords": [
+      "p. phú nhuận",
+      "p.phú nhuận",
+      "phu nhuan",
+      "phuong phu nhuan",
+      "phú nhuận",
+      "phường phú nhuận"
+    ]
+  },
+  {
+    "id": "HCM_U_056",
+    "clause_number": 56,
+    "clause": "Khoản 56, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Sơn Hòa",
+    "short_name": "Tân Sơn Hòa",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.824,
+    "lon": 106.67,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1, Phường 2 và Phường 3 (quận Tân Bình) thành phường mới có tên gọi là phường Tân Sơn Hòa.",
+    "keywords": [
+      "p. tân sơn hòa",
+      "p.tân sơn hòa",
+      "phuong tan son hoa",
+      "phường tân sơn hòa",
+      "tan son hoa",
+      "tân sơn hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_057",
+    "clause_number": 57,
+    "clause": "Khoản 57, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Sơn Nhất",
+    "short_name": "Tân Sơn Nhất",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.832,
+    "lon": 106.68,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 4, Phường 5 và Phường 7 (quận Tân Bình) thành phường mới có tên gọi là phường Tân Sơn Nhất.",
+    "keywords": [
+      "p. tân sơn nhất",
+      "p.tân sơn nhất",
+      "phuong tan son nhat",
+      "phường tân sơn nhất",
+      "tan son nhat",
+      "tân sơn nhất"
+    ]
+  },
+  {
+    "id": "HCM_U_058",
+    "clause_number": 58,
+    "clause": "Khoản 58, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Hòa",
+    "short_name": "Tân Hòa",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.69,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 6, Phường 8 và Phường 9 (quận Tân Bình) thành phường mới có tên gọi là phường Tân Hòa.",
+    "keywords": [
+      "p. tân hòa",
+      "p.tân hòa",
+      "phuong tan hoa",
+      "phường tân hòa",
+      "tan hoa",
+      "tân hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_059",
+    "clause_number": 59,
+    "clause": "Khoản 59, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bảy Hiền",
+    "short_name": "Bảy Hiền",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.848,
+    "lon": 106.7,
+    "merged_from": [
+      "10",
+      "11",
+      "12"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 10, Phường 11 và Phường 12 (quận Tân Bình) thành phường mới có tên gọi là phường Bảy Hiền.",
+    "keywords": [
+      "bay hien",
+      "bảy hiền",
+      "p. bảy hiền",
+      "p.bảy hiền",
+      "phuong bay hien",
+      "phường bảy hiền"
+    ]
+  },
+  {
+    "id": "HCM_U_060",
+    "clause_number": 60,
+    "clause": "Khoản 60, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Bình",
+    "short_name": "Tân Bình",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.776,
+    "lon": 106.71,
+    "merged_from": [
+      "13",
+      "14",
+      "15"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 13 và Phường 14 (quận Tân Bình), một phần diện tích tự nhiên, quy mô dân số của Phường 15 (quận Tân Bình) thành phường mới có tên gọi là phường Tân Bình.",
+    "keywords": [
+      "p. tân bình",
+      "p.tân bình",
+      "phuong tan binh",
+      "phường tân bình",
+      "tan binh",
+      "tân bình"
+    ]
+  },
+  {
+    "id": "HCM_U_061",
+    "clause_number": 61,
+    "clause": "Khoản 61, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Sơn",
+    "short_name": "Tân Sơn",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.784,
+    "lon": 106.72,
+    "merged_from": [
+      "15"
+    ],
+    "description": "Sắp xếp phần còn lại của Phường 15 (quận Tân Bình) sau khi sắp xếp theo quy định tại khoản 60 Điều này thành phường mới có tên gọi là phường Tân Sơn.",
+    "keywords": [
+      "p. tân sơn",
+      "p.tân sơn",
+      "phuong tan son",
+      "phường tân sơn",
+      "tan son",
+      "tân sơn"
+    ]
+  },
+  {
+    "id": "HCM_U_062",
+    "clause_number": 62,
+    "clause": "Khoản 62, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tây Thạnh",
+    "short_name": "Tây Thạnh",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.792,
+    "lon": 106.73,
+    "merged_from": [
+      "Tây Thạnh",
+      "Sơn Kỳ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Tây Thạnh và một phần diện tích tự nhiên, quy mô dân số của phường Sơn Kỳ thành phường mới có tên gọi là phường Tây Thạnh.",
+    "keywords": [
+      "p. tây thạnh",
+      "p.tây thạnh",
+      "phuong tay thanh",
+      "phường tây thạnh",
+      "son ky",
+      "sơn kỳ",
+      "tay thanh",
+      "tây thạnh"
+    ]
+  },
+  {
+    "id": "HCM_U_063",
+    "clause_number": 63,
+    "clause": "Khoản 63, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Sơn Nhì",
+    "short_name": "Tân Sơn Nhì",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.8,
+    "lon": 106.74,
+    "merged_from": [
+      "Tân Sơn Nhì",
+      "Sơn Kỳ",
+      "Tân Quý",
+      "Tân Thành"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Tân Sơn Nhì, phần còn lại của phường Sơn Kỳ sau khi sắp xếp theo quy định tại khoản 41, khoản 62 Điều này và một phần diện tích tự nhiên, quy mô dân số của phường Tân Quý, phường Tân Thành thành phường mới có tên gọi là phường Tân Sơn Nhì.",
+    "keywords": [
+      "p. tân sơn nhì",
+      "p.tân sơn nhì",
+      "phuong tan son nhi",
+      "phường tân sơn nhì",
+      "son ky",
+      "sơn kỳ",
+      "tan quy",
+      "tan son nhi",
+      "tan thanh",
+      "tân quý",
+      "tân sơn nhì",
+      "tân thành"
+    ]
+  },
+  {
+    "id": "HCM_U_064",
+    "clause_number": 64,
+    "clause": "Khoản 64, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú Thọ Hòa",
+    "short_name": "Phú Thọ Hòa",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.808,
+    "lon": 106.67,
+    "merged_from": [
+      "Phú Thọ Hòa",
+      "Tân Thành",
+      "Tân Quý"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Phú Thọ Hòa, một phần diện tích tự nhiên, quy mô dân số của phường Tân Thành và phần còn lại của phường Tân Quý sau khi sắp xếp theo quy định tại khoản 63 Điều này thành phường mới có tên gọi là phường Phú Thọ Hòa.",
+    "keywords": [
+      "p. phú thọ hòa",
+      "p.phú thọ hòa",
+      "phu tho hoa",
+      "phuong phu tho hoa",
+      "phú thọ hòa",
+      "phường phú thọ hòa",
+      "tan quy",
+      "tan thanh",
+      "tân quý",
+      "tân thành"
+    ]
+  },
+  {
+    "id": "HCM_U_065",
+    "clause_number": 65,
+    "clause": "Khoản 65, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Phú",
+    "short_name": "Tân Phú",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.816,
+    "lon": 106.68,
+    "merged_from": [
+      "Phú Trung",
+      "Hòa Thạnh",
+      "Tân Thới Hòa",
+      "Tân Thành"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Phú Trung, phường Hòa Thạnh, một phần diện tích tự nhiên, quy mô dân số của phường Tân Thới Hòa và phần còn lại của phường Tân Thành sau khi sắp xếp theo quy định tại khoản 63, khoản 64 Điều này thành phường mới có tên gọi là phường Tân Phú.",
+    "keywords": [
+      "hoa thanh",
+      "hòa thạnh",
+      "p. tân phú",
+      "p.tân phú",
+      "phu trung",
+      "phuong tan phu",
+      "phú trung",
+      "phường tân phú",
+      "tan phu",
+      "tan thanh",
+      "tan thoi hoa",
+      "tân phú",
+      "tân thành",
+      "tân thới hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_066",
+    "clause_number": 66,
+    "clause": "Khoản 66, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú Thạnh",
+    "short_name": "Phú Thạnh",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.824,
+    "lon": 106.69,
+    "merged_from": [
+      "Hiệp Tân",
+      "Phú Thạnh",
+      "Tân Thới Hòa"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Hiệp Tân, phường Phú Thạnh và phần còn lại của phường Tân Thới Hòa sau khi sắp xếp theo quy định tại khoản 65 Điều này thành phường mới có tên gọi là phường Phú Thạnh.",
+    "keywords": [
+      "hiep tan",
+      "hiệp tân",
+      "p. phú thạnh",
+      "p.phú thạnh",
+      "phu thanh",
+      "phuong phu thanh",
+      "phú thạnh",
+      "phường phú thạnh",
+      "tan thoi hoa",
+      "tân thới hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_067",
+    "clause_number": 67,
+    "clause": "Khoản 67, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Hiệp Bình",
+    "short_name": "Hiệp Bình",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.832,
+    "lon": 106.7,
+    "merged_from": [
+      "Hiệp Bình Chánh",
+      "Hiệp Bình Phước",
+      "Linh Đông"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Hiệp Bình Chánh, phường Hiệp Bình Phước và một phần diện tích tự nhiên, quy mô dân số của phường Linh Đông thành phường mới có tên gọi là phường Hiệp Bình.",
+    "keywords": [
+      "hiep binh",
+      "hiep binh chanh",
+      "hiep binh phuoc",
+      "hiệp bình",
+      "hiệp bình chánh",
+      "hiệp bình phước",
+      "linh dong",
+      "linh đông",
+      "p. hiệp bình",
+      "p.hiệp bình",
+      "phuong hiep binh",
+      "phường hiệp bình"
+    ]
+  },
+  {
+    "id": "HCM_U_068",
+    "clause_number": 68,
+    "clause": "Khoản 68, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Thủ Đức",
+    "short_name": "Thủ Đức",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.71,
+    "merged_from": [
+      "Bình Thọ",
+      "Linh Tây",
+      "Linh Đông"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Bình Thọ, Linh Chiểu, Trường Thọ, một phần diện tích tự nhiên, quy mô dân số của phường Linh Tây và phần còn lại của phường Linh Đông sau khi sắp xếp theo quy định tại khoản 67 Điều này thành phường mới có tên gọi là phường Thủ Đức.",
+    "keywords": [
+      "binh tho",
+      "bình thọ",
+      "linh dong",
+      "linh tay",
+      "linh tây",
+      "linh đông",
+      "p. thủ đức",
+      "p.thủ đức",
+      "phuong thu duc",
+      "phường thủ đức",
+      "thu duc",
+      "thủ đức"
+    ]
+  },
+  {
+    "id": "HCM_U_069",
+    "clause_number": 69,
+    "clause": "Khoản 69, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tam Bình",
+    "short_name": "Tam Bình",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.848,
+    "lon": 106.72,
+    "merged_from": [
+      "Bình Chiểu"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Bình Chiểu, Tam Phú và Tam Bình thành phường mới có tên gọi là phường Tam Bình.",
+    "keywords": [
+      "binh chieu",
+      "bình chiểu",
+      "p. tam bình",
+      "p.tam bình",
+      "phuong tam binh",
+      "phường tam bình",
+      "tam binh",
+      "tam bình"
+    ]
+  },
+  {
+    "id": "HCM_U_070",
+    "clause_number": 70,
+    "clause": "Khoản 70, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Linh Xuân",
+    "short_name": "Linh Xuân",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.776,
+    "lon": 106.73,
+    "merged_from": [
+      "Linh Trung",
+      "Linh Xuân",
+      "Linh Tây"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Linh Trung, phường Linh Xuân và phần còn lại của phường Linh Tây sau khi sắp xếp theo quy định tại khoản 68 Điều này thành phường mới có tên gọi là phường Linh Xuân.",
+    "keywords": [
+      "linh tay",
+      "linh trung",
+      "linh tây",
+      "linh xuan",
+      "linh xuân",
+      "p. linh xuân",
+      "p.linh xuân",
+      "phuong linh xuan",
+      "phường linh xuân"
+    ]
+  },
+  {
+    "id": "HCM_U_071",
+    "clause_number": 71,
+    "clause": "Khoản 71, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tăng Nhơn Phú",
+    "short_name": "Tăng Nhơn Phú",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.784,
+    "lon": 106.74,
+    "merged_from": [
+      "Tân Phú",
+      "Long Thạnh Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Tân Phú (thành phố Thủ Đức), Hiệp Phú, Tăng Nhơn Phú A, Tăng Nhơn Phú B và một phần diện tích tự nhiên của phường Long Thạnh Mỹ thành phường mới có tên gọi là phường Tăng Nhơn Phú.",
+    "keywords": [
+      "long thanh my",
+      "long thạnh mỹ",
+      "p. tăng nhơn phú",
+      "p.tăng nhơn phú",
+      "phuong tang nhon phu",
+      "phường tăng nhơn phú",
+      "tan phu",
+      "tang nhon phu",
+      "tân phú",
+      "tăng nhơn phú"
+    ]
+  },
+  {
+    "id": "HCM_U_072",
+    "clause_number": 72,
+    "clause": "Khoản 72, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Long Bình",
+    "short_name": "Long Bình",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.792,
+    "lon": 106.67,
+    "merged_from": [
+      "Long Bình",
+      "Long Thạnh Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Long Bình và phần còn lại của phường Long Thạnh Mỹ sau khi sắp xếp theo quy định tại khoản 71 Điều này thành phường mới có tên gọi là phường Long Bình.",
+    "keywords": [
+      "long binh",
+      "long bình",
+      "long thanh my",
+      "long thạnh mỹ",
+      "p. long bình",
+      "p.long bình",
+      "phuong long binh",
+      "phường long bình"
+    ]
+  },
+  {
+    "id": "HCM_U_073",
+    "clause_number": 73,
+    "clause": "Khoản 73, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Long Phước",
+    "short_name": "Long Phước",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.8,
+    "lon": 106.68,
+    "merged_from": [
+      "Trường Thạnh",
+      "Long Phước"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Trường Thạnh và phường Long Phước thành phường mới có tên gọi là phường Long Phước.",
+    "keywords": [
+      "long phuoc",
+      "long phước",
+      "p. long phước",
+      "p.long phước",
+      "phuong long phuoc",
+      "phường long phước",
+      "truong thanh",
+      "trường thạnh"
+    ]
+  },
+  {
+    "id": "HCM_U_074",
+    "clause_number": 74,
+    "clause": "Khoản 74, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Long Trường",
+    "short_name": "Long Trường",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.808,
+    "lon": 106.69,
+    "merged_from": [
+      "Phú Hữu",
+      "Long Trường"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Phú Hữu và phường Long Trường thành phường mới có tên gọi là phường Long Trường.",
+    "keywords": [
+      "long truong",
+      "long trường",
+      "p. long trường",
+      "p.long trường",
+      "phu huu",
+      "phuong long truong",
+      "phú hữu",
+      "phường long trường"
+    ]
+  },
+  {
+    "id": "HCM_U_075",
+    "clause_number": 75,
+    "clause": "Khoản 75, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Cát Lái",
+    "short_name": "Cát Lái",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.816,
+    "lon": 106.7,
+    "merged_from": [
+      "Thạnh Mỹ Lợi",
+      "Cát Lái"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Thạnh Mỹ Lợi và phường Cát Lái thành phường mới có tên gọi là phường Cát Lái.",
+    "keywords": [
+      "cat lai",
+      "cát lái",
+      "p. cát lái",
+      "p.cát lái",
+      "phuong cat lai",
+      "phường cát lái",
+      "thanh my loi",
+      "thạnh mỹ lợi"
+    ]
+  },
+  {
+    "id": "HCM_U_076",
+    "clause_number": 76,
+    "clause": "Khoản 76, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Trưng",
+    "short_name": "Bình Trưng",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.824,
+    "lon": 106.71,
+    "merged_from": [
+      "Bình Trưng Đông",
+      "Bình Trưng Tây",
+      "An Phú"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Bình Trưng Đông, phường Bình Trưng Tây và một phần diện tích tự nhiên, quy mô dân số của phường An Phú (thành phố Thủ Đức) thành phường mới có tên gọi là phường Bình Trưng.",
+    "keywords": [
+      "an phu",
+      "an phú",
+      "binh trung",
+      "binh trung dong",
+      "binh trung tay",
+      "bình trưng",
+      "bình trưng tây",
+      "bình trưng đông",
+      "p. bình trưng",
+      "p.bình trưng",
+      "phuong binh trung",
+      "phường bình trưng"
+    ]
+  },
+  {
+    "id": "HCM_U_077",
+    "clause_number": 77,
+    "clause": "Khoản 77, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phước Long",
+    "short_name": "Phước Long",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.832,
+    "lon": 106.72,
+    "merged_from": [
+      "Phước Bình"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Phước Bình, Phước Long A và Phước Long B thành phường mới có tên gọi là phường Phước Long.",
+    "keywords": [
+      "p. phước long",
+      "p.phước long",
+      "phuoc binh",
+      "phuoc long",
+      "phuong phuoc long",
+      "phước bình",
+      "phước long",
+      "phường phước long"
+    ]
+  },
+  {
+    "id": "HCM_U_078",
+    "clause_number": 78,
+    "clause": "Khoản 78, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường An Khánh",
+    "short_name": "An Khánh",
+    "type": "phường",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Nội thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.73,
+    "merged_from": [
+      "Thủ Thiêm",
+      "An Phú"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Thủ Thiêm, An Lợi Đông, Thảo Điền, An Khánh và phần còn lại của phường An Phú (thành phố Thủ Đức) sau khi sắp xếp theo quy định tại khoản 76 Điều này thành phường mới có tên gọi là phường An Khánh.",
+    "keywords": [
+      "an khanh",
+      "an khánh",
+      "an phu",
+      "an phú",
+      "p. an khánh",
+      "p.an khánh",
+      "phuong an khanh",
+      "phường an khánh",
+      "thu thiem",
+      "thủ thiêm"
+    ]
+  },
+  {
+    "id": "HCM_U_079",
+    "clause_number": 79,
+    "clause": "Khoản 79, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Đông Hòa",
+    "short_name": "Đông Hòa",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.974,
+    "lon": 106.695,
+    "merged_from": [
+      "Bình An"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Bình An, Bình Thắng và Đông Hòa thành phường mới có tên gọi là phường Đông Hòa.",
+    "keywords": [
+      "binh an",
+      "bình an",
+      "dong hoa",
+      "p. đông hòa",
+      "p.đông hòa",
+      "phuong dong hoa",
+      "phường đông hòa",
+      "đông hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_080",
+    "clause_number": 80,
+    "clause": "Khoản 80, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Dĩ An",
+    "short_name": "Dĩ An",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.986,
+    "lon": 106.71,
+    "merged_from": [
+      "An Bình",
+      "Dĩ An",
+      "Tân Đông Hiệp"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường An Bình, phường Dĩ An và một phần diện tích tự nhiên, quy mô dân số của phường Tân Đông Hiệp thành phường mới có tên gọi là phường Dĩ An.",
+    "keywords": [
+      "an binh",
+      "an bình",
+      "di an",
+      "dĩ an",
+      "p. dĩ an",
+      "p.dĩ an",
+      "phuong di an",
+      "phường dĩ an",
+      "tan dong hiep",
+      "tân đông hiệp"
+    ]
+  },
+  {
+    "id": "HCM_U_081",
+    "clause_number": 81,
+    "clause": "Khoản 81, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Đông Hiệp",
+    "short_name": "Tân Đông Hiệp",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.998,
+    "lon": 106.725,
+    "merged_from": [
+      "Tân Bình",
+      "Thái Hòa",
+      "Tân Đông Hiệp"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Tân Bình, một phần diện tích tự nhiên, quy mô dân số của phường Thái Hòa và phần còn lại của phường Tân Đông Hiệp sau khi sắp xếp theo quy định tại khoản 80 Điều này thành phường mới có tên gọi là phường Tân Đông Hiệp.",
+    "keywords": [
+      "p. tân đông hiệp",
+      "p.tân đông hiệp",
+      "phuong tan dong hiep",
+      "phường tân đông hiệp",
+      "tan binh",
+      "tan dong hiep",
+      "thai hoa",
+      "thái hòa",
+      "tân bình",
+      "tân đông hiệp"
+    ]
+  },
+  {
+    "id": "HCM_U_082",
+    "clause_number": 82,
+    "clause": "Khoản 82, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường An Phú",
+    "short_name": "An Phú",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 11.01,
+    "lon": 106.74,
+    "merged_from": [
+      "An Phú",
+      "Bình Chuẩn"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường An Phú (thành phố Thuận An) và một phần diện tích tự nhiên, quy mô dân số của phường Bình Chuẩn thành phường mới có tên gọi là phường An Phú.",
+    "keywords": [
+      "an phu",
+      "an phú",
+      "binh chuan",
+      "bình chuẩn",
+      "p. an phú",
+      "p.an phú",
+      "phuong an phu",
+      "phường an phú"
+    ]
+  },
+  {
+    "id": "HCM_U_083",
+    "clause_number": 83,
+    "clause": "Khoản 83, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Hòa",
+    "short_name": "Bình Hòa",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 11.022,
+    "lon": 106.755,
+    "merged_from": [
+      "Bình Hòa",
+      "Vĩnh Phú"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Bình Hòa và một phần diện tích tự nhiên, quy mô dân số của phường Vĩnh Phú thành phường mới có tên gọi là phường Bình Hòa.",
+    "keywords": [
+      "binh hoa",
+      "bình hòa",
+      "p. bình hòa",
+      "p.bình hòa",
+      "phuong binh hoa",
+      "phường bình hòa",
+      "vinh phu",
+      "vĩnh phú"
+    ]
+  },
+  {
+    "id": "HCM_U_084",
+    "clause_number": 84,
+    "clause": "Khoản 84, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Lái Thiêu",
+    "short_name": "Lái Thiêu",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.95,
+    "lon": 106.68,
+    "merged_from": [
+      "Bình Nhâm",
+      "Lái Thiêu",
+      "Vĩnh Phú"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Bình Nhâm, phường Lái Thiêu và phần còn lại của phường Vĩnh Phú sau khi sắp xếp theo quy định tại khoản 83 Điều này thành phường mới có tên gọi là phường Lái Thiêu.",
+    "keywords": [
+      "binh nham",
+      "bình nhâm",
+      "lai thieu",
+      "lái thiêu",
+      "p. lái thiêu",
+      "p.lái thiêu",
+      "phuong lai thieu",
+      "phường lái thiêu",
+      "vinh phu",
+      "vĩnh phú"
+    ]
+  },
+  {
+    "id": "HCM_U_085",
+    "clause_number": 85,
+    "clause": "Khoản 85, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Thuận An",
+    "short_name": "Thuận An",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.962,
+    "lon": 106.695,
+    "merged_from": [
+      "Hưng Định",
+      "An Thạnh",
+      "An Sơn"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Hưng Định, phường An Thạnh và xã An Sơn thành phường mới có tên gọi là phường Thuận An.",
+    "keywords": [
+      "an son",
+      "an sơn",
+      "an thanh",
+      "an thạnh",
+      "hung dinh",
+      "hưng định",
+      "p. thuận an",
+      "p.thuận an",
+      "phuong thuan an",
+      "phường thuận an",
+      "thuan an",
+      "thuận an"
+    ]
+  },
+  {
+    "id": "HCM_U_086",
+    "clause_number": 86,
+    "clause": "Khoản 86, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Thuận Giao",
+    "short_name": "Thuận Giao",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.974,
+    "lon": 106.71,
+    "merged_from": [
+      "Thuận Giao",
+      "Bình Chuẩn"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Thuận Giao và phần còn lại của phường Bình Chuẩn sau khi sắp xếp theo quy định tại khoản 82 Điều này thành phường mới có tên gọi là phường Thuận Giao.",
+    "keywords": [
+      "binh chuan",
+      "bình chuẩn",
+      "p. thuận giao",
+      "p.thuận giao",
+      "phuong thuan giao",
+      "phường thuận giao",
+      "thuan giao",
+      "thuận giao"
+    ]
+  },
+  {
+    "id": "HCM_U_087",
+    "clause_number": 87,
+    "clause": "Khoản 87, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Thủ Dầu Một",
+    "short_name": "Thủ Dầu Một",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.986,
+    "lon": 106.725,
+    "merged_from": [
+      "Phú Cường",
+      "Hiệp Thành",
+      "Chánh Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Phú Cường, Phú Thọ, Chánh Nghĩa và một phần diện tích tự nhiên, quy mô dân số của phường Hiệp Thành (thành phố Thủ Dầu Một), phường Chánh Mỹ thành phường mới có tên gọi là phường Thủ Dầu Một.",
+    "keywords": [
+      "chanh my",
+      "chánh mỹ",
+      "hiep thanh",
+      "hiệp thành",
+      "p. thủ dầu một",
+      "p.thủ dầu một",
+      "phu cuong",
+      "phuong thu dau mot",
+      "phú cường",
+      "phường thủ dầu một",
+      "thu dau mot",
+      "thủ dầu một"
+    ]
+  },
+  {
+    "id": "HCM_U_088",
+    "clause_number": 88,
+    "clause": "Khoản 88, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú Lợi",
+    "short_name": "Phú Lợi",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.998,
+    "lon": 106.74,
+    "merged_from": [
+      "Phú Hòa",
+      "Phú Lợi",
+      "Hiệp Thành"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Phú Hòa, phường Phú Lợi và phần còn lại của phường Hiệp Thành (thành phố Thủ Dầu Một) sau khi sắp xếp theo quy định tại khoản 87 Điều này thành phường mới có tên gọi là phường Phú Lợi.",
+    "keywords": [
+      "hiep thanh",
+      "hiệp thành",
+      "p. phú lợi",
+      "p.phú lợi",
+      "phu hoa",
+      "phu loi",
+      "phuong phu loi",
+      "phú hòa",
+      "phú lợi",
+      "phường phú lợi"
+    ]
+  },
+  {
+    "id": "HCM_U_089",
+    "clause_number": 89,
+    "clause": "Khoản 89, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Chánh Hiệp",
+    "short_name": "Chánh Hiệp",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 11.01,
+    "lon": 106.755,
+    "merged_from": [
+      "Định Hòa",
+      "Tương Bình Hiệp",
+      "Hiệp An",
+      "Chánh Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Định Hòa, phường Tương Bình Hiệp, một phần diện tích tự nhiên, quy mô dân số của phường Hiệp An và phần còn lại của phường Chánh Mỹ sau khi sắp xếp theo quy định tại khoản 87 Điều này thành phường mới có tên gọi là phường Chánh Hiệp.",
+    "keywords": [
+      "chanh hiep",
+      "chanh my",
+      "chánh hiệp",
+      "chánh mỹ",
+      "dinh hoa",
+      "hiep an",
+      "hiệp an",
+      "p. chánh hiệp",
+      "p.chánh hiệp",
+      "phuong chanh hiep",
+      "phường chánh hiệp",
+      "tuong binh hiep",
+      "tương bình hiệp",
+      "định hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_090",
+    "clause_number": 90,
+    "clause": "Khoản 90, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Dương",
+    "short_name": "Bình Dương",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 11.022,
+    "lon": 106.68,
+    "merged_from": [
+      "Phú Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Phú Mỹ (thành phố Thủ Dầu Một), Hòa Phú, Phú Tân và Phú Chánh thành phường mới có tên gọi là phường Bình Dương.",
+    "keywords": [
+      "binh duong",
+      "bình dương",
+      "p. bình dương",
+      "p.bình dương",
+      "phu my",
+      "phuong binh duong",
+      "phú mỹ",
+      "phường bình dương"
+    ]
+  },
+  {
+    "id": "HCM_U_091",
+    "clause_number": 91,
+    "clause": "Khoản 91, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Hòa Lợi",
+    "short_name": "Hòa Lợi",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.95,
+    "lon": 106.695,
+    "merged_from": [
+      "Tân Định",
+      "Hòa Lợi"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Tân Định (thành phố Bến Cát) và phường Hòa Lợi thành phường mới có tên gọi là phường Hòa Lợi.",
+    "keywords": [
+      "hoa loi",
+      "hòa lợi",
+      "p. hòa lợi",
+      "p.hòa lợi",
+      "phuong hoa loi",
+      "phường hòa lợi",
+      "tan dinh",
+      "tân định"
+    ]
+  },
+  {
+    "id": "HCM_U_092",
+    "clause_number": 92,
+    "clause": "Khoản 92, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú An",
+    "short_name": "Phú An",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.962,
+    "lon": 106.71,
+    "merged_from": [
+      "Tân An",
+      "Phú An",
+      "Hiệp An"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Tân An, xã Phú An và phần còn lại của phường Hiệp An sau khi sắp xếp theo quy định tại khoản 89 Điều này thành phường mới có tên gọi là phường Phú An.",
+    "keywords": [
+      "hiep an",
+      "hiệp an",
+      "p. phú an",
+      "p.phú an",
+      "phu an",
+      "phuong phu an",
+      "phú an",
+      "phường phú an",
+      "tan an",
+      "tân an"
+    ]
+  },
+  {
+    "id": "HCM_U_093",
+    "clause_number": 93,
+    "clause": "Khoản 93, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tây Nam",
+    "short_name": "Tây Nam",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.974,
+    "lon": 106.725,
+    "merged_from": [
+      "An Tây",
+      "Thanh Tuyền",
+      "An Lập"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường An Tây và một phần diện tích tự nhiên, quy mô dân số của xã Thanh Tuyền, xã An Lập thành phường mới có tên gọi là phường Tây Nam.",
+    "keywords": [
+      "an lap",
+      "an lập",
+      "an tay",
+      "an tây",
+      "p. tây nam",
+      "p.tây nam",
+      "phuong tay nam",
+      "phường tây nam",
+      "tay nam",
+      "thanh tuyen",
+      "thanh tuyền",
+      "tây nam"
+    ]
+  },
+  {
+    "id": "HCM_U_094",
+    "clause_number": 94,
+    "clause": "Khoản 94, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Long Nguyên",
+    "short_name": "Long Nguyên",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.986,
+    "lon": 106.74,
+    "merged_from": [
+      "An Điền",
+      "Long Nguyên",
+      "Mỹ Phước"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường An Điền, xã Long Nguyên và một phần diện tích tự nhiên, quy mô dân số của phường Mỹ Phước thành phường mới có tên gọi là phường Long Nguyên.",
+    "keywords": [
+      "an dien",
+      "an điền",
+      "long nguyen",
+      "long nguyên",
+      "my phuoc",
+      "mỹ phước",
+      "p. long nguyên",
+      "p.long nguyên",
+      "phuong long nguyen",
+      "phường long nguyên"
+    ]
+  },
+  {
+    "id": "HCM_U_095",
+    "clause_number": 95,
+    "clause": "Khoản 95, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bến Cát",
+    "short_name": "Bến Cát",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.998,
+    "lon": 106.755,
+    "merged_from": [
+      "Tân Hưng",
+      "Lai Hưng",
+      "Mỹ Phước"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Tân Hưng (huyện Bàu Bàng), xã Lai Hưng và phần còn lại của phường Mỹ Phước sau khi sắp xếp theo quy định tại khoản 94 Điều này thành phường mới có tên gọi là phường Bến Cát.",
+    "keywords": [
+      "ben cat",
+      "bến cát",
+      "lai hung",
+      "lai hưng",
+      "my phuoc",
+      "mỹ phước",
+      "p. bến cát",
+      "p.bến cát",
+      "phuong ben cat",
+      "phường bến cát",
+      "tan hung",
+      "tân hưng"
+    ]
+  },
+  {
+    "id": "HCM_U_096",
+    "clause_number": 96,
+    "clause": "Khoản 96, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Chánh Phú Hòa",
+    "short_name": "Chánh Phú Hòa",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 11.01,
+    "lon": 106.68,
+    "merged_from": [
+      "Chánh Phú Hòa",
+      "Hưng Hòa"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Chánh Phú Hòa và xã Hưng Hòa thành phường mới có tên gọi là phường Chánh Phú Hòa.",
+    "keywords": [
+      "chanh phu hoa",
+      "chánh phú hòa",
+      "hung hoa",
+      "hưng hòa",
+      "p. chánh phú hòa",
+      "p.chánh phú hòa",
+      "phuong chanh phu hoa",
+      "phường chánh phú hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_097",
+    "clause_number": 97,
+    "clause": "Khoản 97, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Vĩnh Tân",
+    "short_name": "Vĩnh Tân",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 11.022,
+    "lon": 106.695,
+    "merged_from": [
+      "Vĩnh Tân",
+      "Tân Bình"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Vĩnh Tân và thị trấn Tân Bình thành phường mới có tên gọi là phường Vĩnh Tân.",
+    "keywords": [
+      "p. vĩnh tân",
+      "p.vĩnh tân",
+      "phuong vinh tan",
+      "phường vĩnh tân",
+      "tan binh",
+      "tân bình",
+      "vinh tan",
+      "vĩnh tân"
+    ]
+  },
+  {
+    "id": "HCM_U_098",
+    "clause_number": 98,
+    "clause": "Khoản 98, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bình Cơ",
+    "short_name": "Bình Cơ",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.95,
+    "lon": 106.71,
+    "merged_from": [
+      "Bình Mỹ",
+      "Hội Nghĩa"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Bình Mỹ (huyện Bắc Tân Uyên) và phường Hội Nghĩa thành phường mới có tên gọi là phường Bình Cơ.",
+    "keywords": [
+      "binh co",
+      "binh my",
+      "bình cơ",
+      "bình mỹ",
+      "hoi nghia",
+      "hội nghĩa",
+      "p. bình cơ",
+      "p.bình cơ",
+      "phuong binh co",
+      "phường bình cơ"
+    ]
+  },
+  {
+    "id": "HCM_U_099",
+    "clause_number": 99,
+    "clause": "Khoản 99, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Uyên",
+    "short_name": "Tân Uyên",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.962,
+    "lon": 106.725,
+    "merged_from": [
+      "Uyên Hưng",
+      "Bạch Đằng",
+      "Tân Lập",
+      "Tân Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Uyên Hưng, xã Bạch Đằng, xã Tân Lập và một phần diện tích tự nhiên, quy mô dân số của xã Tân Mỹ thành phường mới có tên gọi là phường Tân Uyên.",
+    "keywords": [
+      "bach dang",
+      "bạch đằng",
+      "p. tân uyên",
+      "p.tân uyên",
+      "phuong tan uyen",
+      "phường tân uyên",
+      "tan lap",
+      "tan my",
+      "tan uyen",
+      "tân lập",
+      "tân mỹ",
+      "tân uyên",
+      "uyen hung",
+      "uyên hưng"
+    ]
+  },
+  {
+    "id": "HCM_U_100",
+    "clause_number": 100,
+    "clause": "Khoản 100, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Hiệp",
+    "short_name": "Tân Hiệp",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.974,
+    "lon": 106.74,
+    "merged_from": [
+      "Khánh Bình",
+      "Tân Hiệp"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Khánh Bình và phường Tân Hiệp thành phường mới có tên gọi là phường Tân Hiệp.",
+    "keywords": [
+      "khanh binh",
+      "khánh bình",
+      "p. tân hiệp",
+      "p.tân hiệp",
+      "phuong tan hiep",
+      "phường tân hiệp",
+      "tan hiep",
+      "tân hiệp"
+    ]
+  },
+  {
+    "id": "HCM_U_101",
+    "clause_number": 101,
+    "clause": "Khoản 101, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Khánh",
+    "short_name": "Tân Khánh",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc",
+    "lat": 10.986,
+    "lon": 106.755,
+    "merged_from": [
+      "Thạnh Phước",
+      "Thạnh Hội",
+      "Thái Hòa"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Thạnh Phước, Tân Phước Khánh, Tân Vĩnh Hiệp, xã Thạnh Hội và phần còn lại của phường Thái Hòa sau khi sắp xếp theo quy định tại khoản 81 Điều này thành phường mới có tên gọi là phường Tân Khánh.",
+    "keywords": [
+      "p. tân khánh",
+      "p.tân khánh",
+      "phuong tan khanh",
+      "phường tân khánh",
+      "tan khanh",
+      "thai hoa",
+      "thanh hoi",
+      "thanh phuoc",
+      "thái hòa",
+      "thạnh hội",
+      "thạnh phước",
+      "tân khánh"
+    ]
+  },
+  {
+    "id": "HCM_U_102",
+    "clause_number": 102,
+    "clause": "Khoản 102, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Vũng Tàu",
+    "short_name": "Vũng Tàu",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.43,
+    "lon": 107.14,
+    "merged_from": [
+      "Thắng Nhì",
+      "Thắng Tam"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 1, Phường 2, Phường 3, Phường 4 và Phường 5 (thành phố Vũng Tàu), phường Thắng Nhì, phường Thắng Tam thành phường mới có tên gọi là phường Vũng Tàu.",
+    "keywords": [
+      "p. vũng tàu",
+      "p.vũng tàu",
+      "phuong vung tau",
+      "phường vũng tàu",
+      "thang nhi",
+      "thang tam",
+      "thắng nhì",
+      "thắng tam",
+      "vung tau",
+      "vũng tàu"
+    ]
+  },
+  {
+    "id": "HCM_U_103",
+    "clause_number": 103,
+    "clause": "Khoản 103, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tam Thắng",
+    "short_name": "Tam Thắng",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.445,
+    "lon": 107.16,
+    "merged_from": [
+      "Nguyễn An Ninh"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 7, Phường 8 và Phường 9 (thành phố Vũng Tàu), phường Nguyễn An Ninh thành phường mới có tên gọi là phường Tam Thắng.",
+    "keywords": [
+      "nguyen an ninh",
+      "nguyễn an ninh",
+      "p. tam thắng",
+      "p.tam thắng",
+      "phuong tam thang",
+      "phường tam thắng",
+      "tam thang",
+      "tam thắng"
+    ]
+  },
+  {
+    "id": "HCM_U_104",
+    "clause_number": 104,
+    "clause": "Khoản 104, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Rạch Dừa",
+    "short_name": "Rạch Dừa",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.46,
+    "lon": 107.18,
+    "merged_from": [
+      "10",
+      "Thắng Nhất",
+      "Rạch Dừa"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 10 (thành phố Vũng Tàu), phường Thắng Nhất và phường Rạch Dừa thành phường mới có tên gọi là phường Rạch Dừa.",
+    "keywords": [
+      "p. rạch dừa",
+      "p.rạch dừa",
+      "phuong rach dua",
+      "phường rạch dừa",
+      "rach dua",
+      "rạch dừa",
+      "thang nhat",
+      "thắng nhất"
+    ]
+  },
+  {
+    "id": "HCM_U_105",
+    "clause_number": 105,
+    "clause": "Khoản 105, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phước Thắng",
+    "short_name": "Phước Thắng",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.4,
+    "lon": 107.1,
+    "merged_from": [
+      "11",
+      "12"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của Phường 11 và Phường 12 (thành phố Vũng Tàu) thành phường mới có tên gọi là phường Phước Thắng.",
+    "keywords": [
+      "p. phước thắng",
+      "p.phước thắng",
+      "phuoc thang",
+      "phuong phuoc thang",
+      "phước thắng",
+      "phường phước thắng"
+    ]
+  },
+  {
+    "id": "HCM_U_106",
+    "clause_number": 106,
+    "clause": "Khoản 106, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Long Hương",
+    "short_name": "Long Hương",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.415,
+    "lon": 107.12,
+    "merged_from": [
+      "Tân Hưng",
+      "Kim Dinh",
+      "Long Hương"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Tân Hưng (thành phố Bà Rịa), phường Kim Dinh và phường Long Hương thành phường mới có tên gọi là phường Long Hương.",
+    "keywords": [
+      "kim dinh",
+      "long huong",
+      "long hương",
+      "p. long hương",
+      "p.long hương",
+      "phuong long huong",
+      "phường long hương",
+      "tan hung",
+      "tân hưng"
+    ]
+  },
+  {
+    "id": "HCM_U_107",
+    "clause_number": 107,
+    "clause": "Khoản 107, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Bà Rịa",
+    "short_name": "Bà Rịa",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.43,
+    "lon": 107.14,
+    "merged_from": [
+      "Phước Trung"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Phước Trung, Phước Nguyên, Long Toàn và Phước Hưng thành phường mới có tên gọi là phường Bà Rịa.",
+    "keywords": [
+      "ba ria",
+      "bà rịa",
+      "p. bà rịa",
+      "p.bà rịa",
+      "phuoc trung",
+      "phuong ba ria",
+      "phước trung",
+      "phường bà rịa"
+    ]
+  },
+  {
+    "id": "HCM_U_108",
+    "clause_number": 108,
+    "clause": "Khoản 108, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tam Long",
+    "short_name": "Tam Long",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.445,
+    "lon": 107.16,
+    "merged_from": [
+      "Long Tâm",
+      "Hòa Long",
+      "Long Phước"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Long Tâm, xã Hòa Long và xã Long Phước thành phường mới có tên gọi là phường Tam Long.",
+    "keywords": [
+      "hoa long",
+      "hòa long",
+      "long phuoc",
+      "long phước",
+      "long tam",
+      "long tâm",
+      "p. tam long",
+      "p.tam long",
+      "phuong tam long",
+      "phường tam long",
+      "tam long"
+    ]
+  },
+  {
+    "id": "HCM_U_109",
+    "clause_number": 109,
+    "clause": "Khoản 109, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Hải",
+    "short_name": "Tân Hải",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.46,
+    "lon": 107.18,
+    "merged_from": [
+      "Tân Hòa",
+      "Tân Hải"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Tân Hòa và phường Tân Hải thành phường mới có tên gọi là phường Tân Hải.",
+    "keywords": [
+      "p. tân hải",
+      "p.tân hải",
+      "phuong tan hai",
+      "phường tân hải",
+      "tan hai",
+      "tan hoa",
+      "tân hòa",
+      "tân hải"
+    ]
+  },
+  {
+    "id": "HCM_U_110",
+    "clause_number": 110,
+    "clause": "Khoản 110, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Phước",
+    "short_name": "Tân Phước",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.4,
+    "lon": 107.1,
+    "merged_from": [
+      "Phước Hòa",
+      "Tân Phước"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Phước Hòa và phường Tân Phước thành phường mới có tên gọi là phường Tân Phước.",
+    "keywords": [
+      "p. tân phước",
+      "p.tân phước",
+      "phuoc hoa",
+      "phuong tan phuoc",
+      "phước hòa",
+      "phường tân phước",
+      "tan phuoc",
+      "tân phước"
+    ]
+  },
+  {
+    "id": "HCM_U_111",
+    "clause_number": 111,
+    "clause": "Khoản 111, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Phú Mỹ",
+    "short_name": "Phú Mỹ",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.415,
+    "lon": 107.12,
+    "merged_from": [
+      "Phú Mỹ",
+      "Mỹ Xuân"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Phú Mỹ (thành phố Phú Mỹ) và phường Mỹ Xuân thành phường mới có tên gọi là phường Phú Mỹ.",
+    "keywords": [
+      "my xuan",
+      "mỹ xuân",
+      "p. phú mỹ",
+      "p.phú mỹ",
+      "phu my",
+      "phuong phu my",
+      "phú mỹ",
+      "phường phú mỹ"
+    ]
+  },
+  {
+    "id": "HCM_U_112",
+    "clause_number": 112,
+    "clause": "Khoản 112, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Phường Tân Thành",
+    "short_name": "Tân Thành",
+    "type": "phường",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam",
+    "lat": 10.43,
+    "lon": 107.14,
+    "merged_from": [
+      "Hắc Dịch",
+      "Sông Xoài"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của phường Hắc Dịch và xã Sông Xoài thành phường mới có tên gọi là phường Tân Thành.",
+    "keywords": [
+      "hac dich",
+      "hắc dịch",
+      "p. tân thành",
+      "p.tân thành",
+      "phuong tan thanh",
+      "phường tân thành",
+      "song xoai",
+      "sông xoài",
+      "tan thanh",
+      "tân thành"
+    ]
+  },
+  {
+    "id": "HCM_U_113",
+    "clause_number": 113,
+    "clause": "Khoản 113, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Vĩnh Lộc",
+    "short_name": "Vĩnh Lộc",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.765,
+    "lon": 106.6,
+    "merged_from": [
+      "Vĩnh Lộc A",
+      "Phạm Văn Hai"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Vĩnh Lộc A và một phần diện tích tự nhiên, quy mô dân số của xã Phạm Văn Hai thành xã mới có tên gọi là xã Vĩnh Lộc.",
+    "keywords": [
+      "pham van hai",
+      "phạm văn hai",
+      "vinh loc",
+      "vinh loc a",
+      "vĩnh lộc",
+      "vĩnh lộc a",
+      "x. vĩnh lộc",
+      "x.vĩnh lộc",
+      "xa vinh loc",
+      "xã vĩnh lộc"
+    ]
+  },
+  {
+    "id": "HCM_U_114",
+    "clause_number": 114,
+    "clause": "Khoản 114, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Tân Vĩnh Lộc",
+    "short_name": "Tân Vĩnh Lộc",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.78,
+    "lon": 106.62,
+    "merged_from": [
+      "Vĩnh Lộc B",
+      "Phạm Văn Hai",
+      "Tân Tạo"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Vĩnh Lộc B, phần còn lại của xã Phạm Văn Hai sau khi sắp xếp theo quy định tại khoản 113 Điều này và phần còn lại của phường Tân Tạo sau khi sắp xếp theo quy định tại khoản 38, khoản 39 Điều này thành xã mới có tên gọi là xã Tân Vĩnh Lộc.",
+    "keywords": [
+      "pham van hai",
+      "phạm văn hai",
+      "tan tao",
+      "tan vinh loc",
+      "tân tạo",
+      "tân vĩnh lộc",
+      "vinh loc b",
+      "vĩnh lộc b",
+      "x. tân vĩnh lộc",
+      "x.tân vĩnh lộc",
+      "xa tan vinh loc",
+      "xã tân vĩnh lộc"
+    ]
+  },
+  {
+    "id": "HCM_U_115",
+    "clause_number": 115,
+    "clause": "Khoản 115, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bình Lợi",
+    "short_name": "Bình Lợi",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.795,
+    "lon": 106.64,
+    "merged_from": [
+      "Lê Minh Xuân",
+      "Bình Lợi"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Lê Minh Xuân và xã Bình Lợi thành xã mới có tên gọi là xã Bình Lợi.",
+    "keywords": [
+      "binh loi",
+      "bình lợi",
+      "le minh xuan",
+      "lê minh xuân",
+      "x. bình lợi",
+      "x.bình lợi",
+      "xa binh loi",
+      "xã bình lợi"
+    ]
+  },
+  {
+    "id": "HCM_U_116",
+    "clause_number": 116,
+    "clause": "Khoản 116, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Tân Nhựt",
+    "short_name": "Tân Nhựt",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.81,
+    "lon": 106.66,
+    "merged_from": [
+      "Tân Túc",
+      "Tân Nhựt",
+      "Tân Tạo A",
+      "Tân Kiên",
+      "16"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Tân Túc, xã Tân Nhựt, phần còn lại của phường Tân Tạo A, xã Tân Kiên sau khi sắp xếp theo quy định tại khoản 39 Điều này và phần còn lại của Phường 16 (Quận 8) sau khi sắp xếp theo quy định tại khoản 16, khoản 23 Điều này thành xã mới có tên gọi là xã Tân Nhựt.",
+    "keywords": [
+      "tan kien",
+      "tan nhut",
+      "tan tao a",
+      "tan tuc",
+      "tân kiên",
+      "tân nhựt",
+      "tân túc",
+      "tân tạo a",
+      "x. tân nhựt",
+      "x.tân nhựt",
+      "xa tan nhut",
+      "xã tân nhựt"
+    ]
+  },
+  {
+    "id": "HCM_U_117",
+    "clause_number": 117,
+    "clause": "Khoản 117, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bình Chánh",
+    "short_name": "Bình Chánh",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.825,
+    "lon": 106.68,
+    "merged_from": [
+      "Tân Quý Tây",
+      "Bình Chánh",
+      "An Phú Tây"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Tân Quý Tây, xã Bình Chánh và phần còn lại của xã An Phú Tây sau khi sắp xếp theo quy định tại khoản 24 Điều này thành xã mới có tên gọi là xã Bình Chánh.",
+    "keywords": [
+      "an phu tay",
+      "an phú tây",
+      "binh chanh",
+      "bình chánh",
+      "tan quy tay",
+      "tân quý tây",
+      "x. bình chánh",
+      "x.bình chánh",
+      "xa binh chanh",
+      "xã bình chánh"
+    ]
+  },
+  {
+    "id": "HCM_U_118",
+    "clause_number": 118,
+    "clause": "Khoản 118, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Hưng Long",
+    "short_name": "Hưng Long",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.7,
+    "merged_from": [
+      "Đa Phước"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Đa Phước, Qui Đức và Hưng Long thành xã mới có tên gọi là xã Hưng Long.",
+    "keywords": [
+      "da phuoc",
+      "hung long",
+      "hưng long",
+      "x. hưng long",
+      "x.hưng long",
+      "xa hung long",
+      "xã hưng long",
+      "đa phước"
+    ]
+  },
+  {
+    "id": "HCM_U_119",
+    "clause_number": 119,
+    "clause": "Khoản 119, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bình Hưng",
+    "short_name": "Bình Hưng",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.855,
+    "lon": 106.72,
+    "merged_from": [
+      "Phong Phú",
+      "Bình Hưng"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Phong Phú, xã Bình Hưng và phần còn lại của Phường 7 (Quận 8) sau khi sắp xếp theo quy định tại khoản 24 Điều này thành xã mới có tên gọi là xã Bình Hưng.",
+    "keywords": [
+      "binh hung",
+      "bình hưng",
+      "phong phu",
+      "phong phú",
+      "x. bình hưng",
+      "x.bình hưng",
+      "xa binh hung",
+      "xã bình hưng"
+    ]
+  },
+  {
+    "id": "HCM_U_120",
+    "clause_number": 120,
+    "clause": "Khoản 120, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bình Khánh",
+    "short_name": "Bình Khánh",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.75,
+    "lon": 106.58,
+    "merged_from": [
+      "Tam Thôn Hiệp",
+      "Bình Khánh",
+      "An Thới Đông"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Tam Thôn Hiệp, xã Bình Khánh và một phần diện tích, quy mô dân số của xã An Thới Đông thành xã mới có tên gọi là xã Bình Khánh.",
+    "keywords": [
+      "an thoi dong",
+      "an thới đông",
+      "binh khanh",
+      "bình khánh",
+      "tam thon hiep",
+      "tam thôn hiệp",
+      "x. bình khánh",
+      "x.bình khánh",
+      "xa binh khanh",
+      "xã bình khánh"
+    ]
+  },
+  {
+    "id": "HCM_U_121",
+    "clause_number": 121,
+    "clause": "Khoản 121, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã An Thới Đông",
+    "short_name": "An Thới Đông",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.765,
+    "lon": 106.6,
+    "merged_from": [
+      "Lý Nhơn",
+      "An Thới Đông"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Lý Nhơn và phần còn lại của xã An Thới Đông sau khi sắp xếp theo quy định tại khoản 120 Điều này thành xã mới có tên gọi là xã An Thới Đông.",
+    "keywords": [
+      "an thoi dong",
+      "an thới đông",
+      "ly nhon",
+      "lý nhơn",
+      "x. an thới đông",
+      "x.an thới đông",
+      "xa an thoi dong",
+      "xã an thới đông"
+    ]
+  },
+  {
+    "id": "HCM_U_122",
+    "clause_number": 122,
+    "clause": "Khoản 122, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Cần Giờ",
+    "short_name": "Cần Giờ",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.78,
+    "lon": 106.62,
+    "merged_from": [
+      "Long Hòa",
+      "Cần Thạnh"
+    ],
+    "description": "Nhập toàn bộ diện tích tự nhiên, quy mô dân số của xã Long Hòa (huyện Cần Giờ) và thị trấn Cần Thạnh thành xã mới có tên gọi là xã Cần Giờ.",
+    "keywords": [
+      "can gio",
+      "can thanh",
+      "cần giờ",
+      "cần thạnh",
+      "long hoa",
+      "long hòa",
+      "x. cần giờ",
+      "x.cần giờ",
+      "xa can gio",
+      "xã cần giờ"
+    ]
+  },
+  {
+    "id": "HCM_U_123",
+    "clause_number": 123,
+    "clause": "Khoản 123, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Củ Chi",
+    "short_name": "Củ Chi",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.795,
+    "lon": 106.64,
+    "merged_from": [
+      "Tân Phú Trung"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Tân Phú Trung, Tân Thông Hội và Phước Vĩnh An thành xã mới có tên gọi là xã Củ Chi.",
+    "keywords": [
+      "cu chi",
+      "củ chi",
+      "tan phu trung",
+      "tân phú trung",
+      "x. củ chi",
+      "x.củ chi",
+      "xa cu chi",
+      "xã củ chi"
+    ]
+  },
+  {
+    "id": "HCM_U_124",
+    "clause_number": 124,
+    "clause": "Khoản 124, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Tân An Hội",
+    "short_name": "Tân An Hội",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.81,
+    "lon": 106.66,
+    "merged_from": [
+      "Củ Chi",
+      "Phước Hiệp",
+      "Tân An Hội"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Củ Chi, xã Phước Hiệp và xã Tân An Hội thành xã mới có tên gọi là xã Tân An Hội.",
+    "keywords": [
+      "cu chi",
+      "củ chi",
+      "phuoc hiep",
+      "phước hiệp",
+      "tan an hoi",
+      "tân an hội",
+      "x. tân an hội",
+      "x.tân an hội",
+      "xa tan an hoi",
+      "xã tân an hội"
+    ]
+  },
+  {
+    "id": "HCM_U_125",
+    "clause_number": 125,
+    "clause": "Khoản 125, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Thái Mỹ",
+    "short_name": "Thái Mỹ",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.825,
+    "lon": 106.68,
+    "merged_from": [
+      "Trung Lập Thượng"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Trung Lập Thượng, Phước Thạnh và Thái Mỹ thành xã mới có tên gọi là xã Thái Mỹ.",
+    "keywords": [
+      "thai my",
+      "thái mỹ",
+      "trung lap thuong",
+      "trung lập thượng",
+      "x. thái mỹ",
+      "x.thái mỹ",
+      "xa thai my",
+      "xã thái mỹ"
+    ]
+  },
+  {
+    "id": "HCM_U_126",
+    "clause_number": 126,
+    "clause": "Khoản 126, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã An Nhơn Tây",
+    "short_name": "An Nhơn Tây",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.7,
+    "merged_from": [
+      "Phú Mỹ Hưng"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Phú Mỹ Hưng, An Phú và An Nhơn Tây thành xã mới có tên gọi là xã An Nhơn Tây.",
+    "keywords": [
+      "an nhon tay",
+      "an nhơn tây",
+      "phu my hung",
+      "phú mỹ hưng",
+      "x. an nhơn tây",
+      "x.an nhơn tây",
+      "xa an nhon tay",
+      "xã an nhơn tây"
+    ]
+  },
+  {
+    "id": "HCM_U_127",
+    "clause_number": 127,
+    "clause": "Khoản 127, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Nhuận Đức",
+    "short_name": "Nhuận Đức",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.855,
+    "lon": 106.72,
+    "merged_from": [
+      "Phạm Văn Cội"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Phạm Văn Cội, Trung Lập Hạ và Nhuận Đức thành xã mới có tên gọi là xã Nhuận Đức.",
+    "keywords": [
+      "nhuan duc",
+      "nhuận đức",
+      "pham van coi",
+      "phạm văn cội",
+      "x. nhuận đức",
+      "x.nhuận đức",
+      "xa nhuan duc",
+      "xã nhuận đức"
+    ]
+  },
+  {
+    "id": "HCM_U_128",
+    "clause_number": 128,
+    "clause": "Khoản 128, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Phú Hòa Đông",
+    "short_name": "Phú Hòa Đông",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.75,
+    "lon": 106.58,
+    "merged_from": [
+      "Tân Thạnh Tây"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Tân Thạnh Tây, Tân Thạnh Đông và Phú Hòa Đông thành xã mới có tên gọi là xã Phú Hòa Đông.",
+    "keywords": [
+      "phu hoa dong",
+      "phú hòa đông",
+      "tan thanh tay",
+      "tân thạnh tây",
+      "x. phú hòa đông",
+      "x.phú hòa đông",
+      "xa phu hoa dong",
+      "xã phú hòa đông"
+    ]
+  },
+  {
+    "id": "HCM_U_129",
+    "clause_number": 129,
+    "clause": "Khoản 129, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bình Mỹ",
+    "short_name": "Bình Mỹ",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.765,
+    "lon": 106.6,
+    "merged_from": [
+      "Bình Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Bình Mỹ (huyện Củ Chi), Hòa Phú và Trung An thành xã mới có tên gọi là xã Bình Mỹ.",
+    "keywords": [
+      "binh my",
+      "bình mỹ",
+      "x. bình mỹ",
+      "x.bình mỹ",
+      "xa binh my",
+      "xã bình mỹ"
+    ]
+  },
+  {
+    "id": "HCM_U_130",
+    "clause_number": 130,
+    "clause": "Khoản 130, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Đông Thạnh",
+    "short_name": "Đông Thạnh",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.78,
+    "lon": 106.62,
+    "merged_from": [
+      "Thới Tam Thôn"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Thới Tam Thôn, Nhị Bình và Đông Thạnh thành xã mới có tên gọi là xã Đông Thạnh.",
+    "keywords": [
+      "dong thanh",
+      "thoi tam thon",
+      "thới tam thôn",
+      "x. đông thạnh",
+      "x.đông thạnh",
+      "xa dong thanh",
+      "xã đông thạnh",
+      "đông thạnh"
+    ]
+  },
+  {
+    "id": "HCM_U_131",
+    "clause_number": 131,
+    "clause": "Khoản 131, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Hóc Môn",
+    "short_name": "Hóc Môn",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.795,
+    "lon": 106.64,
+    "merged_from": [
+      "Tân Hiệp",
+      "Tân Xuân",
+      "Hóc Môn"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Tân Hiệp (huyện Hóc Môn), xã Tân Xuân và thị trấn Hóc Môn thành xã mới có tên gọi là xã Hóc Môn.",
+    "keywords": [
+      "hoc mon",
+      "hóc môn",
+      "tan hiep",
+      "tan xuan",
+      "tân hiệp",
+      "tân xuân",
+      "x. hóc môn",
+      "x.hóc môn",
+      "xa hoc mon",
+      "xã hóc môn"
+    ]
+  },
+  {
+    "id": "HCM_U_132",
+    "clause_number": 132,
+    "clause": "Khoản 132, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Xuân Thới Sơn",
+    "short_name": "Xuân Thới Sơn",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.81,
+    "lon": 106.66,
+    "merged_from": [
+      "Tân Thới Nhì"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Tân Thới Nhì, Xuân Thới Đông và Xuân Thới Sơn thành xã mới có tên gọi là xã Xuân Thới Sơn.",
+    "keywords": [
+      "tan thoi nhi",
+      "tân thới nhì",
+      "x. xuân thới sơn",
+      "x.xuân thới sơn",
+      "xa xuan thoi son",
+      "xuan thoi son",
+      "xuân thới sơn",
+      "xã xuân thới sơn"
+    ]
+  },
+  {
+    "id": "HCM_U_133",
+    "clause_number": 133,
+    "clause": "Khoản 133, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bà Điểm",
+    "short_name": "Bà Điểm",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.825,
+    "lon": 106.68,
+    "merged_from": [
+      "Xuân Thới Thượng"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Xuân Thới Thượng, Trung Chánh và Bà Điểm thành xã mới có tên gọi là xã Bà Điểm.",
+    "keywords": [
+      "ba diem",
+      "bà điểm",
+      "x. bà điểm",
+      "x.bà điểm",
+      "xa ba diem",
+      "xuan thoi thuong",
+      "xuân thới thượng",
+      "xã bà điểm"
+    ]
+  },
+  {
+    "id": "HCM_U_134",
+    "clause_number": 134,
+    "clause": "Khoản 134, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Nhà Bè",
+    "short_name": "Nhà Bè",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.84,
+    "lon": 106.7,
+    "merged_from": [
+      "Nhà Bè",
+      "Phú Xuân"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Nhà Bè và các xã Phú Xuân, Phước Kiển, Phước Lộc thành xã mới có tên gọi là xã Nhà Bè.",
+    "keywords": [
+      "nha be",
+      "nhà bè",
+      "phu xuan",
+      "phú xuân",
+      "x. nhà bè",
+      "x.nhà bè",
+      "xa nha be",
+      "xã nhà bè"
+    ]
+  },
+  {
+    "id": "HCM_U_135",
+    "clause_number": 135,
+    "clause": "Khoản 135, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Hiệp Phước",
+    "short_name": "Hiệp Phước",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM",
+    "lat": 10.855,
+    "lon": 106.72,
+    "merged_from": [
+      "Nhơn Đức"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Nhơn Đức, Long Thới và Hiệp Phước thành xã mới có tên gọi là xã Hiệp Phước.",
+    "keywords": [
+      "hiep phuoc",
+      "hiệp phước",
+      "nhon duc",
+      "nhơn đức",
+      "x. hiệp phước",
+      "x.hiệp phước",
+      "xa hiep phuoc",
+      "xã hiệp phước"
+    ]
+  },
+  {
+    "id": "HCM_U_136",
+    "clause_number": 136,
+    "clause": "Khoản 136, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Thường Tân",
+    "short_name": "Thường Tân",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.26,
+    "lon": 106.68,
+    "merged_from": [
+      "Lạc An",
+      "Tân Mỹ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Lạc An, Hiếu Liêm, Thường Tân và phần còn lại của xã Tân Mỹ sau khi sắp xếp theo quy định tại khoản 99 Điều này thành xã mới có tên gọi là xã Thường Tân.",
+    "keywords": [
+      "lac an",
+      "lạc an",
+      "tan my",
+      "thuong tan",
+      "thường tân",
+      "tân mỹ",
+      "x. thường tân",
+      "x.thường tân",
+      "xa thuong tan",
+      "xã thường tân"
+    ]
+  },
+  {
+    "id": "HCM_U_137",
+    "clause_number": 137,
+    "clause": "Khoản 137, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bắc Tân Uyên",
+    "short_name": "Bắc Tân Uyên",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.275,
+    "lon": 106.7,
+    "merged_from": [
+      "Tân Thành",
+      "Đất Cuốc",
+      "Tân Định"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Tân Thành, xã Đất Cuốc và xã Tân Định thành xã mới có tên gọi là xã Bắc Tân Uyên.",
+    "keywords": [
+      "bac tan uyen",
+      "bắc tân uyên",
+      "dat cuoc",
+      "tan dinh",
+      "tan thanh",
+      "tân thành",
+      "tân định",
+      "x. bắc tân uyên",
+      "x.bắc tân uyên",
+      "xa bac tan uyen",
+      "xã bắc tân uyên",
+      "đất cuốc"
+    ]
+  },
+  {
+    "id": "HCM_U_138",
+    "clause_number": 138,
+    "clause": "Khoản 138, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Phú Giáo",
+    "short_name": "Phú Giáo",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.2,
+    "lon": 106.6,
+    "merged_from": [
+      "Phước Vĩnh",
+      "An Bình",
+      "Tam Lập"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Phước Vĩnh, xã An Bình và một phần diện tích tự nhiên, quy mô dân số của xã Tam Lập thành xã mới có tên gọi là xã Phú Giáo.",
+    "keywords": [
+      "an binh",
+      "an bình",
+      "phu giao",
+      "phuoc vinh",
+      "phú giáo",
+      "phước vĩnh",
+      "tam lap",
+      "tam lập",
+      "x. phú giáo",
+      "x.phú giáo",
+      "xa phu giao",
+      "xã phú giáo"
+    ]
+  },
+  {
+    "id": "HCM_U_139",
+    "clause_number": 139,
+    "clause": "Khoản 139, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Phước Hòa",
+    "short_name": "Phước Hòa",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.215,
+    "lon": 106.62,
+    "merged_from": [
+      "Vĩnh Hòa",
+      "Phước Hòa",
+      "Tam Lập"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Vĩnh Hòa, xã Phước Hòa và phần còn lại của xã Tam Lập sau khi sắp xếp theo quy định tại khoản 138 Điều này thành xã mới có tên gọi là xã Phước Hòa.",
+    "keywords": [
+      "phuoc hoa",
+      "phước hòa",
+      "tam lap",
+      "tam lập",
+      "vinh hoa",
+      "vĩnh hòa",
+      "x. phước hòa",
+      "x.phước hòa",
+      "xa phuoc hoa",
+      "xã phước hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_140",
+    "clause_number": 140,
+    "clause": "Khoản 140, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Phước Thành",
+    "short_name": "Phước Thành",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.23,
+    "lon": 106.64,
+    "merged_from": [
+      "Tân Hiệp"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Tân Hiệp (huyện Phú Giáo), An Thái và Phước Sang thành xã mới có tên gọi là xã Phước Thành.",
+    "keywords": [
+      "phuoc thanh",
+      "phước thành",
+      "tan hiep",
+      "tân hiệp",
+      "x. phước thành",
+      "x.phước thành",
+      "xa phuoc thanh",
+      "xã phước thành"
+    ]
+  },
+  {
+    "id": "HCM_U_141",
+    "clause_number": 141,
+    "clause": "Khoản 141, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã An Long",
+    "short_name": "An Long",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.245,
+    "lon": 106.66,
+    "merged_from": [
+      "An Linh"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã An Linh, Tân Long và An Long thành xã mới có tên gọi là xã An Long.",
+    "keywords": [
+      "an linh",
+      "an long",
+      "x. an long",
+      "x.an long",
+      "xa an long",
+      "xã an long"
+    ]
+  },
+  {
+    "id": "HCM_U_142",
+    "clause_number": 142,
+    "clause": "Khoản 142, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Trừ Văn Thố",
+    "short_name": "Trừ Văn Thố",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.26,
+    "lon": 106.68,
+    "merged_from": [
+      "Trừ Văn Thố",
+      "Cây Trường II",
+      "Lai Uyên"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Trừ Văn Thố, xã Cây Trường II và một phần diện tích tự nhiên, quy mô dân số của thị trấn Lai Uyên thành xã mới có tên gọi là xã Trừ Văn Thố.",
+    "keywords": [
+      "cay truong ii",
+      "cây trường ii",
+      "lai uyen",
+      "lai uyên",
+      "tru van tho",
+      "trừ văn thố",
+      "x. trừ văn thố",
+      "x.trừ văn thố",
+      "xa tru van tho",
+      "xã trừ văn thố"
+    ]
+  },
+  {
+    "id": "HCM_U_143",
+    "clause_number": 143,
+    "clause": "Khoản 143, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bàu Bàng",
+    "short_name": "Bàu Bàng",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.275,
+    "lon": 106.7,
+    "merged_from": [
+      "Lai Uyên"
+    ],
+    "description": "Sắp xếp phần còn lại của thị trấn Lai Uyên sau khi sắp xếp theo quy định tại khoản 142 Điều này thành xã mới có tên gọi là xã Bàu Bàng.",
+    "keywords": [
+      "bau bang",
+      "bàu bàng",
+      "lai uyen",
+      "lai uyên",
+      "x. bàu bàng",
+      "x.bàu bàng",
+      "xa bau bang",
+      "xã bàu bàng"
+    ]
+  },
+  {
+    "id": "HCM_U_144",
+    "clause_number": 144,
+    "clause": "Khoản 144, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Long Hòa",
+    "short_name": "Long Hòa",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.2,
+    "lon": 106.6,
+    "merged_from": [
+      "Long Tân",
+      "Long Hòa",
+      "Minh Tân",
+      "Minh Thạnh"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Long Tân và xã Long Hòa (huyện Dầu Tiếng), một phần diện tích tự nhiên, quy mô dân số của xã Minh Tân, xã Minh Thạnh thành xã mới có tên gọi là xã Long Hòa.",
+    "keywords": [
+      "long hoa",
+      "long hòa",
+      "long tan",
+      "long tân",
+      "minh tan",
+      "minh thanh",
+      "minh thạnh",
+      "minh tân",
+      "x. long hòa",
+      "x.long hòa",
+      "xa long hoa",
+      "xã long hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_145",
+    "clause_number": 145,
+    "clause": "Khoản 145, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Thanh An",
+    "short_name": "Thanh An",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.215,
+    "lon": 106.62,
+    "merged_from": [
+      "Thanh An",
+      "Định Hiệp",
+      "Thanh Tuyền",
+      "An Lập"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Thanh An, một phần diện tích tự nhiên, quy mô dân số của các xã Định Hiệp và phần còn lại của xã Thanh Tuyền, xã An Lập sau khi sắp xếp theo quy định tại khoản 93 Điều này thành xã mới có tên gọi là xã Thanh An.",
+    "keywords": [
+      "an lap",
+      "an lập",
+      "dinh hiep",
+      "thanh an",
+      "thanh tuyen",
+      "thanh tuyền",
+      "x. thanh an",
+      "x.thanh an",
+      "xa thanh an",
+      "xã thanh an",
+      "định hiệp"
+    ]
+  },
+  {
+    "id": "HCM_U_146",
+    "clause_number": 146,
+    "clause": "Khoản 146, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Dầu Tiếng",
+    "short_name": "Dầu Tiếng",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.23,
+    "lon": 106.64,
+    "merged_from": [
+      "Dầu Tiếng",
+      "Định An",
+      "Định Thành",
+      "Định Hiệp"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Dầu Tiếng, xã Định An, xã Định Thành và phần còn lại của xã Định Hiệp sau khi sắp xếp theo quy định tại khoản 145 Điều này thành xã mới có tên gọi là xã Dầu Tiếng.",
+    "keywords": [
+      "dau tieng",
+      "dinh an",
+      "dinh hiep",
+      "dinh thanh",
+      "dầu tiếng",
+      "x. dầu tiếng",
+      "x.dầu tiếng",
+      "xa dau tieng",
+      "xã dầu tiếng",
+      "định an",
+      "định hiệp",
+      "định thành"
+    ]
+  },
+  {
+    "id": "HCM_U_147",
+    "clause_number": 147,
+    "clause": "Khoản 147, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Minh Thạnh",
+    "short_name": "Minh Thạnh",
+    "type": "xã",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Huyện ngoại thành Bình Dương",
+    "lat": 11.245,
+    "lon": 106.66,
+    "merged_from": [
+      "Minh Hòa",
+      "Minh Tân",
+      "Minh Thạnh"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Minh Hòa và phần còn lại của xã Minh Tân, xã Minh Thạnh sau khi sắp xếp theo quy định tại khoản 144 Điều này thành xã mới có tên gọi là xã Minh Thạnh.",
+    "keywords": [
+      "minh hoa",
+      "minh hòa",
+      "minh tan",
+      "minh thanh",
+      "minh thạnh",
+      "minh tân",
+      "x. minh thạnh",
+      "x.minh thạnh",
+      "xa minh thanh",
+      "xã minh thạnh"
+    ]
+  },
+  {
+    "id": "HCM_U_148",
+    "clause_number": 148,
+    "clause": "Khoản 148, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Châu Pha",
+    "short_name": "Châu Pha",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.565,
+    "lon": 107.32,
+    "merged_from": [
+      "Tóc Tiên",
+      "Châu Pha"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Tóc Tiên và xã Châu Pha thành xã mới có tên gọi là xã Châu Pha.",
+    "keywords": [
+      "chau pha",
+      "châu pha",
+      "toc tien",
+      "tóc tiên",
+      "x. châu pha",
+      "x.châu pha",
+      "xa chau pha",
+      "xã châu pha"
+    ]
+  },
+  {
+    "id": "HCM_U_149",
+    "clause_number": 149,
+    "clause": "Khoản 149, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Long Hải",
+    "short_name": "Long Hải",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.58,
+    "lon": 107.34,
+    "merged_from": [
+      "Long Hải",
+      "Phước Tỉnh",
+      "Phước Hưng"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Long Hải, xã Phước Tỉnh và xã Phước Hưng thành xã mới có tên gọi là xã Long Hải.",
+    "keywords": [
+      "long hai",
+      "long hải",
+      "phuoc hung",
+      "phuoc tinh",
+      "phước hưng",
+      "phước tỉnh",
+      "x. long hải",
+      "x.long hải",
+      "xa long hai",
+      "xã long hải"
+    ]
+  },
+  {
+    "id": "HCM_U_150",
+    "clause_number": 150,
+    "clause": "Khoản 150, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Long Điền",
+    "short_name": "Long Điền",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.595,
+    "lon": 107.36,
+    "merged_from": [
+      "Long Điền",
+      "Tam An"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Long Điền và xã Tam An thành xã mới có tên gọi là xã Long Điền.",
+    "keywords": [
+      "long dien",
+      "long điền",
+      "tam an",
+      "x. long điền",
+      "x.long điền",
+      "xa long dien",
+      "xã long điền"
+    ]
+  },
+  {
+    "id": "HCM_U_151",
+    "clause_number": 151,
+    "clause": "Khoản 151, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Phước Hải",
+    "short_name": "Phước Hải",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.61,
+    "lon": 107.38,
+    "merged_from": [
+      "Phước Hải",
+      "Phước Hội"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Phước Hải và xã Phước Hội thành xã mới có tên gọi là xã Phước Hải.",
+    "keywords": [
+      "phuoc hai",
+      "phuoc hoi",
+      "phước hải",
+      "phước hội",
+      "x. phước hải",
+      "x.phước hải",
+      "xa phuoc hai",
+      "xã phước hải"
+    ]
+  },
+  {
+    "id": "HCM_U_152",
+    "clause_number": 152,
+    "clause": "Khoản 152, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Đất Đỏ",
+    "short_name": "Đất Đỏ",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.625,
+    "lon": 107.4,
+    "merged_from": [
+      "Đất Đỏ",
+      "Long Tân"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Đất Đỏ và các xã Long Tân (huyện Long Đất), Láng Dài, Phước Long Thọ thành xã mới có tên gọi là xã Đất Đỏ.",
+    "keywords": [
+      "dat do",
+      "long tan",
+      "long tân",
+      "x. đất đỏ",
+      "x.đất đỏ",
+      "xa dat do",
+      "xã đất đỏ",
+      "đất đỏ"
+    ]
+  },
+  {
+    "id": "HCM_U_153",
+    "clause_number": 153,
+    "clause": "Khoản 153, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Nghĩa Thành",
+    "short_name": "Nghĩa Thành",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.64,
+    "lon": 107.42,
+    "merged_from": [
+      "Đá Bạc",
+      "Nghĩa Thành"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Đá Bạc và xã Nghĩa Thành thành xã mới có tên gọi là xã Nghĩa Thành.",
+    "keywords": [
+      "da bac",
+      "nghia thanh",
+      "nghĩa thành",
+      "x. nghĩa thành",
+      "x.nghĩa thành",
+      "xa nghia thanh",
+      "xã nghĩa thành",
+      "đá bạc"
+    ]
+  },
+  {
+    "id": "HCM_U_154",
+    "clause_number": 154,
+    "clause": "Khoản 154, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Ngãi Giao",
+    "short_name": "Ngãi Giao",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.55,
+    "lon": 107.3,
+    "merged_from": [
+      "Ngãi Giao",
+      "Bình Ba",
+      "Suối Nghệ"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Ngãi Giao, xã Bình Ba và xã Suối Nghệ thành xã mới có tên gọi là xã Ngãi Giao.",
+    "keywords": [
+      "binh ba",
+      "bình ba",
+      "ngai giao",
+      "ngãi giao",
+      "suoi nghe",
+      "suối nghệ",
+      "x. ngãi giao",
+      "x.ngãi giao",
+      "xa ngai giao",
+      "xã ngãi giao"
+    ]
+  },
+  {
+    "id": "HCM_U_155",
+    "clause_number": 155,
+    "clause": "Khoản 155, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Kim Long",
+    "short_name": "Kim Long",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.565,
+    "lon": 107.32,
+    "merged_from": [
+      "Kim Long",
+      "Bàu Chinh",
+      "Láng Lớn"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Kim Long, xã Bàu Chinh và xã Láng Lớn thành xã mới có tên gọi là xã Kim Long.",
+    "keywords": [
+      "bau chinh",
+      "bàu chinh",
+      "kim long",
+      "lang lon",
+      "láng lớn",
+      "x. kim long",
+      "x.kim long",
+      "xa kim long",
+      "xã kim long"
+    ]
+  },
+  {
+    "id": "HCM_U_156",
+    "clause_number": 156,
+    "clause": "Khoản 156, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Châu Đức",
+    "short_name": "Châu Đức",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.58,
+    "lon": 107.34,
+    "merged_from": [
+      "Cù Bị",
+      "Xà Bang"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Cù Bị và xã Xà Bang thành xã mới có tên gọi là xã Châu Đức.",
+    "keywords": [
+      "chau duc",
+      "châu đức",
+      "cu bi",
+      "cù bị",
+      "x. châu đức",
+      "x.châu đức",
+      "xa bang",
+      "xa chau duc",
+      "xà bang",
+      "xã châu đức"
+    ]
+  },
+  {
+    "id": "HCM_U_157",
+    "clause_number": 157,
+    "clause": "Khoản 157, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bình Giã",
+    "short_name": "Bình Giã",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.595,
+    "lon": 107.36,
+    "merged_from": [
+      "Bình Trung"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Bình Trung, Quảng Thành và Bình Giã thành xã mới có tên gọi là xã Bình Giã.",
+    "keywords": [
+      "binh gia",
+      "binh trung",
+      "bình giã",
+      "bình trung",
+      "x. bình giã",
+      "x.bình giã",
+      "xa binh gia",
+      "xã bình giã"
+    ]
+  },
+  {
+    "id": "HCM_U_158",
+    "clause_number": 158,
+    "clause": "Khoản 158, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Xuân Sơn",
+    "short_name": "Xuân Sơn",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.61,
+    "lon": 107.38,
+    "merged_from": [
+      "Suối Rao"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Suối Rao, Sơn Bình và Xuân Sơn thành xã mới có tên gọi là xã Xuân Sơn.",
+    "keywords": [
+      "suoi rao",
+      "suối rao",
+      "x. xuân sơn",
+      "x.xuân sơn",
+      "xa xuan son",
+      "xuan son",
+      "xuân sơn",
+      "xã xuân sơn"
+    ]
+  },
+  {
+    "id": "HCM_U_159",
+    "clause_number": 159,
+    "clause": "Khoản 159, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Hồ Tràm",
+    "short_name": "Hồ Tràm",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.625,
+    "lon": 107.4,
+    "merged_from": [
+      "Phước Bửu",
+      "Phước Tân",
+      "Phước Thuận"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của thị trấn Phước Bửu, xã Phước Tân và xã Phước Thuận thành xã mới có tên gọi là xã Hồ Tràm.",
+    "keywords": [
+      "ho tram",
+      "hồ tràm",
+      "phuoc buu",
+      "phuoc tan",
+      "phuoc thuan",
+      "phước bửu",
+      "phước thuận",
+      "phước tân",
+      "x. hồ tràm",
+      "x.hồ tràm",
+      "xa ho tram",
+      "xã hồ tràm"
+    ]
+  },
+  {
+    "id": "HCM_U_160",
+    "clause_number": 160,
+    "clause": "Khoản 160, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Xuyên Mộc",
+    "short_name": "Xuyên Mộc",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.64,
+    "lon": 107.42,
+    "merged_from": [
+      "Bông Trang"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Bông Trang, Bưng Riềng và Xuyên Mộc thành xã mới có tên gọi là xã Xuyên Mộc.",
+    "keywords": [
+      "bong trang",
+      "bông trang",
+      "x. xuyên mộc",
+      "x.xuyên mộc",
+      "xa xuyen moc",
+      "xuyen moc",
+      "xuyên mộc",
+      "xã xuyên mộc"
+    ]
+  },
+  {
+    "id": "HCM_U_161",
+    "clause_number": 161,
+    "clause": "Khoản 161, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Hòa Hội",
+    "short_name": "Hòa Hội",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.55,
+    "lon": 107.3,
+    "merged_from": [
+      "Hòa Hưng"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các xã Hòa Hưng, Hòa Bình và Hòa Hội thành xã mới có tên gọi là xã Hòa Hội.",
+    "keywords": [
+      "hoa hoi",
+      "hoa hung",
+      "hòa hưng",
+      "hòa hội",
+      "x. hòa hội",
+      "x.hòa hội",
+      "xa hoa hoi",
+      "xã hòa hội"
+    ]
+  },
+  {
+    "id": "HCM_U_162",
+    "clause_number": 162,
+    "clause": "Khoản 162, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Xã Bàu Lâm",
+    "short_name": "Bàu Lâm",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu",
+    "lat": 10.565,
+    "lon": 107.32,
+    "merged_from": [
+      "Tân Lâm",
+      "Bàu Lâm"
+    ],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của xã Tân Lâm và xã Bàu Lâm thành xã mới có tên gọi là xã Bàu Lâm.",
+    "keywords": [
+      "bau lam",
+      "bàu lâm",
+      "tan lam",
+      "tân lâm",
+      "x. bàu lâm",
+      "x.bàu lâm",
+      "xa bau lam",
+      "xã bàu lâm"
+    ]
+  },
+  {
+    "id": "HCM_U_163",
+    "clause_number": 163,
+    "clause": "Khoản 163, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15",
+    "name": "Đặc khu Côn Đảo",
+    "short_name": "Côn Đảo",
+    "type": "đặc khu",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Đặc khu biển đảo Côn Đảo",
+    "lat": 8.683,
+    "lon": 106.608,
+    "merged_from": [],
+    "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của huyện Côn Đảo thành đặc khu có tên gọi là đặc khu Côn Đảo.",
+    "keywords": [
+      "con dao",
+      "côn đảo",
+      "dac khu con dao",
+      "đặc khu côn đảo"
+    ]
+  },
+  {
+    "id": "HCM_U_164",
+    "clause_number": 164,
+    "clause": "Khoản 164, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15 (Giữ nguyên)",
+    "name": "Phường Thới Hòa",
+    "short_name": "Thới Hòa",
+    "type": "phường",
+    "region_cluster": "Bình Dương cũ",
+    "cluster_detail": "Khu vực đô thị công nghiệp phía Bắc (Bến Cát)",
+    "lat": 11.125,
+    "lon": 106.62,
+    "merged_from": [
+      "Phường Thới Hòa"
+    ],
+    "description": "Đơn vị hành chính cấp xã không thực hiện sắp xếp theo Nghị quyết 1685/NQ-UBTVQH15.",
+    "keywords": [
+      "p. thới hòa",
+      "p.thới hòa",
+      "phuong thoi hoa",
+      "phường thới hòa",
+      "thoi hoa",
+      "thới hòa"
+    ]
+  },
+  {
+    "id": "HCM_U_165",
+    "clause_number": 164,
+    "clause": "Khoản 164, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15 (Giữ nguyên)",
+    "name": "Xã Long Sơn",
+    "short_name": "Long Sơn",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Khu vực đô thị cảng & biển Đông Nam (Vũng Tàu)",
+    "lat": 10.448,
+    "lon": 107.092,
+    "merged_from": [
+      "Xã Long Sơn"
+    ],
+    "description": "Đơn vị hành chính cấp xã không thực hiện sắp xếp theo Nghị quyết 1685/NQ-UBTVQH15.",
+    "keywords": [
+      "dao long son",
+      "long son",
+      "long sơn",
+      "x. long sơn",
+      "x.long sơn",
+      "xa long son",
+      "xã long sơn",
+      "đảo long sơn"
+    ]
+  },
+  {
+    "id": "HCM_U_166",
+    "clause_number": 164,
+    "clause": "Khoản 164, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15 (Giữ nguyên)",
+    "name": "Xã Hòa Hiệp",
+    "short_name": "Hòa Hiệp",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu (Xuyên Mộc)",
+    "lat": 10.635,
+    "lon": 107.512,
+    "merged_from": [
+      "Xã Hòa Hiệp"
+    ],
+    "description": "Đơn vị hành chính cấp xã không thực hiện sắp xếp theo Nghị quyết 1685/NQ-UBTVQH15.",
+    "keywords": [
+      "hoa hiep",
+      "hòa hiệp",
+      "x. hòa hiệp",
+      "x.hòa hiệp",
+      "xa hoa hiep",
+      "xã hòa hiệp"
+    ]
+  },
+  {
+    "id": "HCM_U_167",
+    "clause_number": 164,
+    "clause": "Khoản 164, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15 (Giữ nguyên)",
+    "name": "Xã Bình Châu",
+    "short_name": "Bình Châu",
+    "type": "xã",
+    "region_cluster": "Bà Rịa - Vũng Tàu cũ",
+    "cluster_detail": "Huyện ngoại thành Bà Rịa - Vũng Tàu (Xuyên Mộc)",
+    "lat": 10.54,
+    "lon": 107.535,
+    "merged_from": [
+      "Xã Bình Châu"
+    ],
+    "description": "Đơn vị hành chính cấp xã không thực hiện sắp xếp theo Nghị quyết 1685/NQ-UBTVQH15.",
+    "keywords": [
+      "binh chau",
+      "bình châu",
+      "suoi khoang binh chau",
+      "suối khoáng bình châu",
+      "x. bình châu",
+      "x.bình châu",
+      "xa binh chau",
+      "xã bình châu"
+    ]
+  },
+  {
+    "id": "HCM_U_168",
+    "clause_number": 164,
+    "clause": "Khoản 164, Điều 1, Nghị quyết số 1685/NQ-UBTVQH15 (Giữ nguyên)",
+    "name": "Xã Thạnh An",
+    "short_name": "Thạnh An",
+    "type": "xã",
+    "region_cluster": "TP.HCM cũ",
+    "cluster_detail": "Huyện ngoại thành TP.HCM (Cần Giờ)",
+    "lat": 10.505,
+    "lon": 106.975,
+    "merged_from": [
+      "Xã Thạnh An"
+    ],
+    "description": "Đơn vị hành chính cấp xã không thực hiện sắp xếp theo Nghị quyết 1685/NQ-UBTVQH15.",
+    "keywords": [
+      "dao thanh an",
+      "thanh an",
+      "thạnh an",
+      "x. thạnh an",
+      "x.thạnh an",
+      "xa dao thanh an",
+      "xa thanh an",
+      "xã thạnh an",
+      "xã đảo thạnh an",
+      "đảo thạnh an"
+    ]
+  }
+]
