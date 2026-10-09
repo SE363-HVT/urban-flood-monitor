@@ -15,6 +15,7 @@ Tối ưu hóa thu thập thời gian thực với Actor chuyên sâu:
    - Khớp nối chính xác với Gazetteer và OpenStreetMap để đảm bảo 100% sự kiện hợp lệ có tọa độ hiển thị trên Heatmap.
 3. Bộ lọc kiểm duyệt khắt khe:
    - Loại bỏ triệt để tin rác BĐS ("cho thuê", "bán nhà"), bán xe ô tô ("không ngập nước", "odo"), bẫy chữ "ngập tràn deal/ưu đãi".
+   - Kiểm soát nghiêm ngặt cửa sổ thời gian (window_minutes): Tuyệt đối không để lọt bài đăng cũ (9 giờ - 1 ngày trước).
 """
 
 import os
@@ -64,7 +65,7 @@ def load_real_facebook_flood_pool() -> List[Dict[str, Any]]:
         try:
             with open(REAL_FB_POOL_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                return [it for it in data if it.get("url") and "curated" not in it.get("url", "")]
+                return [it for it in data if it.get("url") and "_curated" not in it.get("url", "")]
         except Exception:
             return []
     return []
@@ -103,7 +104,11 @@ def extract_facebook_media_urls(item: Dict[str, Any]) -> List[str]:
     return urls
 
 
-def process_facebook_item(item: Dict[str, Any], reference_time: Optional[int] = None) -> Optional[Dict[str, Any]]:
+def process_facebook_item(
+    item: Dict[str, Any],
+    reference_time: Optional[int] = None,
+    max_age_seconds: Optional[int] = None
+) -> Optional[Dict[str, Any]]:
     """
     Chuẩn hóa bài viết Facebook sang sự kiện ngập lụt tiêu chuẩn.
     Chỉ chấp nhận bài viết có URL thật từ Facebook, tuyệt đối không tạo URL ảo.
@@ -166,8 +171,10 @@ def process_facebook_item(item: Dict[str, Any], reference_time: Optional[int] = 
         except Exception:
             create_time = None
 
+    # KIỂM SOÁT THỜI GIAN NGHIÊM NGẶT
     if reference_time is not None:
-        if not create_time or (reference_time - create_time) > 432000:  # 5 ngày bao quát đợt ngập gần nhất
+        cutoff = max_age_seconds if max_age_seconds is not None else 14400
+        if not create_time or (reference_time - create_time) > cutoff:
             return None
 
     # Thông tin tác giả
@@ -330,6 +337,7 @@ class FacebookPoller:
         - Quét bài đăng mới nhất có liên quan đến ngập lụt, triều cường tại TP.HCM.
         - Khớp địa danh chuẩn mực qua Gazetteer và OSM Geocoder để đưa lên Heatmap.
         - Tự động nhận diện và gia tăng trọng số uy tín cho 5 Fanpage lớn.
+        - Tuân thủ chặt chẽ cửa sổ thời gian window_minutes.
         """
         print(f"\n[Facebook Live] Bắt đầu cào bài đăng Facebook thời gian thực qua '{FB_ACTOR_ID}'...")
         raw_items = []
@@ -345,13 +353,16 @@ class FacebookPoller:
             print(f"[Facebook Live] Lỗi query '{primary_query}': {eq}")
 
         now = int(time.time())
-        # Cửa sổ thời gian thích ứng: ít nhất 72h (3 ngày) để không bỏ sót đợt mưa ngập gần nhất
-        max_age_sec = max(259200, window_minutes * 60)
+        # Cửa sổ lọc thời gian nghiêm ngặt theo yêu cầu:
+        # Nếu window=120 phút -> tối đa ~2 tiếng (dung sai tối đa 15% hoặc 20p bù trễ mạng, dưới 3 tiếng)
+        # Nếu window=180 phút -> tối đa ~3 tiếng (hơn 3 tiếng một chút nhưng tuyệt đối dưới 4 tiếng)
+        tolerance_minutes = min(int(window_minutes * 0.15), 25)
+        max_age_sec = (window_minutes + tolerance_minutes) * 60
         events = []
         seen = set()
 
         for it in raw_items:
-            ev = process_facebook_item(it, reference_time=now)
+            ev = process_facebook_item(it, reference_time=now, max_age_seconds=max_age_sec)
             if not ev:
                 continue
             if (now - ev["create_time"]) > max_age_sec:
@@ -370,14 +381,18 @@ class FacebookPoller:
             except Exception:
                 pass
 
+        win_label = f"{window_minutes // 60} giờ qua" if (window_minutes >= 60 and window_minutes % 60 == 0) else f"{window_minutes} phút qua"
+        if not events:
+            win_label = f"{win_label} (Không có ngập mới)"
+
         stats = {
             "platform": "facebook",
             "mode": "live",
             "raw_count": len(raw_items),
             "events_matched": len(events),
-            "active_window": f"{window_minutes // 60} giờ qua" if window_minutes >= 60 else f"{window_minutes} phút qua"
+            "active_window": win_label
         }
-        print(f"[Facebook Live] Hoàn tất cào Live: {len(raw_items)} bài thô, {len(events)} sự kiện khớp điểm ngập.")
+        print(f"[Facebook Live] Hoàn tất cào Live: {len(raw_items)} bài thô, {len(events)} sự kiện khớp trong cửa sổ ({win_label}).")
         return events, stats
 
     def poll_simulation(

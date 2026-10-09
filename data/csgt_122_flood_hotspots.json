@@ -4501,24 +4501,24 @@
     "cause": "tide",
     "cause_label": "Triều cường dâng cao",
     "street": "Nguyễn Biểu",
-    "segment": "Đường Nguyễn Biểu",
-    "display_name": "Nguyễn Biểu (Đường Nguyễn Biểu)",
+    "segment": "Từ Trần Hưng Đạo đến Võ Văn Kiệt (Cầu Chữ Y)",
+    "display_name": "Nguyễn Biểu (Từ Trần Hưng Đạo đến Võ Văn Kiệt (Cầu Chữ Y))",
     "ward": "Phường Chợ Quán",
     "district": "Quận 5",
     "region": "TPHCM",
-    "lat": 10.753,
-    "lon": 106.685,
+    "lat": 10.7538,
+    "lon": 106.683,
     "heat_points": [
       [
-        10.753,
-        106.685
+        10.7554,
+        106.6826
       ],
       [
-        10.7545,
-        106.6865
+        10.7538,
+        106.683
       ],
       [
-        10.7515,
+        10.7512,
         106.6835
       ]
     ],

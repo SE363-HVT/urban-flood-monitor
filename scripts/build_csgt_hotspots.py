@@ -1053,9 +1053,10 @@ RAW_CSGT_DATA = [
         "id": "csgt_tide_28",
         "cause": "tide",
         "street": "Nguyễn Biểu",
-        "segment": "Đường Nguyễn Biểu",
+        "segment": "Từ Trần Hưng Đạo đến Võ Văn Kiệt (Cầu Chữ Y)",
         "ward": "Phường 1", "district": "Quận 5",
-        "lat": 10.7530, "lon": 106.6850,
+        "lat": 10.7538, "lon": 106.6830,
+        "heat_points": [[10.7554, 106.6826], [10.7538, 106.6830], [10.7512, 106.6835]],
         "extra_kw": ["đường nguyễn biểu", "phường 1 quận 5"]
     },
     {
@@ -1177,7 +1178,7 @@ def build_hotspots_dataset():
         else:
             display_name = street
             
-        heat_points = [
+        heat_points = item.get("heat_points") or [
             [lat, lon],
             [round(lat + 0.0015, 4), round(lon + 0.0015, 4)],
             [round(lat - 0.0015, 4), round(lon - 0.0015, 4)]

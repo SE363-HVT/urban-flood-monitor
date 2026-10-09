@@ -1,189 +1,153 @@
 [
   {
-    "url": "https://www.facebook.com/nguoilaodong/posts/pfbid02giYTX1N5icnmZeFbiBM6MjZQ4qiUfyZC1pnUY8Ru7BuRVvvyzMJ8UN9by8pSmHXol",
-    "timestamp": 1791269948000,
-    "postText": "TP.HCM mưa lớn giữa trưa 6-10, đường Lê Lợi và Bùi Viện ngập trong nước\n👇",
-    "reactionsCount": 92,
-    "reactions": {
-      "like": 85,
-      "wow": 4,
-      "love": 2,
-      "support": 1
-    },
-    "commentsCount": 1,
-    "sharesCount": 2,
-    "postId": "1666254571533550",
-    "author": {
-      "id": "100044470688198",
-      "name": "Báo Người Lao Động",
-      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/453011495_1038313964327617_4415853351244891859_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1204x1204&ctp=s40x40&_nc_cat=1&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=rHPthUK-SycQ7kNvwG8Nipz&_nc_oc=AdrPDCwpn6yQ0CiqFArJ67jvf0OaGIq0m2xe0CaRu9L7GCgnsHKhnHNQij1-kR9OIkI&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQOToj5OtJI4bcBBE-gYQV5tJSkV0vjq_4i_RjaaRsd_LA&oe=6ACA9EF0",
-      "profileUrl": "https://www.facebook.com/nguoilaodong"
-    },
-    "attachments": [
-      {
-        "type": "photo",
-        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/838745565_2962036664156972_2498475440142594394_n.png?stp=dst-jpg_tt6&cstp=mx2000x1333&ctp=s2000x1333&_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ZJ3OTHwQT8AQ7kNvwEakLCh&_nc_oc=AdpZENJ5sB6pleQTEUYkF2QEqkRa5a0LGB9PlqbnvUGGnRPUdSgB9Igg3sGvxTS0YQw&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQNweqtd9XKGXpcQwAFrej7jaIKteaEkzKAM_w6l9Soz7w&oe=6ACAAC04",
-        "id": "1666254531533554",
-        "accessibilityCaption": "May be an image of street, body of water and text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/840170966_1059064927100125_6443792702405304629_n.png?stp=dst-jpg_tt6&cstp=mx2000x1500&ctp=s2000x1500&_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nOzdtJHH1rkQ7kNvwHxH35g&_nc_oc=AdroqDfwEVkdoLD_4yOIbQ7IUKfEYn2PIb8x_BPWVgUDW-SPJUDOn-S-3t4zS1evAKI&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQN60oBD8ZvlFXI9IdEx3S0w7QVOzpmXa_iLaMPk_0dYRA&oe=6ACA8324",
-        "id": "1666254524866888",
-        "accessibilityCaption": "May be an image of body of water"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/835510859_1684603999702787_5712178719393246781_n.png?stp=dst-jpg_tt6&cstp=mx2000x1500&ctp=s2000x1500&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=EbcdyPwYcJwQ7kNvwGc82fY&_nc_oc=AdpMP8Ag1gJuKIRkd9M49CHqHikMcWGqB47RxoA3n0l8FpgYW-gFSGYq35xjUlHfgGw&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQPdEtnq-74ib1GgpEVA5A-wzZM9LoN1Vh0izWvZ4KMSVw&oe=6ACA8F02",
-        "id": "1666254528200221",
-        "accessibilityCaption": "May be an image of one or more people, street and text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/836668487_939222208832685_2442423568798113177_n.png?stp=dst-jpg_tt6&cstp=mx2000x1500&ctp=s2000x1500&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=rokg7m_soScQ7kNvwGhA5IO&_nc_oc=AdqgjbTBD2cm0KXdqIS3E4UhQvEiE7Wp6VVzniEdb8BiGTAocsf9dDMCORtDrClLyZI&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQNC3GA8m53o12IJh2gWCRjRfOJ6QYirAzJYyFEXzVmtlA&oe=6ACA8A7B",
-        "id": "1666254534866887",
-        "accessibilityCaption": "May be an image of body of water and text"
-      }
-    ],
-    "isReshare": false,
-    "sharedPost": null
-  },
-  {
-    "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid02uFzSwk1mkUiREmMgGdSp42ibEYdiVCrLSYDyD72Rha3cuMHMKhfVicoxuMovt5ZGl&id=61587569436475",
-    "timestamp": 1791240092000,
-    "postText": "🌧️ NGÀY 6/10, MƯA LỚN CÓ THỂ GÂY NGẬP, LŨ QUÉT VÀ SẠT LỞ Ở CÁC KHU VỰC CÓ NGUY CƠ.\n\n🌤️ Miền Bắc: Ngày 6/10, lớp mây giảm dần, nhiều nơi trưa chiều có nắng. Bắc Bộ chủ yếu duy trì thời tiết nắng ráo, không mưa; đêm và sáng trời se lạnh. Nhiệt độ thấp nhất khoảng 18-21°C, vùng núi cao có nơi dưới 17°C.\n\n🌧️ Hà Tĩnh đến TP Huế: Trong đêm 5 và ngày 6/10, đây là trọng tâm mưa lớn của Trung Bộ. Lượng mưa phổ biến 50-100 mm, cục bộ có nơi trên 200 mm. Có khả năng xuất hiện mưa với cường suất trên 100 mm trong 3 giờ.\n\n🌧️ Từ đêm 6 sang ngày 7/10: Vùng mưa lớn có xu hướng dịch xuống phía Nam, tập trung chính ở khu vực từ Quảng Trị đến TP Đà Nẵng và phía Đông tỉnh Quảng Ngãi. Lượng mưa phổ biến 50-100 mm, cục bộ có nơi trên 200 mm.\n\n🌧️ Đêm 7 và ngày 8/10: Mưa lớn tiếp tục tập trung ở Quảng Trị đến TP Đà Nẵng và phía Đông Quảng Ngãi, với lượng mưa phổ biến 50-100 mm, cục bộ trên 200 mm.\n\n📊 Tổng lượng mưa từ đêm 5 đến hết đêm 8/10: Khu vực Hà Tĩnh đến TP Đà Nẵng và phía Đông Quảng Ngãi phổ biến 150-250 mm, có nơi trên 400 mm. Riêng phía Nam Quảng Trị đến TP Huế có thể đạt 300-400 mm, có nơi trên 600 mm.\n\n⚠️ Người dân tại vùng trũng thấp, đô thị, ven sông suối và khu vực đồi núi cần theo dõi sát diễn biến mưa. Mưa lớn có thể gây ngập úng, đồng thời làm tăng nguy cơ lũ quét và sạt lở đất.\n\n🌦️ TP.HCM và Nam Bộ: Ngày 6/10 có mưa rào và rải rác dông, lượng mưa phổ biến 10-30 mm, cục bộ có nơi trên 60 mm, mưa tập trung chủ yếu vào chiều và tối.\n\n👉 Theo dõi mình để cập nhật thêm các thông tin thời tiết, mưa lũ mới nhất nhé!\n\n👉 Xem chi tiết từ link bên dưới bình luận nhé.\n👉Nguồn từ: VTC News.\n#DuBaoThoiTiet #MuaLon #MienTrung #TPHCM #Thoisu24h",
-    "reactionsCount": 1,
-    "reactions": {
-      "like": 1
-    },
-    "commentsCount": 4,
-    "sharesCount": 12,
-    "postId": "122126266347252314",
+    "url": "https://www.facebook.com/groups/hcm.hoimuabannhadat/permalink/5138690149701734/",
+    "timestamp": 1791547589000,
+    "postText": "🏠NHỮNG SIÊU PHẨM PHÂN KHÚC 6TỶ \n💥5 Tầng. Full Nội Thất LUXURY\n💥Phòng Xông Hơi và Hồ CaKoi\n✔️ĐẶC BIỆT LÀ KO BAO GIỜ NGẬP\n☎️Liên hệ Sđt/Zalo: 0878.399.878 _ Hoàng Hạnh\n📋Em gửi Thông tin chi tiết từng Căn ạh!!!",
+    "reactionsCount": 0,
+    "reactions": {},
+    "commentsCount": 0,
+    "sharesCount": 0,
+    "postId": "5138690149701734",
     "taggedLocationId": "108458769184495",
     "author": {
-      "id": "61587569436475",
-      "name": "THỜI SỰ 24h",
-      "profilePicture": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-1/650642065_122103458601252314_6534883413066427934_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx827x824&ctp=s40x40&_nc_cat=105&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=P04gWlMY7WsQ7kNvwFvM2QX&_nc_oc=Adp2WKx6p0W7BwopoB00MdgypTBS90hwN9GxenTguQTtQ7Jx2lshpp0Z7oyPscNLiOU&_nc_zt=24&_nc_ht=scontent-iad3-2.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQP2rF_GvIdxytP_1NvOuvMwDmT3RVcbe8F1ryDiipbFsw&oe=6ACA867F",
-      "profileUrl": "https://www.facebook.com/profile.php?id=61587569436475"
+      "id": "100016001927241",
+      "name": "Bđs Hoàng Hạnh",
+      "profilePicture": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-1/649835797_2085270895349621_1322917046691851319_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1278x1278&ctp=s24x24&_nc_cat=105&ccb=1-7&_nc_sid=1d2534&_nc_ohc=ycTWlLQawWIQ7kNvwFJ8q0u&_nc_oc=Adod6fG0tbOplkZHe4RYTmd3tS8_OCQ1EqA_dR0EoR3AbBLL7cCYtL5DyhGlhFFwq6c&_nc_zt=24&_nc_ht=scontent-iad3-2.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQPIhjZiHke2s8abm08mVBiAnlUU_pc0jCM1g_PcQxFawQ&oe=6ACEEAAD",
+      "profileUrl": "https://www.facebook.com/hoang.hanh.514455"
     },
     "attachments": [
       {
         "type": "photo",
-        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/839352885_1389705079946294_6122346249152214287_n.png?stp=dst-jpg_tt6&cstp=mx720x426&ctp=s720x426&_nc_cat=108&ccb=1-7&_nc_sid=f727a1&_nc_ohc=c4ytrqbf26gQ7kNvwEnm-Vd&_nc_oc=AdqctgLzNsNnLbDGYFK3ggUXQ6bHo-mhJ3kDn-9ruUeDdfZABv3nTcltIPZZR9AySEo&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQOOHCJHgF4zroVdrt5fPErpJ91sqoL5C7VBorgqAC_u2A&oe=6ACA93CF",
-        "id": "122126266317252314",
-        "accessibilityCaption": "May be an image of motorcycle and body of water"
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/836882307_2269079313635444_2478877738047364334_n.jpg?stp=dst-jpg_tt6&cstp=mx1536x2048&ctp=s1536x2048&_nc_cat=110&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=K-_BMw9a4RsQ7kNvwEuABjV&_nc_oc=AdoOULxNTuvbLorXH_TkRtRBpKz_jWdfD4Xrez1nZ8nmeSO0IfoMgZ-ZGkiCbtH7pUQ&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQNbuGykcDdSmQbqlDCKISYCSJc_qGbZVsjgKd2WOAn4tw&oe=6ACECD53",
+        "id": "2269080556968653",
+        "accessibilityCaption": "May be an image of text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/834978748_2269079373635438_4088411892512812041_n.jpg?stp=dst-jpg_tt6&cstp=mx1220x1627&ctp=s1220x1627&_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=9DgbWP06Wz0Q7kNvwEmdy-Y&_nc_oc=Adolbb3EJmM1btZGGZEF5xOh44LOEYzDZq2d_TzqmXxyT_HWXFBhP8T2vucIujRmTRY&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQNSi5Ku-_sbEDM6rh4Z5dAlOCjuLP4WE6bDfox7WSdFzg&oe=6ACEF37E",
+        "id": "2269080553635320",
+        "accessibilityCaption": "May be an image of fire escape and text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/832856060_2269079306968778_5944791641789599293_n.jpg?stp=dst-jpg_tt6&cstp=mx1220x1627&ctp=s1220x1627&_nc_cat=105&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=lk1n1Xqyp8gQ7kNvwGL2n87&_nc_oc=AdrGBWlMBvTWIY2zpqflc4VAWR2xORzYjr-zuIQwDWsKh-qrvGTUK2t-i4t-St0RtJc&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQOWy8btpmUN_7d__70KlgdaoH6N5b14x18XQd37o6uelA&oe=6ACEE8E6",
+        "id": "2269080546968654",
+        "accessibilityCaption": "May be an image of text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/840663831_2269079346968774_4444683183656452005_n.jpg?stp=dst-jpg_tt6&cstp=mx1220x1621&ctp=s1220x1621&_nc_cat=104&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=b-WAvDs0-lgQ7kNvwEtBoXW&_nc_oc=AdqgWTcdh_S3Z-erSB74z7MumAahMREayV-_CcL6lmLZLjMU5G1bMzwHJN2s5iwQ96c&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQOdjlGPj6Ti7U65NtK5Zs5n-N2r2toSaNKMF-YmqMISYA&oe=6ACEF3B8",
+        "id": "2269080550301987",
+        "accessibilityCaption": "May be an image of silo, fire tower and text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/834501415_2269079343635441_8205018303551609016_n.jpg?stp=dst-jpg_tt6&cstp=mx1220x1621&ctp=s1220x1621&_nc_cat=105&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=DOIF2c0Ch8kQ7kNvwEAEmEN&_nc_oc=AdrZXTvrhfsTBtzvt3ov_xCuFgm46loODM2xt276fC2CMIk3h6gXhXBE2wBgTOSx_TM&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQMciWmf27DJzcPC5I1mM7wNTS740MTZriSNo1AfgiVNog&oe=6ACEE5F4",
+        "id": "2269080560301986",
+        "accessibilityCaption": "May be an image of text"
       }
     ],
     "isReshare": false,
     "sharedPost": null
   },
   {
-    "url": "https://www.facebook.com/reel/1752986829256868/",
-    "timestamp": 1791277721000,
-    "postText": "MƯA GIỜ VÀNG BUÔN BÁN 11h - 12h30 06/10/2026\n\nQUẬN 3 MƯA RẤT LỚN - nhiều hàng quán ăn chắc ngóng trông khách\n\nNhư clip em quay tại hẻm 9 Phạm Đình Toái: Mưa xối xả trắng trời, hẻm ngập lênh láng như sông, xe máy ngập nửa bánh, quán xá đứng hình ngay giờ cơm văn phòng.\n\nTheo Báo Thanh Niên: Nam Bộ hứng đợt mưa 6 ngày, nguy cơ ngập gia tăng. Nhiều nơi TP.HCM ngập sâu, khu Bình Dương cũ ngập 0,3-0,8m.\n\nGiờ vàng mà mưa thế này thì quán nào cũng ngóng khách. Trong quán em vẫn có khách trú mưa, ngồi ăn ấm cúng.\n\nThương bà con bán buôn ngày mưa gió! Ai cần cơm VP 55k, sữa chua 37k, cà phê đá cứ alo - mưa em vẫn freeship tận lầu Q3, Q1, Q10 nhé!\n\n---\nCà Phê Đá 9 Phạm Đình Toái | Sữa chua trái cây 37k - Cơm VP 55k\n📍 9 Phạm Đình Toái, P. Xuân Hòa, Q3\n📱 Zalo: 09.37.38.39.86\n#muagiovang #Q3muaLon #NamBoMua6Ngay #dobathieng",
-    "reactionsCount": 4,
+    "url": "https://www.facebook.com/reel/1716765362748828/",
+    "timestamp": 1791521991000,
+    "postText": "Dạo này thấy trung tâm Tp.HCM ,mưa xong xảy ra ngập úng quá, anh chị nào có nhu cầu dời về ngoại ô thì alo mình nha.\nXã Củ Chi, diện tích 5 x 33 full thổ, xây dựng ngay.\nGiá 1ty8, hh 2% nhận đủ cho anh chị em môi giới.\n0971918119 ( zalo)\n0922211113",
+    "reactionsCount": 27,
     "reactions": {
-      "like": 2,
-      "love": 2
+      "like": 26,
+      "love": 1
     },
-    "commentsCount": 2,
-    "sharesCount": 0,
-    "postId": "27909460712065981",
-    "taggedLocationId": "107480177716552",
+    "commentsCount": 9,
+    "sharesCount": 30,
+    "postId": "4436832999796146",
+    "taggedLocationId": "108458769184495",
     "author": {
-      "id": "100002862781982",
-      "name": "Đỗ Bá Thiêng",
-      "profilePicture": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/791514274_27481166698228720_3295214062238321172_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1600x1600&ctp=s40x40&_nc_cat=104&ccb=1-7&_nc_sid=1d2534&_nc_ohc=qm3WrckiJJ0Q7kNvwEJ-Uoy&_nc_oc=AdrZnAjbww7zyiNZwQ3F7ny7zIu5sye-cYo6z1OEgBXeAobWj1OOs9KoaGtMTWrRIYo&_nc_zt=24&_nc_ht=scontent-iad3-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQN1BzOgeZAzsXbkl2h4EcGA4mRZVstx5VglVQuoXvaqNg&oe=6ACA877C",
-      "profileUrl": "https://www.facebook.com/thieng.ba"
+      "id": "100004084703929",
+      "name": "Trần Quang Danh",
+      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/736441233_4307163492763098_1906353251125705489_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1877x1872&ctp=s40x40&_nc_cat=100&ccb=1-7&_nc_sid=1d2534&_nc_ohc=TCrLc_WGZ8cQ7kNvwHojhrR&_nc_oc=AdosJU3-ZPHXZ9-6x9jeRwu4ZDZ17RsUm1Zt8rEXJH3UoGVp5FB16B2EupEq62lGE34&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQPQGSQbKPD0AAwlKZJ7kejlokKZoRTzzwG8nNf3jZ1SrA&oe=6ACECC7B",
+      "profileUrl": "https://www.facebook.com/quangdanh.tran.9"
     },
     "attachments": [
       {
         "type": "video",
-        "url": "https://video-iad6-1.xx.fbcdn.net/o1/v/t2/f2/m366/AQP9b9GjxLZrKIx2QNtO01YXgiQVc76voxBtDhFwsiPxZbZXFHKFA2ASMzhFtiTC451omdKkcq_4TEOPPcfSfDX7-Zve09O4ShnunLEiKPHZLg.mp4?_nc_cat=102&_nc_sid=5e9851&_nc_ht=video-iad6-1.xx.fbcdn.net&_nc_ohc=gutDqLlFvFQQ7kNvwE4zvwu&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5GQUNFQk9PSy4uQzMuNzIwLmRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHAiLCJ4cHZfYXNzZXRfaWQiOjE2NDg0MTQ0ODMzOTU0NTYsImFzc2V0X2FnZV9kYXlzIjowLCJ2aV91c2VjYXNlX2lkIjoxMDEyMywiZHVyYXRpb25fcyI6MTUsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=fcca78b2b31f9e0a&_nc_vs=HBksFQIYRWZiX2VwaGVtZXJhbC82N0VDRTk2QTVEMDA0REIwQjBDOTFEODM0QzI1RUFGRV9tdF8xX3ZpZGVvX2Rhc2hpbml0Lm1wNBUAAsgBEgAVAhhAZmJfcGVybWFuZW50LzM2NDczMTcxNzMyNTQ2QjhCMDJDRjlDNDZDQzgwNTg5X2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACaAzs37rM7tBRUCKAJDMywXQC-752yLQ5YYGWRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHARAHUCZZaeAQA&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&_nc_zt=28&oh=00_AQOjsMcZgdI5XBemOYSYVBgZfBEpjDm07BEDihChTZhc-g&oe=6ACA86A2&bitrate=5448826&tag=dash_h264-basic-gen2_720p",
-        "id": "1752986829256868"
+        "url": "https://video-iad3-1.xx.fbcdn.net/o1/v/t2/f2/m366/AQMXUnSE64NoAaovRIiycAZbaZ2vbsNlUtR-Ubfy6Ba9rE9vOv9mWqGyKMBSDgs5hn-v3QeC_7SxKhEcYOSh-6CciYQzCRHWjtTfHjy97pFzfw.mp4?_nc_cat=108&_nc_sid=5e9851&_nc_ht=video-iad3-1.xx.fbcdn.net&_nc_ohc=dHXTKvgoLQ4Q7kNvwGqR4g8&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5GQUNFQk9PSy4uQzMuNTkyLmRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHAiLCJ4cHZfYXNzZXRfaWQiOjExMzY1OTU3MjU0NzcwMTcsImFzc2V0X2FnZV9kYXlzIjowLCJ2aV91c2VjYXNlX2lkIjoxMDEyMywiZHVyYXRpb25fcyI6NzMsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=d948d7e29d4bb903&_nc_vs=HBksFQIYRWZiX2VwaGVtZXJhbC85NTI3NjM1OTMxQjI0Q0Q4OTgxMjRBM0ZDNzQ1MDQ4RF9tdF8xX3ZpZGVvX2Rhc2hpbml0Lm1wNBUAAsgBEgAVAhhAZmJfcGVybWFuZW50LzQ0RkNCQjY0MjFFRjRGNjBBQTc5OUY4RUYyQ0Y2MUFBX2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACayksOHyu6EBBUCKAJDMywXQFJ4o9cKPXEYGWRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHARAHUCZZaeAQA&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&_nc_zt=28&oh=00_AQO_gW8M1zDH1GE6Q_HOnsJUDEsDV85t8B_byT4rnRt_JA&oe=6ACEEA74&bitrate=4760112&tag=dash_h264-basic-gen2_720p",
+        "id": "1716765362748828"
       }
     ],
     "isReshare": false,
     "sharedPost": null
   },
   {
-    "url": "https://www.facebook.com/reel/1112727328355777/",
-    "timestamp": 1791204770000,
-    "postText": "SÀI GÒN ĐANG MƯA LỚN TẠI QUẬN 3\n\n19h 05/10/2026 - Kẹt Xe - Vừa Mưa\nTại ĐƯỜNG TRƯƠNG ĐỊNH - HOÀNG SA\n\nNhư clip em quay tối nay: Mưa xối xả trắng trời, kẹt xe dài cả cây số tại Trương Định - Hoàng Sa. Bà con áo mưa đủ màu đứng chôn chân giữa mưa.\n\nBáo Thanh Niên cập nhật: Đường Mã Lò ngập sâu 2 tiếng chưa rút, hẻm ở TP.HCM ngập 5 ngày người dân phải thuê khách sạn ở tạm.\n\nMưa lớn bà con đi đường nhớ chạy chậm, cẩn thận ngập nhé!\n\n#saigonmualon #ketxeQ3 #TruongDinhHoangSa #ngapSaiGon #dobathieng",
-    "reactionsCount": 34,
+    "url": "https://www.facebook.com/VGTVN.news/posts/pfbid0aenBH9BUPdzXriYWSanXfaT9Rng3ayFEXc7QreiPJRrae4aQMp9TeYo7886ivEHXl",
+    "timestamp": 1791528989000,
+    "postText": "DÒNG NƯỚC MƯA NGẬP, VỤ ĐIỆN GIẬT THƯƠNG TÂM TẠI TP.HCM\n\nTrong bối cảnh mưa lớn gây ngập sâu ở khu vực phường Thủ Đức, một người đàn ông 35 tuổi t.ử von.g sau sự cố điện giật khi đang rút dây điện trong khu trọ bị ngập nước. Vụ việc tối 7/10 đến sáng 8/10 khiến công tác điều tra đang được tiến hành, còn nguyên nhân chính thức vẫn đang được làm rõ. Người dân và gia đình sống phụ thuộc mưu sinh tại đây đang chứng kiến những hậu quả nghiêm trọng do mưa và ngập nước gây mất an toàn điện. Các cơ quan chức năng khuyến cáo thận trọng với dây điện, ổ cắm khi khu vực bị ngập, và liên hệ đơn vị chuyên môn khi có dấu hiệu mất an toàn\n\n#DienGiat #DoiSong #MuaLon #she-4my8T",
+    "reactionsCount": 3,
     "reactions": {
-      "like": 27,
-      "love": 5,
+      "like": 1,
       "support": 1,
-      "wow": 1
+      "sorry": 1
     },
-    "commentsCount": 8,
+    "commentsCount": 0,
     "sharesCount": 0,
-    "postId": "27898185079860211",
-    "taggedLocationId": "107480177716552",
+    "postId": "1566747195489490",
     "author": {
-      "id": "100002862781982",
-      "name": "Đỗ Bá Thiêng",
-      "profilePicture": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/791514274_27481166698228720_3295214062238321172_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1600x1600&ctp=s40x40&_nc_cat=104&ccb=1-7&_nc_sid=1d2534&_nc_ohc=qm3WrckiJJ0Q7kNvwEJ-Uoy&_nc_oc=AdrZnAjbww7zyiNZwQ3F7ny7zIu5sye-cYo6z1OEgBXeAobWj1OOs9KoaGtMTWrRIYo&_nc_zt=24&_nc_ht=scontent-iad3-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQN1BzOgeZAzsXbkl2h4EcGA4mRZVstx5VglVQuoXvaqNg&oe=6ACA877C",
-      "profileUrl": "https://www.facebook.com/thieng.ba"
+      "id": "100064626732198",
+      "name": "VGT News",
+      "profilePicture": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-1/460160368_920243180139898_313577693719576179_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx2048x2048&ctp=s40x40&_nc_cat=1&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=WsZLKkLIhgUQ7kNvwFvTdp6&_nc_oc=AdpTdzEbgeEMkbTIv6ukbwyviHmrhNMzjzSAbdlrNVOHgZjTfxutE_uY6MrMpfEJFXM&_nc_zt=24&_nc_ht=scontent-iad3-2.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQMNYHPAVU6f7nLMMp7Mz2lAefDU5JVws3yWp3qxjjR8Jw&oe=6ACED174",
+      "profileUrl": "https://www.facebook.com/VGTVN.news"
     },
     "attachments": [
       {
-        "type": "video",
-        "url": "https://video-iad6-1.xx.fbcdn.net/o1/v/t2/f2/m366/AQMqBmgtMseTElOH5S6377PWtv7BYUzu6wcivvNjLn4S-hdwq_gEr9VTgcf4W8E-UbABXKr4K1u1fkOOHflrQZDrYzoZvpgdXOLRM8Z3dwBB2Q.mp4?_nc_cat=109&_nc_sid=5e9851&_nc_ht=video-iad6-1.xx.fbcdn.net&_nc_ohc=ZR20i5jwhu8Q7kNvwFNpH9u&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5GQUNFQk9PSy4uQzMuNzIwLmRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHAiLCJ4cHZfYXNzZXRfaWQiOjE2NjcwNTc0Njg1NDAxMTgsImFzc2V0X2FnZV9kYXlzIjowLCJ2aV91c2VjYXNlX2lkIjoxMDEyMywiZHVyYXRpb25fcyI6MjUsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=82f8405add1e296c&_nc_vs=HBksFQIYRWZiX2VwaGVtZXJhbC9FMUQzNjc4NEM2Q0M0QzU1OTVBNzY4RjU0MzhEN0ZFOV9tdF8xX3ZpZGVvX2Rhc2hpbml0Lm1wNBUAAsgBEgAVAhhAZmJfcGVybWFuZW50L0FCQUZFRkY2RDIyQjQ3RDY5RDIyRjY4NEZCQzgzRjU1X2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACask9yDwov2BRUCKAJDMywXQDldsi0OVgQYGWRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHARAHUCZZaeAQA&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&_nc_zt=28&oh=00_AQNZ95Qm9OgHsgpcE0-wJ0FobGV3n20QU_plF4cYwBAP_A&oe=6ACA862F&bitrate=1713061&tag=dash_h264-basic-gen2_720p",
-        "id": "1112727328355777"
+        "type": "photo",
+        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/841140007_29097034969889097_209999474322583215_n.png?stp=dst-jpg_tt6&cstp=mx900x898&ctp=p526x296&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=3s7aDOGfTpsQ7kNvwEj43-N&_nc_oc=AdrHP-IKvjBgmGZGv7bTITqWvxbgDxzW7hL7tdQn7XDGCN0nsLVf4hvddEnPUHNNIDw&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQNahSjwddN44jxnRS0q0P9DFsMMlPaVfFa9eASTMq5ZBw&oe=6ACEDA02",
+        "id": "1566747175489492",
+        "accessibilityCaption": "May be an image of text"
       }
     ],
     "isReshare": false,
     "sharedPost": null
   },
   {
-    "url": "https://www.facebook.com/vietravel/posts/pfbid038CNeCGoEaVeREX8bvzvptwqS7kifurqKxykRYFEukQq9KGx1g4MaFiJY8CmweuiPl",
-    "timestamp": 1791262338000,
-    "postText": "🇯🇵  ƯU ĐÃI ĐỔ BỘ \"XỨ PHÙ TANG\" - MỞ KHÓA TRỌN BỘ ĐẶC QUYỀN MÙA THU ĐÔNG CÙNG VIETRAVEL\n\n🎏 Vi vu Nhật Bản mùa thu đông năm nay không chỉ có lá đỏ rợp trời hay tuyết trắng mộng mơ, mà còn có \"cơn lốc\" ưu đãi cực khủng đổ bộ duy nhất trong tháng 10! \n\n⛩️ Gác lại mọi băn khoăn để trọn vẹn đắm chìm vào sắc thu tuyệt mỹ, cùng Vietravel tận hưởng chuỗi đặc quyền vượt trội, đưa trải nghiệm vi vu Nhật Bản của bạn thăng hoa đến từng khoảnh khắc 👇\n\n🌟 ĐẶC QUYỀN VISA 👉 Hỗ trợ lệ phí Visa Nhật Bản lên đến 2 TRIỆU ĐỒNG/khách, áp dụng 100% cho dòng tour cao cấp/tiêu chuẩn và 50% cho dòng tiết kiệm.\n🌟 ƯU ĐÃI THẺ JCB 👉 GIẢM NGAY 500.000 VND và tặng thêm 01 Vali JCB cao cấp cho các booking thanh toán từ 20 triệu đồng.\n🎁 QUÀ TẶNG NGẬP TRÀN 👉 TẶNG NGAY, Sim Data tốc độ cao, túi Tote sành điệu từ JNTO. ĐẶC BIỆT, bỏ túi thêm bộ Voucher mua sắm thỏa thích tại AEON Mall Narita/Rinku Sennan.\n⭐ THĂNG HẠNG THÀNH VIÊN 👉 Nhân đôi điểm thưởng Vietravel Plus, tha hồ tích điểm đổi quà sau chuyến đi.\n—\n🎎 Hàng loạt cung đường Phù Tang đẹp nhất mùa Thu Đông đã sẵn sàng! Liên hệ Vietravel ngay hôm nay để được tư vấn và giữ ngay suất ưu đãi bạn nhé! \n—\n📌 Lưu ý:\n- Chương trình áp dụng cho các booking mới từ ngày 01/10 - 31/10/2026. Dành riêng cho các tour Nhật Bản khởi hành từ 25/10 đến 31/12/2026.\n- Quý khách hoàn tất thanh toán 100% giá trị tour trong thời gian diễn ra chương trình để nhận đặc quyền.\n- Số lượng ưu đãi/quà tặng có hạn và có thể kết thúc sớm hơn dự kiến.\n- Quý khách vui lòng liên hệ Vietravel để được tư vấn chi tiết các điều kiện áp dụng cho từng tuyến.\n———\n⭐ TRỤ SỞ CHÍNH VIETRAVEL\nĐC: 190 Pasteur, P. Xuân Hòa, TP.HCM.\n☎️ 1800 646 888 (Miễn phí)\n📍 Văn phòng Vietravel gần nhất: https://travel.com.vn/lien-he.aspx \n—-\n💬 m.me/vietravel \n🌐 www.travel.com.vn \n📲 Cài đặt App Vietravel: vietravelink.net/re/App \n\n#Vietravel #TravelDi #DiLaVietravel #antamtrainghiem #dulichNhatBan",
-    "reactionsCount": 90,
-    "reactions": {
-      "like": 84,
-      "love": 6
+    "url": "https://www.facebook.com/vens.le.961/posts/pfbid025A16B8Mn3vfvU6FSDgxkeSMnF2b1puJ4Ys3AU8MLn4exLE2VQA2KouEDK5gE84NWl",
+    "timestamp": 1791519603000,
+    "postText": "Nếu hứng chịu cùng một lượng mưa cực đoan như nhau, chuyện gì sẽ xảy ra ở hai mảnh ghép đô thị của TP.HCM?\n\nTại Gò Vấp, bê tông hóa phủ kín bề mặt khiến lòng đất mất khả năng thấm hút nước tự nhiên. Nước mưa không thể thẩm thấu tại chỗ, buộc phải tràn toàn bộ lên mặt đường. Khi cống quá tải, phố xá lập tức biến thành dòng sông.\n\nNhưng tại Phú Mỹ Hưng, kịch bản lại hoàn toàn khác: Mặt đất biết thấm hút nước nước theo tỷ lệ bê tông có kiểm soát. Thảm cỏ, công viên xanh và hồ điều tiết nước đóng vai trò như chiếc \"mút thấm\", hấp thụ ngay phần lớn lượng mưa tại chỗ. Thoát nước nhanh nhờ giữ nguyên hệ kè mềm tự nhiên ven sông rạch thay vì đổ bê tông cứng, nước mưa dễ dàng hòa vào dòng chảy tự nhiên nhanh chóng của hồ mà không gây ứ đọng, ngập vào nhà.\n\nSự đối lập này chứng minh một triết lý quy hoạch hiện đại: Chống ngập bền vững không nằm ở cống to hay máy bơm lớn, mà ở tư duy quy hoạch tôn trọng thiên nhiên. Một đô thị biết kết hợp hài hòa giữa hạ tầng và mảng xanh chính là chìa khóa cho không gian sống an toàn, văn minh trong tương lai. #ngapnuoc #muangap #quyhoach #xanh",
+    "reactionsCount": 0,
+    "reactions": {},
+    "commentsCount": 0,
+    "sharesCount": 2,
+    "postId": "2200827691319268",
+    "taggedLocationId": "108458769184495",
+    "author": {
+      "id": "100041761758623",
+      "name": "Linh Levens",
+      "profilePicture": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/668612783_2021783185890387_366946403955618690_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx847x858&ctp=s40x40&_nc_cat=108&ccb=1-7&_nc_sid=1d2534&_nc_ohc=orIuwqOAVLMQ7kNvwExhRlq&_nc_oc=Adru4uYmWEmLgkiDSGT2WCGOLMOAhaPmTz04PlGMLPfsgOp9mSCkMKBgoGULXM0E2Kc&_nc_zt=24&_nc_ht=scontent-iad3-1.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQMhlJtV_QS6tO9okf_Zln5Zwd5Y6g90YbTfnZBye50_tA&oe=6ACEFC01",
+      "profileUrl": "https://www.facebook.com/vens.le.961"
     },
+    "isReshare": false,
+    "sharedPost": null
+  },
+  {
+    "url": "https://www.facebook.com/TrieuConTimMotTiengNoi/posts/pfbid02V1FvDMUJcrPWL22rjenQaoN91LZ4gjgbohHEqdF8A9mAeLQGnmivAjJdhZ1nqxTml",
+    "timestamp": 1791509422000,
+    "postText": "VIỆT NAM LIÊN TỤC “RỚT ĐÀI” BẢNG XẾP HẠNG HỘ CHIẾU QUYỀN LỰC\n\nTheo Henley Passport Index 2026, hộ chiếu Việt Nam hiện đứng thứ 88 thế giới với 48 điểm. Trong khi ấy, cùng chung khu vực Đông Nam Á, Malaysia đã vươn lên vị trí số 7, điều này đồng nghĩa với việc công dân nước họ được phép bay đến 183 quốc gia và vùng lãnh thổ trên thế giới mà không cần xin visa trước. Singapore hiện đang dẫn dầu bảng xếp hạng này.\n\nNhững khoảng cách trên bảng xếp hạng không chỉ là con số. Cũng là người Đông Nam Á, cũng trong khối ASEAN, nhưng một bên chỉ cần cầm hộ chiếu và đi, còn một bên phải chuẩn bị hàng tá hồ sơ, giấy tờ, chứng minh tài chính, công việc vẫn chưa chắc có được xét duyệt hay không. Không cần khoe thành tích, không cần hô khẩu hiệu, chỉ cần nhìn cuốn hộ chiếu cũng đủ hiểu hình ảnh Việt Nam trong mắt quốc tế ra sao.\n\nNhưng không, Việt Nam lại có một thứ đáng “tự hào” hơn thế. Trong khi xếp hạng hộ chiếu ngày càng giảm, thì... mực nước ngập lại càng dâng cao. \n\nCứ hễ mưa lớn, nhiều tuyến đường tại Hà Nội và TP.HCM lập tức hóa thành sông. Người dân lội bì bõm, phương tiện chết máy, nhà cửa ngập úng, đồ đạc nổi lềnh bềnh. Hàng trăm nghìn tỷ đồng chống ngập cứ thế bị cuốn theo dòng nước mà trôi đi, để lại người dân với nỗi thấp thỏm khi mùa mưa tới.\n\nMalaysia ở ngay bên cạnh, cũng từng là quốc gia đang phát triển, đối mặt với những bài toán tương tự về hạ tầng và kinh tế như Việt Nam. Nhưng hôm nay, hộ chiếu của họ đã thuộc top mạnh nhất thế giới. Trong khi đó, Việt Nam vẫn phải loay hoay làm sao để người dân không phải lội bì bõm mỗi khi mưa lớn.\n\nCó lẽ điểm khác biệt là vì Malaysia và Singapore không nhiều khẩu hiệu, không có những cổng chào, tượng đài nghìn tỷ. Lãnh đạo nước họ còn bận chăm lo cho dân, hỗ trợ doanh nghiệp vực dậy trong cuộc khủng hoảng kinh tế. Còn lãnh đạo Việt Nam mỗi ngày khi ngồi vào bàn làm việc, chỉ biết suy nghĩ: hôm nay sẽ ra nghị định nào để phạt dân đây?",
+    "reactionsCount": 0,
+    "reactions": {},
     "commentsCount": 0,
     "sharesCount": 1,
-    "postId": "1521076160054585",
+    "postId": "1558455949652004",
     "author": {
-      "id": "100064566464749",
-      "name": "Vietravel",
-      "profilePicture": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/601838198_1272095648285972_8776861910999876411_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx2001x2001&ctp=s40x40&_nc_cat=108&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=yxJIM046OgsQ7kNvwG3iyeY&_nc_oc=AdoPgZVERmCNAxkLpkSU0gNHl7B6nq-GkdwhFWNGeaaNj195Kam2TXbpeSOGTNFxZpQ&_nc_zt=24&_nc_ht=scontent-iad3-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQPWygf30TX8Vc7TNbupi4REP6kZer-2iPqSQvE35rjKAQ&oe=6ACA89FD",
-      "profileUrl": "https://www.facebook.com/vietravel"
+      "id": "100064628414278",
+      "name": "Triệu Con Tim, Một Tiếng Nói",
+      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/352572773_294109596288749_4141377399231415670_n.png?stp=cp0_dst-png&cstp=mx960x960&ctp=s40x40&_nc_cat=100&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=bS0059E0UXoQ7kNvwE-H8WV&_nc_oc=AdrdCVLn17JPCvXafj9k6_ncpg0LU-ZGzWPPWiqSUnkTL1jlvoXFkF1DPC8IWvAYJ1U&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQNQFuRCGzSEHVeC6WVEIiL-Aqc9Zv6rynqFjQ9MTjC-pw&oe=6ACEDE4C",
+      "profileUrl": "https://www.facebook.com/TrieuConTimMotTiengNoi"
     },
     "attachments": [
       {
         "type": "photo",
-        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.99422-6/836459710_1118568517524709_6470249531822875182_n.png?stp=dst-jpg_tt6&cstp=mx1920x1920&ctp=s1920x1920&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=54-dIGfF_bMQ7kNvwHvDrDk&_nc_oc=AdpLh1RrryeFFcRyVZPtMEgfAYUR3WgD3pM_f2EUBe4Co-QhzlmRLQxjb83h4_v2iG4&_nc_zt=14&_nc_ht=scontent-iad3-2.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQMUcb642f_QAvFabkpuZpRwiZvFpyqbDBLuhUgd3uUeTA&oe=6ACA86C7",
-        "id": "1521075183388016",
-        "accessibilityCaption": "May be an image of text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/837858940_936867332836264_1276967279955031706_n.png?stp=dst-jpg_tt6&cstp=mx1920x1920&ctp=s1920x1920&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=cI2If3wNlh8Q7kNvwE7xqvu&_nc_oc=AdqdkrGVbpE_jU2CnHF-MG1iOUpqxTnMoJjQ0lyI7Obk9iMVw1tj50op5xzPR-WyxSg&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQPmMsZylxHtaiWLzT1jjARv7BVA51Ec8xctZ01O9xjXIQ&oe=6ACAB53D",
-        "id": "1521075223388012",
-        "accessibilityCaption": "May be an image of text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.99422-6/838804600_1853963562624948_3701461155372313912_n.png?stp=dst-jpg_tt6&cstp=mx1920x1920&ctp=s1920x1920&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=PQBKxWcEWD8Q7kNvwHOgoEO&_nc_oc=Adr_BGckESWAFekX8a_QQb3g-8if8MSyWns5bupD0l6B5lXvdi4pAftqsZxroqazPBc&_nc_zt=14&_nc_ht=scontent-iad3-2.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQMbPkXnnE_qctRVSXCX23mak4DqtJRud6lQsquILWqPvw&oe=6ACAB789",
-        "id": "1521075253388009",
-        "accessibilityCaption": "May be an image of text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/834561311_1549683736925603_3440874635192794368_n.png?stp=dst-jpg_tt6&cstp=mx1920x1920&ctp=s1920x1920&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_X-5C2ruBfUQ7kNvwEQiXJD&_nc_oc=Adrua6UOxplQN0ybLr05Q1PG7sL_glQNe3xIZSYuauQCebcohK-ShavT7tiALhaoiig&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQMwk64rxBzdHvaJ2AuXjGgOoUvrJo57ITtl780N9uxj5g&oe=6ACAAEA0",
-        "id": "1521075170054684",
-        "accessibilityCaption": "May be an image of text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/839126335_1087469357480173_5354832923320592085_n.png?stp=dst-jpg_tt6&cstp=mx1920x1920&ctp=s1920x1920&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=9K_aa-4JHHIQ7kNvwGmxO9g&_nc_oc=AdporVIemi9zPGcadCLQNd4cmaXFwjakIAPec1553jBTIMZ37XeGMZUF6ntLn5yJFds&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=0Nf5bx0_xjmB0zpBIzzUTg&_nc_ss=792a8&oh=00_AQOAIVCT3XBcHhxpIrAtSNHCEHbuy6wKRLKQ_dEg-bxX5Q&oe=6ACAA734",
-        "id": "1521075246721343",
+        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/840116675_1418659993217872_1397299318010089295_n.png?stp=dst-jpg_tt6&cstp=mx1417x1417&ctp=p526x296&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=zay92rjqm_sQ7kNvwHPbxwD&_nc_oc=AdoDhPtUD7z3KtLZ4h5xAPTz0UwOrVsy7STxrHyaaaowNZlP6rxb_QfjX99i6Bp-5Io&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=6oGkcQPNT--LEch8uT7Hsg&_nc_ss=792a8&oh=00_AQOkJKqwimBzTESiI9e6KRvnQ_j1sq_atixvw71HlRR9TQ&oe=6ACECDA6",
+        "id": "1558455929652006",
         "accessibilityCaption": "May be an image of text"
       }
     ],
@@ -191,129 +155,192 @@
     "sharedPost": null
   },
   {
-    "url": "https://www.facebook.com/minh.hoi.met/posts/pfbid0GYwa5BzgTWryrfZvCoWvyGoRMB1PS71mfAK4zPwoyyXyKQ2nQs6N6D2mVEHxYC1Rl",
-    "timestamp": 1791216726000,
-    "postText": "[THÔNG BÁO KTTV TP.HCM]⛈️⚡\n\nTP.HCM bước vào đợt mưa lớn diện rộng trong 48h tới. Chiều tối nguy cơ ngập sâu và kẹt xe nặng, thông tin chi tiết cập nhật ngay bên dưới nhé cả nhà! 👇",
-    "reactionsCount": 41,
+    "url": "https://www.facebook.com/thanhnien/posts/pfbid0P6Sy4QFuu4DGyiqLLZqDYZEFedf1eGt9jgBtavV3Yyqg2x7CDTdCmvn84C6sa2Rnl",
+    "timestamp": 1791467310000,
+    "postText": "TP.HCM liên tục có mưa lớn, đường ngập sâu: Vì sao thời tiết ngày càng bất thường?",
+    "reactionsCount": 291,
     "reactions": {
-      "like": 29,
-      "love": 7,
-      "sorry": 3,
-      "support": 2
+      "like": 241,
+      "haha": 40,
+      "sorry": 4,
+      "support": 2,
+      "wow": 2,
+      "love": 1,
+      "anger": 1
     },
-    "commentsCount": 25,
-    "sharesCount": 2,
-    "postId": "2557043784766805",
-    "taggedLocationId": "108458769184495",
-    "author": {
-      "id": "100013836245068",
-      "name": "Trần Nguyễn Hòa Minh",
-      "profilePicture": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/756887078_2490111781460006_538488015054960110_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx960x960&ctp=s40x40&_nc_cat=108&ccb=1-7&_nc_sid=1d2534&_nc_ohc=2Nd9EtJr1r0Q7kNvwEHpEVj&_nc_oc=AdpFMY8NK7_pKQOTzxMJqbnnZpbeFu4XbUntMBukkVs4_gsduVFj3bNqgt1Aqzd4jyM&_nc_zt=24&_nc_ht=scontent-iad3-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQM80WcyrDlMkOO3rSR2bZUl4SQWbvC8gihqoFh7RgyPAw&oe=6ACAB3FF",
-      "profileUrl": "https://www.facebook.com/minh.hoi.met"
-    },
-    "isReshare": false,
-    "sharedPost": null
-  },
-  {
-    "url": "https://www.facebook.com/reel/3642135602603954/",
-    "timestamp": 1791255659000,
-    "postText": "🌧️ NỖI ÁM ẢNH MÙA MƯA TẠI SÀI GÒN: BAO GIỜ MỚI HẾT CẢNH \"ĐƯỜNG VỀ NHÀ XA HƠN MỌI NGÀY\"?\n\nNhững chiều mưa tầm tã, nước ngập lênh láng mặt đường, xe chết máy giữa chừng và kẹt xe kéo dài đã trở thành nỗi ám ảnh quen thuộc của người dân Sài Gòn mỗi khi chọn chốn an cư. Ngôi nhà đáng lẽ là nơi bình yên để trở về sau giờ làm, nay lại khiến bạn thêm phần lo âu mỗi khi thời tiết chuyển mùa.  \n\n🌟 CHỌN AN CƯ BỀN VỮNG TẠI VINHOMES SAIGON PARK:\n\n Địa thế cao ráo hiếm có: Sở hữu cao độ tự nhiên từ 5 đến 10m so với mực nước biển tại cửa ngõ Tây Bắc TP.HCM, giúp nước mưa thoát đi tự nhiên và giữ cho nội khu luôn khô ráo.  \n\n Hạ tầng kết nối đồng bộ: Tọa lạc tại vị trí chiến lược kết nối hoàn hảo cùng các tuyến giao thông trọng điểm như Vành Đai 3, Quốc lộ 22, Metro số 2 và cao tốc TP.HCM - Mộc Bài.  \n\n Đại đô thị đáng sống bậc nhất: Không gian sống xanh mát, quy hoạch hiện đại kết hợp chuỗi tiện ích \"All-in-one\" đẳng cấp, mang lại cuộc sống trọn vẹn và thịnh vượng.\n\nChấm dứt ngay nỗi lo ngập lụt, kiến tạo tổ ấm vững bền cho tương lai — Đặt chỗ ngay hôm nay để đón đầu giá trị gia tăng vượt thời gian! 🏡🔥\n#VinhomesSaigonPark #TayBacTPHCM #ChongNgapSaiGon #MrS #SouthernGroup",
-    "reactionsCount": 6,
-    "reactions": {
-      "like": 6
-    },
-    "commentsCount": 0,
-    "sharesCount": 0,
-    "postId": "1840799823762237",
-    "taggedLocationId": "108458769184495",
-    "author": {
-      "id": "100034967108652",
-      "name": "Sang Bùi",
-      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/791484015_1811817819993771_6201871655423377383_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx2000x2000&ctp=s40x40&_nc_cat=102&ccb=1-7&_nc_sid=1d2534&_nc_ohc=M3ka_GlnPOIQ7kNvwGdhd7Z&_nc_oc=Adp2PEym_RI_lr_CAAy1xrq3uQ1DVx1v_FiMX-FFBYpwAE7oSP3IFpCio-Zv5XLBtQY&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQMJa93pcUMBB33iOKkG8ZTkhwiQJOrJKosE7A6xmQpvZw&oe=6ACA896A",
-      "profileUrl": "https://www.facebook.com/sangbuiqk"
-    },
-    "attachments": [
-      {
-        "type": "video",
-        "url": "https://video-iad6-1.xx.fbcdn.net/o1/v/t2/f2/m366/AQNQH5wJlxLk7sH6Nj9Eng2qLjRWL1l_MoOADBBDIOw5ZK1QyMgozbaT8YO_XvdPSRuZhObBn7B_zQdpOJNV96WXK5-j2TUDKMeb3sRUD5LFVA.mp4?_nc_cat=107&_nc_sid=5e9851&_nc_ht=video-iad6-1.xx.fbcdn.net&_nc_ohc=JR8JpGDo1RcQ7kNvwHldzzU&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5GQUNFQk9PSy4uQzMuNTc2LmRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHAiLCJ4cHZfYXNzZXRfaWQiOjIxNDE2ODE3MDMwOTgzNDQsImFzc2V0X2FnZV9kYXlzIjowLCJ2aV91c2VjYXNlX2lkIjoxMDEyMywiZHVyYXRpb25fcyI6MTAyLCJ1cmxnZW5fc291cmNlIjoid3d3In0%3D&ccb=17-1&vs=c727f65e6fd15e36&_nc_vs=HBksFQIYRWZiX2VwaGVtZXJhbC9ERjkxOTU1OUFBMkM0NEY5ODQzNDRFMTcwNTY1OEJGNF9tdF8xX3ZpZGVvX2Rhc2hpbml0Lm1wNBUAAsgBEgAVAhhAZmJfcGVybWFuZW50LzJDMjRBOTYyOUE4MDQ5QjdBMDY4NzM3NzFGOEVGRDZBX2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACbQ35SSpPbNBxUCKAJDMywXQFmXbItDlYEYGWRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHARAHUCZZaeAQA&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&_nc_zt=28&oh=00_AQOsXJ86AZEhwl1a696Y7YOn_vObINPJSapmNpFSdjIyAg&oe=6ACAA8C5&bitrate=1546386&tag=dash_h264-basic-gen2_720p",
-        "id": "3642135602603954"
-      }
-    ],
-    "isReshare": false,
-    "sharedPost": null
-  },
-  {
-    "url": "https://www.facebook.com/groups/321154138220849/permalink/2990026854666884/?sale_post_id=2990026854666884",
-    "timestamp": 1791259498000,
-    "postText": "📢Xem xe Bình Định giá 130 Triệu Toyota Innova 2008 G bản đủ xe 8 chỗ + không tai nạn không ngập nước \n📢Pháp lý sang tên kí trong ngày + lộc lá cho A/c thiện chí mua \n📢Gọi trực tiếp  0️⃣9️⃣3️⃣4️⃣8️⃣7️⃣1️⃣1️⃣4️⃣8️⃣ A/c đến xem xe lái thử + Có giao xe cho A/c gần xa",
-    "reactionsCount": 1,
-    "reactions": {
-      "like": 1
-    },
-    "commentsCount": 0,
-    "sharesCount": 0,
-    "postId": "2990026854666884",
-    "author": {
-      "id": "61558167526925",
-      "name": "Hiểu Chín Ngàn",
-      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/780374534_122269337504272250_5802982638030175363_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1365x1359&ctp=s24x24&_nc_cat=102&ccb=1-7&_nc_sid=1d2534&_nc_ohc=93_3f_s7b5UQ7kNvwHW1wQK&_nc_oc=Adp0bq2JfKOXqVYckhwqCMK2W3P5bceruv9YI_o6G8NmxhC_dSjqgTgqxGCzpy0h1FA&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQPSkB9F1045sy9oY7kXv4mRnb4uAH7vKk1PFxkefnCHMg&oe=6ACAB1C4",
-      "profileUrl": "https://www.facebook.com/tran.quang.137602"
-    },
-    "isReshare": false,
-    "sharedPost": null
-  },
-  {
-    "url": "https://www.facebook.com/thanhnien/posts/pfbid02xJFrE5o7yfoi7hLPfrwUHgJqgULxS57YYYoJyEEZLfkSCbUoW6nosDi1BDhjuShTl",
-    "timestamp": 1791111605000,
-    "postText": "Mưa lớn chiều nay, đường TP.HCM ngập sâu: Xe chết máy, shipper phải tắt app",
-    "reactionsCount": 1607,
-    "reactions": {
-      "like": 1366,
-      "sorry": 146,
-      "wow": 34,
-      "haha": 22,
-      "love": 18,
-      "support": 18,
-      "anger": 3
-    },
-    "commentsCount": 44,
-    "sharesCount": 48,
-    "postId": "1606024871563829",
+    "commentsCount": 13,
+    "sharesCount": 8,
+    "postId": "1610265347806448",
     "author": {
       "id": "100064689941048",
       "name": "Báo Thanh Niên",
-      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/586336024_1320873816745604_178420354836983892_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1080x1080&ctp=s40x40&_nc_cat=1&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=kocSkUooGqsQ7kNvwGPqjv2&_nc_oc=AdqD_DkYsC0h_EChSSVbhDeSPdm2kwQGPkaD_2z31gNVfCZYoWocTpio0IUg85RbmgY&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQOi7CZwXMb6brt_dGiMlsHCguc-lpS0QmCwddKtA0Lj9A&oe=6ACA83F0",
+      "profilePicture": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-1/586336024_1320873816745604_178420354836983892_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1080x1080&ctp=s40x40&_nc_cat=1&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=ZYvN_xE59lsQ7kNvwHJCjkT&_nc_oc=AdoYS-nlAkyO7-sVp9phBXuCSIWvX7aw_QN0BdDMbybdvPuobmhZDv8UCeQsbsCvquI&_nc_zt=24&_nc_ht=scontent-iad3-2.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQPvV7jVnlvLx0m8yAjXYK6uf8vGG5TT6QxcGvRfOAxkew&oe=6ACEE8F0",
       "profileUrl": "https://www.facebook.com/thanhnien"
+    },
+    "isReshare": false,
+    "sharedPost": null
+  },
+  {
+    "url": "https://www.facebook.com/groups/2147108342046851/permalink/28926413253689663/",
+    "timestamp": 1791469604000,
+    "postText": "🔥 NGANG KHỦNG 5.18M NGUYỄN HỮU TIẾN TÂN PHÚ - NHÀ MỚI 3 TẦNG SỔ MỚI 2026! 🔥\n\n📍 Vị trí: Đường Nguyễn Hữu Tiến, P. Tây Thạnh, Q. Tân Phú (hẻm xe hơi, khu dân cư an ninh, tiện ích ngập tràn).\n\n📏 Diện tích: 5.18m x 12.5m (Công nhận 69m²) • Kết cấu: Trệt, 2 lầu, sân thượng • 3 PN, phòng thờ.\n\n💰 Giá bán: 6.9 tỷ (Thương lượng trực tiếp chính chủ )\n📞 Liên Hệ Trường : 0969.153.990\n141117801",
+    "reactionsCount": 0,
+    "reactions": {},
+    "commentsCount": 0,
+    "sharesCount": 0,
+    "postId": "28926413253689663",
+    "taggedLocationId": "768897103281248",
+    "author": {
+      "id": "61589403281377",
+      "name": "Trường Nhà Xịn",
+      "profilePicture": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/708216685_122105393685313442_8865424571305754715_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx960x960&ctp=s24x24&_nc_cat=104&ccb=1-7&_nc_sid=1d2534&_nc_ohc=AUW4QnOPsN4Q7kNvwFD9oKH&_nc_oc=AdrAmFtv2KNbwxNqIYr8_txOFt7VspSjErTZjOjcwJD4eMYlW_EmbSORfcKdXZhYQxk&_nc_zt=24&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQOIs9zsANOXQ7waGdKMgGBnqtU5WrO5v_GJ1sSz6WzmlA&oe=6ACEE7E7",
+      "profileUrl": "https://www.facebook.com/profile.php?id=61589403281377"
     },
     "attachments": [
       {
         "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/832592776_3380510262121504_7442258517129096857_n.png?stp=dst-jpg_tt6&cstp=mx2048x1486&ctp=s2048x1486&_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Jf7GUVE5owYQ7kNvwEBPZcv&_nc_oc=AdrX89ek3ttHVU-9pWyvB4PjMBkodyr0H-ramqM67sgwCXgHiAXsOmZ8v5cpcRasvtQ&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQMHJ_LTqi0nDD_Pa8kFsnbkZFe1_3A5OTtnlW4GLSkZtQ&oe=6ACA86EB",
-        "id": "1606024824897167",
-        "accessibilityCaption": "May be an image of tornado, cloud and lightning"
+        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/839843332_122133084489313442_1538590307310316549_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=103&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=6Owvw8spgZ0Q7kNvwHIu--T&_nc_oc=AdoR95X4dd9rQijgeongFM039aAoYrDnbJ3A5i0JsDVT6BsoZ0mnyxrs62xVJ1-BISc&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQOl65y83qJWbfAo1k5tCrUn5nsBQZT4SJUY_j2Ery3JNA&oe=6ACED3F2",
+        "id": "122133087267313442",
+        "accessibilityCaption": "No photo description available."
       },
       {
         "type": "photo",
-        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.99422-6/825351213_1626262068966759_133436835557620254_n.png?stp=dst-jpg_tt6&cstp=mx1836x1174&ctp=s1836x1174&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7UoJL4s9dRwQ7kNvwHR84at&_nc_oc=AdoYu9ZP53JlVGLd0KCDb-3wKAUF_Xlpo5ldg9VVgA2CYfVZMIQ4qOYt-MsHrsEe1Vk&_nc_zt=14&_nc_ht=scontent-iad3-2.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQP5KJbTCzsTvI_6P3JSJ-avgav-yXH-zDtVrGHnvBDqSA&oe=6ACA8DCB",
-        "id": "1606024814897168",
-        "accessibilityCaption": "May be an image of one or more people, street and text"
+        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/840406482_122133084633313442_1989880979400870912_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=106&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=In9hDK4wHTIQ7kNvwEjlEdP&_nc_oc=Adr8pkKZziI7pE_mUtHF051RYS0rx0dHVzRR0qkLccr8k_drLdu9Rkflx58-AuWN-EE&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQOBJ9Yqe2T73DwucUrGqyXLbsK1TWYZIlCKSJsyeDLIeA&oe=6ACEDE61",
+        "id": "122133087279313442",
+        "accessibilityCaption": "May be an image of indoors"
       },
       {
         "type": "photo",
-        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.99422-6/836780458_1892348318838928_8047077431444090750_n.png?stp=dst-jpg_tt6&cstp=mx1885x1248&ctp=s1885x1248&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OIvMXdR893QQ7kNvwGXnSfT&_nc_oc=Adpkf8wXqyw1bYXZplNHvMn-OXkO-U4kr-_QAkgZ8PUm1w0auUearGhgfZePtz0eiIk&_nc_zt=14&_nc_ht=scontent-iad3-2.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQNdvNbVq957qAIch-JViZjF6FzbivYhdLGf6t7kUVHrCg&oe=6ACA8DF9",
-        "id": "1606024818230501",
-        "accessibilityCaption": "May be an image of scooter, street and text"
+        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/839972765_122133085617313442_1765233081172110506_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=W1DxDu_JJd4Q7kNvwFXK1MU&_nc_oc=AdoxgXGRtO8CdVZ1ayeO0dzYWzLm9xHzO566MlhfsNjgZfqvMisKIJ3G9OExG3k2KIQ&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQOxUWq84WaAtZxpL02RWDVfFS_NniTZ7ey1DLhg_2ofPQ&oe=6ACEEF54",
+        "id": "122133087297313442",
+        "accessibilityCaption": "May be an image of indoors"
       },
       {
         "type": "photo",
-        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/833392399_2529622727528857_1978775393713898444_n.png?stp=dst-jpg_tt6&cstp=mx1873x1280&ctp=s1873x1280&_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6AQPUUtQMh0Q7kNvwEWtPAZ&_nc_oc=AdqXtMLOXufO1RzdImhdhrRPyTzoGwBfCCJEmoPF_UW_tAv-wGfSpG2Ry5LQJTqx20w&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQNInZKyXkR38r-Y_sR-zdVOAxLHhZov4eUYabhSOJwYwA&oe=6ACA9D89",
-        "id": "1606024821563834",
-        "accessibilityCaption": "May be an image of one or more people, motorcycle, street and text"
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/839806851_122133084783313442_8520695575458684428_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=101&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=iiTfwv3ObLIQ7kNvwHbSHtY&_nc_oc=Adq8LCbecoNigb0oH_bVgyN9zKGj_kl3TBa9so5Ev7GCxYkZmqRBIXCc0LEMB0JDF5w&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQPDWayf267fhr04gHuHZTFo9hKr-U9qhi1tD-eCP6gkgg&oe=6ACEDB8F",
+        "id": "122133087273313442",
+        "accessibilityCaption": "May be an image of lighting, bed, indoors, bedroom and sliding door"
       },
       {
         "type": "photo",
-        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/831543251_2097518944204789_3561593704650190622_n.png?stp=dst-jpg_tt6&cstp=mx1920x1280&ctp=s1920x1280&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=AwZP8bP0csoQ7kNvwEO0E_S&_nc_oc=AdoN-nS7idd6Vuxxy6yG7sdwHiteA1SstA4cFfSAQRUI-9mhq1u9Ar0O1BQ7x4UdIQo&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQNG78eaLIya8-cYTyWJXVCMWGL87eQLCTuk-GThtxfWoQ&oe=6ACAB26E",
-        "id": "1606024811563835",
+        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/839067811_122133084807313442_7182161044255829456_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=ri6dKg5xOkgQ7kNvwGC8K-w&_nc_oc=AdqWNVCGA8JCtyu77VJufduYxl-_vkWRv-5gKNklbWE7CzRMa29U_rOATlmCSRy5RvQ&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQP6_xLb3TUO1LLk61_Njd0s9exExuxtrQclGPIHZCBEbg&oe=6ACEE737",
+        "id": "122133087231313442",
+        "accessibilityCaption": "May be an image of indoors and sliding door"
+      }
+    ],
+    "isReshare": false,
+    "sharedPost": null
+  },
+  {
+    "url": "https://www.facebook.com/groups/1500098426766412/permalink/28235094056173486/",
+    "timestamp": 1791433184000,
+    "postText": "Khi nói về đất dầu tiếng tp.HCM thì ai cũng chê xa , k có gì phát triễn nhưng em quan sát mấy bữa nay thời tiết mưa lớn thì tp HCM và vùng trung tâm thủ dầu một điều ngập nặng . Vậy dầu tiếng có lợi thế gì thứ nhất địa hình dầu tiếng cao chắc chắn sẽ k ngập , cơ sỡ hạ tầng đang được tp HCM đầu tư các tuyến đường kết nối , giá trị đất còn rất thấp diện tích đất rộng sông hồ mát mẻ phù hợp xây dựng nghĩ dưỡng an cư lập nghiệp. Năm nay kinh tế khó khăn bds thì khó thở nhưng khi mọi thứ phục hồi anh chị hãy nên suy nghĩ một nơi để mình có thể an cư lập nghiệp nơi mà yếu tố thời tiết triều cường k còn là vấn đề để anh chị suy nghĩ và đất dầu tiếng rất đáng để anh chị quan tâm.",
+    "reactionsCount": 75,
+    "reactions": {
+      "like": 66,
+      "haha": 7,
+      "love": 2
+    },
+    "commentsCount": 39,
+    "sharesCount": 0,
+    "postId": "28235094056173486",
+    "author": {
+      "id": "100093458327259",
+      "name": "Vũ Cường",
+      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/442366203_327180190407256_5939430929663601549_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx886x886&ctp=s24x24&_nc_cat=102&ccb=1-7&_nc_sid=1d2534&_nc_ohc=SJmdj9jz-YwQ7kNvwETH_Tu&_nc_oc=AdrRrP1LVykULvb4PB9mK0DDDXiIN5_RXinxnYy93ophV9Wxinw40IlcPw5abkjc2VE&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQOdhOLUQV2EgzhNAgxJjO1Ib_XjMRBjXfImVC3l2GhRbQ&oe=6ACEE557",
+      "profileUrl": "https://www.facebook.com/vu.cuong.657347"
+    },
+    "attachments": [
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/825327599_994837233641545_8783137323777748673_n.jpg?stp=dst-jpg_tt6&cstp=mx1536x2048&ctp=p526x296&_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=8hLf5wlIouoQ7kNvwGOwcXI&_nc_oc=AdrwWWuMbCEM8K4-KlJrRrS27W4vrMkmU2o56pJHgIxYMLnBL9l9DMb-UPuVvNKzXfI&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQP0a72ayjFmdiWhW_0LSfMSbFLYsOEx0V420S4GIwV2Bw&oe=6ACEF70D",
+        "id": "994837230308212",
+        "accessibilityCaption": "No photo description available."
+      }
+    ],
+    "isReshare": false,
+    "sharedPost": null
+  },
+  {
+    "url": "https://www.facebook.com/tai.nguyenphuong.3/posts/pfbid02yYEBEaj18fhH6hG1BQzHfSAJbFnJUG38xUZGnrH9PDXPYQ55HpzXzyr6Hk6ExB4bl",
+    "timestamp": 1791448701000,
+    "postText": "BƠM, BƠM VÀ BƠM\n\nNói thật Hà Nội, TP.HCM, Đà Lạt, Vinh...\n\nGiờ không cần nghiên cứu gì nhiều về dự án chống ngập làm gì.\n\nCứ câu thần chú này mà dùng:\n\nBƠM, BƠM VÀ BƠM\n\nTừ bơm tới những sông, kênh, hồ, bơm trung chuyển.\n\nCòn các kênh làm kè cao lên, dùng cống thoát kiểu chống trào ngược.\n\nCứ mưa lớn thì bơm thật lực, mưa nhỏ bơm vừa phải.\n\nTriều cường bơm.\n\nThiết kế bơm gấp khoảng 2 lần công suất cần thiết cho lượng mưa kỷ lục. Để một hệ bơm dự phòng và tăng cường cũng như để bơm luân phiên.\n\nLàm một số hệ thống bơm trung chuyển cho các vị trí xa kênh rạch.\n\nĐó là phương án khả thi hơn mấy kiểu loay hoay lâu nay vẫn vẽ ra. Vừa manh mún, vừa tốn kém, vừa chẳng có tính thực dụng.\n\n---\nLam Ngọc",
+    "reactionsCount": 3,
+    "reactions": {
+      "like": 3
+    },
+    "commentsCount": 0,
+    "sharesCount": 0,
+    "postId": "38930084639971135",
+    "taggedLocationId": "108458769184495",
+    "author": {
+      "id": "100001892517742",
+      "name": "Nguyễn Phương Tài",
+      "profilePicture": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/527666468_30533220586324291_2888637134515076457_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1817x1823&ctp=s40x40&_nc_cat=104&ccb=1-7&_nc_sid=1d2534&_nc_ohc=B5u3RoY85OEQ7kNvwFUUq7j&_nc_oc=AdpKyCkZWNpd-8aVC5vaSRlywBJudl2Wya26zuL1QNC_f3orc1-vWav2FVUtSn507Z8&_nc_zt=24&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQOL4cSoS7whxF3dH9CBliVCR8dacbzfkwpHYrWaxFywzA&oe=6ACED9F1",
+      "profileUrl": "https://www.facebook.com/tai.nguyenphuong.3"
+    },
+    "attachments": [
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.99422-6/841903692_1576932513695503_7933638239073947104_n.png?stp=dst-jpg_tt6&cstp=mx1200x627&ctp=s960x960&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=NTSUr79pX98Q7kNvwEfF6yz&_nc_oc=AdqEOSWTUhKU7joiWTEJGYlBzP3GVLgcZH0qwUbAmQUC2V8cq79xH4U_tZoJayM8tU8&_nc_zt=14&_nc_ht=scontent-iad3-2.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQMf8QTeX3O0nW8Cs0VcdVna_u3hiwc7rVbnbk_H7LIxXQ&oe=6ACECC77",
+        "id": "38930083969971202",
+        "accessibilityCaption": "May be an image of text"
+      }
+    ],
+    "isReshare": false,
+    "sharedPost": null
+  },
+  {
+    "url": "https://www.facebook.com/welcome2saigon/posts/pfbid0BaX5ptJHzQLh3FNdsx1bSKx7gvtF7cdTFxjs4zpGss7B9oEvgVxjjR1kJGcWMxwvl",
+    "timestamp": 1791427412000,
+    "postText": "🚣 ĐI BIỂN TỚI NGAY GÒ VẤP 🥹 GÒ VẤP SÁNG NAY VẪN CÒN BIỂN \n\nMưa cả đêm, sáng nay đường Nguyễn Văn Khối, TP.HCM nước ngập mênh mông. Ngập nặng, người dân chật vật di chuyển qua đoạn đường này",
+    "reactionsCount": 743,
+    "reactions": {
+      "like": 667,
+      "sorry": 48,
+      "haha": 12,
+      "wow": 9,
+      "love": 4,
+      "support": 3
+    },
+    "commentsCount": 47,
+    "sharesCount": 24,
+    "postId": "1573247244845062",
+    "author": {
+      "id": "100064794033466",
+      "name": "Made In Sài Gòn",
+      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/309103969_5758309544221382_2418270880203842638_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx968x968&ctp=s40x40&_nc_cat=106&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=EUaWExqlHvcQ7kNvwE1VvLO&_nc_oc=AdobxAL9AJD91kxm2ndlmN9f-HotGBVP_NJdN8q5OsQlAkJTUmZF0L5QCnS26PHBxXQ&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQNF1dFW-iagPU6G5o1v3W-1Us7lPPX7uxUuO12LoouRxw&oe=6ACEECE8",
+      "profileUrl": "https://www.facebook.com/welcome2saigon"
+    },
+    "attachments": [
+      {
+        "type": "photo",
+        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/838715629_4689696031245403_2609224910263478943_n.png?stp=dst-jpg_tt6&cstp=mx730x487&ctp=s730x487&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=9KeC9-1mf9UQ7kNvwH8mZ1-&_nc_oc=AdqiRvGt_MG3ECzzL-0RUwzRxhTJhpEmfpcG-rMCPfihnhmr17Ftzv9OZY2lywE9ddY&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQOV6TG58eW88l_2yr5-1SMbufSmEekUiznnStzWRtcESQ&oe=6ACEE694",
+        "id": "1573245624845224",
+        "accessibilityCaption": "May be an image of motorcycle and text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/840194015_1092821983355085_7783516479048879678_n.png?stp=dst-jpg_tt6&cstp=mx730x487&ctp=s730x487&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=180VNB6uk48Q7kNvwFaFmC4&_nc_oc=AdqG43Osc1zyu4F85zoosPBfAKS7tDqNVlNBaKP0OVSgB8bj1O5RbwB5Psg2JeTW7FU&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQMyvTvb01dOo4EiHSp-re-2e951MfarIlAg3mDYuWs-Uw&oe=6ACEFBE4",
+        "id": "1573245378178582",
+        "accessibilityCaption": "May be an image of motorcycle and text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/840498952_1484883506810629_5842016348792729463_n.png?stp=dst-jpg_tt6&cstp=mx730x487&ctp=s730x487&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hA9IVDLFwY8Q7kNvwFzMM99&_nc_oc=AdrlYe6jwWd2dYyfJS_TJxdrxlXLKMGTmG1Wu_1XmjrLW_qt4vkIi4EwnyFp1Mrqaec&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQNSMReucT-qhD7axT2Di1JZD6SX7QwOUnXePRAp4V_6Ew&oe=6ACEE0A2",
+        "id": "1573245391511914",
+        "accessibilityCaption": "May be an image of motorcycle and text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/839231754_1428905182531712_8160841597211392447_n.png?stp=dst-jpg_tt6&cstp=mx730x487&ctp=s730x487&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Z7tGBUashfsQ7kNvwEaMAFX&_nc_oc=AdrYEi2w-QilKi4M_FVvYeedgMjnAJxjP1gQq4d2cGCWox1yhYMsbiW9GQbshHVcDfM&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQNXLf77B-XV6PNOBbaW-3rL048uWapf1Xm0csJzRvgHEQ&oe=6ACEE7DF",
+        "id": "1573245388178581",
+        "accessibilityCaption": "May be an image of motorcycle and text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/839159410_1455070466561867_2268877683789438910_n.png?stp=dst-jpg_tt6&cstp=mx730x487&ctp=s730x487&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=II_kr2YwyEkQ7kNvwGKwxVG&_nc_oc=AdpmF_ye1uQYnaUlsLBZcQIJfjjPvqcRwoI37Vg94ZNoxgUswRgLMoPN2GNGXTYhx3w&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQOR-GdCOspA4fSbA6pnIlZUWSQ2WIB5wircXl5X8oXaMg&oe=6ACEC866",
+        "id": "1573245498178570",
         "accessibilityCaption": "May be an image of motorcycle and text"
       }
     ],
@@ -321,127 +348,93 @@
     "sharedPost": null
   },
   {
-    "url": "https://www.facebook.com/groups/1304761540643029/permalink/1781158903003288/",
-    "timestamp": 1791242563000,
-    "postText": "",
-    "reactionsCount": 1,
+    "url": "https://www.facebook.com/DoanThanhNienGDU/posts/pfbid02zibNsTBvHv9WZnmXAnQj74DfpontMfGrrNZe3BJvSrXtY3yzLYCnh8P8J42CScGvl",
+    "timestamp": 1791427590000,
+    "postText": "🌧️ MƯA DÔNG BẤT CHỢT – GDUers NHỚ CHỦ ĐỘNG AN TOÀN! 💙\n\n☔ Những ngày này, thời tiết tại TP.HCM có nhiều diễn biến thất thường. Chiều tối và đêm, mây dông có xu hướng phát triển, một số nơi có thể xuất hiện mưa to đến rất to, gây ảnh hưởng đến việc di chuyển, đặc biệt vào giờ tan tầm.\n\n💙 GDU nhắc Quý Thầy Cô và các bạn sinh viên:\n☔ Chủ động mang theo áo mưa, ô và các vật dụng cần thiết.\n🛵 Khi trời mưa, di chuyển chậm, giữ khoảng cách và bật đèn để đảm bảo an toàn.\n🌊 Hạn chế đi qua những tuyến đường ngập sâu, khu vực nước chảy xiết.\n📱 Thường xuyên cập nhật tình hình thời tiết, giao thông và linh hoạt thay đổi lộ trình khi cần.\n❤️ Nếu mưa dông diễn biến mạnh, hãy ưu tiên ở nơi an toàn và hạn chế ra ngoài khi không cần thiết.\n\n⚠️ ĐẶC BIỆT LƯU Ý:\nCác khu vực trũng thấp phía Nam TP.HCM như Nhà Bè, Quận 7, Quận 4 và Quận 8 cũ có thể chịu ảnh hưởng của triều cường. Quý Thầy Cô, GDUers và gia đình hãy chủ động kiểm tra tình hình trước khi di chuyển.\n\n💙 Mưa có thể đến bất chợt – nhưng sự chủ động luôn nằm trong tay chúng ta!\n\nMột chiếc áo mưa, một chút cẩn thận và vài phút cập nhật tình hình thời tiết có thể giúp hành trình về nhà an toàn hơn.\n\n🌱 GDU chúc Quý Thầy Cô, GDUers và gia đình luôn bình an, an toàn và khỏe mạnh trong những ngày thời tiết thất thường!\n\n📸 P/s: Những chiếc áo mưa được trao gửi trong hoạt động hỗ trợ sinh viên – một món quà nhỏ, nhưng là sự quan tâm lớn mà GDU dành cho GDUers trong những ngày mưa bất chợt. 💙\n\n---\n\n#GDU #GiaDinhUniversity #DaiHocGiaDinh #GDUers #CanhBaoThoiTiet #TPHCM #AnToanGDU",
+    "reactionsCount": 56,
     "reactions": {
-      "like": 1
+      "like": 31,
+      "love": 25
     },
-    "commentsCount": 1,
-    "sharesCount": 0,
-    "postId": "1781158903003288",
-    "taggedLocationId": "108458769184495",
-    "author": {
-      "id": "61590700890078",
-      "name": "Gọn Luxurycars",
-      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/794096186_122132623947356696_4460611716435875420_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx960x957&ctp=s24x24&_nc_cat=102&ccb=1-7&_nc_sid=1d2534&_nc_ohc=-8hN80jVGdMQ7kNvwEkMtP7&_nc_oc=AdrXQPLkqcv-p0CbSyLq50nzNS_wYBpggram3y0TvBfSwtibRXcyLHknrUEEa3YnbuM&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQOxEdtNPJtofi9lTSEDAqLfvkQIuSx80GdRbdiY8fGhAg&oe=6ACAA65B",
-      "profileUrl": "https://www.facebook.com/profile.php?id=61590700890078"
-    },
-    "attachments": [
-      {
-        "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/839265245_122142036429356696_9063602479296108057_n.jpg?stp=dst-jpg_tt6&cstp=mx960x1280&ctp=s960x1280&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=SLjJo2sSmHAQ7kNvwGBe0ae&_nc_oc=AdpW3Us_eOhaI6nVPQ164inWfh3o7HZ-yN6BAm4ehQ_NcrPt_FKZHkZrg_RHovtXrAg&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQPH5Tbv362AYyps4ShuHDFqTN76nMp9nTDskXRbLYlz2A&oe=6ACAA5E2",
-        "id": "122142042999356696",
-        "accessibilityCaption": "May be an image of car and text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/825351558_122142037587356696_3390077197172771371_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1366&ctp=s2048x1366&_nc_cat=108&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=dwRT1u8AQmYQ7kNvwFDwuhU&_nc_oc=AdqhHWFX03GVF3AQFEmqsQxLV_jRYQ050OjrasXojBrdZaflz5HWr99QkKKC0sigOY4&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQOxuamBX8x6IOsOMolMw4yfUBGPyine5E3hjtiFAEHTJg&oe=6ACA9B8D",
-        "id": "122142042987356696",
-        "accessibilityCaption": "May be an image of car and text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/825351778_122142037227356696_8003018474139424685_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1366&ctp=s2048x1366&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=oYIB88L36XsQ7kNvwH5uOqc&_nc_oc=AdoGrL1GtnpiW-3xqB0FxyPvASwhzCL7q50kxIphbNN0Wzc18jgr80sAoPw_9A-Rw_A&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQPFHYny1B8ZXIs8vp5tXLBVAROlMOt5yyPJYUMvxlTmbA&oe=6ACA8841",
-        "id": "122142042981356696",
-        "accessibilityCaption": "May be an image of car and text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/825351364_122142037131356696_6710317756701101344_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1366&ctp=s2048x1366&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=QlQOq3acnacQ7kNvwGlMZCT&_nc_oc=AdrGpwdp1e-8MIa_LbDbSj-3zoNiRZK_QIOijgOt0hikxDbzY3MtiDuG8b4CHxo0c_0&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQPYVgssd_KMWkYOePXnTxPwjNBIcLjrEgJ1bMZM4BVeGg&oe=6ACA937C",
-        "id": "122142043023356696",
-        "accessibilityCaption": "May be an image of car and text"
-      },
-      {
-        "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/825351434_122142036609356696_6461469967877529225_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1366&ctp=s2048x1366&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=_zsr6BSmREgQ7kNvwGQGKZU&_nc_oc=AdqCH6opmNXSK7rVU66mpUAnx6yNy53vvQii05-dyLTw-q4yIX3tem38megmVoTt8tM&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=YGgrx2gS9KPNYfr2K2pZ4A&_nc_ss=792a8&oh=00_AQMF3Ip-MEmGU1cmapcVUASECI61MI1DChqd7E00IWIJ0w&oe=6ACAAA90",
-        "id": "122142043005356696",
-        "accessibilityCaption": "May be an image of car"
-      }
-    ],
-    "isReshare": false,
-    "sharedPost": null
-  },
-  {
-    "url": "https://www.facebook.com/groups/thoitrangmolady/permalink/2247159436065028/",
-    "timestamp": 1791112919000,
-    "postText": "🌧️ Mưa lớn chiều nay khiến nhiều tuyến đường TP.HCM ngập sâu, xe chết máy, shipper phải tắt app",
-    "reactionsCount": 64,
-    "reactions": {
-      "like": 60,
-      "love": 1,
-      "support": 1,
-      "haha": 1,
-      "sorry": 1
-    },
-    "commentsCount": 7,
-    "sharesCount": 2,
-    "postId": "2247159436065028",
-    "author": {
-      "id": "100064876590351",
-      "name": "Molady Fashion",
-      "profilePicture": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-1/702612080_1418248510347689_101255215302259246_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx1254x1254&ctp=s24x24&_nc_cat=1&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=VIlYMNMOf-4Q7kNvwGmsuno&_nc_oc=AdpAeiCQoQpHwuwvOkbwpU85O0wuiHLGKpCeQ9xOEHLNeEqatFw39DrU7nwbm4BnG_Q&_nc_zt=24&_nc_ht=scontent-iad6-1.xx&_nc_gid=kEJwPutLZUEZ3AAAFdGD2g&_nc_ss=792a8&oh=00_AQN8fuFR_CxdqmseqCYJdBOb-tKFqAC8xfRhmV1cpQcNCw&oe=6ACA8642",
-      "profileUrl": "https://www.facebook.com/moladyfashion"
-    },
-    "attachments": [
-      {
-        "type": "photo",
-        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/836663842_1541019324737273_2925091307246446006_n.jpg?stp=dst-jpg_tt6&cstp=mx1619x971&ctp=s1619x971&_nc_cat=103&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=CzvA9SH6JUIQ7kNvwFJFuHq&_nc_oc=AdpJjQD5D1g89ugCR74xEnvQrJCvhajNhemTEEahz9fD9HZiOAtMqboVe8mK4IoGN_8&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=kEJwPutLZUEZ3AAAFdGD2g&_nc_ss=792a8&oh=00_AQNqyqdgAQrOANpTPLgpv7Kp7WMLgt4zFabArRgQS_IWEw&oe=6ACA8D60",
-        "id": "1541019311403941",
-        "accessibilityCaption": "May be an image of scooter and street"
-      }
-    ],
-    "isReshare": false,
-    "sharedPost": null
-  },
-  {
-    "url": "https://www.facebook.com/saigonnangdong/posts/pfbid02QLXNVzvbqKjFxBzXquK7itKmv3mq9Nankm6t9GUC1Mmzon5UZGNFqyKxUFkrWtuQl",
-    "timestamp": 1791161434000,
-    "postText": "𝐓𝐏. 𝐇𝐂𝐌: 𝐂𝐎́ 𝟏𝟓𝟗 Đ𝐈𝐄̂̉𝐌 𝐍𝐆𝐀̣̂𝐏 𝐓𝐇𝐔̛𝐎̛̀𝐍𝐆 𝐗𝐔𝐘𝐄̂𝐍!\n♻️. Thành phố Hồ Chí Minh hiện ghi nhận tổng cộng 159 điểm thường xuyên ngập trên toàn địa bàn mở rộng do ảnh hưởng của mưa lớn và triều cường.\n𝐏𝐡𝐚̂𝐧 𝐛𝐨̂́ 𝐜𝐚́𝐜 đ𝐢𝐞̂̉𝐦 𝐧𝐠𝐚̣̂𝐩 𝐭𝐡𝐞𝐨 𝐤𝐡𝐮 𝐯𝐮̛̣𝐜:\n• 𝐓𝐏.𝐇𝐂𝐌 (𝐜𝐮̃): 76 điểm (chủ yếu do mưa lớn, tập trung ở các tuyến đường như Nguyễn Văn Quá, Phan Văn Hớn, Võ Văn Kiệt).\n• 𝐊𝐡𝐮 𝐯𝐮̛̣𝐜 𝐓𝐏.𝐓𝐡𝐮̉ Đ𝐮̛́𝐜 (𝐜𝐮̃): 19 điểm (kết hợp mưa và triều cường, điển hình quanh khu vực chợ Thủ Đức, đường Tô Ngọc Vân, Quốc Hương).\n• 𝐁𝐢̀𝐧𝐡 𝐃𝐮̛𝐨̛𝐧𝐠 (𝐜𝐮̃): 52 điểm (gồm 44 điểm do mưa, 8 điểm do mưa kết hợp triều cường trên các tuyến như Đại lộ Bình Dương, ĐT.741).\n• 𝐁𝐚̀ 𝐑𝐢̣𝐚 - 𝐕𝐮̃𝐧𝐠 𝐓𝐚̀𝐮 (𝐜𝐮̃): 31 điểm (gồm 27 điểm do mưa và 3 điểm do triều cường tại các tuyến như QL51, Cách Mạng Tháng 😎.\nNguyên nhân và Lộ trình xử lý\n• 𝐍𝐠𝐮𝐲𝐞̂𝐧 𝐧𝐡𝐚̂𝐧 𝐜𝐡𝐢́𝐧𝐡: 𝐇𝐞̣̂ 𝐭𝐡𝐨̂́𝐧𝐠 𝐭𝐡𝐨𝐚́𝐭 𝐧𝐮̛𝐨̛́𝐜: quá tải trước áp lực đô thị hóa nhanh, kết hợp triều cường và tình trạng sụt lún nền đất (lún tích lũy trung bình 2–5 cm/năm).\n• 𝐊𝐞̂́ 𝐡𝐨𝐚̣𝐜𝐡 𝐤𝐡𝐚̆́𝐜 𝐩𝐡𝐮̣𝐜:  Thành phố đã lên lộ trình triển khai các dự án chống ngập đến năm 2030 với nguồn vốn lớn nhằm giải quyết dứt điểm các điểm ngập trọng điểm.\n#saigon #TPHCM #BinhDuong #vungtau #ng",
-    "reactionsCount": 12,
-    "reactions": {
-      "like": 11,
-      "sorry": 1
-    },
-    "commentsCount": 0,
+    "commentsCount": 2,
     "sharesCount": 3,
-    "postId": "1501789441979642",
-    "taggedLocationId": "108458769184495",
+    "postId": "1677145827738037",
+    "taggedLocationId": "289060181759641",
     "author": {
-      "id": "100064458025172",
-      "name": "Sài Gòn Năng Động",
-      "profilePicture": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/460071895_903030461855546_436495845107140293_n.jpg?stp=cp6_dst-jpg_tt6&cstp=mx921x920&ctp=s40x40&_nc_cat=110&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=e5CAHfPNz5gQ7kNvwECcwhK&_nc_oc=AdrjC8yafp0irnyaQnTVcg9LxjRe3a9DM6j0liglOMwVvpcZbNASQ4bjSJ3I-BplluQ&_nc_zt=24&_nc_ht=scontent-iad3-1.xx&_nc_gid=kEJwPutLZUEZ3AAAFdGD2g&_nc_ss=792a8&oh=00_AQOcB7ggYUGFSIka5_tbEiR-0UnSbvTauWwe9l5s0uJmvw&oe=6ACAB1F0",
-      "profileUrl": "https://www.facebook.com/saigonnangdong"
+      "id": "100063279082737",
+      "name": "Đoàn Trường Đại học Gia Định",
+      "profilePicture": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-1/783674123_1640150361437584_8523559469115353201_n.jpg?stp=c46.46.810.810a_cp0_dst-jpg_tt6&cstp=mx810x810&ctp=s40x40&_nc_cat=103&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=zqQnNGFnbdMQ7kNvwG_aiJ0&_nc_oc=AdrrtglTo0M9_iTgYYZx5cnD-xiTic-cz5ZJkBcUIQcIldr4StLeL7zVvD8yRWVu3m8&_nc_zt=24&_nc_ht=scontent-iad3-2.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQO4-oRvSPOK4QS5a4ZzfVHuIaaRNapA_7PZ-DhVUivLZw&oe=6ACECC87",
+      "profileUrl": "https://www.facebook.com/DoanThanhNienGDU"
     },
     "attachments": [
       {
         "type": "photo",
-        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/825267155_1501789671979619_1157417560414108020_n.jpg?stp=dst-jpg_tt6&cstp=mx1200x757&ctp=s1200x757&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=8nH8K3TRmwMQ7kNvwFpT7L3&_nc_oc=AdqrXTw00gzmU4jzqLu5JvIwm1Vohd8WKl3WSA6xsX5Lzmgt--d9agVv-3aCkrTqQQo&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=kEJwPutLZUEZ3AAAFdGD2g&_nc_ss=792a8&oh=00_AQO6HjbTbpvMl_7_dQGRfO6xSeMGqWcqDwgcHoeTiSQxbQ&oe=6ACAA4DD",
-        "id": "1501789231979663",
-        "accessibilityCaption": "May be a graphic of map and text"
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/825351790_3358563410996946_7441995531874438050_n.png?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=wa86uJ3PyXcQ7kNvwEVoYms&_nc_oc=AdoWI5xrRPlVSa-6IEtbgxIydq6qL1YQ_ofMgOF_wHciCRo4ttzyLrKmIvT_wjgJxi8&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQNzNKKsJ6zcpGKu53GDsQPamFDFUwWR8Bi3pYY9ObqQhA&oe=6ACEDDB4",
+        "id": "1677145081071445",
+        "accessibilityCaption": "May be an image of one or more people"
       },
       {
         "type": "photo",
-        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/836407426_1501789291979657_644056282212249521_n.jpg?stp=dst-jpg_tt6&cstp=mx800x496&ctp=s800x496&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=g7riF5eJm-gQ7kNvwERMKGm&_nc_oc=AdodeGJl8saOKr-Uw-zf4sthJnWkDZb7HfX4xNSU2Mz8jGjwrAgDp3d-YP94XTJ_rDU&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=kEJwPutLZUEZ3AAAFdGD2g&_nc_ss=792a8&oh=00_AQO3mTbeYf7708STK-M6yqpIRllb1RmTmW6AHg4tJOIDmA&oe=6ACA93B6",
-        "id": "1501789288646324",
-        "accessibilityCaption": "May be an image of scooter"
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/839180111_1139264508789800_4095289356410912544_n.png?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=KHl-r-L1ZdQQ7kNvwF7mgon&_nc_oc=Adrj40zjLFaRhm_WImSJTu58vxdzWEcZZqp5VKF3QGWlj4BtKlqzh1RNIfO0b78V4J0&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQMRR3Dh0NT5gHN2DwEiF9PimxsyNU8Tlv_AcyOKCxJwZA&oe=6ACEC819",
+        "id": "1677145121071441",
+        "accessibilityCaption": "May be an image of one or more people and text"
       },
       {
         "type": "photo",
-        "url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.30808-6/825267199_1501789678646285_7401960054625954886_n.jpg?stp=dst-jpg_tt6&cstp=mx1000x668&ctp=s1000x668&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pHJUOrlKgWMQ7kNvwHdOr2K&_nc_oc=AdpuCCQa4ZKSo4X1LpWLh-9vp4-JImUIWhhWLkwXLmQ3Lalw8zciXys3aIIV2NTm8ZY&_nc_zt=23&_nc_ht=scontent-iad3-2.xx&_nc_gid=kEJwPutLZUEZ3AAAFdGD2g&_nc_ss=792a8&oh=00_AQOavNcETxwD9eBEHET7dfONINoC242ix827-WOxzY6bLw&oe=6ACAAE3B",
-        "id": "1501789241979662",
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/825372437_1471208351725502_1144807448756823009_n.png?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=9SpBnRjCWdgQ7kNvwFkOwfu&_nc_oc=AdrpgcquwHbac842peXdrKe-cjuWAdJWdaEhI3kde-_OAgtA2oqBP_DSX7AB5jlVipA&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQPstehO5q6hSvSJctnAy4DzUwxfULXQ7owCm48f2yl8vg&oe=6ACEFEB9",
+        "id": "1677145181071435",
         "accessibilityCaption": "May be an image of text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.99422-6/830927580_1032626833168033_7366578728167164953_n.png?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ZB9sl_G7n4oQ7kNvwGicXer&_nc_oc=Adr8AdUP3sTQKYeX4ygfyzYFNaIpHpx7zRoyUrPDieuAhWU-_gbhocxS25GY9RoRyO0&_nc_zt=14&_nc_ht=scontent-iad6-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQOuQ7OR6risI2bnHIrs9XpfYvpLHtNnGVcp68txtUwHKg&oe=6ACED770",
+        "id": "1677145267738093",
+        "accessibilityCaption": "May be an image of one or more people and text"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.99422-6/839225593_2195949618469515_3103695889185756711_n.png?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=D8rU1DwiMQwQ7kNvwHelCT8&_nc_oc=Adq4eio6fVN9FKOEpIm1_L0Ud1UVVoPfNrJxHJSrKrECR2jIbe05tahFj3qA7-TVWlU&_nc_zt=14&_nc_ht=scontent-iad3-1.xx&_nc_gid=OLjejmMSfLaYO4ThoEZL7w&_nc_ss=792a8&oh=00_AQMXmH98gu53bGwUBmOlz8huj2-GDx909faxMz5rBLuGjQ&oe=6ACEF8CF",
+        "id": "1677145321071421",
+        "accessibilityCaption": "May be an image of text"
+      }
+    ],
+    "isReshare": false,
+    "sharedPost": null
+  },
+  {
+    "url": "https://www.facebook.com/groups/183001985659825/permalink/2309408856352450/",
+    "timestamp": 1791426636000,
+    "postText": "Nhà Phạm Thế Hiển Q8 hẻm 769 . Nhỉnh 5Đx SHR Thương lượng chính chủ\n- Diện Tích : 4,15x10m (đặc biệt nở hậu 5,5m) \n-Nhà 1 trệt, 2lầu+ sân thượng 3PN+3WC\n-Khu vực an ninh , ko ngập nước, cách mặt tiền chính Phạm Thế Hiển 50m, cách vài bước chân hẻm xe hơi 🚗 \n-Sổ Hồng Riêng.khu dân cư hiện hữu.hoàn công đầy đủ 132m2\n#muanhaquan8 #bannhaquan8\n#nhadepquan8 #PARCMALLQ8\n#phạmthehien",
+    "reactionsCount": 0,
+    "reactions": {},
+    "commentsCount": 0,
+    "sharesCount": 0,
+    "postId": "2309408856352450",
+    "taggedLocationId": "367357649970887",
+    "author": {
+      "id": "100048816221465",
+      "name": "Cuong Nguyen",
+      "profilePicture": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-1/667712540_1491790055791521_5279008520190086150_n.jpg?stp=cp6_dst-jpg_tt6&cstp=mx2048x2048&ctp=s24x24&_nc_cat=108&ccb=1-7&_nc_sid=1d2534&_nc_ohc=8IdhXIYUEeEQ7kNvwHAci0I&_nc_oc=AdpCxg4Z79JZkngssg7iYcGYwCjUoGSa8ZNBhYIAHYMnihRRGjt54fmXinavcnzCsoI&_nc_zt=24&_nc_ht=scontent-iad3-1.xx&_nc_gid=wixSf1uEwix7c0_ancQ-tQ&_nc_ss=792a8&oh=00_AQPv0eRL-aJ2HgbzvvwSfqkW92-OEUYrco63Gmtj-Cmc1A&oe=6ACEC8A1",
+      "profileUrl": "https://www.facebook.com/cuong.nguyen.23259"
+    },
+    "attachments": [
+      {
+        "type": "photo",
+        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/825372470_1647874410183084_2843796984788390039_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1920&ctp=s1440x1920&_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=03BSE7DpOv0Q7kNvwHpM4q0&_nc_oc=AdpaXbljOixp3lqbRTbAa0GMggXGsvMW8tFeU_Pd4I0_lvkzf6-Y5mGo2X5riCcS8mE&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=wixSf1uEwix7c0_ancQ-tQ&_nc_ss=792a8&oh=00_AQNJMchNR1TXg2eTUL8IDHGgaN9yX44hFvy0qhqdLzo79g&oe=6ACEF091",
+        "id": "1647874786849713",
+        "accessibilityCaption": "No photo description available."
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/825351797_1647874450183080_6379533291071582575_n.jpg?stp=dst-jpg_tt6&cstp=mx1920x1920&ctp=s1920x1920&_nc_cat=108&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=LFfCn88GdRMQ7kNvwFHD8mn&_nc_oc=AdoVrDhIzJJlCIeLcZ5o2NnEKLoBDLVtomq7AonHTTPiZMajMQ-_kfPLZmotuGGDhmQ&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=wixSf1uEwix7c0_ancQ-tQ&_nc_ss=792a8&oh=00_AQPd1rTVM_pKUgrr5nrRqn0WPoKNj5ZbLnTQ4RI3i-FB8g&oe=6ACEC787",
+        "id": "1647874790183046",
+        "accessibilityCaption": "May be an image of street"
+      },
+      {
+        "type": "photo",
+        "url": "https://scontent-iad6-1.xx.fbcdn.net/v/t39.30808-6/840881679_1647874400183085_7013291924380467659_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1920&ctp=s1440x1920&_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=65vjrRWjxAMQ7kNvwEJRQ9b&_nc_oc=AdquxS6LYwcIJm4uBpduOqp93M6eN4RwAdJdZF_R3QCtl7GoD2qKlUvpnQX7Od1GfrE&_nc_zt=23&_nc_ht=scontent-iad6-1.xx&_nc_gid=wixSf1uEwix7c0_ancQ-tQ&_nc_ss=792a8&oh=00_AQNxXhjmQS3xZDTBfJ1DsnKajOuPSnKtL49NgLbJZyg79A&oe=6ACED556",
+        "id": "1647874783516380",
+        "accessibilityCaption": "May be an image of indoors"
       }
     ],
     "isReshare": false,
