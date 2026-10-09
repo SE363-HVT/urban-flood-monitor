@@ -237,7 +237,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["phạm thế hiển", "pham the hien", "phamthehien"],
         "display_name": "Đường Phạm Thế Hiển",
-        "ward": "Phường 4",
+        "ward": "Phường Chánh Hưng",
         "district": "Quận 8",
         "region": "TPHCM",
         "lat": 10.7480, "lon": 106.6810,
@@ -245,7 +245,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "triều cường bờ kè Kênh Đôi"
     },
     {
-        "keywords": ["rạch cùng", "rach cung", "bình đông", "binh dong", "bến bình đông"],
+        "keywords": ["rạch cùng", "rach cung", "bình đông", "binh dong", "bến bình đông", "phường bình đông", "phuong binh dong"],
         "display_name": "Tuyến đường Bến Bình Đông (Rạch Cùng)",
         "ward": "Phường Bình Đông",
         "district": "Quận 8",
@@ -700,12 +700,44 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["quận 8", "quan 8", "quan8"],
         "display_name": "Khu vực Quận 8",
         "priority": 1,
-        "ward": "Phường 5",
+        "ward": "Phường Chánh Hưng",
         "district": "Quận 8",
         "region": "TPHCM",
         "lat": 10.7410, "lon": 106.6690,
         "heat_points": [[10.7410, 106.6690]],
         "type": "ngập triều cường kênh Tàu Hủ - Bến Nghé"
+    },
+
+    # --- CÁC PHƯỜNG MỚI QUẬN 8 THEO NGHỊ QUYẾT 1685/NQ-UBTVQH15 ---
+    {
+        # Phường Chánh Hưng (Quận 8) - Hợp nhất P.4, Rạch Ông (P.1-P.3), Hưng Phú (P.8-P.10), một phần P.5
+        "keywords": [
+            "phường chánh hưng", "phuong chanh hung", "chánh hưng", "chanh hung",
+            "rạch ông", "rach ong", "hưng phú", "hung phu", "phường 4 quận 8", "phường 5 quận 8"
+        ],
+        "display_name": "Khu vực Phường Chánh Hưng",
+        "ward": "Phường Chánh Hưng",
+        "priority": 2,
+        "district": "Quận 8",
+        "region": "TPHCM",
+        "lat": 10.7440, "lon": 106.6780,
+        "heat_points": [[10.7440, 106.6780]],
+        "type": "ngập triều dâng khu vực Chánh Hưng - Rạch Ông"
+    },
+    {
+        # Phường Phú Định (Quận 8) - Hợp nhất P.14, P.15, Xóm Củi (P.11-P.13), một phần P.16
+        "keywords": [
+            "phường phú định", "phuong phu dinh", "phú định", "phu dinh",
+            "xóm củi", "xom cui", "phường 14 quận 8", "phường 15 quận 8"
+        ],
+        "display_name": "Khu vực Phường Phú Định",
+        "ward": "Phường Phú Định",
+        "priority": 2,
+        "district": "Quận 8",
+        "region": "TPHCM",
+        "lat": 10.7390, "lon": 106.6350,
+        "heat_points": [[10.7390, 106.6350]],
+        "type": "ngập triều cường ven sông Chợ Đệm - Phú Định"
     },
     # =========================================================================
     # DANH SÁCH CÁC XÃ MỚI SAU SÁP NHẬP CHÍNH THỨC TẠI TP.HCM

@@ -417,9 +417,9 @@ RAW_CSGT_DATA = [
         "cause": "rain",
         "street": "Tạ Quang Bửu",
         "segment": "Từ Võ Liêm Sơn đến Cao Lỗ",
-        "ward": "Phường 4", "district": "Quận 8",
+        "ward": "Phường Chánh Hưng", "district": "Quận 8",
         "lat": 10.7380, "lon": 106.6780,
-        "extra_kw": ["tạ quang bửu cao lỗ", "võ liêm sơn"]
+        "extra_kw": ["tạ quang bửu cao lỗ", "võ liêm sơn", "chánh hưng", "phường 4 quận 8"]
     },
     {
         "id": "csgt_rain_42",
@@ -597,18 +597,18 @@ RAW_CSGT_DATA = [
         "cause": "rain",
         "street": "Phạm Thế Hiển (Hẻm 2695 - Lê Bôi)",
         "segment": "Đoạn từ hẻm 2695 đến giao lộ Lê Bôi",
-        "ward": "Phường 7", "district": "Quận 8",
+        "ward": "Phường Bình Đông", "district": "Quận 8",
         "lat": 10.7250, "lon": 106.6380,
-        "extra_kw": ["phạm thế hiển lê bôi", "hẻm 2695 phạm thế hiển", "phường 7 quận 8"]
+        "extra_kw": ["phạm thế hiển lê bôi", "hẻm 2695 phạm thế hiển", "phạm thế hiển hẻm 2695", "phạm thế hiển 2695", "lê bôi", "bình đông", "phường 7 quận 8"]
     },
     {
         "id": "csgt_rain_62",
         "cause": "rain",
         "street": "Phạm Thế Hiển (Cầu Bà Tàng)",
         "segment": "Chân cầu Bà Tàng, trước số 2377",
-        "ward": "Phường 7", "district": "Quận 8",
+        "ward": "Phường Bình Đông", "district": "Quận 8",
         "lat": 10.7280, "lon": 106.6430,
-        "extra_kw": ["cầu bà tàng", "phạm thế hiển 2377", "phường 7 quận 8"]
+        "extra_kw": ["cầu bà tàng", "phạm thế hiển cầu bà tàng", "cầu bà tàng phạm thế hiển", "phạm thế hiển 2377", "2377 phạm thế hiển", "bình đông", "phường 7 quận 8"]
     },
     {
         "id": "csgt_rain_63",
@@ -669,9 +669,9 @@ RAW_CSGT_DATA = [
         "cause": "rain",
         "street": "Trịnh Quang Nghị",
         "segment": "Từ Nguyễn Văn Linh đến cầu Ba Tơ",
-        "ward": "Phường 7", "district": "Quận 8",
+        "ward": "Phường Bình Đông", "district": "Quận 8",
         "lat": 10.7180, "lon": 106.6450,
-        "extra_kw": ["trịnh quang nghị", "cầu ba tơ", "phường 7 quận 8"]
+        "extra_kw": ["trịnh quang nghị", "cầu ba tơ", "bình đông", "phường 7 quận 8"]
     },
     {
         "id": "csgt_rain_70",
@@ -1069,18 +1069,18 @@ RAW_CSGT_DATA = [
         "cause": "tide",
         "street": "Phạm Thế Hiển (Triều cường)",
         "segment": "Đường Phạm Thế Hiển (Đoạn ven kênh Đôi)",
-        "ward": "Phường 4", "district": "Quận 8",
+        "ward": "Phường Chánh Hưng", "district": "Quận 8",
         "lat": 10.7420, "lon": 106.6720,
-        "extra_kw": ["phạm thế hiển quận 8", "phạm thế hiển triều cường", "phường 4 quận 8"]
+        "extra_kw": ["phạm thế hiển quận 8", "phạm thế hiển triều cường", "chánh hưng", "phường 4 quận 8"]
     },
     {
         "id": "csgt_tide_31",
         "cause": "tide",
         "street": "Dương Bá Trạc",
         "segment": "Đường Dương Bá Trạc (Chân cầu Kênh Xáng)",
-        "ward": "Phường Rạch Ông", "district": "Quận 8",
+        "ward": "Phường Chánh Hưng", "district": "Quận 8",
         "lat": 10.7460, "lon": 106.6880,
-        "extra_kw": ["dương bá trạc", "cầu kênh xáng", "rạch ông", "phường 1 quận 8"]
+        "extra_kw": ["dương bá trạc", "cầu kênh xáng", "rạch ông", "chánh hưng", "phường 1 quận 8"]
     },
     {
         "id": "csgt_tide_32",
