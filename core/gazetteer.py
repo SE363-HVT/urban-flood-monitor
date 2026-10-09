@@ -1169,16 +1169,19 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": [
             "tp. hồ chí minh", "tp hồ chí minh", "thành phố hồ chí minh", "tp.hcm", "tphcm", "tp hcm",
-            "sài gòn", "sai gon", "saigon", "sông sài gòn", "sg", "hcm"
+            "sài gòn", "sai gon", "saigon", "sông sài gòn", "sg", "hcm",
+            "bình dương", "binh duong", "binhduong",
+            "vũng tàu", "vung tau", "vungtau", "bà rịa", "ba ria", "baria", "bà rịa vũng tàu", "ba ria vung tau"
         ],
-        "display_name": "Khu vực Đô thị TP. Hồ Chí Minh",
-        "ward": "Đô thị trung tâm",
+        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
         "district": "TP.HCM",
         "region": "TPHCM",
         "lat": 10.7769, "lon": 106.7009,
         "heat_points": [[10.7769, 106.7009]],
         "priority": 0,
-        "type": "ngập diện rộng nội ô TP.HCM"
+        "type": "ngập diện rộng toàn thành phố"
     }
 ]
 

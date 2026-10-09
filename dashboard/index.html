@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ thống Cảnh Báo Ngập Lụt Đô Thị Thời Gian Thực</title>
-    <!-- Leaflet CSS -->
+    <title>Hệ thống Giám Sát & Cảnh Báo Ngập Lụt Đô Thị Thời Gian Thực</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- Leaflet Heatmap Plugin -->
     <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
     <style>
         :root {
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --accent-red: #ef4444;
             --accent-orange: #f97316;
+            --accent-amber: #eab308;
             --accent-blue: #38bdf8;
+            --accent-green: #22c55e;
             --border-color: #334155;
-            --color-tiktok: #fe2c55;
-            --color-fb: #1877f2;
-            --color-threads: #a855f7;
         }
 
         * {
@@ -39,20 +37,21 @@
             overflow: hidden;
         }
 
+        /* SIDEBAR STYLES */
         #sidebar {
-            width: 440px;
+            width: 460px;
             background-color: var(--bg-secondary);
             border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             z-index: 1000;
-            box-shadow: 2px 0 12px rgba(0,0,0,0.4);
+            box-shadow: 2px 0 16px rgba(0,0,0,0.4);
         }
 
         .header {
             padding: 16px 20px 12px 20px;
             border-bottom: 1px solid var(--border-color);
-            background-color: rgba(15, 23, 42, 0.6);
+            background-color: rgba(15, 23, 42, 0.7);
         }
 
         .badge-row {
@@ -82,7 +81,10 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }\n            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }\n            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }\n        }
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
 
         .mode-pill {
             font-size: 11px;
@@ -109,9 +111,9 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding: 12px 20px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            padding: 10px 16px;
             border-bottom: 1px solid var(--border-color);
             background-color: rgba(15, 23, 42, 0.4);
         }
@@ -120,27 +122,28 @@
             background-color: rgba(30, 41, 59, 0.6);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 10px 14px;
+            padding: 8px 10px;
         }
 
         .stat-label {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-secondary);
             text-transform: uppercase;
             font-weight: 600;
         }
 
         .stat-value {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--text-primary);
-            margin-top: 4px;
+            margin-top: 2px;
         }
-
         .stat-value.red { color: var(--accent-red); }
+        .stat-value.amber { color: var(--accent-amber); }
+        .stat-value.blue { color: var(--accent-blue); }
 
         .controls {
-            padding: 10px 16px;
+            padding: 8px 14px;
             display: flex;
             gap: 6px;
             border-bottom: 1px solid var(--border-color);
@@ -149,7 +152,7 @@
         }
 
         .btn {
-            padding: 6px 12px;
+            padding: 6px 10px;
             background-color: #2563eb;
             color: white;
             border: none;
@@ -164,7 +167,6 @@
             gap: 4px;
             white-space: nowrap;
         }
-
         .btn:hover { background-color: #1d4ed8; }
         .btn:disabled { background-color: #475569; cursor: not-allowed; opacity: 0.7; }
 
@@ -178,135 +180,202 @@
             color: white;
             box-shadow: 0 0 10px rgba(2, 132, 199, 0.6);
         }
-
-        .btn-mode-toggle {
-            background-color: #0d9488;
+        .btn-proximity {
+            background-color: #059669;
             color: white;
         }
-        .btn-mode-toggle:hover { background-color: #0f766e; }
+        .btn-proximity:hover { background-color: #047857; }
 
-        .feed-header {
-            padding: 10px 20px 6px 20px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-secondary);
+        /* TABS */
+        .sidebar-tabs {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .feed-list {
+        .tab-btn {
+            flex: 1;
+            padding: 10px 12px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { color: var(--text-primary); }
+        .tab-btn.active {
+            color: var(--accent-blue);
+            border-bottom-color: var(--accent-blue);
+            background-color: rgba(56, 189, 248, 0.08);
+        }
+
+        /* FEED LIST & LEADERBOARD */
+        .tab-content {
             flex: 1;
             overflow-y: auto;
-            padding: 0 16px 16px 16px;
+            padding: 12px 16px;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
+        .tab-content.hidden { display: none; }
 
-        .feed-item {
-            background-color: rgba(15, 23, 42, 0.7);
+        .feed-card {
+            background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-red);
             border-radius: 8px;
-            padding: 10px 12px;
+            padding: 12px;
             cursor: pointer;
-            transition: transform 0.15s, border-color 0.15s;
+            transition: all 0.2s;
+        }
+        .feed-card:hover {
+            border-color: #64748b;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        .feed-item:hover {
-            transform: translateX(3px);
-            border-color: var(--accent-blue);
-        }
-
-        .feed-item-top {
+        .feed-card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
+            align-items: flex-start;
+            margin-bottom: 6px;
         }
 
-        .location-tag {
-            font-weight: 600;
+        .feed-location {
+            font-weight: 700;
             font-size: 13px;
-            color: #f1f5f9;
+            color: var(--text-primary);
         }
 
-        .ward-pill {
+        .severity-badge {
             font-size: 10px;
-            background-color: rgba(56, 189, 248, 0.15);
-            color: var(--accent-blue);
-            padding: 2px 7px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        .platform-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
+            font-weight: 700;
             padding: 2px 6px;
             border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .severity-badge.high { background-color: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+        .severity-badge.medium { background-color: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); }
+        .severity-badge.low { background-color: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+
+        .veracity-badge {
             font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .veracity-badge.confirmed { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .veracity-badge.suspect { background: rgba(234, 179, 8, 0.15); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.3); }
+        .veracity-badge.unverified { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+        .platform-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
             font-weight: 700;
             text-transform: uppercase;
         }
-        .platform-badge.tiktok {
-            background: rgba(254, 44, 85, 0.2);
-            color: #ff6b8b;
-            border: 1px solid rgba(254, 44, 85, 0.4);
-        }
-        .platform-badge.facebook {
-            background: rgba(24, 119, 242, 0.2);
-            color: #70b4ff;
-            border: 1px solid rgba(24, 119, 242, 0.4);
-        }
-        .platform-badge.threads {
-            background: rgba(168, 85, 247, 0.2);
-            color: #d8b4fe;
-            border: 1px solid rgba(168, 85, 247, 0.4);
-        }
+        .platform-badge.tiktok { background: rgba(254, 44, 85, 0.2); color: #ff6b8b; border: 1px solid rgba(254, 44, 85, 0.4); }
+        .platform-badge.facebook { background: rgba(24, 119, 242, 0.2); color: #70b4ff; border: 1px solid rgba(24, 119, 242, 0.4); }
 
         .feed-text {
             font-size: 12px;
             color: #cbd5e1;
             line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
             margin-bottom: 8px;
         }
 
-        .feed-aspects {
+        .feed-footer {
             display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .opinion-badge {
-            font-size: 10px;
-            background-color: rgba(239, 68, 68, 0.2);
-            color: #fca5a5;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-
-        .aspect-badge {
-            font-size: 10px;
-            background-color: rgba(249, 115, 22, 0.15);
-            color: #fdba74;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .time-tag {
+            justify-content: space-between;
+            align-items: center;
             font-size: 11px;
             color: var(--text-secondary);
-            font-weight: 500;
         }
 
+        /* LEADERBOARD STYLES */
+        .leaderboard-filters {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .lb-filter-btn {
+            padding: 4px 8px;
+            background: #334155;
+            color: #94a3b8;
+            border: none;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .lb-filter-btn.active {
+            background: #0284c7;
+            color: white;
+        }
+
+        .lb-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lb-card:hover {
+            border-color: #38bdf8;
+            background-color: rgba(56, 189, 248, 0.05);
+        }
+        .lb-rank {
+            font-size: 16px;
+            font-weight: 800;
+            width: 28px;
+            color: #94a3b8;
+        }
+        .lb-rank.gold { color: #facc15; }
+        .lb-rank.silver { color: #cbd5e1; }
+        .lb-rank.bronze { color: #fb923c; }
+
+        .lb-info { flex: 1; }
+        .lb-ward-name { font-size: 13px; font-weight: 700; color: #f8fafc; }
+        .lb-region-tag { font-size: 10px; color: #94a3b8; }
+        .lb-count-badge {
+            font-size: 12px;
+            font-weight: 700;
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .citywide-card {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px dashed rgba(56, 189, 248, 0.4);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 8px;
+            font-size: 11px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+        .citywide-title { font-weight: 700; color: #38bdf8; margin-bottom: 4px; }
+
+        /* MAP CONTAINER & SEARCH BOX */
         #map-container {
             flex: 1;
             position: relative;
@@ -318,172 +387,413 @@
             background-color: #0b1120;
         }
 
+        .search-bar-container {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 1000;
+            width: 360px;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 14px 10px 36px;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 13px;
+            outline: none;
+        }
+        .search-input::placeholder { color: #64748b; }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            font-size: 14px;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .search-dropdown {
+            margin-top: 6px;
+            background-color: rgba(15, 23, 42, 0.98);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            max-height: 320px;
+            overflow-y: auto;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            display: none;
+        }
+
+        .search-result-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .search-result-item:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+        .search-res-title { font-size: 12px; font-weight: 700; color: #f8fafc; }
+        .search-res-sub { font-size: 10px; color: #94a3b8; margin-top: 2px; }
+
+        /* PROXIMITY SCANNER MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-box {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 520px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+        .modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(15, 23, 42, 0.8);
+        }
+        .modal-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+        .modal-close {
+            background: none; border: none; font-size: 20px; color: #94a3b8; cursor: pointer;
+        }
+        .modal-body {
+            padding: 16px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .prox-section-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .prox-section-title.red { color: #f87171; }
+        .prox-section-title.amber { color: #fbbf24; }
+
+        .prox-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 6px;
+        }
+        .prox-dist {
+            font-size: 11px;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+
+        /* LEGEND */
         .legend {
             position: absolute;
             bottom: 24px;
             right: 24px;
-            background-color: rgba(15, 23, 42, 0.9);
+            background-color: rgba(15, 23, 42, 0.95);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 12px 16px;
             z-index: 999;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
             font-size: 11px;
             display: flex;
             flex-direction: column;
             gap: 6px;
         }
+        .legend-title { font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+        .legend-row { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); }
 
-        .legend-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .legend-row {
+        /* MARKER ANIMATIONS & STYLES */
+        .live-marker-pin {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ef4444;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 12px #ef4444;
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: var(--text-secondary);
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
         }
-
-        .legend-heat-sample {
-            width: 12px;
-            height: 12px;
+        .live-marker-pin::after {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
             border-radius: 50%;
+            border: 2px solid #ef4444;
+            animation: ripple-wave 1.8s infinite;
+        }
+        @keyframes ripple-wave {
+            0% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(2.2); opacity: 0; }
         }
 
-        .leaflet-popup-content-wrapper {
-            background: #1e293b !important;
-            color: #f8fafc !important;
-            border-radius: 8px !important;
-            border: 1px solid #475569 !important;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-        }
-                .veracity-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-        .veracity-badge.confirmed {
-            background: rgba(34, 197, 94, 0.2);
-            color: #4ade80;
-            border: 1px solid rgba(34, 197, 94, 0.4);
-        }
-        .veracity-badge.suspect {
-            background: rgba(234, 179, 8, 0.2);
-            color: #facc15;
-            border: 1px solid rgba(234, 179, 8, 0.4);
-        }
-        .veracity-badge.unverified {
-            background: rgba(148, 163, 184, 0.2);
-            color: #cbd5e1;
-            border: 1px solid rgba(148, 163, 184, 0.4);
-        }
-        .veracity-box {
-            margin: 8px 0;
-            padding: 8px 10px;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.25);
+        .csgt-marker-pin {
+            width: 26px;
+            height: 26px;
+            background: #f59e0b;
+            border: 2px solid #ffffff;
             border-radius: 6px;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e293b;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
-        .leaflet-popup-tip {
-            background: #1e293b !important;
+        .citywide-marker-pin {
+            width: 32px;
+            height: 32px;
+            background: #0284c7;
+            border: 2px dashed #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
+    <!-- SIDEBAR -->
     <div id="sidebar">
         <div class="header">
             <div class="badge-row">
                 <div class="badge">
                     <div class="pulse-dot"></div>
-                    Near Real-Time Ingestion
+                    <span>Hệ Thống Trực Tuyến</span>
                 </div>
-                <div class="mode-pill" id="badge-mode">MODE: LOADING</div>
+                <div id="badge-mode" class="mode-pill">SIMULATION</div>
             </div>
-            <div class="title">Bản Đồ Cảnh Báo Ngập Lụt</div>
-            <div class="subtitle">Đề tài SE363 - Giám sát đô thị đa nền tảng (TikTok + Facebook)</div>
+            <div class="title">Urban Flood Monitor TP.HCM</div>
+            <div class="subtitle">Giám sát ngập lụt đa nguồn (TikTok + Facebook) & CSGT PC08</div>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-label">Tuyến ngập phát hiện</div>
-                <div class="stat-value red" id="stat-count">0</div>
+                <div class="stat-label">Sự cố Live</div>
+                <div id="stat-count" class="stat-value red">0</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Cửa sổ lọc</div>
-                <div class="stat-value" id="stat-window">2 giờ qua</div>
+                <div class="stat-label">Điểm đen CSGT</div>
+                <div id="stat-csgt-count" class="stat-value amber">122</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Cửa sổ quét</div>
+                <div id="stat-window" class="stat-value blue">60 phút</div>
             </div>
         </div>
 
         <div class="controls">
-            <button class="btn" id="btn-poll" onclick="triggerPoll()">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                Quét ngay (Poll)
+            <button id="btn-poll" class="btn" onclick="triggerPoll()">
+                <span>🔄 Cào mới</span>
             </button>
-            <button class="btn btn-mode-toggle" id="btn-toggle-mode" onclick="toggleServerMode()">
-                Đổi Mode
+            <button id="btn-toggle-mode" class="btn btn-secondary" onclick="toggleServerMode()">
+                <span>⚡ Sang Live</span>
             </button>
-            <button class="btn btn-secondary active" id="btn-heatmap" onclick="toggleHeatmap()">
-                Quầng Nhiệt
+            <button id="btn-proximity" class="btn btn-proximity" onclick="openProximityScanner()">
+                <span>📍 Quét quanh tôi</span>
             </button>
-            <button class="btn btn-secondary active" id="btn-markers" onclick="toggleMarkers()">
-                Ghim (Pin)
+            <button id="btn-toggle-live" class="btn btn-secondary active" onclick="toggleLiveLayer()">
+                <span>🔴 Live MXH</span>
+            </button>
+            <button id="btn-toggle-csgt" class="btn btn-secondary active" onclick="toggleCsgtLayer()">
+                <span>⚠️ CSGT</span>
+            </button>
+            <button id="btn-heatmap" class="btn btn-secondary active" onclick="toggleHeatmap()">
+                <span>🌡️ Quầng nhiệt</span>
             </button>
         </div>
 
-        <div class="feed-header">
-            <span>DÒNG SỰ KIỆN GẦN THỜI GIAN THỰC</span>
-            <span id="update-timer" style="font-size: 11px; color: #38bdf8;">Tự động cập nhật: 10s</span>
+        <!-- TABS -->
+        <div class="sidebar-tabs">
+            <button id="tab-btn-feed" class="tab-btn active" onclick="switchSidebarTab('feed')">
+                <span>📋 Dòng sự kiện Live</span>
+            </button>
+            <button id="tab-btn-leaderboard" class="tab-btn" onclick="switchSidebarTab('leaderboard')">
+                <span>🏆 Xếp hạng Phường</span>
+            </button>
         </div>
 
-        <div class="feed-list" id="feed-list"></div>
+        <!-- TAB 1: LIVE FEED -->
+        <div id="tab-content-feed" class="tab-content">
+            <div id="feed-list" style="display: flex; flex-direction: column; gap: 8px;">
+                <!-- Feed items rendered dynamically -->
+            </div>
+        </div>
+
+        <!-- TAB 2: LEADERBOARD -->
+        <div id="tab-content-leaderboard" class="tab-content hidden">
+            <div class="leaderboard-filters">
+                <button class="lb-filter-btn active" onclick="filterLeaderboard('all', this)">Tất cả</button>
+                <button class="lb-filter-btn" onclick="filterLeaderboard('hcm', this)">TP.HCM nội thành</button>
+                <button class="lb-filter-btn" onclick="filterLeaderboard('binhduong', this)">Bình Dương cũ</button>
+                <button class="lb-filter-btn" onclick="filterLeaderboard('brvt', this)">BR-VT cũ</button>
+            </div>
+            <div id="leaderboard-list" style="display: flex; flex-direction: column; gap: 6px;">
+                <!-- Leaderboard items rendered dynamically -->
+            </div>
+            <div id="citywide-container" class="citywide-card" style="display: none;">
+                <div class="citywide-title">🌐 Tin phản ánh diện rộng toàn TP</div>
+                <div id="citywide-text">0 tin phản ánh nói chung (Sài Gòn / TP.HCM / Bình Dương / Vũng Tàu không có đường cụ thể). Các tin này không tính điểm cho phường nào để bảo đảm tính khách quan.</div>
+            </div>
+        </div>
     </div>
 
+    <!-- MAP CONTAINER -->
     <div id="map-container">
+        <!-- SEARCH BAR -->
+        <div class="search-bar-container">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input id="search-input" class="search-input" type="text" placeholder="Tìm tên đường hoặc phường/xã mới..." oninput="handleSearchInput(this.value)" />
+            </div>
+            <div id="search-dropdown" class="search-dropdown"></div>
+        </div>
+
         <div id="map"></div>
 
         <div class="legend">
-            <div class="legend-title">Mức độ cảnh báo quầng nhiệt</div>
+            <div class="legend-title">Phân biệt Điểm ngập trên bản đồ</div>
             <div class="legend-row">
-                <div class="legend-heat-sample" style="background: #ef4444; box-shadow: 0 0 8px #ef4444;"></div>
-                <span>Ngập sâu / Thành sông / Thất thủ / Biển nước (Trọng số 3.0)</span>
+                <div style="width: 14px; height: 14px; border-radius: 50%; background: #ef4444; border: 2px solid white; box-shadow: 0 0 6px #ef4444;"></div>
+                <span><b>🔴 Sự cố ngập Live:</b> Người dân đăng MXH (nhấp nháy)</span>
             </div>
             <div class="legend-row">
-                <div class="legend-heat-sample" style="background: #f97316; box-shadow: 0 0 6px #f97316;"></div>
-                <span>Ngập vừa / Triều cường (Trọng số 2.0)</span>
+                <div style="width: 14px; height: 14px; background: #f59e0b; border-radius: 4px; border: 1px solid white;"></div>
+                <span><b>⚠️ Điểm nguy cơ tĩnh:</b> Cảnh báo CSGT PC08 (cố định)</span>
             </div>
             <div class="legend-row">
-                <div class="legend-heat-sample" style="background: #38bdf8; box-shadow: 0 0 6px #38bdf8;"></div>
-                <span>Ngập nhẹ / Đọng nước (Trọng số 1.2)</span>
+                <div style="width: 14px; height: 14px; border-radius: 50%; background: #0284c7; border: 1px dashed white;"></div>
+                <span><b>🌐 Toàn thành phố:</b> Tin ngập diện rộng chưa rõ phường</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROXIMITY SCANNER MODAL -->
+    <div id="proximity-modal" class="modal-overlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title">📍 Quét Nguy Cơ Quanh Tôi (Bán kính 1.5 km)</div>
+                <button class="modal-close" onclick="closeProximityModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="prox-user-loc" style="font-size: 11px; color: #94a3b8; margin-bottom: 4px;">Đang xác định vị trí của bạn...</div>
+
+                <div>
+                    <div class="prox-section-title red">🔴 Sự Cố Ngập Đang Diễn Ra (Live Events)</div>
+                    <div id="prox-live-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <div class="prox-section-title amber">🟡 Điểm Cảnh Báo Nguy Cơ Thường Xuyên (CSGT)</div>
+                    <div id="prox-csgt-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        const map = L.map('map').setView([10.815, 106.685], 12);
+        // Khởi tạo bản đồ trung tâm TP.HCM
+        const map = L.map('map').setView([10.7769, 106.7009], 12);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             maxZoom: 19
         }).addTo(map);
 
-        let markersGroup = L.layerGroup().addTo(map);
+        let liveMarkersGroup = L.layerGroup().addTo(map);
+        let csgtMarkersGroup = L.layerGroup().addTo(map);
+        let userMarkerGroup = L.layerGroup().addTo(map);
         let heatLayer = null;
 
         let currentEvents = [];
-        let isMarkersVisible = true;
-        let isHeatmapVisible = true;
+        let csgtHotspots = [];
+        let adminUnits = [];
         let serverCurrentMode = "simulation";
+        let isLiveLayerVisible = true;
+        let isCsgtLayerVisible = true;
+        let isHeatmapVisible = true;
+        let activeLbRegion = "all";
 
+        // Khởi chạy
+        window.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([
+                fetchCsgtHotspots(),
+                fetchAdminUnits(),
+                fetchRealtimeEvents()
+            ]);
+        });
+
+        // Tải 122 điểm ngập CSGT
+        async function fetchCsgtHotspots() {
+            try {
+                const res = await fetch('/api/csgt-hotspots');
+                const data = await res.json();
+                csgtHotspots = data.hotspots || [];
+                document.getElementById('stat-csgt-count').innerText = csgtHotspots.length;
+                renderCsgtMarkers();
+            } catch (err) {
+                console.error("Lỗi tải CSGT hotspots:", err);
+            }
+        }
+
+        // Tải 168 ĐVHC
+        async function fetchAdminUnits() {
+            try {
+                const res = await fetch('/api/admin-units');
+                const data = await res.json();
+                adminUnits = data.units || [];
+            } catch (err) {
+                console.error("Lỗi tải 168 ĐVHC:", err);
+            }
+        }
+
+        // Tải sự kiện thời gian thực
         async function fetchRealtimeEvents() {
             try {
                 const response = await fetch('/api/realtime-heatmap');
@@ -492,13 +802,14 @@
                 currentEvents = data.events || [];
                 serverCurrentMode = (data.mode || 'simulation').toLowerCase();
                 document.getElementById('stat-count').innerText = currentEvents.length;
-                document.getElementById('stat-window').innerText = data.window || '2 giờ qua';
+                document.getElementById('stat-window').innerText = data.window || '60 phút';
                 document.getElementById('badge-mode').innerText = serverCurrentMode.toUpperCase();
 
                 updateModeButtonUI();
-                renderMapAndFeed(currentEvents);
+                renderLiveMapAndFeed(currentEvents);
+                renderLeaderboard(currentEvents);
             } catch (err) {
-                console.error("Lỗi khi tải dữ liệu:", err);
+                console.error("Lỗi tải sự kiện:", err);
             }
         }
 
@@ -507,17 +818,14 @@
             if (btn) {
                 if (serverCurrentMode === 'live') {
                     btn.innerHTML = '🔄 Sang Simulation';
-                    btn.title = 'Bấm để chuyển về chế độ Mô phỏng dữ liệu trôi động';
                 } else {
-                    btn.innerHTML = '⚡ Sang Live Apify';
-                    btn.title = 'Bấm để cào TikTok + Facebook thời gian thực qua Apify';
+                    btn.innerHTML = '⚡ Sang Live';
                 }
             }
         }
 
         async function toggleServerMode() {
             const btn = document.getElementById('btn-toggle-mode');
-            const originalHtml = btn.innerHTML;
             btn.innerHTML = '<span>⏳ Đang đổi...</span>';
             btn.disabled = true;
 
@@ -526,10 +834,8 @@
                 const result = await response.json();
                 serverCurrentMode = (result.mode || 'simulation').toLowerCase();
                 await fetchRealtimeEvents();
-                alert(`Đã chuyển sang chế độ: ${serverCurrentMode.toUpperCase()}\nHiện có ${result.count} tuyến ngập trên bản đồ.`);
             } catch (err) {
-                console.error("Lỗi khi đổi chế độ:", err);
-                alert("Không thể chuyển đổi chế độ.");
+                console.error("Lỗi đổi chế độ:", err);
             } finally {
                 btn.disabled = false;
                 updateModeButtonUI();
@@ -539,21 +845,42 @@
         async function triggerPoll() {
             const btn = document.getElementById('btn-poll');
             const originalHtml = btn.innerHTML;
-            const isLive = serverCurrentMode === 'live';
-            btn.innerHTML = isLive ? '<span>⏳ Đang cào dữ liệu (~20s)...</span>' : '<span>⏳ Đang nạp sự kiện mới...</span>';
+            btn.innerHTML = '<span>⏳ Đang quét...</span>';
             btn.disabled = true;
 
             try {
-                const response = await fetch('/api/trigger-poll', { method: 'POST' });
-                const result = await response.json();
+                await fetch('/api/trigger-poll', { method: 'POST' });
                 await fetchRealtimeEvents();
-                alert(`Quét hoàn tất!\nChế độ: ${serverCurrentMode.toUpperCase()}\nĐã cập nhật ${result.count} tuyến ngập lụt lên bản đồ.`);
             } catch (err) {
                 console.error("Lỗi khi quét:", err);
-                alert("Không thể kết nối đến máy chủ.");
             } finally {
                 btn.innerHTML = originalHtml;
                 btn.disabled = false;
+            }
+        }
+
+        // Bật/tắt các lớp trên bản đồ
+        function toggleLiveLayer() {
+            isLiveLayerVisible = !isLiveLayerVisible;
+            const btn = document.getElementById('btn-toggle-live');
+            if (isLiveLayerVisible) {
+                btn.classList.add('active');
+                map.addLayer(liveMarkersGroup);
+            } else {
+                btn.classList.remove('active');
+                map.removeLayer(liveMarkersGroup);
+            }
+        }
+
+        function toggleCsgtLayer() {
+            isCsgtLayerVisible = !isCsgtLayerVisible;
+            const btn = document.getElementById('btn-toggle-csgt');
+            if (isCsgtLayerVisible) {
+                btn.classList.add('active');
+                map.addLayer(csgtMarkersGroup);
+            } else {
+                btn.classList.remove('active');
+                map.removeLayer(csgtMarkersGroup);
             }
         }
 
@@ -569,21 +896,44 @@
             }
         }
 
-        function toggleMarkers() {
-            isMarkersVisible = !isMarkersVisible;
-            const btn = document.getElementById('btn-markers');
-            if (isMarkersVisible) {
-                btn.classList.add("active");
-                map.addLayer(markersGroup);
-            } else {
-                btn.classList.remove("active");
-                map.removeLayer(markersGroup);
-            }
+        // Vẽ các điểm cảnh báo CSGT (Icon vàng cố định)
+        function renderCsgtMarkers() {
+            csgtMarkersGroup.clearLayers();
+            csgtHotspots.forEach(spot => {
+                const icon = L.divIcon({
+                    className: 'csgt-custom-div-icon',
+                    html: `<div class="csgt-marker-pin" title="${spot.street}">⚠️</div>`,
+                    iconSize: [26, 26],
+                    iconAnchor: [13, 13]
+                });
+
+                const m = L.marker([spot.lat, spot.lon], { icon: icon });
+                
+                const causeBadge = spot.cause === 'tide' ? '🌊 Triều cường dâng cao' : '🌧️ Mưa lớn thoát chậm';
+                const popupContent = `
+                    <div style="font-family: sans-serif; font-size: 12px; min-width: 240px; color: #1e293b;">
+                        <div style="background: #f59e0b; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-bottom: 6px;">
+                            ⚠️ ĐIỂM CẢNH BÁO NGUY CƠ (PC08 CSGT)
+                        </div>
+                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 4px;">${spot.street}</div>
+                        <div style="font-size: 11px; color: #475569; margin-bottom: 6px;"><b>Đoạn:</b> ${spot.segment || spot.street}</div>
+                        <div style="font-size: 11px; color: #475569; margin-bottom: 6px;"><b>ĐVHC mới:</b> ${spot.ward} (${spot.district})</div>
+                        <div style="display: inline-block; background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; margin-bottom: 6px;">
+                            ${causeBadge}
+                        </div>
+                        <div style="font-size: 10px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 4px;">
+                            💡 Khuyến nghị: Khu vực trũng thấp, lưu ý khi có mưa lớn hoặc triều cường.
+                        </div>
+                    </div>
+                `;
+                m.bindPopup(popupContent);
+                csgtMarkersGroup.addLayer(m);
+            });
         }
 
-        function renderMapAndFeed(events) {
-            markersGroup.clearLayers();
-
+        // Vẽ các sự kiện thời gian thực (Icon đỏ nhấp nháy) & danh sách Feed
+        function renderLiveMapAndFeed(events) {
+            liveMarkersGroup.clearLayers();
             const feedList = document.getElementById('feed-list');
             feedList.innerHTML = '';
 
@@ -593,151 +943,430 @@
                 feedList.innerHTML = `
                     <div style="padding: 48px 20px; text-align: center; color: #94a3b8; font-size: 13px;">
                         <div style="font-size: 36px; margin-bottom: 12px;">☀️</div>
-                        <b style="color: #f8fafc; font-size: 15px; display: block; margin-bottom: 8px;">Không có điểm ngập mới trong 2 giờ qua</b>
+                        <b style="color: #f8fafc; font-size: 15px; display: block; margin-bottom: 8px;">Không có điểm ngập mới trong 60 phút qua</b>
                         <p style="font-size: 12px; color: #64748b; line-height: 1.5;">
-                            Chế độ thời gian thực tuân thủ lọc tối đa 2 giờ. Hiện tại thời tiết TP.HCM đang tạnh ráo.
+                            Chế độ thời gian thực chỉ hiển thị sự cố phát sinh gần nhất. Hiện tại thời tiết đang an toàn.
                         </p>
-                        <div style="margin-top: 14px; font-size: 11px; color: #38bdf8;">
-                            💡 Mẹo: Bấm <b>"Sang Simulation"</b> ở trên nếu bạn muốn xem mô phỏng dòng dữ liệu trôi động.
-                        </div>
                     </div>
                 `;
             }
 
             events.forEach((ev, idx) => {
+                const loc = ev.location || {};
+                const lat = loc.lat || ev.lat;
+                const lon = loc.lon || ev.lon;
+                if (!lat || !lon) return;
+
+                const isCitywide = (loc.ward || '').includes('Toàn thành phố') || loc.display_name === 'Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)';
+                const platform = (ev.platform || 'facebook').toLowerCase();
+                const isHigh = ev.severity === 'high';
                 const v = ev.veracity || {};
                 const vStatus = v.status || 'confirmed';
-                const vScore = v.confidence_score !== undefined ? Math.round(v.confidence_score * 100) : 75;
-                const vLabel = v.status_label || (vStatus === 'confirmed' ? 'Đã xác thực' : (vStatus === 'suspect' ? 'Nghi vấn' : 'Chưa kiểm chứng'));
-                const weatherInfo = v.weather_check || {};
-                const evidenceCount = v.evidence_count || 1;
+                const vScore = v.confidence_score !== undefined ? Math.round(v.confidence_score * 100) : 80;
 
-                let veracityBadgeHtml = '';
-                if (vStatus === 'confirmed') {
-                    veracityBadgeHtml = `<span class="veracity-badge confirmed" title="Đã xác thực bởi đồng thuận & thời tiết">🛡️ ${vLabel} (${vScore}%)</span>`;
-                } else if (vStatus === 'suspect') {
-                    veracityBadgeHtml = `<span class="veracity-badge suspect" title="Nghi vấn - Chờ thêm bài xác nhận">⚠️ ${vLabel} (${vScore}%)</span>`;
+                // Heat points
+                const pts = loc.heat_points && loc.heat_points.length > 0 ? loc.heat_points : [[lat, lon]];
+                const intensity = isCitywide ? 0.8 : (isHigh ? 1.0 : 0.6);
+                pts.forEach(p => heatPoints.push([p[0], p[1], intensity]));
+
+                // Marker icon
+                let markerHtml = '';
+                if (isCitywide) {
+                    markerHtml = `<div class="citywide-marker-pin" title="Phản ánh diện rộng">🌐</div>`;
                 } else {
-                    veracityBadgeHtml = `<span class="veracity-badge unverified" title="Chưa đủ điều kiện xác thực">⚪ ${vLabel}</span>`;
+                    markerHtml = `<div class="live-marker-pin" title="${loc.display_name || 'Ngập lụt'}">${isHigh ? '⚠️' : '🌊'}</div>`;
                 }
 
-                const loc = ev.location;
-                const platform = (ev.platform || '').toLowerCase();
-                const isHigh = ev.severity === 'high';
-
-                const pts = loc.heat_points && loc.heat_points.length > 0 
-                    ? loc.heat_points 
-                    : [[loc.lat, loc.lon]];
-
-                const intensity = Math.min(1.0, (ev.weight || 1.5) / 3.0);
-                pts.forEach(p => {
-                    heatPoints.push([p[0], p[1], intensity]);
+                const customIcon = L.divIcon({
+                    className: 'live-marker-container',
+                    html: markerHtml,
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
                 });
 
-                const pinColor = isHigh ? '#ef4444' : (ev.severity === 'medium' ? '#f97316' : '#0284c7');
-                const pinIconText = isHigh ? '⚠️' : '🌊';
-
-                const markerIcon = L.divIcon({
-                    className: 'custom-flood-pin',
-                    html: `<div style="
-                        background: radial-gradient(circle, ${pinColor} 50%, rgba(0, 0, 0, 0.4) 100%);
-                        width: 26px; height: 26px;
-                        border-radius: 50%;
-                        border: 2px solid white;
-                        box-shadow: 0 0 10px ${pinColor};
-                        display: flex; align-items: center; justify-content: center;
-                        color: white; font-size: 12px; font-weight: bold;
-                        cursor: pointer;
-                    ">${pinIconText}</div>`,
-                    iconSize: [26, 26],
-                    iconAnchor: [13, 13]
-                });
-
-                const marker = L.marker([loc.lat, loc.lon], { icon: markerIcon }).addTo(markersGroup);
-
-                let platformBadgeHtml = `<span class="platform-badge tiktok">TikTok</span>`;
-                if (platform === 'facebook') {
-                    platformBadgeHtml = `<span class="platform-badge facebook">Facebook</span>`;
-                } else if (platform === 'threads') {
-                    platformBadgeHtml = `<span class="platform-badge threads">Threads</span>`;
-                }
+                const marker = L.marker([lat, lon], { icon: customIcon });
 
                 const popupContent = `
-                    <div style="min-width: 270px; font-size: 12px; line-height: 1.5;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                            <b style="font-size: 14px; color: #38bdf8;">${loc.street}</b>
-                            <span style="color: ${pinColor}; font-size: 11px; font-weight: bold;">${ev.relative_time}</span>
+                    <div style="font-family: sans-serif; font-size: 12px; min-width: 260px; color: #1e293b;">
+                        <div style="background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-bottom: 6px; display: flex; justify-content: space-between;">
+                            <span>🔴 SỰ CỐ THỜI GIAN THỰC</span>
+                            <span>${ev.relative_time || 'Gần đây'}</span>
                         </div>
-                        <div style="margin-bottom: 4px;"><b>Nền tảng:</b> ${platformBadgeHtml} - <b>Đăng bởi:</b> ${ev.author}</div>
-                        <div style="margin-bottom: 4px;"><b>Đơn vị hành chính:</b> <span style="color: #a5f3fc; font-weight: 600;">${loc.ward}</span> (TP.HCM)</div>
-                        <div style="margin-bottom: 4px;"><b>Đặc tính ngập:</b> <span style="color: #fcd34d;">${loc.type || 'Ngập đô thị'}</span></div>
-                        <div style="margin-bottom: 6px;"><b>Mức độ phân tích:</b> <span style="color: ${pinColor}; font-weight: bold;">${ev.opinion} (Trọng số ${ev.weight})</span></div>
-                        <div class="veracity-box">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                                <span style="font-weight: 700; color: #94a3b8; font-size: 11px;">🛡️ XÁC THỰC DỮ LIỆU:</span>
-                                ${veracityBadgeHtml}
-                            </div>
-                            <div style="font-size: 11px; color: #cbd5e1; line-height: 1.4;">
-                                <div>• <b>Thời tiết thực tế:</b> <span style="color: #38bdf8;">${weatherInfo.reason || 'Trạm khí tượng ghi nhận bình thường'}</span></div>
-                                <div>• <b>Đồng thuận 60 phút:</b> <span style="color: #facc15;">${evidenceCount} nguồn cùng báo cáo</span> (bán kính 500m)</div>
-                            </div>
+                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 4px;">${loc.display_name || 'Điểm ngập'}</div>
+                        <div style="font-size: 11px; color: #475569; margin-bottom: 6px;"><b>ĐVHC mới:</b> ${loc.ward || 'Toàn TP'} (${loc.district || 'TP.HCM'})</div>
+                        <div style="background: #f1f5f9; padding: 6px 8px; border-radius: 4px; font-size: 11px; color: #334155; margin-bottom: 6px; font-style: italic;">
+                            "${ev.text || ev.title || 'Người dân phản ánh ngập lụt'}"
                         </div>
-                        <div style="background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px; font-style: italic; margin-bottom: 8px;">"${ev.text}"</div>
-                        <a href="${ev.url}" target="_blank" style="color: #38bdf8; text-decoration: underline; font-weight: 600;">Xem bài đăng gốc ↗</a>
+                        <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 6px;">
+                            <span style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">
+                                Nguồn: ${platform.toUpperCase()}
+                            </span>
+                            <span style="background: ${vStatus === 'confirmed' ? '#dcfce7' : '#fef9c3'}; color: ${vStatus === 'confirmed' ? '#166534' : '#854d0e'}; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">
+                                🛡️ Xác thực: ${vScore}%
+                            </span>
+                        </div>
+                        <div style="font-size: 10px; color: #b91c1c; font-weight: bold;">
+                            🚨 Khuyến cáo: Nước ngập sâu, người tham gia giao thông nên né đoạn đường này!
+                        </div>
                     </div>
                 `;
                 marker.bindPopup(popupContent);
+                liveMarkersGroup.addLayer(marker);
 
-                const feedItem = document.createElement('div');
-                feedItem.className = 'feed-item';
-                feedItem.style.borderLeftColor = pinColor;
-
-                feedItem.innerHTML = `
-                    <div class="feed-item-top">
-                        <div style="display: flex; align-items: center; gap: 6px;">
-                            ${platformBadgeHtml}
-                            <span class="location-tag">${loc.street}</span>
-                        </div>
-                        <span class="ward-pill">${loc.ward}</span>
-                            ${veracityBadgeHtml}
-                    </div>
-                    <div class="feed-text">${ev.text}</div>
-                    <div class="feed-item-top" style="margin-bottom: 0;">
-                        <div class="feed-aspects">
-                            <span class="opinion-badge" style="background: ${isHigh ? 'rgba(239, 68, 68, 0.25)' : 'rgba(249, 115, 22, 0.2)'}; color: ${isHigh ? '#fca5a5' : '#fed7aa'};">${ev.opinion}</span>
-                            <span class="aspect-badge">Trọng số: ${ev.weight}</span>
-                        </div>
-                        <span class="time-tag">${ev.relative_time}</span>
-                    </div>
-                `;
-                feedItem.onclick = () => {
-                    map.flyTo([loc.lat, loc.lon], 15, { duration: 1 });
+                // Feed card
+                const card = document.createElement('div');
+                card.className = 'feed-card';
+                card.onclick = () => {
+                    map.flyTo([lat, lon], 15);
                     marker.openPopup();
                 };
-                feedList.appendChild(feedItem);
+
+                card.innerHTML = `
+                    <div class="feed-card-header">
+                        <div class="feed-location">${isCitywide ? '🌐 ' : '📍 '}${loc.display_name || 'Điểm ngập'}</div>
+                        <span class="severity-badge ${ev.severity || 'medium'}">${ev.severity === 'high' ? 'Ngập nặng' : 'Ngập'}</span>
+                    </div>
+                    <div style="font-size: 11px; color: #38bdf8; margin-bottom: 4px;">
+                        Phường: <b>${loc.ward || 'Toàn TP'}</b>
+                    </div>
+                    <div class="feed-text">${ev.text || ev.title || ''}</div>
+                    <div class="feed-footer">
+                        <div style="display: flex; gap: 4px; align-items: center;">
+                            <span class="platform-badge ${platform}">${platform}</span>
+                            <span class="veracity-badge ${vStatus}">${vScore}%</span>
+                        </div>
+                        <div>${ev.relative_time || 'Vừa xong'}</div>
+                    </div>
+                `;
+                feedList.appendChild(card);
             });
 
-            if (heatLayer) {
-                map.removeLayer(heatLayer);
-                heatLayer = null;
-            }
-            if (heatPoints.length > 0) {
+            // Update heatlayer
+            if (heatLayer) map.removeLayer(heatLayer);
+            if (heatPoints.length > 0 && isHeatmapVisible) {
                 heatLayer = L.heatLayer(heatPoints, {
-                    radius: 36,
-                    blur: 22,
-                    maxZoom: 16,
-                    max: 1.0,
-                    minOpacity: 0.45,
-                    gradient: { 0.2: '#38bdf8', 0.5: '#eab308', 0.8: '#f97316', 1.0: '#ef4444' }
-                });
-                if (isHeatmapVisible) {
-                    heatLayer.addTo(map);
-                }
+                    radius: 28, blur: 18, maxZoom: 16,
+                    gradient: { 0.2: '#38bdf8', 0.5: '#f97316', 0.8: '#ef4444' }
+                }).addTo(map);
             }
         }
 
-        fetchRealtimeEvents();
-        setInterval(fetchRealtimeEvents, 10000);
+        // BẢNG XẾP HẠNG PHƯỜNG / XÃ (LEADERBOARD)
+        function renderLeaderboard(events) {
+            const listEl = document.getElementById('leaderboard-list');
+            listEl.innerHTML = '';
+
+            const wardCounts = {};
+            let citywideCount = 0;
+
+            events.forEach(ev => {
+                const loc = ev.location || {};
+                const w = loc.ward || 'Toàn thành phố (Chưa rõ phường/xã)';
+                if (w.includes('Toàn thành phố') || w.includes('Đô thị trung tâm') || w === 'TP.HCM') {
+                    citywideCount++;
+                } else {
+                    wardCounts[w] = (wardCounts[w] || 0) + 1;
+                }
+            });
+
+            // Sắp xếp các phường có sự kiện
+            let sortedWards = Object.entries(wardCounts).sort((a, b) => b[1] - a[1]);
+
+            // Lọc theo vùng siêu đô thị nếu chọn
+            if (activeLbRegion !== 'all') {
+                sortedWards = sortedWards.filter(([wardName]) => {
+                    const unit = adminUnits.find(u => u.name.toLowerCase() === wardName.toLowerCase());
+                    if (!unit) return activeLbRegion === 'hcm';
+                    const rc = (unit.region_cluster || '').toLowerCase();
+                    if (activeLbRegion === 'hcm') return rc.includes('tphcm') || rc.includes('tp.hcm');
+                    if (activeLbRegion === 'binhduong') return rc.includes('bình dương') || rc.includes('binh duong');
+                    if (activeLbRegion === 'brvt') return rc.includes('bà rịa') || rc.includes('vũng tàu');
+                    return true;
+                });
+            }
+
+            if (sortedWards.length === 0) {
+                listEl.innerHTML = `
+                    <div style="text-align: center; color: #64748b; font-size: 12px; padding: 30px 10px;">
+                        Chưa có phường/xã nào ghi nhận điểm ngập cụ thể trong đợt quét này.
+                    </div>
+                `;
+            } else {
+                sortedWards.forEach(([wardName, count], idx) => {
+                    const unit = adminUnits.find(u => u.name.toLowerCase() === wardName.toLowerCase()) || {};
+                    let rankClass = '';
+                    let rankIcon = `${idx + 1}`;
+                    if (idx === 0) { rankClass = 'gold'; rankIcon = '🥇'; }
+                    else if (idx === 1) { rankClass = 'silver'; rankIcon = '🥈'; }
+                    else if (idx === 2) { rankClass = 'bronze'; rankIcon = '🥉'; }
+
+                    const item = document.createElement('div');
+                    item.className = 'lb-card';
+                    item.onclick = () => {
+                        if (unit.lat && unit.lon) {
+                            map.flyTo([unit.lat, unit.lon], 15);
+                        }
+                    };
+
+                    item.innerHTML = `
+                        <div class="lb-rank ${rankClass}">${rankIcon}</div>
+                        <div class="lb-info">
+                            <div class="lb-ward-name">${wardName}</div>
+                            <div class="lb-region-tag">${unit.cluster_detail || unit.region_cluster || 'TP.HCM'}</div>
+                        </div>
+                        <div class="lb-count-badge">${count} sự kiện</div>
+                    `;
+                    listEl.appendChild(item);
+                });
+            }
+
+            // Ô hiển thị tin diện rộng
+            const cwBox = document.getElementById('citywide-container');
+            const cwText = document.getElementById('citywide-text');
+            if (citywideCount > 0) {
+                cwBox.style.display = 'block';
+                cwText.innerText = `${citywideCount} tin phản ánh chung chung (Sài Gòn / TP.HCM / Bình Dương / Vũng Tàu không ghi tên đường, phường cụ thể). Hệ thống tách riêng các tin này để đảm bảo bảng xếp hạng 168 phường/xã luôn công bằng, chính xác.`;
+            } else {
+                cwBox.style.display = 'none';
+            }
+        }
+
+        function filterLeaderboard(region, btnEl) {
+            activeLbRegion = region;
+            document.querySelectorAll('.lb-filter-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            renderLeaderboard(currentEvents);
+        }
+
+        function switchSidebarTab(tabName) {
+            document.getElementById('tab-btn-feed').classList.toggle('active', tabName === 'feed');
+            document.getElementById('tab-btn-leaderboard').classList.toggle('active', tabName === 'leaderboard');
+            document.getElementById('tab-content-feed').classList.toggle('hidden', tabName !== 'feed');
+            document.getElementById('tab-content-leaderboard').classList.toggle('hidden', tabName !== 'leaderboard');
+        }
+
+        // TÌM KIẾM ĐỊA CHỈ / PHƯỜNG / TUYẾN ĐƯỜNG (SEARCH BAR)
+        function handleSearchInput(query) {
+            const dropdown = document.getElementById('search-dropdown');
+            const q = (query || '').trim().toLowerCase();
+            if (q.length < 2) {
+                dropdown.style.display = 'none';
+                return;
+            }
+
+            const results = [];
+
+            // 1. Tìm trong sự kiện Live
+            currentEvents.forEach(ev => {
+                const loc = ev.location || {};
+                const name = (loc.display_name || '').toLowerCase();
+                const text = (ev.text || '').toLowerCase();
+                if (name.includes(q) || text.includes(q)) {
+                    results.push({
+                        type: 'live',
+                        title: loc.display_name || 'Điểm ngập Live',
+                        subtitle: `🔴 Sự cố Live • Phường: ${loc.ward || 'Toàn TP'}`,
+                        lat: loc.lat || ev.lat,
+                        lon: loc.lon || ev.lon
+                    });
+                }
+            });
+
+            // 2. Tìm trong CSGT Hotspots
+            csgtHotspots.forEach(spot => {
+                const s = (spot.street || '').toLowerCase();
+                const seg = (spot.segment || '').toLowerCase();
+                const w = (spot.ward || '').toLowerCase();
+                if (s.includes(q) || seg.includes(q) || w.includes(q)) {
+                    results.push({
+                        type: 'csgt',
+                        title: spot.street,
+                        subtitle: `⚠️ Cảnh báo CSGT • ${spot.ward} (${spot.segment || ''})`,
+                        lat: spot.lat,
+                        lon: spot.lon
+                    });
+                }
+            });
+
+            // 3. Tìm trong 168 ĐVHC
+            adminUnits.forEach(u => {
+                const uname = (u.name || '').toLowerCase();
+                if (uname.includes(q)) {
+                    results.push({
+                        type: 'unit',
+                        title: u.name,
+                        subtitle: `🏛️ ĐVHC mới (NQ 1685) • ${u.cluster_detail || u.region_cluster}`,
+                        lat: u.lat,
+                        lon: u.lon
+                    });
+                }
+            });
+
+            // Hiển thị tối đa 8 kết quả
+            dropdown.innerHTML = '';
+            const topRes = results.slice(0, 8);
+            if (topRes.length === 0) {
+                dropdown.innerHTML = `<div style="padding: 10px 12px; font-size: 11px; color: #64748b;">Không tìm thấy địa điểm khớp với "${query}"</div>`;
+            } else {
+                topRes.forEach(r => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.onclick = () => {
+                        dropdown.style.display = 'none';
+                        document.getElementById('search-input').value = r.title;
+                        map.flyTo([r.lat, r.lon], 16);
+                        L.popup().setLatLng([r.lat, r.lon]).setContent(`<b>${r.title}</b><br><span style="font-size: 11px; color: #64748b;">${r.subtitle}</span>`).openOn(map);
+                    };
+                    item.innerHTML = `
+                        <div class="search-res-title">${r.title}</div>
+                        <div class="search-res-sub">${r.subtitle}</div>
+                    `;
+                    dropdown.appendChild(item);
+                });
+            }
+            dropdown.style.display = 'block';
+        }
+
+        // TÍNH KHOẢNG CÁCH HAVERSINE (MÉT)
+        function calcDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371e3;
+            const phi1 = lat1 * Math.PI / 180;
+            const phi2 = lat2 * Math.PI / 180;
+            const dPhi = (lat2 - lat1) * Math.PI / 180;
+            const dLambda = (lon2 - lon1) * Math.PI / 180;
+
+            const a = Math.sin(dPhi / 2) * Math.sin(dPhi / 2) +
+                      Math.cos(phi1) * Math.cos(phi2) *
+                      Math.sin(dLambda / 2) * Math.sin(dLambda / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return Math.round(R * c);
+        }
+
+        // QUÉT NGUY CƠ QUANH TÔI (PROXIMITY SCANNER)
+        function openProximityScanner() {
+            document.getElementById('proximity-modal').style.display = 'flex';
+            const locEl = document.getElementById('prox-user-loc');
+            locEl.innerText = "⏳ Đang kết nối GPS vị trí của bạn...";
+
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    pos => {
+                        const uLat = pos.coords.latitude;
+                        const uLon = pos.coords.longitude;
+                        locEl.innerText = `Vị trí tọa độ của bạn: [${uLat.toFixed(4)}, ${uLon.toFixed(4)}]`;
+                        runProximityCalculations(uLat, uLon);
+                    },
+                    err => {
+                        console.warn("GPS bị từ chối hoặc lỗi, lấy tâm bản đồ hiện tại:", err);
+                        const c = map.getCenter();
+                        locEl.innerText = `Không thể lấy GPS (đang dùng tâm bản đồ): [${c.lat.toFixed(4)}, ${c.lng.toFixed(4)}]`;
+                        runProximityCalculations(c.lat, c.lng);
+                    },
+                    { timeout: 8000 }
+                );
+            } else {
+                const c = map.getCenter();
+                locEl.innerText = `Trình duyệt không hỗ trợ GPS (dùng tâm bản đồ): [${c.lat.toFixed(4)}, ${c.lng.toFixed(4)}]`;
+                runProximityCalculations(c.lat, c.lng);
+            }
+        }
+
+        function runProximityCalculations(uLat, uLon) {
+            const MAX_DIST = 1500; // Bán kính 1.5 km
+
+            // Đánh dấu vị trí người dùng trên map
+            userMarkerGroup.clearLayers();
+            const uIcon = L.divIcon({
+                html: `<div style="background: #3b82f6; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px #3b82f6;"></div>`,
+                iconSize: [16, 16],
+                iconAnchor: [8, 8]
+            });
+            userMarkerGroup.addLayer(L.marker([uLat, uLon], { icon: uIcon }).bindPopup("<b>Vị trí hiện tại của bạn</b>"));
+            map.addLayer(userMarkerGroup);
+
+            // 1. Tìm các sự cố Live trong bán kính
+            const nearbyLive = [];
+            currentEvents.forEach(ev => {
+                const loc = ev.location || {};
+                const lat = loc.lat || ev.lat;
+                const lon = loc.lon || ev.lon;
+                if (!lat || !lon) return;
+                const d = calcDistance(uLat, uLon, lat, lon);
+                if (d <= MAX_DIST) {
+                    nearbyLive.push({ event: ev, dist: d });
+                }
+            });
+            nearbyLive.sort((a, b) => a.dist - b.dist);
+
+            const liveListEl = document.getElementById('prox-live-list');
+            liveListEl.innerHTML = '';
+            if (nearbyLive.length === 0) {
+                liveListEl.innerHTML = `
+                    <div style="font-size: 11px; color: #4ade80; background: rgba(34, 197, 94, 0.1); padding: 8px 10px; border-radius: 6px; border: 1px solid rgba(34, 197, 94, 0.2);">
+                        ✅ Khu vực quanh bạn (1.5 km) an toàn, hiện chưa ghi nhận sự cố ngập nào từ cộng đồng trong khung giờ qua.
+                    </div>
+                `;
+            } else {
+                nearbyLive.forEach(item => {
+                    const ev = item.event;
+                    const loc = ev.location || {};
+                    const div = document.createElement('div');
+                    div.className = 'prox-item';
+                    div.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                            <b style="color: #f8fafc; font-size: 12px;">${loc.display_name || 'Điểm ngập Live'}</b>
+                            <span class="prox-dist">Cách bạn ${item.dist} m</span>
+                        </div>
+                        <div style="font-size: 11px; color: #94a3b8;">Phường: ${loc.ward || 'Toàn TP'} • Báo ${ev.relative_time || 'gần đây'}</div>
+                    `;
+                    liveListEl.appendChild(div);
+                });
+            }
+
+            // 2. Tìm điểm CSGT trong bán kính
+            const nearbyCsgt = [];
+            csgtHotspots.forEach(spot => {
+                const d = calcDistance(uLat, uLon, spot.lat, spot.lon);
+                if (d <= MAX_DIST) {
+                    nearbyCsgt.push({ spot: spot, dist: d });
+                }
+            });
+            nearbyCsgt.sort((a, b) => a.dist - b.dist);
+
+            const csgtListEl = document.getElementById('prox-csgt-list');
+            csgtListEl.innerHTML = '';
+            if (nearbyCsgt.length === 0) {
+                csgtListEl.innerHTML = `
+                    <div style="font-size: 11px; color: #94a3b8; background: rgba(30, 41, 59, 0.5); padding: 8px 10px; border-radius: 6px;">
+                        Không có điểm đen cảnh báo ngập thường xuyên nào của CSGT trong bán kính 1.5 km.
+                    </div>
+                `;
+            } else {
+                nearbyCsgt.forEach(item => {
+                    const spot = item.spot;
+                    const div = document.createElement('div');
+                    div.className = 'prox-item';
+                    div.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                            <b style="color: #f8fafc; font-size: 12px;">${spot.street}</b>
+                            <span class="prox-dist" style="color: #f59e0b;">Cách bạn ${item.dist} m</span>
+                        </div>
+                        <div style="font-size: 11px; color: #94a3b8;">${spot.ward} • Nguy cơ: ${spot.cause === 'tide' ? 'Triều cường' : 'Mưa lớn'}</div>
+                    `;
+                    csgtListEl.appendChild(div);
+                });
+            }
+        }
+
+        function closeProximityModal() {
+            document.getElementById('proximity-modal').style.display = 'none';
+        }
+
+        function closeModalOnOverlay(e) {
+            if (e.target.id === 'proximity-modal') {
+                closeProximityModal();
+            }
+        }
     </script>
 </body>
 </html>

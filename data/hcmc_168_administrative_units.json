@@ -26,8 +26,6 @@
       "p.sài gòn",
       "phuong sai gon",
       "phường sài gòn",
-      "sai gon",
-      "sài gòn",
       "đa kao"
     ]
   },
@@ -2399,8 +2397,6 @@
     ],
     "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Phú Mỹ (thành phố Thủ Dầu Một), Hòa Phú, Phú Tân và Phú Chánh thành phường mới có tên gọi là phường Bình Dương.",
     "keywords": [
-      "binh duong",
-      "bình dương",
       "p. bình dương",
       "p.bình dương",
       "phu my",
@@ -2761,9 +2757,7 @@
       "thang nhi",
       "thang tam",
       "thắng nhì",
-      "thắng tam",
-      "vung tau",
-      "vũng tàu"
+      "thắng tam"
     ]
   },
   {
@@ -2890,8 +2884,6 @@
     ],
     "description": "Sắp xếp toàn bộ diện tích tự nhiên, quy mô dân số của các phường Phước Trung, Phước Nguyên, Long Toàn và Phước Hưng thành phường mới có tên gọi là phường Bà Rịa.",
     "keywords": [
-      "ba ria",
-      "bà rịa",
       "p. bà rịa",
       "p.bà rịa",
       "phuoc trung",

@@ -74,16 +74,67 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
             return
 
         elif self.path.startswith("/api/realtime-heatmap"):
+            events = GLOBAL_STATE.get("events", [])
+            ward_counts = {}
+            citywide_count = 0
+            for ev in events:
+                loc = ev.get("location", {})
+                w = loc.get("ward") or "Toàn thành phố (Chưa rõ phường/xã)"
+                if "Toàn thành phố" in w or "Đô thị trung tâm" in w or w == "TP.HCM":
+                    citywide_count += 1
+                else:
+                    ward_counts[w] = ward_counts.get(w, 0) + 1
+
             payload = {
                 "status": "success",
                 "mode": GLOBAL_STATE["mode"],
                 "window": GLOBAL_STATE.get("active_window", f"{GLOBAL_STATE['window_minutes']} phút"),
-                "total_events": len(GLOBAL_STATE["events"]),
+                "total_events": len(events),
                 "last_updated": GLOBAL_STATE["last_updated"],
-                "events": GLOBAL_STATE["events"]
+                "events": events,
+                "ward_stats": ward_counts,
+                "citywide_count": citywide_count
             }
             body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
 
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Connection", "close")
+            self.end_headers()
+            self.wfile.write(body)
+            return
+
+        elif self.path.startswith("/api/csgt-hotspots"):
+            csgt_file = os.path.join(ROOT_DIR, "data", "csgt_122_flood_hotspots.json")
+            data = []
+            if os.path.exists(csgt_file):
+                try:
+                    with open(csgt_file, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                except Exception:
+                    data = []
+            body = json.dumps({"status": "success", "count": len(data), "hotspots": data}, ensure_ascii=False).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Connection", "close")
+            self.end_headers()
+            self.wfile.write(body)
+            return
+
+        elif self.path.startswith("/api/admin-units"):
+            admin_file = os.path.join(ROOT_DIR, "data", "hcmc_168_administrative_units.json")
+            data = []
+            if os.path.exists(admin_file):
+                try:
+                    with open(admin_file, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                except Exception:
+                    data = []
+            body = json.dumps({"status": "success", "count": len(data), "units": data}, ensure_ascii=False).encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
