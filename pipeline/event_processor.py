@@ -474,7 +474,10 @@ def process_tiktok_item(item: Dict[str, Any], reference_time: Optional[int] = No
             "lat": hotspot["lat"],
             "lon": hotspot["lon"],
             "heat_points": hotspot.get("heat_points", [[hotspot["lat"], hotspot["lon"]]]),
-            "type": hotspot["type"]
+            "type": hotspot["type"],
+            "cause": hotspot.get("cause", "rain"),
+            "cause_label": hotspot.get("cause_label", "Mưa lớn, nước không thoát kịp"),
+            "source": hotspot.get("source", "seed")
         },
         "aspect": hotspot["display_name"],
         "opinion": analysis["opinion"],

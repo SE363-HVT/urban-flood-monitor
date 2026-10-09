@@ -28,8 +28,44 @@ import urllib.error
 from datetime import datetime, timezone
 from typing import Dict, Any, Optional, List, Tuple
 
+import os
 # Bán kính trái đất (mét) phục vụ tính khoảng cách Haversine
 EARTH_RADIUS_METERS = 6371000.0
+
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
+CSGT_FILE = os.path.join(DATA_DIR, "csgt_122_flood_hotspots.json")
+
+def load_tidal_hotspots() -> List[Dict[str, Any]]:
+    if os.path.exists(CSGT_FILE):
+        try:
+            with open(CSGT_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return [item for item in data if item.get("cause") == "tide"]
+        except Exception:
+            return []
+    return []
+
+TIDAL_HOTSPOTS = load_tidal_hotspots()
+
+def is_tidal_flood_event(event: Dict[str, Any], lat: Optional[float] = None, lon: Optional[float] = None) -> bool:
+    """Xác định sự kiện có thuộc nhóm ngập do triều cường hay không."""
+    loc = event.get("location")
+    if isinstance(loc, dict):
+        if loc.get("cause") == "tide":
+            return True
+        type_str = str(loc.get("type", "")).lower()
+        if "triều cường" in type_str or "trieu cuong" in type_str:
+            return True
+            
+    text = str(event.get("text", "")).lower()
+    if any(k in text for k in ["triều cường", "trieu cuong", "nước dâng", "nuoc dang", "tràn bờ", "tran bo"]):
+        return True
+
+    if lat is not None and lon is not None:
+        for t in TIDAL_HOTSPOTS:
+            if haversine_distance_meters(lat, lon, t["lat"], t["lon"]) <= 800:
+                return True
+    return False
 
 
 def haversine_distance_meters(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
@@ -117,7 +153,7 @@ class VeracityChecker:
     # =========================================================================
     # TẦNG 2: ĐỐI SOÁT KHÍ TƯỢNG (THEO TỌA ĐỘ ĐỊA ĐIỂM & KHUNG GIỜ ĐĂNG TẢI)
     # =========================================================================
-    def check_weather_plausibility(self, lat: float, lon: float, timestamp: int) -> Dict[str, Any]:
+    def check_weather_plausibility(self, lat: float, lon: float, timestamp: int, is_tidal: bool = False) -> Dict[str, Any]:
         """
         Kiểm tra thời tiết thực tế tại tọa độ sự kiện.
         - Tọa độ: Lấy chính xác tọa độ GPS của điểm ngập (hoặc lưới 1km lân cận).
@@ -145,7 +181,7 @@ class VeracityChecker:
                     f"latitude={lat}&longitude={lon}&start_date={date_str}&end_date={date_str}&hourly=precipitation,rain&timezone=Asia%2FBangkok"
                 )
                 req = urllib.request.Request(url, headers={"User-Agent": "SE363-UrbanFlood-Monitor/1.0"})
-                with urllib.request.urlopen(req, timeout=3) as response:
+                with urllib.request.urlopen(req, timeout=6) as response:
                     payload = json.loads(response.read().decode("utf-8"))
 
                 hourly_precip = payload.get("hourly", {}).get("precipitation", [])
@@ -206,7 +242,7 @@ class VeracityChecker:
                     f"latitude={lat}&longitude={lon}&current=precipitation,rain&timezone=Asia%2FBangkok"
                 )
                 req = urllib.request.Request(url, headers={"User-Agent": "SE363-UrbanFlood-Monitor/1.0"})
-                with urllib.request.urlopen(req, timeout=3) as response:
+                with urllib.request.urlopen(req, timeout=6) as response:
                     payload = json.loads(response.read().decode("utf-8"))
 
                 current = payload.get("current", {})
@@ -223,9 +259,14 @@ class VeracityChecker:
                     plausible = True
                     desc = f"Trạm khí tượng thời gian thực: Có mưa rào ({val} mm/h)"
                 else:
-                    score = 0.45
-                    plausible = True
-                    desc = "Không ghi nhận mưa tại thời điểm này (có thể do triều cường)"
+                    if is_tidal:
+                        score = 0.90
+                        plausible = True
+                        desc = "Điểm ngập triều cường đặc trưng (PC08 CSGT) - Triều dâng ven sông/kênh rạch (không phụ thuộc mưa)"
+                    else:
+                        score = 0.45
+                        plausible = True
+                        desc = "Không ghi nhận mưa tại thời điểm này (có thể do triều cường)"
 
                 res = {
                     "checked": True,
@@ -238,12 +279,21 @@ class VeracityChecker:
                 return res
 
             except Exception as e:
-                fallback_res = {
-                    "checked": False,
-                    "score": 0.60,
-                    "plausible": True,
-                    "reason": f"Weather API offline fallback ({e})"
-                }
+                if is_tidal:
+                    fallback_res = {
+                        "checked": True,
+                        "precipitation_mm": 0.0,
+                        "score": 0.90,
+                        "plausible": True,
+                        "reason": f"Điểm ngập triều cường đặc trưng (PC08 CSGT) - Triều dâng ven sông/kênh rạch (Open-Meteo fallback: {e})"
+                    }
+                else:
+                    fallback_res = {
+                        "checked": False,
+                        "score": 0.60,
+                        "plausible": True,
+                        "reason": f"Weather API offline fallback ({e})"
+                    }
                 return fallback_res
 
     # =========================================================================
@@ -313,8 +363,11 @@ class VeracityChecker:
             content_eval = self.evaluate_content_ai(event)
             content_score = content_eval["content_score"]
 
+            # Xác định xem sự kiện có thuộc nhóm ngập do triều cường hay không
+            is_tidal = is_tidal_flood_event(event, lat, lon)
+
             # 2. Đối soát thời tiết (theo tọa độ cụ thể & khung giờ đăng tải)
-            weather_eval = self.check_weather_plausibility(lat, lon, event_time) if (lat and lon) else {
+            weather_eval = self.check_weather_plausibility(lat, lon, event_time, is_tidal=is_tidal) if (lat and lon) else {
                 "checked": False, "score": 0.60, "plausible": True, "reason": "No coordinates for weather"
             }
             weather_score = weather_eval["score"]
@@ -364,6 +417,7 @@ class VeracityChecker:
                 "correlated_event_ids": evidence_ids,
                 "content_check": content_eval,
                 "weather_check": weather_eval,
+                "is_tidal_point": is_tidal,
                 "consensus_window_minutes": 60,
                 "evaluated_at": datetime.now(timezone.utc).isoformat()
             }

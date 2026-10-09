@@ -18,6 +18,18 @@ from typing import Optional, Dict, Any, List
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 CACHE_FILE = os.path.join(DATA_DIR, "gazetteer_dynamic_cache.json")
+CSGT_FILE = os.path.join(DATA_DIR, "csgt_122_flood_hotspots.json")
+
+def load_csgt_hotspots() -> List[Dict[str, Any]]:
+    if os.path.exists(CSGT_FILE):
+        try:
+            with open(CSGT_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return []
+    return []
+
+CSGT_HOTSPOTS: List[Dict[str, Any]] = load_csgt_hotspots()
 
 DYNAMIC_CACHE: Dict[str, Dict[str, Any]] = {}
 FAILED_DYNAMIC_CACHE = set()
@@ -1087,6 +1099,10 @@ HOTSPOTS: List[Dict[str, Any]] = [
     }
 ]
 
+# Tích hợp 122 điểm ngập chuẩn hóa từ PC08 CSGT Công an TP.HCM vào đầu danh mục ưu tiên
+if CSGT_HOTSPOTS:
+    HOTSPOTS = CSGT_HOTSPOTS + HOTSPOTS
+
 # TOÀN BỘ CÁC TỈNH/THÀNH PHỐ NGOÀI TP. HỒ CHÍ MINH (LOẠI BỎ TRIỆT ĐỂ KHÔNG CHỪA SƠ HỞ)
 OUT_OF_SCOPE_LOCATIONS = [
     # Miền Bắc
@@ -1304,7 +1320,10 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
                         "lat": hotspot["lat"],
                         "lon": hotspot["lon"],
                         "heat_points": hotspot.get("heat_points", [[hotspot["lat"], hotspot["lon"]]]),
-                        "type": hotspot["type"]
+                        "type": hotspot["type"],
+                        "cause": hotspot.get("cause", "rain"),
+                        "cause_label": hotspot.get("cause_label", "Mưa lớn, nước không thoát kịp"),
+                        "source": hotspot.get("source", "seed")
                     }
 
     # Nếu đã khớp địa danh cụ thể tại TP.HCM (Cấp 2 hoặc Cấp 3: đường/phường/xã)
@@ -1354,7 +1373,10 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
                         "lat": hotspot["lat"],
                         "lon": hotspot["lon"],
                         "heat_points": hotspot.get("heat_points", [[hotspot["lat"], hotspot["lon"]]]),
-                        "type": hotspot["type"]
+                        "type": hotspot["type"],
+                        "cause": hotspot.get("cause", "rain"),
+                        "cause_label": hotspot.get("cause_label", "Mưa lớn, nước không thoát kịp"),
+                        "source": hotspot.get("source", "seed")
                     }
     if best_match:
         return best_match
