@@ -103,13 +103,14 @@ DISTRICT_OLD_TO_NEW = {
         "binh tri dong": "Phường Bình Trị Đông", "binh tri dong a": "Phường Bình Trị Đông",
         "binh hung hoa": "Phường Bình Hưng Hòa", "binh hung hoa a": "Phường Bình Hưng Hòa"
     },
-    # Quận Bình Thạnh
+    # Quận Bình Thạnh (Chuẩn hóa ĐVHC mới theo NQ 1685 & NQ 1278)
     "binh thanh": {
-        "1": "Phường Gia Định", "2": "Phường Gia Định", "7": "Phường Gia Định", "17": "Phường Gia Định",
-        "12": "Phường Bình Thạnh", "14": "Phường Bình Thạnh", "26": "Phường Bình Thạnh",
-        "5": "Phường Bình Lợi Trung", "11": "Phường Bình Lợi Trung", "13": "Phường Bình Lợi Trung",
-        "19": "Phường Thạnh Mỹ Tây", "22": "Phường Thạnh Mỹ Tây", "25": "Phường Thạnh Mỹ Tây",
-        "27": "Phường Bình Quới", "28": "Phường Bình Quới"
+        "1": "Phường Gia Định", "2": "Phường Gia Định", "3": "Phường Gia Định", "7": "Phường Gia Định", "17": "Phường Gia Định",
+        "12": "Phường Bình Thạnh", "14": "Phường Bình Thạnh", "15": "Phường Bình Thạnh", "24": "Phường Bình Thạnh", "26": "Phường Bình Thạnh",
+        "5": "Phường Bình Lợi Trung", "6": "Phường Bình Lợi Trung", "11": "Phường Bình Lợi Trung", "13": "Phường Bình Lợi Trung",
+        "19": "Phường Thạnh Mỹ Tây", "21": "Phường Thạnh Mỹ Tây", "22": "Phường Thạnh Mỹ Tây", "25": "Phường Thạnh Mỹ Tây",
+        "27": "Phường Bình Quới", "28": "Phường Bình Quới",
+        "binh thanh": "Phường Bình Thạnh", "gia dinh": "Phường Gia Định", "bach dang": "Phường Bình Thạnh"
     },
     # Quận Gò Vấp
     "go vap": {
@@ -200,7 +201,7 @@ DISTRICT_OLD_TO_NEW = {
     "vung tau": {
         "1": "Phường Vũng Tàu", "2": "Phường Vũng Tàu", "3": "Phường Vũng Tàu", "4": "Phường Vũng Tàu", "5": "Phường Vũng Tàu",
         "thang nhi": "Phường Vũng Tàu", "thang tam": "Phường Vũng Tàu",
-        "7": "Phường Tam Thắng", "8": "Phường Tam Thắng", "9": "Phường Tam Thắng", "nguyen an ninh": "Phường Tam Thắng",
+        "7": "Phường Tam Thắng", "8": "Phường Tam Thắng", "9": "Phường Tam Thắng", 
         "10": "Phường Rạch Dừa", "thang nhat": "Phường Rạch Dừa", "rach dua": "Phường Rạch Dừa",
         "11": "Phường Phước Thắng", "12": "Phường Phước Thắng",
         "long son": "Xã Long Sơn"
@@ -258,6 +259,17 @@ class AdminResolver:
                 norm_old = _normalize_str(old_u)
                 if norm_old:
                     self.old_to_new_map[norm_old] = name
+
+        # Bổ sung các ánh xạ phường cũ đặc thù tránh sót lọt
+        extra_old = {
+            "24": "Phường Bình Thạnh", "phuong 24": "Phường Bình Thạnh",
+            "15": "Phường Bình Thạnh", "phuong 15": "Phường Bình Thạnh",
+            "21": "Phường Thạnh Mỹ Tây", "phuong 21": "Phường Thạnh Mỹ Tây",
+            "binh thanh": "Phường Bình Thạnh", "quan binh thanh": "Phường Bình Thạnh",
+            "bach dang": "Phường Bình Thạnh", "phuong bach dang": "Phường Bình Thạnh"
+        }
+        for k, v in extra_old.items():
+            self.old_to_new_map[_normalize_str(k)] = v
 
     def get_all_units(self) -> List[Dict[str, Any]]:
         """Trả về toàn bộ 168 đơn vị hành chính."""

@@ -1,12 +1,13 @@
-﻿"""
+﻿# -*- coding: utf-8 -*-
+"""
 pipeline/tiktok_poller.py - Module Thu Thập Dữ Liệu Video TikTok Đô Thị
 Thuần túy phục vụ Video bài đăng (đã loại bỏ hoàn toàn các chức năng Livestream/Live Chat).
 Hỗ trợ:
 - Live Mode: Gọi trực tiếp Apify REST API với bộ Hashtag + Query tiếng Việt tối ưu cho Video ngập lụt.
   Cơ chế Smart Adaptive Window: Ưu tiên cửa sổ 2 giờ; nếu thời điểm demo trời tạnh ráo,
   tự động mở rộng hiển thị đợt mưa bão gần nhất (24h - 72h) kèm mốc thời gian minh bạch.
-- Simulation Mode: Phát lại dòng dữ liệu trôi động (Sliding Stream) video ngập lụt từ dataset.
-  Khử trùng lặp nội dung triệt để, đồng cấp Phường/Xã trực thuộc TP.HCM.
+- Simulation Mode: Phát lại dòng dữ liệu trôi động (Sliding Stream) video ngập lụt từ dataset
+  đã làm sạch: data/processed/hcmc_flood_annotated_v1.json (100% trong TP.HCM).
 """
 
 import json
@@ -18,6 +19,7 @@ from typing import List, Dict, Any, Optional, Tuple
 from core.state_manager import StateManager
 from core.config import APIFY_TOKEN, ACTOR_ID, DEFAULT_SEARCH_QUERIES, DEFAULT_HASHTAGS, DEFAULT_WINDOW_MINUTES
 from pipeline.event_processor import process_tiktok_item
+from pipeline.simulation_replayer import SimulationReplayer
 
 DEFAULT_RAW_FILE = os.path.join("data", "raw", "dataset_tiktok-scraper-urban_2026-09-29_10-39-28-832.json")
 LAST_CRAWL_DEBUG_FILE = os.path.join("data", "last_crawled_tiktok.json")
@@ -102,7 +104,6 @@ class TikTokPoller:
         print(f"[Apify Live] Cào thành công! Nhận được {len(raw_items)} bài đăng từ TikTok.")
 
         # 4. Xử lý & Phân tầng thời gian thông minh (Smart Adaptive Window)
-        # Giúp tránh hiện tượng bản đồ bị trống khi demo vào lúc trời tạnh ráo
         current_time = int(time.time())
         cutoff_window = current_time - (window_minutes * 60)  # Cửa sổ chính (e.g. 120 phút = 2 giờ)
         cutoff_24h = current_time - 86400                    # 24 giờ qua
@@ -137,11 +138,6 @@ class TikTokPoller:
 
         self.state_manager.save()
 
-        # Phân tầng hiển thị:
-        # - Nếu trong cửa sổ chính (2 giờ) có video ngập -> Hiển thị ngay
-        # - Nếu trong 2 giờ qua ít hơn 2 tin (ví dụ trời tạnh) -> Mở rộng hiển thị đợt mưa trong 24h
-        # - Nếu vẫn ít -> Hiển thị toàn bộ các điểm ngập ghi nhận được từ đợt cào gần nhất
-        # Giới hạn thời gian nghiêm ngặt theo yêu cầu: Tối đa 2 tiếng (tuyệt đối không hiển thị bài cũ)
         display_events = events_window
         win_label = f"{window_minutes // 60} giờ qua" if (window_minutes >= 60 and window_minutes % 60 == 0) else f"{window_minutes} phút"
         if not display_events:
@@ -163,86 +159,13 @@ class TikTokPoller:
 
     def poll_simulation(
         self,
-        file_path: str = DEFAULT_RAW_FILE,
+        file_path: Optional[str] = None,
         window_minutes: int = DEFAULT_WINDOW_MINUTES,
         batch_size: int = 15
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
-        Phát lại dòng dữ liệu trôi động (Sliding Stream):
-        - Sử dụng thuần túy Video bài đăng ngập lụt thực tế.
-        - Khử trùng lặp nội dung triệt để.
-        - Trôi vòng lặp theo từng cụm batch_size giúp mỗi lần bấm 'Quét ngay' luôn có tin mới.
+        Phát lại dòng dữ liệu mô phỏng từ dataset tĩnh đã làm sạch:
+        data/processed/hcmc_flood_annotated_v1.json (100% trong TP.HCM).
         """
-        if not os.path.exists(file_path):
-            raise FileNotFoundError(f"Không tìm thấy file dataset: {file_path}")
-
-        SIM_CACHE_FILE = os.path.join("data", "sim_pool_cache.json")
-        if TikTokPoller._cached_sim_events is None:
-            if os.path.exists(SIM_CACHE_FILE):
-                try:
-                    with open(SIM_CACHE_FILE, "r", encoding="utf-8-sig") as f:
-                        TikTokPoller._cached_sim_events = json.load(f)
-                except Exception:
-                    pass
-
-        if TikTokPoller._cached_sim_events is None:
-            with open(file_path, "r", encoding="utf-8-sig") as f:
-                raw_items = json.load(f)
-
-            valid_pool = []
-            seen_texts = set()
-
-            for raw in raw_items:
-                event = process_tiktok_item(raw, reference_time=None)
-                if event and event.get("location", {}).get("region") == "TPHCM":
-                    t_key = event.get("text", "")[:35].strip().lower()
-                    if t_key in seen_texts:
-                        continue
-                    seen_texts.add(t_key)
-                    valid_pool.append(event)
-
-            # Phân bổ đều theo Phường / Xã để mỗi batch bao phủ rộng khắp TP.HCM
-            by_ward = {}
-            for ev in valid_pool:
-                w = ev.get("location", {}).get("ward", "Khu vực khác")
-                by_ward.setdefault(w, []).append(ev)
-
-            interleaved = []
-            while any(by_ward.values()):
-                for w in list(by_ward.keys()):
-                    if by_ward[w]:
-                        interleaved.append(by_ward[w].pop(0))
-
-            TikTokPoller._cached_sim_events = interleaved
-
-        pool = TikTokPoller._cached_sim_events or []
-        total_pool = len(pool)
-
-        if total_pool == 0:
-            return [], {"mode": "simulation", "events_matched": 0, "active_window": "2 giờ qua"}
-
-        current_offset = TikTokPoller._sim_offset
-        selected_events = []
-        for i in range(min(batch_size, total_pool)):
-            idx = (current_offset + i) % total_pool
-            ev_copy = dict(pool[idx])
-            selected_events.append(ev_copy)
-
-        TikTokPoller._sim_offset = (current_offset + batch_size) % total_pool
-
-        # Gán nhãn thời gian trôi linh hoạt trong vòng 2 giờ
-        sim_intervals = [4, 8, 15, 23, 32, 41, 52, 65, 78, 89, 97, 105, 112, 118]
-        for idx, ev in enumerate(selected_events):
-            mins = sim_intervals[idx % len(sim_intervals)]
-            if mins < 60:
-                ev["relative_time"] = f"{mins} phút trước"
-            else:
-                ev["relative_time"] = f"{mins // 60} giờ {mins % 60}p trước"
-
-        stats = {
-            "mode": "simulation",
-            "events_matched": len(selected_events),
-            "videos_count": len(selected_events),
-            "active_window": "2 giờ qua"
-        }
-        return selected_events, stats
+        replayer = SimulationReplayer.get_instance()
+        return replayer.poll(batch_size=batch_size, platform_filter="tiktok")

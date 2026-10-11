@@ -913,7 +913,7 @@
                             <b>Đoạn cảnh báo từ A đến B:</b><br>${spot.segment || spot.street}
                         </div>
                         <div style="font-size: 11px; color: #475569; margin-bottom: 6px;">
-                            <b>ĐVHC mới:</b> ${spot.ward} (${spot.district})
+                            <b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${spot.ward}</span> (TP.HCM)
                         </div>
                         <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 6px;">
                             <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;">
@@ -985,15 +985,69 @@
                 let primaryTitle = '';
                 let secondarySubtitle = '';
 
+                // Chuẩn hóa hiển thị ĐVHC mới: Tuyệt đối không hiển thị Phường/Quận cũ
+                // Chuẩn hóa tên đường và ĐVHC mới triệt để
+                let cleanStreet = (rawStreet || '').replace(/\s*\((?:Quận|Huyện|TP\.?|Thủ Đức|Bình Chánh|Bình Tân|Tân Phú|Gò Vấp|Hóc Môn|Bình Thạnh|Nhà Bè|Củ Chi|Cần Giờ|Phố Tây|\d+)[^\)]*\)/gi, '').trim();
+                cleanStreet = cleanStreet.replace(/^(?:tuyến đường|đoạn đường|trục đường|tuyến|đoạn)\s+/i, '').trim();
+
+                let displayWard = rawWard || 'Toàn TP.HCM';
+                if (displayWard.includes('Toàn thành phố') || displayWard.includes('Đô thị trung tâm') || displayWard === 'TP.HCM') {
+                    displayWard = 'Toàn TP.HCM';
+                }
+                // Ánh xạ dứt điểm các phường cũ còn sót
+                const oldWardMap = {
+                    'phường 27': 'Phường Bình Quới',
+                    'phường 28': 'Phường Bình Quới',
+                    'phường 24': 'Phường Bình Thạnh',
+                    'phường 26': 'Phường Bình Thạnh',
+                    'phường 15': 'Phường Bình Thạnh',
+                    'phường 22': 'Phường Thạnh Mỹ Tây',
+                    'phường 25': 'Phường Thạnh Mỹ Tây',
+                    'phường 19': 'Phường Thạnh Mỹ Tây',
+                    'phường 21': 'Phường Thạnh Mỹ Tây',
+                    'phường thảo điền': 'Phường An Khánh',
+                    'phường thủ thiêm': 'Phường An Khánh',
+                    'phường an phú': 'Phường An Khánh',
+                    'phường linh chiểu': 'Phường Thủ Đức',
+                    'phường linh đông': 'Phường Thủ Đức',
+                    'phường linh tây': 'Phường Linh Xuân',
+                    'phường tam phú': 'Phường Tam Bình',
+                    'phường tăng nhơn phú a': 'Phường Tăng Nhơn Phú',
+                    'phường tăng nhơn phú b': 'Phường Tăng Nhơn Phú',
+                    'phường bình hưng hòa b': 'Phường Bình Tân',
+                    'phường bình hưng hòa a': 'Phường Bình Hưng Hòa',
+                    'phường an lạc a': 'Phường An Lạc',
+                    'phường bình trị đông b': 'Phường An Lạc',
+                    'phường phạm ngũ lão': 'Phường Bến Thành',
+                    'phường nguyễn thái bình': 'Phường Sài Gòn',
+                    'phường bến nghé': 'Phường Sài Gòn',
+                    'phường 14': 'Phường An Hội Tây',
+                    'phường 1': 'Phường Hạnh Thông',
+                    'phường 10': 'Phường Gò Vấp',
+                    'phường 12': 'Phường Bảy Hiền',
+                    'phường 13': 'Phường Tân Bình',
+                    'phường 2': 'Phường Cầu Kiệu',
+                    'phường 9': 'Phường Nhiêu Lộc',
+                    'phường tân phong': 'Phường Tân Hưng',
+                    'phường tân quy': 'Phường Tân Hưng',
+                    'thị trấn hóc môn': 'Xã Hóc Môn',
+                    'thị trấn củ chi': 'Xã Tân An Hội',
+                    'thị trấn cần thạnh': 'Xã Cần Giờ'
+                };
+                const dwLow = displayWard.toLowerCase().trim();
+                if (oldWardMap[dwLow]) {
+                    displayWard = oldWardMap[dwLow];
+                }
+
                 if (hasStreet) {
-                    primaryTitle = rawStreet;
-                    secondarySubtitle = `<b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${rawWard || 'Toàn TP'}</span> (${rawDistrict || 'TP.HCM'})`;
+                    primaryTitle = cleanStreet || rawStreet;
+                    secondarySubtitle = `<b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${displayWard}</span> (TP.HCM)`;
                 } else if (rawWard && !isCitywide) {
-                    primaryTitle = `${rawWard} (${rawDistrict || 'TP.HCM'})`;
+                    primaryTitle = `${displayWard} (TP.HCM)`;
                     secondarySubtitle = `<span style="color: #64748b; font-style: italic;">Khu vực ĐVHC (Không có tên đường cụ thể)</span>`;
                 } else {
                     primaryTitle = `Toàn thành phố Hồ Chí Minh`;
-                    secondarySubtitle = `<span style="color: #64748b; font-style: italic;">Tin cảnh báo diện rộng (Chưa rõ đường/phường)</span>`;
+                    secondarySubtitle = `<span style="color: #64748b; font-style: italic;">Tin cảnh báo diện rộng TP.HCM</span>`;
                 }
                 
                 // Trích xuất đầy đủ thông tin xác thực dữ liệu (Veracity)
@@ -1234,7 +1288,7 @@
                     results.push({
                         type: 'live',
                         title: searchTitle,
-                        subtitle: `🔴 Sự cố Live • ĐVHC: ${rawWd || 'Toàn TP'} (${rawDist || 'TP.HCM'})`,
+                        subtitle: `🔴 Sự cố Live • ĐVHC: ${(rawWd && rawWd.includes('24') ? 'Phường Bình Thạnh' : (rawWd || 'Toàn TP.HCM'))} (TP.HCM)`,
                         lat: loc.lat || ev.lat,
                         lon: loc.lon || ev.lon
                     });
@@ -1389,7 +1443,7 @@
                             <b style="color: #f8fafc; font-size: 12px;">${proxTitle}</b>
                             <span class="prox-dist">Cách bạn ${item.dist} m</span>
                         </div>
-                        <div style="font-size: 11px; color: #94a3b8;">ĐVHC: ${rawWd || 'Toàn TP'} • Báo ${ev.relative_time || 'gần đây'}</div>
+                        <div style="font-size: 11px; color: #94a3b8;">ĐVHC: ${(rawWd && rawWd.includes('24') ? 'Phường Bình Thạnh' : (rawWd || 'Toàn TP.HCM'))} (TP.HCM) • Báo ${ev.relative_time || 'gần đây'}</div>
                     `;
                     liveListEl.appendChild(div);
                 });

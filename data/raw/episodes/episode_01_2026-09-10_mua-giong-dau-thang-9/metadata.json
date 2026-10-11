@@ -1,0 +1,23 @@
+{
+  "episode_id": "episode_01_2026-09-10_mua-giong-dau-thang-9",
+  "total_items": 81,
+  "breakdown": {
+    "facebook": 10,
+    "tiktok": 63,
+    "news": 8
+  },
+  "updated_at": "2026-10-11T08:46:54.480163+00:00",
+  "id": "episode_01_2026-09-10_mua-giong-dau-thang-9",
+  "name": "Đợt mưa giông diện rộng đầu tháng 9/2026",
+  "description": "Mưa giông cực đoan đầu tháng 9 gây ngập sâu các trục đường trũng thấp (Ung Văn Khiêm, Phan Huy Ích, Nguyễn Hữu Cảnh).",
+  "start_date": "2026-09-08",
+  "end_date": "2026-09-13",
+  "weather_type": "Mưa giông cực đoan diện rộng",
+  "key_hotspots": [
+    "Ung Văn Khiêm",
+    "Phan Huy Ích",
+    "Nguyễn Hữu Cảnh",
+    "Tân Kỳ Tân Quý"
+  ],
+  "last_crawled_at": "2026-10-11T08:53:45.617089+00:00"
+}

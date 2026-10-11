@@ -1,0 +1,23 @@
+{
+  "episode_id": "episode_04_2026-10-01_trieu-cuong-ram-thang-tam",
+  "total_items": 407,
+  "breakdown": {
+    "facebook": 135,
+    "tiktok": 272
+  },
+  "updated_at": "2026-10-11T08:46:54.572637+00:00",
+  "id": "episode_04_2026-10-01_trieu-cuong-ram-thang-tam",
+  "name": "Đợt triều cường Rằm tháng 8 Âm lịch đầu tháng 10/2026",
+  "description": "Triều cường đạt đỉnh 1.70m tại trạm Phú An và Nhà Bè, nước tràn bờ kè gây ngập nặng diện rộng tại Quận 7, Quận 8, Nhà Bè.",
+  "start_date": "2026-10-01",
+  "end_date": "2026-10-05",
+  "weather_type": "Đỉnh triều cường kỳ Rằm tháng 8 Âm lịch (1.70m)",
+  "key_hotspots": [
+    "Bến Bình Đông",
+    "Phú Định",
+    "Mễ Cốc",
+    "Hiệp Phước",
+    "Lê Văn Lương"
+  ],
+  "last_crawled_at": "2026-10-11T08:53:45.426581+00:00"
+}

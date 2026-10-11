@@ -1,0 +1,23 @@
+{
+  "episode_id": "episode_02_2026-09-17_anh-huong-bao-so-4",
+  "total_items": 222,
+  "breakdown": {
+    "facebook": 41,
+    "tiktok": 169,
+    "news": 12
+  },
+  "updated_at": "2026-10-11T08:46:54.504293+00:00",
+  "id": "episode_02_2026-09-17_anh-huong-bao-so-4",
+  "name": "Đợt mưa lớn do ảnh hưởng bão số 4 & dải hội tụ nhiệt đới",
+  "description": "Hoàn lưu bão số 4 kết hợp dải hội tụ nhiệt đới gây mưa dầm diện rộng kéo dài nhiều ngày trên toàn địa bàn TP.HCM.",
+  "start_date": "2026-09-17",
+  "end_date": "2026-09-24",
+  "weather_type": "Bão số 4 & Dải hội tụ nhiệt đới",
+  "key_hotspots": [
+    "Phạm Thế Hiển",
+    "Võ Văn Ngân",
+    "Nguyễn Văn Quá",
+    "Quốc Lộ 13"
+  ],
+  "last_crawled_at": "2026-10-11T08:53:45.511499+00:00"
+}

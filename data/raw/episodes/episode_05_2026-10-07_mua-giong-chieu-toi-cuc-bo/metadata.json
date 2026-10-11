@@ -1,0 +1,22 @@
+{
+  "episode_id": "episode_05_2026-10-07_mua-giong-chieu-toi-cuc-bo",
+  "total_items": 177,
+  "breakdown": {
+    "tiktok": 82,
+    "facebook": 95
+  },
+  "updated_at": "2026-10-11T08:46:54.580231+00:00",
+  "id": "episode_05_2026-10-07_mua-giong-chieu-toi-cuc-bo",
+  "name": "Đợt mưa giông chiều tối ngập cục bộ tháng 10/2026",
+  "description": "Mưa rào và giông mạnh chiều tối gây ngập cục bộ tại khu vực trung tâm Quận 1 (Takashimaya), Gò Vấp, Thủ Đức.",
+  "start_date": "2026-10-07",
+  "end_date": "2026-10-12",
+  "weather_type": "Mưa giông đối lưu cục bộ chiều tối",
+  "key_hotspots": [
+    "Lê Lợi - Pasteur",
+    "Takashimaya",
+    "Cây Trâm",
+    "Đặng Thị Rành"
+  ],
+  "last_crawled_at": "2026-10-11T08:53:45.372325+00:00"
+}
