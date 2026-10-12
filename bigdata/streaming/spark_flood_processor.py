@@ -14,7 +14,7 @@ Kế thừa toàn bộ trí tuệ nghiệp vụ đã dày công xây dựng:
    - Kế thừa 100% pipeline/veracity_checker.py: Đối soát lượng mưa thời gian thực/lịch sử Open-Meteo.
 3. DUAL-PATH SERVING & STORAGE:
    - Hot Path: Cập nhật trạng thái sự kiện tức thời cho Dashboard Leaflet (độ trễ < 3s).
-   - Cold Path: Lưu trữ Parquet phân vùng theo ngày vào Data Lakehouse (data/lakehouse/).
+   - Cold Path: Lưu trữ Parquet phân vùng đa tầng: episode_id=.../date=.../ vào Data Lakehouse.
 """
 
 import os
@@ -29,6 +29,7 @@ if sys.platform == 'win32':
 import json
 import time
 from datetime import datetime, timezone
+from collections import defaultdict
 from typing import Dict, Any, List, Optional
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -39,6 +40,7 @@ from core.gazetteer import match_hotspot, geocode_osm_dynamic
 from core.admin_resolver import RESOLVER
 from pipeline.veracity_checker import VeracityChecker
 from pipeline.event_processor import clean_stream_text, analyze_severity_heuristic
+from scripts.organize_raw_episodes import determine_episode_id
 
 os.environ['PYSPARK_PYTHON'] = sys.executable
 os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
@@ -190,7 +192,7 @@ class SparkFloodProcessor:
         # 2. CẬP NHẬT HOT PATH (Dành riêng cho Dashboard Heatmap)
         self._update_hot_dashboard_state(verified_batch)
 
-        # 3. CẬP NHẬT COLD PATH (Ghi phân vùng Parquet vào Data Lakehouse)
+        # 3. CẬP NHẬT COLD PATH (Ghi phân vùng đa tầng episode_id/date vào Data Lakehouse)
         self._append_cold_lakehouse(verified_batch)
 
         print(f"[PySpark Stream] Hoàn tất micro-batch #{batch_id}. Đã xuất bản {len(verified_batch)} điểm ngập lên Dashboard & Lakehouse!")
@@ -232,22 +234,37 @@ class SparkFloodProcessor:
             pass
 
     def _append_cold_lakehouse(self, events: List[Dict[str, Any]]):
-        """Lưu trữ lịch sử ngập lụt lâu dài dạng Apache Parquet theo ngày."""
+        """
+        Lưu trữ lịch sử ngập lụt lâu dài dạng Apache Lakehouse phân vùng đa tầng:
+        data/lakehouse/flood_events/episode_id={episode_id}/date={date_str}/
+        """
         if not events:
             return
-        os.makedirs(LAKEHOUSE_DIR, exist_ok=True)
-        today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        partition_dir = os.path.join(LAKEHOUSE_DIR, f"date={today_str}")
-        os.makedirs(partition_dir, exist_ok=True)
 
-        # Lưu trữ batch Parquet nhẹ
-        file_path = os.path.join(partition_dir, f"batch_{int(time.time()*1000)}.jsonl")
-        try:
-            with open(file_path, "w", encoding="utf-8") as f:
-                for ev in events:
-                    f.write(json.dumps(ev, ensure_ascii=False) + "\n")
-        except Exception:
-            pass
+        grouped = defaultdict(list)
+        for ev in events:
+            create_time = ev.get("create_time") or ev.get("timestamp") or int(time.time())
+            date_str = datetime.fromtimestamp(create_time, timezone.utc).strftime("%Y-%m-%d")
+
+            # Tự động gán episode_id chuẩn hóa
+            ep_id = determine_episode_id(date_str)
+            if ev.get("crawler_source") == "live_free_social_crawler" and ep_id == "sporadic_flood_events":
+                ep_id = "live_stream_active"
+
+            ev["episode_id"] = ep_id
+            ev["partition_date"] = date_str
+            grouped[(ep_id, date_str)].append(ev)
+
+        for (ep_id, date_str), batch in grouped.items():
+            partition_dir = os.path.join(LAKEHOUSE_DIR, f"episode_id={ep_id}", f"date={date_str}")
+            os.makedirs(partition_dir, exist_ok=True)
+            file_path = os.path.join(partition_dir, f"batch_{int(time.time()*1000)}.jsonl")
+            try:
+                with open(file_path, "w", encoding="utf-8") as f:
+                    for item in batch:
+                        f.write(json.dumps(item, ensure_ascii=False) + "\n")
+            except Exception:
+                pass
 
     def run_batch_simulation_job(self, input_records: List[Dict[str, Any]]):
         """Chạy một job xử lý lô hoàn chỉnh trên Spark (Dùng cho kiểm thử & benchmark)."""
