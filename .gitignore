@@ -57,3 +57,6 @@ ehthumbs.db
 scratch/
 
 *.zip
+
+data/buffer_*.jsonl
+data/lakehouse/
