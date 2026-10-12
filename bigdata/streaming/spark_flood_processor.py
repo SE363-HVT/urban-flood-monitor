@@ -1,26 +1,24 @@
 # -*- coding: utf-8 -*-
 """
 bigdata/streaming/spark_flood_processor.py
-Động cơ Xử lý Dòng Phân tán PySpark Structured Streaming cho Hệ thống Giám sát Ngập lụt SE363.
+PySpark Structured Streaming Engine cho Hệ thống Giám sát Ngập lụt SE363.
 
-Kế thừa toàn bộ trí tuệ nghiệp vụ đã dày công xây dựng:
-1. STREAMING INGESTION & WATERMARKING:
-   - Tiêu thụ dòng sự kiện từ Kafka Topic (social.live.raw / social.sim.raw).
-   - Watermarking 2 giờ: Xử lý bài trễ mạng khi mưa bão.
-   - Stream Deduplication: Tự động khử trùng lặp theo canonical_id.
-2. MICRO-BATCH DISTRIBUTED ADAPTER (foreachBatch):
-   - Kế thừa 100% core/gazetteer.py: 122 điểm CSGT chuẩn tim đường OpenStreetMap Highway.
-   - Kế thừa 100% core/admin_resolver.py: 168 ĐVHC TP.HCM sau sáp nhập NQ 1685.
-   - Kế thừa 100% pipeline/veracity_checker.py: Đối soát lượng mưa thời gian thực/lịch sử Open-Meteo.
-3. DUAL-PATH SERVING & STORAGE:
-   - Hot Path: Cập nhật trạng thái sự kiện tức thời cho Dashboard Leaflet (độ trễ < 3s).
-   - Cold Path: Lưu trữ Parquet phân vùng đa tầng: episode_id=.../date=.../ vào Data Lakehouse.
+Đảm bảo:
+1. 100% KẾ THỪA LOGIC NGHIỆP VỤ CŨ:
+   - Street-First Matching (122 điểm CSGT + OSM centerline).
+   - 168 Đơn vị hành chính sau sáp nhập (NQ 1685).
+   - Kiểm định chéo trạm khí tượng Open-Meteo & Trọng số tin cậy.
+2. CHỐNG TRÙNG LẶP STREAMING (LEVEL 2):
+   - Watermark 10 phút + dropDuplicates theo canonical_id.
+3. OUTPUT 2 ĐƯỜNG (DUAL OUTPUT PATH):
+   - Hot Path: Cập nhật live_stream_state.json phục vụ Leaflet Dashboard (< 3s).
+   - Cold Path: Ghi partitioned JSONL vào Data Lakehouse (episode_id/date).
 """
 
 import os
 import sys
 
-if sys.platform == 'win32':
+if sys.platform == "win32":
     try:
         sys.stdout.reconfigure(encoding='utf-8')
         sys.stderr.reconfigure(encoding='utf-8')
@@ -53,7 +51,6 @@ import pyspark.sql.functions as F
 
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 LAKEHOUSE_DIR = os.path.join(DATA_DIR, "lakehouse", "flood_events")
-STATE_FILE = os.path.join(DATA_DIR, "pipeline_state.json")
 STREAM_STATE_FILE = os.path.join(DATA_DIR, "live_stream_state.json")
 
 # Schema của sự kiện đầu vào từ Kafka Producer
@@ -224,11 +221,9 @@ class SparkFloodProcessor:
             "events": active_list
         }
 
-        # Lưu đồng thời ra cả file trạng thái mới và pipeline_state cũ để tương thích 100%
+        # Lưu riêng ra file trạng thái live stream của Dashboard
         try:
             with open(STREAM_STATE_FILE, "w", encoding="utf-8") as f:
-                json.dump(out_data, f, ensure_ascii=False, indent=2)
-            with open(STATE_FILE, "w", encoding="utf-8") as f:
                 json.dump(out_data, f, ensure_ascii=False, indent=2)
         except Exception:
             pass
@@ -283,40 +278,4 @@ class SparkFloodProcessor:
 if __name__ == "__main__":
     print("[*] Khởi tạo PySpark Flood Streaming Engine...")
     processor = SparkFloodProcessor()
-
-    # Thử nghiệm bơm một mẻ dữ liệu kiểm thử
-    sample_data = [
-        {
-            "id": "test_1",
-            "canonical_id": "tiktok_test_1",
-            "url": "https://www.tiktok.com/@test/video/1",
-            "platform": "tiktok",
-            "media_type": "video",
-            "author": "nguoidan_q7",
-            "text": "Trần Xuân Soạn ngập sâu quá nước tràn vào nhà chết máy la liệt rồi",
-            "title": "Trần Xuân Soạn ngập sâu",
-            "create_time": int(time.time()),
-            "created_at_iso": datetime.now(timezone.utc).isoformat(),
-            "timestamp": int(time.time()),
-            "crawler_source": "test_simulator"
-        },
-        {
-            "id": "test_2",
-            "canonical_id": "facebook_test_2",
-            "url": "https://www.facebook.com/post/2",
-            "platform": "facebook",
-            "media_type": "post",
-            "author": "saigon_review",
-            "text": "Ngã tư Phạm Văn Đồng - Tô Ngọc Vân nước ngập lút nửa bánh xe bà con cẩn thận",
-            "title": "Tô Ngọc Vân ngập nước",
-            "create_time": int(time.time()),
-            "created_at_iso": datetime.now(timezone.utc).isoformat(),
-            "timestamp": int(time.time()),
-            "crawler_source": "test_simulator"
-        }
-    ]
-
-    print("[*] Thực thi PySpark Streaming Micro-batch...")
-    processor.run_batch_simulation_job(sample_data)
-    print(f"[+] Hoàn tất! Trạng thái đã được ghi vào {STREAM_STATE_FILE}")
-    processor.stop()
+    print("[*] Sẵn sàng phục vụ luồng dữ liệu!")
