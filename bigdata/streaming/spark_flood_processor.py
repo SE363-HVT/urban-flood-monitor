@@ -207,7 +207,7 @@ class SparkFloodProcessor:
 
         active_list = [
             ev for ev in combined.values()
-            if (current_time - ev.get("create_time", 0)) <= window_seconds or ev.get("platform") == "simulation"
+            if (current_time - ev.get("create_time", 0)) <= window_seconds or ev.get("platform") in ["simulation", "sim", "news"]
         ]
 
         active_list.sort(key=lambda x: (x.get("weight", 1.0), x.get("create_time", 0)), reverse=True)
@@ -261,6 +261,67 @@ class SparkFloodProcessor:
             except Exception:
                 pass
 
+    def start_kafka_streaming(
+        self,
+        topics: Optional[List[str]] = None,
+        bootstrap_servers: str = "localhost:9092",
+        batch_interval_sec: float = 2.0
+    ):
+        """
+        Khởi chạy luồng Streaming Consumer liên tục:
+        Lắng nghe sự kiện từ Kafka Topics, gom micro-batch và đưa vào PySpark xử lý song song.
+        """
+        if topics is None:
+            topics = ["social.live.raw", "social.sim.raw"]
+
+        try:
+            from kafka import KafkaConsumer
+        except ImportError:
+            print("[PySpark Stream Error] Thư viện kafka-python chưa được cài đặt!")
+            return
+
+        print(f"\n[*] Đang kết nối tới Kafka Broker ({bootstrap_servers}) cho topics: {topics}...")
+        try:
+            consumer = KafkaConsumer(
+                *topics,
+                bootstrap_servers=bootstrap_servers,
+                auto_offset_reset='latest',
+                enable_auto_commit=True,
+                group_id='pyspark-flood-streaming-group',
+                value_deserializer=lambda x: json.loads(x.decode('utf-8')),
+                consumer_timeout_ms=1000
+            )
+            print("[*] ĐÃ KẾT NỐI THÀNH CÔNG TỚI KAFKA BROKER!")
+            print("[*] PySpark Structured Streaming Engine đang sẵn sàng xử lý các đợt ngập...")
+        except Exception as e:
+            print(f"[PySpark Stream Error] Không thể kết nối tới Kafka Broker: {e}")
+            return
+
+        batch_counter = 0
+        current_batch = []
+        last_flush_time = time.time()
+
+        try:
+            while True:
+                msg_pack = consumer.poll(timeout_ms=1000)
+                for tp, messages in msg_pack.items():
+                    for msg in messages:
+                        if isinstance(msg.value, dict):
+                            current_batch.append(msg.value)
+
+                now = time.time()
+                if current_batch and (len(current_batch) >= 10 or (now - last_flush_time) >= batch_interval_sec):
+                    batch_counter += 1
+                    df = self.spark.createDataFrame(current_batch, schema=EVENT_SCHEMA)
+                    dedup_df = df.dropDuplicates(["canonical_id"])
+                    self.process_micro_batch(dedup_df, batch_id=batch_counter)
+                    current_batch = []
+                    last_flush_time = now
+        except KeyboardInterrupt:
+            print("\n[*] Dừng luồng PySpark Streaming theo lệnh người dùng.")
+        finally:
+            consumer.close()
+
     def run_batch_simulation_job(self, input_records: List[Dict[str, Any]]):
         """Chạy một job xử lý lô hoàn chỉnh trên Spark (Dùng cho kiểm thử & benchmark)."""
         if not input_records:
@@ -276,6 +337,8 @@ class SparkFloodProcessor:
 
 
 if __name__ == "__main__":
-    print("[*] Khởi tạo PySpark Flood Streaming Engine...")
+    print("=" * 70)
+    print("🌊 KHỞI CHẠY PYSPARK URBAN FLOOD STREAMING PROCESSOR")
+    print("=" * 70)
     processor = SparkFloodProcessor()
-    print("[*] Sẵn sàng phục vụ luồng dữ liệu!")
+    processor.start_kafka_streaming()

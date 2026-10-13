@@ -1,8 +1,10 @@
-﻿"""
+﻿# -*- coding: utf-8 -*-
+"""
 dashboard/server.py - Máy chủ Web phục vụ Bản Đồ Nhiệt Cảnh Báo Ngập Lụt Đa Nền Tảng (Port 8050)
 Cung cấp giao diện trực quan và REST API: /api/realtime-heatmap, /api/trigger-poll, /api/toggle-mode.
 Tích hợp thu thập Video TikTok + Bài đăng Facebook.
 Tích hợp Module Xác thực dữ liệu & Phòng chống tin giả (VeracityChecker).
+Tích hợp Cầu nối PySpark Streaming (Hot State Bridge từ live_stream_state.json).
 """
 
 import http.server
@@ -75,6 +77,23 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         elif self.path.startswith("/api/realtime-heatmap"):
             events = GLOBAL_STATE.get("events", [])
+
+            # CẦU NỐI PYSPARK STREAMING: Ưu tiên dữ liệu nóng từ Spark nếu có
+            stream_state_file = os.path.join(ROOT_DIR, "data", "live_stream_state.json")
+            if os.path.exists(stream_state_file):
+                try:
+                    with open(stream_state_file, "r", encoding="utf-8") as sf:
+                        st_data = json.load(sf)
+                        if st_data.get("events"):
+                            events = st_data["events"]
+                            if st_data.get("mode"):
+                                GLOBAL_STATE["mode"] = st_data["mode"]
+                            if st_data.get("window"):
+                                GLOBAL_STATE["active_window"] = st_data["window"]
+                            GLOBAL_STATE["last_updated"] = int(time.time())
+                except Exception:
+                    pass
+
             ward_counts = {}
             citywide_count = 0
             for ev in events:
