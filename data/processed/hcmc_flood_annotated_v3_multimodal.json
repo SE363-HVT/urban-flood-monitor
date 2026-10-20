@@ -182083,11 +182083,11 @@
     },
     "aste_triplets": [
       {
-        "aspect": "LÊ VĂN LƯƠNG",
+        "aspect": "ĐƯỜNG LÊ VĂN LƯƠNG",
         "opinion": "NGẬP SÂU",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_lvnlng",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
@@ -182125,26 +182125,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Lê Văn Lương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_lvnlng",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Nhà Bè",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_xnhb",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3630
   },
   {
@@ -182180,13 +182161,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Lê Văn Việt",
-        "opinion": "lội nước",
+        "aspect": "Đường Lê Văn Việt",
+        "opinion": "biến thành “sông”",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_lvnvit",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3631
@@ -182224,13 +182205,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TP. Hồ Chí Minh",
+        "aspect": "đào sư tích",
         "opinion": "ngập",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MEDIUM"
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3633
@@ -182266,17 +182247,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Phường Tân Hưng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3634
   },
   {
@@ -182315,45 +182286,18 @@
     "aste_triplets": [
       {
         "aspect": "sông Sài Gòn",
-        "opinion": "đạt đỉnh",
+        "opinion": "vượt mốc lịch sử",
         "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
+        "aspect_category": "LOCATION_RIVER",
         "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "triều cường",
-        "opinion": "đạt đỉnh",
-        "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Phạm Hữu Lầu",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_phmhulu",
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       },
       {
-        "aspect": "TPHCM",
-        "opinion": "đạt đỉnh",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Tân Mỹ",
-        "opinion": "ngập sâu",
+        "aspect": "đường Phạm Hữu Lầu",
+        "opinion": "ô tô tạo sóng quật ngã xe máy",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
@@ -182392,17 +182336,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3636
   },
   {
@@ -182436,26 +182370,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "ĐINH BỘ LĨNH",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_inhblnh",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "TÂN MỸ",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3637
   },
   {
@@ -182489,17 +182404,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TP.HCM",
-        "opinion": "lút bánh xe",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3638
   },
   {
@@ -182533,17 +182438,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Đinh Bộ Lĩnh",
-        "opinion": "Ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_inhblnh",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3639
   },
   {
@@ -182577,26 +182472,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TP.HCM",
-        "opinion": "biển nước",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "TPHCM",
-        "opinion": "biển nước",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3640
   },
   {
@@ -182630,17 +182506,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Thạnh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_phngbnht",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3641
   },
   {
@@ -182674,17 +182540,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Hàng Xanh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_ngthngxa",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3642
   },
   {
@@ -182718,17 +182574,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3643
   },
   {
@@ -182764,8 +182610,17 @@
     },
     "aste_triplets": [
       {
-        "aspect": "HC1 tại nút giao Nguyễn Văn Linh",
-        "opinion": "ngập sâu",
+        "aspect": "hầm chui HC1",
+        "opinion": "bị ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Nguyễn Văn Linh",
+        "opinion": "bị ngập sâu",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
@@ -182773,11 +182628,11 @@
         "severity": "HIGH"
       },
       {
-        "aspect": "TP Hồ Chí Minh",
-        "opinion": "ngập sâu",
+        "aspect": "Nguyễn Hữu Thọ",
+        "opinion": "bị ngập sâu",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
@@ -182817,20 +182672,11 @@
     },
     "aste_triplets": [
       {
-        "aspect": "triều cường",
-        "opinion": "ngập",
+        "aspect": "Trường tiểu học Nguyễn Hữu Cảnh",
+        "opinion": "triều cường nước lên ngập",
         "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
+        "aspect_category": "LOCATION_OTHER",
         "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Nguyễn Hữu Cảnh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_nguynhuc",
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "MEDIUM"
       }
@@ -182870,13 +182716,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "đại lộ Nguyễn Văn Linh",
-        "opinion": "THÔNG XE",
-        "polarity": "POS",
-        "aspect_category": "LOCATION_STREET",
+        "aspect": "hầm chui đại lộ Nguyễn Văn Linh",
+        "opinion": "ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3646
@@ -182912,26 +182758,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TP.HCM",
-        "opinion": "như sông",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "tphcm",
-        "opinion": "như sông",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3647
   },
   {
@@ -182967,29 +182794,20 @@
     },
     "aste_triplets": [
       {
-        "aspect": "hệ thống thoát nước",
-        "opinion": "khởi công",
-        "polarity": "NEU",
-        "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Nguyễn Văn Khối",
-        "opinion": "khởi công",
-        "polarity": "NEU",
+        "aspect": "đường Nguyễn Văn Khối",
+        "opinion": "Dự án cải tạo hệ thống thoát nước",
+        "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "LOW"
       },
       {
-        "aspect": "GÒ VẤP",
-        "opinion": "khởi công",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
+        "aspect": "Lê Văn Thọ",
+        "opinion": "Dự án cải tạo hệ thống thoát nước",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "LOW"
       }
@@ -183029,13 +182847,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Thủ Đức",
-        "opinion": "NGẬP",
+        "aspect": "Thảo Điền",
+        "opinion": "NGẬP NƯỚC",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tpthc",
+        "aspect_category": "LOCATION_RESIDENTIAL",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3649
@@ -183073,13 +182891,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "lội nước",
+        "aspect": "Thảo Điền",
+        "opinion": "Nước ngập hơn nửa mét",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_RESIDENTIAL",
         "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "LOW"
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3650
@@ -183119,13 +182937,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
+        "aspect": "Thảo Điền",
+        "opinion": "ngập lụt",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_RESIDENTIAL",
         "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MEDIUM"
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3651
@@ -183161,17 +182979,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3652
   },
   {
@@ -183207,31 +183015,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "HỆ THỐNG THOÁT NƯỚC",
-        "opinion": "KHÁNH THÀNH",
-        "polarity": "NEU",
-        "aspect_category": "INFRASTRUCTURE_DRAINAGE",
+        "aspect": "CHỢ THỦ ĐỨC",
+        "opinion": "THẤT THỦ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_MARKET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Dương Văn Cam",
-        "opinion": "KHÁNH THÀNH",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_chthckha",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "CHỢ THỦ ĐỨC",
-        "opinion": "KHÁNH THÀNH",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3653
@@ -183269,13 +183059,22 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Tô Ngọc Vân",
-        "opinion": "như sông",
+        "aspect": "Đường Linh Đông",
+        "opinion": "nước ngập như sông",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tngcvn",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Tô Ngọc Vân",
+        "opinion": "nước ngập như sông",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3654
@@ -183313,20 +183112,11 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Linh Xuân",
+        "aspect": "Đường 11",
         "opinion": "ngập sâu",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "THỦ ĐỨC",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tpthc",
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
@@ -183366,58 +183156,31 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TP Thủ Đức cũ",
-        "opinion": "ngập",
+        "aspect": "Đường Đặng Thị Rành",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tpthc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Phạm Văn Đồng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_ilphmvnn",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Tô Ngọc Vân",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tngcvn",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Đặng Thị Rành",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthckha",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Hiệp Bình",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
       },
       {
-        "aspect": "Tam Bình",
-        "opinion": "ngập",
+        "aspect": "Đường Phạm Văn Đồng",
+        "opinion": "ngập nước",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Đường Tô Ngọc Vân",
+        "opinion": "ngập nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3656
@@ -183455,22 +183218,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Phạm Văn Đồng",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_ilphmvnn",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
         "aspect": "CHỢ THỦ ĐỨC",
-        "opinion": "NGẬP",
+        "opinion": "ĐƯỜNG NGẬP LÊNH LÁNG",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthc",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3657
@@ -183508,11 +183262,29 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Tô Ngọc Vân",
-        "opinion": "ngập sâu",
+        "aspect": "Thạnh Xuân 21",
+        "opinion": "Ngập nước sâu",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tngcvn",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Tô Ngọc Vân",
+        "opinion": "Ngập nước sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "chợ Thạnh Xuân",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
@@ -183554,16 +183326,16 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Tô Ngọc Vân",
+        "aspect": "đường Linh Đông",
         "opinion": "Ngập nặng",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tngcvn",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       },
       {
-        "aspect": "Linh Đông",
+        "aspect": "Tô Ngọc Vân",
         "opinion": "Ngập nặng",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
@@ -183607,40 +183379,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "đê bao",
-        "opinion": "tràn vào",
+        "aspect": "cầu Ba Thôn 2",
+        "opinion": "Vỡ đê bao",
         "polarity": "NEG",
-        "aspect_category": "INFRASTRUCTURE_DRAINAGE",
+        "aspect_category": "LOCATION_OTHER",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "triều cường",
-        "opinion": "tràn vào",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "nước sông",
-        "opinion": "tràn vào",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Ba Thôn 2",
-        "opinion": "tràn vào",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3660
@@ -183678,58 +183423,22 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Tô Ngọc Vân",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tngcvn",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Linh Đông",
-        "opinion": "ngập",
+        "aspect": "đường Tô Ngọc Vân",
+        "opinion": "nước ngập lênh láng",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
       },
       {
-        "aspect": "An Bình",
-        "opinion": "ngập",
+        "aspect": "đường Linh Đông",
+        "opinion": "nước ngập lênh láng",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Dĩ An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_sngthnqu",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Hiệp Bình",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3661
@@ -183765,17 +183474,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Lương Định Của",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_lngnhca",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3662
   },
   {
@@ -183809,17 +183508,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Lương Định Của",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_lngnhca",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3663
   },
   {
@@ -183856,21 +183545,12 @@
     "aste_triplets": [
       {
         "aspect": "chợ Thủ Đức",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthc",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "LOW"
       }
     ],
     "seq_id": 3664
@@ -183909,21 +183589,12 @@
     "aste_triplets": [
       {
         "aspect": "Chợ Thủ Đức",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthc",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "LOW"
       }
     ],
     "seq_id": 3665
@@ -183961,22 +183632,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Gò Vấp",
-        "opinion": "khởi công",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
+        "aspect": "Đường Nguyễn Văn Khối",
+        "opinion": "hay ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "khởi công",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "MEDIUM"
       }
     ],
     "seq_id": 3666
@@ -184012,26 +183674,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Gò Vấp",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3667
   },
   {
@@ -184067,13 +183710,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Gò Vấp",
+        "aspect": "Phan Văn Trị",
         "opinion": "ngập",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3668
@@ -184111,13 +183754,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TP. Hồ Chí Minh",
+        "aspect": "Lê Văn Thọ",
         "opinion": "ngập",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MEDIUM"
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3669
@@ -184153,17 +183796,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3670
   },
   {
@@ -184199,13 +183832,22 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Gò Vấp",
+        "aspect": "Lê Đức Thọ",
+        "opinion": "ngập nguyên bánh xe",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Lê Văn Thọ",
         "opinion": "ngập nửa bánh xe",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3671
@@ -184243,12 +183885,12 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TP. Hồ Chí Minh",
+        "aspect": "Đường Lê Đức Thọ",
         "opinion": "xe chết máy",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
+        "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
     ],
@@ -184285,26 +183927,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "GÒ VẤP",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3673
   },
   {
@@ -184340,20 +183963,29 @@
     },
     "aste_triplets": [
       {
-        "aspect": "An Hội Đông",
-        "opinion": "ngập sâu",
+        "aspect": "Đường Phạm Văn Chiêu",
+        "opinion": "nước ngập hơn nửa bánh xe",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       },
       {
-        "aspect": "Gò Vấp",
-        "opinion": "ngập sâu",
+        "aspect": "Lê Đức Thọ",
+        "opinion": "nước ngập hơn nửa bánh xe",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Lê Văn Thọ",
+        "opinion": "nước ngập hơn nửa bánh xe",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
@@ -184393,20 +184025,29 @@
     },
     "aste_triplets": [
       {
-        "aspect": "An Hội Đông",
-        "opinion": "ngập sâu",
+        "aspect": "Đường Phạm Văn Chiêu",
+        "opinion": "nước ngập hơn nửa bánh xe",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       },
       {
-        "aspect": "Gò Vấp",
-        "opinion": "ngập sâu",
+        "aspect": "Lê Đức Thọ",
+        "opinion": "nước ngập hơn nửa bánh xe",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Lê Văn Thọ",
+        "opinion": "nước ngập hơn nửa bánh xe",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
@@ -184447,39 +184088,48 @@
     "aste_triplets": [
       {
         "aspect": "Phan Văn Hớn",
-        "opinion": "MÊNH MÔNG",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_phanvnhn",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Phan Huy Ích",
-        "opinion": "MÊNH MÔNG",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_phanhuyc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Song Hành",
-        "opinion": "MÊNH MÔNG",
+        "opinion": "MÊNH MÔNG NƯỚC",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "HIGH"
       },
       {
-        "aspect": "Gò Vấp",
-        "opinion": "MÊNH MÔNG",
+        "aspect": "Phan Huy Ích",
+        "opinion": "MÊNH MÔNG NƯỚC",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Phạm Văn Chiêu",
+        "opinion": "MÊNH MÔNG NƯỚC",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Lê Đức Thọ",
+        "opinion": "MÊNH MÔNG NƯỚC",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "đường Song Hành",
+        "opinion": "MÊNH MÔNG NƯỚC",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3676
@@ -184515,17 +184165,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Gò Vấp",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_qungvp",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3677
   },
   {
@@ -184559,17 +184199,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "MÊNH MÔNG",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3678
   },
   {
@@ -184605,13 +184235,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "An Nhơn",
-        "opinion": "tắt máy",
+        "aspect": "chợ An Nhơn",
+        "opinion": "ngập dữ lắm",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_MARKET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3679
@@ -184647,17 +184277,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "bến Bình Đông",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tuynngbn",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3680
   },
   {
@@ -184693,22 +184313,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "DỰ ÁN NẠO VÉT",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "INFRASTRUCTURE_DRAINAGE",
+        "aspect": "RẠCH XÓM CỦI",
+        "opinion": "GIẢI QUYẾT NGẬP",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_RIVER",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "XÓM CỦI",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_phngphnh",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "LOW"
       }
     ],
     "seq_id": 3681
@@ -184747,12 +184358,21 @@
     "aste_triplets": [
       {
         "aspect": "Phạm Thế Hiển",
-        "opinion": "ngập",
+        "opinion": "nước ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_phmthhin",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Cầu Bà Tàng",
+        "opinion": "nước ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3682
@@ -184790,20 +184410,11 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Chu Văn An",
-        "opinion": "ùn tắc",
-        "polarity": "NEG",
+        "aspect": "đường Chu Văn An",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Bình Thạnh",
-        "opinion": "ùn tắc",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_phngbnht",
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "LOW"
       }
@@ -184841,17 +184452,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Thủy văn",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3684
   },
   {
@@ -184885,17 +184486,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập nghiêm trọng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3685
   },
   {
@@ -184929,17 +184520,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3686
   },
   {
@@ -184975,17 +184556,7 @@
         "https://www.facebook.com/huethuong.music.vn/videos/ki%E1%BB%87t-59-an-d%C6%B0%C6%A1ng-v%C6%B0%C6%A1ng-l%C3%BAc-n%C3%A0y-n%C6%B0%E1%BB%9Bc-%C4%91%C3%A3-ng%E1%BA%ADp-kh%C3%A1-cao-%EF%B8%8F/24935658216103043/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "An Dương Vương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_andngvng",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3687
   },
   {
@@ -185019,17 +184590,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "An Dương Vương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_andngvng",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3688
   },
   {
@@ -185065,26 +184626,7 @@
         "https://www.facebook.com/KenhVOVGT/videos/%C4%91%C6%B0%E1%BB%9Dng-v%C3%B5-ch%C3%AD-c%C3%B4ng-t%E1%BB%AB-c%E1%BA%A7u-nh%E1%BA%ADt-t%C3%A2n-%C4%91%E1%BA%BFn-ng%C3%A3-t%C6%B0-nguy%E1%BB%85n-ho%C3%A0ng-t%C3%B4n-hi%E1%BB%87n-t%E1%BA%A1i-giao-th%C3%B4n/601522052951739/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Nhật Tân đến ngã tư Nguyễn Hoàng Tôn hiện tại giao thông thưa vắng",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Nhật Tân vòng xuống đường An Dương Vương các phư",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_andngvng",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3689
   },
   {
@@ -185120,12 +184662,12 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Phường Trung Mỹ Tây",
-        "opinion": "tràn vào nhà dân",
+        "aspect": "chung cư Thạnh Lộc",
+        "opinion": "nước kênh tràn vào",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_RESIDENTIAL",
         "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
+        "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
     ],
@@ -185166,29 +184708,11 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Tam Bình",
+        "aspect": "phường Tam Bình",
         "opinion": "ngập sâu",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_RESIDENTIAL",
         "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Thủ Đức",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tpthc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
@@ -185228,31 +184752,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TRIỀU CƯỜNG",
-        "opinion": "ĐẠT ĐỈNH",
-        "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
+        "aspect": "phường Bình Quới",
+        "opinion": "ngập nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_RESIDENTIAL",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "lực lượng chức năng",
-        "opinion": "ÙN TẮC",
-        "polarity": "NEG",
-        "aspect_category": "RESPONSE_ENTITY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Bình Quới",
-        "opinion": "ÙN TẮC",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_bnhqui",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3692
@@ -185288,17 +184794,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "triều cường",
-        "opinion": "đạt đỉnh",
-        "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3693
   },
   {
@@ -185332,17 +184828,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TP Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3694
   },
   {
@@ -185378,26 +184864,7 @@
         "https://www.facebook.com/dongthaptvonline/videos/h%E1%BB%93-d%E1%BA%A7u-ti%E1%BA%BFng-x%E1%BA%A3-n%C6%B0%E1%BB%9Bc-c%E1%BA%A3nh-b%C3%A1o-ng%E1%BA%ADp-v%C3%B9ng-h%E1%BA%A1-du-s%C3%B4ng-s%C3%A0i-g%C3%B2n/808082248873043/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "sông Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Hồ Dầu Tiếng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3696
   },
   {
@@ -185433,29 +184900,20 @@
     },
     "aste_triplets": [
       {
-        "aspect": "triều cường",
-        "opinion": "ngập sâu",
+        "aspect": "Thanh Đa",
+        "opinion": "Bị ngập sâu",
         "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
+        "aspect_category": "LOCATION_RESIDENTIAL",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       },
       {
         "aspect": "Bình Quới",
-        "opinion": "ngập sâu",
+        "opinion": "Bị ngập sâu",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_bnhqui",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Thanh Đa",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_bnhqui",
+        "aspect_category": "LOCATION_RESIDENTIAL",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
@@ -185501,7 +184959,16 @@
         "opinion": "Biển nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_lvnlng",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Tố Hữu",
+        "opinion": "Biển nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
@@ -185539,53 +185006,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Triều cường",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Bạch Đằng",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_bchng",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "ông Đành",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3699
   },
   {
@@ -185619,17 +185040,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "xe chết máy",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3700
   },
   {
@@ -185665,31 +185076,22 @@
     },
     "aste_triplets": [
       {
+        "aspect": "đường Nguyễn Xí",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
         "aspect": "Đinh Bộ Lĩnh",
-        "opinion": "dẫn bộ",
+        "opinion": "ngập sâu",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_inhblnh",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Nguyễn Xí",
-        "opinion": "dẫn bộ",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_nguynx",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Bình Thạnh",
-        "opinion": "dẫn bộ",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_phngbnht",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3701
@@ -185725,17 +185127,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "PHAN HUY ÍCH",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_phanhuyc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3702
   },
   {
@@ -185769,17 +185161,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "NHƯ SÔNG",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3703
   },
   {
@@ -185815,8 +185197,8 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Lê Lai",
-        "opinion": "ngập nặng",
+        "aspect": "đường Lê Lai",
+        "opinion": "bị ngập nặng",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
@@ -185857,17 +185239,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3706
   },
   {
@@ -185901,26 +185273,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Lực lượng chức năng",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "RESPONSE_ENTITY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Dĩ An",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3707
   },
   {
@@ -185954,26 +185307,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "CSGT",
-        "opinion": "mênh mông",
-        "polarity": "NEG",
-        "aspect_category": "RESPONSE_ENTITY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "DĨ AN",
-        "opinion": "mênh mông",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3708
   },
   {
@@ -186007,26 +185341,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Dĩ An",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3709
   },
   {
@@ -186062,26 +185377,7 @@
         "https://www.facebook.com/toiladandianbinhduong/videos/%EF%B8%8F-d%C4%A9-an-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-%C4%91%C3%A3-ng%E1%BA%ADphi%E1%BB%87n-t%E1%BA%A1i-%C4%91%C6%B0%E1%BB%9Dng-nguy%E1%BB%85n-tri-ph%C6%B0%C6%A1ng-%C4%91ang-ng%E1%BA%ADp-s%C3%A2u-/441053918549547/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Nguyễn Tri Phương",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Dĩ An",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3710
   },
   {
@@ -186115,26 +185411,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Nguyễn Tri Phương",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "DĨ AN",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3711
   },
   {
@@ -186168,17 +185445,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "DĨ AN",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3712
   },
   {
@@ -186212,17 +185479,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "DĨ AN",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3713
   },
   {
@@ -186256,53 +185513,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Tô Ngọc Vân",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tngcvn",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "An Bình",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Dĩ An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_sngthnqu",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Hiệp Bình",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3714
   },
   {
@@ -186336,26 +185547,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "BÌNH DƯƠNG",
-        "opinion": "NGẬP SÂU",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Dĩ An",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3715
   },
   {
@@ -186389,26 +185581,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "GS1",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "DĨ AN",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3716
   },
   {
@@ -186442,35 +185615,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "cống thoát nước",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "đang",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3717
   },
   {
@@ -186504,17 +185649,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_ilbnhdng",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3718
   },
   {
@@ -186548,44 +185683,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Nguyễn Thị Tươi",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Tân Bình",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_quntnbnh",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Dĩ An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3719
   },
   {
@@ -186619,17 +185717,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3720
   },
   {
@@ -186663,35 +185751,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "cống thoát nước",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "đang",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3721
   },
   {
@@ -186725,44 +185785,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "triều dâng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3722
   },
   {
@@ -186796,35 +185819,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Cầu Ông Bố",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_ngt550cu",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3723
   },
   {
@@ -186858,44 +185853,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "hồ Dầu Tiếng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3724
   },
   {
@@ -186931,35 +185889,7 @@
         "https://www.facebook.com/baodientuvtv/videos/b%C3%ACnh-d%C6%B0%C6%A1ng-ng%C6%B0%E1%BB%9Di-d%C3%A2n-ph%E1%BA%A3i-s%E1%BB%91ng-trong-c%E1%BA%A3nh-ng%E1%BA%ADp-%C3%BAng-k%C3%A9o-d%C3%A0i-su%E1%BB%91t-4-n%C4%83m/1597374017481239/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Thuận Giao 7",
-        "opinion": "khổ sở",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "khổ sở",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "khổ sở",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3725
   },
   {
@@ -186993,44 +185923,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "triều dâng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "CMT8",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3726
   },
   {
@@ -187066,35 +185959,7 @@
         "https://www.facebook.com/binhduong24htv/videos/kh%E1%BA%A9n-ngay-b%C3%A2y-gi%E1%BB%9D-l%C3%A0-2h-s%C3%A1ng-511-nh%E1%BB%9D-m%E1%BB%8Di-ng%C6%B0%E1%BB%9Di-lan-to%E1%BA%A3-gi%C3%BAp-hi%E1%BB%87n-%C4%91%C6%B0%E1%BB%9Dng-nguy%E1%BB%85n-th/1393802022352607/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Nguyễn Thị Minh Khai",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3727
   },
   {
@@ -187128,26 +185993,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "BÌNH DƯƠNG",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "THUẬN AN",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3728
   },
   {
@@ -187181,44 +186027,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "hồ Dầu Tiếng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3729
   },
   {
@@ -187252,44 +186061,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "triều cường",
-        "opinion": "đo được",
-        "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "nước dâng",
-        "opinion": "đo được",
-        "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "đo được",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "đo được",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3730
   },
   {
@@ -187323,44 +186095,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "CSGT",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "RESPONSE_ENTITY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Quan",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_thchqung",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bến Cát",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3731
   },
   {
@@ -187394,35 +186129,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Hồ Dầu Tiếng",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3732
   },
   {
@@ -187456,53 +186163,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Triều cường",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Bạch Đằng",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_bchng",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "ông Đành",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3734
   },
   {
@@ -187538,26 +186199,7 @@
         "https://www.facebook.com/binhduong24htv/videos/ng%C3%A3-4-b%C3%ACnh-chu%E1%BA%A9n-v%E1%BB%81-th%E1%BB%A7-d%E1%BA%A7u-m%E1%BB%99t-ngay-l%C3%BAc-n%C3%A0y/726596021267832/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "ngập nửa bánh xe",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập nửa bánh xe",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3735
   },
   {
@@ -187591,26 +186233,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "THỦ DẦU MỘT",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "BÌNH DƯƠNG",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3736
   },
   {
@@ -187646,26 +186269,7 @@
         "https://www.facebook.com/TinTDM24H/videos/th%E1%BB%A7-d%E1%BA%A7u-m%E1%BB%99tm%C6%B0a-ng%E1%BA%ADp-ngay-l%C3%BAc-n%C3%A0y-%E1%BB%9F-ng%C3%A3-3-c%E1%BB%91ng-th%C3%ADch-qu%E1%BA%A3ng-%C4%91%E1%BB%A9c-th%E1%BB%A7-d%E1%BA%A7u-m%E1%BB%99t-b%C3%ACnh-d/660059343265740/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3737
   },
   {
@@ -187699,44 +186303,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "trạm Thủ Dầu Một",
-        "opinion": "đo được",
-        "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Thủy Triều",
-        "opinion": "đo được",
-        "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Ông Đành",
-        "opinion": "đo được",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "đo được",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3738
   },
   {
@@ -187772,17 +186339,7 @@
         "https://www.facebook.com/binhduong24htv/videos/ch%E1%BB%A3-b%C3%ACnh-d%C6%B0%C6%A1ng-t%E1%BB%91i-nay-v%C3%A0-nh%E1%BB%AFng-ng%C3%A0y-g%E1%BA%A7n-%C4%91%C3%A2y-n%C6%B0%E1%BB%9Bc-ng%E1%BA%ADp-khi%E1%BA%BFn-nhi%E1%BB%81u-xe-ch%E1%BA%BFt-m%C3%A1y-b/1726505351347717/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Dương",
-        "opinion": "nhiều xe chết máy",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3739
   },
   {
@@ -187816,44 +186373,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "SÔNG SÀI GÒN",
-        "opinion": "NGUY CƠ NGẬP",
-        "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "HỒ DẦU TIẾNG",
-        "opinion": "NGUY CƠ NGẬP",
-        "polarity": "NEU",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "THỦ DẦU MỘT",
-        "opinion": "NGUY CƠ NGẬP",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "THUẬN AN",
-        "opinion": "NGUY CƠ NGẬP",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3740
   },
   {
@@ -187887,44 +186407,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Hồ Dầu Tiếng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "nước dâng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3741
   },
   {
@@ -187958,17 +186441,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "BÌNH DƯƠNG",
-        "opinion": "NHƯ SÔNG",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3742
   },
   {
@@ -188002,17 +186475,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "ĐẠI LỘ BÌNH DƯƠNG",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_ilbnhdng",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3743
   },
   {
@@ -188046,35 +186509,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "tràn vào nhà dân",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "dắt bộ",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Tân Uyên",
-        "opinion": "dắt bộ",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3745
   },
   {
@@ -188108,26 +186543,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Dòng nước",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_ilbnhdng",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3746
   },
   {
@@ -188161,26 +186577,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Bến Cát",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3747
   },
   {
@@ -188214,35 +186611,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Thủ Dầu Một",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Thuận An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3748
   },
   {
@@ -188276,17 +186645,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3749
   },
   {
@@ -188320,17 +186679,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "VŨNG TÀU",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3750
   },
   {
@@ -188364,17 +186713,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_bisauthy",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3751
   },
   {
@@ -188408,17 +186747,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_bisauthy",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3752
   },
   {
@@ -188452,26 +186781,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Rạch Dừa",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "Ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3753
   },
   {
@@ -188507,17 +186817,7 @@
         "https://www.facebook.com/brvtmedia/videos/ng%E1%BA%ADp-n%E1%BA%B7ng-%E1%BB%9F-thi-s%C3%A1ch-v%C5%A9ng-t%C3%A0u-video-tr%E1%BA%A7n-ph%C3%BAc-h%E1%BA%ADu/791034500539068/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bà Rịa Vũng Tàu",
-        "opinion": "Ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3754
   },
   {
@@ -188551,26 +186851,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Lê Hồng",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_lhngphon",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "chết máy",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3755
   },
   {
@@ -188604,26 +186885,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Lê Hồng Phong",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_lhngphon",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_bisauthy",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3756
   },
   {
@@ -188659,17 +186921,7 @@
         "https://www.facebook.com/tintucvtv9/videos/trung-t%C3%A2m-khu-v%E1%BB%B1c-v%C5%A9ng-t%C3%A0u-ng%E1%BA%ADp-sau-m%C6%B0a/821554687105452/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "khu vực trung tâm phường Vũng Tàu",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3757
   },
   {
@@ -188703,26 +186955,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Xô Viết Nghệ Tĩnh",
-        "opinion": "NGẬP SÂU",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_xvitnght",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "VŨNG TÀU",
-        "opinion": "NGẬP SÂU",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3758
   },
   {
@@ -188756,26 +186989,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "BÀ RỊA",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3759
   },
   {
@@ -188809,17 +187023,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "BÀ RỊA",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3760
   },
   {
@@ -188853,26 +187057,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "SÓNG THẦN",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_sngthnqu",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "VŨNG TÀU",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3761
   },
   {
@@ -188906,26 +187091,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3762
   },
   {
@@ -188959,26 +187125,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "VŨNG TÀU",
-        "opinion": "NGUY CƠ NGẬP",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "BÀ RỊA",
-        "opinion": "NGUY CƠ NGẬP",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3763
   },
   {
@@ -189014,35 +187161,7 @@
         "https://www.facebook.com/brvtmedia/videos/h%E1%BB%93-tr%C3%A0m-xuy%C3%AAn-m%E1%BB%99c-brvt-c%C5%A9-ng%E1%BA%ADp-n%E1%BA%B7ng-n%C6%B0%E1%BB%9Bc-ch%E1%BA%A3y-ra-bi%E1%BB%83n-ko-k%E1%BB%8Bp/1727125418245099/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bà Rịa Vũng Tàu",
-        "opinion": "NGẬP NẶNG",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "XUYÊN MỘC",
-        "opinion": "NGẬP NẶNG",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "HỒ TRÀM",
-        "opinion": "NGẬP NẶNG",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3764
   },
   {
@@ -189076,17 +187195,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "Ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3765
   },
   {
@@ -189120,26 +187229,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Bà Rịa",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3766
   },
   {
@@ -189173,17 +187263,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "VŨNG TÀU",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3767
   },
   {
@@ -189219,35 +187299,7 @@
         "https://www.facebook.com/truyenhinh.brt/videos/s%E1%BB%9Bm-x%E1%BB%AD-l%C3%BD-t%C3%ACnh-tr%E1%BA%A1ng-ng%E1%BA%ADp-t%E1%BA%A1i-ph%C6%B0%E1%BB%9Dng-m%E1%BB%B9-xu%C3%A2n-th%E1%BB%8B-x%C3%A3-ph%C3%BA-m%E1%BB%B9/560791889795949/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bà Rịa",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Phú Mỹ",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3768
   },
   {
@@ -189283,26 +187335,7 @@
         "https://www.facebook.com/atgt.vhgt/videos/m%C6%B0a-l%E1%BB%9Bn-ng%E1%BA%ADp-s%C3%A2u-%E1%BB%9F-b%E1%BA%BFn-c%C3%A1t-b%C3%ACnh-d%C6%B0%C6%A1ngkh%C3%B4ng-c%E1%BA%A7n-%C4%91i-ch%E1%BB%AFa-l%C3%A0nh-%E1%BB%9F-%C4%91%C3%A2y-v%E1%BB%ABa-l%C3%A0nh-v%C3%A0-l%E1%BA%A1/1920227915147920/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Bến Cát",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3770
   },
   {
@@ -189338,26 +187371,7 @@
         "https://www.facebook.com/thoisubrvt/videos/%C4%91%C6%B0%E1%BB%9Dng-b%C3%A0-r%E1%BB%8Ba-ch%C3%A2u-pha-%C4%91o%E1%BA%A1n-thi-c%C3%B4ng-c%E1%BA%A7u-v%C6%B0%E1%BB%A3t-km-49900-ng%E1%BA%ADp-n%C6%B0%E1%BB%9Bc-v%C3%AC-tr%E1%BB%9Di-m%C6%B0a/1417595982919442/"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "Châu Pha",
-        "opinion": "thi công",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "Bà Rịa",
-        "opinion": "thi công",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3771
   },
   {
@@ -189391,26 +187405,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "VŨNG TÀU",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "BÀ RỊA",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3772
   },
   {
@@ -189444,26 +187439,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "sóng thần",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_sngthnqu",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3773
   },
   {
@@ -189497,26 +187473,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bà Rịa",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3774
   },
   {
@@ -189550,35 +187507,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "nước dâng",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Vũng Tàu",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      },
-      {
-        "aspect": "Bà Rịa",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3775
   },
   {
@@ -189612,17 +187541,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "BÀ RỊA VŨNG TÀU",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3776
   },
   {
@@ -189656,17 +187575,7 @@
       "has_media": false,
       "media_urls": []
     },
-    "aste_triplets": [
-      {
-        "aspect": "Bình Dương",
-        "opinion": "ùn tắc",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3777
   },
   {
@@ -189702,13 +187611,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TPHCM",
-        "opinion": "ngập",
+        "aspect": "Thảo Điền",
+        "opinion": "Cứ mưa là ngập",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
+        "aspect_category": "LOCATION_RESIDENTIAL",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3778
@@ -189746,28 +187655,10 @@
     },
     "aste_triplets": [
       {
-        "aspect": "thủy văn",
-        "opinion": "NGẬP NẶNG",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
         "aspect": "CHỢ THỦ ĐỨC",
-        "opinion": "NGẬP NẶNG",
+        "opinion": "LẠI NGẬP NẶNG",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Tây Nam",
-        "opinion": "NGẬP NẶNG",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_MARKET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
@@ -189808,13 +187699,22 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TP. Hồ Chí Minh",
+        "aspect": "Lê Văn Thọ",
         "opinion": "ngập nửa bánh xe",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MEDIUM"
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Lê Đức Thọ",
+        "opinion": "trôi luôn xe",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3780
@@ -189852,13 +187752,13 @@
     },
     "aste_triplets": [
       {
-        "aspect": "TP. Hồ Chí Minh",
+        "aspect": "Lê Văn Thọ",
         "opinion": "ngập nửa bánh xe",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
+        "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MEDIUM"
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       }
     ],
     "seq_id": 3781
@@ -189896,17 +187796,7 @@
         "https://www.tiktok.com/@laodong.vn/video/7693455371821681938"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3782
   },
   {
@@ -189942,17 +187832,7 @@
         "https://www.tiktok.com/@dantri.com.vn/video/7678383695421623573"
       ]
     },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_tontphch",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MEDIUM"
-      }
-    ],
+    "aste_triplets": [],
     "seq_id": 3783
   },
   {
@@ -189990,11 +187870,11 @@
     },
     "aste_triplets": [
       {
-        "aspect": "Bến xe Miền Đông mới",
-        "opinion": "nhiều xe chết máy",
+        "aspect": "hầm chui Bến xe Miền Đông mới",
+        "opinion": "bị ngập",
         "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_inhblnh",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
       }
