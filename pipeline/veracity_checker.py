@@ -1,13 +1,14 @@
+# -*- coding: utf-8 -*-
 """
 pipeline/veracity_checker.py
 Module Xác Thực Dữ Liệu & Phòng Chống Báo Cáo Sai Lệch / Tin Giả (Data Veracity & Fake Report Mitigation).
 
 Cơ chế hoạt động (Multi-tier Defense):
 1. Tầng 1: Đánh giá độ tin cậy nội dung & hình ảnh (Content/Visual Verification).
-   - [BASELINE HIỆN TẠI]: Dùng luật heuristic kiểm tra link media và từ khóa.
-   - [ĐIỂM CẮM CHO BẠN BẠN]: Sẵn sàng kết nối mô hình Image Classifier + Whisper ASR + ASTE.
+   - Kết nối Multimodal AI Microservice (Port 8001) qua HTTP REST API.
+   - Graceful fallback: Dùng luật heuristic kiểm tra link media và từ khóa nếu microservice offline.
 2. Tầng 2: Đối soát Khí tượng thực tế (Weather Cross-Check).
-   - Live Mode: Truy vấn lượng mưa thời gian thực từ Open-Meteo Forecast API tại tọa độ cụ thể của điểm ngập.
+   - Live Mode: Truy vấn lượng mưa Open-Meteo Forecast API theo đúng tọa độ điểm ngập VÀ KHUNG GIỜ ĐĂNG BÀI (Asia/Bangkok).
    - Simulation / Historical Mode: Tự động đối soát lượng mưa lịch sử vào đúng thời điểm đăng tải bài viết tại tọa độ điểm ngập.
 3. Tầng 3: Đồng thuận Không - Thời gian (Spatio-Temporal Consensus).
    - Gom cụm bài đăng trong khung trượt 60 phút (1 tiếng) và bán kính 500m.
@@ -25,15 +26,16 @@ import time
 import json
 import urllib.request
 import urllib.error
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Dict, Any, Optional, List, Tuple
-
 import os
+
 # Bán kính trái đất (mét) phục vụ tính khoảng cách Haversine
 EARTH_RADIUS_METERS = 6371000.0
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 CSGT_FILE = os.path.join(DATA_DIR, "csgt_122_flood_hotspots.json")
+AI_MICROSERVICE_URL = os.environ.get("AI_MICROSERVICE_URL", "http://localhost:8001/api/v1/predict-multimodal")
 
 def load_tidal_hotspots() -> List[Dict[str, Any]]:
     if os.path.exists(CSGT_FILE):
@@ -56,7 +58,7 @@ def is_tidal_flood_event(event: Dict[str, Any], lat: Optional[float] = None, lon
         type_str = str(loc.get("type", "")).lower()
         if "triều cường" in type_str or "trieu cuong" in type_str:
             return True
-            
+
     text = str(event.get("text", "")).lower()
     if any(k in text for k in ["triều cường", "trieu cuong", "nước dâng", "nuoc dang", "tràn bờ", "tran bo"]):
         return True
@@ -91,32 +93,51 @@ class VeracityChecker:
         self.window_seconds = window_minutes * 60
         self.radius_meters = radius_meters
         self.enable_weather = enable_weather_check
-        
+
         # Bộ nhớ lưu các sự kiện gần đây để tính đồng thuận: List[Dict[str, Any]]
         self.recent_events: List[Dict[str, Any]] = []
-        
+
         # Cache kết quả thời tiết theo tọa độ và thời gian
         self.weather_cache: Dict[str, Dict[str, Any]] = {}
 
     # =========================================================================
-    # ĐIỂM CẮM TÍCH HỢP (EXTENSION POINT) CHO MÔ HÌNH AI CỦA BẠN BẠN
+    # ĐIỂM CẮM TÍCH HỢP (EXTENSION POINT) CHO MÔ HÌNH AI
     # =========================================================================
     def evaluate_content_ai(self, event: Dict[str, Any]) -> Dict[str, Any]:
         """
         Đánh giá độ tin cậy từ nội dung đa phương thái (Chữ, Âm thanh, Hình ảnh).
-        
-        >>> ĐÂY CHÍNH LÀ NƠI BẠN BẠN SẼ CẮM MÔ HÌNH VÀO SAU NÀY <<<
-        Ví dụ khi có mô hình:
-            from models.multimodal_detector import predict_flood_multimodal
-            res = predict_flood_multimodal(text=event['text'], media_urls=event.get('media_urls', []))
-            return {
-                "source": "friend_multimodal_ai",
-                "visual_verified": res['has_water'],
-                "content_score": res['confidence'],
-                "triplets": res['triplets']
-            }
+        Ưu tiên gọi Multimodal AI Microservice (Port 8001).
+        Nếu microservice offline hoặc timeout -> Fallback an toàn sang Heuristic Baseline.
         """
-        # [CƠ CHẾ DỰ PHÒNG HIỆN TẠI - HEURISTIC BASELINE]:
+        # 1. Thử kết nối Microservice AI với timeout siêu ngắn 0.35s
+        try:
+            payload = {
+                "post_id": str(event.get("id") or event.get("canonical_id") or "event_raw"),
+                "text": event.get("text") or event.get("title", ""),
+                "media_urls": event.get("media_urls", []) or ([event.get("url")] if event.get("url") else [])
+            }
+            req_data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+            req = urllib.request.Request(
+                AI_MICROSERVICE_URL,
+                data=req_data,
+                headers={"Content-Type": "application/json", "User-Agent": "SE363-Veracity/2.5"}
+            )
+            with urllib.request.urlopen(req, timeout=0.35) as resp:
+                if resp.status == 200:
+                    ai_resp = json.loads(resp.read().decode("utf-8"))
+                    if ai_resp.get("status") == "success":
+                        v_pred = ai_resp.get("visual_prediction", {})
+                        return {
+                            "source": "friend_multimodal_ai",
+                            "visual_verified": v_pred.get("is_flood", False),
+                            "content_score": round(float(ai_resp.get("content_confidence_score", 0.85)), 2),
+                            "triplets": ai_resp.get("aste_triplets", []),
+                            "audio_transcript": ai_resp.get("audio_transcript", "")
+                        }
+        except Exception:
+            pass
+
+        # 2. CƠ CHẾ DỰ PHÒNG (HEURISTIC BASELINE):
         media_val = event.get("media")
         has_media = False
         if (
@@ -131,7 +152,6 @@ class VeracityChecker:
 
         text = str(event.get("text", "")).lower()
 
-        # Nếu có video/ảnh thật từ mạng xã hội
         if has_media:
             visual_verified = True
             content_score = 0.75
@@ -139,12 +159,11 @@ class VeracityChecker:
             visual_verified = False
             content_score = 0.50
 
-        # Nếu text có từ khóa khẳng định mạnh (chết máy, ngập lút bánh, ngập sâu, thất thủ...)
         if any(k in text for k in ["chết máy", "lút bánh", "dắt bộ", "bì bõm", "ngập sâu", "thất thủ", "ngập lụt", "biển nước"]):
             content_score = min(1.0, content_score + 0.15)
 
         return {
-            "source": "heuristic_baseline",  # Sau này đổi thành "friend_multimodal_ai"
+            "source": "heuristic_baseline",
             "visual_verified": visual_verified,
             "content_score": round(content_score, 2),
             "triplets": event.get("aste_triplets", [])
@@ -156,21 +175,25 @@ class VeracityChecker:
     def check_weather_plausibility(self, lat: float, lon: float, timestamp: int, is_tidal: bool = False) -> Dict[str, Any]:
         """
         Kiểm tra thời tiết thực tế tại tọa độ sự kiện.
-        - Tọa độ: Lấy chính xác tọa độ GPS của điểm ngập (hoặc lưới 1km lân cận).
-        - Thời gian: Lấy theo khung giờ bài viết được đăng tải (cửa sổ ±2 giờ).
+        - Tọa độ: Lấy chính xác tọa độ GPS của điểm ngập.
+        - Thời gian: Lấy theo khung giờ bài viết được đăng tải (Asia/Bangkok +7).
         """
         if not self.enable_weather or not lat or not lon:
             return {"checked": False, "score": 0.60, "plausible": True, "reason": "Weather check bypassed"}
 
         now = int(time.time())
-        is_historical = (abs(now - timestamp) > 86400)
+        # Nếu mốc thời gian khác biệt quá 24h so với thời điểm chạy máy -> Bắt buộc gọi Archive API
+        is_historical = (abs(now - timestamp) > 86400) or (timestamp < now - 3600*24)
         lat_grid = round(lat, 2)
         lon_grid = round(lon, 2)
 
         if is_historical:
-            # 1. ĐỐI SOÁT LỊCH SỬ: Theo tọa độ điểm ngập và giờ đăng bài gốc
-            hour = datetime.fromtimestamp(timestamp, timezone.utc).hour
-            cache_key = f"hist_{lat_grid}_{lon_grid}_{timestamp // 86400}_{hour // 2}"
+            # 1. ĐỐI SOÁT LỊCH SỬ: Theo tọa độ điểm ngập và giờ đăng bài gốc theo múi giờ Việt Nam (Archive API)
+            tz_vn = timezone(timedelta(hours=7))
+            post_dt = datetime.fromtimestamp(timestamp, tz_vn)
+            hour = post_dt.hour
+            date_str = post_dt.strftime("%Y-%m-%d")
+            cache_key = f"hist_{lat_grid}_{lon_grid}_{date_str}_{hour // 2}"
             if cache_key in self.weather_cache:
                 return self.weather_cache[cache_key]
 
@@ -187,7 +210,6 @@ class VeracityChecker:
                 hourly_precip = payload.get("hourly", {}).get("precipitation", [])
                 val = 0.0
                 if hourly_precip and len(hourly_precip) > hour:
-                    # Lấy lượng mưa trong khung ±2 tiếng xung quanh giờ đăng tải
                     start_h = max(0, hour - 2)
                     end_h = min(len(hourly_precip), hour + 3)
                     val = max(hourly_precip[start_h:end_h]) if hourly_precip[start_h:end_h] else 0.0
@@ -223,48 +245,62 @@ class VeracityChecker:
                     "precipitation_mm": 0.0,
                     "score": 0.60,
                     "plausible": True,
-                    "reason": f"Không có dữ liệu trạm khí tượng lưu trữ lúc {hour}h ngày {date_str}"
+                    "reason": f"Không có dữ liệu trạm khí tượng lưu trữ lúc {hour}h ngày {date_str} ({e})"
                 }
                 self.weather_cache[cache_key] = res
                 return res
 
         else:
-            # 2. LIVE MODE: Thời gian thực theo đúng tọa độ điểm ngập
-            cache_key = f"live_{lat_grid}_{lon_grid}_{now // 1800}"
+            # 2. LIVE MODE: Thời gian thực theo đúng tọa độ điểm ngập VÀ KHUNG GIỜ ĐĂNG BÀI
+            # Open-Meteo Forecast endpoint trả về 48h (hôm qua + hôm nay)
+            tz_vn = timezone(timedelta(hours=7))
+            post_dt = datetime.fromtimestamp(timestamp, tz_vn)
+            target_hour_str = post_dt.strftime("%Y-%m-%dT%H:00")
+            cache_key = f"live_{lat_grid}_{lon_grid}_{target_hour_str}"
             if cache_key in self.weather_cache:
                 return self.weather_cache[cache_key]
 
             try:
                 url = (
                     f"https://api.open-meteo.com/v1/forecast?"
-                    f"latitude={lat}&longitude={lon}&current=precipitation,rain&timezone=Asia%2FBangkok"
+                    f"latitude={lat}&longitude={lon}&hourly=precipitation,rain&past_days=1&forecast_days=1&timezone=Asia%2FBangkok"
                 )
                 req = urllib.request.Request(url, headers={"User-Agent": "SE363-UrbanFlood-Monitor/1.0"})
                 with urllib.request.urlopen(req, timeout=6) as response:
                     payload = json.loads(response.read().decode("utf-8"))
 
-                current = payload.get("current", {})
-                precip = float(current.get("precipitation", 0.0))
-                rain = float(current.get("rain", 0.0))
-                val = max(precip, rain)
+                hourly = payload.get("hourly", {})
+                times = hourly.get("time", [])
+                precips = hourly.get("precipitation", [])
+                rains = hourly.get("rain", [])
+
+                val = 0.0
+                if target_hour_str in times:
+                    idx = times.index(target_hour_str)
+                    start_i = max(0, idx - 1)
+                    end_i = min(len(times), idx + 2)
+                    for i in range(start_i, end_i):
+                        p = float(precips[i]) if i < len(precips) else 0.0
+                        r = float(rains[i]) if i < len(rains) else 0.0
+                        val = max(val, p, r)
 
                 if val >= 5.0:
                     score = 1.0
                     plausible = True
-                    desc = f"Trạm khí tượng thời gian thực: Mưa lớn ({val} mm/h)"
+                    desc = f"Trạm khí tượng thời gian thực: Mưa lớn ({val} mm/h lúc {post_dt.hour}h)"
                 elif val > 0.0:
                     score = 0.85
                     plausible = True
-                    desc = f"Trạm khí tượng thời gian thực: Có mưa rào ({val} mm/h)"
+                    desc = f"Trạm khí tượng thời gian thực: Có mưa ({val} mm/h lúc {post_dt.hour}h)"
                 else:
                     if is_tidal:
                         score = 0.90
                         plausible = True
                         desc = "Điểm ngập triều cường đặc trưng (PC08 CSGT) - Triều dâng ven sông/kênh rạch (không phụ thuộc mưa)"
                     else:
-                        score = 0.45
+                        score = 0.50
                         plausible = True
-                        desc = "Không ghi nhận mưa tại thời điểm này (có thể do triều cường)"
+                        desc = f"Không ghi nhận mưa lúc {post_dt.hour}h (ngập do triều cường hoặc đọng nước)"
 
                 res = {
                     "checked": True,
@@ -306,7 +342,6 @@ class VeracityChecker:
         now = int(time.time())
         is_cur_sim = (abs(now - event_time) > 86400)
 
-        # Dọn dẹp các sự kiện đã quá 2 tiếng để giữ bộ nhớ nhẹ
         cutoff_time = event_time - (self.window_seconds * 2)
         self.recent_events = [e for e in self.recent_events if e.get("timestamp", 0) >= cutoff_time or is_cur_sim]
 
@@ -318,32 +353,25 @@ class VeracityChecker:
             if not p_lat or not p_lon:
                 continue
 
-            time_diff = abs(event_time - p_time)
-            is_past_sim = (abs(now - p_time) > 86400)
-
-            # Nếu trong Live mode: Phải trong khung 60 phút
-            # Nếu trong Simulation mode: Cùng đợt ngập mô phỏng hoặc trong khung 60 phút
-            if time_diff > self.window_seconds and not (is_cur_sim and is_past_sim):
-                continue
-
             dist = haversine_distance_meters(lat, lon, p_lat, p_lon)
-            if dist <= self.radius_meters:
-                evidence_ids.append(str(past.get("id")))
+            time_diff = abs(event_time - p_time)
 
-        evidence_count = len(evidence_ids) + 1  # Tính cả sự kiện hiện tại
+            if dist <= self.radius_meters and time_diff <= self.window_seconds:
+                if past.get("id"):
+                    evidence_ids.append(str(past["id"]))
 
-        # Thang điểm đồng thuận mềm:
+        evidence_count = len(evidence_ids) + 1
         if evidence_count >= 3:
-            consensus_score = 1.0   # Từ 3 người trở lên: Đồng thuận tuyệt đối
+            consensus_score = 1.0
         elif evidence_count == 2:
-            consensus_score = 0.75  # 2 người cùng báo: Độ tin cậy cao
+            consensus_score = 0.80
         else:
-            consensus_score = 0.40  # 1 người duy nhất: Điểm thăm dò
+            consensus_score = 0.50
 
         return consensus_score, evidence_count, evidence_ids
 
     # =========================================================================
-    # HÀM XÁC THỰC SỰ KIỆN TỔNG THỂ (MAIN VERIFY FUNCTION)
+    # TẦNG 4: TỔNG HỢP XÁC THỰC TOÀN TRÌNH (TÍCH HỢP 4 TẦNG PHÒNG THỦ)
     # =========================================================================
     def verify_event(self, event: Dict[str, Any], reference_time: Optional[int] = None) -> Dict[str, Any]:
         """
@@ -351,7 +379,15 @@ class VeracityChecker:
         Hỗ trợ cả Live Mode (reference_time = None) và Simulation Mode (truyền mốc thời gian ảo).
         """
         try:
-            event_time = event.get("timestamp") or reference_time or int(time.time())
+            post_time = (
+                event.get("create_time") or 
+                event.get("timestamp") or 
+                event.get("published_time") or 
+                event.get("publish_time") or 
+                event.get("historical_timestamp")
+            )
+            event_time = post_time or reference_time or int(time.time())
+            weather_time = event.get("historical_timestamp") or post_time or reference_time or event_time
             loc = event.get("location")
             loc_dict = loc if isinstance(loc, dict) else {}
             lat = event.get("lat") or loc_dict.get("lat")
@@ -364,8 +400,8 @@ class VeracityChecker:
             # Xác định xem sự kiện có thuộc nhóm ngập do triều cường hay không
             is_tidal = is_tidal_flood_event(event, lat, lon)
 
-            # 2. Đối soát thời tiết (theo tọa độ cụ thể & khung giờ đăng tải)
-            weather_eval = self.check_weather_plausibility(lat, lon, event_time, is_tidal=is_tidal) if (lat and lon) else {
+            # 2. Đối soát thời tiết (theo tọa độ cụ thể & khung giờ đăng tải lịch sử hoặc thời gian thực)
+            weather_eval = self.check_weather_plausibility(lat, lon, weather_time, is_tidal=is_tidal) if (lat and lon) else {
                 "checked": False, "score": 0.60, "plausible": True, "reason": "No coordinates for weather"
             }
             weather_score = weather_eval["score"]

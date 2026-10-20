@@ -1476,24 +1476,24 @@
     "cause_label": "Mưa lớn, nước không thoát kịp",
     "street": "Chợ Thủ Đức",
     "segment": "Khu vực Chợ Thủ Đức (Dương Văn Cam - Đặng Thị Rành)",
-    "display_name": "Chợ Thủ Đức (Khu vực Chợ Thủ Đức (Dương Văn Cam - Đặng Thị Rành))",
-    "ward": "Phường Linh Xuân",
+    "display_name": "Chợ Thủ Đức (Khu vực Chợ Thủ Đức - Dương Văn Cam, Kha Vạn Cân)",
+    "ward": "Phường Thủ Đức",
     "district": "TP. Thủ Đức",
     "region": "TPHCM",
-    "lat": 10.8564,
-    "lon": 106.7624,
+    "lat": 10.8505,
+    "lon": 106.7543,
     "heat_points": [
       [
-        10.8564,
-        106.7624
+        10.8505,
+        106.7543
       ],
       [
-        10.8579,
-        106.7639
+        10.8502,
+        106.754
       ],
       [
-        10.8549,
-        106.7609
+        10.851,
+        106.7548
       ]
     ],
     "priority": 3,
@@ -2537,25 +2537,25 @@
     "cause": "rain",
     "cause_label": "Mưa lớn, nước không thoát kịp",
     "street": "Quốc lộ 51",
-    "segment": "Km43+300 đến Km43+800 (P. Phú Mỹ, hướng Đồng Nai về Phú Mỹ)",
-    "display_name": "Quốc lộ 51 (Km43+300 đến Km43+800 (P. Phú Mỹ, hướng Đồng Nai về Phú Mỹ))",
-    "ward": "Phường Phú Mỹ",
-    "district": "Thị xã Phú Mỹ (Cửa ngõ liên tỉnh)",
-    "region": "TPHCM",
-    "lat": 10.57115,
-    "lon": 107.05476,
+    "segment": "Đoạn Nút giao Phước Thái - Chùa Dưỡng Chân Tuệ Uyển (Quốc lộ 51)",
+    "display_name": "Quốc lộ 51 (Đoạn Nút giao Phước Thái - Chùa Dưỡng Chân Tuệ Uyển)",
+    "ward": "Xã Phước Thái",
+    "district": "Bà Rịa - Vũng Tàu",
+    "region": "Bà Rịa - Vũng Tàu cũ",
+    "lat": 10.665,
+    "lon": 107.035,
     "heat_points": [
       [
-        10.57115,
-        107.05476
+        10.673,
+        107.0302
       ],
       [
-        10.5726,
-        107.0563
+        10.665,
+        107.035
       ],
       [
-        10.5696,
-        107.0533
+        10.657,
+        107.0397
       ]
     ],
     "priority": 3,

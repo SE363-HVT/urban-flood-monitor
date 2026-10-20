@@ -1,3 +1,23 @@
-# SE363 - Urban Flood Monitoring System Dependencies
-requests>=2.28.0
-urllib3>=1.26.0
+# SE363 - Complete Big Data Dependencies
+# Core & Web Serving
+requests>=2.31.0
+urllib3>=2.0.0
+beautifulsoup4>=4.12.0
+googlenewsdecoder>=0.1.3
+feedparser>=6.0.11
+
+# Messaging & Distributed Computing
+kafka-python>=3.0.0
+pyspark>=3.5.0
+delta-spark>=3.1.0
+
+# Database & In-Memory Serving
+redis>=5.0.0
+duckdb>=0.10.0
+
+# Geospatial & Math
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Code Quality & Validation
+pydantic>=2.5.0

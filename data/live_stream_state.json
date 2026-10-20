@@ -1,7 +1,464 @@
 {
-  "mode": "live_streaming_spark",
-  "updated_at": "2026-10-12T16:19:00Z",
+  "mode": "live_streaming_spark_live",
+  "updated_at": "2026-10-15T17:15:39.297328+00:00",
   "window": "120 phút",
-  "events_count": 0,
-  "events": []
+  "events_count": 6,
+  "events": [
+    {
+      "id": "b",
+      "canonical_id": "facebook_b",
+      "platform": "facebook",
+      "media_type": "post",
+      "author": "24hbinhduong.vn",
+      "text": "📌Bến Cát (Bình Dương cũ) sau cơn mưa tối nay 15/10😥 Lực lượng chức năng phường Bến Cát túc trực hỗ trợ, lau dọn nhà người dân, di dời đồ đạc lên cao sẵn sàng để ứng phó khi nước dâng, cứu hộ di tản người dân khỏi vùng ngập.",
+      "create_time": 1792077249,
+      "created_at_iso": "2026-10-15T15:14:09+00:00",
+      "timestamp": 1792077249,
+      "historical_timestamp": null,
+      "relative_time": "2 giờ 1 phút trước",
+      "freshness": "recent_4h",
+      "status_tag": "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)",
+      "location": {
+        "street": "Phường Bến Cát",
+        "display_name": "Phường Bến Cát",
+        "ward": "Phường Bến Cát",
+        "administrative_unit": "Phường Bến Cát",
+        "district": "TP.HCM",
+        "lat": 10.998,
+        "lon": 106.755,
+        "heat_points": [
+          [
+            10.998,
+            106.755
+          ]
+        ],
+        "cause": "rain",
+        "cause_label": "Khu vực địa giới hành chính",
+        "source": "pyspark_streaming_engine"
+      },
+      "aspect": "Phường Bến Cát",
+      "opinion": "mưa ngập",
+      "severity": "low",
+      "weight": 1.2,
+      "url": "https://www.facebook.com/24hbinhduong.vn/posts/b%E1%BA%BFn-c%C3%A1t-b%C3%ACnh-d%C6%B0%C6%A1ng-c%C5%A9-sau-c%C6%A1n-m%C6%B0a-t%E1%BB%91i-nay-1510l%E1%BB%B1c-l%C6%B0%E1%BB%A3ng-ch%E1%BB%A9c-n%C4%83ng-ph%C6%B0%E1%BB%9Dng-b%E1%BA%BFn-c%C3%A1t/1554421003385358/",
+      "veracity": {
+        "confidence_score": 0.74,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
+        "evidence_count": 1,
+        "correlated_event_ids": [],
+        "content_check": {
+          "source": "heuristic_baseline",
+          "visual_verified": true,
+          "content_score": 0.75,
+          "triplets": []
+        },
+        "weather_check": {
+          "checked": true,
+          "precipitation_mm": 0.0,
+          "score": 0.9,
+          "plausible": true,
+          "reason": "Điểm ngập triều cường đặc trưng (PC08 CSGT) - Triều dâng ven sông/kênh rạch (không phụ thuộc mưa)"
+        },
+        "is_tidal_point": true,
+        "consensus_window_minutes": 60,
+        "evaluated_at": "2026-10-15T17:14:21.273304+00:00"
+      },
+      "report_count": 1,
+      "sources": [
+        "facebook"
+      ],
+      "cluster_label": "Báo cáo đơn lẻ",
+      "is_cluster": false,
+      "posts_summary": [
+        {
+          "author": "24hbinhduong.vn",
+          "text": "📌Bến Cát (Bình Dương cũ) sau cơn mưa tối nay 15/10😥 Lực lượng chức năng phường Bến Cát túc trực hỗ trợ, lau dọn nhà người dân, di dời đồ đạc lên cao sẵn sàng để ứng phó khi nước dâng, cứu hộ di tản người dân khỏi vùng ngập.",
+          "url": "https://www.facebook.com/24hbinhduong.vn/posts/b%E1%BA%BFn-c%C3%A1t-b%C3%ACnh-d%C6%B0%C6%A1ng-c%C5%A9-sau-c%C6%A1n-m%C6%B0a-t%E1%BB%91i-nay-1510l%E1%BB%B1c-l%C6%B0%E1%BB%A3ng-ch%E1%BB%A9c-n%C4%83ng-ph%C6%B0%E1%BB%9Dng-b%E1%BA%BFn-c%C3%A1t/1554421003385358/",
+          "platform": "facebook",
+          "create_time": 1792077249
+        }
+      ]
+    },
+    {
+      "id": "m",
+      "canonical_id": "facebook_m",
+      "platform": "facebook",
+      "media_type": "post",
+      "author": "tintucvtv9",
+      "text": "Mỗi đợt triều cường, khoảng 70 hộ dân tại chung cư 136 Bùi Văn Ba, TP.",
+      "create_time": 1792069369,
+      "created_at_iso": "2026-10-15T13:02:49+00:00",
+      "timestamp": 1792069369,
+      "historical_timestamp": null,
+      "relative_time": "4 giờ 12 phút trước",
+      "freshness": "within_24h",
+      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
+      "location": {
+        "street": "Đường Bùi Văn Ba",
+        "display_name": "Đường Bùi Văn Ba",
+        "ward": "Phường Tân Thuận",
+        "administrative_unit": "Phường Tân Thuận",
+        "district": "TP.HCM",
+        "lat": 10.7485,
+        "lon": 106.732,
+        "heat_points": [
+          [
+            10.7485,
+            106.732
+          ]
+        ],
+        "cause": "rain",
+        "cause_label": "Mưa lớn, nước không thoát kịp",
+        "source": "pyspark_streaming_engine"
+      },
+      "aspect": "Đường Bùi Văn Ba",
+      "opinion": "ngập nước",
+      "severity": "medium",
+      "weight": 2.0,
+      "url": "https://www.facebook.com/tintucvtv9/posts/m%E1%BB%97i-%C4%91%E1%BB%A3t-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-kho%E1%BA%A3ng-70-h%E1%BB%99-d%C3%A2n-t%E1%BA%A1i-chung-c%C6%B0-136-b%C3%B9i-v%C4%83n-ba-tp-h%E1%BB%93-ch%C3%AD-minh-/1599020785589414/",
+      "veracity": {
+        "confidence_score": 0.72,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
+        "evidence_count": 1,
+        "correlated_event_ids": [],
+        "content_check": {
+          "source": "heuristic_baseline",
+          "visual_verified": true,
+          "content_score": 0.75,
+          "triplets": []
+        },
+        "weather_check": {
+          "checked": true,
+          "precipitation_mm": 0.1,
+          "score": 0.85,
+          "plausible": true,
+          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.1 mm/h lúc 20h)"
+        },
+        "is_tidal_point": true,
+        "consensus_window_minutes": 60,
+        "evaluated_at": "2026-10-15T17:15:39.295227+00:00"
+      },
+      "report_count": 1,
+      "sources": [
+        "facebook"
+      ],
+      "cluster_label": "Báo cáo đơn lẻ",
+      "is_cluster": false,
+      "posts_summary": [
+        {
+          "author": "tintucvtv9",
+          "text": "Mỗi đợt triều cường, khoảng 70 hộ dân tại chung cư 136 Bùi Văn Ba, TP.",
+          "url": "https://www.facebook.com/tintucvtv9/posts/m%E1%BB%97i-%C4%91%E1%BB%A3t-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-kho%E1%BA%A3ng-70-h%E1%BB%99-d%C3%A2n-t%E1%BA%A1i-chung-c%C6%B0-136-b%C3%B9i-v%C4%83n-ba-tp-h%E1%BB%93-ch%C3%AD-minh-/1599020785589414/",
+          "platform": "facebook",
+          "create_time": 1792069369
+        }
+      ]
+    },
+    {
+      "id": "tri",
+      "canonical_id": "facebook_tri",
+      "platform": "facebook",
+      "media_type": "post",
+      "author": "VietGiaiTriNews",
+      "text": "TRIỀU CƯỜNG BIẾN LỐI VÀO THÀNH TRẢI NGHIỆM BẤT NGỜ TẠI NHÀ HÀNG VEN SÔNG Khu vực Thanh Đa, TP.HCM chứng kiến triều cường dâng cao khiến sân vườn và đường vào nhà hàng Bến Chiu ngập nước. Nhân viên dùng một chiếc thuyền tự c",
+      "create_time": 1792047347,
+      "created_at_iso": "2026-10-15T06:55:47+00:00",
+      "timestamp": 1792047347,
+      "historical_timestamp": null,
+      "relative_time": "10 giờ 19 phút trước",
+      "freshness": "within_24h",
+      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
+      "location": {
+        "street": "Đường Bình Quới",
+        "display_name": "Đường Bình Quới",
+        "ward": "Phường Bình Quới",
+        "administrative_unit": "Phường Bình Quới",
+        "district": "TP.HCM",
+        "lat": 10.825,
+        "lon": 106.735,
+        "heat_points": [
+          [
+            10.825,
+            106.735
+          ]
+        ],
+        "cause": "rain",
+        "cause_label": "Mưa lớn, nước không thoát kịp",
+        "source": "pyspark_streaming_engine"
+      },
+      "aspect": "Đường Bình Quới",
+      "opinion": "ngập nước",
+      "severity": "medium",
+      "weight": 2.0,
+      "url": "https://www.facebook.com/VietGiaiTriNews/posts/tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-bi%E1%BA%BFn-l%E1%BB%91i-v%C3%A0o-th%C3%A0nh-tr%E1%BA%A3i-nghi%E1%BB%87m-b%E1%BA%A5t-ng%E1%BB%9D-t%E1%BA%A1i-nh%C3%A0-h%C3%A0ng-ven-s%C3%B4ngkhu-v%E1%BB%B1c-/1742907594510716/",
+      "veracity": {
+        "confidence_score": 0.72,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
+        "evidence_count": 1,
+        "correlated_event_ids": [],
+        "content_check": {
+          "source": "heuristic_baseline",
+          "visual_verified": true,
+          "content_score": 0.75,
+          "triplets": []
+        },
+        "weather_check": {
+          "checked": true,
+          "precipitation_mm": 2.5,
+          "score": 0.85,
+          "plausible": true,
+          "reason": "Trạm khí tượng thời gian thực: Có mưa (2.5 mm/h lúc 13h)"
+        },
+        "is_tidal_point": true,
+        "consensus_window_minutes": 60,
+        "evaluated_at": "2026-10-15T17:15:39.296002+00:00"
+      },
+      "report_count": 1,
+      "sources": [
+        "facebook"
+      ],
+      "cluster_label": "Báo cáo đơn lẻ",
+      "is_cluster": false,
+      "posts_summary": [
+        {
+          "author": "VietGiaiTriNews",
+          "text": "TRIỀU CƯỜNG BIẾN LỐI VÀO THÀNH TRẢI NGHIỆM BẤT NGỜ TẠI NHÀ HÀNG VEN SÔNG Khu vực Thanh Đa, TP.HCM chứng kiến triều cường dâng cao khiến sân vườn và đường vào nhà hàng Bến Chiu ngập nước. Nhân viên dùng một chiếc thuyền tự c",
+          "url": "https://www.facebook.com/VietGiaiTriNews/posts/tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-bi%E1%BA%BFn-l%E1%BB%91i-v%C3%A0o-th%C3%A0nh-tr%E1%BA%A3i-nghi%E1%BB%87m-b%E1%BA%A5t-ng%E1%BB%9D-t%E1%BA%A1i-nh%C3%A0-h%C3%A0ng-ven-s%C3%B4ngkhu-v%E1%BB%B1c-/1742907594510716/",
+          "platform": "facebook",
+          "create_time": 1792047347
+        }
+      ]
+    },
+    {
+      "id": "s",
+      "canonical_id": "facebook_s",
+      "platform": "facebook",
+      "media_type": "post",
+      "author": "saigonbizz",
+      "text": "Sáng nắng ráo, chiều mưa dông bất chợt có nơi mưa 40-60 mm, người dân TP.HCM đề phòng ngập úng #reels #saigonbiz &nbsp;&nbsp; Facebook",
+      "create_time": 1792034085,
+      "created_at_iso": "2026-10-15T03:14:45+00:00",
+      "timestamp": 1792034085,
+      "historical_timestamp": null,
+      "relative_time": "14 giờ trước",
+      "freshness": "within_24h",
+      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
+      "location": {
+        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
+        "district": "TP.HCM",
+        "lat": 10.7769,
+        "lon": 106.7009,
+        "heat_points": [
+          [
+            10.7769,
+            106.7009
+          ]
+        ],
+        "cause": "rain",
+        "cause_label": "Mưa lớn, nước không thoát kịp",
+        "source": "pyspark_streaming_engine"
+      },
+      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+      "opinion": "ngập úng",
+      "severity": "medium",
+      "weight": 2.0,
+      "url": "https://www.facebook.com/saigonbizz/posts/s%C3%A1ng-n%E1%BA%AFng-r%C3%A1o-chi%E1%BB%81u-m%C6%B0a-d%C3%B4ng-b%E1%BA%A5t-ch%E1%BB%A3t-c%C3%B3-n%C6%A1i-m%C6%B0a-40-60-mm-ng%C6%B0%E1%BB%9Di-d%C3%A2n-tphcm-%C4%91%E1%BB%81-ph%C3%B2/122181157598969016/",
+      "veracity": {
+        "confidence_score": 0.72,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
+        "evidence_count": 1,
+        "correlated_event_ids": [],
+        "content_check": {
+          "source": "heuristic_baseline",
+          "visual_verified": true,
+          "content_score": 0.75,
+          "triplets": []
+        },
+        "weather_check": {
+          "checked": true,
+          "precipitation_mm": 0.1,
+          "score": 0.85,
+          "plausible": true,
+          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.1 mm/h lúc 10h)"
+        },
+        "is_tidal_point": false,
+        "consensus_window_minutes": 60,
+        "evaluated_at": "2026-10-15T17:15:39.295701+00:00"
+      },
+      "report_count": 1,
+      "sources": [
+        "facebook"
+      ],
+      "cluster_label": "Báo cáo đơn lẻ",
+      "is_cluster": false,
+      "posts_summary": [
+        {
+          "author": "saigonbizz",
+          "text": "Sáng nắng ráo, chiều mưa dông bất chợt có nơi mưa 40-60 mm, người dân TP.HCM đề phòng ngập úng #reels #saigonbiz &nbsp;&nbsp; Facebook",
+          "url": "https://www.facebook.com/saigonbizz/posts/s%C3%A1ng-n%E1%BA%AFng-r%C3%A1o-chi%E1%BB%81u-m%C6%B0a-d%C3%B4ng-b%E1%BA%A5t-ch%E1%BB%A3t-c%C3%B3-n%C6%A1i-m%C6%B0a-40-60-mm-ng%C6%B0%E1%BB%9Di-d%C3%A2n-tphcm-%C4%91%E1%BB%81-ph%C3%B2/122181157598969016/",
+          "platform": "facebook",
+          "create_time": 1792034085
+        }
+      ]
+    },
+    {
+      "id": "tphcm-hi",
+      "canonical_id": "facebook_tphcm-hi",
+      "platform": "facebook",
+      "media_type": "post",
+      "author": "thanhnien",
+      "text": "TP.HCM hiện có 159 điểm ngập do mưa và triều cường.",
+      "create_time": 1792067412,
+      "created_at_iso": "2026-10-15T12:30:12+00:00",
+      "timestamp": 1792067412,
+      "historical_timestamp": null,
+      "relative_time": "4 giờ 45 phút trước",
+      "freshness": "within_24h",
+      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
+      "location": {
+        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
+        "district": "TP.HCM",
+        "lat": 10.7769,
+        "lon": 106.7009,
+        "heat_points": [
+          [
+            10.7769,
+            106.7009
+          ]
+        ],
+        "cause": "rain",
+        "cause_label": "Mưa lớn, nước không thoát kịp",
+        "source": "pyspark_streaming_engine"
+      },
+      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+      "opinion": "mưa ngập",
+      "severity": "low",
+      "weight": 1.2,
+      "url": "https://www.facebook.com/thanhnien/posts/tphcm-hi%E1%BB%87n-c%C3%B3-159-%C4%91i%E1%BB%83m-ng%E1%BA%ADp-do-m%C6%B0a-v%C3%A0-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-t%E1%BB%AB-nay-%C4%91%E1%BA%BFn-n%C4%83m-2030-th%C3%A0nh-ph%E1%BB%91-/1617642597068723/",
+      "veracity": {
+        "confidence_score": 0.72,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
+        "evidence_count": 1,
+        "correlated_event_ids": [],
+        "content_check": {
+          "source": "heuristic_baseline",
+          "visual_verified": true,
+          "content_score": 0.75,
+          "triplets": []
+        },
+        "weather_check": {
+          "checked": true,
+          "precipitation_mm": 0.1,
+          "score": 0.85,
+          "plausible": true,
+          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.1 mm/h lúc 19h)"
+        },
+        "is_tidal_point": true,
+        "consensus_window_minutes": 60,
+        "evaluated_at": "2026-10-15T17:15:39.296189+00:00"
+      },
+      "report_count": 1,
+      "sources": [
+        "facebook"
+      ],
+      "cluster_label": "Báo cáo đơn lẻ",
+      "is_cluster": false,
+      "posts_summary": [
+        {
+          "author": "thanhnien",
+          "text": "TP.HCM hiện có 159 điểm ngập do mưa và triều cường.",
+          "url": "https://www.facebook.com/thanhnien/posts/tphcm-hi%E1%BB%87n-c%C3%B3-159-%C4%91i%E1%BB%83m-ng%E1%BA%ADp-do-m%C6%B0a-v%C3%A0-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-t%E1%BB%AB-nay-%C4%91%E1%BA%BFn-n%C4%83m-2030-th%C3%A0nh-ph%E1%BB%91-/1617642597068723/",
+          "platform": "facebook",
+          "create_time": 1792067412
+        }
+      ]
+    },
+    {
+      "id": "c",
+      "canonical_id": "facebook_c",
+      "platform": "facebook",
+      "media_type": "post",
+      "author": "www.tienphong.vn",
+      "text": "Cơn mưa lớn kéo dài hơn một giờ vào chiều 15/10 khiến nhiều tuyến đường ở TPHCM ngập cục bộ.",
+      "create_time": 1792056841,
+      "created_at_iso": "2026-10-15T09:34:01+00:00",
+      "timestamp": 1792056841,
+      "historical_timestamp": null,
+      "relative_time": "7 giờ 41 phút trước",
+      "freshness": "within_24h",
+      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
+      "location": {
+        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
+        "district": "TP.HCM",
+        "lat": 10.7769,
+        "lon": 106.7009,
+        "heat_points": [
+          [
+            10.7769,
+            106.7009
+          ]
+        ],
+        "cause": "rain",
+        "cause_label": "Mưa lớn, nước không thoát kịp",
+        "source": "pyspark_streaming_engine"
+      },
+      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+      "opinion": "mưa ngập",
+      "severity": "low",
+      "weight": 1.2,
+      "url": "https://www.facebook.com/www.tienphong.vn/posts/c%C6%A1n-m%C6%B0a-l%E1%BB%9Bn-k%C3%A9o-d%C3%A0i-h%C6%A1n-m%E1%BB%99t-gi%E1%BB%9D-v%C3%A0o-chi%E1%BB%81u-1510-khi%E1%BA%BFn-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-n/1460548322958582/",
+      "veracity": {
+        "confidence_score": 0.72,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
+        "evidence_count": 1,
+        "correlated_event_ids": [],
+        "content_check": {
+          "source": "heuristic_baseline",
+          "visual_verified": true,
+          "content_score": 0.75,
+          "triplets": []
+        },
+        "weather_check": {
+          "checked": true,
+          "precipitation_mm": 1.5,
+          "score": 0.85,
+          "plausible": true,
+          "reason": "Trạm khí tượng thời gian thực: Có mưa (1.5 mm/h lúc 16h)"
+        },
+        "is_tidal_point": false,
+        "consensus_window_minutes": 60,
+        "evaluated_at": "2026-10-15T17:15:39.294854+00:00"
+      },
+      "report_count": 1,
+      "sources": [
+        "facebook"
+      ],
+      "cluster_label": "Báo cáo đơn lẻ",
+      "is_cluster": false,
+      "posts_summary": [
+        {
+          "author": "www.tienphong.vn",
+          "text": "Cơn mưa lớn kéo dài hơn một giờ vào chiều 15/10 khiến nhiều tuyến đường ở TPHCM ngập cục bộ.",
+          "url": "https://www.facebook.com/www.tienphong.vn/posts/c%C6%A1n-m%C6%B0a-l%E1%BB%9Bn-k%C3%A9o-d%C3%A0i-h%C6%A1n-m%E1%BB%99t-gi%E1%BB%9D-v%C3%A0o-chi%E1%BB%81u-1510-khi%E1%BA%BFn-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-n/1460548322958582/",
+          "platform": "facebook",
+          "create_time": 1792056841
+        }
+      ]
+    }
+  ]
 }

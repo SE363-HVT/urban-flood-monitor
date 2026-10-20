@@ -120,9 +120,22 @@ def extract_item_date(item: Dict[str, Any]) -> Tuple[Optional[str], Optional[str
     return None, None
 
 
-def determine_episode_id(date_str: Optional[str]) -> str:
-    """Xác định episode id dựa trên ngày đăng tải."""
-    if not date_str:
+def determine_episode_id(date_or_ts: Any) -> str:
+    """Xác định episode id dựa trên ngày đăng tải (chuỗi YYYY-MM-DD hoặc Unix Timestamp)."""
+    if not date_or_ts:
+        return "sporadic_flood_events"
+
+    if isinstance(date_or_ts, (int, float)):
+        try:
+            date_str = datetime.fromtimestamp(date_or_ts, timezone.utc).strftime("%Y-%m-%d")
+        except Exception:
+            return "sporadic_flood_events"
+    elif isinstance(date_or_ts, str):
+        if "T" in date_or_ts:
+            date_str = date_or_ts.split("T")[0]
+        else:
+            date_str = date_or_ts[:10]
+    else:
         return "sporadic_flood_events"
 
     # 1. Kiểm tra 5 Episodes năm 2026

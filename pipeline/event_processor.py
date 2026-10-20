@@ -77,7 +77,30 @@ BDS_SPAM_KEYWORDS = [
   "liên hệ xem nhà",
   "zalo xem nhà",
   "pass phòng",
-  "nhượng phòng"
+  "pass phòng",
+  "nhượng phòng",
+  "studio",
+  "tách bếp",
+  "ban công",
+  "full nội thất",
+  "xách vali",
+  "máy giặt",
+  "tủ lạnh",
+  "nước nóng",
+  "4k/kwh",
+  "kwh",
+  "điện:",
+  "nước:",
+  "hotline",
+  "zalo",
+  "cọc",
+  "cho thuê",
+  "ở ghép",
+  "giá rẻ",
+  "phòng trọ bình thạnh",
+  "nhà trọ",
+  "tiện ích:",
+  "chi phí hàng tháng"
 ]
 
 BDS_NEGATION_PHRASES = [
@@ -126,7 +149,14 @@ ADS_METAPHOR_PATTERNS = [
   "mua 1 tặng 1",
   "voucher giảm",
   "workshop",
-  "khai trương rộn ràng"
+  "khai trương rộn ràng",
+  "ngập tràn ánh sáng",
+  "ngập tràn niềm vui",
+  "ngập tràn hạnh phúc",
+  "ngập tràn tiếng cười",
+  "ngập tràn yêu thương",
+  "cửa sổ ngập tràn",
+  "ban công siêu thoáng"
 ]
 
 EDUCATION_SPAM_KEYWORDS = [
@@ -213,7 +243,27 @@ PROJECT_AND_MACRO_KEYWORDS = [
   "giải phóng mặt bằng",
   "chuyên gia hiến kế chống ngập",
   "solutions for urban flood",
-  "chi hơn 142.340 tỷ"
+  "chi hơn 142.340 tỷ",
+  "mệnh lệnh",
+  "mệnh lệnh không được thay đổi",
+  "bộ đội cụ hồ",
+  "thủ tướng",
+  "thủ tướng chính phủ",
+  "phó thủ tướng",
+  "chính trị",
+  "tin nội chính",
+  "ctvn",
+  "chinhtrivietnam",
+  "tinnoichinh",
+  "duanchongngaptphcm",
+  "thutuongleminhhung",
+  "kênh tham lương",
+  "hồ điều tiết ngầm",
+  "vì sao phải sống chung",
+  "dự án chống ngập",
+  "công trình về đích",
+  "bàn giao",
+  "6,5 triệu người dân"
 ]
 
 NOISE_KEYWORDS = [
@@ -426,7 +476,9 @@ def format_relative_time(create_timestamp: Optional[int], reference_timestamp: O
     elif diff_sec < 3600:
         return f"{diff_sec // 60} phút trước"
     elif diff_sec < 86400:
-        return f"{diff_sec // 3600} giờ trước"
+        h = diff_sec // 3600
+        m = (diff_sec % 3600) // 60
+        return f"{h} giờ {m} phút trước" if m > 0 else f"{h} giờ trước"
     else:
         return f"{diff_sec // 86400} ngày trước"
 

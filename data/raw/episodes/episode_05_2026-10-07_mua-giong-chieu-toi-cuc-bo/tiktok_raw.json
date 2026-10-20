@@ -5989,5 +5989,68 @@
     "platform": "tiktok",
     "crawled_at": "2026-10-11T18:09:36.129196+00:00",
     "crawler_source": "free_discovery_engine"
+  },
+  {
+    "id": "7695000935298288917",
+    "url": "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917",
+    "webVideoUrl": "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917",
+    "mediaUrls": [
+      "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917"
+    ],
+    "text": "Đỉnh triều cường trên sông Sài Gòn hiện gần chạm mốc lịch sử, trong chiều tối nay (10.10), TP.HCM sẽ đối mặt với nguy cơ ngập trên diện rộng, khả năng kéo dài thêm 2 - 3 ngày tới. Cảnh báo nhiều nơi ngập sâu do mưa lớn kết hợp triều cường cao. Đỉnh tri",
+    "title": "Đỉnh triều cường trên sông Sài Gòn hiện gần chạm mốc lịch sử, trong chiều tối nay (10.10), TP.HCM sẽ đối mặt với nguy cơ ngập trên diện rộng, khả năng kéo dài thêm 2 - 3 ngày tới. Cảnh báo nhiều nơi ngập sâu do mưa lớn kết hợp triều cường cao. Đỉnh tri",
+    "author": "tuan.hoang1985",
+    "authorMeta": {
+      "name": "tuan.hoang1985"
+    },
+    "createTimeISO": "2026-10-10T07:00:00+00:00",
+    "published": "Sat, 10 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-10",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-20T09:57:09.353058+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "7695034954635349300_s00",
+    "url": "https://www.tiktok.com/@saigontrend.vn/video/7695034954635349300",
+    "webVideoUrl": "https://www.tiktok.com/@saigontrend.vn/video/7695034954635349300",
+    "mediaUrls": [
+      "https://www.tiktok.com/@saigontrend.vn/video/7695034954635349300"
+    ],
+    "text": "Khi nào Sài Gòn mới hết ngập...",
+    "title": "Khi nào Sài Gòn mới hết ngập... #saigontrend #sukien #fantasticnetwork #saigonnews #saigonangi",
+    "author": "saigontrend.vn",
+    "authorMeta": {
+      "name": "saigontrend.vn"
+    },
+    "createTimeISO": "2026-10-10T07:00:00+00:00",
+    "published": "Sat, 10 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-10",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-20T10:38:16.110816+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "POS"
+  },
+  {
+    "id": "7695000935298288917_s00",
+    "url": "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917",
+    "webVideoUrl": "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917",
+    "mediaUrls": [
+      "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917"
+    ],
+    "text": "Đỉnh triều cường trên sông Sài Gòn hiện gần chạm mốc lịch sử, trong chiều tối nay (10.10), TP.HCM sẽ đối mặt với nguy cơ ngập trên diện rộng, khả năng kéo dài thêm 2 - 3 ngày tới.",
+    "title": "Đỉnh triều cường trên sông Sài Gòn hiện gần chạm mốc lịch sử, trong chiều tối nay (10.10), TP.HCM sẽ đối mặt với nguy cơ ngập trên diện rộng, khả năng kéo dài thêm 2 - 3 ngày tới. Cảnh báo nhiều nơi ngập sâu do mưa lớn kết hợp triều cường cao. Đỉnh tri",
+    "author": "tuan.hoang1985",
+    "authorMeta": {
+      "name": "tuan.hoang1985"
+    },
+    "createTimeISO": "2026-10-10T07:00:00+00:00",
+    "published": "Sat, 10 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-10",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-20T10:39:15.650351+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
   }
 ]

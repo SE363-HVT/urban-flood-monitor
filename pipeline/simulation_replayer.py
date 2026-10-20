@@ -393,9 +393,49 @@ class SimulationReplayer:
                 display_name = "Toàn TP. Hồ Chí Minh"
                 type_label = "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)"
 
+            # Trích xuất mốc thời gian đăng tải lịch sử thực tế của bài đăng/video
+            pub_at_str = item.get("published_at") or item.get("source", {}).get("published_at") or ""
+            hist_ts = None
+            if pub_at_str:
+                try:
+                    dt = datetime.fromisoformat(pub_at_str)
+                    hist_ts = int(dt.timestamp())
+                except Exception:
+                    hist_ts = None
+
+            if not hist_ts:
+                ep_id = str(item.get("episode_id", ""))
+                date_match = re.search(r'(\d{4}-\d{2}-\d{2})', ep_id)
+                if date_match:
+                    try:
+                        d_str = date_match.group(1)
+                        dt = datetime.strptime(f"{d_str} 14:00:00", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+                        hist_ts = int(dt.timestamp())
+                        pub_at_str = dt.isoformat()
+                    except Exception:
+                        hist_ts = None
+
+            if not hist_ts:
+                dm = re.search(r'\b(\d{1,2})/(\d{1,2})\b', cleaned_txt)
+                if dm:
+                    day, month = int(dm.group(1)), int(dm.group(2))
+                    if 1 <= day <= 31 and 1 <= month <= 12:
+                        try:
+                            dt = datetime(2024, month, day, 14, 0, tzinfo=timezone.utc)
+                            hist_ts = int(dt.timestamp())
+                            pub_at_str = dt.isoformat()
+                        except Exception:
+                            pass
+
+            if not hist_ts:
+                hist_ts = 1729065600
+                pub_at_str = "2024-10-16T14:00:00+00:00"
+
             ev = {
                 "id": str(item.get("id")),
                 "platform": platform,
+                "published_at": pub_at_str,
+                "historical_timestamp": hist_ts,
                 "media_type": media_type,
                 "author": item.get("source", {}).get("author") or "Người dân TP.HCM",
                 "text": cleaned_txt,
@@ -499,6 +539,11 @@ class SimulationReplayer:
             post_time = current_time - span_seconds + offset_seconds
             ev["create_time"] = post_time
             ev["created_at_iso"] = datetime.fromtimestamp(post_time, timezone.utc).isoformat()
+            
+            # Bảo tồn 100% mốc thời gian lịch sử từ video gốc (tuyệt đối không gán bằng post_time)
+            orig_item = pool[(curr_offset + idx) % total_pool]
+            ev["historical_timestamp"] = orig_item.get("historical_timestamp") or ev.get("historical_timestamp") or 1729065600
+            ev["published_at"] = orig_item.get("published_at") or ev.get("published_at") or "2024-10-16T14:00:00+00:00"
             
             diff_m = max((current_time - post_time) // 60, 1)
             if diff_m < 60:

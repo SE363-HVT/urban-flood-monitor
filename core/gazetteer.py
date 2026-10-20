@@ -165,6 +165,18 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "ngập sâu trục đường Bàu Cát"
     },
     {
+        "keywords": ["bùi văn ba", "bui van ba", "buivanba", "chung cư 136 bùi văn ba", "136 bùi văn ba"],
+        "display_name": "Đường Bùi Văn Ba",
+        "street": "Đường Bùi Văn Ba",
+        "ward": "Phường Tân Thuận Đông",
+        "district": "Quận 7",
+        "region": "TPHCM",
+        "lat": 10.7485, "lon": 106.7320,
+        "heat_points": [[10.7485, 106.7320], [10.7510, 106.7350]],
+        "priority": 3,
+        "type": "ngập triều dâng khu chế xuất Tân Thuận - Bùi Văn Ba"
+    },
+    {
         "keywords": ["lũy bán bích", "luy ban bich", "luybanbich"],
         "display_name": "Đường Lũy Bán Bích",
         "street": "Đường Lũy Bán Bích",
@@ -360,16 +372,16 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "ngập đô thị TP. Vũng Tàu"
     },
     {
-        "keywords": ["quốc lộ 51 phú mỹ", "ql51 phú mỹ", "thị xã phú mỹ", "phú mỹ vũng tàu"],
-        "display_name": "Khu vực Quốc lộ 51 (Phú Mỹ)",
+        "keywords": ["quốc lộ 51", "ql51", "quoc lo 51", "ql 51", "quốc lộ 51 phước thái", "phước thái ql51"],
+        "display_name": "Quốc lộ 51 (Đoạn Nút giao Phước Thái - Chùa Dưỡng Chân Tuệ Uyển)",
         "street": "Quốc lộ 51",
-        "ward": "Thị xã Phú Mỹ",
+        "ward": "Xã Phước Thái",
         "district": "Bà Rịa - Vũng Tàu",
         "region": "Bà Rịa - Vũng Tàu cũ",
-        "lat": 10.5910, "lon": 107.0540,
-        "heat_points": [[10.5910, 107.0540]],
+        "lat": 10.6650, "lon": 107.0350,
+        "heat_points": [[10.6730, 107.0302], [10.6650, 107.0350], [10.6570, 107.0397]],
         "priority": 3,
-        "type": "ngập cục bộ Quốc lộ 51 Phú Mỹ"
+        "type": "ngập sâu Quốc lộ 51 đoạn Phước Thái"
     },
 {
         "keywords": ["ga đại học quốc gia", "ga dai hoc quoc gia", "đại học quốc gia", "dai hoc quoc gia"],
@@ -384,15 +396,28 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "khu vực Ga Đại Học Quốc Gia"
     },
 {
-        "keywords": ["chợ thủ đức", "cho thu duc", "dương văn cam", "duong van cam", "đặng thị rành", "dang thi ranh"],
-        "display_name": "Khu vực Chợ Thủ Đức (Dương Văn Cam)",
-        "ward": "Phường Linh Xuân",
+        "keywords": ["chợ thủ đức", "cho thu duc", "dương văn cam", "duong van cam", "đặng thị rành", "dang thi ranh", "kha vạn cân chợ thủ đức"],
+        "display_name": "Khu vực Chợ Thủ Đức (Kha Vạn Cân - Dương Văn Cam)",
+        "street": "Chợ Thủ Đức",
+        "ward": "Phường Thủ Đức",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
-        "lat": 10.8520, "lon": 106.7580,
-        "heat_points": [[10.8520, 106.7580]],
+        "lat": 10.8505, "lon": 106.7543,
+        "heat_points": [[10.8505, 106.7543], [10.8502, 106.7540], [10.8510, 106.7548]],
         "priority": 3,
         "type": "rốn ngập Chợ Thủ Đức nước chảy xiết"
+    },
+    {
+        "keywords": ["đường số 40", "duong so 40", "đường số 40 hiệp bình", "đường 40 hiệp bình", "số 40 hiệp bình"],
+        "display_name": "Đường Số 40 (Phường Hiệp Bình)",
+        "street": "Đường Số 40",
+        "ward": "Phường Hiệp Bình",
+        "district": "TP. Thủ Đức",
+        "region": "TPHCM",
+        "lat": 10.8444, "lon": 106.7331,
+        "heat_points": [[10.8444, 106.7331]],
+        "priority": 3,
+        "type": "ngập sâu trục Đường Số 40 (Phường Hiệp Bình, TP. Thủ Đức)"
     },
     {
         "keywords": ["trần não", "tran nao", "trannao"],
@@ -1847,8 +1872,8 @@ OUT_OF_SCOPE_LOCATIONS = [
     "bangkok", "thái lan", "thailand", "trung quốc", "china", "indonesia", "manila", "philippines", "nhật bản", "nhat ban", "japan", "tokyo", "hàn quốc", "han quoc", "korea", "singapore", "malaysia"
 ]
 
-ROAD_PREFIXES = r'(?:\bđường(?!\s+cống|\s+hầm\s+kỹ|\s+ống|\s+dây)|\bduong|tuyến\s+đường|tuyen\s+duong|quốc\s+lộ|quoc\s+lo|ql\s+|tỉnh\s+lộ|tinh\s+lo|tl\s+|xa\s+lộ|xa\s+lo|đại\s+lộ|dai\s+lo|hầm(?:\s+chui)?(?!\s+theo|\s+phải|\s+vào)|ham(?:\s+chui)?|cầu|cau|ngã\s+(?:tư|ba)|nga\s+(?:tu|ba)|vòng\s+xoay|vong\s+xoay|nút\s+giao|hẻm(?:\s+\d+)?|hem(?:\s+\d+)?|(?<!thành\s)(?<!thanh\s)\bphố\b(?!\s+thông\s+minh))'
-ROAD_STOP_LOOKAHEAD = r'(?=[,\.\n;:\(\)]|(?:\s+(?:và|va|giao|đoạn|khúc|với|quận|quan|huyện|huyen|phường|phuong|thị\s+trấn|tp|đang|dang|bị|bi|được|duoc|gồm|gom|tại|tai|cũng|cung|đều|deu|lại|lai|sẽ|se|nước|nuoc|kẹt|ket|ngập|ngap|xe|lút|chết|nguy|mọi|bà\s+con|rất|kéo\s+dài|keo\s+dai|cống|thoát|theo\s+hướng|hướng\s+từ|đê\s+bao|phong\s+tỏa|ven\s+sông|thông\s+minh))|$)'
+ROAD_PREFIXES = r'(?:\bđường(?!\s+cống|\s+hầm\s+kỹ|\s+ống|\s+dây)|\bduong|tuyến\s+đường|tuyen\s+duong|quốc\s+lộ|quoc\s+lo|ql\s+|tỉnh\s+lộ|tinh\s+lo|tl\s+|xa\s+lộ|xa\s+lo|đại\s+lộ|dai\s+lo|hầm(?:\s+chui)?(?!\s+theo|\s+phải|\s+vào)|ham(?:\s+chui)?|cầu|cau|ngã\s+(?:tư|ba|năm|sáu)|nga\s+(?:tu|ba|nam|sau)|vòng\s+xoay|vong\s+xoay|bùng\s+binh|bung\s+binh|nút\s+giao|nut\s+giao|hẻm(?:\s+\d+[\w/]*)?|hem(?:\s+\d+[\w/]*)?|ngõ(?:\s+\d+[\w/]*)?|ngo(?:\s+\d+[\w/]*)?|ngách(?:\s+\d+[\w/]*)?|ngach(?:\s+\d+[\w/]*)?|chung\s+cư(?:\s+\d+[\w/]*)?|chung\s+cu(?:\s+\d+[\w/]*)?|cao\s+ốc|cao\s+oc|tòa\s+nhà|toa\s+nha|khu\s+căn\s+hộ|khu\s+can\s+ho|khu\s+dân\s+cư|khu\s+dan\s+cu|kdc|khu\s+đô\s+thị|khu\s+do\s+thi|kđt|kdt|khu\s+công\s+nghiệp|kcn|chợ|cho|số\s+\d+[\w/]*|so\s+\d+[\w/]*|(?<!thành\s)(?<!thanh\s)\bphố\b(?!\s+thông\s+minh))'
+ROAD_STOP_LOOKAHEAD = r'(?=[,\.\n;:\(\)]|(?:\s+(?:và|va|giao|đoạn|khúc|với|quận|quan|huyện|huyen|phường|phuong|thị\s+trấn|tp|đang|dang|bị|bi|được|duoc|gồm|gom|tại|tai|cũng|cung|đều|deu|lại|lai|sẽ|se|nước|nuoc|kẹt|ket|ngập|ngap|xe|lút|chết|nguy|mọi|bà\s+con|rất|kéo\s+dài|keo\s+dai|cống|thoát|theo\s+hướng|hướng\s+từ|đê\s+bao|phong\s+tỏa|ven\s+sông|thông\s+minh)\b)|$)'
 ROAD_PATTERN = re.compile(
     rf'{ROAD_PREFIXES}\s+(?!ngập|nước|kẹt|lội|sâu|cống|thoát|thông\s+minh|ven\s+sông|theo\s+hướng)([A-ZÀ-Ỹa-zà-ỹ0-9\s\.\-]+?){ROAD_STOP_LOOKAHEAD}',
     re.IGNORECASE
@@ -1870,6 +1895,10 @@ STOP_CANDIDATE_WORDS = [
 
 def clean_road_candidate(candidate: str) -> str:
     res = candidate.strip()
+    res = re.split(r'\s+(?:ở|tại|thuộc|tp\.hcm|tphcm|sài gòn)\s+', res, flags=re.IGNORECASE)[0].strip()
+    # Lọc bỏ tiền tố công trình/nhà ở/số nhà nếu có để lấy đúng tên đường thuần
+    res = re.sub(r'^(?:chung\s+cư|cao\s+ốc|tòa\s+nhà|kdc|khu\s+dân\s+cư|kđt|khu\s+đô\s+thị|kcn|khu\s+công\s+nghiệp|chợ|ngõ|ngách|số|đoạn)\s+', '', res, flags=re.IGNORECASE).strip()
+    res = re.sub(r'^\d+[\w/]*\s+', '', res).strip()
     res_lower = res.lower()
     for sw in STOP_WORDS_SUFFIX:
         if res_lower.endswith(sw):
@@ -1881,64 +1910,97 @@ def clean_road_candidate(candidate: str) -> str:
 
 def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
     """
-    Tự động truy vấn OpenStreetMap Nominatim khi phát hiện tên đường mới chưa có trong Gazetteer.
-    Chuẩn hóa lấy đúng tim đường (highway) để ghim marker không bao giờ bị lệch vào nhà dân/hẻm cụt.
+    Tự động truy vấn OpenStreetMap Nominatim khi phát hiện tên đường/địa điểm mới chưa có trong Gazetteer.
+    Chuẩn hóa lấy đúng tim đường (highway) hoặc công trình/khu dân cư để ghim marker chính xác.
     Có bộ nhớ đệm tự lưu (Self-learning Cache) để không cần gọi lại lần 2.
     """
     clean_q = query.strip().lower()
+
+    # Bóc tách tên đường thuần túy nếu có tiền tố số nhà hoặc công trình
+    street_clean = re.sub(
+        r'^(?:đường|đại lộ|tuyến đường|phố|hẻm|ngõ|ngách|chung\s+cư|cao\s+ốc|tòa\s+nhà|khu\s+căn\s+hộ|kdc|khu\s+dân\s+cư|kđt|khu\s+đô\s+thị|kcn|khu\s+công\s+nghiệp|chợ|số|đoạn)\s+',
+        '',
+        query,
+        flags=re.IGNORECASE
+    ).strip()
+    street_clean = re.sub(r'^\d+[\w/]*\s+', '', street_clean).strip()
+    clean_street_q = street_clean.lower()
+
     if clean_q in DYNAMIC_CACHE:
         return DYNAMIC_CACHE[clean_q]
-    if clean_q in FAILED_DYNAMIC_CACHE:
+    if clean_street_q in DYNAMIC_CACHE:
+        return DYNAMIC_CACHE[clean_street_q]
+    if clean_q in FAILED_DYNAMIC_CACHE or clean_street_q in FAILED_DYNAMIC_CACHE:
         return None
 
-    # Kiểm duyệt chất lượng: Tên đường hợp lệ phải có ít nhất 2 từ hoặc có định danh số/chữ
-    # Kiểm duyệt chất lượng: Tuyệt đối không geocode từ rác / từ không phải đường
-    if any(b in clean_q for b in BOGUS_ROAD_PHRASES):
+    # Kiểm duyệt chất lượng: Tuyệt đối không geocode từ rác / từ không phải địa danh
+    if any(b in clean_q for b in BOGUS_ROAD_PHRASES) or any(b in clean_street_q for b in BOGUS_ROAD_PHRASES):
         FAILED_DYNAMIC_CACHE.add(clean_q)
         return None
 
-    words = clean_q.split()
-    if len(words) < 2 and not any(ch.isdigit() for ch in clean_q):
+    search_target = street_clean if len(street_clean.split()) >= 2 or any(ch.isdigit() for ch in street_clean) else query
+    words = search_target.split()
+    if len(words) < 2 and not any(ch.isdigit() for ch in search_target):
         return None
 
-    # Lọc bỏ tiền tố đường/phố để tìm trên OSM
-    street_clean = re.sub(r'^(đường|đại lộ|tuyến đường|phố|hẻm)\s+', '', query, flags=re.IGNORECASE).strip()
-    
     headers = {"User-Agent": "SE363-PrecisionGIS/4.0 (contact: student@hcmut.edu.vn)"}
-    
-    # 1. Thử truy vấn cấu trúc street + city
-    url_structured = f"https://nominatim.openstreetmap.org/search?street={urllib.parse.quote(street_clean)}&city={urllib.parse.quote('Thành phố Hồ Chí Minh')}&format=json&limit=5"
-    req1 = urllib.request.Request(url_structured, headers=headers)
-    
+    ACCEPTED_OSM_CLASSES = {"highway", "building", "place", "landuse", "amenity", "tourism", "boundary"}
+
     item = None
+    # 1. Thử truy vấn cấu trúc street + city với search_target
     try:
+        url_structured = f"https://nominatim.openstreetmap.org/search?street={urllib.parse.quote(search_target)}&city={urllib.parse.quote('Thành phố Hồ Chí Minh')}&format=json&limit=5"
+        req1 = urllib.request.Request(url_structured, headers=headers)
         with urllib.request.urlopen(req1, timeout=4) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             for d in data:
                 if d.get("class") == "highway":
                     item = d
                     break
-
     except Exception:
         item = None
 
-    # 2. Dự phòng truy vấn toàn văn nếu cấu trúc không ra
+    # 2. Dự phòng truy vấn toàn văn với search_target
     if not item:
-        url_fallback = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(query + ', Hồ Chí Minh, Việt Nam')}&format=json&limit=5"
-        req2 = urllib.request.Request(url_fallback, headers=headers)
         try:
+            url_fallback = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(search_target + ', Hồ Chí Minh, Việt Nam')}&format=json&limit=5"
+            req2 = urllib.request.Request(url_fallback, headers=headers)
             with urllib.request.urlopen(req2, timeout=4) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
                 for d in data:
                     if d.get("class") == "highway":
                         item = d
                         break
+                if not item:
+                    for d in data:
+                        if d.get("class") in ACCEPTED_OSM_CLASSES:
+                            item = d
+                            break
+        except Exception:
+            item = None
 
+    # 3. Dự phòng với query gốc nếu search_target khác query
+    if not item and search_target != query:
+        try:
+            url_fallback2 = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(query + ', Hồ Chí Minh, Việt Nam')}&format=json&limit=5"
+            req3 = urllib.request.Request(url_fallback2, headers=headers)
+            with urllib.request.urlopen(req3, timeout=4) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                for d in data:
+                    if d.get("class") == "highway":
+                        item = d
+                        break
+                if not item:
+                    for d in data:
+                        if d.get("class") in ACCEPTED_OSM_CLASSES:
+                            item = d
+                            break
         except Exception:
             item = None
 
     if not item:
         FAILED_DYNAMIC_CACHE.add(clean_q)
+        FAILED_DYNAMIC_CACHE.add(clean_street_q)
         return None
 
     lat = round(float(item["lat"]), 4)
@@ -1958,8 +2020,8 @@ def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
         elif any(k in p for k in ["Quận", "Huyện", "Thủ Đức"]):
             district = p
 
-    title_name = query.title()
-    if not any(title_name.lower().startswith(p) for p in ["đường", "cầu", "ngã", "vòng"]):
+    title_name = search_target.title()
+    if not any(title_name.lower().startswith(p) for p in ["đường", "cầu", "ngã", "vòng", "chợ", "chung cư", "kdc"]):
         title_name = f"Đường {title_name}"
 
     res = {
@@ -1974,6 +2036,7 @@ def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
         "type": "ngập đô thị (OSM tim đường chính xác)"
     }
     DYNAMIC_CACHE[clean_q] = res
+    DYNAMIC_CACHE[clean_street_q] = res
     save_dynamic_cache()
     return res
 
@@ -2072,7 +2135,7 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
     best_street_len = 0
 
     # 1.A: So khớp với danh mục 122 điểm CSGT & các tuyến đường hạt nhân (Priority 3)
-    for spot in STREET_HOTSPOTS:
+    for spot in (STREET_HOTSPOTS + CSGT_HOTSPOTS):
         for kw in spot.get("keywords", []):
             kw_clean = kw.strip()
             if kw_clean.isdigit() or len(kw_clean) <= 2:
@@ -2206,3 +2269,74 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
                 return _finalize_match(res)
 
     return None
+
+def match_all_hotspots(text: str, max_spots: int = 5) -> List[Dict[str, Any]]:
+    """
+    Boc tach da thuc the dia ly (Multi-Hotspot Resolution) cho bai bao / bai dang MXH
+    nhac den 2, 3 tuyen duong cung luc.
+    Phan ra thanh danh sach cac hotspot doc lap (Fan-out Pattern).
+    Tuan thu 100% kiem soat dia gioi ngoai tinh: neu dinh ngoai tinh -> return []
+    """
+    if not text:
+        return []
+
+    clean_text = normalize_text(text)
+
+    # KIEM SOAT DIA GIOI NGHIEM NGAT - LOAI TRU 100% NGOAI TINH
+    for out_loc in OUT_OF_SCOPE_LOCATIONS:
+        pat = r'(?:\b|^|#)' + re.escape(out_loc) + r'(?:\b|$|[#\s.,!?])'
+        if re.search(pat, clean_text):
+            return []
+
+    found_spots = []
+    seen_keys = set()
+
+    # 1. Quet tim tat ca cac tuyen duong trung khop (STREET_HOTSPOTS)
+    for spot in (STREET_HOTSPOTS + CSGT_HOTSPOTS):
+        st_name = spot.get('street') or spot.get('display_name', '')
+        st_norm = normalize_text(st_name).strip()
+        st_key = re.sub(r'^(?:đường|duong|tuyến đường|tuyen duong|đại lộ|dai lo)\s+', '', st_norm).strip()
+        if st_key in seen_keys or st_norm in seen_keys:
+            continue
+
+        for kw in spot.get('keywords', []):
+            kw_clean = kw.strip()
+            if kw_clean.isdigit() or len(kw_clean) <= 2:
+                continue
+            pattern = r'(?:\b|^|#)' + re.escape(kw_clean) + r'(?:\b|$|[#\s.,!?])'
+            if re.search(pattern, clean_text):
+                spot_copy = {
+                    'matched_keyword': kw,
+                    'street': st_name,
+                    'display_name': spot.get('display_name') or st_name,
+                    'ward': spot.get('ward', ''),
+                    'administrative_unit': spot.get('ward', ''),
+                    'district': spot.get('district', 'TP.HCM'), 
+                    'region': spot.get('region', 'TPHCM'),
+                    'lat': spot['lat'],
+                    'lon': spot['lon'],
+                    'heat_points': spot.get('heat_points', [[spot['lat'], spot['lon']]]),
+                    'priority': 3,
+                    'type': spot.get('type', f'Điểm cảnh báo tuyến đường {st_name}'),
+                    'cause': spot.get('cause', 'rain'),
+                    'cause_label': spot.get('cause_label', 'Mưa lớn, nước không thoát kịp'),
+                    'source': spot.get('source', 'csgt_or_seed')
+                }
+                finalized = _finalize_match(spot_copy)
+                if finalized:
+                    found_spots.append(finalized)
+                    seen_keys.add(st_key)
+                    seen_keys.add(st_norm)
+                break
+        if len(found_spots) >= max_spots:
+            return found_spots
+
+    # 2. Neu da tim thay it nhat 1 tuyen duong -> tra ve ngay danh sach cac tuyen duong
+    if found_spots:
+        return found_spots
+
+    # 3. Neu khong co ten duong cu the nao -> fallback goi match_hotspot don (Admin hoac Citywide)
+    single = match_hotspot(text)
+    if single:
+        return [single]
+    return []
