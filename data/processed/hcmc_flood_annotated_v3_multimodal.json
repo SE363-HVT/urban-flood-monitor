@@ -17013,7 +17013,7 @@
     "aste_triplets": [
       {
         "aspect": "đường Trần Xuân Soạn",
-        "opinion": "đoạn ngập",
+        "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "severity": "MEDIUM",
@@ -17022,7 +17022,7 @@
       },
       {
         "aspect": "TPHCM",
-        "opinion": "đoạn ngập",
+        "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "severity": "MEDIUM",
@@ -17260,7 +17260,7 @@
     "aste_triplets": [
       {
         "aspect": "đường Nguyễn Bình",
-        "opinion": "đoạn ngập",
+        "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "severity": "MEDIUM",
@@ -17434,15 +17434,6 @@
         "severity": "MEDIUM",
         "grounding_provenance": "SPAN_MATCHED",
         "gazetteer_id": "csgt_nlbang"
-      },
-      {
-        "aspect": "Triều cường",
-        "opinion": "ùn ứ cục bộ",
-        "polarity": "NEG",
-        "aspect_category": "HYDROLOGY",
-        "severity": "MEDIUM",
-        "grounding_provenance": "SPAN_MATCHED",
-        "gazetteer_id": null
       }
     ],
     "seq_id": 423
@@ -17479,15 +17470,6 @@
       "media_urls": []
     },
     "aste_triplets": [
-      {
-        "aspect": "đường Lương Ngọc Quyến",
-        "opinion": "gây ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "severity": "MEDIUM",
-        "grounding_provenance": "SPAN_MATCHED",
-        "gazetteer_id": null
-      },
       {
         "aspect": "triều cường",
         "opinion": "gây ngập",
@@ -17675,7 +17657,7 @@
     "aste_triplets": [
       {
         "aspect": "triều cường",
-        "opinion": "hễ cứ triều cường là sẽ ngập như vậy",
+        "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "HYDROLOGY",
         "severity": "MEDIUM",

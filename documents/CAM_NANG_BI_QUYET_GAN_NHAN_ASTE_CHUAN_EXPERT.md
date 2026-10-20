@@ -53,7 +53,7 @@ Aspect là **Thực thể mục tiêu** mà câu văn hướng tới để mô t
 Opinion là **cụm từ mô tả tính chất, mức độ ngập lụt, cảm xúc hoặc hành động ứng phó**.
 
 ### 1. Giữ trọn vẹn mức độ mô tả (Rich Descriptors & Severity)
-Tuyệt đối **KHÔNG** chỉ cắt trơ trọi một chữ `"ngập"`! Phải lấy toàn vẹn cụm từ biểu đạt mức độ và tác động thực tế có trong văn bản:
+Tuyệt đối **KHÔNG** chỉ cắt trơ trọi một chữ `\"ngập\"` khi câu có mô tả chi tiết! Phải lấy toàn vẹn cụm từ biểu đạt mức độ và tác động thực tế có trong văn bản:
 * **Mức độ ngập sâu**:
   - `Ngập gần cả mét` (thay vì chỉ `Ngập`)
   - `ngập hơn nửa bánh xe` (thay vì chỉ `ngập`)
@@ -75,17 +75,23 @@ Tuyệt đối **KHÔNG** chỉ cắt trơ trọi một chữ `"ngập"`! Phải
 * **Đối với dòng nước / thủy văn**:
   - `dâng sâu`, `cuồn cuộn như lũ`, `vẫn chưa rút`, `nước rút rất chậm`.
 
+### 3. Cấm tuyệt đối gán Opinion là cụm danh từ chỉ vị trí như "đoạn ngập"
+* ❌ **Sai lầm nghiêm trọng**: Gán `opinion: "đoạn ngập"`. "Đoạn ngập" là một cụm danh từ chỉ phân đoạn đường hoặc vị trí không gian (ví dụ: *"xe di chuyển qua đoạn ngập"*), hoàn toàn **không phải là vị từ hoặc ý kiến** mô tả trạng thái! Gán như vậy câu văn sẽ tối nghĩa và mô hình không thể học được sắc thái biểu cảm.
+* ✅ **Quy chuẩn chuẩn xác**:
+  - Trong câu: *"Các phương tiện di chuyển qua đoạn ngập trên đường Trần Xuân Soạn"* $\rightarrow$ Aspect là `đường Trần Xuân Soạn`, Opinion phải là **`ngập`** (hoặc `di chuyển qua đoạn ngập` nếu muốn nhấn mạnh sự di chuyển khó khăn), tuyệt đối không để cộc lốc `"đoạn ngập"`.
+  - Trong câu: *"nghiêng xe tháo nước khi đi qua đoạn ngập"* $\rightarrow$ Opinion là `nghiêng xe tháo nước` hoặc `ngập`.
+
 ---
 
 ## III. NGUYÊN TẮC VÀNG VỀ POLARITY (SẮC THÁI CẢM XÚC & NGỮ CẢNH)
 
-Không được thấy chữ `"ngập"` là vội vàng đánh nhãn `NEG`! Phải đọc hiểu trọn vẹn mục đích phát ngôn của câu văn:
+Không được thấy chữ `\"ngập\"` là vội vàng đánh nhãn `NEG`! Phải đọc hiểu trọn vẹn mục đích phát ngôn của câu văn:
 
 | Nhãn Polarity | Ngữ cảnh ứng dụng | Ví dụ thực tế từ dữ liệu vàng |
 | :---: | :--- | :--- |
-| **`POS`**<br>*(Tích cực)* | 1. **Dự án, giải pháp chống ngập**: Dự án, công trình đầu tư, khơi thông kênh rạch, giải quyết dứt điểm ngập.<br>2. **Ý khen ngợi & Đánh giá tích cực của người dân**: Nước rút nhanh, thoát nước tốt, công trình phát huy hiệu quả.<br>3. **Trạng thái phục hồi**: Nước bắt đầu rút, đường xá thông thoáng trở lại. | - *"nước rút nhanh ghê"* / *"nước rút lẹ"*<br>- *"thoát nước tốt"* / *"không còn ngập như trước"*<br>- *"giải quyết ngập"*<br>- *"chống ngập triệt để"*<br>- *"tiêu thoát nước và giảm ngập trực tiếp"*<br>- *"tăng năng lực thoát nước"*<br>- *"giải quyết căn cơ tình trạng ngập"*<br>- *"cải thiện hệ thống thoát nước"*<br>- *"nước bắt đầu rút"* |
-| **`NEU`**<br>*(Trung tính)* | 1. **Dự báo khí tượng & Khuyến cáo**: Tin thời tiết cảnh báo đề phòng ngập.<br>2. **Đánh giá quy chuẩn**: Nguy cơ ngập mức độ vừa/nhẹ theo kỹ thuật.<br>3. **Hoạt động theo dõi**: Quan trắc điểm ngập, kế hoạch đưa vào.<br>4. **Câu hỏi thắc mắc / Tu từ**: Câu hỏi thăm tình hình, thắc mắc của người dân. | - *"đề phòng ngập úng"*<br>- *"nguy cơ ngập ở mức vừa"*<br>- *"tiếp tục theo dõi điểm ngập"*<br>- *"Bao giờ mới giải quyết được hết tình trạng ngập"*<br>- *"Hôm nay đường này có ngập không?"*<br>- *"MƯA NGẬP CHƯA ĐỦ KHỔ HAY SAO?"* |
-| **`NEG`**<br>*(Tiêu cực)* | 1. **Hiện trường ngập úng thực tế**: Gây ngập đường, ngập nhà cửa, đồ đạc hư hỏng.<br>2. **Hậu quả giao thông**: Xe chết máy, người dân phải dắt bộ, bì bõm lội nước.<br>3. **Ách tắc & Đình trệ**: Ùn tắc, hỗn loạn, cản trở đời sống sinh hoạt. | - *"ngập sâu lút bánh xe"*<br>- *"nước tràn vào nhà"*<br>- *"hàng loạt xe chết máy"*<br>- *"ngập hơn nửa bánh xe"*<br>- *"chật vật qua những đoạn ngập nước"*<br>- *"quá tải"* (hệ thống thoát nước) |
+| **`POS`**<br>*(Tích cực)* | 1. **Dự án, giải pháp chống ngập**: Dự án, công trình đầu tư, khơi thông kênh rạch, giải quyết dứt điểm ngập.<br>2. **Ý khen ngợi & Đánh giá tích cực của người dân**: Nước rút nhanh, thoát nước tốt, công trình phát huy hiệu quả, đô thị ít ngập hơn.<br>3. **Trạng thái phục hồi**: Nước bắt đầu rút, đường xá thông thoáng trở lại. | - *\"nước rút nhanh ghê\"* / *\"nước rút lẹ\"*<br>- *\"thoát nước tốt\"* / *\"không còn ngập như trước\"*<br>- *\"tình trạng ngập ít xảy ra hơn\"*<br>- *\"hạn chế sụp lún, ngập lụt\"*<br>- *\"chống ngập triệt để\"*<br>- *\"tiêu thoát nước và giảm ngập trực tiếp\"*<br>- *\"tăng năng lực thoát nước\"*<br>- *\"giải quyết căn cơ tình trạng ngập\"*<br>- *\"cải thiện hệ thống thoát nước\"*<br>- *\"nước bắt đầu rút\"* / *\"có dấu hiệu rút bớt\"* |
+| **`NEU`**<br>*(Trung tính)* | 1. **Dự báo khí tượng & Khuyến cáo**: Tin thời tiết cảnh báo đề phòng ngập, đỉnh triều ở mức cao.<br>2. **Đánh giá quy chuẩn**: Nguy cơ ngập mức độ vừa/nhẹ theo kỹ thuật.<br>3. **Hoạt động theo dõi**: Quan trắc điểm ngập, kế hoạch đưa vào.<br>4. **Câu hỏi thắc mắc / Tu từ**: Câu hỏi thăm tình hình, thắc mắc của người dân. | - *\"đề phòng ngập úng\"*<br>- *\"tiếp tục ở mức cao, có thể đạt đỉnh và vượt mức báo động 3\"*<br>- *\"cảnh báo nguy cơ ngập lụt\"*<br>- *\"nguy cơ ngập ở mức vừa\"*<br>- *\"tiếp tục theo dõi điểm ngập\"*<br>- *\"Bao giờ mới giải quyết được hết tình trạng ngập\"*<br>- *\"Hôm nay đường này có ngập không?\"*<br>- *\"MƯA NGẬP CHƯA ĐỦ KHỔ HAY SAO?\"* |
+| **`NEG`**<br>*(Tiêu cực)* | 1. **Hiện trường ngập úng thực tế**: Gây ngập đường, ngập nhà cửa, đồ đạc hư hỏng.<br>2. **Hậu quả giao thông**: Xe chết máy, người dân phải dắt bộ, bì bõm lội nước.<br>3. **Ách tắc & Đình trệ**: Ùn tắc, hỗn loạn, cản trở đời sống sinh hoạt. | - *\"ngập sâu lút bánh xe\"*<br>- *\"nước tràn vào nhà\"*<br>- *\"hàng loạt xe chết máy\"*<br>- *\"ngập hơn nửa bánh xe\"*<br>- *\"chật vật qua những đoạn ngập nước\"*<br>- *\"quá tải\"* (hệ thống thoát nước) |
 
 ---
 
@@ -94,7 +100,7 @@ Không được thấy chữ `"ngập"` là vội vàng đánh nhãn `NEG`! Ph�
 * **`LOCATION_STREET`**: Tên đường, tuyến hẻm, cây cầu, ngã tư, hầm chui (`Lê Lai`, `Mã Lò`, `cầu Ba Son`, `cầu Bình Triệu`).
 * **`LOCATION_ADMIN`**: Cấp Tỉnh/Thành phố (`TPHCM`, `TP. Hồ Chí Minh`, `Sài Gòn`) và cấp Phường/Xã (`An Lạc`, `Bình Trị Đông`, `Dĩ An`).  
   ⚠️ *Cấm kỵ*: Tuyệt đối không để `TPHCM` mang nhãn `LOCATION_STREET`!
-* **`HYDROLOGY`**: Sông ngòi, kênh rạch, dòng nước (`sông Sài Gòn`, `rạch Thủ Đức`, `nước`).
+* **`HYDROLOGY`**: Sông ngòi, kênh rạch, dòng nước (`sông Sài Gòn`, `rạch Thủ Đức`, `nước`, `triều cường`, `đỉnh triều`).
 * **`INFRASTRUCTURE_DRAINAGE`**: Cống thoát nước, trạm bơm, dự án nạo vét, hệ thống thoát nước đô thị (`hệ thống thoát nước`, `Dự án chống ngập`).
 
 ---
@@ -151,5 +157,5 @@ Không được thấy chữ `"ngập"` là vội vàng đánh nhãn `NEG`! Ph�
 1. [ ] **100% Verbatim**: Tất cả Aspect (`SPAN_MATCHED`) và Opinion bắt buộc phải là chuỗi con nguyên văn xuất hiện trong câu.
 2. [ ] **Không sót thực thể**: Đã kiểm tra xem có tên đường, cây cầu hay tên phường nào trong câu bị bỏ sót không.
 3. [ ] **Không dính từ rác**: Đã cắt bỏ sạch sẽ các từ nối thừa ở đầu/đuôi Aspect chưa?
-4. [ ] **Đầy đủ mức độ**: Opinion đã giữ lại đầy đủ cụm từ chỉ chiều sâu, mức độ ngập chưa?
-5. [ ] **Đúng ngữ cảnh Polarity**: Nếu là dự án giải quyết ngập hoặc khen nước rút nhanh $\rightarrow$ `POS`; nếu là dự báo/câu hỏi $\rightarrow$ `NEU`; nếu là ngập thực tế $\rightarrow$ `NEG`.
+4. [ ] **Đầy đủ mức độ**: Opinion đã giữ lại đầy đủ cụm từ chỉ chiều sâu, mức độ ngập chưa? (Tuyệt đối không lấy danh từ "đoạn ngập").
+5. [ ] **Đúng ngữ cảnh Polarity**: Nếu là dự án giải quyết ngập hoặc khen nước rút nhanh / ít ngập $\rightarrow$ `POS`; nếu là dự báo/cảnh báo/câu hỏi $\rightarrow$ `NEU`; nếu là ngập thực tế $\rightarrow$ `NEG`.
