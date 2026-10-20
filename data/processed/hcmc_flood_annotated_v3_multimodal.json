@@ -109421,7 +109421,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2147
+    "seq_id": 2147,
+    "triplets": [
+      {
+        "aspect": "Thảo Điền - Quốc Hương",
+        "opinion": "giảm ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "chợ Thủ Đức",
+        "opinion": "giảm ngập",
+        "polarity": "POS",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_92d167423c_s10",
@@ -109465,7 +109485,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2148
+    "seq_id": 2148,
+    "triplets": []
   },
   {
     "id": "news_ece7783fd3_s01",
@@ -109518,7 +109539,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2149
+    "seq_id": 2149,
+    "triplets": []
   },
   {
     "id": "news_ece7783fd3_s02",
@@ -109571,7 +109593,8 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2150
+    "seq_id": 2150,
+    "triplets": []
   },
   {
     "id": "news_4990b62b6c_s01",
@@ -109642,7 +109665,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2151
+    "seq_id": 2151,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "đắp hàng ngàn bao cát để ngăn nước",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_4990b62b6c_s02",
@@ -109686,7 +109720,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2152
+    "seq_id": 2152,
+    "triplets": [
+      {
+        "aspect": "Đường",
+        "opinion": "ngập nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_4990b62b6c_s03",
@@ -109739,7 +109784,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2153
+    "seq_id": 2153,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "ngập cục bộ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "đoạn dưới chân cầu Tân Thuận 1",
+        "opinion": "ngập cục bộ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_4990b62b6c_s06",
@@ -109783,7 +109848,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2156
+    "seq_id": 2156,
+    "triplets": []
   },
   {
     "id": "news_5a08f95177_s01",
@@ -109827,7 +109893,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2159
+    "seq_id": 2159,
+    "triplets": [
+      {
+        "aspect": "một số tuyến đường",
+        "opinion": "bị ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_5a08f95177_s02",
@@ -109880,7 +109957,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2160
+    "seq_id": 2160,
+    "triplets": [
+      {
+        "aspect": "đường Tô Ngọc Vân",
+        "opinion": "nước ngập hơn nửa bánh xe",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "một số phương tiện",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_5a08f95177_s03",
@@ -109924,7 +110021,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2161
+    "seq_id": 2161,
+    "triplets": []
   },
   {
     "id": "news_5a08f95177_s04",
@@ -109968,7 +110066,27 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2162
+    "seq_id": 2162,
+    "triplets": [
+      {
+        "aspect": "tuyến đường này",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "hàng quán",
+        "opinion": "nước tràn vào",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_f68d744ba2_s01",
@@ -110012,7 +110130,27 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2163
+    "seq_id": 2163,
+    "triplets": [
+      {
+        "aspect": "sàn nhà",
+        "opinion": "ướt nhẹp",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "đồ đạc",
+        "opinion": "hư hỏng",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_f68d744ba2_s02",
@@ -110056,7 +110194,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2164
+    "seq_id": 2164,
+    "triplets": [
+      {
+        "aspect": "giao thông",
+        "opinion": "tê liệt",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_f68d744ba2_s03",
@@ -110100,7 +110249,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2165
+    "seq_id": 2165,
+    "triplets": [
+      {
+        "aspect": "phương tiện giao thông",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_f68d744ba2_s04",
@@ -110144,7 +110304,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2166
+    "seq_id": 2166,
+    "triplets": []
   },
   {
     "id": "news_f68d744ba2_s06",
@@ -110188,7 +110349,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2168
+    "seq_id": 2168,
+    "triplets": [
+      {
+        "aspect": "Cả khu hẻm quanh đây",
+        "opinion": "đều ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_424444fd26_s03",
@@ -110232,7 +110404,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2173
+    "seq_id": 2173,
+    "triplets": [
+      {
+        "aspect": "nhà",
+        "opinion": "nước tràn vào",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_424444fd26_s04",
@@ -110276,7 +110459,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2174
+    "seq_id": 2174,
+    "triplets": [
+      {
+        "aspect": "xe cộ",
+        "opinion": "khó khăn khi đi lại",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_424444fd26_s05",
@@ -110320,7 +110514,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2175
+    "seq_id": 2175,
+    "triplets": [
+      {
+        "aspect": "xe",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_424444fd26_s07",
@@ -110364,7 +110569,18 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2177
+    "seq_id": 2177,
+    "triplets": [
+      {
+        "aspect": "đường",
+        "opinion": "hết ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_424444fd26_s08",
@@ -110408,7 +110624,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2178
+    "seq_id": 2178,
+    "triplets": [
+      {
+        "aspect": "tuyến đường này",
+        "opinion": "ngập nước trầm trọng và kéo dài",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_26d50f559d_s01",
@@ -110461,7 +110688,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2179
+    "seq_id": 2179,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_26d50f559d_s02",
@@ -110514,7 +110752,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2180
+    "seq_id": 2180,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "thường xuyên ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_26d50f559d_s04",
@@ -110558,7 +110807,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2182
+    "seq_id": 2182,
+    "triplets": [
+      {
+        "aspect": "dự án",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_e767914bea_s01",
@@ -110602,7 +110862,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2183
+    "seq_id": 2183,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_e767914bea_s02",
@@ -110664,7 +110935,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2184
+    "seq_id": 2184,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_e767914bea_s04",
@@ -110708,7 +110990,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2186
+    "seq_id": 2186,
+    "triplets": [
+      {
+        "aspect": "đường",
+        "opinion": "bị ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_e767914bea_s05",
@@ -110752,7 +111045,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2187
+    "seq_id": 2187,
+    "triplets": [
+      {
+        "aspect": "mặt đường",
+        "opinion": "hư hại, chắp vá",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "bờ kè",
+        "opinion": "sụt lún",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_e767914bea_s06",
@@ -110823,7 +111136,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2188
+    "seq_id": 2188,
+    "triplets": [
+      {
+        "aspect": "tuyến đường ven kênh Tẻ",
+        "opinion": "thoát cảnh ngập nước",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_58d3daa1dc_s01",
@@ -110867,7 +111191,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2189
+    "seq_id": 2189,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập nước",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_58d3daa1dc_s02",
@@ -110911,7 +111246,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2190
+    "seq_id": 2190,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "ngập nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_58d3daa1dc_s03",
@@ -110982,7 +111328,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2191
+    "seq_id": 2191,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập, thoát nước",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "bờ kè Kênh Tẻ",
+        "opinion": "chưa hoàn thiện",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_58d3daa1dc_s04",
@@ -111026,7 +111392,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2192
+    "seq_id": 2192,
+    "triplets": [
+      {
+        "aspect": "nhà",
+        "opinion": "nước ngập vào",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_58d3daa1dc_s06",
@@ -111088,7 +111465,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2194
+    "seq_id": 2194,
+    "triplets": [
+      {
+        "aspect": "hàng rào",
+        "opinion": "đã mục",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "đất",
+        "opinion": "bị lún",
+        "polarity": "NEG",
+        "aspect_category": "HUMAN_ACTIVITY",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_58d3daa1dc_s07",
@@ -111141,7 +111538,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2195
+    "seq_id": 2195,
+    "triplets": [
+      {
+        "aspect": "đường 15B",
+        "opinion": "ngập lụt",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "đường Phạm Hữu Lầu",
+        "opinion": "ngập lụt",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_58d3daa1dc_s08",
@@ -111185,7 +111602,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2196
+    "seq_id": 2196,
+    "triplets": [
+      {
+        "aspect": "các con đường này",
+        "opinion": "thường xuyên ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_58d3daa1dc_s09",
@@ -111229,7 +111657,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2197
+    "seq_id": 2197,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s01",
@@ -111273,7 +111712,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2198
+    "seq_id": 2198,
+    "triplets": [
+      {
+        "aspect": "con đường",
+        "opinion": "rốn ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s02",
@@ -111326,7 +111776,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2199
+    "seq_id": 2199,
+    "triplets": [
+      {
+        "aspect": "các con đường nhánh",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s03",
@@ -111370,7 +111831,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2200
+    "seq_id": 2200,
+    "triplets": [
+      {
+        "aspect": "Mực nước ở đây",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "HYDROLOGY",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s04",
@@ -111414,7 +111886,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2201
+    "seq_id": 2201,
+    "triplets": [
+      {
+        "aspect": "đoạn phía trước Trường ĐH Văn hóa TP.HCM",
+        "opinion": "ngập sâu và thường xuyên nhất",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s05",
@@ -111458,7 +111941,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2202
+    "seq_id": 2202,
+    "triplets": []
   },
   {
     "id": "news_1f2c456226_s06",
@@ -111502,7 +111986,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2203
+    "seq_id": 2203,
+    "triplets": [
+      {
+        "aspect": "xe",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s07",
@@ -111546,7 +112041,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2204
+    "seq_id": 2204,
+    "triplets": [
+      {
+        "aspect": "Các loại ô tô",
+        "opinion": "di chuyển chậm",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s08",
@@ -111590,7 +112096,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2205
+    "seq_id": 2205,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "nước ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s09",
@@ -111634,7 +112151,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2206
+    "seq_id": 2206,
+    "triplets": [
+      {
+        "aspect": "cảnh buôn bán",
+        "opinion": "ế ẩm vì ngập",
+        "polarity": "NEG",
+        "aspect_category": "HUMAN_ACTIVITY",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s10",
@@ -111678,7 +112206,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2207
+    "seq_id": 2207,
+    "triplets": []
   },
   {
     "id": "news_1f2c456226_s11",
@@ -111731,7 +112260,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2208
+    "seq_id": 2208,
+    "triplets": [
+      {
+        "aspect": "miệng cống",
+        "opinion": "dọn sạch rác",
+        "polarity": "POS",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_1f2c456226_s12",
@@ -111775,7 +112315,27 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2209
+    "seq_id": 2209,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "ngập nhẹ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "một số con đường nhánh",
+        "opinion": "ngập nhẹ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_c07377246e_s01",
@@ -111819,7 +112379,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2210
+    "seq_id": 2210,
+    "triplets": [
+      {
+        "aspect": "mặt đường",
+        "opinion": "ngập sâu quá nửa bánh xe máy",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_c07377246e_s02",
@@ -111863,7 +112434,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2211
+    "seq_id": 2211,
+    "triplets": [
+      {
+        "aspect": "cống thoát nước",
+        "opinion": "ngập",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_c07377246e_s03",
@@ -111907,7 +112489,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2212
+    "seq_id": 2212,
+    "triplets": [
+      {
+        "aspect": "nhà",
+        "opinion": "triều cường không tràn vào",
+        "polarity": "POS",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "giao thông",
+        "opinion": "vẫn bị ảnh hưởng",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_c07377246e_s04",
@@ -111951,7 +112553,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2213
+    "seq_id": 2213,
+    "triplets": [
+      {
+        "aspect": "tuyến đường này",
+        "opinion": "tái diễn thường xuyên",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_e142e7e300_s01",
@@ -112004,7 +112617,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2214
+    "seq_id": 2214,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_e142e7e300_s02",
@@ -112057,7 +112681,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2215
+    "seq_id": 2215,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "thường xuyên bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_e142e7e300_s03",
@@ -112101,7 +112736,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2216
+    "seq_id": 2216,
+    "triplets": [
+      {
+        "aspect": "cao độ đường",
+        "opinion": "thấp",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_e142e7e300_s04",
@@ -112154,7 +112800,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2217
+    "seq_id": 2217,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_61a78509a1_s01",
@@ -112225,7 +112882,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2218
+    "seq_id": 2218,
+    "triplets": [
+      {
+        "aspect": "Nguyễn Duy Trinh",
+        "opinion": "lại bị ngập nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Quốc Hương",
+        "opinion": "lại bị ngập nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_61a78509a1_s02",
@@ -112269,7 +112946,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2219
+    "seq_id": 2219,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "đã bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_61a78509a1_s03",
@@ -112313,7 +113001,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2220
+    "seq_id": 2220,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "lại ngập như sông",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_61a78509a1_s04",
@@ -112366,7 +113065,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2221
+    "seq_id": 2221,
+    "triplets": [
+      {
+        "aspect": "giao lộ Quốc Hương - Xuân Thủy",
+        "opinion": "nước ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_61a78509a1_s05",
@@ -112410,7 +113120,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2222
+    "seq_id": 2222,
+    "triplets": [
+      {
+        "aspect": "đoạn ngã 3 đường Quốc Hương - Tống Hữu Định",
+        "opinion": "ngập sâu và thường xuyên nhất",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "phía trước Trường ĐH Văn hóa TP.HCM",
+        "opinion": "ngập sâu và thường xuyên nhất",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_61a78509a1_s06",
@@ -112454,7 +113184,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2223
+    "seq_id": 2223,
+    "triplets": [
+      {
+        "aspect": "cảnh buôn bán",
+        "opinion": "ế ẩm",
+        "polarity": "NEG",
+        "aspect_category": "HUMAN_ACTIVITY",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_61a78509a1_s07",
@@ -112498,7 +113239,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2224
+    "seq_id": 2224,
+    "triplets": [
+      {
+        "aspect": "xe",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_61a78509a1_s08",
@@ -112542,7 +113294,18 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2225
+    "seq_id": 2225,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7302ce0d37_s01",
@@ -112586,7 +113349,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2226
+    "seq_id": 2226,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "bị ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7302ce0d37_s02",
@@ -112630,7 +113404,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2227
+    "seq_id": 2227,
+    "triplets": [
+      {
+        "aspect": "con đường này",
+        "opinion": "nước ngập suốt tuyến",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7302ce0d37_s03",
@@ -112674,7 +113459,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2228
+    "seq_id": 2228,
+    "triplets": [
+      {
+        "aspect": "đoạn phía trước Trường ĐH Văn hóa TP.HCM",
+        "opinion": "ngập sâu và thường xuyên nhất",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7302ce0d37_s04",
@@ -112718,7 +113514,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2229
+    "seq_id": 2229,
+    "triplets": []
   },
   {
     "id": "news_7302ce0d37_s05",
@@ -112762,7 +113559,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2230
+    "seq_id": 2230,
+    "triplets": []
   },
   {
     "id": "news_7302ce0d37_s06",
@@ -112806,7 +113604,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2231
+    "seq_id": 2231,
+    "triplets": [
+      {
+        "aspect": "nhà",
+        "opinion": "nước tràn vào",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7302ce0d37_s07",
@@ -112850,7 +113659,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2232
+    "seq_id": 2232,
+    "triplets": [
+      {
+        "aspect": "con đường này",
+        "opinion": "thường xuyên trở thành điểm ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7302ce0d37_s08",
@@ -112894,7 +113714,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2233
+    "seq_id": 2233,
+    "triplets": []
   },
   {
     "id": "news_7302ce0d37_s09",
@@ -112938,7 +113759,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2234
+    "seq_id": 2234,
+    "triplets": []
   },
   {
     "id": "news_7302ce0d37_s10",
@@ -112982,7 +113804,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2235
+    "seq_id": 2235,
+    "triplets": [
+      {
+        "aspect": "xe",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7302ce0d37_s11",
@@ -113026,7 +113859,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2236
+    "seq_id": 2236,
+    "triplets": []
   },
   {
     "id": "news_7302ce0d37_s12",
@@ -113070,7 +113904,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2237
+    "seq_id": 2237,
+    "triplets": []
   },
   {
     "id": "news_7302ce0d37_s13",
@@ -113114,7 +113949,18 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2238
+    "seq_id": 2238,
+    "triplets": [
+      {
+        "aspect": "đoạn đường Quốc Hương",
+        "opinion": "vẫn còn ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_3a01837f28_s01",
@@ -113158,7 +114004,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2239
+    "seq_id": 2239,
+    "triplets": [
+      {
+        "aspect": "khu vực suối Linh Tây - đường Tô Ngọc Vân",
+        "opinion": "liên tục ngập cục bộ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_3a01837f28_s02",
@@ -113202,7 +114059,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2240
+    "seq_id": 2240,
+    "triplets": []
   },
   {
     "id": "news_3a01837f28_s03",
@@ -113255,7 +114113,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2241
+    "seq_id": 2241,
+    "triplets": [
+      {
+        "aspect": "khu vực chợ Thủ Đức",
+        "opinion": "giảm ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_3a01837f28_s04",
@@ -113299,7 +114168,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2242
+    "seq_id": 2242,
+    "triplets": []
   },
   {
     "id": "news_3a01837f28_s05",
@@ -113343,7 +114213,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2243
+    "seq_id": 2243,
+    "triplets": [
+      {
+        "aspect": "khu vực chợ Thủ Đức",
+        "opinion": "ngập nước dai dẳng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_4ebcaa8423_s01",
@@ -113405,7 +114286,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2244
+    "seq_id": 2244,
+    "triplets": [
+      {
+        "aspect": "tuyến đường Trần Xuân Soạn",
+        "opinion": "thường xuyên chịu cảnh ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "tuyến đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_4ebcaa8423_s02",
@@ -113449,7 +114350,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2245
+    "seq_id": 2245,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_4ebcaa8423_s03",
@@ -113493,7 +114405,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2246
+    "seq_id": 2246,
+    "triplets": [
+      {
+        "aspect": "mặt đường",
+        "opinion": "đối phó với tình trạng ngập úng",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_4ebcaa8423_s04",
@@ -113546,7 +114469,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2247
+    "seq_id": 2247,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "nâng cấp chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_4ebcaa8423_s05",
@@ -113590,7 +114524,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2248
+    "seq_id": 2248,
+    "triplets": [
+      {
+        "aspect": "con đường này",
+        "opinion": "thường xuyên ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_4ebcaa8423_s06",
@@ -113643,7 +114588,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2249
+    "seq_id": 2249,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "giảm tình trạng ngập úng",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_8802f0759c_s02",
@@ -113705,7 +114661,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2251
+    "seq_id": 2251,
+    "triplets": [
+      {
+        "aspect": "đoạn đường Trần Xuân Soạn",
+        "opinion": "ngập ngang ống pô",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_8802f0759c_s03",
@@ -113749,7 +114716,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2252
+    "seq_id": 2252,
+    "triplets": [
+      {
+        "aspect": "khu vực này",
+        "opinion": "chậm chạp",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_8802f0759c_s04",
@@ -113793,7 +114771,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2253
+    "seq_id": 2253,
+    "triplets": [
+      {
+        "aspect": "Kênh Tẻ",
+        "opinion": "nước ngập lênh láng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_8802f0759c_s05",
@@ -113837,7 +114826,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2254
+    "seq_id": 2254,
+    "triplets": [
+      {
+        "aspect": "đường",
+        "opinion": "ngập sâu, trơn trượt",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_43d0484b84_s01",
@@ -113881,7 +114881,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2255
+    "seq_id": 2255,
+    "triplets": [
+      {
+        "aspect": "đường Tô Ngọc Vân",
+        "opinion": "ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_43d0484b84_s02",
@@ -113925,7 +114936,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2256
+    "seq_id": 2256,
+    "triplets": [
+      {
+        "aspect": "nhiều con đường",
+        "opinion": "bị ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_43d0484b84_s03",
@@ -113969,7 +114991,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2257
+    "seq_id": 2257,
+    "triplets": [
+      {
+        "aspect": "đường Tô Ngọc Vân",
+        "opinion": "nước ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "khu vực",
+        "opinion": "bị ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_43d0484b84_s04",
@@ -114022,7 +115064,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2258
+    "seq_id": 2258,
+    "triplets": [
+      {
+        "aspect": "đường Tô Ngọc Vân",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "con hẻm ở khu vực",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_bc1aa6151e_s01",
@@ -114075,7 +115137,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2259
+    "seq_id": 2259,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_bc1aa6151e_s02",
@@ -114128,7 +115201,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2260
+    "seq_id": 2260,
+    "triplets": [
+      {
+        "aspect": "tuyến đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_bc1aa6151e_s03",
@@ -114172,7 +115256,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2261
+    "seq_id": 2261,
+    "triplets": []
   },
   {
     "id": "news_bc1aa6151e_s04",
@@ -114216,7 +115301,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2262
+    "seq_id": 2262,
+    "triplets": [
+      {
+        "aspect": "lượng khách mua hàng",
+        "opinion": "giảm đáng kể",
+        "polarity": "NEG",
+        "aspect_category": "HUMAN_ACTIVITY",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_bc1aa6151e_s05",
@@ -114260,7 +115356,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2263
+    "seq_id": 2263,
+    "triplets": [
+      {
+        "aspect": "nền nhà",
+        "opinion": "nước không tràn vào",
+        "polarity": "POS",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_bc1aa6151e_s06",
@@ -114313,7 +115420,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2264
+    "seq_id": 2264,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_a13970761c_s01",
@@ -114366,7 +115484,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2265
+    "seq_id": 2265,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "rốn ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_a13970761c_s02",
@@ -114410,7 +115539,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2266
+    "seq_id": 2266,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_a13970761c_s03",
@@ -114454,7 +115594,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2267
+    "seq_id": 2267,
+    "triplets": [
+      {
+        "aspect": "khu vực",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_a13970761c_s04",
@@ -114498,7 +115649,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2268
+    "seq_id": 2268,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_a13970761c_s05",
@@ -114551,7 +115713,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2269
+    "seq_id": 2269,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "thường xuyên ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_a13970761c_s06",
@@ -114595,7 +115768,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2270
+    "seq_id": 2270,
+    "triplets": []
   },
   {
     "id": "news_6631f94c5a_s01",
@@ -114639,7 +115813,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2271
+    "seq_id": 2271,
+    "triplets": [
+      {
+        "aspect": "nhiều tuyến đường",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "khu vực trũng thấp",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_6631f94c5a_s02",
@@ -114701,7 +115895,54 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2272
+    "seq_id": 2272,
+    "triplets": [
+      {
+        "aspect": "Đặng Thị Rành",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Nguyễn Duy Trinh",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Linh Đông",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Tô Ngọc Vân",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "nhiều phương tiện",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_6631f94c5a_s03",
@@ -114745,7 +115986,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2273
+    "seq_id": 2273,
+    "triplets": [
+      {
+        "aspect": "nhà dân",
+        "opinion": "tràn vào",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "quán xá",
+        "opinion": "tràn vào",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_6631f94c5a_s04",
@@ -114798,7 +116059,27 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2274
+    "seq_id": 2274,
+    "triplets": [
+      {
+        "aspect": "Quốc Hương",
+        "opinion": "ngập úng kéo dài",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Tống Hữu Định",
+        "opinion": "ngập úng kéo dài",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_6631f94c5a_s06",
@@ -114842,7 +116123,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2276
+    "seq_id": 2276,
+    "triplets": [
+      {
+        "aspect": "toàn bộ khu vực",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_6631f94c5a_s07",
@@ -114886,7 +116178,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2277
+    "seq_id": 2277,
+    "triplets": []
   },
   {
     "id": "news_fb9d2c36d1_s01",
@@ -114930,7 +116223,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2278
+    "seq_id": 2278,
+    "triplets": [
+      {
+        "aspect": "nhiều nơi",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s02",
@@ -115010,7 +116314,54 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2279
+    "seq_id": 2279,
+    "triplets": [
+      {
+        "aspect": "Đinh Bộ Lĩnh",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Bạch Đằng",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Chu Văn An",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Ung Văn Khiêm",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "bị ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s03",
@@ -115054,7 +116405,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2280
+    "seq_id": 2280,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "bị ngập sâu và kéo dài nhiều giờ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s05",
@@ -115098,7 +116460,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2282
+    "seq_id": 2282,
+    "triplets": [
+      {
+        "aspect": "nước",
+        "opinion": "ngập lên đến đầu gối",
+        "polarity": "NEG",
+        "aspect_category": "HYDROLOGY",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s06",
@@ -115142,7 +116515,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2283
+    "seq_id": 2283,
+    "triplets": [
+      {
+        "aspect": "các con đường nhánh",
+        "opinion": "trở nên ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s07",
@@ -115195,7 +116579,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2284
+    "seq_id": 2284,
+    "triplets": [
+      {
+        "aspect": "con đường này",
+        "opinion": "lần ngập nhiều lần sau mưa",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s08",
@@ -115239,7 +116634,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2285
+    "seq_id": 2285,
+    "triplets": [
+      {
+        "aspect": "đoạn phía trước Trường ĐH Văn hóa TP.HCM",
+        "opinion": "ngập sâu nhất",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s09",
@@ -115283,7 +116689,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2286
+    "seq_id": 2286,
+    "triplets": [
+      {
+        "aspect": "phương tiện xe máy",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s10",
@@ -115327,7 +116744,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2287
+    "seq_id": 2287,
+    "triplets": [
+      {
+        "aspect": "các loại ô tô",
+        "opinion": "di chuyển chậm",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s11",
@@ -115371,7 +116799,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2288
+    "seq_id": 2288,
+    "triplets": []
   },
   {
     "id": "news_fb9d2c36d1_s12",
@@ -115415,7 +116844,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2289
+    "seq_id": 2289,
+    "triplets": [
+      {
+        "aspect": "cảnh buôn bán",
+        "opinion": "ế ẩm trong nước ngập",
+        "polarity": "NEG",
+        "aspect_category": "HUMAN_ACTIVITY",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_fb9d2c36d1_s13",
@@ -115459,7 +116899,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2290
+    "seq_id": 2290,
+    "triplets": []
   },
   {
     "id": "news_fb9d2c36d1_s14",
@@ -115503,7 +116944,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2291
+    "seq_id": 2291,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "một số con đường nhánh",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_daf796958e_s01",
@@ -115556,7 +117017,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2292
+    "seq_id": 2292,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "chìm trong biển nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "giao thông",
+        "opinion": "ùn ứ",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_b7f31b5620_s01",
@@ -115600,7 +117081,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2293
+    "seq_id": 2293,
+    "triplets": []
   },
   {
     "id": "news_b7f31b5620_s02",
@@ -115644,7 +117126,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2294
+    "seq_id": 2294,
+    "triplets": [
+      {
+        "aspect": "Tuyến đường Trần Xuân Soạn",
+        "opinion": "‘rốn ngập’",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_b7f31b5620_s03",
@@ -115688,7 +117181,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2295
+    "seq_id": 2295,
+    "triplets": []
   },
   {
     "id": "news_b7f31b5620_s04",
@@ -115732,7 +117226,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2296
+    "seq_id": 2296,
+    "triplets": [
+      {
+        "aspect": "tuyến đường Trần Xuân Soạn",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_b7f31b5620_s05",
@@ -115776,7 +117281,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2297
+    "seq_id": 2297,
+    "triplets": [
+      {
+        "aspect": "nước",
+        "opinion": "ngập",
+        "polarity": "NEG",
+        "aspect_category": "HYDROLOGY",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_b7f31b5620_s06",
@@ -115820,7 +117336,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2298
+    "seq_id": 2298,
+    "triplets": [
+      {
+        "aspect": "nhà",
+        "opinion": "nâng nền chống ngập",
+        "polarity": "POS",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_b7f31b5620_s07",
@@ -115864,7 +117391,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2299
+    "seq_id": 2299,
+    "triplets": []
   },
   {
     "id": "news_b7f31b5620_s08",
@@ -115908,7 +117436,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2300
+    "seq_id": 2300,
+    "triplets": []
   },
   {
     "id": "news_b7f31b5620_s09",
@@ -115952,7 +117481,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2301
+    "seq_id": 2301,
+    "triplets": []
   },
   {
     "id": "news_b7f31b5620_s10",
@@ -115996,7 +117526,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2302
+    "seq_id": 2302,
+    "triplets": []
   },
   {
     "id": "news_b7f31b5620_s11",
@@ -116040,7 +117571,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2303
+    "seq_id": 2303,
+    "triplets": []
   },
   {
     "id": "news_b7f31b5620_s12",
@@ -116084,7 +117616,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2304
+    "seq_id": 2304,
+    "triplets": [
+      {
+        "aspect": "đường xá",
+        "opinion": "ngập lênh láng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "nhà cửa",
+        "opinion": "ngập lênh láng",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_0bc339881e_s01",
@@ -116128,7 +117680,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2305
+    "seq_id": 2305,
+    "triplets": [
+      {
+        "aspect": "các miệng cống",
+        "opinion": "rác dồn thành đống",
+        "polarity": "NEG",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "cả đoạn đường",
+        "opinion": "gây ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_0bc339881e_s02",
@@ -116172,7 +117744,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2306
+    "seq_id": 2306,
+    "triplets": [
+      {
+        "aspect": "con rạch",
+        "opinion": "ngập nước và rác",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7c5e53b3f2_s01",
@@ -116216,7 +117799,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2307
+    "seq_id": 2307,
+    "triplets": [
+      {
+        "aspect": "rất nhiều phương tiện",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7c5e53b3f2_s02",
@@ -116260,7 +117854,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2308
+    "seq_id": 2308,
+    "triplets": [
+      {
+        "aspect": "nhà",
+        "opinion": "hạn chế nước tràn vào",
+        "polarity": "POS",
+        "aspect_category": "INFRASTRUCTURE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_7c5e53b3f2_s03",
@@ -116313,7 +117918,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2309
+    "seq_id": 2309,
+    "triplets": [
+      {
+        "aspect": "triều cường",
+        "opinion": "đạt đỉnh",
+        "polarity": "NEU",
+        "aspect_category": "HYDROLOGY",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MODERATE"
+      }
+    ]
   },
   {
     "id": "news_7c5e53b3f2_s04",
@@ -116357,7 +117973,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2310
+    "seq_id": 2310,
+    "triplets": [
+      {
+        "aspect": "xe",
+        "opinion": "chết máy",
+        "polarity": "NEG",
+        "aspect_category": "TRAFFIC",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7c5e53b3f2_s05",
@@ -116401,7 +118028,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2311
+    "seq_id": 2311,
+    "triplets": []
   },
   {
     "id": "news_7c5e53b3f2_s06",
@@ -116445,7 +118073,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2312
+    "seq_id": 2312,
+    "triplets": [
+      {
+        "aspect": "Đường Trần Xuân Soạn",
+        "opinion": "biến thành sông",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_7c5e53b3f2_s07",
