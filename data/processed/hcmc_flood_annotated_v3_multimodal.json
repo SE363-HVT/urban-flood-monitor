@@ -227008,9 +227008,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4264
@@ -227055,9 +227055,9 @@
         "opinion": "khô queo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_13",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4265
@@ -227102,9 +227102,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_18",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4266
@@ -227149,9 +227149,9 @@
         "opinion": "thông thoáng trở lại",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_20",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4267
@@ -227196,9 +227196,9 @@
         "opinion": "nước đã rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_24",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4268
@@ -227243,9 +227243,9 @@
         "opinion": "thông suốt",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_14",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4269
@@ -227290,9 +227290,9 @@
         "opinion": "nước đã rút hoàn toàn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_18",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4270
@@ -227337,9 +227337,9 @@
         "opinion": "khô ráo sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4271
@@ -227384,9 +227384,9 @@
         "opinion": "mặt đường khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_16",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4272
@@ -227431,9 +227431,9 @@
         "opinion": "đã khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_23",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4273
@@ -227478,9 +227478,9 @@
         "opinion": "đã khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_14",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4274
@@ -227525,9 +227525,9 @@
         "opinion": "nước rút nhanh",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_23",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4275
@@ -227572,9 +227572,9 @@
         "opinion": "không bị ngập",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_09",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4276
@@ -227619,9 +227619,9 @@
         "opinion": "không còn ngập nữa",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_19",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4277
@@ -227666,9 +227666,9 @@
         "opinion": "khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_24",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4278
@@ -227713,9 +227713,9 @@
         "opinion": "khô ráo sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4279
@@ -227760,9 +227760,9 @@
         "opinion": "nước đã rút sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4280
@@ -227807,9 +227807,9 @@
         "opinion": "thông xe",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4281
@@ -227854,9 +227854,9 @@
         "opinion": "thông thoáng trở lại",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_08",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4282
@@ -227901,9 +227901,9 @@
         "opinion": "không còn ngập nữa",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_14",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4283
@@ -227948,9 +227948,9 @@
         "opinion": "nước rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_02",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4284
@@ -227995,9 +227995,9 @@
         "opinion": "khô ráo sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_14",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4285
@@ -228042,9 +228042,9 @@
         "opinion": "khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_08",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4286
@@ -228089,9 +228089,9 @@
         "opinion": "nước đã rút hết",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4287
@@ -228136,9 +228136,9 @@
         "opinion": "nước đã rút sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_19",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4288
@@ -228183,9 +228183,9 @@
         "opinion": "nước rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4289
@@ -228230,9 +228230,9 @@
         "opinion": "hết ngập",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4290
@@ -228277,9 +228277,9 @@
         "opinion": "khô queo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_08",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4291
@@ -228324,9 +228324,9 @@
         "opinion": "nước đã rút hết",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_24",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4292
@@ -228371,9 +228371,9 @@
         "opinion": "ráo hoảnh",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_24",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4293
@@ -228418,9 +228418,9 @@
         "opinion": "nước rút hết",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_19",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4294
@@ -228465,9 +228465,9 @@
         "opinion": "ổn định trở lại",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_09",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4295
@@ -228512,9 +228512,9 @@
         "opinion": "lưu thông bình thường",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_13",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4296
@@ -228559,9 +228559,9 @@
         "opinion": "ổn định trở lại",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4297
@@ -228606,9 +228606,9 @@
         "opinion": "đi lại bình thường",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4298
@@ -228653,9 +228653,9 @@
         "opinion": "nước đã rút sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4299
@@ -228700,9 +228700,9 @@
         "opinion": "lưu thông bình thường",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4300
@@ -228747,9 +228747,9 @@
         "opinion": "đi lại bình thường",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_15",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4301
@@ -228794,9 +228794,9 @@
         "opinion": "nước rút hết",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4302
@@ -228841,9 +228841,9 @@
         "opinion": "khô ráo sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_09",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4303
@@ -228888,9 +228888,9 @@
         "opinion": "khô queo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_09",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4304
@@ -228935,9 +228935,9 @@
         "opinion": "đã khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4305
@@ -228982,9 +228982,9 @@
         "opinion": "nước đã rút",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_23",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4306
@@ -229029,9 +229029,9 @@
         "opinion": "nước đã rút",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_03",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4307
@@ -229076,9 +229076,9 @@
         "opinion": "không còn ngập nữa",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4308
@@ -229123,9 +229123,9 @@
         "opinion": "nước rút hết",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_12",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4309
@@ -229170,9 +229170,9 @@
         "opinion": "khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_16",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4310
@@ -229217,9 +229217,9 @@
         "opinion": "khô ráo sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_17",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4311
@@ -229264,9 +229264,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_09",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4312
@@ -229311,9 +229311,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_18",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4313
@@ -229358,9 +229358,9 @@
         "opinion": "khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_22",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4314
@@ -229405,9 +229405,9 @@
         "opinion": "thông thoáng trở lại",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4315
@@ -229452,9 +229452,9 @@
         "opinion": "mặt đường thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4316
@@ -229499,9 +229499,9 @@
         "opinion": "lưu thông bình thường",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_20",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4317
@@ -229546,9 +229546,9 @@
         "opinion": "mặt đường thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_02",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4318
@@ -229593,9 +229593,9 @@
         "opinion": "nước rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4319
@@ -229640,9 +229640,9 @@
         "opinion": "nước đã rút",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_24",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4320
@@ -229687,9 +229687,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4321
@@ -229734,9 +229734,9 @@
         "opinion": "khô queo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_12",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4322
@@ -229781,9 +229781,9 @@
         "opinion": "nước đã rút",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_14",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4323
@@ -229828,9 +229828,9 @@
         "opinion": "khô queo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4324
@@ -229875,9 +229875,9 @@
         "opinion": "mặt đường khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_12",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4325
@@ -229922,9 +229922,9 @@
         "opinion": "mặt đường khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_08",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4326
@@ -229969,9 +229969,9 @@
         "opinion": "ổn định trở lại",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4327
@@ -230016,9 +230016,9 @@
         "opinion": "nước rút nhanh chóng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_03",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4328
@@ -230063,9 +230063,9 @@
         "opinion": "thông suốt",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_10",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4329
@@ -230110,9 +230110,9 @@
         "opinion": "nước đã rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_18",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4330
@@ -230157,9 +230157,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4331
@@ -230204,9 +230204,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_13",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4332
@@ -230251,9 +230251,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_11",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4333
@@ -230298,9 +230298,9 @@
         "opinion": "ổn định trở lại",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_14",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4334
@@ -230345,9 +230345,9 @@
         "opinion": "không còn ngập nữa",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_09",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4335
@@ -230392,9 +230392,9 @@
         "opinion": "nước đã rút",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4336
@@ -230439,9 +230439,9 @@
         "opinion": "không còn ngập nước",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_20",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4337
@@ -230486,9 +230486,9 @@
         "opinion": "mặt đường thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_13",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4338
@@ -230533,9 +230533,9 @@
         "opinion": "khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4339
@@ -230580,9 +230580,9 @@
         "opinion": "khô ráo sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_18",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4340
@@ -230627,9 +230627,9 @@
         "opinion": "mặt đường thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_19",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4341
@@ -230674,9 +230674,9 @@
         "opinion": "thông thoáng trở lại",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_23",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4342
@@ -230721,9 +230721,9 @@
         "opinion": "hết ngập",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_15",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4343
@@ -230768,9 +230768,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4344
@@ -230815,9 +230815,9 @@
         "opinion": "ráo hoảnh",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_22",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4345
@@ -230862,9 +230862,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4346
@@ -230909,9 +230909,9 @@
         "opinion": "không còn ngập nữa",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_23",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4347
@@ -230956,9 +230956,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4348
@@ -231003,9 +231003,9 @@
         "opinion": "không còn ngập nước",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_02",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4349
@@ -231050,9 +231050,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4350
@@ -231097,9 +231097,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_10",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4351
@@ -231144,9 +231144,9 @@
         "opinion": "nước đã rút sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4352
@@ -231191,9 +231191,9 @@
         "opinion": "đã khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4353
@@ -231238,9 +231238,9 @@
         "opinion": "nước rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4354
@@ -231285,9 +231285,9 @@
         "opinion": "lưu thông thuận lợi",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4355
@@ -231332,9 +231332,9 @@
         "opinion": "nước đã rút sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_06",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4356
@@ -231379,9 +231379,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_13",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4357
@@ -231426,9 +231426,9 @@
         "opinion": "lưu thông bình thường",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_13",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4358
@@ -231473,9 +231473,9 @@
         "opinion": "hết ngập hoàn toàn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4359
@@ -231520,9 +231520,9 @@
         "opinion": "nước đã rút",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_10",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4360
@@ -231567,9 +231567,9 @@
         "opinion": "ráo hoảnh",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_17",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4361
@@ -231614,9 +231614,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4362
@@ -231661,9 +231661,9 @@
         "opinion": "nước rút nhanh",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4363
@@ -231708,9 +231708,9 @@
         "opinion": "khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_13",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4364
@@ -231755,9 +231755,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_02",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4365
@@ -231802,9 +231802,9 @@
         "opinion": "nước đã rút",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4366
@@ -231849,9 +231849,9 @@
         "opinion": "nước rút nhanh chóng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_02",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4367
@@ -231896,9 +231896,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4368
@@ -231943,9 +231943,9 @@
         "opinion": "hết ngập",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4369
@@ -231990,9 +231990,9 @@
         "opinion": "mặt đường thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4370
@@ -232037,9 +232037,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_03",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4371
@@ -232084,9 +232084,9 @@
         "opinion": "lưu thông thuận lợi",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_16",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4372
@@ -232131,9 +232131,9 @@
         "opinion": "lưu thông bình thường",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_08",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4373
@@ -232178,9 +232178,9 @@
         "opinion": "nước đã rút hết",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_02",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4374
@@ -232225,9 +232225,9 @@
         "opinion": "nước rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_12",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4375
@@ -232272,9 +232272,9 @@
         "opinion": "hết ngập hoàn toàn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_13",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4376
@@ -232319,9 +232319,9 @@
         "opinion": "nước đã rút hết",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_03",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4377
@@ -232366,9 +232366,9 @@
         "opinion": "không còn ngập nước",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4378
@@ -232413,9 +232413,9 @@
         "opinion": "nước đã rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_02",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4379
@@ -232460,9 +232460,9 @@
         "opinion": "lưu thông bình thường",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_19",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4380
@@ -232507,9 +232507,9 @@
         "opinion": "nước rút nhanh chóng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4381
@@ -232554,9 +232554,9 @@
         "opinion": "khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_09",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4382
@@ -232601,9 +232601,9 @@
         "opinion": "nước đã rút",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_10",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4383
@@ -232648,9 +232648,9 @@
         "opinion": "không còn ngập nữa",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_02",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4384
@@ -232695,9 +232695,9 @@
         "opinion": "nước đã rút",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_10",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4385
@@ -232742,9 +232742,9 @@
         "opinion": "đã khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4386
@@ -232789,9 +232789,9 @@
         "opinion": "hết ngập",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_14",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4387
@@ -232836,9 +232836,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_21",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4388
@@ -232883,9 +232883,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4389
@@ -232930,9 +232930,9 @@
         "opinion": "thông suốt",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_13",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4390
@@ -232977,9 +232977,9 @@
         "opinion": "đã khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4391
@@ -233024,9 +233024,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4392
@@ -233071,9 +233071,9 @@
         "opinion": "khô queo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4393
@@ -233118,9 +233118,9 @@
         "opinion": "khô queo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_16",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4394
@@ -233165,9 +233165,9 @@
         "opinion": "nước rút hết",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4395
@@ -233212,9 +233212,9 @@
         "opinion": "thông thoáng trở lại",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_08",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4396
@@ -233259,9 +233259,9 @@
         "opinion": "nước đã rút hoàn toàn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_15",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4397
@@ -233306,9 +233306,9 @@
         "opinion": "nước rút rất nhanh",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_10",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4398
@@ -233353,9 +233353,9 @@
         "opinion": "hết ngập hẳn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_07",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4399
@@ -233400,9 +233400,9 @@
         "opinion": "nước đã rút sạch sẽ",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_11",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4400
@@ -233447,9 +233447,9 @@
         "opinion": "nước đã rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_15",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4401
@@ -233494,9 +233494,9 @@
         "opinion": "không còn ngập nước",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4402
@@ -233541,9 +233541,9 @@
         "opinion": "thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4403
@@ -233588,9 +233588,9 @@
         "opinion": "mặt đường thông thoáng",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_12",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4404
@@ -233635,9 +233635,9 @@
         "opinion": "nước rút hết",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_05",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4405
@@ -233682,9 +233682,9 @@
         "opinion": "hết ngập",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_11",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4406
@@ -233729,9 +233729,9 @@
         "opinion": "không còn ngập nữa",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_03",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4407
@@ -233776,9 +233776,9 @@
         "opinion": "hết ngập",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_10",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4408
@@ -233823,9 +233823,9 @@
         "opinion": "mặt đường khô ráo",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_17",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4409
@@ -233870,9 +233870,9 @@
         "opinion": "nước đã rút sạch",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_rain_01",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4410
@@ -233917,9 +233917,9 @@
         "opinion": "lưu thông thuận lợi",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_04",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4411
@@ -233964,9 +233964,9 @@
         "opinion": "khô ráo hoàn toàn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_20",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4412
@@ -234011,9 +234011,9 @@
         "opinion": "khô ráo hoàn toàn",
         "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tide_24",
+        "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4413
