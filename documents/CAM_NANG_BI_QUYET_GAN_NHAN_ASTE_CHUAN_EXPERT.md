@@ -1,7 +1,9 @@
 # CẨM NANG BÍ QUYẾT GÁN NHÃN ASTE CHUYÊN SÂU (EXPERT ANNOTATION MANUAL)
 > **Dự án**: Nghiên cứu Khoa học - Giám sát Ngập lụt Đô thị TP.HCM bằng Khai phá Tri thức Đa phương thức (Multimodal ASTE v3)  
 > **Nguồn tri thức**: Đúc kết từ thực nghiệm tinh chỉnh thủ công 110 mẫu vàng (Gold Standards: `seq_id 1 -> 110`) của Chuyên gia gán nhãn.  
-> **Tôn chỉ tối thượng**: *"Đọc kỹ từng câu, thấu hiểu ngữ cảnh trọn vẹn, không bắt keyword hời hợt, không đọc lướt!"*
+> 
+> 🔥 **TÔN CHỈ TỐI THƯỢNG CỦA CHUYÊN GIA**:  
+> *"ĐỌC HẾT CÂU + HIỂU TRỌN VẸN NGỮ CẢNH + TUYỆT ĐỐI KHÔNG BẮT KEYWORD MỘT CÁCH HỜI HỢT MÀ BỎ ĐI CÁC YẾU TỐ NGỮ CẢNH KHÁC!"*
 
 ---
 
@@ -81,9 +83,9 @@ Không được thấy chữ `"ngập"` là vội vàng đánh nhãn `NEG`! Ph�
 
 | Nhãn Polarity | Ngữ cảnh ứng dụng | Ví dụ thực tế từ dữ liệu vàng |
 | :---: | :--- | :--- |
-| **`POS`**<br>*(Tích cực)* | 1. Dự án, công trình đầu tư chống ngập, tiêu thoát nước.<br>2. Biện pháp cải tạo, khơi thông kênh rạch, giải quyết dứt điểm ngập.<br>3. Tình trạng nước rút, giao thông phục hồi bình thường. | - *"giải quyết ngập"*<br>- *"chống ngập triệt để"*<br>- *"tiêu thoát nước và giảm ngập trực tiếp"*<br>- *"tăng năng lực thoát nước"*<br>- *"giải quyết căn cơ tình trạng ngập"*<br>- *"cải thiện hệ thống thoát nước"*<br>- *"nước bắt đầu rút"* |
-| **`NEU`**<br>*(Trung tính)* | 1. Dự báo khí tượng, tin thời tiết cảnh báo đề phòng.<br>2. Đánh giá nguy cơ ngập mức độ theo quy chuẩn kỹ thuật.<br>3. Hoạt động theo dõi, quan trắc điểm ngập.<br>4. Câu hỏi thắc mắc, câu hỏi tu từ của người dân. | - *"đề phòng ngập úng"*<br>- *"nguy cơ ngập ở mức vừa"*<br>- *"tiếp tục theo dõi điểm ngập"*<br>- *"Bao giờ mới giải quyết được hết tình trạng ngập"*<br>- *"Hôm nay đường này có ngập không?"*<br>- *"MƯA NGẬP CHƯA ĐỦ KHỔ HAY SAO?"* |
-| **`NEG`**<br>*(Tiêu cực)* | 1. Hiện trường ngập úng thực tế gây ngập đường, ngập nhà.<br>2. Xe chết máy, người dân phải dắt bộ, bì bõm lội nước.<br>3. Ùn tắc, hỗn loạn, cản trở đời sống sinh hoạt. | - *"ngập sâu lút bánh xe"*<br>- *"nước tràn vào nhà"*<br>- *"hàng loạt xe chết máy"*<br>- *"ngập hơn nửa bánh xe"*<br>- *"chật vật qua những đoạn ngập nước"*<br>- *"quá tải"* (hệ thống thoát nước) |
+| **`POS`**<br>*(Tích cực)* | 1. **Dự án, giải pháp chống ngập**: Dự án, công trình đầu tư, khơi thông kênh rạch, giải quyết dứt điểm ngập.<br>2. **Ý khen ngợi & Đánh giá tích cực của người dân**: Nước rút nhanh, thoát nước tốt, công trình phát huy hiệu quả.<br>3. **Trạng thái phục hồi**: Nước bắt đầu rút, đường xá thông thoáng trở lại. | - *"nước rút nhanh ghê"* / *"nước rút lẹ"*<br>- *"thoát nước tốt"* / *"không còn ngập như trước"*<br>- *"giải quyết ngập"*<br>- *"chống ngập triệt để"*<br>- *"tiêu thoát nước và giảm ngập trực tiếp"*<br>- *"tăng năng lực thoát nước"*<br>- *"giải quyết căn cơ tình trạng ngập"*<br>- *"cải thiện hệ thống thoát nước"*<br>- *"nước bắt đầu rút"* |
+| **`NEU`**<br>*(Trung tính)* | 1. **Dự báo khí tượng & Khuyến cáo**: Tin thời tiết cảnh báo đề phòng ngập.<br>2. **Đánh giá quy chuẩn**: Nguy cơ ngập mức độ vừa/nhẹ theo kỹ thuật.<br>3. **Hoạt động theo dõi**: Quan trắc điểm ngập, kế hoạch đưa vào.<br>4. **Câu hỏi thắc mắc / Tu từ**: Câu hỏi thăm tình hình, thắc mắc của người dân. | - *"đề phòng ngập úng"*<br>- *"nguy cơ ngập ở mức vừa"*<br>- *"tiếp tục theo dõi điểm ngập"*<br>- *"Bao giờ mới giải quyết được hết tình trạng ngập"*<br>- *"Hôm nay đường này có ngập không?"*<br>- *"MƯA NGẬP CHƯA ĐỦ KHỔ HAY SAO?"* |
+| **`NEG`**<br>*(Tiêu cực)* | 1. **Hiện trường ngập úng thực tế**: Gây ngập đường, ngập nhà cửa, đồ đạc hư hỏng.<br>2. **Hậu quả giao thông**: Xe chết máy, người dân phải dắt bộ, bì bõm lội nước.<br>3. **Ách tắc & Đình trệ**: Ùn tắc, hỗn loạn, cản trở đời sống sinh hoạt. | - *"ngập sâu lút bánh xe"*<br>- *"nước tràn vào nhà"*<br>- *"hàng loạt xe chết máy"*<br>- *"ngập hơn nửa bánh xe"*<br>- *"chật vật qua những đoạn ngập nước"*<br>- *"quá tải"* (hệ thống thoát nước) |
 
 ---
 
@@ -99,10 +101,16 @@ Không được thấy chữ `"ngập"` là vội vàng đánh nhãn `NEG`! Ph�
 
 ## V. BẢNG MẪU ĐỐI SOÁT THỰC CHIẾN (CASE STUDY)
 
-Dưới đây là một số mẫu điển hình đã được chuyên gia chuẩn hóa để làm khuôn mẫu đối chiếu:
-
 ```json
-// Mẫu 1: Đánh giá nguy cơ theo dõi (NEU) - Tách riêng từng đường
+// Mẫu 1: Ý khen ngợi / Nước rút nhanh (POS)
+{
+  "sentence": "Cơn mưa lớn vừa dứt thì nước rút nhanh ghê, đường Huỳnh Tấn Phát ráo hoảnh.",
+  "aste_triplets": [
+    {"aspect": "Huỳnh Tấn Phát", "opinion": "nước rút nhanh ghê", "polarity": "POS", "aspect_category": "LOCATION_STREET"}
+  ]
+}
+
+// Mẫu 2: Đánh giá nguy cơ theo dõi (NEU) - Tách riêng từng đường
 {
   "sentence": "Các tuyến Bình Quới, Lã Xuân Oai cũng được đánh giá có nguy cơ ngập ở mức vừa.",
   "aste_triplets": [
@@ -111,7 +119,7 @@ Dưới đây là một số mẫu điển hình đã được chuyên gia chu�
   ]
 }
 
-// Mẫu 2: Dự án công trình chống ngập (POS)
+// Mẫu 3: Dự án công trình chống ngập (POS)
 {
   "sentence": "Công trình giúp giải quyết tình trạng ô nhiễm và chống ngập triệt để cho khu vực.",
   "aste_triplets": [
@@ -119,7 +127,7 @@ Dưới đây là một số mẫu điển hình đã được chuyên gia chu�
   ]
 }
 
-// Mẫu 3: Hiện trường ngập thực tế chi tiết mức độ (NEG)
+// Mẫu 4: Hiện trường ngập thực tế chi tiết mức độ (NEG)
 {
   "sentence": "Đường Mã Lò (phường Bình Trị Đông) nước ngập sâu lút bánh xe khiến hàng loạt xe chết máy.",
   "aste_triplets": [
@@ -128,7 +136,7 @@ Dưới đây là một số mẫu điển hình đã được chuyên gia chu�
   ]
 }
 
-// Mẫu 4: Câu hỏi tu từ / Thắc mắc (NEU)
+// Mẫu 5: Câu hỏi tu từ / Thắc mắc (NEU)
 {
   "sentence": "Bao giờ mới giải quyết được hết tình trạng ngập ở HCM đây?",
   "aste_triplets": [
@@ -144,4 +152,4 @@ Dưới đây là một số mẫu điển hình đã được chuyên gia chu�
 2. [ ] **Không sót thực thể**: Đã kiểm tra xem có tên đường, cây cầu hay tên phường nào trong câu bị bỏ sót không.
 3. [ ] **Không dính từ rác**: Đã cắt bỏ sạch sẽ các từ nối thừa ở đầu/đuôi Aspect chưa?
 4. [ ] **Đầy đủ mức độ**: Opinion đã giữ lại đầy đủ cụm từ chỉ chiều sâu, mức độ ngập chưa?
-5. [ ] **Đúng ngữ cảnh Polarity**: Nếu là dự án giải quyết ngập $\rightarrow$ `POS`; nếu là dự báo/câu hỏi $\rightarrow$ `NEU`; nếu là ngập thực tế $\rightarrow$ `NEG`.
+5. [ ] **Đúng ngữ cảnh Polarity**: Nếu là dự án giải quyết ngập hoặc khen nước rút nhanh $\rightarrow$ `POS`; nếu là dự báo/câu hỏi $\rightarrow$ `NEU`; nếu là ngập thực tế $\rightarrow$ `NEG`.
