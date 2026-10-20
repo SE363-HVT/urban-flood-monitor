@@ -137400,7 +137400,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2663
+    "seq_id": 2663,
+    "triplets": []
   },
   {
     "id": "news_fcc4a2978a_s05",
@@ -137444,7 +137445,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2664
+    "seq_id": 2664,
+    "triplets": []
   },
   {
     "id": "news_fcc4a2978a_s06",
@@ -137497,7 +137499,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2665
+    "seq_id": 2665,
+    "triplets": [
+      {
+        "aspect": "chợ Thủ Đức",
+        "opinion": "ngập cục bộ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "news_fcc4a2978a_s07",
@@ -137550,7 +137563,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2666
+    "seq_id": 2666,
+    "triplets": []
   },
   {
     "id": "news_fcc4a2978a_s08",
@@ -137603,7 +137617,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2667
+    "seq_id": 2667,
+    "triplets": [
+      {
+        "aspect": "chợ Thủ Đức",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_fcc4a2978a_s09",
@@ -137647,7 +137672,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2668
+    "seq_id": 2668,
+    "triplets": []
   },
   {
     "id": "news_fcc4a2978a_s10",
@@ -137691,7 +137717,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2669
+    "seq_id": 2669,
+    "triplets": []
   },
   {
     "id": "news_fcc4a2978a_s11",
@@ -137753,7 +137780,27 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2670
+    "seq_id": 2670,
+    "triplets": [
+      {
+        "aspect": "suối Linh Tây",
+        "opinion": "Xây dựng hệ thống thoát nước",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_RIVER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "rạch Thủ Đức",
+        "opinion": "Cải tạo",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_RIVER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_f19b9d21e9_s02",
@@ -137806,7 +137853,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2672
+    "seq_id": 2672,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_f19b9d21e9_s03",
@@ -137850,7 +137908,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2673
+    "seq_id": 2673,
+    "triplets": [
+      {
+        "aspect": "Trường đại học Văn hóa TP.HCM",
+        "opinion": "nước ngập cao hơn bánh xe máy",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "chùa An Hòa",
+        "opinion": "nước ngập cao hơn bánh xe máy",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_f19b9d21e9_s04",
@@ -137894,7 +137972,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2674
+    "seq_id": 2674,
+    "triplets": []
   },
   {
     "id": "news_f19b9d21e9_s05",
@@ -137938,7 +138017,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2675
+    "seq_id": 2675,
+    "triplets": []
   },
   {
     "id": "news_f19b9d21e9_s06",
@@ -137982,7 +138062,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2676
+    "seq_id": 2676,
+    "triplets": [
+      {
+        "aspect": "đường Quốc Hương",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1c981a5f7d_s01",
@@ -138026,7 +138117,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2677
+    "seq_id": 2677,
+    "triplets": [
+      {
+        "aspect": "đường Linh Đông",
+        "opinion": "ngập nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "news_1c981a5f7d_s02",
@@ -138079,7 +138181,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2678
+    "seq_id": 2678,
+    "triplets": [
+      {
+        "aspect": "Đường Tô Ngọc Vân",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1c981a5f7d_s03",
@@ -138123,7 +138236,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2679
+    "seq_id": 2679,
+    "triplets": []
   },
   {
     "id": "news_1c981a5f7d_s04",
@@ -138185,7 +138299,36 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2680
+    "seq_id": 2680,
+    "triplets": [
+      {
+        "aspect": "đường Linh Đông",
+        "opinion": "ngập sâu kéo dài",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "giao lộ Tô Ngọc Vân",
+        "opinion": "ngập sâu kéo dài",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "đường Lý Tế Xuyên",
+        "opinion": "ngập sâu kéo dài",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_1c981a5f7d_s05",
@@ -138229,7 +138372,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2681
+    "seq_id": 2681,
+    "triplets": []
   },
   {
     "id": "news_1c981a5f7d_s06",
@@ -138273,7 +138417,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2682
+    "seq_id": 2682,
+    "triplets": []
   },
   {
     "id": "news_1c981a5f7d_s07",
@@ -138317,7 +138462,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2683
+    "seq_id": 2683,
+    "triplets": []
   },
   {
     "id": "news_1c981a5f7d_s08",
@@ -138361,7 +138507,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2684
+    "seq_id": 2684,
+    "triplets": []
   },
   {
     "id": "news_1c981a5f7d_s09",
@@ -138414,7 +138561,18 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2685
+    "seq_id": 2685,
+    "triplets": [
+      {
+        "aspect": "đường Linh Đông",
+        "opinion": "đã rút dần",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_65bcb7a68b_s01",
@@ -138467,7 +138625,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2686
+    "seq_id": 2686,
+    "triplets": [
+      {
+        "aspect": "khu vực Thảo Điền",
+        "opinion": "ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_969e4553aa_s01",
@@ -138520,7 +138689,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2687
+    "seq_id": 2687,
+    "triplets": [
+      {
+        "aspect": "kênh Tàu Hủ",
+        "opinion": "sụt lún nghiêm trọng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_RIVER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_969e4553aa_s02",
@@ -138564,7 +138744,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2688
+    "seq_id": 2688,
+    "triplets": []
   },
   {
     "id": "news_969e4553aa_s03",
@@ -138608,7 +138789,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2689
+    "seq_id": 2689,
+    "triplets": [
+      {
+        "aspect": "kênh Tẻ",
+        "opinion": "tràn qua mặt đường",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_RIVER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "news_969e4553aa_s04",
@@ -138661,7 +138853,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2690
+    "seq_id": 2690,
+    "triplets": []
   },
   {
     "id": "news_969e4553aa_s06",
@@ -138723,7 +138916,27 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2692
+    "seq_id": 2692,
+    "triplets": [
+      {
+        "aspect": "đường Trần Xuân Soạn",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "đoạn từ đường Huỳnh Tấn Phát đến rạch Ông",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "news_969e4553aa_s07",
@@ -138767,7 +138980,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2693
+    "seq_id": 2693,
+    "triplets": []
   },
   {
     "id": "news_969e4553aa_s08",
@@ -138829,7 +139043,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2694
+    "seq_id": 2694,
+    "triplets": [
+      {
+        "aspect": "cống ngăn triều Tân Thuận",
+        "opinion": "giải quyết triệt để ngập do triều",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "tiktok_7665725633657343252",
@@ -138875,7 +139100,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2695
+    "seq_id": 2695,
+    "triplets": [
+      {
+        "aspect": "cầu Kinh Dương Vương",
+        "opinion": "nước ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_BRIDGE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "tiktok_7686034189015223559",
@@ -138921,7 +139157,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2696
+    "seq_id": 2696,
+    "triplets": []
   },
   {
     "id": "tiktok_7689416546359299336",
@@ -138967,7 +139204,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2697
+    "seq_id": 2697,
+    "triplets": []
   },
   {
     "id": "tiktok_7689839138761329940",
@@ -139013,7 +139251,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2698
+    "seq_id": 2698,
+    "triplets": []
   },
   {
     "id": "tiktok_7657223311314750740",
@@ -139059,7 +139298,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2699
+    "seq_id": 2699,
+    "triplets": []
   },
   {
     "id": "tiktok_7685783925674872071",
@@ -139105,7 +139345,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2700
+    "seq_id": 2700,
+    "triplets": []
   },
   {
     "id": "tiktok_7689406032107359496",
@@ -139151,7 +139392,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2701
+    "seq_id": 2701,
+    "triplets": [
+      {
+        "aspect": "cầu Ông Lớn",
+        "opinion": "Ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_BRIDGE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "đường Nguyễn Văn Linh",
+        "opinion": "Ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7689445881799576840",
@@ -139215,7 +139476,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2702
+    "seq_id": 2702,
+    "triplets": []
   },
   {
     "id": "tiktok_7689490955149528341",
@@ -139261,7 +139523,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2703
+    "seq_id": 2703,
+    "triplets": []
   },
   {
     "id": "tiktok_7689647759468825863",
@@ -139424,7 +139687,126 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2704
+    "seq_id": 2704,
+    "triplets": [
+      {
+        "aspect": "Lê Lợi",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Hàm Nghi",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Pasteur",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Nam Kỳ Khởi Nghĩa",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "phố Tây Bùi Viện",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Bùi Viện",
+        "opinion": "ngập 20 đến 30 cm",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "Đỗ Quang Đẩu",
+        "opinion": "ngập 20 đến 30 cm",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "chân cầu Ba Son",
+        "opinion": "gây ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_BRIDGE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "xa lộ Hà Nội",
+        "opinion": "gây ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "chợ Thủ Đức",
+        "opinion": "gây ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Nguyễn Văn Linh",
+        "opinion": "gây ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "Lê Văn Lương",
+        "opinion": "gây ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "vòng xoay Hàng Xanh",
+        "opinion": "ùn tắc kéo dài",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "tiktok_7689840277506379016",
@@ -139470,7 +139852,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2705
+    "seq_id": 2705,
+    "triplets": []
   },
   {
     "id": "tiktok_7689480588096458036",
@@ -139525,7 +139908,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2708
+    "seq_id": 2708,
+    "triplets": []
   },
   {
     "id": "tiktok_7627095856855977223",
@@ -139571,7 +139955,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2709
+    "seq_id": 2709,
+    "triplets": []
   },
   {
     "id": "tiktok_7689816823457484052",
@@ -139617,7 +140002,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2710
+    "seq_id": 2710,
+    "triplets": []
   },
   {
     "id": "tiktok_7666367645054242069",
@@ -139663,7 +140049,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2711
+    "seq_id": 2711,
+    "triplets": []
   },
   {
     "id": "tiktok_7685176727789686024",
@@ -139709,7 +140096,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2712
+    "seq_id": 2712,
+    "triplets": []
   },
   {
     "id": "tiktok_7689651719604636929",
@@ -139755,7 +140143,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2713
+    "seq_id": 2713,
+    "triplets": []
   },
   {
     "id": "tiktok_7680228707159706901",
@@ -139801,7 +140190,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2714
+    "seq_id": 2714,
+    "triplets": []
   },
   {
     "id": "tiktok_7689662747935657224",
@@ -139847,7 +140237,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2715
+    "seq_id": 2715,
+    "triplets": []
   },
   {
     "id": "tiktok_7685186193457171730",
@@ -139893,7 +140284,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2716
+    "seq_id": 2716,
+    "triplets": []
   },
   {
     "id": "tiktok_7675212915489639701",
@@ -139939,7 +140331,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2717
+    "seq_id": 2717,
+    "triplets": []
   },
   {
     "id": "tiktok_7670488395432463634",
@@ -139985,7 +140378,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2718
+    "seq_id": 2718,
+    "triplets": []
   },
   {
     "id": "tiktok_7685209436293434631",
@@ -140040,7 +140434,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2719
+    "seq_id": 2719,
+    "triplets": []
   },
   {
     "id": "tiktok_7685571882032221448",
@@ -140086,7 +140481,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2720
+    "seq_id": 2720,
+    "triplets": []
   },
   {
     "id": "tiktok_7689693184502271239",
@@ -140132,7 +140528,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2721
+    "seq_id": 2721,
+    "triplets": []
   },
   {
     "id": "tiktok_7667942563768454420",
@@ -140178,7 +140575,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2724
+    "seq_id": 2724,
+    "triplets": [
+      {
+        "aspect": "Phamvanchieu",
+        "opinion": "Nước ngập cao",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7636623588669312263",
@@ -140224,7 +140632,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2726
+    "seq_id": 2726,
+    "triplets": []
   },
   {
     "id": "tiktok_7635643641041587463",
@@ -140270,7 +140679,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2728
+    "seq_id": 2728,
+    "triplets": []
   },
   {
     "id": "tiktok_7689414024223673608",
@@ -140316,7 +140726,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2729
+    "seq_id": 2729,
+    "triplets": []
   },
   {
     "id": "tiktok_7689404403656248584",
@@ -140362,7 +140773,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2730
+    "seq_id": 2730,
+    "triplets": [
+      {
+        "aspect": "đường Mã Lò",
+        "opinion": "đang ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "tiktok_7650145698142375175",
@@ -140408,7 +140830,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2731
+    "seq_id": 2731,
+    "triplets": []
   },
   {
     "id": "tiktok_7689803454058990869",
@@ -140454,7 +140877,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2732
+    "seq_id": 2732,
+    "triplets": []
   },
   {
     "id": "tiktok_7686283818076065044",
@@ -140500,7 +140924,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2733
+    "seq_id": 2733,
+    "triplets": []
   },
   {
     "id": "tiktok_7689422619958873351",
@@ -140573,7 +140998,27 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2734
+    "seq_id": 2734,
+    "triplets": [
+      {
+        "aspect": "đường R12",
+        "opinion": "tiếp tục ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "chân cầu Ba Son",
+        "opinion": "tiếp tục ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_BRIDGE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "tiktok_7616253109190429972",
@@ -140628,7 +141073,18 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2735
+    "seq_id": 2735,
+    "triplets": [
+      {
+        "aspect": "Khu Nam Sài Gòn",
+        "opinion": "chuẩn bị hết ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "tiktok_7689514521089592582",
@@ -140674,7 +141130,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2736
+    "seq_id": 2736,
+    "triplets": []
   },
   {
     "id": "tiktok_7686232274207132946",
@@ -140720,7 +141177,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2737
+    "seq_id": 2737,
+    "triplets": []
   },
   {
     "id": "tiktok_7689787859192073492",
@@ -140766,7 +141224,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2738
+    "seq_id": 2738,
+    "triplets": []
   },
   {
     "id": "tiktok_7689773382501403911",
@@ -140857,7 +141316,36 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2739
+    "seq_id": 2739,
+    "triplets": [
+      {
+        "aspect": "ĐƯỜNG LƯƠNG ĐỊNH CỦA",
+        "opinion": "Ngập nửa bánh xe",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "TỐ HỮU",
+        "opinion": "Ngập nửa bánh xe",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "TRẦN NÃO",
+        "opinion": "Ngập nửa bánh xe",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7685392611615509768",
@@ -140903,7 +141391,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2740
+    "seq_id": 2740,
+    "triplets": [
+      {
+        "aspect": "Lote",
+        "opinion": "Ngập nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "tiktok_7602091479145794836",
@@ -140949,7 +141448,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2741
+    "seq_id": 2741,
+    "triplets": [
+      {
+        "aspect": "đập ngăn nc triều cường",
+        "opinion": "ko còn ngập nữa",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "tiktok_7686060256077565201",
@@ -141004,7 +141514,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2742
+    "seq_id": 2742,
+    "triplets": [
+      {
+        "aspect": "khu dân cư Thảo Điền",
+        "opinion": "vẫn ngập khi mưa lớn",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7651629854772727060",
@@ -141050,7 +141571,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2743
+    "seq_id": 2743,
+    "triplets": []
   },
   {
     "id": "tiktok_7635885321472838932",
@@ -141096,7 +141618,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2744
+    "seq_id": 2744,
+    "triplets": []
   },
   {
     "id": "tiktok_7685273140099927316",
@@ -141151,7 +141674,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2745
+    "seq_id": 2745,
+    "triplets": []
   },
   {
     "id": "tiktok_7685709922109066517",
@@ -141197,7 +141721,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2746
+    "seq_id": 2746,
+    "triplets": []
   },
   {
     "id": "tiktok_7602119907270085895",
@@ -141252,7 +141777,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2747
+    "seq_id": 2747,
+    "triplets": [
+      {
+        "aspect": "Cống ngăn triều",
+        "opinion": "sẽ giảm ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "tiktok_7693424460044487943",
@@ -141298,7 +141834,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2748
+    "seq_id": 2748,
+    "triplets": []
   },
   {
     "id": "tiktok_7689403428463824149",
@@ -141344,7 +141881,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2749
+    "seq_id": 2749,
+    "triplets": []
   },
   {
     "id": "tiktok_7693447324537752840",
@@ -141390,7 +141928,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2750
+    "seq_id": 2750,
+    "triplets": [
+      {
+        "aspect": "Takashimaya",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7635561282686471425",
@@ -141463,7 +142012,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2751
+    "seq_id": 2751,
+    "triplets": [
+      {
+        "aspect": "chợ Thủ Đức",
+        "opinion": "Mưa đầu mùa gây ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7635224922763103509",
@@ -141509,7 +142069,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2752
+    "seq_id": 2752,
+    "triplets": [
+      {
+        "aspect": "Chợ đầu mối Thủ Đức",
+        "opinion": "ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7635273211231407380",
@@ -141591,7 +142162,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2753
+    "seq_id": 2753,
+    "triplets": []
   },
   {
     "id": "tiktok_7635475401317305618",
@@ -141637,7 +142209,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2754
+    "seq_id": 2754,
+    "triplets": []
   },
   {
     "id": "tiktok_7693444598357658932",
@@ -141683,7 +142256,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2755
+    "seq_id": 2755,
+    "triplets": []
   },
   {
     "id": "tiktok_7693563010094255366",
@@ -141738,7 +142312,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2756
+    "seq_id": 2756,
+    "triplets": []
   },
   {
     "id": "fb_122111729703448496",
@@ -141820,7 +142395,27 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2757
+    "seq_id": 2757,
+    "triplets": [
+      {
+        "aspect": "sông Sài Gòn",
+        "opinion": "tăng nhanh",
+        "polarity": "NEU",
+        "aspect_category": "LOCATION_RIVER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "trạm Phú An",
+        "opinion": "xấp xỉ hoặc cao hơn báo động III",
+        "polarity": "NEU",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "fb_122239041434526342",
@@ -141893,7 +142488,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2758
+    "seq_id": 2758,
+    "triplets": [
+      {
+        "aspect": "đường Nguyễn Hữu Cảnh",
+        "opinion": "cứ mưa là ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_122128831233359648",
@@ -141939,7 +142545,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2759
+    "seq_id": 2759,
+    "triplets": [
+      {
+        "aspect": "hầm chui Bến xe Miền Đông mới",
+        "opinion": "ngập nước diện rộng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7683351595832200455",
@@ -141985,7 +142602,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2760
+    "seq_id": 2760,
+    "triplets": [
+      {
+        "aspect": "Quốc lộ 13",
+        "opinion": "nâng nền",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "tiktok_7684223984908487943",
@@ -142040,7 +142668,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2761
+    "seq_id": 2761,
+    "triplets": []
   },
   {
     "id": "tiktok_7684594349576916232",
@@ -142095,7 +142724,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2762
+    "seq_id": 2762,
+    "triplets": []
   },
   {
     "id": "tiktok_7684645082146000148",
@@ -142150,7 +142780,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2763
+    "seq_id": 2763,
+    "triplets": [
+      {
+        "aspect": "đường Tô Ngọc Vân",
+        "opinion": "thành sông",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "chợ Thủ Đức",
+        "opinion": "thành sông",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_MARKET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_ch%E1%BB%89-l%C3%A0-m%E1%BB%99t-ratatouille-t%C3%ACm-ch%E1%BB%97-tr%C3%BA-m%C6%B0a-v%C3%A0o-ng%C3%A0y-s%C3%A0i-g%C3%B2n-ng%E1%BA%ADp-n%C6%B0%E1%BB%9Bc",
@@ -142194,7 +142844,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2764
+    "seq_id": 2764,
+    "triplets": []
   },
   {
     "id": "fb_nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-ng%E1%BA%ADp-s%C3%A2u-%C3%B9n-t%E1%BA%AFc-xe-m%C3%A1y-ch%E1%BA%BFt-m%C3%A1y-h%C3%A0ng-lo%E1%BA%A1t-ng%C6%B0%E1%BB%9Di-d%C3%A2n-d%E1%BA%AF",
@@ -142247,7 +142898,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2766
+    "seq_id": 2766,
+    "triplets": []
   },
   {
     "id": "fb_m%C6%B0a-l%E1%BB%9Bn-tr%C3%BAt-xu%E1%BB%91ng-tphcm-chi%E1%BB%81u-10-9-khi%E1%BA%BFn-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-n%E1%BA%B7ng-ng%C6%B0%E1%BB%9Di-d%C3%A2n-",
@@ -142291,7 +142943,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2767
+    "seq_id": 2767,
+    "triplets": []
   },
   {
     "id": "fb_6a882d677ef8",
@@ -142353,7 +143006,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2768
+    "seq_id": 2768,
+    "triplets": [
+      {
+        "aspect": "chân cầu Chợ Cầu",
+        "opinion": "ngập quá",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_BRIDGE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_nhi%E1%BB%81u-%C4%91%C6%B0%E1%BB%9Dng-tp-hcm-ng%E1%BA%ADp-s%C3%A2u-giao-th%C3%B4ng-r%E1%BB%91i-lo%E1%BA%A1n-trong-m%C6%B0a-l%E1%BB%9Bn-",
@@ -142397,7 +143061,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2769
+    "seq_id": 2769,
+    "triplets": []
   },
   {
     "id": "fb_ti%E1%BB%87m-tr%C3%A0-14-%C4%91%C6%B0%E1%BB%9Dng-d5-b%C3%ACnh-th%E1%BA%A1nhm%C6%B0a-l%E1%BB%9Bn-ng%E1%BA%ADp-ti%E1%BB%87m-h%C3%A0ng-x%C3%B3m-c%C3%B2n-ng%E1%BA%ADp-l%E1%BB%99i-%C4%91%E1%BA%BFn-%C4%91%E1%BA%A7u-g",
@@ -142443,7 +143108,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2770
+    "seq_id": 2770,
+    "triplets": [
+      {
+        "aspect": "Đường D5",
+        "opinion": "Mưa lớn ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_s%C3%A0i-g%C3%B2n-th%E1%BA%A5t-th%E1%BB%A7-sau-m%C6%B0a-l%E1%BB%9Bn-t%E1%BB%91i-nay-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-s%C3%A2u-xe-ch%E1%BA%BFt-m%C3%A1y-la-li%E1%BB%87t-%C3%B4-t%C3%B4-ch%C3%AC",
@@ -142487,7 +143163,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2771
+    "seq_id": 2771,
+    "triplets": []
   },
   {
     "id": "fb_mong-1-ng",
@@ -142542,7 +143219,8 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2772
+    "seq_id": 2772,
+    "triplets": []
   },
   {
     "id": "fb_theo-",
@@ -142606,7 +143284,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2773
+    "seq_id": 2773,
+    "triplets": [
+      {
+        "aspect": "sông Sài Gòn",
+        "opinion": "đạt mức cao nhất",
+        "polarity": "NEU",
+        "aspect_category": "LOCATION_RIVER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "fb_h",
@@ -142650,7 +143339,18 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2774
+    "seq_id": 2774,
+    "triplets": [
+      {
+        "aspect": "Hầm chui nút giao An Phú",
+        "opinion": "hết ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "fb_b",
@@ -142696,7 +143396,18 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2775
+    "seq_id": 2775,
+    "triplets": [
+      {
+        "aspect": "Hầm chui An Phú",
+        "opinion": "đã hết ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      }
+    ]
   },
   {
     "id": "fb_chi",
@@ -142751,7 +143462,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2776
+    "seq_id": 2776,
+    "triplets": [
+      {
+        "aspect": "đường Tô Ngọc Vân",
+        "opinion": "ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "fb_nh",
@@ -142795,7 +143517,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2777
+    "seq_id": 2777,
+    "triplets": []
   },
   {
     "id": "fb_h",
@@ -142850,7 +143573,27 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2778
+    "seq_id": 2778,
+    "triplets": [
+      {
+        "aspect": "Hầm chui HC1-02",
+        "opinion": "ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "nút giao An Phú",
+        "opinion": "ngập nặng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_n",
@@ -142905,7 +143648,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2779
+    "seq_id": 2779,
+    "triplets": []
   },
   {
     "id": "fb_tp-h",
@@ -142951,7 +143695,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2780
+    "seq_id": 2780,
+    "triplets": []
   },
   {
     "id": "fb_7682eaf3c54438d4",
@@ -142995,7 +143740,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2781
+    "seq_id": 2781,
+    "triplets": []
   },
   {
     "id": "fb_c",
@@ -143039,7 +143785,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2782
+    "seq_id": 2782,
+    "triplets": []
   },
   {
     "id": "fb_ng",
@@ -143083,7 +143830,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2784
+    "seq_id": 2784,
+    "triplets": [
+      {
+        "aspect": "khu Thảo Điền",
+        "opinion": "Ngập từ tối đến chiều hôm sau",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_v",
@@ -143127,7 +143885,36 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2785
+    "seq_id": 2785,
+    "triplets": [
+      {
+        "aspect": "Võ Nguyên Giáp",
+        "opinion": "ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "Ga An Phú",
+        "opinion": "ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "Vincom Thảo Điền",
+        "opinion": "ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "fb_ghi-nh",
@@ -143189,7 +143976,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2786
+    "seq_id": 2786,
+    "triplets": [
+      {
+        "aspect": "đường Tô Ngọc Vân",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_tp-h",
@@ -143244,7 +144042,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2787
+    "seq_id": 2787,
+    "triplets": [
+      {
+        "aspect": "đường Tô Ngọc Vân",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_71e2793bcb9348e1",
@@ -143288,7 +144097,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2788
+    "seq_id": 2788,
+    "triplets": [
+      {
+        "aspect": "Khu Đỗ Xuân Hợp",
+        "opinion": "vẫn ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "fb_ddfe7625833ef98c",
@@ -143332,7 +144152,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2789
+    "seq_id": 2789,
+    "triplets": [
+      {
+        "aspect": "đường Lê Đức Thọ",
+        "opinion": "mưa ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "tiktok_7688354625790938389",
@@ -143378,7 +144209,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2790
+    "seq_id": 2790,
+    "triplets": [
+      {
+        "aspect": "đường Hồ Học Lãm",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7688700284511505716",
@@ -143424,7 +144266,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2791
+    "seq_id": 2791,
+    "triplets": []
   },
   {
     "id": "tiktok_7688669663030447378",
@@ -143470,7 +144313,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2792
+    "seq_id": 2792,
+    "triplets": []
   },
   {
     "id": "tiktok_7688537253068475668",
@@ -143516,7 +144360,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2793
+    "seq_id": 2793,
+    "triplets": []
   },
   {
     "id": "tiktok_cbd7fff49e34",
@@ -143560,7 +144405,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2794
+    "seq_id": 2794,
+    "triplets": []
   },
   {
     "id": "tiktok_7688308747940433173",
@@ -143624,7 +144470,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2795
+    "seq_id": 2795,
+    "triplets": [
+      {
+        "aspect": "đường dẫn lên cầu Ba Son",
+        "opinion": "ngập luôn",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_BRIDGE",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "tiktok_7688648552272252180",
@@ -143679,7 +144536,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2796
+    "seq_id": 2796,
+    "triplets": []
   },
   {
     "id": "tiktok_7688300127995432213",
@@ -143725,7 +144583,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2797
+    "seq_id": 2797,
+    "triplets": []
   },
   {
     "id": "tiktok_7688282743205055764",
@@ -143771,7 +144630,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2798
+    "seq_id": 2798,
+    "triplets": []
   },
   {
     "id": "tiktok_7688600910691552532",
@@ -143817,7 +144677,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2799
+    "seq_id": 2799,
+    "triplets": []
   },
   {
     "id": "tiktok_7688640218659949844",
@@ -143872,7 +144733,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2800
+    "seq_id": 2800,
+    "triplets": []
   },
   {
     "id": "tiktok_7687959010376502548",
@@ -143918,7 +144780,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2801
+    "seq_id": 2801,
+    "triplets": [
+      {
+        "aspect": "Thảo Điền",
+        "opinion": "ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "tiktok_f52487c3980ce01a",
@@ -143973,7 +144846,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2802
+    "seq_id": 2802,
+    "triplets": [
+      {
+        "aspect": "đường Phạm Hữu Lầu",
+        "opinion": "xe máy dắt bộ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "fb_chi%E1%BB%81u-22-9-tphcm-m%C6%B0a-l%E1%BB%9Bn-n%E1%BA%B7ng-h%E1%BA%A1t-nhi%E1%BB%81u-gi%E1%BB%9D-li%E1%BB%81n-ghi-nh%E1%BA%ADn-%C4%91%E1%BA%BFn-20-gi%E1%BB%9D-t%E1%BA%A1i-%C4%91%C6%B0%E1%BB%9Dng-h",
@@ -144026,7 +144910,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2803
+    "seq_id": 2803,
+    "triplets": [
+      {
+        "aspect": "đường Hồ Học Lãm",
+        "opinion": "vẫn còn ngập sâu, có nơi hơn 0,5m",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_tphcm-c%E1%BA%A3nh-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-nh%C6%B0-s%C3%B4ng-ngh%C3%ACn-xe-nh%C3%ADch-t%E1%BB%ABng-m%C3%A9t-qua-n%C3%BAt-th%E1%BA%AFt-c%E1%BB%95-chaitr%E1%BA%ADn-",
@@ -144070,7 +144965,18 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2804
+    "seq_id": 2804,
+    "triplets": [
+      {
+        "aspect": "Bến xe Miền Đông",
+        "opinion": "ngập sâu",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_trung-t%C3%A2m-tphcm-c%E1%BB%A1-n%C3%A0y-th%E1%BA%A3o-%C4%91i%E1%BB%81n-c%E1%BB%A1-n%C3%A0o-n%E1%BB%AFa-ng%E1%BA%ADp-l%C3%AAnh-l%C3%A1ng-%E1%BB%9F-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-t",
@@ -144114,7 +145020,18 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2805
+    "seq_id": 2805,
+    "triplets": [
+      {
+        "aspect": "THẢO ĐIỀN",
+        "opinion": "Ngập lênh láng",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_h%C3%B4m-qua-m%C6%B0a-l%E1%BB%9Bn-%E1%BB%9F-tphcm-ng%C3%A3-t%C6%B0-b%E1%BA%A3y-hi%E1%BB%81n-ng%E1%BA%ADp-nh%C6%B0-s%C3%B4ng-g%E1%BA%A7n-2-ti%E1%BA%BFng-v%E1%BA%ABn-ch%C6%B0a-h%E1%BA%BFt%EF%B8%8F%E1%BA%A3",
@@ -144167,7 +145084,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2806
+    "seq_id": 2806,
+    "triplets": [
+      {
+        "aspect": "Ngã tư Bảy Hiền",
+        "opinion": "ngập như sông",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_OTHER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      }
+    ]
   },
   {
     "id": "fb_s%C3%A0i-g%C3%B2n-ng%E1%BA%ADp-l%E1%BB%A5t-m%E1%BA%A5y-h%C3%B4m-nay-ch%C6%B0a-d%E1%BB%ABng-l%E1%BA%A1i-s%E1%BA%AFp-t%E1%BB%9Bi-%C4%91%C3%B3n-%C4%91%E1%BB%A3t-b%C3%A3o-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-",
@@ -144213,7 +145141,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2807
+    "seq_id": 2807,
+    "triplets": []
   },
   {
     "id": "fb_c%C6%A1n-m%C6%B0a-l%E1%BB%9Bn-v%C3%A0o-%C4%91%E1%BA%A7u-gi%E1%BB%9D-chi%E1%BB%81u-nay-khi%E1%BA%BFn-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-b%E1%BB%8B-ng%E1%BA%ADp-g%C3%A2y-kh",
@@ -144268,7 +145197,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2808
+    "seq_id": 2808,
+    "triplets": []
   },
   {
     "id": "fb_top-nh%E1%BB%AFng-con-%C4%91%C6%B0%E1%BB%9Dng-%E1%BB%9F-s%C3%A0i-g%C3%B2n-h%E1%BB%9F-m%C6%B0a-l%C3%A0-ng%E1%BA%ADp",
@@ -144312,7 +145242,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2809
+    "seq_id": 2809,
+    "triplets": []
   },
   {
     "id": "fb_bao-gi%E1%BB%9D-th%C3%A0nh-ph%E1%BB%91-m%E1%BB%9Bi-h%E1%BA%BFt-ng%E1%BA%ADpng%E1%BA%ADp-l%E1%BB%A5t-%E1%BB%9F-s%C3%A0i-g%C3%B2n-nh%E1%BB%AFng-ng%C3%A0y-n%C3%A0y-c%C3%B3-l%E1%BA%BD-l%C3%A0-%C4%91i%E1%BB%81u-ch",
@@ -144356,7 +145287,8 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 2810
+    "seq_id": 2810,
+    "triplets": []
   },
   {
     "id": "fb_c%C6%A1n-m%C6%B0a-l%E1%BB%9Bn-v%C3%A0o-%C4%91%E1%BA%A7u-gi%E1%BB%9D-chi%E1%BB%81u-nay-khi%E1%BA%BFn-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-b%E1%BB%8B-ng%E1%BA%ADp-g%C3%A2y-kh",
@@ -144409,7 +145341,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2811
+    "seq_id": 2811,
+    "triplets": []
   },
   {
     "id": "fb_d%E1%BB%B1-%C4%91o%C3%A1n-t%C3%ACnh-h%C3%ACnh-m%C6%B0a-s%C3%A0i-g%C3%B2n-h%C3%B4m-nay-hu%E1%BB%B3nh-th%C3%BAc-kh%C3%A1ng-ng%E1%BA%ADp-t%E1%BB%9Bi-h%C3%A1ng-tr%E1%BA%A7n-%C4%91%C3%ACnh-x",
@@ -144480,7 +145413,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2812
+    "seq_id": 2812,
+    "triplets": []
   },
   {
     "id": "fb_-c%E1%BA%A3nh-b%C3%A1o-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n",
@@ -144524,7 +145458,18 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2814
+    "seq_id": 2814,
+    "triplets": [
+      {
+        "aspect": "SÔNG SÀI GÒN",
+        "opinion": "TRIỀU CƯỜNG",
+        "polarity": "NEU",
+        "aspect_category": "LOCATION_RIVER",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "fb_%EF%B8%8F%EF%B8%8Fdo-%E1%BA%A3nh-h%C6%B0%E1%BB%9Fng-m%C6%B0a%EF%B8%8F-l%E1%BB%9Bn-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-s%C3%A0i-g%C3%B2n-chi%E1%BB%81u-nay-ng%E1%BA%ADp-n%E1%BA%B7ng-ducphantan",
@@ -144570,7 +145515,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2815
+    "seq_id": 2815,
+    "triplets": []
   },
   {
     "id": "fb_con-chi%E1%BA%BFn-m%C3%A3-c%E1%BB%A7a-tui-c%C5%A9ng-ph%E1%BA%A3i-ch%E1%BA%BFt-m%C3%A1y-%C4%91%E1%BA%A7u-h%C3%A0ng-tr%C6%B0%E1%BB%9Bc-%C4%91%E1%BA%B7c-s%E1%BA%A3n-c%E1%BB%A7a-s%C3%A0i-g%C3%B2n-saigo",
@@ -144625,7 +145571,8 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2816
+    "seq_id": 2816,
+    "triplets": []
   },
   {
     "id": "fb_%EF%B8%8F-m%C6%B0a-l%E1%BB%9Bn-k%C3%A9o-d%C3%A0i-%E1%BB%9F-tphcm-t%E1%BB%91i-189-nhi%E1%BB%81u-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-s%C3%A2u-n%C6%B0%E1%BB%9Bc-tr%C3%A0n-v%C3%A0o-nh%C3%A0-d%C3%A2nghi-",
@@ -144687,7 +145634,54 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 2817
+    "seq_id": 2817,
+    "triplets": [
+      {
+        "aspect": "Lê Văn Việt",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "Nguyễn Văn Hưởng",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "Linh Đông",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "Lý Tế Xuyên",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      },
+      {
+        "aspect": "Tô Ngọc Vân",
+        "opinion": "bị ngập",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MEDIUM"
+      }
+    ]
   },
   {
     "id": "fb_tphcm-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-nh%C6%B0-s%C3%B4ng-%C3%B4-t%C3%B4-b%E1%BA%A5t-%C4%91%E1%BB%99ng-xe-m%C3%A1y-b%E1%BB%8B-n%C6%B0%E1%BB%9Bc-x%C3%B4-ng%C3%A3t%E1%BB%91i-189-m%C6%B0a-gi%C3%B4ng-x",
@@ -144731,7 +145725,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2818
+    "seq_id": 2818,
+    "triplets": []
   },
   {
     "id": "fb_ng%C6%B0%E1%BB%9Di-d%C3%A2n-tphcm-b%C3%AC-b%C3%B5m-tr%C3%AAn-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-trong-%C4%91%C3%AAm-%C4%91%E1%BB%83-v%E1%BB%81-nh%C3%A0m%C6%B0a-l%E1%BB%9Bn-k%C3%A9o-d%C3%A0i-t%E1%BB%91i-18",
@@ -144795,7 +145790,8 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 2819
+    "seq_id": 2819,
+    "triplets": []
   },
   {
     "id": "fb_m%C6%B0a-ng%E1%BA%ADp-tphcm-y%C3%AAu-c%E1%BA%A7u-r%C3%A0-so%C3%A1t-%C4%91%C6%B0%E1%BB%9Dng-s%C3%A1-kh%C3%B4ng-%C4%91%E1%BB%83-h%E1%BB%8Dc-sinh-%C4%91i-qua-n%C6%A1i-nguy-hi%E1%BB%83m",
@@ -144839,7 +145835,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2820
+    "seq_id": 2820,
+    "triplets": []
   },
   {
     "id": "fb_h%E1%BB%93i-chi%E1%BB%81u-tr%E1%BB%9Di-m%C6%B0a%EF%B8%8Fm%E1%BB%9Bi-c%C3%B3-5h-chi%E1%BB%81u-m%C3%A0-tr%E1%BB%9Di-s%C3%A0i-g%C3%B2n-c%E1%BB%A1-n%C3%A0y-x%C3%ADu-tan-l%C3%A0m-x%C3%A1c-%C4%91%E1%BB%8Bnh-%C4%83",
@@ -144885,7 +145882,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2822
+    "seq_id": 2822,
+    "triplets": []
   },
   {
     "id": "fb_tphcm-h",
@@ -144929,7 +145927,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2823
+    "seq_id": 2823,
+    "triplets": []
   },
   {
     "id": "fb_d8a6319c14f68ba8",
@@ -144973,7 +145972,8 @@
         "severity": "MEDIUM"
       }
     ],
-    "seq_id": 2824
+    "seq_id": 2824,
+    "triplets": []
   },
   {
     "id": "fb_kinh-ho",
