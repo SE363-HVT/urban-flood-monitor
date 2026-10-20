@@ -241110,7 +241110,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4564
@@ -241157,7 +241157,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4565
@@ -241204,7 +241204,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4566
@@ -241251,7 +241251,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4567
@@ -241298,7 +241298,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4568
@@ -241345,7 +241345,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4569
@@ -241392,7 +241392,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4570
@@ -241439,7 +241439,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4571
@@ -241486,7 +241486,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4572
@@ -241533,7 +241533,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4573
@@ -241580,7 +241580,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4574
@@ -241627,7 +241627,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4575
@@ -241674,7 +241674,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4576
@@ -241721,7 +241721,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4577
@@ -241768,7 +241768,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4578
@@ -241815,7 +241815,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4579
@@ -241862,7 +241862,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4580
@@ -241909,7 +241909,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4581
@@ -241956,7 +241956,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4582
@@ -242003,7 +242003,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4583
@@ -242050,7 +242050,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4584
@@ -242097,7 +242097,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4585
@@ -242144,7 +242144,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4586
@@ -242191,7 +242191,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4587
@@ -242238,7 +242238,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4588
@@ -242285,7 +242285,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4589
@@ -242332,7 +242332,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4590
@@ -242379,7 +242379,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4591
@@ -242426,7 +242426,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4592
@@ -242473,7 +242473,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4593
@@ -242520,7 +242520,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4594
@@ -242567,7 +242567,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4595
@@ -242614,7 +242614,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4596
@@ -242661,7 +242661,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4597
@@ -242708,7 +242708,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4598
@@ -242755,7 +242755,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4599
@@ -242802,7 +242802,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4600
@@ -242849,7 +242849,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4601
@@ -242896,7 +242896,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4602
@@ -242943,7 +242943,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4603
@@ -242990,7 +242990,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4604
@@ -243037,7 +243037,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4605
@@ -243084,7 +243084,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4606
@@ -243131,7 +243131,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4607
@@ -243178,7 +243178,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4608
@@ -243225,7 +243225,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4609
@@ -243272,7 +243272,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4610
@@ -243319,7 +243319,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4611
@@ -243366,7 +243366,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4612
@@ -243413,7 +243413,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4613
@@ -243460,7 +243460,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4614
@@ -243507,7 +243507,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4615
@@ -243554,7 +243554,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4616
@@ -243601,7 +243601,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4617
@@ -243648,7 +243648,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4618
@@ -243695,7 +243695,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4619
@@ -243742,7 +243742,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4620
@@ -243789,7 +243789,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4621
@@ -243836,7 +243836,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4622
@@ -243883,7 +243883,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4623
@@ -243930,7 +243930,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4624
@@ -243977,7 +243977,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4625
@@ -244024,7 +244024,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4626
@@ -244071,7 +244071,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4627
@@ -244118,7 +244118,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4628
@@ -244165,7 +244165,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4629
@@ -244212,7 +244212,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4630
@@ -244259,7 +244259,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4631
@@ -244306,7 +244306,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4632
@@ -244353,7 +244353,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4633
@@ -244400,7 +244400,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4634
@@ -244447,7 +244447,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4635
@@ -244494,7 +244494,7 @@
         "aspect_category": "INFRASTRUCTURE_DRAINAGE",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4636
@@ -244541,7 +244541,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4637
@@ -244588,7 +244588,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4638
@@ -244635,7 +244635,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4639
@@ -244682,7 +244682,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4640
@@ -244729,7 +244729,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4641
@@ -244776,7 +244776,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4642
@@ -244823,7 +244823,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4643
@@ -244870,7 +244870,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4644
@@ -244917,7 +244917,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4645
@@ -244964,7 +244964,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4646
@@ -245011,7 +245011,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4647
@@ -245058,7 +245058,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4648
@@ -245105,7 +245105,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4649
@@ -245152,7 +245152,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4650
@@ -245199,7 +245199,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4651
@@ -245246,7 +245246,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4652
@@ -245293,7 +245293,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4653
@@ -245340,7 +245340,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4654
@@ -245387,7 +245387,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4655
@@ -245434,7 +245434,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4656
@@ -245481,7 +245481,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4657
@@ -245528,7 +245528,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4658
@@ -245575,7 +245575,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4659
@@ -245622,7 +245622,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4660
@@ -245669,7 +245669,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4661
@@ -245716,7 +245716,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4662
@@ -245763,7 +245763,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4663
@@ -245810,7 +245810,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4664
@@ -245857,7 +245857,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4665
@@ -245904,7 +245904,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4666
@@ -245951,7 +245951,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4667
@@ -245998,7 +245998,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4668
@@ -246045,7 +246045,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4669
@@ -246092,7 +246092,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4670
@@ -246139,7 +246139,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4671
@@ -246186,7 +246186,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4672
@@ -246233,7 +246233,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4673
@@ -246280,7 +246280,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4674
@@ -246327,7 +246327,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4675
@@ -246374,7 +246374,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4676
@@ -246421,7 +246421,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4677
@@ -246468,7 +246468,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4678
@@ -246515,7 +246515,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4679
@@ -246562,7 +246562,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4680
@@ -246609,7 +246609,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4681
@@ -246656,7 +246656,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4682
@@ -246703,7 +246703,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4683
@@ -246750,7 +246750,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4684
@@ -246797,7 +246797,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4685
@@ -246844,7 +246844,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4686
@@ -246891,7 +246891,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4687
@@ -246938,7 +246938,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4688
@@ -246985,7 +246985,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4689
@@ -247032,7 +247032,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4690
@@ -247079,7 +247079,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4691
@@ -247126,7 +247126,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4692
@@ -247173,7 +247173,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4693
@@ -247220,7 +247220,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4694
@@ -247267,7 +247267,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4695
@@ -247314,7 +247314,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4696
@@ -247361,7 +247361,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4697
@@ -247408,7 +247408,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4698
@@ -247455,7 +247455,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4699
@@ -247502,7 +247502,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4700
@@ -247549,7 +247549,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4701
@@ -247596,7 +247596,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4702
@@ -247643,7 +247643,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4703
@@ -247690,7 +247690,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4704
@@ -247737,7 +247737,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4705
@@ -247784,7 +247784,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4706
@@ -247831,7 +247831,7 @@
         "aspect_category": "HYDROLOGY",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
+        "severity": "LOW"
       }
     ],
     "seq_id": 4707
