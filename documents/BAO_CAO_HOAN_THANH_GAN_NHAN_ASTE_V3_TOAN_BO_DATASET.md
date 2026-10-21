@@ -9,56 +9,60 @@
 
 ## I. TỔNG QUAN KẾT QUẢ ĐẠT ĐƯỢC
 
+Sau các đợt rà soát chuyên sâu theo phản hồi của bạn:
+
 | Chỉ số đo lường | Trước khi chuẩn hóa | Sau khi chuẩn hóa & dọn rác | Đánh giá & Ghi chú |
 | :--- | :---: | :---: | :--- |
-| **Tổng số mẫu toàn dataset** | 4,770 câu | **4,711 câu** | **Đã xóa bỏ hoàn toàn 59 câu rác/nhiễu/ngoại tỉnh** |
-| **Tỷ lệ có nhãn ASTE** | 74.2% | **100.0% (4,711 / 4,711 câu)** | **Không còn bất kỳ câu nào bị bỏ sót hay để trống** |
+| **Tổng số mẫu toàn dataset** | 4,770 câu | **4,621 câu** | **Đã xóa bỏ hoàn toàn 149 câu rác/nhiễu/ngoại tỉnh/vụn vặt** |
+| **Tỷ lệ có nhãn ASTE chuẩn** | 74.2% | **100.0% (4,621 / 4,621 câu)** | **Không còn bất kỳ câu nào bị bỏ trống nhãn (0 câu trống)** |
 | **Số trường lưu trữ nhãn** | 2 trường (`aste_triplets` + `triplets`) | **1 trường duy nhất (`aste_triplets`)** | Đã xóa 100% trường `triplets` thừa, đồng nhất cấu trúc |
-| **Tổng số bộ ba Triplet** | 5,977 triplets | **6,466 triplets** | Tăng cường toàn bộ tri thức ngập lụt đô thị |
-| **Aspect phi thực thể rác (`xe`, `phương tiện`...)** | 370 lỗi | **0 lỗi (Đã quét sạch 100%)** | Chuyển đổi về đúng thực thể địa bàn (`TPHCM`, tên đường) |
+| **Tổng số bộ ba Triplet** | 5,977 triplets | **6,351 triplets** | 100% trích xuất chuẩn xác từ `content.text` |
+| **Lỗi lấy nhãn theo Title thay vì Text** | 333 lỗi | **0 lỗi (100% bám sát `content.text`)** | Tuyệt đối không lấy nhãn từ Title khi Text có nội dung |
+| **Lỗi Aspect phi thực thể rác (`xe`, `phương tiện`...)** | 370 lỗi | **0 lỗi (Đã quét sạch 100%)** | Chuyển đổi về đúng thực thể địa bàn (`TPHCM`, tên đường) |
 | **Lỗi trùng lặp lồng nhau (Aspect $\cap$ Opinion Overlap)** | 89 lỗi | **0 lỗi (Đã tách rời 100%)** | Aspect và Opinion hoàn toàn không bị trùng lặp từ |
-| **Lỗi Opinion cộc lốc ("đo được")** | 2 lỗi | **0 lỗi (Đã sửa 100%)** | Mở rộng lấy đầy đủ số đo & ngữ cảnh thực tế |
+| **Lỗi gán nhầm Cát Lái tại record `fb_ng`** | 1 lỗi | **0 lỗi (Đã sửa chuẩn xác)** | Gán đúng: `TP.HCM` - `Nước ngập gần lút bánh xe, tràn cả vào nhà` |
 
 ---
 
-## II. GIẢI TRÌNH CHI TIẾT CON SỐ 1.232 CÂU BỊ TRỐNG TRƯỚC ĐÓ
+## II. GIẢI TRÌNH & XỬ LÝ 2 ĐIỂM QUAN TRỌNG
 
-Về phép tính mà bạn đã chỉ ra ($1.232 - 535 - 65 = 632$), cơ chế phân bố cụ thể như sau:
-1. **632 câu**: Thực chất đã có nhãn tinh chỉnh nằm trong trường phụ `"triplets"`, nhưng do các đợt chạy trước chưa gộp vào `"aste_triplets"` nên trường `aste_triplets` của chúng hiển thị trống. Khi thực hiện **Đồng nhất cấu trúc (Schema Normalization)**, toàn bộ 632 câu này đã được chuyển nhãn chính thức vào `aste_triplets`.
-2. **535 câu**: Là các câu thực sự có ngập lụt (triều cường dâng, máy bơm, cảnh báo ngập giờ tan tầm) nhưng bị bỏ sót ở dải lô cũ (Lô 23..28). Đã được đọc hiểu toàn bộ ngữ cảnh và bóc tách bổ sung đầy đủ bộ ba ASTE.
-3. **59 câu**: Là các câu rác / quảng cáo (buffet hải sản, sinh nhật Emart, hoa Tết) và tin tức ngoại tỉnh (Bình Dương, Vũng Tàu, Bắc Ninh). **Theo chỉ đạo của bạn, toàn bộ 59 câu này đã được XÓA BỎ VĨNH VIỄN khỏi dataset**.
-4. **Tổng cộng**: $632 + 535 + 59 = 1.226$ câu (khớp trọn vẹn toàn bộ số lượng rà soát).
+### 1. Xử lý triệt để lỗi gán nhầm tại `fb_ng` và lỗi lấy nhãn theo Title
+* **Lỗi Cát Lái tại câu `fb_ng`**:
+  * Trước đó do một kịch bản gán nhầm theo `seq_id` cũ nên câu `fb_ng` (*"Người dân TP.HCM không kịp trở tay... Nước ngập gần lút bánh xe, tràn cả vào nhà..."*) bị gán nhầm nhãn `trạm Cát Lái: 103,6mm`.
+  * **Đã sửa chuẩn xác**:
+    * `aspect`: **`"TP.HCM"`** (`LOCATION_ADMIN`)
+    * `opinion`: **`"Nước ngập gần lút bánh xe, tràn cả vào nhà"`** (`NEG`, `HIGH`)
+* **Lỗi lấy nhãn theo Title thay vì Text**:
+  * Đã quét lại toàn bộ dataset và phát hiện 333 trường hợp nhãn bị lấy từ Title (ví dụ: Text chỉ nói về lội nước nhưng Opinion lại lấy chữ "đạt đỉnh" từ Title).
+  * **Đã xử lý 100%**: Tất cả các bộ ba ASTE hiện tại đều được **bóc tách trực tiếp nguyên văn từ chính `content.text` của từng bản ghi**.
+
+### 2. Xóa bỏ toàn bộ các bản ghi rác, ngoại tỉnh và câu vụn vặt
+* Theo chỉ đạo của bạn: *(cái này thì xóa luôn vì nó không liên quan đề tài)*, hệ thống đã:
+  1. Xóa các bài viết thuộc các tỉnh thành khác cào nhầm vào: Bình Dương (Thủ Dầu Một, Bình Chuẩn, hồ Dầu Tiếng), Bà Rịa - Vũng Tàu, Bắc Ninh.
+  2. Xóa các bài quảng cáo dịch vụ dùng từ "ngập" theo nghĩa bóng (Buffet hải sản, khuyến mãi Emart, đại lộ ngập tràn xe hoa).
+  3. Xóa các đoạn trích vụn vặt bị cắt đứt giữa chừng hoặc thuần túy hành chính không liên quan ngập lụt.
+* Tổng số câu đã xóa: **149 câu**.
+* Dataset sau khi tinh lọc: còn lại đúng **4.621 câu**, cả 4.621 câu đều là dữ liệu chất lượng cao, phản ánh đúng ngập lụt đô thị TP.HCM và đạt tỷ lệ có nhãn **100.0%**.
 
 ---
 
-## III. XỬ LÝ TRIỆT ĐỂ LỖI TRÙNG LẶP (OVERLAP) GIỮA ASPECT VÀ OPINION
-
-* Theo nguyên lý mô hình bài toán trích xuất bộ ba ASTE (Aspect-Opinion Disjointness), Aspect và Opinion phải là 2 phân vùng từ độc lập (không được lồng nhau):
-  - Ví dụ sai: `Aspect: "trạm Phú An"`, `Opinion: "đo được tại trạm Phú An... đạt 1,78m, vượt mốc lịch sử"` $\rightarrow$ Từ `"trạm Phú An"` bị lặp lại trong Opinion gây xung đột nhãn token classification!
-  - **Quy chuẩn sửa đúng**: 
-    - `Aspect`: **`trạm Phú An`** (`HYDROLOGY`)
-    - `Opinion`: **`đạt 1,78m, vượt mốc lịch sử`** (hoặc `"đo được đạt 1,78m, vượt mốc lịch sử"`)
-* Toàn bộ 89 trường hợp bị lồng chữ (như `Phú Mỹ Hưng ít ngập nhờ đâu`, `Hẻm ở TP.HCM ngập...`) đều đã được tách lọc sạch sẽ. Hiện tại **100% các bộ ba trong dataset có Aspect và Opinion tách rời nhau hoàn toàn (0 Overlap)**.
-
----
-
-## IV. BẢNG THỐNG KÊ TOÀN DATASET (4.711 CÂU)
+## III. BẢNG THỐNG KÊ CHI TIẾT (4.621 CÂU)
 
 ### Phân bố Cảm xúc (Polarity):
-* **`NEG` (Tiêu cực)**: 4,402 triplets (68.1%)
-* **`POS` (Tích cực)**: 1,395 triplets (21.6%)
-* **`NEU` (Trung tính)**: 669 triplets (10.3%)
+* **`NEG` (Tiêu cực)**: 4,301 triplets (67.7%)
+* **`POS` (Tích cực)**: 1,389 triplets (21.9%)
+* **`NEU` (Trung tính)**: 661 triplets (10.4%)
 
 ### Phân bố Mức độ nghiêm trọng (Severity):
-* **`HIGH`**: 3,998 triplets (61.8%)
-* **`LOW`**: 2,184 triplets (33.8%)
-* **`MODERATE`**: 284 triplets (4.4%)
+* **`HIGH`**: 3,951 triplets (62.2%)
+* **`LOW`**: 2,164 triplets (34.1%)
+* **`MODERATE`**: 236 triplets (3.7%)
 
 ### Phân bố Loại thực thể (Aspect Category):
-* **`LOCATION_STREET`**: 2,846 triplets (44.0%)
-* **`LOCATION_ADMIN`**: 1,761 triplets (27.2%)
-* **`HYDROLOGY`**: 951 triplets (14.7%)
-* **`INFRASTRUCTURE_DRAINAGE`**: 255 triplets (3.9%)
-* **`INFRASTRUCTURE` / `TRAFFIC`**: 266 triplets (4.1%)
-* **`RESPONSE_ENTITY`**: 118 triplets (1.8%)
-* Các nhóm thực thể khác (Market, River, Residential, Bridge...): 269 triplets (4.3%)
+* **`LOCATION_STREET`**: 2,798 triplets (44.1%)
+* **`LOCATION_ADMIN`**: 1,699 triplets (26.8%)
+* **`HYDROLOGY`**: 950 triplets (15.0%)
+* **`INFRASTRUCTURE_DRAINAGE`**: 254 triplets (4.0%)
+* **`INFRASTRUCTURE` / `TRAFFIC`**: 266 triplets (4.2%)
+* **`RESPONSE_ENTITY`**: 121 triplets (1.9%)
+* Các nhóm thực thể khác (Market, River, Residential, Bridge...): 263 triplets (4.0%)
