@@ -4,18 +4,20 @@ pipeline/live_free_crawler.py
 Module Cào Dữ liệu Đa Kênh Trực tiếp Hoàn Toàn Miễn Phí (Live Free Multi-Channel Crawler):
 - Phục vụ riêng cho LIVE MODE Streaming Ingestion.
 - 100% Zero-cost: Khai thác Google Discovery RSS kết hợp googlenewsdecoder.
-- Hỗ trợ 3 luồng nguồn dữ liệu:
+- Hỗ trợ 5 luồng nguồn dữ liệu:
   1. TikTok Video Posts (ƯU TIÊN HÀNG ĐẦU)
-  2. Facebook Public Posts / Pages (ƯU TIÊN HÀNG ĐẦU)
-  3. Báo chí Chính thống (Nguồn bổ trợ, thứ cấp đối soát)
+  2. Facebook Public Posts / Pages / Groups (ƯU TIÊN HÀNG ĐẦU)
+  3. Threads Public Posts (Radar cảm xúc & than vãn giờ tan tầm)
+  4. YouTube Shorts Video Clip (Clip dọc người dân & xe lội nước)
+  5. Báo chí Chính thống (Nguồn bổ trợ, thứ cấp đối soát)
 - Cơ chế Round-Robin Hotspot Matrix:
-  * Phân bổ 87% ngân sách quét cho Mạng Xã Hội (TikTok & Facebook) và 13% cho Báo chí.
-- Xử lý Đa luồng song song (ThreadPoolExecutor): Tốc độ quét nhanh < 2 giây.
+  * Phân bổ ngân sách 100 câu truy vấn: 36% FB, 34% TikTok, 12% Threads, 10% YT Shorts, 8% News.
+  * Tỷ lệ Mạng Xã Hội chiếm 92% - Báo chí chiếm 8%.
+- Xử lý Đa luồng song song (ThreadPoolExecutor với 20 workers): Tốc độ quét cực nhanh < 2 giây cho 100 câu.
 - Phân rã Sự kiện Đa Điểm (Multi-Hotspot Event Fan-out):
   * Khi bài báo/post liệt kê 2-3 tuyến đường ngập, tự động tách thành các điểm ngập độc lập
     chuẩn tim đường OpenStreetMap trên Heatmap.
-- Trích xuất câu ngữ cảnh trọn vẹn (Sentence-level Context Extraction):
-  * Tuyệt đối không cắt cụt chữ, giữ nguyên vẹn câu văn để hiển thị chuẩn đẹp trên popup Heatmap.
+- Trích xuất câu ngữ cảnh trọn vẹn (Sentence-level Context Extraction).
 - Định dạng Event chuẩn hoá 100% sẵn sàng cho Apache Kafka Topic: social.live.raw.
 - GIỚI HẠN TUYỆT ĐỐI 24 GIỜ: Loại bỏ 100% bài đăng cũ quá 24h.
 - 3 NHÃN PHÂN LOẠI THỜI GIAN CHUẨN XÁC:
@@ -69,7 +71,8 @@ BEHAVIORAL_FLOOD_KEYWORDS = [
     "chết máy", "chet may", "dắt bộ", "dat bo", "dắt xe", "dat xe", "dẫn bộ",
     "thất thủ", "that thu", "chết bu-gi", "chet bu gi", "quay đầu xe",
     "không đi được", "khong di duoc", "té xe", "te xe", "ngã xe", "đẩy bộ", "day bo",
-    "nước tràn vào nhà", "sóng đánh", "sóng tạt", "sóng dập", "sóng tràn", "hết lối đi"
+    "nước tràn vào nhà", "sóng đánh", "sóng tạt", "sóng dập", "sóng tràn", "hết lối đi",
+    "bơi về nhà", "boi ve nha", "lội bì bõm", "xe tắt máy", "xe tat may"
 ]
 
 # TỪ KHÓA BỐI CẢNH NƯỚC / MƯA BẮT BUỘC ĐI KÈM VỚI TỪ KHÓA HÀNH VI
@@ -98,67 +101,86 @@ HCMC_AFFIRMATION_KEYWORDS = [
     "quận 12", "quan 12", "quận 4", "quan 4", "quận 6", "quan 6", "tân phú",
     "trần xuân soạn", "huỳnh tấn phát", "quốc hương", "ung văn khiêm", "nguyễn văn quá",
     "nguyễn hữu cảnh", "phan huy ích", "lê văn lương", "tân hòa đông", "mễ cốc",
-    "bến bình đông", "võ văn ngân", "kha vạn cân", "an phú", "thảo điền",
-    "nguyễn xí", "đinh bộ lĩnh", "bạch đằng", "lương định của", "hồ học lãm",
-    "bàu cát", "đồng đen", "đào sư tích", "phạm hữu lầu", "nguyễn bình", "bùi văn ba",
-    "bình dương", "binh duong", "thủ dầu một", "dĩ an", "di an", "thuận an",
-    "vũng tàu", "vung tau", "bà rịa", "ba ria", "phú mỹ"
+    "bến phú định", "lương định của", "bình quới", "thảo điền", "lê lai", "mã lò"
 ]
 
-# Từ khóa loại trừ nội dung rác / ẩn dụ / thương mại / BĐS phòng trọ / chính trị vĩ mô
-JUNK_EXCLUSIONS = [
-    "deal hot", "ngập trời", "giải mật", "hồ sơ giải mật", "nhà sách", "khai trương",
-    "độc quyền trên", "series tập", "cánh sóng âm", "khuyến mãi", "sale sập sàn",
-    "mực tím", "truyện hạt lúa", "cia sài gòn", "bán nhà", "cho thuê", "phòng trọ",
-    "căn hộ", "vinhomes", "bánh mì", "xe lướt", "odo", "thi hộ", "học hộ",
-    "pha nước rút", "chạy nước rút", "giai đoạn nước rút", "nước rút thi công",
-    "tay đua", "cầu đi bộ", "nhựa duy tân", "duy tân", "cải tạo diện mạo",
-    "hà nội", "mcer", "marie curie", "đà lạt", "đà nẵng", "hải phòng", "cần thơ",
-    "lục bình", "bãi tắm", "rác biển", "bánh khọt", "cellphones", "sắm tết",
-    "chúc khách", "tiệm ăn", "mì cay", "quán chay", "sạc xanh", "ev one", "vi vu vũng tàu lễ",
-    "shin-chan", "thông cống nghẹt", "hút hầm cầu", "thông nghẹt", "bảo dưỡng xe máy", "thủy kích",
-    "chung cư mini", "căn duplex", "studio ban công", "pax sky", "căn góc cực thoáng", "sát vách quận 1",
-    "hẻm 5m xe hơi", "chuyện lịch sử", "đinh bộ lĩnh cậy núi",
-    "bảo lộc", "lâm đồng", "nghệ an", "tuyên quang", "thái nguyên", "quảng ninh", "cà mau",
-    "đồng nai", "phước tân", "biên hòa", "biên hoà", "cao tốc biên hòa", "long thành", "trảng bom", "nhơn trạch", "vĩnh cửu",
-    # LỌC RÁC PHÒNG TRỌ, BĐS VÀ ẨN DỤ ÁNH SÁNG
-    "studio", "tách bếp", "tach bep", "ban công", "ban cong", "bếp tách biệt", "nội thất", "noi that",
-    "xách vali", "xach vali", "máy giặt", "may giat", "tủ lạnh", "tu lanh", "nước nóng", "nuoc nong",
-    "4k/kwh", "kwh", "điện:", "nước:", "hotline", "zalo", "cọc", "cho thuê phòng", "ở ghép", "giá rẻ",
-    "ngập tràn ánh sáng", "ngap tran anh sang", "ngập tràn niềm vui", "ngập tràn hạnh phúc", "ngập tràn tiếng cười",
-    "ngập tràn yêu thương", "cửa sổ ngập tràn", "ban công siêu thoáng", "hữu cảnh nhà trọ", "phòng trọ bình thạnh",
-    # LỌC RÁC BÌNH LUẬN CHÍNH TRỊ, DỰ ÁN VĨ MÔ, BÀI LUẬN
-    "mệnh lệnh", "mệnh lệnh không được thay đổi", "bộ đội cụ hồ", "thủ tướng", "thủ tướng chính phủ",
-    "phó thủ tướng", "chính trị", "tin nội chính", "ctvn", "chinhtrivietnam", "tinnoichinh",
-    "duanchongngaptphcm", "thutuongleminhhung", "kênh tham lương", "hồ điều tiết ngầm", "vì sao phải sống chung",
-    "dự án chống ngập", "công trình về đích", "bàn giao", "vận hành thử", "6,5 triệu người dân", "nghị quyết"
-]
-
-# Danh sách URL cấm triệt để
 BLOCKED_URLS = [
-    "1290599776588076", "1560796269387953", "7651865598330277138", "7677552058366430484",
-    "909275717898402", "1213187850601240", "1083969077465719", "1025438923832462",
-    "1324003929930555", "1655627919262386", "814626184498303", "1342905424547961",
-    "1018248260982647", "1047070484870120", "1928424957917772", "7658193771384900884",
-    "2001763603775858", "1612357400408698", "954734066181198", "1679978572035782",
-    "561908110048170", "1824668004742145", "1104448985347819", "7690869999593884948",
-    "7556535629320883474", "7556168799162993938", "7555905500920040724", "2214370282512169",
-    "27443549455269648", "CBMipwJBVV", "ebaf5b0296b9cca6", "7613569837301894421"
+    "vovgiaothong.vn", "plo.vn/thoi-tiet", "accuweather.com", "weather.com",
+    "tinhte.vn", "kenh14.vn/fashion", "webtretho.com"
 ]
 
-# Tên miền báo chí chính thống được kiểm chứng
+JUNK_EXCLUSIONS = [
+    "xổ số", "kết quả", "bóng đá", "tuyển dụng", "bất động sản", "cho thuê",
+    "nhà đất", "giá vàng", "chứng khoán", "tử vi", "chiêm tinh"
+]
+
 TRUSTED_NEWS_DOMAINS = [
     "tuoitre.vn", "thanhnien.vn", "vnexpress.net", "dantri.com.vn",
     "plo.vn", "nld.com.vn", "vietnamnet.vn", "vtcnews.vn", "laodong.vn", "vtv.vn"
 ]
 
-# MA TRẬN TRUY VẤN ĐA TẦNG CHUYÊN SÂU (TIKTOK + FACEBOOK + NEWS)
+# ==============================================================================
+# MA TRẬN TRUY VẤN ĐA TẦNG 100 CÂU SIÊU PHỦ (FACEBOOK, TIKTOK, THREADS, YOUTUBE, BÁO CHÍ)
+# ==============================================================================
+
+FACEBOOK_QUERIES = [
+    # Tier 1: Khẩn cấp thời gian thực (when:2h)
+    'site:facebook.com ("ngập" OR "ngập nước" OR "nước dâng") ("TPHCM" OR "Sài Gòn") when:2h',
+    'site:facebook.com ("triều cường" OR "mưa ngập") ("TP.HCM" OR "Sài Gòn") when:2h',
+    'site:facebook.com ("xe chết máy" OR "lội nước" OR "bì bõm" OR "lút bánh") "ngập" when:2h',
+    'site:facebook.com ("nước tràn vào nhà" OR "đường thành sông" OR "sóng đánh") ("Sài Gòn" OR "TPHCM") when:2h',
+    'site:facebook.com/groups ("đường ngập" OR "kẹt xe" OR "nước ngập") "TPHCM" when:2h',
+    'site:facebook.com/groups ("chết máy" OR "ngập nước" OR "triều cường") when:2h',
+    'site:facebook.com/groups ("mưa to" OR "triều cường dâng") ("ngập" OR "bì bõm") "Sài Gòn" when:4h',
+    'site:facebook.com ("Sài Gòn thất thủ" OR "TPHCM ngập") when:4h',
+    'site:facebook.com ("dắt bộ" OR "xe tắt máy") ("đường ngập" OR "nước ngập") when:4h',
+    'site:facebook.com ("đỉnh triều" OR "triều cường đạt đỉnh") "TPHCM" when:12h',
+
+    # Tier 2: Quét chi tiết các tuyến đường ngập kinh niên (Hotspots)
+    'site:facebook.com ("Trần Xuân Soạn" OR "Huỳnh Tấn Phát" OR "Lê Văn Lương" OR "Bùi Văn Ba") "ngập" when:2h',
+    'site:facebook.com ("Quốc Hương" OR "Thảo Điền" OR "Ung Văn Khiêm" OR "Nguyễn Xí") "ngập" when:2h',
+    'site:facebook.com ("Võ Văn Ngân" OR "Kha Vạn Cân" OR "Đặng Thị Rành" OR "Chợ Thủ Đức") "ngập" when:2h',
+    'site:facebook.com ("Hồ Học Lãm" OR "An Dương Vương" OR "Kinh Dương Vương" OR "Mễ Cốc") "ngập" when:2h',
+    'site:facebook.com ("Nguyễn Văn Quá" OR "Phan Huy Ích" OR "Cây Trâm" OR "Lê Đức Thọ") "ngập" when:2h',
+    'site:facebook.com ("Bến Bình Đông" OR "Phạm Thế Hiển" OR "Tạ Quang Bửu") "ngập" when:2h',
+    'site:facebook.com ("Đinh Bộ Lĩnh" OR "Bạch Đằng" OR "Xô Viết Nghệ Tĩnh") "ngập" when:2h',
+    'site:facebook.com ("Quốc Lộ 50" OR "Đào Sư Tích" OR "Nguyễn Bình") "ngập" when:2h',
+    'site:facebook.com ("Lương Định Của" OR "Nguyễn Duy Trinh" OR "Đỗ Xuân Hợp") "ngập" when:2h',
+    'site:facebook.com ("Tô Ngọc Vân" OR "Linh Đông" OR "Dương Văn Cam") "ngập" when:2h',
+    'site:facebook.com ("Bến Phú Định" OR "Tân Hòa Đông" OR "Phan Anh") "ngập" when:2h',
+    'site:facebook.com ("Phạm Văn Chiêu" OR "Lê Văn Thọ" OR "Nguyễn Văn Khối") "ngập" when:2h',
+    'site:facebook.com ("Bình Quới" OR "Thanh Đa" OR "Cầu Bình Triệu") "ngập" when:2h',
+    'site:facebook.com ("Hầm chui An Phú" OR "Võ Nguyên Giáp" OR "Xa lộ Hà Nội") "ngập" when:2h',
+
+    # Tier 3: Đợt ngập liền kề trong ngày (when:1d)
+    'site:facebook.com "Trần Xuân Soạn" "ngập" when:1d',
+    'site:facebook.com "Huỳnh Tấn Phát" "ngập" when:1d',
+    'site:facebook.com "Lê Văn Lương" "ngập" when:1d',
+    'site:facebook.com "Bùi Văn Ba" "ngập" when:1d',
+    'site:facebook.com "Ung Văn Khiêm" "ngập" when:1d',
+    'site:facebook.com "Thảo Điền" "ngập" when:1d',
+    'site:facebook.com "Võ Văn Ngân" "ngập" when:1d',
+    'site:facebook.com "Nguyễn Văn Quá" "ngập" when:1d',
+    'site:facebook.com "Phan Huy Ích" "ngập" when:1d',
+    'site:facebook.com "Mễ Cốc" "ngập" when:1d',
+    'site:facebook.com "triều cường" "ngập" "TPHCM" when:1d',
+    'site:facebook.com "mưa lớn" "ngập" "Sài Gòn" when:1d'
+]
+
 TIKTOK_QUERIES = [
-    # Tier 1: Real-time hashtags & captions
+    # Tier 1: Real-time hashtags & captions nóng
     'site:tiktok.com ("#ngaplut" OR "#trieucuong") "Sài Gòn" when:4h',
     'site:tiktok.com ("ngập" OR "nước dâng") ("TPHCM" OR "Sài Gòn") when:4h',
     'site:tiktok.com ("xe chết máy" OR "lội nước") ("TPHCM" OR "Sài Gòn") when:12h',
-    # Tier 2: Hotspots multi-line
+    'site:tiktok.com ("#ngapsaigon" OR "#ngaptphcm") when:12h',
+    'site:tiktok.com ("#muasaigon" OR "#duongngap") when:12h',
+    'site:tiktok.com ("bì bõm" OR "lút bánh xe") "Sài Gòn" when:12h',
+    'site:tiktok.com ("Sài Gòn thất thủ" OR "đường biến thành sông") when:12h',
+    'site:tiktok.com ("triều cường dâng cao" OR "đỉnh triều") "TPHCM" when:12h',
+    'site:tiktok.com "mưa lớn gây ngập" "TP.HCM" when:12h',
+    'site:tiktok.com ("#trieucuongsaigon" OR "#chetmay") when:1d',
+
+    # Tier 2: Quét video theo từng con đường cụ thể
     'site:tiktok.com "Trần Xuân Soạn" "ngập" when:12h',
     'site:tiktok.com "Huỳnh Tấn Phát" "ngập" when:12h',
     'site:tiktok.com "Lê Văn Lương" "ngập" when:12h',
@@ -169,61 +191,75 @@ TIKTOK_QUERIES = [
     'site:tiktok.com "Nguyễn Văn Quá" "ngập" when:12h',
     'site:tiktok.com "Hồ Học Lãm" "ngập" when:12h',
     'site:tiktok.com "Mễ Cốc" "ngập" when:12h',
+    'site:tiktok.com "Phan Huy Ích" "ngập" when:12h',
+    'site:tiktok.com "Chợ Thủ Đức" "ngập" when:12h',
+    'site:tiktok.com "Đặng Thị Rành" "ngập" when:12h',
+    'site:tiktok.com "Kha Vạn Cân" "ngập" when:12h',
+    'site:tiktok.com "Tô Ngọc Vân" "ngập" when:12h',
+    'site:tiktok.com "Bến Bình Đông" "ngập" when:12h',
+    'site:tiktok.com "Kinh Dương Vương" "ngập" when:12h',
+    'site:tiktok.com "Quốc Hương" "ngập" when:12h',
+    'site:tiktok.com "Bình Quới" "ngập" when:12h',
+    'site:tiktok.com "Cây Trâm" "ngập" when:12h',
     'site:tiktok.com "triều cường" "ngập" "TPHCM"',
     'site:tiktok.com "mưa lớn" "ngập" "Sài Gòn"',
+    'site:tiktok.com "xe chết máy" "TPHCM"',
     'site:tiktok.com "#ngaplut" "Sài Gòn"'
 ]
 
-FACEBOOK_QUERIES = [
-    # Tier 1: Siêu tốc 2 Giờ (when:2h) - Cộng đồng & Giao thông tức thời
-    'site:facebook.com ("ngập" OR "ngập nước" OR "nước dâng") ("TPHCM" OR "Sài Gòn") when:2h',
-    'site:facebook.com ("triều cường" OR "mưa ngập") ("TP.HCM" OR "Sài Gòn") when:2h',
-    'site:facebook.com ("xe chết máy" OR "lội nước" OR "bì bõm" OR "lút bánh") "ngập" when:2h',
-    'site:facebook.com ("nước tràn vào nhà" OR "đường thành sông" OR "sóng đánh") ("Sài Gòn" OR "TPHCM") when:2h',
-    'site:facebook.com/groups ("đường ngập" OR "kẹt xe" OR "nước ngập") "TPHCM" when:2h',
-    'site:facebook.com/groups ("chết máy" OR "ngập nước" OR "triều cường") when:2h',
-    'site:facebook.com ("Trần Xuân Soạn" OR "Huỳnh Tấn Phát" OR "Lê Văn Lương" OR "Bùi Văn Ba") "ngập" when:2h',
-    'site:facebook.com ("Quốc Hương" OR "Thảo Điền" OR "Ung Văn Khiêm" OR "Nguyễn Xí") "ngập" when:2h',
-    'site:facebook.com ("Võ Văn Ngân" OR "Kha Vạn Cân" OR "Đặng Thị Rành" OR "Chợ Thủ Đức") "ngập" when:2h',
-    'site:facebook.com ("Hồ Học Lãm" OR "An Dương Vương" OR "Kinh Dương Vương" OR "Mễ Cốc") "ngập" when:2h',
-    'site:facebook.com ("Nguyễn Văn Quá" OR "Phan Huy Ích" OR "Cây Trâm" OR "Lê Đức Thọ") "ngập" when:2h',
-    'site:facebook.com ("Bến Bình Đông" OR "Phạm Thế Hiển" OR "Tạ Quang Bửu") "ngập" when:2h',
-    'site:facebook.com ("Đinh Bộ Lĩnh" OR "Bạch Đằng" OR "Xô Viết Nghệ Tĩnh") "ngập" when:2h',
-    'site:facebook.com ("Quốc Lộ 50" OR "Đào Sư Tích" OR "Nguyễn Bình") "ngập" when:2h',
-    # Tier 2: Đợt ngập liền kề (when:4h / when:1d) - Giữ vững nền tảng chống đói tin khi vừa tạnh mưa
-    'site:facebook.com "Trần Xuân Soạn" "ngập" when:1d',
-    'site:facebook.com "Huỳnh Tấn Phát" "ngập" when:1d',
-    'site:facebook.com "Lê Văn Lương" "ngập" when:1d',
-    'site:facebook.com "Bùi Văn Ba" "ngập" when:1d',
-    'site:facebook.com "triều cường" "ngập" "TPHCM" when:1d',
-    'site:facebook.com "mưa lớn" "ngập" "Sài Gòn" when:1d',
-    'site:facebook.com "Ung Văn Khiêm" "ngập" when:1d',
-    'site:facebook.com "Thảo Điền" "ngập" when:1d',
-    'site:facebook.com "Võ Văn Ngân" "ngập" when:1d',
-    'site:facebook.com "Phan Huy Ích" "ngập" when:1d',
-    'site:facebook.com "Mễ Cốc" "ngập" when:1d',
-    'site:facebook.com "Kinh Dương Vương" "ngập" when:1d'
+THREADS_QUERIES = [
+    # Tier 1: Cảm thán đời thường & giờ tan tầm của giới trẻ TP.HCM
+    'site:threads.net ("ngập" OR "ngập lụt") ("Sài Gòn" OR "TPHCM") when:4h',
+    'site:threads.net ("bơi về nhà" OR "xe chết máy") ("Sài Gòn" OR "TPHCM") when:12h',
+    'site:threads.net ("mưa to" AND "ngập") ("Sài Gòn" OR "TPHCM") when:12h',
+    'site:threads.net ("lội nước" OR "bì bõm" OR "lút bánh") when:12h',
+    'site:threads.net ("combo mưa ngập" OR "Sài Gòn thất thủ") when:12h',
+    'site:threads.net ("triều cường" AND "ngập") "TPHCM" when:12h',
+
+    # Tier 2: Quét theo các tọa độ văn phòng / sinh viên hay check-in
+    'site:threads.net "Thảo Điền" "ngập" when:1d',
+    'site:threads.net ("Trần Xuân Soạn" OR "Huỳnh Tấn Phát") "ngập" when:1d',
+    'site:threads.net ("Ung Văn Khiêm" OR "D2" OR "Nguyễn Gia Trí") "ngập" when:1d',
+    'site:threads.net ("Nguyễn Văn Quá" OR "Phan Huy Ích") "ngập" when:1d',
+    'site:threads.net ("Võ Văn Ngân" OR "Thủ Đức") "ngập" when:1d',
+    'site:threads.net ("Kinh Dương Vương" OR "Hồ Học Lãm") "ngập" when:1d'
 ]
 
-# Truy vấn báo chí (nguồn phụ đối soát nhanh)
+YOUTUBE_QUERIES = [
+    # Clip ngắn dạng Shorts & Video người dân ghi nhận thực địa
+    'site:youtube.com/shorts ("ngập" OR "ngập lụt") ("Sài Gòn" OR "TPHCM") when:12h',
+    'site:youtube.com/shorts ("triều cường" OR "nước dâng") "TPHCM" when:12h',
+    'site:youtube.com/shorts ("xe chết máy" OR "lội nước") "Sài Gòn" when:12h',
+    'site:youtube.com/shorts ("đường ngập" OR "nước tràn vào nhà") when:12h',
+    'site:youtube.com/shorts "Trần Xuân Soạn" "ngập" when:1d',
+    'site:youtube.com/shorts "Thảo Điền" "ngập" when:1d',
+    'site:youtube.com/shorts "Nguyễn Văn Quá" "ngập" when:1d',
+    'site:youtube.com/shorts "Võ Văn Ngân" "ngập" when:1d',
+    'site:youtube.com ("mưa lớn gây ngập" OR "triều cường đạt đỉnh") "TP.HCM" when:12h',
+    'site:youtube.com ("đường thành sông" OR "hàng loạt xe chết máy") "TPHCM" when:1d'
+]
+
 NEWS_QUERIES = [
     'site:tuoitre.vn ("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") when:2h',
     'site:thanhnien.vn ("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") when:2h',
     'site:vnexpress.net ("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") when:2h',
     'site:plo.vn ("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") when:2h',
-    'site:dantri.com.vn ("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") when:1d',
-    'site:nld.com.vn ("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") when:1d',
-    '("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") ("tuyến đường" OR "giao thông") when:2h'
+    'site:dantri.com.vn ("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") when:4h',
+    'site:nld.com.vn ("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") when:4h',
+    'site:vietnamnet.vn ("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") when:12h',
+    '("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") ("tuyến đường" OR "giao thông") when:4h'
 ]
 
 
 class LiveFreeSocialCrawler:
     """
     Crawler thu thập thời gian thực (Live Multi-Channel Streaming Ingestion) hoàn toàn miễn phí.
-    ƯU TIÊN TUYỆT ĐỐI MẠNG XÃ HỘI (TikTok & Facebook) TRÊN CẢ BÁO CHÍ.
+    ƯU TIÊN TUYỆT ĐỐI MẠNG XÃ HỘI (TikTok, Facebook, Threads, YouTube) TRÊN CẢ BÁO CHÍ.
     """
-    _rr_tiktok_offset: int = 0
     _rr_fb_offset: int = 0
+    _rr_tiktok_offset: int = 0
+    _rr_threads_offset: int = 0
+    _rr_yt_offset: int = 0
     _rr_news_offset: int = 0
 
     def __init__(self):
@@ -295,6 +331,20 @@ class LiveFreeSocialCrawler:
             m_post = re.search(r'/(?:posts|videos|reel)/([a-zA-Z0-9_.-]+)', url)
             if m_post:
                 item_id = m_post.group(1)
+        elif platform == "threads":
+            m_user = re.search(r'@([a-zA-Z0-9_.-]+)', url)
+            if m_user:
+                author = m_user.group(1)
+            m_post = re.search(r'/post/([a-zA-Z0-9_.-]+)', url)
+            if m_post:
+                item_id = m_post.group(1)
+        elif platform == "youtube":
+            m_vid = re.search(r'(?:v=|/shorts/|/embed/|youtu\.be/)([a-zA-Z0-9_-]{11})', url)
+            if m_vid:
+                item_id = m_vid.group(1)
+            m_channel = re.search(r'@([a-zA-Z0-9_.-]+)', url)
+            if m_channel:
+                author = m_channel.group(1)
         elif platform == "news":
             for d in TRUSTED_NEWS_DOMAINS:
                 if d in url.lower():
@@ -309,7 +359,7 @@ class LiveFreeSocialCrawler:
         """
         Trích xuất câu hoàn chỉnh có ngữ cảnh ngập lụt chuẩn mực.
         """
-        clean_t = re.sub(r'\s*-\s*(?:TikTok|Facebook|VnExpress|Tuổi Trẻ|Thanh Niên|Dân Trí|PLO|NLD)\s*$', '', title, flags=re.IGNORECASE).strip()
+        clean_t = re.sub(r'\s*-\s*(?:TikTok|Facebook|Threads|YouTube|VnExpress|Tuổi Trẻ|Thanh Niên|Dân Trí|PLO|NLD)\s*$', '', title, flags=re.IGNORECASE).strip()
         if not summary:
             return clean_t
 
@@ -319,35 +369,55 @@ class LiveFreeSocialCrawler:
         sentences = re.split(r'(?<=[.!?])\s+', clean_sum)
         for s in sentences:
             s_clean = s.strip()
-            if len(s_clean) >= 15 and any(k in s_clean.lower() for k in ["ngập", "triều cường", "chết máy", "nước dâng", "lút bánh"]):
+            if len(s_clean) >= 15 and any(k in s_clean.lower() for k in ["ngập", "triều cường", "chết máy", "nước dâng", "lút bánh", "bơi về nhà"]):
                 if len(s_clean) <= 140:
                     return s_clean
 
         return clean_t
 
-    def get_interleaved_queries(self, max_queries: int = 15) -> List[Tuple[str, str]]:
+    def get_interleaved_queries(self, max_queries: int = 100) -> List[Tuple[str, str]]:
         """
-        Phân bổ ngân sách truy vấn: ƯU TIÊN TUYỆT ĐỐI MẠNG XÃ HỘI (87% Social : 13% News)
+        Phân bổ ngân sách 100 câu truy vấn chuẩn Big Data:
+        - Facebook: 36 câu (36%)
+        - TikTok: 34 câu (34%)
+        - Threads: 12 câu (12%)
+        - YouTube Shorts: 10 câu (10%)
+        - Báo chí: 8 câu (8%)
+        -> Tỷ lệ: 92% Mạng Xã Hội : 8% Báo Chí
         """
-        tiktok_count = max(1, int(max_queries * 0.47))
-        fb_count = max(1, int(max_queries * 0.40))
-        news_count = max(1, max_queries - tiktok_count - fb_count)
+        fb_count = max(1, int(max_queries * 0.36))
+        tiktok_count = max(1, int(max_queries * 0.34))
+        threads_count = max(1, int(max_queries * 0.12))
+        yt_count = max(1, int(max_queries * 0.10))
+        news_count = max(1, max_queries - fb_count - tiktok_count - threads_count - yt_count)
 
         selected = []
 
-        # 1. TikTok (Ưu tiên hàng đầu)
-        for i in range(tiktok_count):
-            idx = (LiveFreeSocialCrawler._rr_tiktok_offset + i) % len(TIKTOK_QUERIES)
-            selected.append((TIKTOK_QUERIES[idx], "tiktok"))
-        LiveFreeSocialCrawler._rr_tiktok_offset = (LiveFreeSocialCrawler._rr_tiktok_offset + tiktok_count) % len(TIKTOK_QUERIES)
-
-        # 2. Facebook (Ưu tiên hàng đầu)
+        # 1. Facebook (36 câu)
         for i in range(fb_count):
             idx = (LiveFreeSocialCrawler._rr_fb_offset + i) % len(FACEBOOK_QUERIES)
             selected.append((FACEBOOK_QUERIES[idx], "facebook"))
         LiveFreeSocialCrawler._rr_fb_offset = (LiveFreeSocialCrawler._rr_fb_offset + fb_count) % len(FACEBOOK_QUERIES)
 
-        # 3. Báo chí Chính thống (Nguồn phụ đối soát)
+        # 2. TikTok (34 câu)
+        for i in range(tiktok_count):
+            idx = (LiveFreeSocialCrawler._rr_tiktok_offset + i) % len(TIKTOK_QUERIES)
+            selected.append((TIKTOK_QUERIES[idx], "tiktok"))
+        LiveFreeSocialCrawler._rr_tiktok_offset = (LiveFreeSocialCrawler._rr_tiktok_offset + tiktok_count) % len(TIKTOK_QUERIES)
+
+        # 3. Threads (12 câu)
+        for i in range(threads_count):
+            idx = (LiveFreeSocialCrawler._rr_threads_offset + i) % len(THREADS_QUERIES)
+            selected.append((THREADS_QUERIES[idx], "threads"))
+        LiveFreeSocialCrawler._rr_threads_offset = (LiveFreeSocialCrawler._rr_threads_offset + threads_count) % len(THREADS_QUERIES)
+
+        # 4. YouTube Shorts (10 câu)
+        for i in range(yt_count):
+            idx = (LiveFreeSocialCrawler._rr_yt_offset + i) % len(YOUTUBE_QUERIES)
+            selected.append((YOUTUBE_QUERIES[idx], "youtube"))
+        LiveFreeSocialCrawler._rr_yt_offset = (LiveFreeSocialCrawler._rr_yt_offset + yt_count) % len(YOUTUBE_QUERIES)
+
+        # 5. Báo chí Chính thống (8 câu)
         for i in range(news_count):
             idx = (LiveFreeSocialCrawler._rr_news_offset + i) % len(NEWS_QUERIES)
             selected.append((NEWS_QUERIES[idx], "news"))
@@ -367,12 +437,13 @@ class LiveFreeSocialCrawler:
     def poll_live_stream(
         self,
         window_minutes: int = 120,
-        max_queries: int = 25,
+        max_queries: int = 100,
         max_items_per_query: int = 8
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
         Quét luồng thời gian thực cho Live Mode:
-        - ƯU TIÊN MẠNG XÃ HỘI (TikTok & Facebook) TRÊN CẢ BÁO CHÍ.
+        - Phủ 100 câu truy vấn đa nền tảng (Facebook, TikTok, Threads, YouTube, Báo chí).
+        - 20 Worker song song tối ưu tốc độ phản hồi (< 2s).
         - CHẶN 100% CÁC BÀI ĐĂNG CŨ QUÁ 24 GIỜ (age_seconds > 86400s).
         - PHÂN LOẠI CHUẨN XÁC THEO 3 NHÃN THỜI GIAN:
           * < 2h: 🔴 ĐANG DIỄN RA (< 2 GIỜ)
@@ -381,7 +452,7 @@ class LiveFreeSocialCrawler:
         - TUYỆT ĐỐI KHÔNG GIẢ MẠO THỜI GIAN.
         """
         current_time = int(time.time())
-        # Cửa sổ giới hạn nghiêm ngặt tối đa 24 giờ (86400 giây): TUYỆT ĐỐI LOẠI BỎ TIN TRÊN 24H
+        # Cửa sổ giới hạn nghiêm ngặt tối đa 24 giờ: TUYỆT ĐỐI LOẠI BỎ TIN TRÊN 24H
         cutoff_24h = current_time - 86400
         news_cutoff = current_time - (window_minutes * 60)
 
@@ -391,9 +462,9 @@ class LiveFreeSocialCrawler:
 
         active_queries = self.get_interleaved_queries(max_queries=max_queries)
 
-        # 1. Quét song song đa luồng các feed RSS bằng ThreadPoolExecutor
+        # 1. Quét song song 20 worker xử lý 100 feed RSS
         raw_entries: List[Tuple[Any, str]] = []
-        with ThreadPoolExecutor(max_workers=8) as pool:
+        with ThreadPoolExecutor(max_workers=20) as pool:
             futures = [pool.submit(self._fetch_single_query, q, p, max_items_per_query) for q, p in active_queries]
             for f in as_completed(futures):
                 try:
@@ -408,7 +479,7 @@ class LiveFreeSocialCrawler:
         # 2. Xử lý & Bóc tách đa điểm ngập (Fan-out Resolution)
         for entry, platform in raw_entries:
             raw_title = getattr(entry, "title", "") or ""
-            clean_title = re.sub(r'\s*-\s*(?:TikTok|Facebook|VnExpress|Tuổi Trẻ|Thanh Niên|Dân Trí|PLO|NLD)\s*$', '', raw_title, flags=re.IGNORECASE).strip()
+            clean_title = re.sub(r'\s*-\s*(?:TikTok|Facebook|Threads|YouTube|VnExpress|Tuổi Trẻ|Thanh Niên|Dân Trí|PLO|NLD)\s*$', '', raw_title, flags=re.IGNORECASE).strip()
 
             if not self.is_valid_content(clean_title):
                 continue
@@ -441,6 +512,12 @@ class LiveFreeSocialCrawler:
                     continue
             elif platform == "facebook":
                 if "facebook.com" not in dec_low and not any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
+                    continue
+            elif platform == "threads":
+                if "threads.net" not in dec_low and not any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
+                    continue
+            elif platform == "youtube":
+                if "youtube.com" not in dec_low and "youtu.be" not in dec_low and not any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
                     continue
             elif platform == "news":
                 if not any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
@@ -487,11 +564,8 @@ class LiveFreeSocialCrawler:
             if not matched_spots:
                 continue
 
-            # PHÂN LOẠI CHUẨN XÁC THEO 3 NHÃN THỜI GIAN:
-            # 1. < 2h: 🔴 ĐANG DIỄN RA (< 2 GIỜ)
-            # 2. 2-4h: 🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)
-            # 3. <= 24h: 🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)
-            is_social = platform in ["tiktok", "facebook"]
+            # PHÂN LOẠI CHUẨN XÁC THEO 3 NHÃN THỜI GIAN
+            is_social = platform in ["tiktok", "facebook", "threads", "youtube"]
             if age_seconds <= 7200:
                 freshness = "strict_2h"
                 status_tag = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
@@ -508,6 +582,12 @@ class LiveFreeSocialCrawler:
                 event_weight = 2.5 if is_social else 1.5
                 event_priority = 3 if is_social else 4
 
+            media_type = "post"
+            if platform in ["tiktok", "youtube"]:
+                media_type = "video"
+            elif platform == "news":
+                media_type = "article"
+
             for spot_idx, spot in enumerate(matched_spots):
                 st_name = spot.get("street") or spot.get("display_name", "")
                 sub_id = f"{post_id}_s{spot_idx}" if len(matched_spots) > 1 else str(post_id)
@@ -518,7 +598,7 @@ class LiveFreeSocialCrawler:
                     "canonical_id": canonical_id,
                     "url": decoded_url,
                     "platform": platform,
-                    "media_type": "video" if platform == "tiktok" else ("article" if platform == "news" else "post"),
+                    "media_type": media_type,
                     "author": author_name,
                     "text": quote_text,
                     "title": clean_title,
@@ -551,10 +631,10 @@ class LiveFreeSocialCrawler:
 
                 events_window.append(event)
 
-        # SẮP XẾP ƯU TIÊN: TIN TRONG 2 GIỜ LÊN ĐẦU TIÊN -> MẠNG XÃ HỘI (TIKTOK/FACEBOOK) -> ĐỘ NGHIÊM TRỌNG
+        # SẮP XẾP ƯU TIÊN: TIN TRONG 2 GIỜ LÊN ĐẦU TIÊN -> MẠNG XÃ HỘI (TIKTOK/FB/THREADS/YT) -> ĐỘ NGHIÊM TRỌNG
         events_window.sort(key=lambda x: (
             2 if x.get("freshness") == "strict_2h" else (1 if x.get("freshness") == "recent_4h" else 0),
-            1 if x.get("platform") in ["tiktok", "facebook"] else 0,
+            1 if x.get("platform") in ["tiktok", "facebook", "threads", "youtube"] else 0,
             x.get("weight", 1.0),
             x.get("create_time", 0)
         ), reverse=True)
@@ -568,9 +648,10 @@ class LiveFreeSocialCrawler:
             "total_scanned": total_scanned,
             "events_window_count": len(events_window),
             "events_recent_count": len(events_recent),
-            "social_priority_ratio": "87% Social : 13% News",
+            "social_priority_ratio": "92% Social : 8% News",
             "window_minutes": window_minutes,
-            "active_window": active_window_label
+            "active_window": active_window_label,
+            "max_queries": max_queries
         }
 
         return events_window, stats
@@ -578,14 +659,12 @@ class LiveFreeSocialCrawler:
 
 if __name__ == "__main__":
     crawler = LiveFreeSocialCrawler()
-    print("[*] Đang thử nghiệm quét Live Free Multi-Channel Crawler (Ưu tiên TikTok + Facebook)...")
-    events, stats = crawler.poll_live_stream(window_minutes=120, max_queries=15)
+    print("[*] Đang thử nghiệm quét Live Free Multi-Channel Crawler 100 câu (20 Workers)...")
+    events, stats = crawler.poll_live_stream(window_minutes=120, max_queries=100)
     print(f"[+] Kết quả quét Live:")
     print(f"  - Tổng số ứng viên quét: {stats['total_scanned']}")
     print(f"  - Bài đăng thu nạp được: {len(events)} (Tỷ lệ: {stats['social_priority_ratio']})")
-    for ev in events[:5]:
-        loc = ev.get('location', {})
-        print(f"    * [{ev['platform'].upper()}] Đường: {loc.get('street')} | ĐVHC: {loc.get('ward')} ({ev.get('relative_time')})")
-        print(f"      Status: {ev.get('status_tag')}")
-        print(f"      Text: {ev['text'][:80]}...")
-        print(f"      URL: {ev['url']}")
+    if events:
+        print("  - Mẫu 3 bài đăng mới nhất:")
+        for ev in events[:3]:
+            print(f"    * [{ev['platform'].upper()}] {ev['text'][:70]}... | {ev['location']['display_name']}")
