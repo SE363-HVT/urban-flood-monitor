@@ -1,6 +1,7 @@
 # 📌 BÁO CÁO CHECKPOINT & ĐỊNH HƯỚNG NÂNG CẤP (24/10/2026)
 ## ĐỀ TÀI: NÂNG CẤP BỘ CÀO LIVE STREAMING 100 CÂU (20 WORKERS) & LỘ TRÌNH TÍCH HỢP AI / MACHINE LEARNING
 **Môn học**: SE363 - Xử lý Dữ liệu Lớn  
+**Vai trò phụ trách**: Data Engineer (Làm chủ toàn diện Data Pipeline & Luồng dữ liệu End-to-End)  
 **Thời gian tạo**: 00:05 AM, ngày 24/10/2026  
 **Trạng thái hệ thống**: 🟢 Hoàn thành 100% nâng cấp Crawler, vượt qua toàn bộ bài kiểm thử, hệ thống sẵn sàng vận hành ổn định. Đã quy hoạch rõ lộ trình AI/ML phục vụ báo cáo đồ án.
 
@@ -40,7 +41,7 @@ Hệ thống chính thức phủ sóng **5 kênh thông tin** song song:
 
 ## 2. PHÂN TÍCH BẢN CHẤT MÔ HÌNH AI & MACHINE LEARNING
 
-Dành cho việc quản lý dự án và báo cáo học thuật trước hội đồng/thầy cô:
+Dành cho Data Engineer nắm trọn vẹn bức tranh dữ liệu phục vụ báo cáo học thuật:
 
 ### A. Phân định bản chất Model AI của nhóm (Bạn Hưng phụ trách)
 * **Khẳng định**: Model AI của bạn Hưng **100% là Deep Learning (Học sâu)**.
@@ -115,12 +116,17 @@ flowchart LR
 
 ---
 
-## 4. CHIẾN LƯỢC QUẢN LÝ DỰ ÁN & BẢO VỆ ĐỒ ÁN (DÀNH CHO LEAD)
+## 4. GÓC NHÌN DATA ENGINEER: LÀM CHỦ TOÀN DIỆN DATA PIPELINE & ĐỒ ÁN
 
-1. **Giữ vững Mốc chuẩn (Baseline)**: Hệ thống hiện tại được bảo toàn làm mốc chuẩn hoạt động tin cậy. Dù có hay chưa có ML, hệ thống vẫn vận hành 100% trơn tru khi demo trực tiếp.
-2. **Kịch bản trả lời thầy cô**:
-   > *"Dạ thưa Thầy, nhóm em xây dựng hệ thống theo kiến trúc 2 tầng: Tầng 1 sử dụng Deep Learning (PhoBERT, ViT, Whisper) để bóc tách ngữ nghĩa vi mô của từng bài đăng đa phương tiện. Tầng 2 quản lý vĩ mô bằng Big Data Pipeline (Kafka + Spark) kết hợp đối soát dữ liệu khí tượng Open-Meteo và gom cụm không gian thời gian. Nhóm đã xây dựng bản Heuristic chuẩn xác làm Baseline và sẵn sàng mở rộng mô hình Ensemble ML khi đưa vào giai đoạn huấn luyện nâng cao."*
-3. **Mức độ kiểm soát**: Lead dự án hoàn toàn làm chủ được toàn bộ hệ thống mà không bị phụ thuộc vào tính chất "hộp đen" của AI.
+1. **Tư duy Data Engineer xuất sắc (End-to-End Pipeline Ownership)**:
+   - Một Data Engineer giỏi không chỉ biết kéo thả luồng dữ liệu (Kafka, PySpark, Lakehouse) mà còn hiểu sâu sắc **hợp đồng dữ liệu (Data Contract)** phục vụ cho tầng AI/ML hạ nguồn (*Downstream Consumers*).
+   - Việc bạn hiểu rõ bản chất model của bạn Hưng (Deep Learning) và bài toán phân loại (Machine Learning) giúp bạn chuẩn hóa Schema, xử lý Feature Store và thiết kế Dead Letter Queue (DLQ) chuẩn xác $100\%$.
+2. **Kịch bản trả lời thầy cô chuẩn Data Engineer**:
+   > *"Dạ thưa Thầy, với vai trò Data Engineer phụ trách toàn bộ luồng Ingestion & Processing của đồ án, em thiết kế luồng dữ liệu theo kiến trúc phân tầng:*
+   > *1. Tầng Ingestion: Cào song song 100 queries qua 20 workers đạt độ trễ < 2 giây, đẩy vào Kafka topic `social.live.raw`.*
+   > *2. Tầng Data Contract & AI: Em chuẩn hóa schema đầu vào cho mô hình Deep Learning đa phương tiện (PhoBERT + Vision) thông qua REST Microservice.*
+   > *3. Tầng Processing & Veracity: PySpark Streaming xử lý làm giàu dữ liệu (Data Enrichment) với trạm khí tượng vệ tinh Open-Meteo và tính toán gom cụm không gian thời gian trước khi đẩy sang Dashboard."*
+3. **Mức độ kiểm soát**: Hệ thống Rule-based Heuristic hiện tại đóng vai trò là **Baseline Pipeline** vững chắc, đảm bảo dữ liệu luôn chảy liên tục, không bao giờ bị gián đoạn hay phụ thuộc vào tính chất "hộp đen" của AI.
 
 ---
 **Người ghi nhận**: Trợ lý Kỹ thuật Antigravity  
