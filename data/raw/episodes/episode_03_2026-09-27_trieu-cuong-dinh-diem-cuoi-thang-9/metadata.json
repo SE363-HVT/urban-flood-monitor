@@ -1,0 +1,23 @@
+{
+  "episode_id": "episode_03_2026-09-27_trieu-cuong-dinh-diem-cuoi-thang-9",
+  "total_items": 402,
+  "breakdown": {
+    "facebook": 141,
+    "tiktok": 196,
+    "news": 65
+  },
+  "updated_at": "2026-10-11T08:46:54.538415+00:00",
+  "id": "episode_03_2026-09-27_trieu-cuong-dinh-diem-cuoi-thang-9",
+  "name": "Đợt triều cường đỉnh điểm kết hợp mưa lớn cuối tháng 9/2026",
+  "description": "Đợt triều cường cuối tháng 9 kết hợp mưa to làm ngập nặng các tuyến đường ven sông (Trần Xuân Soạn, Huỳnh Tấn Phát, Quốc Hương, Thảo Điền).",
+  "start_date": "2026-09-27",
+  "end_date": "2026-09-30",
+  "weather_type": "Triều cường kết hợp mưa lớn (Đỉnh triều > 1.65m)",
+  "key_hotspots": [
+    "Trần Xuân Soạn",
+    "Huỳnh Tấn Phát",
+    "Quốc Hương",
+    "Nguyễn Thị Thập"
+  ],
+  "last_crawled_at": "2026-10-11T08:53:45.479394+00:00"
+}

@@ -55,3 +55,6 @@ ehthumbs.db
 
 # Temporary / Scratch test scripts
 scratch/
+
+*.safetensors
+*.pth

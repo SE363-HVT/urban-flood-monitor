@@ -1,0 +1,13 @@
+{
+  "episode_id": "historical_archive",
+  "total_items": 667,
+  "breakdown": {
+    "facebook": 196,
+    "tiktok": 280,
+    "news": 191
+  },
+  "updated_at": "2026-10-11T08:46:54.624254+00:00",
+  "name": "Dữ liệu lịch sử đối sánh (2018 - 2025)",
+  "description": "Tập hợp các đợt triều cường và mưa ngập mùa lũ các năm trước để phục vụ benchmark.",
+  "last_crawled_at": "2026-10-11T08:53:45.604364+00:00"
+}

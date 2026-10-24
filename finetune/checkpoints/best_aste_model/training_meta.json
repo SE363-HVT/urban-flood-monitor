@@ -1,0 +1,6 @@
+{
+  "base_model": "vinai/bartpho-syllable",
+  "best_epoch": 5,
+  "best_val_loss": 0.0727,
+  "timestamp": 1791389437
+}

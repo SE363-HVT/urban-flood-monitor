@@ -91,6 +91,140 @@ load_dynamic_cache()
 # DANH MỤC HẠT NHÂN (SEED HOTSPOTS) - ĐÃ ĐƯỢC ĐO CHUẨN XÁC TIM ĐƯỜNG THEO OPENSTREETMAP (HIGHWAY)
 # =========================================================================
 HOTSPOTS: List[Dict[str, Any]] = [
+    {
+        "keywords": ["nguyễn thị tuôi", "nguyen thi tuoi", "nguyenthituoi"],
+        "display_name": "Đường Nguyễn Thị Tuôi",
+        "street": "Đường Nguyễn Thị Tuôi",
+        "ward": "Xã Vĩnh Lộc",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8232, "lon": 106.5836,
+        "heat_points": [[10.8211, 106.5846], [10.8232, 106.5836], [10.8253, 106.5826]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Thị Tuôi (Xã Vĩnh Lộc)"
+    },
+    {
+        "keywords": ["phan văn hớn", "phan van hon", "phanvanhon"],
+        "display_name": "Đường Phan Văn Hớn",
+        "street": "Đường Phan Văn Hớn",
+        "ward": "Phường Đông Hưng Thuận",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8486, "lon": 106.5892,
+        "heat_points": [[10.8447, 106.6110], [10.8486, 106.5892], [10.8623, 106.5721]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Phan Văn Hớn"
+    },
+    # --- CÁC TUYẾN ĐƯỜNG BỔ SUNG ĐỘC LẬP (KHÔNG GỘP CHÙM) ---
+    {
+        "keywords": ["lã xuân oai", "la xuan oai", "laxuanoai"],
+        "display_name": "Đường Lã Xuân Oai",
+        "street": "Đường Lã Xuân Oai",
+        "ward": "Phường Tăng Nhơn Phú",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8415, "lon": 106.7930,
+        "heat_points": [[10.8415, 106.7930], [10.8480, 106.7860]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Lã Xuân Oai"
+    },
+    {
+        "keywords": ["nguyễn duy trinh", "nguyen duy trinh", "nguyenduytrinh"],
+        "display_name": "Đường Nguyễn Duy Trinh",
+        "street": "Đường Nguyễn Duy Trinh",
+        "ward": "Phường Long Trường",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7908, "lon": 106.7860,
+        "heat_points": [[10.7908, 106.7860], [10.7930, 106.7920]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Duy Trinh"
+    },
+    {
+        "keywords": ["đồng đen", "dong den", "dongden"],
+        "display_name": "Đường Đồng Đen",
+        "street": "Đường Đồng Đen",
+        "ward": "Phường Bảy Hiền",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7925, "lon": 106.6475,
+        "heat_points": [[10.7925, 106.6475]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Đồng Đen"
+    },
+    {
+        "keywords": ["bàu cát", "bau cat", "baucat"],
+        "display_name": "Đường Bàu Cát",
+        "street": "Đường Bàu Cát",
+        "ward": "Phường Bảy Hiền",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7910, "lon": 106.6450,
+        "heat_points": [[10.7910, 106.6450]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Bàu Cát"
+    },
+    {
+        "keywords": ["lũy bán bích", "luy ban bich", "luybanbich"],
+        "display_name": "Đường Lũy Bán Bích",
+        "street": "Đường Lũy Bán Bích",
+        "ward": "Phường Phú Thạnh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7780, "lon": 106.6320,
+        "heat_points": [[10.7780, 106.6320]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Lũy Bán Bích"
+    },
+    {
+        "keywords": ["âu cơ", "au co", "auco"],
+        "display_name": "Đường Âu Cơ",
+        "street": "Đường Âu Cơ",
+        "ward": "Phường Phú Thạnh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7830, "lon": 106.6450,
+        "heat_points": [[10.7830, 106.6450]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Âu Cơ"
+    },
+    {
+        "keywords": ["nguyễn văn hưởng", "nguyen van huong", "nguyenvanhuong"],
+        "display_name": "Đường Nguyễn Văn Hưởng",
+        "street": "Đường Nguyễn Văn Hưởng",
+        "ward": "Phường An Khánh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8090, "lon": 106.7310,
+        "heat_points": [[10.8090, 106.7310]],
+        "priority": 3,
+        "type": "triều cường sông Sài Gòn tràn đường Nguyễn Văn Hưởng"
+    },
+    {
+        "keywords": ["nguyễn bình", "nguyen binh", "nguyenbinh"],
+        "display_name": "Đường Nguyễn Bình",
+        "street": "Đường Nguyễn Bình",
+        "ward": "Xã Hiệp Phước",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.6650, "lon": 106.7220,
+        "heat_points": [[10.6650, 106.7220]],
+        "priority": 3,
+        "type": "ngập triều dâng đường Nguyễn Bình"
+    },
+    {
+        "keywords": ["nguyễn ảnh thủ", "nguyen anh thu", "nguyenanhthu"],
+        "display_name": "Đường Nguyễn Ảnh Thủ",
+        "street": "Đường Nguyễn Ảnh Thủ",
+        "ward": "Xã Bà Điểm",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8614, "lon": 106.6112,
+        "heat_points": [[10.8614, 106.6112], [10.8570, 106.6080], [10.8660, 106.6150]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Ảnh Thủ (giao Song Hành QL22)"
+    },
+
     # --- CÁC ĐIỂM NÓNG BỔ SUNG TĂNG ĐỘ PHỦ THEO THỰC TẾ NGẬP LỤT TP.HCM ---
     {
         "keywords": ["tân kỳ tân quý", "tan ky tan quy", "tankytanquy", "cầu xéo", "cauxeo", "ngã tư gò mây", "gò mây"],
@@ -106,7 +240,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["nguyễn hữu cảnh", "nguyen huu canh", "nguyenhuucanh", "chân cầu thủ thiêm", "cầu thủ thiêm 1"],
         "display_name": "Đường Nguyễn Hữu Cảnh",
-        "ward": "Phường 22",
+        "ward": "Phường Thạnh Mỹ Tây",
         "district": "Quận Bình Thạnh",
         "region": "TPHCM",
         "lat": 10.7930, "lon": 106.7180,
@@ -116,7 +250,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["nguyễn văn quá", "nguyen van qua", "nguyenvanqua", "cầu tham lương", "tham lương"],
-        "display_name": "Đường Nguyễn Văn Quá (Quận 12)",
+        "display_name": "Đường Nguyễn Văn Quá",
         "ward": "Phường Đông Hưng Thuận",
         "district": "Quận 12",
         "region": "TPHCM",
@@ -127,7 +261,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["đỗ xuân hợp", "do xuan hop", "doxuanhop"],
-        "display_name": "Đường Đỗ Xuân Hợp (Thủ Đức)",
+        "display_name": "Đường Đỗ Xuân Hợp",
         "ward": "Phường Phước Long",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
@@ -138,8 +272,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["lê văn việt", "le van viet", "levanviet"],
-        "display_name": "Đường Lê Văn Việt (Thủ Đức)",
-        "ward": "Phường Tăng Nhơn Phú A",
+        "display_name": "Đường Lê Văn Việt",
+        "ward": "Phường Tăng Nhơn Phú",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.8480, "lon": 106.7860,
@@ -147,10 +281,112 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "priority": 3,
         "type": "ngập tràn đường Lê Văn Việt"
     },
+            # =========================================================================
+    # CÁC ĐIỂM NÓNG BÌNH DƯƠNG (BÌNH DƯƠNG CŨ - TP.HCM MỚI NQ 1685)
+    # =========================================================================
     {
+        "keywords": ["đại lộ bình dương", "dai lo binh duong", "ql13 bình dương", "quốc lộ 13 bình dương"],
+        "display_name": "Đại lộ Bình Dương",
+        "street": "Đại lộ Bình Dương",
+        "ward": "Phường Thủ Dầu Một",
+        "district": "Bình Dương",
+        "region": "Bình Dương cũ",
+        "lat": 10.9805, "lon": 106.6745,
+        "heat_points": [[10.9805, 106.6745]],
+        "priority": 3,
+        "type": "ngập trục huyết mạch Đại lộ Bình Dương"
+    },
+    {
+        "keywords": ["thích quảng đức thủ dầu một", "thich quang duc", "ngã tư gò đậu", "nga tu go dau"],
+        "display_name": "Khu vực Thích Quảng Đức (Thủ Dầu Một)",
+        "street": "Đường Thích Quảng Đức",
+        "ward": "Phường Thủ Dầu Một",
+        "district": "Bình Dương",
+        "region": "Bình Dương cũ",
+        "lat": 10.9752, "lon": 106.6681,
+        "heat_points": [[10.9752, 106.6681]],
+        "priority": 3,
+        "type": "rốn ngập Thủ Dầu Một"
+    },
+    {
+        "keywords": ["ngã tư 550", "nga tu 550", "cầu ông bố", "cau ong bo", "đường 22 tháng 12", "đường 22/12", "lái thiêu", "lai thieu"],
+        "display_name": "Khu vực Ngã tư 550 - Cầu Ông Bố (Thuận An)",
+        "street": "Khu vực Ngã tư 550",
+        "ward": "Phường Thuận An",
+        "district": "Bình Dương",
+        "region": "Bình Dương cũ",
+        "lat": 10.9080, "lon": 106.7020,
+        "heat_points": [[10.9080, 106.7020]],
+        "priority": 3,
+        "type": "điểm ngập sâu Thuận An"
+    },
+    {
+        "keywords": ["sóng thần", "song than", "cầu vượt sóng thần", "quốc lộ 1k dĩ an", "ql1k dĩ an", "ngã ba cây điệp", "nga ba cay diep"],
+        "display_name": "Khu vực Sóng Thần - Quốc lộ 1K (Dĩ An)",
+        "street": "Khu vực Sóng Thần",
+        "ward": "Phường Dĩ An",
+        "district": "Bình Dương",
+        "region": "Bình Dương cũ",
+        "lat": 10.8920, "lon": 106.7450,
+        "heat_points": [[10.8920, 106.7450]],
+        "priority": 3,
+        "type": "điểm ngập Dĩ An"
+    },
+    # =========================================================================
+    # CÁC ĐIỂM NÓNG BÀ RỊA - VŨNG TÀU (BÀ RỊA - VŨNG TÀU CŨ - TP.HCM MỚI NQ 1685)
+    # =========================================================================
+    {
+        "keywords": ["đường hạ long vũng tàu", "hạ long vũng tàu", "thùy vân", "thuy van", "bãi sau vũng tàu", "bãi trước vũng tàu"],
+        "display_name": "Khu vực Bãi Sau - Thùy Vân (Vũng Tàu)",
+        "street": "Đường Thùy Vân",
+        "ward": "Phường Vũng Tàu",
+        "district": "Bà Rịa - Vũng Tàu",
+        "region": "Bà Rịa - Vũng Tàu cũ",
+        "lat": 10.3450, "lon": 107.0850,
+        "heat_points": [[10.3450, 107.0850]],
+        "priority": 3,
+        "type": "ngập triều cường ven biển Vũng Tàu"
+    },
+    {
+        "keywords": ["lê hồng phong vũng tàu", "nguyễn an ninh vũng tàu", "bến đình", "ben dinh"],
+        "display_name": "Khu vực Lê Hồng Phong - Nguyễn An Ninh (Vũng Tàu)",
+        "street": "Đường Lê Hồng Phong",
+        "ward": "Phường Vũng Tàu",
+        "district": "Bà Rịa - Vũng Tàu",
+        "region": "Bà Rịa - Vũng Tàu cũ",
+        "lat": 10.3580, "lon": 107.0910,
+        "heat_points": [[10.3580, 107.0910]],
+        "priority": 3,
+        "type": "ngập đô thị TP. Vũng Tàu"
+    },
+    {
+        "keywords": ["quốc lộ 51 phú mỹ", "ql51 phú mỹ", "thị xã phú mỹ", "phú mỹ vũng tàu"],
+        "display_name": "Khu vực Quốc lộ 51 (Phú Mỹ)",
+        "street": "Quốc lộ 51",
+        "ward": "Thị xã Phú Mỹ",
+        "district": "Bà Rịa - Vũng Tàu",
+        "region": "Bà Rịa - Vũng Tàu cũ",
+        "lat": 10.5910, "lon": 107.0540,
+        "heat_points": [[10.5910, 107.0540]],
+        "priority": 3,
+        "type": "ngập cục bộ Quốc lộ 51 Phú Mỹ"
+    },
+{
+        "keywords": ["ga đại học quốc gia", "ga dai hoc quoc gia", "đại học quốc gia", "dai hoc quoc gia"],
+        "display_name": "Ga Đại Học Quốc Gia (Thủ Đức)",
+        "street": "Ga Đại Học Quốc Gia",
+        "ward": "Phường Linh Trung",
+        "district": "TP. Thủ Đức",
+        "region": "TPHCM",
+        "lat": 10.8753, "lon": 106.8007,
+        "heat_points": [[10.8753, 106.8007]],
+        "priority": 3,
+        "type": "khu vực Ga Đại Học Quốc Gia"
+    },
+{
         "keywords": ["chợ thủ đức", "cho thu duc", "dương văn cam", "duong van cam", "đặng thị rành", "dang thi ranh"],
         "display_name": "Khu vực Chợ Thủ Đức (Dương Văn Cam)",
-        "ward": "Phường Linh Tây",
+        "ward": "Phường Linh Xuân",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.8520, "lon": 106.7580,
@@ -159,31 +395,45 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "rốn ngập Chợ Thủ Đức nước chảy xiết"
     },
     {
-        "keywords": ["trần não", "tran nao", "lương định của", "luong dinh cua"],
-        "display_name": "Đường Trần Não - Lương Định Của",
+        "keywords": ["trần não", "tran nao", "trannao"],
+        "display_name": "Đường Trần Não",
+        "street": "Đường Trần Não",
         "ward": "Phường An Khánh",
-        "district": "TP. Thủ Đức",
+        "district": "TP.HCM",
         "region": "TPHCM",
         "lat": 10.7920, "lon": 106.7320,
         "heat_points": [[10.7920, 106.7320]],
         "priority": 3,
-        "type": "ngập triều bờ sông Sài Gòn"
+        "type": "ngập triều bờ sông Sài Gòn Đường Trần Não"
     },
     {
-        "keywords": ["bạch đằng", "bach dang", "xô viết nghệ tĩnh", "xo viet nghe tinh", "hàng xanh", "ngã tư hàng xanh"],
-        "display_name": "Khu vực Hàng Xanh - Bạch Đằng",
-        "ward": "Phường 24",
-        "district": "Quận Bình Thạnh",
+        "keywords": ["ngã tư hàng xanh", "nga tu hang xanh", "hàng xanh", "hang xanh"],
+        "display_name": "Ngã tư Hàng Xanh",
+        "street": "Ngã tư Hàng Xanh",
+        "ward": "Phường Bình Thạnh",
+        "district": "TP.HCM",
         "region": "TPHCM",
-        "lat": 10.8020, "lon": 106.7110,
-        "heat_points": [[10.8020, 106.7110]],
+        "lat": 10.8015, "lon": 106.7115,
+        "heat_points": [[10.8015, 106.7115]],
         "priority": 3,
         "type": "ngập sâu nút giao Hàng Xanh"
     },
     {
+        "keywords": ["xô viết nghệ tĩnh", "xo viet nghe tinh", "xovietnghetinh"],
+        "display_name": "Đường Xô Viết Nghệ Tĩnh",
+        "street": "Đường Xô Viết Nghệ Tĩnh",
+        "ward": "Phường Bình Thạnh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8038, "lon": 106.7126,
+        "heat_points": [[10.8038, 106.7126], [10.8015, 106.7115]],
+        "priority": 3,
+        "type": "ngập sâu trục Xô Viết Nghệ Tĩnh"
+    },
+    {
         "keywords": ["thanh đa", "thanhda", "bình quới", "binh quoi", "bán đảo thanh đa"],
-        "display_name": "Bán đảo Thanh Đa (Bình Thạnh)",
-        "ward": "Phường 28",
+        "display_name": "Đường Bình Quới",
+        "ward": "Phường Bình Quới",
         "district": "Quận Bình Thạnh",
         "region": "TPHCM",
         "lat": 10.8250, "lon": 106.7350,
@@ -205,8 +455,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["kdc vĩnh lộc", "kdc vinh loc", "khu dân cư vĩnh lộc"],
-        "display_name": "Khu dân cư Vĩnh Lộc (Bình Hưng Hòa B)",
-        "ward": "Phường Bình Hưng Hòa B",
+        "display_name": "Khu dân cư Vĩnh Lộc",
+        "ward": "Phường Bình Tân",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
         "lat": 10.8060, "lon": 106.5890,
@@ -217,7 +467,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["chợ bình tân", "cho binh tan"],
         "display_name": "Khu vực Chợ Bình Tân",
-        "ward": "Phường An Lạc A",
+        "ward": "Phường An Lạc",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
         "lat": 10.7520, "lon": 106.6190,
@@ -227,8 +477,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["tân cảng", "tan cang", "cầu sài gòn tân cảng"],
-        "display_name": "Khu vực Tân Cảng (Bình Thạnh)",
-        "ward": "Phường 22",
+        "display_name": "Khu vực Tân Cảng",
+        "ward": "Phường Thạnh Mỹ Tây",
         "district": "Quận Bình Thạnh",
         "region": "TPHCM",
         "lat": 10.7960, "lon": 106.7210,
@@ -240,8 +490,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
     # --- CÁC TUYẾN ĐƯỜNG TRỌNG ĐIỂM NGẬP TẠI TP.HCM (CHUẨN TIM ĐƯỜNG OSM) ---
     {
         "keywords": ["bùi viện", "bui vien", "buivien", "phố tây bùi viện"],
-        "display_name": "Đường Bùi Viện (Phố Tây)",
-        "ward": "Phường Phạm Ngũ Lão",
+        "display_name": "Đường Bùi Viện",
+        "ward": "Phường Bến Thành",
         "district": "Quận 1",
         "region": "TPHCM",
         "lat": 10.7676, "lon": 106.6944,
@@ -261,7 +511,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["calmette", "nguyễn thái bình", "nguyen thai binh"],
         "display_name": "Đường Calmette",
-        "ward": "Phường Nguyễn Thái Bình",
+        "ward": "Phường Sài Gòn",
         "district": "Quận 1",
         "region": "TPHCM",
         "lat": 10.7689, "lon": 106.6985,
@@ -279,7 +529,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "triều cường bờ kè Kênh Đôi"
     },
     {
-        "keywords": ["rạch cùng", "rach cung", "bình đông", "binh dong", "bến bình đông", "phường bình đông", "phuong binh dong"],
+        "keywords": ["rạch cùng", "rach cung", "bến bình đông", "tuyến đường bến bình đông"],
         "display_name": "Tuyến đường Bến Bình Đông (Rạch Cùng)",
         "ward": "Phường Bình Đông",
         "district": "Quận 8",
@@ -291,8 +541,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["bạch đằng", "bach dang", "bachdang"],
         "display_name": "Đường Bạch Đằng",
-        "ward": "Phường 24",
-        "district": "Quận Bình Thạnh",
+        "ward": "Phường Bình Thạnh",
+        "district": "TP.HCM",
         "region": "TPHCM",
         "lat": 10.8033, "lon": 106.7056,
         "heat_points": [[10.8015, 106.7030], [10.8033, 106.7056], [10.8055, 106.7090]],
@@ -300,8 +550,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["thanh đa", "thanhda", "bình quới", "binh quoi", "binhquoi"],
-        "display_name": "Khu vực Bán đảo Thanh Đa",
-        "ward": "Phường 27",
+        "display_name": "Đường Bình Quới",
+        "ward": "Phường Bình Quới",
         "district": "Quận Bình Thạnh",
         "region": "TPHCM",
         "lat": 10.8234, "lon": 106.7320,
@@ -311,7 +561,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["ung văn khiêm", "ung van khiem", "ungvankhiem"],
         "display_name": "Đường Ung Văn Khiêm",
-        "ward": "Phường 25",
+        "ward": "Phường Thạnh Mỹ Tây",
         "district": "Quận Bình Thạnh",
         "region": "TPHCM",
         "lat": 10.8066, "lon": 106.7198,
@@ -320,8 +570,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["nguyễn xí", "nguyen xi", "nguyenxi", "cầu đỏ"],
-        "display_name": "Đường Nguyễn Xí (Cầu Đỏ)",
-        "ward": "Phường 26",
+        "display_name": "Đường Nguyễn Xí",
+        "ward": "Phường Bình Thạnh",
         "district": "Quận Bình Thạnh",
         "region": "TPHCM",
         "lat": 10.8150, "lon": 106.7080,
@@ -330,8 +580,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["đinh bộ lĩnh", "dinh bo linh", "dinhbolinh", "bx miền đông", "bến xe miền đông"],
-        "display_name": "Đường Đinh Bộ Lĩnh (BX Miền Đông)",
-        "ward": "Phường 26",
+        "display_name": "Đường Đinh Bộ Lĩnh",
+        "ward": "Phường Bình Thạnh",
         "district": "Quận Bình Thạnh",
         "region": "TPHCM",
         "lat": 10.8151, "lon": 106.7104,
@@ -341,7 +591,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["cầu sài gòn", "cau sai gon", "causaigon"],
         "display_name": "Khu vực Cầu Sài Gòn",
-        "ward": "Phường 22",
+        "ward": "Phường Thạnh Mỹ Tây",
         "district": "Quận Bình Thạnh",
         "region": "TPHCM",
         "lat": 10.7989, "lon": 106.7272,
@@ -351,7 +601,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["phan huy ích", "phan huy ich", "phanhuyich"],
         "display_name": "Đường Phan Huy Ích",
-        "ward": "Phường 14",
+        "ward": "Phường An Hội Tây",
         "district": "Quận Gò Vấp",
         "region": "TPHCM",
         "lat": 10.8372, "lon": 106.6362,
@@ -361,17 +611,19 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["phạm văn đồng", "pham van dong", "phamvandong"],
         "display_name": "Đại lộ Phạm Văn Đồng",
-        "ward": "Phường 1",
-        "district": "Quận Gò Vấp",
+        "street": "Đại lộ Phạm Văn Đồng",
+        "ward": "Phường Hạnh Thông",
+        "district": "TP.HCM",
         "region": "TPHCM",
-        "lat": 10.8245, "lon": 106.6950,
+        "lat": 10.8208, "lon": 106.6950,
+        "heat_points": [[10.8188, 106.6879], [10.8208, 106.6950], [10.8354, 106.7298]],
         "heat_points": [[10.8188, 106.6879], [10.8245, 106.6950], [10.8354, 106.7298]],
         "type": "ngập tràn làn xe máy"
     },
     {
         "keywords": ["võ văn ngân", "vo van ngan", "vovanngan"],
         "display_name": "Đường Võ Văn Ngân",
-        "ward": "Phường Linh Chiểu",
+        "ward": "Phường Thủ Đức",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.8505, "lon": 106.7664,
@@ -381,7 +633,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["chợ thủ đức", "cho thu duc", "chothuduc"],
         "display_name": "Khu vực Chợ Thủ Đức",
-        "ward": "Phường Linh Tây",
+        "ward": "Phường Linh Xuân",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.8503, "lon": 106.7541,
@@ -391,7 +643,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["tô ngọc vân", "to ngoc van", "tongocvan"],
         "display_name": "Đường Tô Ngọc Vân",
-        "ward": "Phường Tam Phú",
+        "ward": "Phường Tam Bình",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.8540, "lon": 106.7510,
@@ -401,7 +653,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["kha vạn cân", "kha van can", "khavancan"],
         "display_name": "Đường Kha Vạn Cân",
-        "ward": "Phường Linh Đông",
+        "ward": "Phường Thủ Đức",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.8453, "lon": 106.7500,
@@ -409,9 +661,9 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "ngập cục bộ ven rạch"
     },
     {
-        "keywords": ["quốc hương", "quoc huong", "thảo điền", "thao dien", "thaodien", "nguyễn văn hưởng"],
-        "display_name": "Đường Quốc Hương (Thảo Điền)",
-        "ward": "Phường Thảo Điền",
+        "keywords": ["quốc hương", "quoc huong", "quochuong"],
+        "display_name": "Đường Quốc Hương",
+        "ward": "Phường An Khánh",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.8028, "lon": 106.7324,
@@ -431,7 +683,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["hầm chui an phú", "ham chui an phu", "nút giao an phú", "nut giao an phu"],
         "display_name": "Hầm chui Nút giao An Phú",
-        "ward": "Phường An Phú",
+        "ward": "Phường An Khánh",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.7910, "lon": 106.7514,
@@ -439,9 +691,21 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "ngập hầm chui ngập sâu quá tải máy bơm"
     },
     {
-        "keywords": ["thủ thiêm", "thu thiem", "cây bàng", "cay bang", "cầu ba son"],
-        "display_name": "Đường Cây Bàng (Thủ Thiêm)",
-        "ward": "Phường Thủ Thiêm",
+        "keywords": ["cầu ba son", "cau ba son", "ba son", "chân cầu ba son", "chan cau ba son", "cầu thủ thiêm 2", "cau thu thiem 2", "đường r12", "duong r12", "đường r12 - chân cầu ba son"],
+        "display_name": "Cầu Ba Son",
+        "street": "Cầu Ba Son",
+        "ward": "Phường An Khánh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7788, "lon": 106.7115,
+        "heat_points": [[10.7788, 106.7115], [10.7775, 106.7130]],
+        "priority": 3,
+        "type": "ngập triều khu vực chân cầu Ba Son (Thủ Thiêm)"
+    },
+    {
+        "keywords": ["thủ thiêm", "thu thiem", "cây bàng", "cay bang"],
+        "display_name": "Đường Cây Bàng",
+        "ward": "Phường An Khánh",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.7704, "lon": 106.7101,
@@ -462,16 +726,18 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["huỳnh tấn phát", "huynh tan phat", "huynhtanphat"],
         "display_name": "Đường Huỳnh Tấn Phát",
         "ward": "Phường Phú Thuận",
-        "district": "Quận 7",
+        "district": "TP.HCM",
         "region": "TPHCM",
-        "lat": 10.7350, "lon": 106.7340,
-        "heat_points": [[10.7350, 106.7340], [10.7480, 106.7289]],
-        "type": "triều cường sông Nhà Bè"
+        "lat": 10.7342, "lon": 106.7305,
+        "heat_points": [[10.7342, 106.7305], [10.7480, 106.7289], [10.7241, 106.7335]],
+        "type": "triều cường sông Nhà Bè",
+        "priority": 3,
+        "street": "Đường Huỳnh Tấn Phát"
     },
     {
         "keywords": ["lê văn lương", "le van luong", "levanluong", "cầu rạch đỉa"],
         "display_name": "Đường Lê Văn Lương",
-        "ward": "Phường Tân Phong",
+        "ward": "Phường Tân Hưng",
         "district": "Quận 7",
         "region": "TPHCM",
         "lat": 10.7350, "lon": 106.7020,
@@ -491,17 +757,19 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["phạm hữu lầu", "pham huu lau", "phamhuulau"],
         "display_name": "Đường Phạm Hữu Lầu",
+        "street": "Đường Phạm Hữu Lầu",
         "ward": "Phường Phú Mỹ",
-        "district": "Quận 7",
+        "district": "TP.HCM",
         "region": "TPHCM",
-        "lat": 10.7123, "lon": 106.7185,
-        "heat_points": [[10.7029, 106.7234], [10.7123, 106.7185]],
-        "type": "ngập tràn đường ngập lối đi"
+        "lat": 10.70408, "lon": 106.72863,
+        "heat_points": [[10.70408, 106.72863], [10.70552, 106.73766], [10.70312, 106.72573]],
+        "priority": 3,
+        "type": "ngập tràn tim đường Phạm Hữu Lầu (từ Huỳnh Tấn Phát đến Cầu Phước Long)"
     },
     {
         "keywords": ["tân quy", "tan quy", "lotte quận 7", "lotte quan 7"],
         "display_name": "Khu dân cư Tân Quy",
-        "ward": "Phường Tân Quy",
+        "ward": "Phường Tân Hưng",
         "district": "Quận 7",
         "region": "TPHCM",
         "lat": 10.7420, "lon": 106.7080,
@@ -522,7 +790,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["liên khu 4-5", "lien khu 4-5", "lk 4-5", "lienkhu45"],
         "display_name": "Đường Liên Khu 4-5",
-        "ward": "Phường Bình Hưng Hòa B",
+        "ward": "Phường Bình Tân",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
         "lat": 10.7982, "lon": 106.5921,
@@ -532,7 +800,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["mã lò", "ma lo", "malo"],
         "display_name": "Đường Mã Lò",
-        "ward": "Phường Bình Hưng Hòa A",
+        "ward": "Phường Bình Hưng Hòa",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
         "lat": 10.7764, "lon": 106.6009,
@@ -551,7 +819,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["kinh dương vương", "kinh duong vuong", "kinhduongvuong", "bến xe miền tây"],
-        "display_name": "Đường Kinh Dương Vương (Bình Tân)",
+        "display_name": "Đường Kinh Dương Vương",
         "ward": "Phường An Lạc",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
@@ -562,7 +830,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["tên lửa", "ten lua", "tenlua"],
-        "display_name": "Đường Tên Lửa (Bình Tân)",
+        "display_name": "Đường Tên Lửa",
         "ward": "Phường An Lạc",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
@@ -574,7 +842,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["bà triệu hóc môn", "đường bà triệu", "bà triệu", "ba trieu", "bv hóc môn"],
         "display_name": "Đường Bà Triệu",
-        "ward": "Thị trấn Hóc Môn",
+        "ward": "Xã Hóc Môn",
         "district": "Huyện Hóc Môn",
         "region": "TPHCM",
         "lat": 10.8848, "lon": 106.5951,
@@ -582,9 +850,9 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "ngập sâu khu vực bệnh viện Hóc Môn"
     },
     {
-        "keywords": ["lý thường kiệt", "ly thuong kiet"],
+        "keywords": ["lý thường kiệt hóc môn", "ly thuong kiet hoc mon"],
         "display_name": "Đường Lý Thường Kiệt (Hóc Môn)",
-        "ward": "Thị trấn Hóc Môn",
+        "ward": "Xã Hóc Môn",
         "district": "Huyện Hóc Môn",
         "region": "TPHCM",
         "lat": 10.8870, "lon": 106.5906,
@@ -594,7 +862,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["cộng hòa", "cong hoa", "conghoa"],
         "display_name": "Đường Cộng Hòa",
-        "ward": "Phường 13",
+        "ward": "Phường Tân Bình",
         "district": "Quận Tân Bình",
         "region": "TPHCM",
         "lat": 10.8024, "lon": 106.6412,
@@ -602,8 +870,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "ngập bùn đất và nước mưa kéo dài"
     },
     {
-        "keywords": ["thoại ngọc hầu", "thoai ngoc hau", "đồng đen", "bàu cát", "lũy bán bích", "âu cơ"],
-        "display_name": "Đường Thoại Ngọc Hầu (Tân Phú)",
+        "keywords": ["thoại ngọc hầu", "thoai ngoc hau", "thoaingochau"],
+        "display_name": "Đường Thoại Ngọc Hầu",
         "ward": "Phường Phú Thạnh",
         "district": "Quận Tân Phú",
         "region": "TPHCM",
@@ -622,13 +890,15 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "type": "ngập bờ bao An Phú Đông"
     },
     {
-        "keywords": ["quốc lộ 50", "quoc lo 50", "ql50"],
-        "display_name": "Đường Quốc lộ 50 (Bình Chánh)",
+        "keywords": ["quốc lộ 50", "quoc lo 50", "ql 50", "ql50"],
+        "display_name": "Quốc lộ 50",
+        "street": "Quốc lộ 50",
         "ward": "Xã Bình Hưng",
-        "priority": 2,
-        "district": "Huyện Bình Chánh",
+        "priority": 3,
+        "district": "TP.HCM",
         "region": "TPHCM",
-        "lat": 10.7180, "lon": 106.6620,
+        "lat": 10.7275, "lon": 106.6560,
+        "heat_points": [[10.7275, 106.6560], [10.7304, 106.6560], [10.7240, 106.6560]],
         "heat_points": [[10.7100, 106.6630], [10.7180, 106.6620]],
         "type": "ngập triều kết hợp mưa lũ"
     },
@@ -668,7 +938,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["gò vấp", "go vap", "govap"],
         "display_name": "Khu vực Quận Gò Vấp",
         "priority": 1,
-        "ward": "Phường 10",
+        "ward": "Phường Gò Vấp",
         "district": "Quận Gò Vấp",
         "region": "TPHCM",
         "lat": 10.8385, "lon": 106.6650,
@@ -679,7 +949,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["thủ đức", "thu duc", "thuduc"],
         "display_name": "Khu vực TP. Thủ Đức",
         "priority": 1,
-        "ward": "Phường Linh Chiểu",
+        "ward": "Phường Thủ Đức",
         "district": "TP. Thủ Đức",
         "region": "TPHCM",
         "lat": 10.8500, "lon": 106.7600,
@@ -688,10 +958,10 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["bình thạnh", "binh thanh", "binhthanh"],
-        "display_name": "Khu vực Quận Bình Thạnh",
+        "display_name": "Khu vực Phường Bình Thạnh",
         "priority": 1,
-        "ward": "Phường 24",
-        "district": "Quận Bình Thạnh",
+        "ward": "Phường Bình Thạnh",
+        "district": "TP.HCM",
         "region": "TPHCM",
         "lat": 10.8050, "lon": 106.7050,
         "heat_points": [[10.8050, 106.7050]],
@@ -723,7 +993,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["tân bình", "tan binh", "tanbinh"],
         "display_name": "Khu vực Quận Tân Bình",
         "priority": 1,
-        "ward": "Phường 12",
+        "ward": "Phường Bảy Hiền",
         "district": "Quận Tân Bình",
         "region": "TPHCM",
         "lat": 10.7990, "lon": 106.6520,
@@ -782,7 +1052,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     # --- CÁC ĐIỂM NÓNG NGẬP NƯỚC TRỌNG ĐIỂM TẠI BÌNH TÂN (CHUẨN TIM ĐƯỜNG) ---
     {
         "keywords": ["hồ học lãm", "ho hoc lam", "hohoclam"],
-        "display_name": "Đường Hồ Học Lãm (Bình Tân)",
+        "display_name": "Đường Hồ Học Lãm",
         "ward": "Phường An Lạc",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
@@ -793,7 +1063,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["an dương vương", "an duong vuong", "anduongvuong"],
-        "display_name": "Đường An Dương Vương (Bình Tân)",
+        "display_name": "Đường An Dương Vương",
         "ward": "Phường An Lạc",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
@@ -815,8 +1085,8 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["tên lửa", "ten lua", "đường số 7 bình tân"],
-        "display_name": "Đường Số 7 (Khu Tên Lửa)",
-        "ward": "Phường Bình Trị Đông B",
+        "display_name": "Đường Số 7",
+        "ward": "Phường An Lạc",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
         "lat": 10.7550, "lon": 106.6100,
@@ -826,7 +1096,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     },
     {
         "keywords": ["trần văn giàu", "tran van giau", "tranvangiau"],
-        "display_name": "Đường Trần Văn Giàu (Bình Tân)",
+        "display_name": "Đường Trần Văn Giàu",
         "ward": "Phường Tân Tạo",
         "district": "Quận Bình Tân",
         "region": "TPHCM",
@@ -954,7 +1224,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": [
             "hóc môn", "hoc mon", "hocmon", "xã hóc môn",
             "tân xuân", "tan xuan", "xã tân xuân",
-            "tân hiệp", "tan hiep", "xã tân hiệp",
+            "tân hiệp hóc môn", "xã tân hiệp hóc môn",
             "thị trấn hóc môn", "tt hóc môn"
         ],
         "display_name": "Khu vực Xã Hóc Môn",
@@ -1056,7 +1326,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["quận 12", "quan 12", "quan12", "an phú đông"],
         "display_name": "Khu vực Quận 12",
         "priority": 1,
-        "ward": "Phường Tân Chánh Hiệp",
+        "ward": "Phường Trung Mỹ Tây",
         "district": "Quận 12",
         "region": "TPHCM",
         "lat": 10.8670, "lon": 106.6260,
@@ -1067,7 +1337,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["quận 11", "quan 11", "quan11"],
         "display_name": "Khu vực Quận 11",
         "priority": 1,
-        "ward": "Phường 9",
+        "ward": "Phường Nhiêu Lộc",
         "district": "Quận 11",
         "region": "TPHCM",
         "lat": 10.7670, "lon": 106.6530,
@@ -1130,7 +1400,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
         "keywords": ["phú nhuận", "phu nhuan", "phunhuan"],
         "display_name": "Khu vực Quận Phú Nhuận",
         "priority": 1,
-        "ward": "Phường 2",
+        "ward": "Phường Cầu Kiệu",
         "district": "Quận Phú Nhuận",
         "region": "TPHCM",
         "lat": 10.7980, "lon": 106.6850,
@@ -1140,7 +1410,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["củ chi", "cu chi", "cuchi"],
         "display_name": "Khu vực Huyện Củ Chi",
-        "ward": "Thị trấn Củ Chi",
+        "ward": "Xã Tân An Hội",
         "district": "Huyện Củ Chi",
         "region": "TPHCM",
         "lat": 10.9750, "lon": 106.4950,
@@ -1150,7 +1420,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["cần giờ", "can gio", "cangio"],
         "display_name": "Khu vực Huyện Cần Giờ",
-        "ward": "Thị trấn Cần Thạnh",
+        "ward": "Xã Cần Giờ",
         "district": "Huyện Cần Giờ",
         "region": "TPHCM",
         "lat": 10.4100, "lon": 106.9600,
@@ -1160,7 +1430,7 @@ HOTSPOTS: List[Dict[str, Any]] = [
     {
         "keywords": ["quận 1", "quan 1", "quan1"],
         "display_name": "Khu vực Quận 1",
-        "ward": "Phường Bến Nghé",
+        "ward": "Phường Sài Gòn",
         "district": "Quận 1",
         "region": "TPHCM",
         "lat": 10.7765, "lon": 106.7009,
@@ -1190,8 +1460,312 @@ HOTSPOTS: List[Dict[str, Any]] = [
 # Cấp 3 (Cao nhất): STREET_HOTSPOTS - Các tuyến đường cụ thể chuẩn tim đường OSM (122 CSGT + Seed Streets)
 # Cấp 2: ADMIN_HOTSPOTS - 168 Đơn vị hành chính Phường/Xã mới sau sáp nhập
 # Cấp 1 (Fallback): CITYWIDE_HOTSPOTS - Cấp Quận/Huyện chung & Toàn thành phố
-STREET_HOTSPOTS: List[Dict[str, Any]] = []
-CITYWIDE_HOTSPOTS: List[Dict[str, Any]] = []
+STREET_HOTSPOTS: List[Dict[str, Any]] = [
+    {
+        "keywords": ["nguyễn an ninh", "nguyen an ninh", "nguyenanninh"],
+        "display_name": "Đường Nguyễn An Ninh",
+        "street": "Đường Nguyễn An Ninh",
+        "ward": "Phường Dĩ An",
+        "district": "TP. Dĩ An (Cửa ngõ TP. Thủ Đức)",
+        "region": "TPHCM",
+        "lat": 10.91465, "lon": 106.76948,
+        "heat_points": [[10.91465, 106.76948], [10.9104, 106.7698]],
+        "priority": 3,
+        "type": "ngập trục đường Nguyễn An Ninh (Phường Dĩ An)"
+    },
+    {
+        "keywords": ["nguyễn thị tuôi", "nguyen thi tuoi", "nguyenthituoi"],
+        "display_name": "Đường Nguyễn Thị Tuôi",
+        "street": "Đường Nguyễn Thị Tuôi",
+        "ward": "Xã Vĩnh Lộc",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8232, "lon": 106.5836,
+        "heat_points": [[10.8211, 106.5846], [10.8232, 106.5836], [10.8253, 106.5826]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Thị Tuôi (Xã Vĩnh Lộc)"
+    },
+    {
+        "keywords": ["phan văn hớn", "phan van hon", "phanvanhon"],
+        "display_name": "Đường Phan Văn Hớn",
+        "street": "Đường Phan Văn Hớn",
+        "ward": "Phường Đông Hưng Thuận",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8486, "lon": 106.5892,
+        "heat_points": [[10.8447, 106.6110], [10.8486, 106.5892], [10.8623, 106.5721]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Phan Văn Hớn"
+    },
+    {
+        "keywords": ["nguyễn thị tuôi", "nguyen thi tuoi", "nguyenthituoi"],
+        "display_name": "Đường Nguyễn Thị Tuôi",
+        "street": "Đường Nguyễn Thị Tuôi",
+        "ward": "Xã Vĩnh Lộc",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8232, "lon": 106.5836,
+        "heat_points": [[10.8211, 106.5846], [10.8232, 106.5836], [10.8253, 106.5826]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Thị Tuôi (Xã Vĩnh Lộc)"
+    },
+    {
+        "keywords": ["phan văn hớn", "phan van hon", "phanvanhon"],
+        "display_name": "Đường Phan Văn Hớn",
+        "street": "Đường Phan Văn Hớn",
+        "ward": "Phường Đông Hưng Thuận",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8486, "lon": 106.5892,
+        "heat_points": [[10.8447, 106.6110], [10.8486, 106.5892], [10.8623, 106.5721]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Phan Văn Hớn"
+    },
+    # --- CÁC TUYẾN ĐƯỜNG BỔ SUNG ĐỘC LẬP (KHÔNG GỘP CHÙM) ---
+    {
+        "keywords": ["lã xuân oai", "la xuan oai", "laxuanoai"],
+        "display_name": "Đường Lã Xuân Oai",
+        "street": "Đường Lã Xuân Oai",
+        "ward": "Phường Tăng Nhơn Phú",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8415, "lon": 106.7930,
+        "heat_points": [[10.8415, 106.7930], [10.8480, 106.7860]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Lã Xuân Oai"
+    },
+    {
+        "keywords": ["nguyễn duy trinh", "nguyen duy trinh", "nguyenduytrinh"],
+        "display_name": "Đường Nguyễn Duy Trinh",
+        "street": "Đường Nguyễn Duy Trinh",
+        "ward": "Phường Long Trường",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7908, "lon": 106.7860,
+        "heat_points": [[10.7908, 106.7860], [10.7930, 106.7920]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Duy Trinh"
+    },
+    {
+        "keywords": ["đồng đen", "dong den", "dongden"],
+        "display_name": "Đường Đồng Đen",
+        "street": "Đường Đồng Đen",
+        "ward": "Phường Bảy Hiền",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7925, "lon": 106.6475,
+        "heat_points": [[10.7925, 106.6475]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Đồng Đen"
+    },
+    {
+        "keywords": ["bàu cát", "bau cat", "baucat"],
+        "display_name": "Đường Bàu Cát",
+        "street": "Đường Bàu Cát",
+        "ward": "Phường Bảy Hiền",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7910, "lon": 106.6450,
+        "heat_points": [[10.7910, 106.6450]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Bàu Cát"
+    },
+    {
+        "keywords": ["lũy bán bích", "luy ban bich", "luybanbich"],
+        "display_name": "Đường Lũy Bán Bích",
+        "street": "Đường Lũy Bán Bích",
+        "ward": "Phường Phú Thạnh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7780, "lon": 106.6320,
+        "heat_points": [[10.7780, 106.6320]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Lũy Bán Bích"
+    },
+    {
+        "keywords": ["âu cơ", "au co", "auco"],
+        "display_name": "Đường Âu Cơ",
+        "street": "Đường Âu Cơ",
+        "ward": "Phường Phú Thạnh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7830, "lon": 106.6450,
+        "heat_points": [[10.7830, 106.6450]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Âu Cơ"
+    },
+    {
+        "keywords": ["nguyễn văn hưởng", "nguyen van huong", "nguyenvanhuong"],
+        "display_name": "Đường Nguyễn Văn Hưởng",
+        "street": "Đường Nguyễn Văn Hưởng",
+        "ward": "Phường An Khánh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8090, "lon": 106.7310,
+        "heat_points": [[10.8090, 106.7310]],
+        "priority": 3,
+        "type": "triều cường sông Sài Gòn tràn đường Nguyễn Văn Hưởng"
+    },
+    {
+        "keywords": ["nguyễn bình", "nguyen binh", "nguyenbinh"],
+        "display_name": "Đường Nguyễn Bình",
+        "street": "Đường Nguyễn Bình",
+        "ward": "Xã Hiệp Phước",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.6650, "lon": 106.7220,
+        "heat_points": [[10.6650, 106.7220]],
+        "priority": 3,
+        "type": "ngập triều dâng đường Nguyễn Bình"
+    },
+    {
+        "keywords": ["nguyễn ảnh thủ", "nguyen anh thu", "nguyenanhthu"],
+        "display_name": "Đường Nguyễn Ảnh Thủ",
+        "street": "Đường Nguyễn Ảnh Thủ",
+        "ward": "Xã Bà Điểm",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8614, "lon": 106.6112,
+        "heat_points": [[10.8614, 106.6112], [10.8570, 106.6080], [10.8660, 106.6150]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Ảnh Thủ (giao Song Hành QL22)"
+    },
+]
+CITYWIDE_HOTSPOTS: List[Dict[str, Any]] = [
+    {
+        "keywords": ["nguyễn thị tuôi", "nguyen thi tuoi", "nguyenthituoi"],
+        "display_name": "Đường Nguyễn Thị Tuôi",
+        "street": "Đường Nguyễn Thị Tuôi",
+        "ward": "Xã Vĩnh Lộc",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8232, "lon": 106.5836,
+        "heat_points": [[10.8211, 106.5846], [10.8232, 106.5836], [10.8253, 106.5826]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Thị Tuôi (Xã Vĩnh Lộc)"
+    },
+    {
+        "keywords": ["phan văn hớn", "phan van hon", "phanvanhon"],
+        "display_name": "Đường Phan Văn Hớn",
+        "street": "Đường Phan Văn Hớn",
+        "ward": "Phường Đông Hưng Thuận",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8486, "lon": 106.5892,
+        "heat_points": [[10.8447, 106.6110], [10.8486, 106.5892], [10.8623, 106.5721]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Phan Văn Hớn"
+    },
+    # --- CÁC TUYẾN ĐƯỜNG BỔ SUNG ĐỘC LẬP (KHÔNG GỘP CHÙM) ---
+    {
+        "keywords": ["lã xuân oai", "la xuan oai", "laxuanoai"],
+        "display_name": "Đường Lã Xuân Oai",
+        "street": "Đường Lã Xuân Oai",
+        "ward": "Phường Tăng Nhơn Phú",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8415, "lon": 106.7930,
+        "heat_points": [[10.8415, 106.7930], [10.8480, 106.7860]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Lã Xuân Oai"
+    },
+    {
+        "keywords": ["nguyễn duy trinh", "nguyen duy trinh", "nguyenduytrinh"],
+        "display_name": "Đường Nguyễn Duy Trinh",
+        "street": "Đường Nguyễn Duy Trinh",
+        "ward": "Phường Long Trường",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7908, "lon": 106.7860,
+        "heat_points": [[10.7908, 106.7860], [10.7930, 106.7920]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Duy Trinh"
+    },
+    {
+        "keywords": ["đồng đen", "dong den", "dongden"],
+        "display_name": "Đường Đồng Đen",
+        "street": "Đường Đồng Đen",
+        "ward": "Phường Bảy Hiền",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7925, "lon": 106.6475,
+        "heat_points": [[10.7925, 106.6475]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Đồng Đen"
+    },
+    {
+        "keywords": ["bàu cát", "bau cat", "baucat"],
+        "display_name": "Đường Bàu Cát",
+        "street": "Đường Bàu Cát",
+        "ward": "Phường Bảy Hiền",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7910, "lon": 106.6450,
+        "heat_points": [[10.7910, 106.6450]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Bàu Cát"
+    },
+    {
+        "keywords": ["lũy bán bích", "luy ban bich", "luybanbich"],
+        "display_name": "Đường Lũy Bán Bích",
+        "street": "Đường Lũy Bán Bích",
+        "ward": "Phường Phú Thạnh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7780, "lon": 106.6320,
+        "heat_points": [[10.7780, 106.6320]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Lũy Bán Bích"
+    },
+    {
+        "keywords": ["âu cơ", "au co", "auco"],
+        "display_name": "Đường Âu Cơ",
+        "street": "Đường Âu Cơ",
+        "ward": "Phường Phú Thạnh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.7830, "lon": 106.6450,
+        "heat_points": [[10.7830, 106.6450]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Âu Cơ"
+    },
+    {
+        "keywords": ["nguyễn văn hưởng", "nguyen van huong", "nguyenvanhuong"],
+        "display_name": "Đường Nguyễn Văn Hưởng",
+        "street": "Đường Nguyễn Văn Hưởng",
+        "ward": "Phường An Khánh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8090, "lon": 106.7310,
+        "heat_points": [[10.8090, 106.7310]],
+        "priority": 3,
+        "type": "triều cường sông Sài Gòn tràn đường Nguyễn Văn Hưởng"
+    },
+    {
+        "keywords": ["nguyễn bình", "nguyen binh", "nguyenbinh"],
+        "display_name": "Đường Nguyễn Bình",
+        "street": "Đường Nguyễn Bình",
+        "ward": "Xã Hiệp Phước",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.6650, "lon": 106.7220,
+        "heat_points": [[10.6650, 106.7220]],
+        "priority": 3,
+        "type": "ngập triều dâng đường Nguyễn Bình"
+    },
+    {
+        "keywords": ["nguyễn ảnh thủ", "nguyen anh thu", "nguyenanhthu"],
+        "display_name": "Đường Nguyễn Ảnh Thủ",
+        "street": "Đường Nguyễn Ảnh Thủ",
+        "ward": "Xã Bà Điểm",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.8614, "lon": 106.6112,
+        "heat_points": [[10.8614, 106.6112], [10.8570, 106.6080], [10.8660, 106.6150]],
+        "priority": 3,
+        "type": "ngập sâu trục đường Nguyễn Ảnh Thủ (giao Song Hành QL22)"
+    },
+]
 
 if CSGT_HOTSPOTS:
     for s in CSGT_HOTSPOTS:
@@ -1251,7 +1825,9 @@ OUT_OF_SCOPE_LOCATIONS = [
     "bình phước", "binh phuoc", "đồng xoài", "dong xoai",
     "tây ninh", "tay ninh", "tayninh",
 
-    # Miền Tây (ĐBSCL)
+    # Cần Thơ & Miền Tây (ĐBSCL)
+    "cần thơ", "can tho", "cantho", "canthotv", "cần thơ tv", "btv", "ninh kiều", "cái răng", "bình thủy", "ô môn", "thốt nốt", "sông hậu", "song hau",
+    "đèo mẹ bồng con", "deo me bong con", "mẹ bồng con", "me bong con", "dầu giây", "dau giay", "long khánh", "long khanh", "an lộc", "an loc",
     "long an", "longan", "tân an", "tan an", "bến lức", "ben luc", "đức hòa", "duc hoa", "cần giuộc", "cần đước",
     "tiền giang", "tien giang", "tiengiang", "mỹ tho", "my tho", "mytho", "gò công", "cai lậy",
     "bến tre", "ben tre", "bentre", "ba tri",
@@ -1271,8 +1847,10 @@ OUT_OF_SCOPE_LOCATIONS = [
     "bangkok", "thái lan", "thailand", "trung quốc", "china", "indonesia", "manila", "philippines", "nhật bản", "nhat ban", "japan", "tokyo", "hàn quốc", "han quoc", "korea", "singapore", "malaysia"
 ]
 
+ROAD_PREFIXES = r'(?:\bđường(?!\s+cống|\s+hầm\s+kỹ|\s+ống|\s+dây)|\bduong|tuyến\s+đường|tuyen\s+duong|quốc\s+lộ|quoc\s+lo|ql\s+|tỉnh\s+lộ|tinh\s+lo|tl\s+|xa\s+lộ|xa\s+lo|đại\s+lộ|dai\s+lo|hầm(?:\s+chui)?(?!\s+theo|\s+phải|\s+vào)|ham(?:\s+chui)?|cầu|cau|ngã\s+(?:tư|ba)|nga\s+(?:tu|ba)|vòng\s+xoay|vong\s+xoay|nút\s+giao|hẻm(?:\s+\d+)?|hem(?:\s+\d+)?|(?<!thành\s)(?<!thanh\s)\bphố\b(?!\s+thông\s+minh))'
+ROAD_STOP_LOOKAHEAD = r'(?=[,\.\n;:\(\)]|(?:\s+(?:và|va|giao|đoạn|khúc|với|quận|quan|huyện|huyen|phường|phuong|thị\s+trấn|tp|đang|dang|bị|bi|được|duoc|gồm|gom|tại|tai|cũng|cung|đều|deu|lại|lai|sẽ|se|nước|nuoc|kẹt|ket|ngập|ngap|xe|lút|chết|nguy|mọi|bà\s+con|rất|kéo\s+dài|keo\s+dai|cống|thoát|theo\s+hướng|hướng\s+từ|đê\s+bao|phong\s+tỏa|ven\s+sông|thông\s+minh))|$)'
 ROAD_PATTERN = re.compile(
-    r'(?:đường|duong|tuyến\s+đường|tuyen\s+duong|đại\s+lộ|dai\s+lo|cầu|cau|ngã\s+(?:tư|ba)|nga\s+(?:tu|ba)|vòng\s+xoay|vong\s+xoay|nút\s+giao|hẻm(?:\s+\d+)?|hem(?:\s+\d+)?|phố)\s+(?!ngập|nước|kẹt|lội|sâu)([A-ZÀ-Ỹa-zà-ỹ0-9\s\.\-]+?)(?=[,\.\n;:]|(?:\s+(?:quận|quan|huyện|huyen|phường|phuong|thị\s+trấn|tp|đang|dang|bị\s+ngập|bi\s+ngap|nước|nuoc|kẹt|ket|ngập|ngap|xe|lút|chết|nguy|mọi|bà\s+con|rất|quá|lắm))|$)',
+    rf'{ROAD_PREFIXES}\s+(?!ngập|nước|kẹt|lội|sâu|cống|thoát|thông\s+minh|ven\s+sông|theo\s+hướng)([A-ZÀ-Ỹa-zà-ỹ0-9\s\.\-]+?){ROAD_STOP_LOOKAHEAD}',
     re.IGNORECASE
 )
 
@@ -1297,6 +1875,8 @@ def clean_road_candidate(candidate: str) -> str:
         if res_lower.endswith(sw):
             res = res[:len(res) - len(sw)].strip()
             res_lower = res.lower()
+    if any(b in res_lower for b in BOGUS_ROAD_PHRASES):
+        return ""
     return res
 
 def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
@@ -1312,6 +1892,11 @@ def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
         return None
 
     # Kiểm duyệt chất lượng: Tên đường hợp lệ phải có ít nhất 2 từ hoặc có định danh số/chữ
+    # Kiểm duyệt chất lượng: Tuyệt đối không geocode từ rác / từ không phải đường
+    if any(b in clean_q for b in BOGUS_ROAD_PHRASES):
+        FAILED_DYNAMIC_CACHE.add(clean_q)
+        return None
+
     words = clean_q.split()
     if len(words) < 2 and not any(ch.isdigit() for ch in clean_q):
         return None
@@ -1333,8 +1918,7 @@ def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
                 if d.get("class") == "highway":
                     item = d
                     break
-            if not item and data:
-                item = data[0]
+
     except Exception:
         item = None
 
@@ -1349,8 +1933,7 @@ def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
                     if d.get("class") == "highway":
                         item = d
                         break
-                if not item and data:
-                    item = data[0]
+
         except Exception:
             item = None
 
@@ -1403,13 +1986,57 @@ def _finalize_match(res: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
     if off_w:
         res["ward"] = off_w
         res["administrative_unit"] = off_w
+    elif "24" in cur_w or "bình thạnh" in cur_w.lower():
+        res["ward"] = "Phường Bình Thạnh"
+        res["administrative_unit"] = "Phường Bình Thạnh"
+    res["district"] = "TP.HCM"
     return res
 
 def normalize_text(text: str) -> str:
     if not text:
         return ""
+    text = text.replace('–', '-').replace('—', '-').replace('–', '-').replace('—', '-')
     text_nfc = unicodedata.normalize('NFC', text)
     return text_nfc.lower()
+
+BOGUS_ROAD_PHRASES = set([
+    "đoạn đường",
+    "tuyến đường",
+    "tân quý",
+    "rạch chiếc",
+    "ông lãnh",
+    "tân sơn nhất",
+    "tân thuận",
+    # Hiện tượng & miêu tả nước
+    "có nơi", "thành sông", "hóa sông", "như sông", "biến thành", "ngập sâu", "chết máy",
+    "dâng cao", "rút lui", "chưa từng", "bì bõm", "lội nước", "kẹt xe", "mênh mông",
+    "biển nước", "ngập tràn", "liên tục", "dồn ứ", "giá rẻ", "phố không", "vô hẻm", "và hẻm",
+    "điểm trường", "trục lộ", "giao thông", "sau trận", "hơn 100", "yên xe", "chiếc xe",
+    "mọi người", "người dân", "nước ngập", "nước dâng", "tới yên", "thất thủ",
+    "ngập nặng", "ngập lụt", "triều cường", "mưa lớn", "mưa to", "xe máy", "nước đổ",
+    "an lộc", "dầu giây", "mẹ bồng con", "đô thị", "do thi", "dự án", "vùng trũng",
+
+    # Thoát nước & công trình kỹ thuật (TUYỆT ĐỐI KHÔNG PHẢI TÊN ĐƯỜNG)
+    "cống", "cống thoát", "cống thoát nước", "đường cống", "hệ thống cống", "hệ thống thoát nước",
+    "miệng cống", "hố ga", "nắp cống", "cống ngăn triều", "trạm bơm", "máy bơm",
+    "đê bao", "bờ bao", "ven sông", "bờ kè", "kênh rạch", "dòng chảy", "cửa xả", "cửa cống",
+    "thoát nước", "xả tràn", "ngăn triều", "tuyến đê",
+
+    # Khái niệm & quy hoạch & từ vựng báo chí
+    "thông minh", "thành phố thông minh", "đô thị thông minh", "chống ngập",
+    "công trình", "quy hoạch", "nâng cấp", "xây dựng", "sửa chữa", "khởi công",
+    "nghiên cứu", "đề xuất", "triển khai", "giải pháp", "tiêu chuẩn", "thiết kế",
+    "tương hỗ", "cực đoan", "chu kỳ", "hiện hành", "cũ kỹ", "xuống cấp",
+    "đồng nhất", "cơ sở", "khoa học", "nền tảng", "bản đồ", "dùng chung", "dữ liệu",
+    "chính xác", "chất lượng", "cuộc sống", "phát triển",
+
+    # Cụm trạng ngữ chỉ hướng, trạng thái (TUYỆT ĐỐI KHÔNG PHẢI TÊN ĐƯỜNG)
+    "theo hướng", "hướng từ", "từ cao tốc", "về phía", "chiều về", "làn xe",
+    "phong tỏa", "hai đầu", "bảo vệ", "phục vụ", "khiến một số", "lần lượt",
+    "tình trạng", "nguyên nhân", "tổ hợp", "yếu tố", "rủi ro", "địa hình", "trũng thấp",
+    "xuất phát", "thời gian", "khu nam", "ở khu nam", "khu đông", "khu tây", "khu bắc",
+    "nội thành", "ngoại thành", "ven đô", "ngoại ô"
+])
 
 def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
     """
@@ -1419,18 +2046,23 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
        Phường/Xã chỉ đóng vai trò yếu tố phụ (Metadata).
     2. Khi bài viết KHÔNG CÓ TÊN ĐƯỜNG -> Mới hiển thị Phường/Xã làm yếu tố chính.
     3. Khi bài viết KHÔNG CÓ CẢ ĐƯỜNG LẪN PHƯỜNG -> Hiển thị Toàn thành phố làm yếu tố chính.
+    Tuyệt đối không bịa hoặc tách câu sai kiểu ghép từ "có nơi", "thành sông".
     """
     if not text:
         return None
     
     clean_text = normalize_text(text)
 
-    # BƯỚC 0: Kiểm tra loại trừ khẳng định tỉnh ngoài rõ rệt (tránh tin ngập Hà Nội, Đà Nẵng...)
-    for out_loc in ["hà nội", "huế", "đà nẵng", "hải phòng", "thái nguyên", "quảng ninh", "nghệ an", "thanh hóa", "lào cai", "yên bái"]:
-        pat = r'(?:ở|tại|tp\.?|thành phố|tỉnh)\s+' + re.escape(out_loc)
-        if re.search(pat, clean_text):
-            # Nếu có nhắc rõ tỉnh ngoài mà không có từ khóa TPHCM thì loại bỏ
-            if not any(k in clean_text for k in ["tphcm", "tp hcm", "tp.hcm", "sài gòn", "sai gon", "bình dương", "vũng tàu"]):
+    # BƯỚC 0: KIỂM SOÁT ĐỊA GIỚI NGHIÊM NGẶT - LOẠI TRỪ 100% CÁC TỈNH/THÀNH NGOÀI TP.HCM
+    has_hcm_affirmation = any(k in clean_text for k in [
+        "tphcm", "tp hcm", "tp.hcm", "sài gòn", "sai gon", "hồ chí minh", "ho chi minh",
+        "bình dương", "binh duong", "vũng tàu", "vung tau", "bà rịa", "ba ria",
+        "thủ dầu một", "dĩ an", "thuận an", "bến cát", "tân uyên", "phú mỹ", "côn đảo"
+    ])
+    if not has_hcm_affirmation:
+        for out_loc in OUT_OF_SCOPE_LOCATIONS:
+            pat = r'(?:\b|^|#)' + re.escape(out_loc) + r'(?:\b|$|[#\s.,!?])'
+            if re.search(pat, clean_text):
                 return None
 
     # =========================================================================
@@ -1442,7 +2074,10 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
     # 1.A: So khớp với danh mục 122 điểm CSGT & các tuyến đường hạt nhân (Priority 3)
     for spot in STREET_HOTSPOTS:
         for kw in spot.get("keywords", []):
-            pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
+            kw_clean = kw.strip()
+            if kw_clean.isdigit() or len(kw_clean) <= 2:
+                continue
+            pattern = r'(?:\b|^|#)' + re.escape(kw_clean) + r'(?:\b|$|[#\s.,!?])'
             if re.search(pattern, clean_text):
                 if len(kw) > best_street_len:
                     best_street_len = len(kw)
@@ -1468,7 +2103,12 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
     # 1.B: So khớp với bộ nhớ đệm tự học tuyến đường (Dynamic Cache)
     if not best_street:
         for cached_kw, cached_data in DYNAMIC_CACHE.items():
-            pattern = r'(?:\b|^|#)' + re.escape(cached_kw) + r'(?:\b|$|[#\s.,!?])'
+            ck_clean = cached_kw.strip()
+            if ck_clean.isdigit() or len(ck_clean) <= 2:
+                continue
+            if any(bw in ck_clean for bw in BOGUS_ROAD_PHRASES):
+                continue
+            pattern = r'(?:\b|^|#)' + re.escape(ck_clean) + r'(?:\b|$|[#\s.,!?])'
             if re.search(pattern, clean_text):
                 c_data = dict(cached_data)
                 c_data["street"] = c_data.get("display_name", cached_kw)
@@ -1476,13 +2116,15 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
                 best_street = c_data
                 break
 
-    # 1.C: Nhận diện thực thể tên đường mới qua ROAD_PATTERN & OSM Geocoding
+    # 1.C: Nhận diện thực thể tên đường mới qua ROAD_PATTERN & OSM Geocoding (Kiểm soát nghiêm ngặt)
     if not best_street:
         matches = ROAD_PATTERN.findall(text)
         for cand in matches:
             cleaned_cand = clean_road_candidate(cand)
             cand_low = cleaned_cand.lower()
             if len(cleaned_cand) < 4 or len(cleaned_cand.split()) > 5:
+                continue
+            if any(bw in cand_low for bw in BOGUS_ROAD_PHRASES):
                 continue
             if any(sw in cand_low for sw in ["tp hcm", "tphcm", "sài gòn", "saigon", "ngập", "ngap", "này", "kia", "đó", "xe", "nhà", "lội", "loi", "tại", "tai", "thuộc", "trũng", "na3", "mưa", "khu vực", "khu vuc", "trung tâm", "trung tam", "mọi người", "moi nguoi", "cứu", "né"]):
                 continue
@@ -1491,7 +2133,10 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
             dynamic_spot = geocode_osm_dynamic(cleaned_cand)
             if dynamic_spot:
                 d_copy = dict(dynamic_spot)
-                d_copy["street"] = d_copy.get("display_name", cleaned_cand)
+                disp_n = d_copy.get("display_name", cleaned_cand)
+                if any(bw in disp_n.lower() for bw in BOGUS_ROAD_PHRASES):
+                    continue
+                d_copy["street"] = disp_n
                 d_copy["priority"] = 3
                 best_street = d_copy
                 break
@@ -1500,15 +2145,15 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
     if best_street:
         # Nếu điểm đường này chưa có phường xác định (ví dụ đường mới phát hiện qua OSM):
         # Mới quét tìm xem bài viết có đề cập Phường / Xã cụ thể nào không
-        if not best_street.get("ward") or best_street.get("ward") == "Đô thị TP.HCM":
-            for u in ADMIN_HOTSPOTS:
-                for kw in u.get("keywords", []):
-                    pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
-                    if re.search(pattern, clean_text):
-                        best_street["ward"] = u["ward"]
-                        best_street["administrative_unit"] = u["ward"]
-                        best_street["district"] = u.get("district", best_street.get("district", "TP.HCM"))
-                        break
+        # Ưu tiên Phường/Xã được nhắc trực tiếp trong bài viết
+        for u in ADMIN_HOTSPOTS:
+            for kw in u.get("keywords", []):
+                pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
+                if re.search(pattern, clean_text):
+                    best_street["ward"] = u["ward"]
+                    best_street["administrative_unit"] = u["ward"]
+                    best_street["district"] = u.get("district", best_street.get("district", "TP.HCM"))
+                    break
         return _finalize_match(best_street)
 
     # =========================================================================

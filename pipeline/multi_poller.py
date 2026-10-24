@@ -1,8 +1,13 @@
-﻿"""
+﻿# -*- coding: utf-8 -*-
+"""
 pipeline/multi_poller.py - Bộ Thu Thập Dữ Liệu Song Song Đa Nền Tảng Toàn Diện (TikTok + Facebook)
 Chế độ LIVE chạy đồng thời 2 nguồn bằng đa luồng (concurrent.futures.ThreadPoolExecutor):
 1. TikTok Video Scraper (Tìm kiếm video & Hashtag ngập lụt TP.HCM - Giữ nguyên ổn định)
 2. Facebook Poller (Cào bài đăng người dùng + Fanpage với dữ liệu 100% thật từ báo chí & cộng đồng)
+
+Chế độ SIMULATION:
+Phát lại dữ liệu 100% đã làm sạch từ dataset tĩnh:
+data/processed/hcmc_flood_annotated_v1.json (chỉ hiển thị trong TP.HCM).
 """
 
 import time
@@ -11,6 +16,7 @@ from typing import List, Dict, Any, Tuple, Optional
 
 from pipeline.tiktok_poller import TikTokPoller
 from pipeline.facebook_poller import FacebookPoller
+from pipeline.simulation_replayer import SimulationReplayer
 from core.config import DEFAULT_WINDOW_MINUTES
 
 class MultiPlatformPoller:
@@ -83,19 +89,9 @@ class MultiPlatformPoller:
 
     def poll_simulation(self, window_minutes: int = DEFAULT_WINDOW_MINUTES, batch_size: int = 15) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
-        Phát lại dữ liệu đa nền tảng mô phỏng: 100% dữ liệu thật, không có bài viết hay liên kết bịa đặt.
+        Phát lại dữ liệu đa nền tảng mô phỏng: 100% dữ liệu đã làm sạch từ dataset tĩnh:
+        data/processed/hcmc_flood_annotated_v1.json (chỉ hiển thị trong TP.HCM).
         """
-        tt_events, tt_stats = self.tiktok_poller.poll_simulation(window_minutes=window_minutes, batch_size=batch_size)
-        fb_events, fb_stats = self.facebook_poller.poll_simulation(window_minutes=window_minutes, batch_size=10)
-
-        combined = list(tt_events) + list(fb_events)
-        combined.sort(key=lambda x: (x.get("weight", 1.0), x.get("create_time", 0)), reverse=True)
-
-        stats = {
-            "mode": "simulation",
-            "tiktok_count": len(tt_events),
-            "facebook_count": len(fb_events),
-            "total_events": len(combined),
-            "active_window": f"{window_minutes // 60} giờ qua (Mô phỏng dữ liệu thật)"
-        }
-        return combined, stats
+        replayer = SimulationReplayer.get_instance()
+        events, stats = replayer.poll(batch_size=batch_size)
+        return events, stats

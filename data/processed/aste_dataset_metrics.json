@@ -1,0 +1,213 @@
+{
+  "metadata": {
+    "generated_at": "2026-10-13T18:59:17.389047",
+    "target_dataset": "hcmc_flood_annotated_v2_multimodal.json"
+  },
+  "volume": {
+    "total_samples": 3922,
+    "total_triplets": 5483,
+    "triplet_density": 1.3980112187659357,
+    "has_media_samples": 1011,
+    "media_coverage_pct": 25.777664456909736,
+    "total_media_urls": 1114
+  },
+  "platforms": {
+    "news": 2085,
+    "tiktok": 759,
+    "facebook": 1078
+  },
+  "episodes": {
+    "episode_01_2026-09-10_mua-giong-dau-thang-9": 123,
+    "episode_02_2026-09-17_anh-huong-bao-so-4": 209,
+    "episode_03_2026-09-27_trieu-cuong-dinh-diem-cuoi-thang-9": 498,
+    "episode_04_2026-10-01_trieu-cuong-ram-thang-tam": 364,
+    "episode_05_2026-10-07_mua-giong-chieu-toi-cuc-bo": 287,
+    "historical_archive": 2096,
+    "sporadic_flood_events": 345
+  },
+  "batches": {
+    "batch_1_baseline": 2759,
+    "batch_2_social_enrichment": 1163
+  },
+  "polarities": {
+    "NEG": 5163,
+    "NEU": 303,
+    "POS": 17
+  },
+  "triplet_density_distribution": {
+    "1": 2361,
+    "2": 1561
+  },
+  "grounding": {
+    "exact_aspect_matches": 3985,
+    "normalized_aspect_matches": 0,
+    "grounding_rate_pct": 72.67919022432974
+  },
+  "top_aspects": [
+    {
+      "aspect": "khu vực ngập",
+      "count": 617
+    },
+    {
+      "aspect": "phương tiện giao thông",
+      "count": 444
+    },
+    {
+      "aspect": "tp.hcm",
+      "count": 340
+    },
+    {
+      "aspect": "tphcm",
+      "count": 312
+    },
+    {
+      "aspect": "Thủ Đức",
+      "count": 258
+    },
+    {
+      "aspect": "tuyến đường ngập",
+      "count": 253
+    },
+    {
+      "aspect": "sài gòn",
+      "count": 193
+    },
+    {
+      "aspect": "Trần Xuân Soạn",
+      "count": 115
+    },
+    {
+      "aspect": "hệ thống thoát nước",
+      "count": 97
+    },
+    {
+      "aspect": "thủ đức",
+      "count": 97
+    },
+    {
+      "aspect": "Bình Thạnh",
+      "count": 92
+    },
+    {
+      "aspect": "nhà dân",
+      "count": 89
+    },
+    {
+      "aspect": "Chợ Thủ Đức",
+      "count": 87
+    },
+    {
+      "aspect": "giao thông đô thị",
+      "count": 78
+    },
+    {
+      "aspect": "Phan Huy Ích",
+      "count": 78
+    },
+    {
+      "aspect": "Gò Vấp",
+      "count": 73
+    },
+    {
+      "aspect": "sông sài gòn",
+      "count": 71
+    },
+    {
+      "aspect": "Bình Dương",
+      "count": 69
+    },
+    {
+      "aspect": "tp. hồ chí minh",
+      "count": 66
+    },
+    {
+      "aspect": "Quận 7",
+      "count": 64
+    }
+  ],
+  "top_opinions": [
+    {
+      "opinion": "ngập nước cục bộ",
+      "count": 2124
+    },
+    {
+      "opinion": "ngập sâu gây cản trở và đảo lộn giao thông",
+      "count": 1448
+    },
+    {
+      "opinion": "nước ngập làm xe chết máy, phải dắt bộ bì bõm",
+      "count": 636
+    },
+    {
+      "opinion": "triều cường dâng cao gây ngập",
+      "count": 467
+    },
+    {
+      "opinion": "dự báo triều cường / khả năng ngập, cần theo dõi diễn biến",
+      "count": 243
+    },
+    {
+      "opinion": "nước dâng tràn vào nhà dân",
+      "count": 219
+    },
+    {
+      "opinion": "nước rút chậm, tuyến đường vẫn ngập sâu",
+      "count": 90
+    },
+    {
+      "opinion": "ngập sâu khiến phương tiện phải tấp lên lề / chờ nước rút",
+      "count": 56
+    },
+    {
+      "opinion": "mưa lớn biến đường phố thành sông",
+      "count": 48
+    },
+    {
+      "opinion": "giao thông tê liệt hoàn toàn vì ngập",
+      "count": 38
+    },
+    {
+      "opinion": "mực nước triều đang lên, theo dõi sát diễn biến",
+      "count": 37
+    },
+    {
+      "opinion": "ngập lút bánh xe nghiêm trọng",
+      "count": 37
+    },
+    {
+      "opinion": "đường có dấu hiệu ngập nhỏ mép vỉa hè, cần theo dõi",
+      "count": 20
+    },
+    {
+      "opinion": "nước đã rút hết, giao thông ổn định trở lại",
+      "count": 5
+    },
+    {
+      "opinion": "nước đã rút, mặt đường thông thoáng và lưu thông bình thường",
+      "count": 5
+    },
+    {
+      "opinion": "mực nước bắt đầu rút dần, tình hình đang chuyển biến",
+      "count": 3
+    },
+    {
+      "opinion": "tuyến đường không bị ngập nước, di chuyển bình thường",
+      "count": 3
+    },
+    {
+      "opinion": "mặt đường khô rang, hoàn toàn không bị ngập nước",
+      "count": 2
+    },
+    {
+      "opinion": "sớm thi công chống ngập",
+      "count": 2
+    }
+  ],
+  "linter_issues_summary": {
+    "duplicate_id_count": 66,
+    "duplicate_text_count": 0,
+    "empty_text_count": 0,
+    "empty_triplet_count": 0,
+    "invalid_polarity_count": 0
+  }
+}
