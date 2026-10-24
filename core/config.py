@@ -1,4 +1,5 @@
-﻿"""
+﻿# -*- coding: utf-8 -*-
+"""
 core/config.py - Cấu hình hệ thống Ingestion & Dashboard
 Thu thập dữ liệu ngập lụt đô thị gần thời gian thực đa nền tảng:
 1. TikTok Video: Video & Hashtag ngập lụt TP.HCM (Giữ nguyên ổn định).
@@ -8,7 +9,7 @@ Thu thập dữ liệu ngập lụt đô thị gần thời gian thực đa nề
 import os
 
 # Apify API Token - Sử dụng token mới được cung cấp (Free tier có sẵn $5 credit)
-APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "apify_api_nALLiRCjYWDCWPUWwi3GDkmLG2po6L2Fy54o")
+APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "apify_api_wTDd6uCOPAyo3sDLx864GjAmUflbBh1Ff9o0")
 
 # ==========================================
 # 1. Cấu hình Actor cào TikTok Video (Giữ nguyên ổn định)

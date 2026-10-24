@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ thống Giám Sát & Cảnh Báo Ngập Lụt Đô Thị Thời Gian Thực</title>
@@ -264,6 +267,7 @@
         .severity-badge.high { background-color: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
         .severity-badge.medium { background-color: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); }
         .severity-badge.low { background-color: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+        .severity-badge.amber { background-color: rgba(234, 179, 8, 0.2); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.4); }
 
         .veracity-badge {
             font-size: 10px;
@@ -625,8 +629,11 @@
         </div>
 
         <div class="controls">
-            <button id="btn-poll" class="btn" onclick="triggerPoll()">
-                <span>🔄 Cào mới</span>
+            <button id="btn-poll" class="btn" onclick="triggerPoll()" title="Cào nhanh miễn phí không tốn credit Apify">
+                <span>🔄 Cào Free mới</span>
+            </button>
+            <button id="btn-apify" class="btn" style="background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white;" onclick="triggerApifyPoll()" title="Gọi Apify Actor cào sâu Facebook & TikTok">
+                <span>🚀 Cào sâu Apify</span>
             </button>
             <button id="btn-toggle-mode" class="btn btn-secondary" onclick="toggleServerMode()">
                 <span>⚡ Sang Live</span>
@@ -639,6 +646,12 @@
             </button>
             <button id="btn-toggle-csgt" class="btn btn-secondary active" onclick="toggleCsgtLayer()">
                 <span>⚠️ CSGT</span>
+            </button>
+            <button id="btn-reset" class="btn btn-secondary" onclick="resetStreamState()" title="Làm sạch bộ đệm và bắt đầu nạp lại từ 0">
+                <span>🧹 Nạp lại từ 0</span>
+            </button>
+            <button id="btn-autopoll" class="btn btn-secondary active" onclick="toggleAutoPoll()" title="Bật/Tắt tự động đồng bộ thời gian thực mỗi 3s">
+                <span id="txt-autopoll">🟢 Tự động nạp (3s)</span>
             </button>
             <button id="btn-heatmap" class="btn btn-secondary active" onclick="toggleHeatmap()">
                 <span>🌡️ Quầng nhiệt</span>
@@ -760,6 +773,9 @@
         let isHeatmapVisible = true;
         let activeLbRegion = "all";
 
+        let autoPollTimer = null;
+        let isAutoPollActive = true;
+
         // Khởi chạy
         window.addEventListener('DOMContentLoaded', async () => {
             await Promise.all([
@@ -767,7 +783,48 @@
                 fetchAdminUnits(),
                 fetchRealtimeEvents()
             ]);
+            startAutoPoll();
         });
+
+        function startAutoPoll() {
+            if (autoPollTimer) clearInterval(autoPollTimer);
+            autoPollTimer = setInterval(async () => {
+                if (isAutoPollActive) {
+                    try {
+                        await fetchRealtimeEvents();
+                    } catch (e) {}
+                }
+            }, 3000);
+        }
+
+        function toggleAutoPoll() {
+            isAutoPollActive = !isAutoPollActive;
+            const btn = document.getElementById('btn-autopoll');
+            const txt = document.getElementById('txt-autopoll');
+            if (isAutoPollActive) {
+                btn.classList.add('active');
+                txt.innerText = '🟢 Tự động nạp (3s)';
+            } else {
+                btn.classList.remove('active');
+                txt.innerText = '⏸️ Đã dừng nạp';
+            }
+        }
+
+        async function resetStreamState() {
+            const btn = document.getElementById('btn-reset');
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<span>⏳ Đang reset...</span>';
+            btn.disabled = true;
+            try {
+                await fetch('/api/reset-state', { method: 'POST' });
+                await fetchRealtimeEvents();
+            } catch (err) {
+                console.error("Lỗi khi reset:", err);
+            } finally {
+                btn.innerHTML = orig;
+                btn.disabled = false;
+            }
+        }
 
         // Tải 122 điểm ngập CSGT
         async function fetchCsgtHotspots() {
@@ -859,6 +916,26 @@
             }
         }
 
+        async function triggerApifyPoll() {
+            const btn = document.getElementById('btn-apify');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<span>⏳ Đang gọi Apify...</span>';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/trigger-apify', { method: 'POST' });
+                const data = await res.json();
+                await fetchRealtimeEvents();
+                alert('Đã hoàn tất cào sâu qua Apify! Nhận được ' + (data.count || 0) + ' điểm ngập.');
+            } catch (err) {
+                console.error("Lỗi khi cào Apify:", err);
+                alert("Lỗi khi gọi API cào Apify!");
+            } finally {
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+            }
+        }
+
         // Bật/tắt các lớp trên bản đồ
         function toggleLiveLayer() {
             isLiveLayerVisible = !isLiveLayerVisible;
@@ -943,6 +1020,42 @@
             });
         }
 
+        // Helper định dạng thời gian tương đối động chuẩn xác từ timestamp bài viết
+        function formatExactRelativeTime(unixTimestamp, fallbackStr) {
+            if (!unixTimestamp) return fallbackStr || 'Vừa xong';
+            const now = Math.floor(Date.now() / 1000);
+            const diff = Math.max(0, now - unixTimestamp);
+            if (diff < 60) return 'Vừa xong';
+            if (diff < 3600) {
+                const m = Math.floor(diff / 60);
+                return `${m} phút trước`;
+            }
+            if (diff < 86400) {
+                const h = Math.floor(diff / 3600);
+                const m = Math.floor((diff % 3600) / 60);
+                return m > 0 ? `${h} giờ ${m} phút trước` : `${h} giờ trước`;
+            }
+            const d = Math.floor(diff / 86400);
+            return `${d} ngày trước`;
+        }
+
+        // Helper phân loại 3 nhãn chuẩn xác: <2h, 2-4h, <=24h (Loại bỏ tuyệt đối bài >24h)
+        function getExactTimeClassification(unixTimestamp) {
+            if (!unixTimestamp) {
+                return { tag: '🔴 ĐANG DIỄN RA (< 2 GIỜ)', freshness: 'strict_2h', badgeClass: 'high', color: '#ef4444' };
+            }
+            const now = Math.floor(Date.now() / 1000);
+            const diff = Math.max(0, now - unixTimestamp);
+            if (diff <= 7200) {
+                return { tag: '🔴 ĐANG DIỄN RA (< 2 GIỜ)', freshness: 'strict_2h', badgeClass: 'high', color: '#ef4444' };
+            } else if (diff <= 14400) {
+                return { tag: '🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)', freshness: 'recent_4h', badgeClass: 'medium', color: '#ea580c' };
+            } else if (diff <= 86400) {
+                return { tag: '🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)', freshness: 'within_24h', badgeClass: 'amber', color: '#d97706' };
+            }
+            return null; // Bỏ hoàn toàn các bài cũ quá 24 giờ
+        }
+
         // Vẽ các sự kiện thời gian thực (Icon đỏ nhấp nháy) & danh sách Feed
         function renderLiveMapAndFeed(events) {
             liveMarkersGroup.clearLayers();
@@ -968,6 +1081,18 @@
                 const lat = loc.lat || ev.lat;
                 const lon = loc.lon || ev.lon;
                 if (!lat || !lon) return;
+
+                const ctime = ev.create_time || ev.timestamp || 0;
+                const timeClass = getExactTimeClassification(ctime);
+                // Trong Live Mode: Tuyệt đối không hiển thị bài cũ quá 24h
+                if (serverCurrentMode === 'live' && timeClass === null) {
+                    return;
+                }
+
+                const timeTag = timeClass ? timeClass.tag : (ev.status_tag || '🔴 ĐANG DIỄN RA (< 2 GIỜ)');
+                const timeColor = timeClass ? timeClass.color : '#ef4444';
+                const badgeClass = timeClass ? timeClass.badgeClass : 'high';
+                const relativeTimeStr = formatExactRelativeTime(ctime, ev.relative_time);
 
                 const rawStreet = loc.street || '';
                 const rawWard = loc.ward || '';
@@ -1039,11 +1164,14 @@
                     displayWard = oldWardMap[dwLow];
                 }
 
+                const rawDist = loc.district || '';
+                const regionTag = (rawDist.includes('Bà Rịa') || displayWard.includes('Phước Thái') || displayWard.includes('Vũng Tàu')) ? '(Bà Rịa - Vũng Tàu)' : ((rawDist.includes('Bình Dương') || displayWard.includes('Dĩ An')) ? '(Bình Dương)' : '(TP.HCM)');
+
                 if (hasStreet) {
                     primaryTitle = cleanStreet || rawStreet;
-                    secondarySubtitle = `<b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${displayWard}</span> (TP.HCM)`;
+                    secondarySubtitle = `<b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${displayWard}</span> ${regionTag}`;
                 } else if (rawWard && !isCitywide) {
-                    primaryTitle = `${displayWard} (TP.HCM)`;
+                    primaryTitle = `${displayWard} ${regionTag}`;
                     secondarySubtitle = `<span style="color: #64748b; font-style: italic;">Khu vực ĐVHC (Không có tên đường cụ thể)</span>`;
                 } else {
                     primaryTitle = `Toàn thành phố Hồ Chí Minh`;
@@ -1084,10 +1212,16 @@
 
                 const popupContent = `
                     <div style="font-family: sans-serif; font-size: 12px; min-width: 280px; max-width: 320px; color: #1e293b;">
-                        <div style="background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-bottom: 6px; display: flex; justify-content: space-between;">
-                            <span>🔴 SỰ CỐ THỜI GIAN THỰC</span>
-                            <span>${ev.relative_time || 'Gần đây'}</span>
+                        <div style="background: ${timeColor}; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-bottom: 6px; display: flex; justify-content: space-between;">
+                            <span>${timeTag}</span>
+                            <span>${relativeTimeStr}</span>
                         </div>
+                        ${ev.report_count && ev.report_count > 1 ? `
+                        <div style="background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-bottom: 6px; display: flex; align-items: center; gap: 4px;">
+                            <span>👥</span>
+                            <span><b>Điểm ngập trọng điểm:</b> Được báo cáo bởi ${ev.report_count} người</span>
+                        </div>
+                        ` : ''}
                         <div style="font-weight: bold; font-size: 14px; margin-bottom: 4px; color: #0f172a;">${primaryTitle}</div>
                         <div style="font-size: 11px; color: #475569; margin-bottom: 6px;">
                             ${secondarySubtitle}
@@ -1137,11 +1271,17 @@
                 card.innerHTML = `
                     <div class="feed-card-header">
                         <div class="feed-location">${isCitywide ? '🌐 ' : '📍 '}${primaryTitle}</div>
-                        <span class="severity-badge ${ev.severity || 'medium'}">${ev.severity === 'high' ? 'Ngập nặng' : 'Ngập'}</span>
+                        <span class="severity-badge ${badgeClass}">${timeTag}</span>
                     </div>
                     <div style="font-size: 11px; color: #38bdf8; margin-bottom: 4px;">
                         ${secondarySubtitle}
                     </div>
+                    ${ev.report_count && ev.report_count > 1 ? `
+                    <div style="font-size: 11px; font-weight: 700; color: #a855f7; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+                        <span>👥</span>
+                        <span>Được báo cáo bởi ${ev.report_count} người</span>
+                    </div>
+                    ` : ''}
                     <div class="feed-text">${ev.text || ev.title || ''}</div>
                     <div style="font-size: 11px; color: #94a3b8; margin: 4px 0;">
                         <span>🌧️ ${weatherReason}</span>
@@ -1152,7 +1292,7 @@
                             <span class="veracity-badge ${vStatus}">${vScore}% (${evidenceCount} nguồn)</span>
                         </div>
                         <div style="display: flex; gap: 6px; align-items: center;">
-                            <span>${ev.relative_time || 'Vừa xong'}</span>
+                            <span>${relativeTimeStr}</span>
                             ${originalUrl ? `<a href="${originalUrl}" target="_blank" style="color: #38bdf8; text-decoration: underline; font-size: 10px;" onclick="event.stopPropagation();">Gốc ↗</a>` : ''}
                         </div>
                     </div>

@@ -15875,5 +15875,26 @@
     "platform": "tiktok",
     "crawled_at": "2026-10-11T17:12:17.618680+00:00",
     "crawler_source": "free_discovery_engine"
+  },
+  {
+    "id": "7692454297316969780",
+    "url": "https://www.tiktok.com/@cafef_official/video/7692454297316969780",
+    "webVideoUrl": "https://www.tiktok.com/@cafef_official/video/7692454297316969780",
+    "mediaUrls": [
+      "https://www.tiktok.com/@cafef_official/video/7692454297316969780"
+    ],
+    "text": "8 cống ngăn triều, 7,8 km đê kè và cả hệ thống điều khiển tự động đang dần hoàn thiện sau nhiều năm đình trệ, thay đổi diện mạo một vùng ven sông ở TP.HCM. #Cafef #chongngap #tphcm",
+    "title": "8 cống ngăn triều, 7,8 km đê kè và cả hệ thống điều khiển tự động đang dần hoàn thiện sau nhiều năm đình trệ, thay đổi diện mạo một vùng ven sông ở TP.HCM. #Cafef #chongngap #tphcm",
+    "author": "cafef_official",
+    "authorMeta": {
+      "name": "cafef_official"
+    },
+    "createTimeISO": "2026-10-03T07:00:00+00:00",
+    "published": "Sat, 03 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-03",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-20T09:57:06.666017+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
   }
 ]

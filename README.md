@@ -1,176 +1,216 @@
-# 🌊 HỆ THỐNG GIÁM SÁT & CẢNH BÁO NGẬP LỤT ĐÔ THỊ ĐA NỀN TẢNG (TP. HỒ CHÍ MINH)
-> **Đề tài Môn học SE363 - Kỹ nghệ Tri thức & Dữ liệu**  
-> *Đại học Quốc gia TP. Hồ Chí Minh*
+# RadiNet: Multimodal Urban Flood Monitoring & Veracity Verification System
 
-[![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Dashboard](https://img.shields.io/badge/Dashboard-Leaflet%20Heatmap-green.svg)](http://localhost:8050)
-[![Weather API](https://img.shields.io/badge/Weather-Open--Meteo-orange.svg)](https://open-meteo.com/)
-[![Geocoding](https://img.shields.io/badge/GIS-OpenStreetMap-brightgreen.svg)](https://www.openstreetmap.org/)
-[![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.5%2F4.2-E25A1C.svg)](https://spark.apache.org/)
+[![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-Distributed%20Streaming-black.svg)](https://kafka.apache.org/)
+[![Target Conference](https://img.shields.io/badge/Research-ICWSM%202027-success.svg)](https://www.icwsm.org/)
+[![Dataset](https://img.shields.io/badge/Gold%20Dataset-ASTE%20v3%20Multimodal-orange.svg)](data/processed/hcmc_flood_annotated_v3_multimodal.json)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
----
-
-## 📌 Giới thiệu tổng quan (Overview)
-
-Hệ thống **Giám sát & Cảnh báo Ngập lụt Đô thị Đa nền tảng** là giải pháp thu thập, phân tích và trực quan hóa dữ liệu thời gian thực phục vụ cảnh báo ngập lụt tại TP. Hồ Chí Minh. 
-
-Hệ thống kết hợp sức mạnh từ dòng dữ liệu mạng xã hội (TikTok, Facebook), đối soát tự động với trạm khí tượng vệ tinh **Open-Meteo**, giải quyết triệt để vấn đề tin giả / báo cáo sai lệch (**Data Veracity**) và trực quan hóa thành bản đồ nhiệt (**Heatmap**) cảnh báo trực quan.
+An end-to-end Big Data & Multimodal Artificial Intelligence research framework designed for **real-time urban inundation detection, Aspect-Sentiment-Opinion Triplet Extraction (ASTE), and crowdsourced data veracity verification**. Engineered specifically for megacities facing complex tidal and pluvial flooding challenges, with empirical grounding in **Ho Chi Minh City, Vietnam**.
 
 ---
 
-## 🏛️ Kiến trúc hệ thống (System Architecture)
+## 📌 Executive Summary & Research Motivation
 
-```mermaid
-flowchart TD
-    subgraph DataSources ["1. NGUỒN DỮ LIỆU ĐA NỀN TẢNG"]
-        TT["TikTok Video Scraper"]
-        FB["Facebook Search Scraper (PPR)"]
-    end
+Urban flooding driven by severe high tides (*triều cường*) and heavy tropical precipitation represents a critical vulnerability in coastal megacities. While social media platforms (TikTok, Facebook) and crowdsourced channels provide rapid citizen-sensor signals, harnessing this unstructured data stream faces severe scientific and engineering barriers:
+1. **Severe Sentiment & Class Imbalance**: Disaster-related user posts are overwhelmingly negative (complaints, vehicle stalling), leaving positive flood recovery signals (*"water fully receded"*, *"roads dried"*) critically underrepresented ($< 1\%$).
+2. **Noise, Misinformation & Re-shared Outdated Media**: Unverified videos from past years or unrelated regions routinely trigger false emergency alarms.
+3. **Complex Administrative Dynamics**: Following major urban zoning reforms (such as Ho Chi Minh City's Resolution 1685/NQ-UBTVQH15 eliminating district-level administrative boundaries), legacy geospatial databases fail to correctly ground localized entities.
 
-    subgraph Pipeline ["2. TIỀN XỬ LÝ & BÓC TÁCH THỰC THỂ"]
-        Clean["Lọc rác BĐS & Chuẩn hóa văn bản"]
-        Gazetteer["Gazetteer 80+ Điểm nóng TP.HCM"]
-        OSM["OpenStreetMap Dynamic Geocoding (Tự học)"]
-    end
+**RadiNet** addresses these challenges by uniting **Distributed Stream Processing (Kafka + PySpark)**, **Fine-Grained NLP (ASTE Schema v3)**, and **Multi-Tier Physical Grounding (Open-Meteo Satellite Weather + GIS Toponym Gazetteers)** into a unified, reproducible scientific pipeline.
 
-    subgraph Veracity ["3. XÁC THỰC DỮ LIỆU & PHÒNG CHỐNG TIN GIẢ"]
-        ContentAI["Tầng 1: Đánh giá nội dung / Thị giác"]
-        Weather["Tầng 2: Đối soát Khí tượng Open-Meteo"]
-        Consensus["Tầng 3: Đồng thuận Không - Thời gian"]
-        Score["Tầng 4: Tổng hợp Điểm Tin Cậy (Confidence Score)"]
-    end
+---
 
-    subgraph Presentation ["4. TRỰC QUAN HÓA & PHỤC VỤ"]
-        Server["Lightweight HTTP Server (Port 8050)"]
-        Heatmap["Bản đồ nhiệt Leaflet (Heatmap API)"]
-        Feed["Bảng tin sự kiện thời gian thực (Feed)"]
-    end
+## 🏛️ System Architecture
 
-    DataSources --> Clean
-    Clean --> Gazetteer
-    Clean --> OSM
-    Gazetteer --> Veracity
-    OSM --> Veracity
-    Veracity --> Server
-    Server --> Heatmap
-    Server --> Feed
+RadiNet operates as a decoupled, multi-tier streaming pipeline:
+
+```
+Crowdsourced Streams (TikTok, Facebook, News)
+                    │
+                    ▼
+       [Live Social Stream Producer]
+                    │
+                    ▼
+     [Distributed Broker: Apache Kafka]
+           (Topic: social.live.raw)
+                    │
+                    ▼
+    [Stream Engine: PySpark Structured Streaming]
+                    │
+    ┌───────────────┴────────────────────────────┐
+    ▼                                            ▼
+[Lakehouse Bronze/Silver Storage]     [Veracity & NLP Verification Engine]
+   (Parquet / Snappy Compaction)         ├─ NLP: ASTE Triplet Extractor (PhoBERT)
+                                         ├─ Vision: Keyframe In-Memory Streamer (yt-dlp)
+                                         ├─ Physical: Open-Meteo Real-time Rain Check
+                                         └─ Spatial: 168 Ward Gazetteer & CSGT Hotspots
+                                                 │
+                                                 ▼
+                                     [Distributed In-Memory Cache]
+                                             (Redis Key-Value)
+                                                 │
+                                                 ▼
+                                 [Interactive Real-Time Leaflet Heatmap]
+                                        (Web Server @ Port 8050)
 ```
 
 ---
 
-## 🌟 Các tính năng cốt lõi (Key Features)
+## 🔬 Scientific Innovations & Contributions
 
-### 1. Thu thập đa nền tảng gần thời gian thực (Multi-Platform Ingestion)
-* **TikTok Video:** Cào các video cảnh báo ngập lụt thực tế theo bộ Hashtags và từ khóa tìm kiếm tiếng Việt tối ưu.
-* **Facebook Search PPR:** Ứng dụng cơ chế Consolidated Search giúp chống checkpoint và bypass rate-limit.
+### 1. Benchmark Dataset: HCMC Flood ASTE v3 (`Multimodal Gold Standard`)
+Available at [`data/processed/hcmc_flood_annotated_v3_multimodal.json`](data/processed/hcmc_flood_annotated_v3_multimodal.json):
+- **Scale**: **4,770 sentences**, **7,072 annotated Aspect-Sentiment-Opinion triplets** ($1.48$ triplets/sentence).
+- **Targeted Class Rebalancing via Controlled Counterfactual Data Augmentation (CDA)**:
+  - **Negative (`NEG`)**: $5,020$ triplets ($70.98\%$) — active inundation, traffic disruption.
+  - **Positive (`POS`)**: $1,061$ triplets ($15.00\%$) — water receded, traffic resumed, pumping efficiency.
+  - **Neutral (`NEU`)**: $991$ triplets ($14.01\%$) — technical water level gauge, hydrological forecasts.
+- **Scientific Integrity Guarantee**:
+  - $100\%$ Verbatim Substrings for both Aspect and Opinion spans.
+  - Zero synthetic fabrication in evaluation splits: CDA augmented recovery samples ($890$ items) are explicitly flagged with `data_split_recommendation: "TRAIN_ONLY"`, ensuring the test benchmark represents $100\%$ authentic crowdsourced field posts.
+  - Strictly compliant with Resolution 1685/NQ-UBTVQH15 (eliminated district tiers, mapped to 168 newly reformed wards).
 
-### 2. Định danh địa lý đa tầng & Tự động Geocoding (Precision GIS)
-* **Kho tri thức hạt nhân (Seed Gazetteer):** Tích hợp sẵn hơn 80+ điểm nóng ngập lụt kinh điển của TP.HCM (*Nguyễn Hữu Cảnh, Chợ Thủ Đức, Ung Văn Khiêm, Cây Bàng, Võ Văn Ngân, Lê Văn Lương...*) với tọa độ tim đường và phân cấp Phường/Xã chuẩn sau sáp nhập.
-* **Cơ chế tự động học (Zero-Shot Discovery via OpenStreetMap):** Tự động bóc tách tên đường mới xuất hiện trong bài viết, truy vấn máy chủ OpenStreetMap Nominatim lấy tọa độ GPS chính xác và tự lưu vào bộ nhớ đệm tự học (`data/gazetteer_dynamic_cache.json`).
+### 2. Multi-tier Data Veracity Verification Engine
+Evaluates every crowdsourced report through 4 orthogonal verification gates:
+- **Gate 1 (Content & Visual Evidence)**: Multimodal inspection combining textual cues with keyframe extraction.
+- **Gate 2 (Meteorological Cross-Check)**: Automated real-time API query to Open-Meteo at the exact latitude/longitude and posting timestamp.
+- **Gate 3 (Spatio-Temporal Clustering)**: Density-based consensus check within a $500\text{ m}$ spatial radius and $60\text{ min}$ sliding window.
+- **Gate 4 (Probabilistic Confidence)**: Reports scored from $0.0$ to $1.0$ and classified into `Confirmed` ($\ge 0.75$), `Suspect` ($0.50 - 0.74$), `Unverified`, and `Rejected` ($< 0.35$).
 
-### 3. Xác thực dữ liệu & Phòng chống tin giả (Data Veracity Multi-tier Engine)
-Hệ thống sử dụng cơ chế bảo vệ 4 tầng độc lập để đánh giá độ tin cậy của bài đăng:
-* **Tầng 1 - Content & Visual Verification:** Kiểm chứng bằng chứng video/hình ảnh và từ khóa khẳng định ngập lụt thực tế. Sẵn sàng điểm cắm tích hợp mô hình AI đa phương thái (*Dual-Span ASTE, Whisper ASR, Image Classifier*).
-* **Tầng 2 - Weather Cross-Check:** Đối soát lượng mưa thực tế tại đúng tọa độ điểm ngập từ trạm khí tượng vệ tinh **Open-Meteo** (khung giờ đăng bài trong lịch sử hoặc thời gian thực hiện tại).
-* **Tầng 3 - Spatio-Temporal Consensus:** Tính toán độ đồng thuận mạng lưới trong bán kính 500m và khung trượt thời gian 60 phút.
-* **Tầng 4 - Phân cấp cảnh báo tin cậy:**
-  * 🔴 **Đã xác thực (Confirmed - Điểm $\ge$ 75%):** Đủ bằng chứng hình ảnh + khí tượng ghi nhận mưa lớn + đồng thuận mạng lưới.
-  * 🟡 **Nghi vấn (Suspect - Điểm 50% - 74%):** Cần chờ thêm dữ liệu kiểm chứng.
-  * ⚪ **Chưa kiểm chứng (Unverified - Điểm 35% - 49%):** Dữ liệu thăm dò.
-  * 🚫 **Bác bỏ (Rejected - Điểm < 35%):** Chặn tin giả, clip cũ câu tương tác khi trời không mưa.
-
-### 4. Bản đồ nhiệt trực quan thời gian thực (Heatmap Dashboard)
-* Giao diện Web hiển thị bản đồ nhiệt Leaflet trực quan, tự động cập nhật chu kỳ 10 giây.
-* Hỗ trợ ghim điểm nóng ngập lụt, xem chi tiết bài đăng, video bằng chứng gốc và bảng phân tích Veracity độc lập.
+### 3. Lightweight Zero-Disk Multimodal Streaming
+Located in [`pipeline/multimodal_streamer.py`](pipeline/multimodal_streamer.py):
+- Streams video keyframes and mono 16kHz audio directly into RAM buffers (`io.BytesIO`).
+- Completely bypasses CDN anti-hotlinking HTTP 403 errors using canonical URL token renewal.
+- Consumes **0 MB persistent disk space** during live inference, eliminating gigabytes of video download overhead.
 
 ---
 
-## ⚡ Hướng dẫn cài đặt & Khởi chạy (Quick Start)
+## 📊 Dataset Statistics Overview
 
-### 1. Cài đặt môi trường
-Yêu cầu: **Python 3.10 trở lên**.
+| Dimension | Distribution / Value |
+| :--- | :--- |
+| **Total Corpus** | 4,770 sentences, 7,072 ASTE triplets |
+| **Polarity Breakdown** | `NEG`: 70.98% (5,020) \| `POS`: 15.00% (1,061) \| `NEU`: 14.01% (991) |
+| **Aspect Categories** | `LOCATION_ADMIN` (42.8%) \| `LOCATION_STREET` (29.9%) \| `HYDROLOGY` (18.7%) \| `INFRASTRUCTURE_DRAINAGE` (6.5%) \| `RESPONSE_ENTITY` (2.1%) |
+| **Severity Levels** | `MEDIUM` (34.6%) \| `HIGH` (26.6%) \| `LOW` (24.7%) \| `RECOVERED` (14.1%) |
+| **Multimodal Coverage** | 966 authentic post records with active video / high-resolution image links |
+| **Geospatial Grounding**| Mapped across 122 Traffic Police (CSGT) flood hotspots and 168 administrative wards |
+
+---
+
+## 🚀 Quick Start & Reproducibility Guide
+
+### 1. Environment Setup
+Prerequisites: **Python 3.10+** (Tested on Python 3.10 and 3.14).
 
 ```bash
-# Clone repository về máy
+# Clone the repository
 git clone https://github.com/SE363-HVT/urban-flood-monitor.git
 cd urban-flood-monitor
 
-# Cài đặt các thư viện cần thiết
+# Create and activate virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install required dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Khởi chạy hệ thống
+### 2. Running Automated Verification Tests
+Execute the built-in test suite to verify pipeline integrity:
 
-#### 🔹 Chế độ 1: Chế độ Mô phỏng (Simulation Mode - Dùng để Demo / Báo cáo)
-> Phát lại dòng dữ liệu thực tế từ kho bài viết lịch sử, kiểm chứng lượng mưa tại thời điểm đăng tải, demo trôi động trong khung thời gian 2 giờ (120 phút).
+```bash
+# Run smoke tests on API endpoints and clusterers
+python -m tests.smoke_test_pipeline
+
+# Verify anti-spam filters and meteorological grounding
+python -m tests.test_live_fixes
+```
+
+### 3. Launching Real-Time Monitoring & Heatmap
+
+#### Option A: Simulation Mode (Recommended for Demos & Offline Evaluation)
+Replays verified historical flood episodes (such as Typhoon No. 4 and late-September peak tides) with full meteorological verification:
 
 ```bash
 python run_pipeline_test.py --mode simulation --window 120
 ```
 
-#### 🔹 Chế độ 2: Chế độ Thời gian thực (Live Mode - Cào trực tiếp từ mạng xã hội)
-> Gọi trực tiếp Apify API để cào bài đăng thời gian thực từ TikTok và Facebook, đo thời tiết thực tế ngoài trời.
+#### Option B: Live Streaming Mode
+Ingests live crowdsourced streams directly from TikTok and Facebook:
 
 ```bash
-python run_pipeline_test.py --mode live --window 120
+python run_pipeline_test.py --mode live --window 60
 ```
 
-### 3. Trải nghiệm Dashboard
-Mở trình duyệt web và truy cập địa chỉ:
+Access the interactive web dashboard at:
 👉 **`http://localhost:8050`**
 
 ---
 
-## 📁 Cấu trúc thư mục dự án (Project Structure)
+## 📂 Repository Structure
 
 ```text
 urban-flood-monitor/
-├── core/                           # Các module cấu hình và định danh cốt lõi
-│   ├── config.py                   # Cấu hình Apify Token, Actor ID, Query, Hashtags
-│   ├── gazetteer.py                # Cơ sở tri thức địa lý 80+ điểm nóng & OSM Geocoder
-│   └── state_manager.py            # Quản lý trạng thái deduplication bài viết
-├── pipeline/                       # Pipeline xử lý dữ liệu và thuật toán
-│   ├── event_processor.py          # Lọc rác BĐS, phân tích sắc thái cảm xúc ngập lụt
-│   ├── tiktok_poller.py            # Module thu thập và phân tầng video TikTok
-│   ├── facebook_poller.py          # Module thu thập bài đăng Facebook Search PPR
-│   ├── multi_poller.py             # Bộ điều phối hợp nhất dữ liệu đa nền tảng
-│   └── veracity_checker.py         # Module xác thực tin giả & đối soát khí tượng Open-Meteo
-├── dashboard/                      # Giao diện người dùng & Web Server
-│   ├── index.html                  # Giao diện bản đồ nhiệt Leaflet, Feed & Popup Veracity
-│   └── server.py                   # Threading TCP Server & REST API phục vụ bản đồ
-├── data/                           # Kho lưu trữ dữ liệu
-│   ├── gazetteer_dynamic_cache.json# Bộ nhớ đệm tự học địa danh từ OpenStreetMap
-│   ├── real_facebook_flood_pool.json# Kho bài đăng Facebook kiểm chứng phục vụ mô phỏng
-│   └── raw/                        # Các tệp dataset thô phục vụ kiểm thử
-├── documents/                      # Tài liệu kỹ thuật dự án
-│   ├── AI_INTEGRATION_AND_VERACITY_GUIDE.md  # HƯỚNG DẪN CẮM MÔ HÌNH AI (ASTE / DUAL SPAN)
-│   ├── DATA_VERACITY_AND_FAKE_REPORT_MITIGATION.md # Kiến trúc phòng chống tin giả
-│   └── PROJECT_PROGRESS_AND_ROADMAP.md # Báo cáo tiến độ đề tài
-├── run_pipeline_test.py            # File thực thi chính của toàn bộ hệ thống
-├── requirements.txt                # Danh sách thư viện phụ thuộc
-└── .gitignore                      # Cấu hình loại trừ file rác / scratch
+├── bigdata/                         # Distributed Streaming & Lakehouse Infrastructure
+│   ├── ai_service/                  # Decoupled AI Microservice (Port 8001)
+│   ├── lakehouse/                   # Parquet compaction & analytical storage jobs
+│   ├── producers/                   # Distributed Kafka ingestion producers
+│   ├── streaming/                   # PySpark Structured Streaming engines
+│   └── docker-compose.yml           # Multi-container orchestration (Kafka, Spark, Redis)
+├── core/                            # Foundational Domain Engines
+│   ├── config.py                    # Global system and crawler configuration
+│   └── gazetteer.py                 # Precision GIS Gazetteer (168 Wards & 122 CSGT Hotspots)
+├── dashboard/                       # Web Presentation Tier
+│   ├── index.html                   # Interactive Leaflet Heatmap & Veracity Panel
+│   └── server.py                    # High-throughput asynchronous HTTP Server
+├── data/                            # Processed Datasets & Ground Truth
+│   ├── processed/
+│   │   └── hcmc_flood_annotated_v3_multimodal.json  # Gold Standard ASTE v3 Dataset
+│   ├── raw/episodes/                # Episode-based crowdsourced raw corpora
+│   └── csgt_122_flood_hotspots.json # Verified coordinates for 122 flood hotspots
+├── documents/                       # Comprehensive Scientific & Architectural Documentation
+│   ├── HUONG_DAN_SUA_DATASET_ASTE_V3.md
+│   ├── BIGDATA_DATA_ENGINEERING_ARCHITECTURE_AND_EVALUATION.md
+│   └── RadiNet_Master_Notes.pdf
+├── pipeline/                        # Feature Extraction & Verification Services
+│   ├── event_processor.py           # Stream sanitization and spam rejection
+│   ├── live_free_crawler.py         # Autonomous live crawler without paid APIs
+│   ├── multimodal_streamer.py       # Zero-disk in-memory keyframe & audio streamer
+│   ├── spatio_temporal_clusterer.py # Spatial consensus clustering engine
+│   └── veracity_checker.py          # Multi-tier veracity verification against Open-Meteo
+├── scripts/                         # Production Scripts & Benchmarking Tools
+│   ├── augment_cda_pos.py           # Controlled counterfactual augmentation generator
+│   ├── build_dataset_v3.py          # Gold standard dataset builder
+│   ├── crawl_targeted_pos.py        # Targeted crawler for recovery signals
+│   ├── generate_full_stats_v3.py    # 13-dimension dataset audit script
+│   └── orchestrator.py              # Crawler workflow orchestrator
+├── tests/                           # Automated Verification & Smoke Test Suite
+│   ├── smoke_test_pipeline.py
+│   └── test_live_fixes.py
+├── run_pipeline_test.py             # System execution entrypoint
+└── requirements.txt                 # Pinned Python package dependencies
 ```
 
 ---
 
-## 🧩 Điểm tích hợp Mô hình AI (AI Model Extension Point)
+## 🎯 Target Milestones & Paper Submission
 
-Dự án được thiết kế theo kiến trúc module hóa cao (**Modular & Decoupled Architecture**), sẵn sàng tích hợp với mô hình AI đa phương thái / ASTE (*Aspect Sentiment Triplet Extraction*) của thành viên trong nhóm.
-
-👉 **Vị trí tích hợp:** File `pipeline/veracity_checker.py`, phương thức:
-```python
-def evaluate_content_ai(self, event: Dict[str, Any]) -> Dict[str, Any]:
-    # Điểm cắm tích hợp mô hình AI:
-    # from models.dual_span import predict_triplets
-    # res = predict_triplets(text=event['text'])
-    ...
-```
-
-📖 Chi tiết tài liệu kỹ thuật, định dạng đầu vào/đầu ra và kịch bản kết hợp xem tại:  
-👉 **[documents/AI_INTEGRATION_AND_VERACITY_GUIDE.md](documents/AI_INTEGRATION_AND_VERACITY_GUIDE.md)**
+This project serves as the core empirical and engineering foundation for academic publication:
+- **Target Venue**: **ICWSM 2027** (*International AAAI Conference on Web and Social Media*)
+- **Focus Areas**: Disaster Informatics, Multimodal Information Extraction, Data Veracity in Crowdsourcing Streams.
+- **Compute Credit Application**: Google Cloud Research Credits / Google Ultra Program for large-scale PhoBERT fine-tuning and ViT inference.
 
 ---
 
-## 👥 Nhóm tác giả & Đóng góp (Credits)
-* **Tổ chức GitHub:** [SE363 - HVT](https://github.com/SE363-HVT)
-* **Repository:** [urban-flood-monitor](https://github.com/SE363-HVT/urban-flood-monitor)
+## 👥 Authors & Acknowledgments
+
+- **Research Team**: SE363 Research Group — University of Information Technology (VNU-HCM).
+- **Core Maintainer**: Minh Thuan (`Tranminhthuan161@gmail.com`).
+- **Organization**: [SE363 - HVT](https://github.com/SE363-HVT)
+- **Repository**: [urban-flood-monitor](https://github.com/SE363-HVT/urban-flood-monitor)
+
+---
+*For inquiries, academic collaboration, or benchmark reproducibility questions, please open an Issue or contact the authors directly.*

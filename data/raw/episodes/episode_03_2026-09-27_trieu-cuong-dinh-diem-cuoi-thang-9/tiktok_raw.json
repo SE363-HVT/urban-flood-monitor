@@ -14195,5 +14195,26 @@
     "platform": "tiktok",
     "crawled_at": "2026-10-11T18:10:04.787499+00:00",
     "crawler_source": "free_discovery_engine"
+  },
+  {
+    "id": "7690432463373356309_s00",
+    "url": "https://www.tiktok.com/@dantri.com.vn/video/7690432463373356309",
+    "webVideoUrl": "https://www.tiktok.com/@dantri.com.vn/video/7690432463373356309",
+    "mediaUrls": [
+      "https://www.tiktok.com/@dantri.com.vn/video/7690432463373356309"
+    ],
+    "text": "Nâng nền nhà 3 lần, khu dân cư tại TPHCM vẫn không thoát cảnh ngập #dantrinews #LearnOnTikTok #xuhuong.",
+    "title": "Nâng nền nhà 3 lần, khu dân cư tại TPHCM vẫn không thoát cảnh ngập #dantrinews #LearnOnTikTok #xuhuong",
+    "author": "dantri.com.vn",
+    "authorMeta": {
+      "name": "dantri.com.vn"
+    },
+    "createTimeISO": "2026-09-27T07:00:00+00:00",
+    "published": "Sun, 27 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-27",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-20T10:39:12.752293+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
   }
 ]

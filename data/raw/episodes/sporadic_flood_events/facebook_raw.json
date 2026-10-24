@@ -2492,5 +2492,727 @@
     "platform": "facebook",
     "crawled_at": "2026-10-11T17:12:58.202779+00:00",
     "crawler_source": "free_discovery_engine"
+  },
+  {
+    "id": "qu",
+    "url": "https://www.facebook.com/Dung.review.co.tam/posts/qu%E1%BA%ADn-7-nay-h%E1%BA%BFt-ng%E1%BA%ADp-r%E1%BB%93ing%C3%A3-3-hu%E1%BB%B3nh-t%E1%BA%A5n-ph%C3%A1t-v%E1%BB%9Bi-g%C3%B2-%C3%B4-m%C3%B4i-m%E1%BA%A5y-h%C3%B4m-d%E1%BB%85-ng%E1%BA%ADp-m%C3%A0-t%E1%BB%91i-/10239232762949301/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Quận 7 nay hết ngập rồi Ngã 3 Huỳnh Tấn Phát với Gò Ô Môi mấy hôm dễ ngập mà tối nay khô queo à... Ra đường ăn chơi pay lak thôi các bạn 🤘",
+    "title": "Quận 7 nay hết ngập rồi Ngã 3 Huỳnh Tấn Phát với Gò Ô Môi mấy hôm dễ ngập mà tối nay khô queo à... Ra đường ăn chơi pay lak thôi các bạn 🤘",
+    "author": "Dung.review.co.tam",
+    "authorMeta": {
+      "name": "Dung.review.co.tam"
+    },
+    "createTimeISO": "2026-10-13T12:48:41+00:00",
+    "published": "Tue, 13 Oct 2026 12:48:41 GMT",
+    "extracted_date": "2026-10-13",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:56:31.219515+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "POS"
+  },
+  {
+    "id": "-c",
+    "url": "https://www.facebook.com/PageSaiGonOi/posts/-c%E1%BB%91ng-ng%C4%83n-tri%E1%BB%81u-b%E1%BA%BFn-ngh%C3%A9-h%C3%B4m-nay-%C4%91%C6%B0%E1%BB%A3c-v%E1%BA%ADn-h%C3%A0nh-th%E1%BB%AD-t%C3%A1i-kh%E1%BB%9Fi-c%C3%B4ng-tr%C3%ACnh-ch%E1%BB%91ng-ng/1324840263017390/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "🌆 Cống ngăn triều Bến Nghé hôm nay được vận hành thử - tái khởi công trình chống ngập 10.000 tỷ của TP sau nhiều năm tạm ngưng ✌️ 🔹 Cống Bến Nghé nằm trên kênh Bến Nghé, khu vực cầu Mống, giáp ranh quận 1 và quận 4 cũ. Công trình là một hạn",
+    "title": "🌆 Cống ngăn triều Bến Nghé hôm nay được vận hành thử - tái khởi công trình chống ngập 10.000 tỷ của TP sau nhiều năm tạm ngưng ✌️ 🔹 Cống Bến Nghé nằm trên kênh Bến Nghé, khu vực cầu Mống, giáp ranh quận 1 và quận 4 cũ. Công trình là một hạn",
+    "author": "PageSaiGonOi",
+    "authorMeta": {
+      "name": "PageSaiGonOi"
+    },
+    "createTimeISO": "2026-02-02T08:00:00+00:00",
+    "published": "Mon, 02 Feb 2026 08:00:00 GMT",
+    "extracted_date": "2026-02-02",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:56:39.778519+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "th",
+    "url": "https://www.facebook.com/reicvn/posts/th%C3%A1ng-06-t%E1%BB%9Bi-%C4%91%C3%A2y-l%C3%A0-tr%C3%B2n-10-n%C4%83m-k%E1%BB%83-t%E1%BB%AB-th%E1%BB%9Di-%C4%91i%E1%BB%83m-trung-nam-group-kh%E1%BB%9Fi-c%C3%B4ng-d%E1%BB%B1-%C3%A1n-/1457065769799190/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Tháng 06 tới đây là tròn 10 năm kể từ thời điểm Trung Nam Group khởi công Dự án Giải quyết ngập do triều khu vực Thành phố Hồ Chí Minh với 8 hạng mục chính, trong đó gồm 6 cống ngăn triều: Bến Nghé, Cây Khô, Mương Chuối, Phú Định, Phú Xuân, Tân",
+    "title": "Tháng 06 tới đây là tròn 10 năm kể từ thời điểm Trung Nam Group khởi công Dự án Giải quyết ngập do triều khu vực Thành phố Hồ Chí Minh với 8 hạng mục chính, trong đó gồm 6 cống ngăn triều: Bến Nghé, Cây Khô, Mương Chuối, Phú Định, Phú Xuân, Tân",
+    "author": "reicvn",
+    "authorMeta": {
+      "name": "reicvn"
+    },
+    "createTimeISO": "2026-05-08T07:00:00+00:00",
+    "published": "Fri, 08 May 2026 07:00:00 GMT",
+    "extracted_date": "2026-05-08",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:56:40.053473+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "27053775057616909",
+    "url": "https://www.facebook.com/groups/congdongbds8/posts/27053775057616909/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Giải tỏa hơn 1.000 hộ dân ven rạch Văn Thánh trước ngày 15.9 để triển khai dự án chỉnh trang đô thị có tổng vốn hơn 8.555 tỉ đồng. UBND TP Hồ Chí Minh ban hành kế hoạch triển khai công tác bồi thường, hỗ trợ, tái định cư đối với dự án Nạo vét, cải tạo môi",
+    "title": "Giải tỏa hơn 1.000 hộ dân ven rạch Văn Thánh trước ngày 15.9 để triển khai dự án chỉnh trang đô thị có tổng vốn hơn 8.555 tỉ đồng. UBND TP Hồ Chí Minh ban hành kế hoạch triển khai công tác bồi thường, hỗ trợ, tái định cư đối với dự án Nạo vét, cải tạo môi",
+    "author": "Facebook Creator",
+    "authorMeta": {
+      "name": "Facebook Creator"
+    },
+    "createTimeISO": "2026-05-25T07:00:00+00:00",
+    "published": "Mon, 25 May 2026 07:00:00 GMT",
+    "extracted_date": "2026-05-25",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:56:44.763914+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "tphcm-chi-h",
+    "url": "https://www.facebook.com/thanhnien/posts/tphcm-chi-h%C6%A1n-8500-t%E1%BB%89-c%E1%BA%A3i-t%E1%BA%A1o-r%E1%BA%A1ch-v%C4%83n-th%C3%A1nh-d%E1%BB%B1-ki%E1%BA%BFn-kh%E1%BB%9Fi-c%C3%B4ng-th%C3%A1ng-10/1522800246552959/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TP.HCM chi hơn 8.500 tỉ cải tạo rạch Văn Thánh, dự kiến khởi công tháng 10",
+    "title": "TP.HCM chi hơn 8.500 tỉ cải tạo rạch Văn Thánh, dự kiến khởi công tháng 10",
+    "author": "thanhnien",
+    "authorMeta": {
+      "name": "thanhnien"
+    },
+    "createTimeISO": "2026-07-09T07:00:00+00:00",
+    "published": "Thu, 09 Jul 2026 07:00:00 GMT",
+    "extracted_date": "2026-07-09",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:56:46.242092+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "-tin-tri",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/-tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-16102026-t%C3%ACnh-h%C3%ACn/1424840276488432/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 16/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống nhanh. Đến 07h00 ngày 16/10/2026, m",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 16/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống nhanh. Đến 07h00 ngày 16/10/2026, m",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-10-16T03:51:19+00:00",
+    "published": "Fri, 16 Oct 2026 03:51:19 GMT",
+    "extracted_date": "2026-10-16",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:56:52.503628+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "-tin-tri",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/-tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-14102026-t%C3%ACnh-h%C3%ACn/1422923193346807/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 14/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống nhanh và còn ở mức cao. Đến 07h00 ng",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 14/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống nhanh và còn ở mức cao. Đến 07h00 ng",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-10-14T04:02:20+00:00",
+    "published": "Wed, 14 Oct 2026 04:02:20 GMT",
+    "extracted_date": "2026-10-14",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:56:52.988105+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "ea780aa45f9c6c1a",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/photos/1244005047905290/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 15/3/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn biến đổi chậm. Tính đến 07h00 ngày 15/03/2026",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 15/3/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn biến đổi chậm. Tính đến 07h00 ngày 15/03/2026",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-03-14T07:00:00+00:00",
+    "published": "Sat, 14 Mar 2026 07:00:00 GMT",
+    "extracted_date": "2026-03-14",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:56:53.452883+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "tin-tri",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-13102026-t%C3%ACnh-h%C3%ACn/1422004196772040/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 13/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống chậm và còn ở mức cao. Đến 07h00 ng",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 13/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống chậm và còn ở mức cao. Đến 07h00 ng",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-10-13T04:27:42+00:00",
+    "published": "Tue, 13 Oct 2026 04:27:42 GMT",
+    "extracted_date": "2026-10-13",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:56:55.162618+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "108efd66cb586843",
+    "url": "https://www.facebook.com/Mrdong.Vn68/posts/%C4%91o%E1%BA%A1n-ng%E1%BA%ADp-th%E1%BB%A7-thi%C3%AAm-%C4%91%C3%A3-%C4%91%C6%B0%E1%BB%A3c-r%C3%A0o-ch%E1%BA%AFn-thi-c%C3%B4ng-1-trung-t%C3%A2m-t%C3%A0i-ch%C3%ADnh-h%C3%A0nh-ch%C3%ADnh-s/2382804012491069/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Đoạn ngập Thủ Thiêm đã được rào chắn thi công, 1 trung tâm tài chính, hành chính số 1 TPHCM không thể để DỀNH nước lang thang được. #Mrdong",
+    "title": "Đoạn ngập Thủ Thiêm đã được rào chắn thi công, 1 trung tâm tài chính, hành chính số 1 TPHCM không thể để DỀNH nước lang thang được. #Mrdong",
+    "author": "Mrdong.Vn68",
+    "authorMeta": {
+      "name": "Mrdong.Vn68"
+    },
+    "createTimeISO": "2026-10-14T04:22:25+00:00",
+    "published": "Wed, 14 Oct 2026 04:22:25 GMT",
+    "extracted_date": "2026-10-14",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:57:02.620596+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "m",
+    "url": "https://www.facebook.com/tintucvtv9/posts/m%E1%BB%97i-%C4%91%E1%BB%A3t-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-kho%E1%BA%A3ng-70-h%E1%BB%99-d%C3%A2n-t%E1%BA%A1i-chung-c%C6%B0-136-b%C3%B9i-v%C4%83n-ba-tp-h%E1%BB%93-ch%C3%AD-minh-/1599020785589414/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Mỗi đợt triều cường, khoảng 70 hộ dân tại chung cư 136 Bùi Văn Ba, TP. Hồ Chí Minh lại khổ sở vì nước ngập vào nhà, có nơi ngập tới đầu gối. Dù đã nâng nền, lắp máy bơm, người dân vẫn chưa thể thoát cảnh ngập kéo dài.",
+    "title": "Mỗi đợt triều cường, khoảng 70 hộ dân tại chung cư 136 Bùi Văn Ba, TP. Hồ Chí Minh lại khổ sở vì nước ngập vào nhà, có nơi ngập tới đầu gối. Dù đã nâng nền, lắp máy bơm, người dân vẫn chưa thể thoát cảnh ngập kéo dài.",
+    "author": "tintucvtv9",
+    "authorMeta": {
+      "name": "tintucvtv9"
+    },
+    "createTimeISO": "2026-10-15T13:02:49+00:00",
+    "published": "Thu, 15 Oct 2026 13:02:49 GMT",
+    "extracted_date": "2026-10-15",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:57:05.036770+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "tr",
+    "url": "https://www.facebook.com/quang.trong.tri.2025/posts/tr%C6%B0%E1%BB%9Bc-t%C3%ACnh-tr%E1%BA%A1ng-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-d%C3%A2ng-cao-g%C3%A2y-ng%E1%BA%ADp-n%E1%BA%B7ng-v%C3%A0-nguy-c%C6%A1-s%E1%BA%A1t-l%E1%BB%9F-nghi%C3%AAm-tr%E1%BB%8D/2187646281796178/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Trước tình trạng triều cường dâng cao gây ngập nặng và nguy cơ sạt lở nghiêm trọng tại bán đảo Thanh Đa (phường Bình Quới, TP HCM), Sở Xây dựng cùng các đơn vị liên quan đang đẩy nhanh tiến độ ba dự án bờ kè trọng điểm, đồng thời triển khai nhiều",
+    "title": "Trước tình trạng triều cường dâng cao gây ngập nặng và nguy cơ sạt lở nghiêm trọng tại bán đảo Thanh Đa (phường Bình Quới, TP HCM), Sở Xây dựng cùng các đơn vị liên quan đang đẩy nhanh tiến độ ba dự án bờ kè trọng điểm, đồng thời triển khai nhiều",
+    "author": "quang.trong.tri.2025",
+    "authorMeta": {
+      "name": "quang.trong.tri.2025"
+    },
+    "createTimeISO": "2026-08-28T07:00:00+00:00",
+    "published": "Fri, 28 Aug 2026 07:00:00 GMT",
+    "extracted_date": "2026-08-28",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T09:57:05.345980+00:00",
+    "crawler_source": "free_discovery_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "to_s00",
+    "url": "https://www.facebook.com/tapchitrithucznews.vn/posts/to%C3%A0n-c%E1%BA%A3nh-147-km-c%E1%BA%A7u-c%E1%BA%A1n-v%C3%A0nh-%C4%91ai-3-tphcm-tr%C6%B0%E1%BB%9Bc-ng%C3%A0y-th%C3%B4ng-xe%C4%91%E1%BA%A1i-c%C3%B4ng-tr%C6%B0%E1%BB%9Dng-v%C3%A0n/122180927834670557/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Toàn cảnh 14,7 km cầu cạn Vành đai 3 TP.HCM trước ngày thông xe Đại công trường Vành đai 3 đoạn qua TP Thủ Đức (cũ) đang vào giai đoạn thi công cao điểm với hàng trăm công nhân, kỹ sư.",
+    "title": "Toàn cảnh 14,7 km cầu cạn Vành đai 3 TP.HCM trước ngày thông xe Đại công trường Vành đai 3 đoạn qua TP Thủ Đức (cũ) đang vào giai đoạn thi công cao điểm với hàng trăm công nhân, kỹ sư. Khoảng 14,7 km tuyến dự kiến được thông xe ngày 30/9. Theo",
+    "author": "tapchitrithucznews.vn",
+    "authorMeta": {
+      "name": "tapchitrithucznews.vn"
+    },
+    "createTimeISO": "2026-08-10T07:00:00+00:00",
+    "published": "Mon, 10 Aug 2026 07:00:00 GMT",
+    "extracted_date": "2026-08-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:37:43.939774+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "POS"
+  },
+  {
+    "id": "bao-gi_s00",
+    "url": "https://www.facebook.com/saigondoday/posts/bao-gi%E1%BB%9D-tphcm-h%E1%BA%BFt-ng%E1%BA%ADp/1939046327434353/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Bao giờ TPHCM hết ngập ?.",
+    "title": "Bao giờ TPHCM hết ngập ?",
+    "author": "saigondoday",
+    "authorMeta": {
+      "name": "saigondoday"
+    },
+    "createTimeISO": "2026-10-17T13:50:39+00:00",
+    "published": "Sat, 17 Oct 2026 13:50:39 GMT",
+    "extracted_date": "2026-10-17",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:09.097813+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "POS"
+  },
+  {
+    "id": "tphcm-ch_s00",
+    "url": "https://www.facebook.com/quyhoachdatdaitoanquoc.vn/posts/tphcm-ch%C3%ADnh-th%E1%BB%A9c-t%C3%A1i-kh%E1%BB%9Fi-%C4%91%E1%BB%99ng-h%E1%BB%87-th%E1%BB%91ng-c%E1%BB%91ng-ng%C4%83n-tri%E1%BB%81u-ch%E1%BB%91ng-ng%E1%BA%ADp-10000-t%E1%BB%B7-%C4%91%E1%BB%93ng/1386721806801832/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TP.HCM chính thức tái khởi động hệ thống cống ngăn triều chống ngập 10.000 tỷ đồng, cam kết đưa dự án vào vận hành trong năm nay.",
+    "title": "TP.HCM chính thức tái khởi động hệ thống cống ngăn triều chống ngập 10.000 tỷ đồng, cam kết đưa dự án vào vận hành trong năm nay",
+    "author": "quyhoachdatdaitoanquoc.vn",
+    "authorMeta": {
+      "name": "quyhoachdatdaitoanquoc.vn"
+    },
+    "createTimeISO": "2026-02-02T08:00:00+00:00",
+    "published": "Mon, 02 Feb 2026 08:00:00 GMT",
+    "extracted_date": "2026-02-02",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:21.664502+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "tphcm-ch_s00",
+    "url": "https://www.facebook.com/toiladanq7/posts/tphcm-ch%C3%ADnh-th%E1%BB%A9c-t%C3%A1i-kh%E1%BB%9Fi-%C4%91%E1%BB%99ng-h%E1%BB%87-th%E1%BB%91ng-c%E1%BB%91ng-ng%C4%83n-tri%E1%BB%81u-ch%E1%BB%91ng-ng%E1%BA%ADp-t%E1%BA%A1i-ch%C3%A2n-c%E1%BA%A7u-/1314859723781832/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "💥TPHCM chính thức tái khởi động hệ thống cống ngăn triều chống ngập tại chân cầu Mống phía bờ quận 4 cũ Theo Báo Thanh Niên.",
+    "title": "💥TPHCM chính thức tái khởi động hệ thống cống ngăn triều chống ngập tại chân cầu Mống phía bờ quận 4 cũ Theo Báo Thanh Niên",
+    "author": "toiladanq7",
+    "authorMeta": {
+      "name": "toiladanq7"
+    },
+    "createTimeISO": "2026-02-01T08:00:00+00:00",
+    "published": "Sun, 01 Feb 2026 08:00:00 GMT",
+    "extracted_date": "2026-02-01",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:22.142964+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "-c_s00",
+    "url": "https://www.facebook.com/PageSaiGonOi/posts/-c%E1%BB%91ng-ng%C4%83n-tri%E1%BB%81u-b%E1%BA%BFn-ngh%C3%A9-h%C3%B4m-nay-%C4%91%C6%B0%E1%BB%A3c-v%E1%BA%ADn-h%C3%A0nh-th%E1%BB%AD-t%C3%A1i-kh%E1%BB%9Fi-c%C3%B4ng-tr%C3%ACnh-ch%E1%BB%91ng-ng/1324840263017390/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "🌆 Cống ngăn triều Bến Nghé hôm nay được vận hành thử - tái khởi công trình chống ngập 10.000 tỷ của TP sau nhiều năm tạm ngưng ✌️ 🔹 Cống Bến Nghé nằm trên kênh Bến Nghé, khu vực cầu Mống, giáp ranh quận 1 và quận 4 cũ.",
+    "title": "🌆 Cống ngăn triều Bến Nghé hôm nay được vận hành thử - tái khởi công trình chống ngập 10.000 tỷ của TP sau nhiều năm tạm ngưng ✌️ 🔹 Cống Bến Nghé nằm trên kênh Bến Nghé, khu vực cầu Mống, giáp ranh quận 1 và quận 4 cũ. Công trình là một hạn",
+    "author": "PageSaiGonOi",
+    "authorMeta": {
+      "name": "PageSaiGonOi"
+    },
+    "createTimeISO": "2026-02-02T08:00:00+00:00",
+    "published": "Mon, 02 Feb 2026 08:00:00 GMT",
+    "extracted_date": "2026-02-02",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:23.084853+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "th_s00",
+    "url": "https://www.facebook.com/reicvn/posts/th%C3%A1ng-06-t%E1%BB%9Bi-%C4%91%C3%A2y-l%C3%A0-tr%C3%B2n-10-n%C4%83m-k%E1%BB%83-t%E1%BB%AB-th%E1%BB%9Di-%C4%91i%E1%BB%83m-trung-nam-group-kh%E1%BB%9Fi-c%C3%B4ng-d%E1%BB%B1-%C3%A1n-/1457065769799190/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Tháng 06 tới đây là tròn 10 năm kể từ thời điểm Trung Nam Group khởi công Dự án Giải quyết ngập do triều khu vực Thành phố Hồ Chí Minh với 8 hạng mục chính, trong đó gồm 6 cống ngăn triều: Bến Nghé, Cây Khô, Mương Chuối, Phú Định, Phú Xuân, Tân.",
+    "title": "Tháng 06 tới đây là tròn 10 năm kể từ thời điểm Trung Nam Group khởi công Dự án Giải quyết ngập do triều khu vực Thành phố Hồ Chí Minh với 8 hạng mục chính, trong đó gồm 6 cống ngăn triều: Bến Nghé, Cây Khô, Mương Chuối, Phú Định, Phú Xuân, Tân",
+    "author": "reicvn",
+    "authorMeta": {
+      "name": "reicvn"
+    },
+    "createTimeISO": "2026-05-08T07:00:00+00:00",
+    "published": "Fri, 08 May 2026 07:00:00 GMT",
+    "extracted_date": "2026-05-08",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:23.568191+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "108efd66cb586843_s00",
+    "url": "https://www.facebook.com/Mrdong.Vn68/posts/%C4%91o%E1%BA%A1n-ng%E1%BA%ADp-th%E1%BB%A7-thi%C3%AAm-%C4%91%C3%A3-%C4%91%C6%B0%E1%BB%A3c-r%C3%A0o-ch%E1%BA%AFn-thi-c%C3%B4ng-1-trung-t%C3%A2m-t%C3%A0i-ch%C3%ADnh-h%C3%A0nh-ch%C3%ADnh-s/2382804012491069/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Đoạn ngập Thủ Thiêm đã được rào chắn thi công, 1 trung tâm tài chính, hành chính số 1 TPHCM không thể để DỀNH nước lang thang được.",
+    "title": "Đoạn ngập Thủ Thiêm đã được rào chắn thi công, 1 trung tâm tài chính, hành chính số 1 TPHCM không thể để DỀNH nước lang thang được. #Mrdong",
+    "author": "Mrdong.Vn68",
+    "authorMeta": {
+      "name": "Mrdong.Vn68"
+    },
+    "createTimeISO": "2026-10-14T04:22:25+00:00",
+    "published": "Wed, 14 Oct 2026 04:22:25 GMT",
+    "extracted_date": "2026-10-14",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:24.930826+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "ti_s00",
+    "url": "https://www.facebook.com/vgtnews/posts/ti%E1%BA%BFng-n%E1%BB%93ng-th%E1%BB%A7y-chi%E1%BA%BFn-n%C3%BAt-giao-an-ph%C3%BA-v%E1%BB%ABa-debut-h%E1%BA%A7m-chui-hc1-2-%E1%BB%9F-an-ph%C3%BA-b%E1%BA%A5t-ng%E1%BB%9D-/1452734862888684/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Sự cố do hệ thống điện trạm bơm gặp sự cố khi.",
+    "title": "TIẾNG NỒNG THỦY CHIẾN NÚT GIAO AN PHÚ 🔥💦 Vừa debut, hầm chui HC1-2 ở An Phú bất ngờ biến thành hồ bơi giữa sáng 16/2, nước ngập gần 50cm khiến xe như lướt sóng giữa lòng công trình nghìn tỷ. Sự cố do hệ thống điện trạm bơm gặp sự cố khi",
+    "author": "vgtnews",
+    "authorMeta": {
+      "name": "vgtnews"
+    },
+    "createTimeISO": "2026-02-16T08:00:00+00:00",
+    "published": "Mon, 16 Feb 2026 08:00:00 GMT",
+    "extracted_date": "2026-02-16",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:30.297981+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "ti_s01",
+    "url": "https://www.facebook.com/vgtnews/posts/ti%E1%BA%BFng-n%E1%BB%93ng-th%E1%BB%A7y-chi%E1%BA%BFn-n%C3%BAt-giao-an-ph%C3%BA-v%E1%BB%ABa-debut-h%E1%BA%A7m-chui-hc1-2-%E1%BB%9F-an-ph%C3%BA-b%E1%BA%A5t-ng%E1%BB%9D-/1452734862888684/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Sự cố do hệ thống điện trạm bơm gặp sự cố khi</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Facebook</font>",
+    "title": "TIẾNG NỒNG THỦY CHIẾN NÚT GIAO AN PHÚ 🔥💦 Vừa debut, hầm chui HC1-2 ở An Phú bất ngờ biến thành hồ bơi giữa sáng 16/2, nước ngập gần 50cm khiến xe như lướt sóng giữa lòng công trình nghìn tỷ. Sự cố do hệ thống điện trạm bơm gặp sự cố khi",
+    "author": "vgtnews",
+    "authorMeta": {
+      "name": "vgtnews"
+    },
+    "createTimeISO": "2026-02-16T08:00:00+00:00",
+    "published": "Mon, 16 Feb 2026 08:00:00 GMT",
+    "extracted_date": "2026-02-16",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:30.297999+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "ubnd-tphcm-y_s00",
+    "url": "https://www.facebook.com/minhquanmqb3/posts/ubnd-tphcm-y%C3%AAu-c%E1%BA%A7u-r%C3%A0-so%C3%A1t-h%E1%BB%87-th%E1%BB%91ng-tho%C3%A1t-n%C6%B0%E1%BB%9Bc-c%C3%B4ng-su%E1%BA%A5t-tr%E1%BA%A1m-b%C6%A1m-t%E1%BA%A1i-c%C3%A1c-h%E1%BA%A7m-ch/1844300463941687/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "UBND TP.HCM yêu cầu rà soát hệ thống thoát nước, công suất trạm bơm tại các hầm chui và nghiên cứu bổ sung cảm biến cảnh báo ngập, giải pháp vận hành tự động để chủ động ứng phó mưa lớn.",
+    "title": "UBND TP.HCM yêu cầu rà soát hệ thống thoát nước, công suất trạm bơm tại các hầm chui và nghiên cứu bổ sung cảm biến cảnh báo ngập, giải pháp vận hành tự động để chủ động ứng phó mưa lớn. Ban Giao thông phải bổ sung bơm tạm tại hầm chui An Ph",
+    "author": "minhquanmqb3",
+    "authorMeta": {
+      "name": "minhquanmqb3"
+    },
+    "createTimeISO": "2026-10-19T09:43:27+00:00",
+    "published": "Mon, 19 Oct 2026 09:43:27 GMT",
+    "extracted_date": "2026-10-19",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:31.867045+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "27053775057616909_s00",
+    "url": "https://www.facebook.com/groups/congdongbds8/posts/27053775057616909/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "UBND TP Hồ Chí Minh ban hành kế hoạch triển khai công tác bồi thường, hỗ trợ, tái định cư đối với dự án Nạo vét, cải tạo môi.",
+    "title": "Giải tỏa hơn 1.000 hộ dân ven rạch Văn Thánh trước ngày 15.9 để triển khai dự án chỉnh trang đô thị có tổng vốn hơn 8.555 tỉ đồng. UBND TP Hồ Chí Minh ban hành kế hoạch triển khai công tác bồi thường, hỗ trợ, tái định cư đối với dự án Nạo vét, cải tạo môi",
+    "author": "Facebook Creator",
+    "authorMeta": {
+      "name": "Facebook Creator"
+    },
+    "createTimeISO": "2026-05-25T07:00:00+00:00",
+    "published": "Mon, 25 May 2026 07:00:00 GMT",
+    "extracted_date": "2026-05-25",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:39.621052+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "27053775057616909_s01",
+    "url": "https://www.facebook.com/groups/congdongbds8/posts/27053775057616909/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "UBND TP Hồ Chí Minh ban hành kế hoạch triển khai công tác bồi thường, hỗ trợ, tái định cư đối với dự án Nạo vét, cải tạo môi</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Facebook</font>",
+    "title": "Giải tỏa hơn 1.000 hộ dân ven rạch Văn Thánh trước ngày 15.9 để triển khai dự án chỉnh trang đô thị có tổng vốn hơn 8.555 tỉ đồng. UBND TP Hồ Chí Minh ban hành kế hoạch triển khai công tác bồi thường, hỗ trợ, tái định cư đối với dự án Nạo vét, cải tạo môi",
+    "author": "Facebook Creator",
+    "authorMeta": {
+      "name": "Facebook Creator"
+    },
+    "createTimeISO": "2026-05-25T07:00:00+00:00",
+    "published": "Mon, 25 May 2026 07:00:00 GMT",
+    "extracted_date": "2026-05-25",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:39.621084+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "d_s00",
+    "url": "https://www.facebook.com/kenhdoi/posts/d%E1%BB%B1-%C3%A1n-n%E1%BA%A1o-v%C3%A9t-c%E1%BA%A3i-t%E1%BA%A1o-m%C3%B4i-tr%C6%B0%E1%BB%9Dng-k%E1%BA%BFt-h%E1%BB%A3p-ch%E1%BB%89nh-trang-%C4%91%C3%B4-th%E1%BB%8B-tr%E1%BB%A5c-tho%C3%A1t-n%C6%B0%E1%BB%9Bc-r%E1%BA%A1ch/1450048167167588/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Dự án Nạo vét, cải tạo môi trường kết hợp chỉnh trang đô thị trục thoát nước rạch Ông Bé và rạch nhánh.",
+    "title": "Dự án Nạo vét, cải tạo môi trường kết hợp chỉnh trang đô thị trục thoát nước rạch Ông Bé và rạch nhánh",
+    "author": "kenhdoi",
+    "authorMeta": {
+      "name": "kenhdoi"
+    },
+    "createTimeISO": "2026-06-22T07:00:00+00:00",
+    "published": "Mon, 22 Jun 2026 07:00:00 GMT",
+    "extracted_date": "2026-06-22",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:40.072010+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "tphcm-chi-h_s00",
+    "url": "https://www.facebook.com/thanhnien/posts/tphcm-chi-h%C6%A1n-8500-t%E1%BB%89-c%E1%BA%A3i-t%E1%BA%A1o-r%E1%BA%A1ch-v%C4%83n-th%C3%A1nh-d%E1%BB%B1-ki%E1%BA%BFn-kh%E1%BB%9Fi-c%C3%B4ng-th%C3%A1ng-10/1522800246552959/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TP.HCM chi hơn 8.500 tỉ cải tạo rạch Văn Thánh, dự kiến khởi công tháng 10.",
+    "title": "TP.HCM chi hơn 8.500 tỉ cải tạo rạch Văn Thánh, dự kiến khởi công tháng 10",
+    "author": "thanhnien",
+    "authorMeta": {
+      "name": "thanhnien"
+    },
+    "createTimeISO": "2026-07-09T07:00:00+00:00",
+    "published": "Thu, 09 Jul 2026 07:00:00 GMT",
+    "extracted_date": "2026-07-09",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:40.906414+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "ho_s00",
+    "url": "https://www.facebook.com/NongnghiepvaMoitruongOnline/posts/ho%C3%A0n-th%C3%A0nh-b%E1%BB%93i-th%C6%B0%E1%BB%9Dng-t%C3%A1i-%C4%91%E1%BB%8Bnh-c%C6%B0-d%E1%BB%B1-%C3%A1n-n%E1%BA%A1o-v%C3%A9t-r%E1%BA%A1ch-v%C4%83n-th%C3%A1nh-tr%C6%B0%E1%BB%9Bc-159/1597238689076703/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Hoàn thành bồi thường, tái định cư Dự án nạo vét rạch Văn Thánh trước 15/9.",
+    "title": "Hoàn thành bồi thường, tái định cư Dự án nạo vét rạch Văn Thánh trước 15/9",
+    "author": "NongnghiepvaMoitruongOnline",
+    "authorMeta": {
+      "name": "NongnghiepvaMoitruongOnline"
+    },
+    "createTimeISO": "2026-05-26T07:00:00+00:00",
+    "published": "Tue, 26 May 2026 07:00:00 GMT",
+    "extracted_date": "2026-05-26",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:42.490744+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "c_s00",
+    "url": "https://www.facebook.com/cauduongvietnam.vn/posts/c%C3%B4ng-tr%C6%B0%E1%BB%9Dng-c%E1%BA%A3i-t%E1%BA%A1o-r%E1%BA%A1ch-%C4%91%C3%A1-%C4%91%E1%BB%8F-t%E1%BA%A1i-tphcm-k%E1%BB%B3-v%E1%BB%8Dng-kh%C6%A1i-th%C3%B4ng-d%C3%B2ng-ch%E1%BA%A3y-c%E1%BA%A3i-thi%E1%BB%87n-/1589531513186288/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Công trường cải tạo Rạch Đá Đỏ tại TP.HCM: Kỳ vọng khơi thông dòng chảy, cải thiện môi trường.",
+    "title": "Công trường cải tạo Rạch Đá Đỏ tại TP.HCM: Kỳ vọng khơi thông dòng chảy, cải thiện môi trường",
+    "author": "cauduongvietnam.vn",
+    "authorMeta": {
+      "name": "cauduongvietnam.vn"
+    },
+    "createTimeISO": "2026-10-16T08:00:06+00:00",
+    "published": "Fri, 16 Oct 2026 08:00:06 GMT",
+    "extracted_date": "2026-10-16",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:43.122967+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "tp-th_s00",
+    "url": "https://www.facebook.com/cauduongvietnam.vn/posts/tp-th%E1%BB%A7-%C4%91%E1%BB%A9c-x%C3%B3a-s%E1%BB%95-%C4%91i%E1%BB%83m-%C4%91en-%C3%B4-nhi%E1%BB%85m-d%E1%BB%B1-%C3%A1n-n%E1%BA%A1o-v%C3%A9t-r%E1%BA%A1ch-%C4%91%C3%A1-%C4%91%E1%BB%8F-86-t%E1%BB%B7-%C4%91%E1%BB%93ng-ch%C3%ADnh-th%E1%BB%A9/1400741528731955/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Thủ Đức \"Xóa Sổ\" Điểm Đen Ô Nhiễm: Dự Án Nạo Vét Rạch Đá Đỏ 86 Tỷ Đồng Chính Thức Khởi Động #RachDaDo #TPThuDuc #ChongNgap #HaTangDoThi #NaoVetKenhRach.",
+    "title": "TP. Thủ Đức \"Xóa Sổ\" Điểm Đen Ô Nhiễm: Dự Án Nạo Vét Rạch Đá Đỏ 86 Tỷ Đồng Chính Thức Khởi Động #RachDaDo #TPThuDuc #ChongNgap #HaTangDoThi #NaoVetKenhRach",
+    "author": "cauduongvietnam.vn",
+    "authorMeta": {
+      "name": "cauduongvietnam.vn"
+    },
+    "createTimeISO": "2026-03-22T07:00:00+00:00",
+    "published": "Sun, 22 Mar 2026 07:00:00 GMT",
+    "extracted_date": "2026-03-22",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:44.655086+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "tp-th_s01",
+    "url": "https://www.facebook.com/cauduongvietnam.vn/posts/tp-th%E1%BB%A7-%C4%91%E1%BB%A9c-x%C3%B3a-s%E1%BB%95-%C4%91i%E1%BB%83m-%C4%91en-%C3%B4-nhi%E1%BB%85m-d%E1%BB%B1-%C3%A1n-n%E1%BA%A1o-v%C3%A9t-r%E1%BA%A1ch-%C4%91%C3%A1-%C4%91%E1%BB%8F-86-t%E1%BB%B7-%C4%91%E1%BB%93ng-ch%C3%ADnh-th%E1%BB%A9/1400741528731955/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Thủ Đức \"Xóa Sổ\" Điểm Đen Ô Nhiễm: Dự Án Nạo Vét Rạch Đá Đỏ 86 Tỷ Đồng Chính Thức Khởi Động #RachDaDo #TPThuDuc #ChongNgap #HaTangDoThi #NaoVetKenhRach</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Facebook</font>",
+    "title": "TP. Thủ Đức \"Xóa Sổ\" Điểm Đen Ô Nhiễm: Dự Án Nạo Vét Rạch Đá Đỏ 86 Tỷ Đồng Chính Thức Khởi Động #RachDaDo #TPThuDuc #ChongNgap #HaTangDoThi #NaoVetKenhRach",
+    "author": "cauduongvietnam.vn",
+    "authorMeta": {
+      "name": "cauduongvietnam.vn"
+    },
+    "createTimeISO": "2026-03-22T07:00:00+00:00",
+    "published": "Sun, 22 Mar 2026 07:00:00 GMT",
+    "extracted_date": "2026-03-22",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:44.655097+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "tphcm-s_s00",
+    "url": "https://www.facebook.com/alobacsihoibacsitraloi/posts/tphcm-s%E1%BA%AFp-%C4%91%C3%B3n-%C4%91%E1%BB%A3t-tri%E1%BB%81u-cao-m%E1%BB%B1c-n%C6%B0%E1%BB%9Bc-s%C3%B4ng-k%C3%AAnh-r%E1%BA%A1ch-l%C3%AAn-nhanh-c%C3%B3-n%C6%A1i-v%C6%B0%E1%BB%A3t-b%C3%A1o-%C4%91%E1%BB%99/1701793251306435/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TPHCM sắp đón đợt triều cao: Mực nước sông, kênh rạch lên nhanh, có nơi vượt báo động II từ 9/10.",
+    "title": "TPHCM sắp đón đợt triều cao: Mực nước sông, kênh rạch lên nhanh, có nơi vượt báo động II từ 9/10",
+    "author": "alobacsihoibacsitraloi",
+    "authorMeta": {
+      "name": "alobacsihoibacsitraloi"
+    },
+    "createTimeISO": "2026-10-06T07:00:00+00:00",
+    "published": "Tue, 06 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-06",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:47.544953+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "-tin-tri_s00",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/-tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-16102026-t%C3%ACnh-h%C3%ACn/1424840276488432/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 16/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống nhanh.",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 16/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống nhanh. Đến 07h00 ngày 16/10/2026, m",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-10-16T03:51:19+00:00",
+    "published": "Fri, 16 Oct 2026 03:51:19 GMT",
+    "extracted_date": "2026-10-16",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:47.967863+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "-tin-tri_s00",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/-tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-14102026-t%C3%ACnh-h%C3%ACn/1422923193346807/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 14/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống nhanh và còn ở mức cao.",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 14/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống nhanh và còn ở mức cao. Đến 07h00 ng",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-10-14T04:02:20+00:00",
+    "published": "Wed, 14 Oct 2026 04:02:20 GMT",
+    "extracted_date": "2026-10-14",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:48.944820+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "ea780aa45f9c6c1a_s00",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/photos/1244005047905290/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 15/3/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn biến đổi chậm.",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 15/3/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn biến đổi chậm. Tính đến 07h00 ngày 15/03/2026",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-03-14T07:00:00+00:00",
+    "published": "Sat, 14 Mar 2026 07:00:00 GMT",
+    "extracted_date": "2026-03-14",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:50.354864+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "097f54526d8d2165_s00",
+    "url": "https://www.facebook.com/TruyenHinhCongAn/posts/%C4%91%E1%BB%A3t-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-%C4%91%E1%BA%A7u-th%C3%A1ng-9-%C3%A2m-l%E1%BB%8Bch-%E1%BB%9F-nam-b%E1%BB%99-hi%E1%BB%87n-%C4%91%C3%A3-qua-%C4%91%E1%BB%89nh-%C4%91i%E1%BB%83m-h%C3%B4m-nay-1310-/1490121986657906/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Đợt triều cường đầu tháng 9 âm lịch ở Nam Bộ hiện đã qua đỉnh điểm, hôm nay (13/10), triều cường nhiều nơi xuống dần nhưng còn ở mức cao, tình trạng ngập úng vẫn tiếp diễn.",
+    "title": "Đợt triều cường đầu tháng 9 âm lịch ở Nam Bộ hiện đã qua đỉnh điểm, hôm nay (13/10), triều cường nhiều nơi xuống dần nhưng còn ở mức cao, tình trạng ngập úng vẫn tiếp diễn. Nguồn: ANTV #antv #truyenhinhcongannhandan #ngapung",
+    "author": "TruyenHinhCongAn",
+    "authorMeta": {
+      "name": "TruyenHinhCongAn"
+    },
+    "createTimeISO": "2026-10-13T13:30:22+00:00",
+    "published": "Tue, 13 Oct 2026 13:30:22 GMT",
+    "extracted_date": "2026-10-13",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:53.687351+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "tin-tri_s00",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-13102026-t%C3%ACnh-h%C3%ACn/1422004196772040/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 13/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống chậm và còn ở mức cao.",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 13/10/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn xuống chậm và còn ở mức cao. Đến 07h00 ng",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-10-13T04:27:42+00:00",
+    "published": "Tue, 13 Oct 2026 04:27:42 GMT",
+    "extracted_date": "2026-10-13",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:38:57.622678+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "-tin-tri_s00",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/-tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-19012026-t%C3%ACnh-h%C3%ACn/1199520192353776/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 19/01/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn lên chậm nhưng vẫn còn ở mức thấp.",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 19/01/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn lên chậm nhưng vẫn còn ở mức thấp. Đến 07h",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-01-18T08:00:00+00:00",
+    "published": "Sun, 18 Jan 2026 08:00:00 GMT",
+    "extracted_date": "2026-01-18",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:39:00.616110+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
+  },
+  {
+    "id": "-tin-tri_s00",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/-tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-2432026-t%C3%ACnh-h%C3%ACnh/1251499627155832/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 24/3/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên khu vực sông Sài Gòn biến đổi chậm và còn duy trì ở mức cao..",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 24/3/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên khu vực sông Sài Gòn biến đổi chậm và còn duy trì ở mức cao.",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-03-23T07:00:00+00:00",
+    "published": "Mon, 23 Mar 2026 07:00:00 GMT",
+    "extracted_date": "2026-03-23",
+    "platform": "facebook",
+    "crawled_at": "2026-10-20T10:39:02.866846+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
   }
 ]

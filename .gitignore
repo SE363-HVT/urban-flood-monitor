@@ -58,3 +58,7 @@ scratch/
 
 *.safetensors
 *.pth
+*.zip
+
+data/buffer_*.jsonl
+data/lakehouse/

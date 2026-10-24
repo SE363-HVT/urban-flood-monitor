@@ -10076,5 +10076,26 @@
     "platform": "tiktok",
     "crawled_at": "2026-10-11T17:07:32.361119+00:00",
     "crawler_source": "free_discovery_engine"
+  },
+  {
+    "id": "7687813392651914516_s00",
+    "url": "https://www.tiktok.com/@nhatkydiaoc/video/7687813392651914516",
+    "webVideoUrl": "https://www.tiktok.com/@nhatkydiaoc/video/7687813392651914516",
+    "mediaUrls": [
+      "https://www.tiktok.com/@nhatkydiaoc/video/7687813392651914516"
+    ],
+    "text": "Nút giao quốc lộ 50 - Nguyễn Văn Linh ở huyện Bình Chánh cũ (TP.HCM) đã thi công xong nhưng chưa thể khai thác, dự kiến chờ đến quý 4/2027.",
+    "title": "Nút giao quốc lộ 50 - Nguyễn Văn Linh ở huyện Bình Chánh cũ (TP.HCM) đã thi công xong nhưng chưa thể khai thác, dự kiến chờ đến quý 4/2027. #nhatkydiaoc #capnhattiendo #nutgiaoquoclo50 #quoclo50 #caubinhtien",
+    "author": "nhatkydiaoc",
+    "authorMeta": {
+      "name": "nhatkydiaoc"
+    },
+    "createTimeISO": "2026-09-21T02:42:29+00:00",
+    "published": "Mon, 21 Sep 2026 02:42:29 GMT",
+    "extracted_date": "2026-09-21",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-20T10:39:14.128476+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
   }
 ]
