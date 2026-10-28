@@ -1,0 +1,48 @@
+{
+  "model_name": "vinai/bartpho-word-base",
+  "best_epoch": 5,
+  "best_val_loss": 0.3563,
+  "batch_size": 16,
+  "learning_rate": 4e-05,
+  "max_source_len": 160,
+  "max_target_len": 80,
+  "total_epochs": 20,
+  "timestamp": 1792889863,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 2.2648,
+      "val_loss": 0.5579,
+      "lr": 1.9827586206896554e-05,
+      "duration_sec": 21.0
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6168,
+      "val_loss": 0.4519,
+      "lr": 3.982758620689656e-05,
+      "duration_sec": 20.9
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.443,
+      "val_loss": 0.3853,
+      "lr": 3.7796934865900386e-05,
+      "duration_sec": 20.8
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.3351,
+      "val_loss": 0.3902,
+      "lr": 3.557471264367816e-05,
+      "duration_sec": 20.8
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.2635,
+      "val_loss": 0.3563,
+      "lr": 3.335249042145594e-05,
+      "duration_sec": 21.1
+    }
+  ]
+}

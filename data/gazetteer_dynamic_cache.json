@@ -181,140 +181,140 @@
     "ward": "Phường Bến Thành",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.7681,
-    "lon": 106.6919,
+    "lat": 10.7979,
+    "lon": 106.6586,
     "heat_points": [
       [
-        10.7681,
-        106.6919
+        10.7979,
+        106.6586
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "lê lai": {
-    "matched_keyword": "Lê Lai",
-    "display_name": "Đường Lê Lai",
-    "ward": "Phường Bến Thành",
+  "nguyễn gia trí": {
+    "matched_keyword": "Nguyễn Gia Trí",
+    "display_name": "Đường Nguyễn Gia Trí",
+    "ward": "Phường Thạnh Mỹ Tây",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.769,
-    "lon": 106.6913,
+    "lat": 10.8102,
+    "lon": 106.7172,
     "heat_points": [
       [
-        10.769,
-        106.6913
+        10.8102,
+        106.7172
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "võ chí công": {
-    "matched_keyword": "Võ Chí Công",
-    "display_name": "Đường Võ Chí Công",
-    "ward": "Phường Phước Long",
+  "giá rẻ": {
+    "matched_keyword": "giá rẻ",
+    "display_name": "Đường Giá Rẻ",
+    "ward": "Phường Bình Trị Đông",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.8063,
-    "lon": 106.7924,
+    "lat": 10.7631,
+    "lon": 106.5995,
     "heat_points": [
       [
-        10.8063,
-        106.7924
+        10.7631,
+        106.5995
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "đặng thùy trâm": {
-    "matched_keyword": "Đặng Thùy Trâm",
-    "display_name": "Đường Đặng Thùy Trâm",
-    "ward": "Phường Bình Lợi Trung",
+  "ngô chí quốc": {
+    "matched_keyword": "Ngô Chí Quốc",
+    "display_name": "Đường Ngô Chí Quốc",
+    "ward": "Phường Tam Bình",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.8311,
-    "lon": 106.7021,
+    "lat": 10.8759,
+    "lon": 106.727,
     "heat_points": [
       [
-        10.8311,
-        106.7021
+        10.8759,
+        106.727
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "phú thuận": {
-    "matched_keyword": "Phú Thuận",
-    "display_name": "Đường Phú Thuận",
-    "ward": "Phường Phú Thuận",
+  "mai chí thọ": {
+    "matched_keyword": "Mai Chí Thọ",
+    "display_name": "Đường Mai Chí Thọ",
+    "ward": "Phường Bình Trưng",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.7322,
-    "lon": 106.741,
+    "lat": 10.7853,
+    "lon": 106.7465,
     "heat_points": [
       [
-        10.7322,
-        106.741
+        10.7853,
+        106.7465
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "phạm đình toái": {
-    "matched_keyword": "Phạm Đình Toái",
-    "display_name": "Đường Phạm Đình Toái",
-    "ward": "Phường Xuân Hòa",
+  "và hẻm": {
+    "matched_keyword": "và hẻm",
+    "display_name": "Đường Và Hẻm",
+    "ward": "Xã Tân Vĩnh Lộc",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.7761,
-    "lon": 106.6861,
+    "lat": 10.8008,
+    "lon": 106.5768,
     "heat_points": [
       [
-        10.7761,
-        106.6861
+        10.8008,
+        106.5768
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "lê hồng phong": {
-    "matched_keyword": "Lê Hồng Phong",
-    "display_name": "Đường Lê Hồng Phong",
-    "ward": "Phường Vườn Lài",
+  "tp hồ chí minh": {
+    "matched_keyword": "TP Hồ Chí Minh",
+    "display_name": "Đường Tp Hồ Chí Minh",
+    "ward": "Phường Long Trường",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.7639,
-    "lon": 106.6759,
+    "lat": 10.7931,
+    "lon": 106.8093,
     "heat_points": [
       [
-        10.7639,
-        106.6759
+        10.7931,
+        106.8093
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "nguyễn thiện thuật": {
-    "matched_keyword": "Nguyễn Thiện Thuật",
-    "display_name": "Đường Nguyễn Thiện Thuật",
-    "ward": "Phường Đông Hòa",
+  "tân quý": {
+    "matched_keyword": "Tân Quý",
+    "display_name": "Đường Tân Quý",
+    "ward": "Phường Phú Thọ Hòa",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.8874,
-    "lon": 106.7849,
+    "lat": 10.7929,
+    "lon": 106.6206,
     "heat_points": [
       [
-        10.8874,
-        106.7849
+        10.7929,
+        106.6206
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "trường sơn": {
-    "matched_keyword": "Trường Sơn",
-    "display_name": "Đường Trường Sơn",
-    "ward": "Phường Hòa Hưng",
+  "ông lớn đường": {
+    "matched_keyword": "Ông Lớn đường",
+    "display_name": "Đường Ông Lớn Đường",
+    "ward": "Phường Chợ Lớn",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.784,
-    "lon": 106.6655,
+    "lat": 10.7512,
+    "lon": 106.6549,
     "heat_points": [
       [
-        10.784,
-        106.6655
+        10.7512,
+        106.6549
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
@@ -335,181 +335,120 @@
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "lã xuân oai": {
-    "matched_keyword": "lã xuân oai",
-    "display_name": "Đường Lã Xuân Oai",
-    "street": "Đường Lã Xuân Oai",
-    "ward": "Phường Tăng Nhơn Phú",
+  "phố nhật bản": {
+    "matched_keyword": "phố Nhật Bản",
+    "display_name": "Đường Phố Nhật Bản",
+    "ward": "Phường Xuân Hòa",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.83654,
-    "lon": 106.79923,
+    "lat": 10.7812,
+    "lon": 106.689,
     "heat_points": [
       [
-        10.83654,
-        106.79923
+        10.7812,
+        106.689
       ]
     ],
     "priority": 3,
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "la xuan oai": {
-    "matched_keyword": "lã xuân oai",
-    "display_name": "Đường Lã Xuân Oai",
-    "street": "Đường Lã Xuân Oai",
-    "ward": "Phường Tăng Nhơn Phú",
+  "rút lui cứ hẹp dần": {
+    "matched_keyword": "rút lui cứ hẹp dần",
+    "display_name": "Đường Rút Lui Cứ Hẹp Dần",
+    "ward": "Đô thị TP.HCM",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.83654,
-    "lon": 106.79923,
+    "lat": 10.7737,
+    "lon": 106.7166,
     "heat_points": [
       [
-        10.83654,
-        106.79923
+        10.7737,
+        106.7166
       ]
     ],
     "priority": 3,
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "phạm hữu lầu": {
-    "display_name": "Đường Phạm Hữu Lầu",
-    "street": "Đường Phạm Hữu Lầu",
-    "lat": 10.70408,
-    "lon": 106.72863,
-    "ward": "Phường Phú Mỹ",
+  "nguyễn bình": {
+    "matched_keyword": "Nguyễn Bình",
+    "display_name": "Đường Nguyễn Bình",
+    "ward": "Xã Nhà Bè",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.6757,
+    "lon": 106.7429,
     "heat_points": [
       [
-        10.70408,
-        106.72863
-      ],
-      [
-        10.70552,
-        106.73766
-      ],
-      [
-        10.70312,
-        106.72573
+        10.6757,
+        106.7429
       ]
     ],
     "priority": 3,
     "source": "highway_centerline"
   },
-  "đường phạm hữu lầu": {
-    "display_name": "Đường Phạm Hữu Lầu",
-    "street": "Đường Phạm Hữu Lầu",
-    "lat": 10.70408,
-    "lon": 106.72863,
-    "ward": "Phường Phú Mỹ",
+  "số 40": {
+    "matched_keyword": "số 40",
+    "display_name": "Đường Số 40",
+    "ward": "Xã Tân An Hội",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.9807,
+    "lon": 106.497,
     "heat_points": [
       [
-        10.70408,
-        106.72863
-      ],
-      [
-        10.70552,
-        106.73766
-      ],
-      [
-        10.70312,
-        106.72573
+        10.9807,
+        106.497
       ]
     ],
     "priority": 3,
     "source": "highway_centerline"
   },
-  "pham huu lau": {
-    "display_name": "Đường Phạm Hữu Lầu",
-    "street": "Đường Phạm Hữu Lầu",
-    "lat": 10.70408,
-    "lon": 106.72863,
-    "ward": "Phường Phú Mỹ",
+  "phạm ngũ lão": {
+    "matched_keyword": "Phạm Ngũ Lão",
+    "display_name": "Đường Phạm Ngũ Lão",
+    "ward": "Phường Bến Thành",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7681,
+    "lon": 106.6919,
     "heat_points": [
       [
-        10.70408,
-        106.72863
-      ],
-      [
-        10.70552,
-        106.73766
-      ],
-      [
-        10.70312,
-        106.72573
+        10.7681,
+        106.6919
       ]
     ],
     "priority": 3,
     "source": "highway_centerline"
   },
-  "duong pham huu lau": {
-    "display_name": "Đường Phạm Hữu Lầu",
-    "street": "Đường Phạm Hữu Lầu",
-    "lat": 10.70408,
-    "lon": 106.72863,
-    "ward": "Phường Phú Mỹ",
+  "lê lai": {
+    "matched_keyword": "Lê Lai",
+    "display_name": "Đường Lê Lai",
+    "ward": "Phường Bến Thành",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.769,
+    "lon": 106.6913,
     "heat_points": [
       [
-        10.70408,
-        106.72863
-      ],
-      [
-        10.70552,
-        106.73766
-      ],
-      [
-        10.70312,
-        106.72573
+        10.769,
+        106.6913
       ]
     ],
     "priority": 3,
     "source": "highway_centerline"
   },
-  "nguyễn văn quá": {
-    "display_name": "Đường Nguyễn Văn Quá",
-    "street": "Đường Nguyễn Văn Quá",
-    "lat": 10.83637,
-    "lon": 106.62907,
-    "ward": "Phường Đông Hưng Thuận",
+  "sắt bắc - nam": {
+    "matched_keyword": "sắt Bắc - Nam",
+    "display_name": "Đường Sắt Bắc - Nam",
+    "ward": "Đô thị TP.HCM",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7737,
+    "lon": 106.7166,
     "heat_points": [
       [
-        10.82986,
-        106.6271
-      ],
-      [
-        10.83637,
-        106.62907
-      ],
-      [
-        10.84701,
-        106.63458
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường nguyễn văn quá": {
-    "display_name": "Đường Nguyễn Văn Quá",
-    "street": "Đường Nguyễn Văn Quá",
-    "lat": 10.83637,
-    "lon": 106.62907,
-    "ward": "Phường Đông Hưng Thuận",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.82986,
-        106.6271
-      ],
-      [
-        10.83637,
-        106.62907
-      ],
-      [
-        10.84701,
-        106.63458
+        10.7737,
+        106.7166
       ]
     ],
     "priority": 3,
@@ -891,601 +830,86 @@
     "priority": 3,
     "source": "highway_centerline"
   },
-  "vinh loc": {
-    "display_name": "Đường Vĩnh Lộc",
-    "street": "Đường Vĩnh Lộc",
-    "lat": 10.79287,
-    "lon": 106.55635,
-    "ward": "Xã Tân Vĩnh Lộc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.79287,
-        106.55635
-      ],
-      [
-        10.8126,
-        106.5773
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong vinh loc": {
-    "display_name": "Đường Vĩnh Lộc",
-    "street": "Đường Vĩnh Lộc",
-    "lat": 10.79287,
-    "lon": 106.55635,
-    "ward": "Xã Tân Vĩnh Lộc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.79287,
-        106.55635
-      ],
-      [
-        10.8126,
-        106.5773
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "song hành": {
-    "display_name": "Đường Song Hành",
-    "street": "Đường Song Hành",
-    "lat": 10.8465,
-    "lon": 106.615,
-    "ward": "Phường Đông Hưng Thuận",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.8465,
-        106.615
-      ],
-      [
-        10.852,
-        106.608
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường song hành": {
-    "display_name": "Đường Song Hành",
-    "street": "Đường Song Hành",
-    "lat": 10.8465,
-    "lon": 106.615,
-    "ward": "Phường Đông Hưng Thuận",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.8465,
-        106.615
-      ],
-      [
-        10.852,
-        106.608
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "song hanh": {
-    "display_name": "Đường Song Hành",
-    "street": "Đường Song Hành",
-    "lat": 10.8465,
-    "lon": 106.615,
-    "ward": "Phường Đông Hưng Thuận",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.8465,
-        106.615
-      ],
-      [
-        10.852,
-        106.608
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong song hanh": {
-    "display_name": "Đường Song Hành",
-    "street": "Đường Song Hành",
-    "lat": 10.8465,
-    "lon": 106.615,
-    "ward": "Phường Đông Hưng Thuận",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.8465,
-        106.615
-      ],
-      [
-        10.852,
-        106.608
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "trần hưng đạo": {
-    "display_name": "Đường Trần Hưng Đạo",
-    "street": "Đường Trần Hưng Đạo",
-    "lat": 10.75585,
-    "lon": 106.68331,
-    "ward": "Phường An Đông",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75585,
-        106.68331
-      ],
-      [
-        10.7599,
-        106.6883
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường trần hưng đạo": {
-    "display_name": "Đường Trần Hưng Đạo",
-    "street": "Đường Trần Hưng Đạo",
-    "lat": 10.75585,
-    "lon": 106.68331,
-    "ward": "Phường An Đông",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75585,
-        106.68331
-      ],
-      [
-        10.7599,
-        106.6883
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "tran hung dao": {
-    "display_name": "Đường Trần Hưng Đạo",
-    "street": "Đường Trần Hưng Đạo",
-    "lat": 10.75585,
-    "lon": 106.68331,
-    "ward": "Phường An Đông",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75585,
-        106.68331
-      ],
-      [
-        10.7599,
-        106.6883
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong tran hung dao": {
-    "display_name": "Đường Trần Hưng Đạo",
-    "street": "Đường Trần Hưng Đạo",
-    "lat": 10.75585,
-    "lon": 106.68331,
-    "ward": "Phường An Đông",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75585,
-        106.68331
-      ],
-      [
-        10.7599,
-        106.6883
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "nguyễn biểu": {
-    "display_name": "Đường Nguyễn Biểu",
-    "street": "Đường Nguyễn Biểu",
-    "lat": 10.75529,
-    "lon": 106.6839,
-    "ward": "Phường Chợ Quán",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75529,
-        106.6839
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường nguyễn biểu": {
-    "display_name": "Đường Nguyễn Biểu",
-    "street": "Đường Nguyễn Biểu",
-    "lat": 10.75529,
-    "lon": 106.6839,
-    "ward": "Phường Chợ Quán",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75529,
-        106.6839
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "nguyen bieu": {
-    "display_name": "Đường Nguyễn Biểu",
-    "street": "Đường Nguyễn Biểu",
-    "lat": 10.75529,
-    "lon": 106.6839,
-    "ward": "Phường Chợ Quán",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75529,
-        106.6839
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong nguyen bieu": {
-    "display_name": "Đường Nguyễn Biểu",
-    "street": "Đường Nguyễn Biểu",
-    "lat": 10.75529,
-    "lon": 106.6839,
-    "ward": "Phường Chợ Quán",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75529,
-        106.6839
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "cao đạt": {
-    "display_name": "Đường Cao Đạt",
-    "street": "Đường Cao Đạt",
-    "lat": 10.75418,
-    "lon": 106.68228,
-    "ward": "Phường Chợ Quán",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75418,
-        106.68228
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường cao đạt": {
-    "display_name": "Đường Cao Đạt",
-    "street": "Đường Cao Đạt",
-    "lat": 10.75418,
-    "lon": 106.68228,
-    "ward": "Phường Chợ Quán",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75418,
-        106.68228
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "cao dat": {
-    "display_name": "Đường Cao Đạt",
-    "street": "Đường Cao Đạt",
-    "lat": 10.75418,
-    "lon": 106.68228,
-    "ward": "Phường Chợ Quán",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75418,
-        106.68228
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong cao dat": {
-    "display_name": "Đường Cao Đạt",
-    "street": "Đường Cao Đạt",
-    "lat": 10.75418,
-    "lon": 106.68228,
-    "ward": "Phường Chợ Quán",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.75418,
-        106.68228
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "phan huy ích": {
-    "display_name": "Đường Phan Huy Ích",
-    "street": "Đường Phan Huy Ích",
-    "lat": 10.8372,
-    "lon": 106.6362,
-    "ward": "Phường An Hội Tây",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.827,
-        106.628
-      ],
-      [
-        10.8372,
-        106.6362
-      ],
-      [
-        10.8465,
-        106.6433
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường phan huy ích": {
-    "display_name": "Đường Phan Huy Ích",
-    "street": "Đường Phan Huy Ích",
-    "lat": 10.8372,
-    "lon": 106.6362,
-    "ward": "Phường An Hội Tây",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.827,
-        106.628
-      ],
-      [
-        10.8372,
-        106.6362
-      ],
-      [
-        10.8465,
-        106.6433
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "phan huy ich": {
-    "display_name": "Đường Phan Huy Ích",
-    "street": "Đường Phan Huy Ích",
-    "lat": 10.8372,
-    "lon": 106.6362,
-    "ward": "Phường An Hội Tây",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.827,
-        106.628
-      ],
-      [
-        10.8372,
-        106.6362
-      ],
-      [
-        10.8465,
-        106.6433
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong phan huy ich": {
-    "display_name": "Đường Phan Huy Ích",
-    "street": "Đường Phan Huy Ích",
-    "lat": 10.8372,
-    "lon": 106.6362,
-    "ward": "Phường An Hội Tây",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.827,
-        106.628
-      ],
-      [
-        10.8372,
-        106.6362
-      ],
-      [
-        10.8465,
-        106.6433
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đỗ xuân hợp": {
-    "display_name": "Đường Đỗ Xuân Hợp",
-    "street": "Đường Đỗ Xuân Hợp",
-    "lat": 10.817,
-    "lon": 106.768,
+  "võ chí công": {
+    "matched_keyword": "Võ Chí Công",
+    "display_name": "Đường Võ Chí Công",
     "ward": "Phường Phước Long",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.8063,
+    "lon": 106.7924,
     "heat_points": [
       [
-        10.817,
-        106.768
+        10.8063,
+        106.7924
       ]
     ],
     "priority": 3,
     "source": "highway_centerline"
   },
-  "đường đỗ xuân hợp": {
-    "display_name": "Đường Đỗ Xuân Hợp",
-    "street": "Đường Đỗ Xuân Hợp",
-    "lat": 10.817,
-    "lon": 106.768,
-    "ward": "Phường Phước Long",
+  "đặng thùy trâm": {
+    "matched_keyword": "Đặng Thùy Trâm",
+    "display_name": "Đường Đặng Thùy Trâm",
+    "ward": "Phường Bình Lợi Trung",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.8311,
+    "lon": 106.7021,
     "heat_points": [
       [
-        10.817,
-        106.768
+        10.8311,
+        106.7021
       ]
     ],
     "priority": 3,
     "source": "highway_centerline"
   },
-  "do xuan hop": {
-    "display_name": "Đường Đỗ Xuân Hợp",
-    "street": "Đường Đỗ Xuân Hợp",
-    "lat": 10.817,
-    "lon": 106.768,
-    "ward": "Phường Phước Long",
+  "tân thuận": {
+    "matched_keyword": "Tân Thuận",
+    "display_name": "Đường Tân Thuận",
+    "ward": "Phường Tân Thuận",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.753,
+    "lon": 106.7391,
     "heat_points": [
       [
-        10.817,
-        106.768
+        10.753,
+        106.7391
       ]
     ],
     "priority": 3,
     "source": "highway_centerline"
   },
-  "duong do xuan hop": {
-    "display_name": "Đường Đỗ Xuân Hợp",
-    "street": "Đường Đỗ Xuân Hợp",
-    "lat": 10.817,
-    "lon": 106.768,
-    "ward": "Phường Phước Long",
+  "rạch chiếc": {
+    "matched_keyword": "Rạch Chiếc",
+    "display_name": "Đường Rạch Chiếc",
+    "ward": "Phường An Khánh",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.8086,
+    "lon": 106.7553,
     "heat_points": [
       [
-        10.817,
-        106.768
+        10.8086,
+        106.7553
       ]
     ],
     "priority": 3,
     "source": "highway_centerline"
   },
-  "lê văn việt": {
-    "display_name": "Đường Lê Văn Việt",
-    "street": "Đường Lê Văn Việt",
-    "lat": 10.848,
-    "lon": 106.786,
-    "ward": "Phường Tăng Nhơn Phú",
+  "phú thuận": {
+    "matched_keyword": "Phú Thuận",
+    "display_name": "Đường Phú Thuận",
+    "ward": "Phường Phú Thuận",
     "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7322,
+    "lon": 106.741,
     "heat_points": [
       [
-        10.848,
-        106.786
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường lê văn việt": {
-    "display_name": "Đường Lê Văn Việt",
-    "street": "Đường Lê Văn Việt",
-    "lat": 10.848,
-    "lon": 106.786,
-    "ward": "Phường Tăng Nhơn Phú",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.848,
-        106.786
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "le van viet": {
-    "display_name": "Đường Lê Văn Việt",
-    "street": "Đường Lê Văn Việt",
-    "lat": 10.848,
-    "lon": 106.786,
-    "ward": "Phường Tăng Nhơn Phú",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.848,
-        106.786
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong le van viet": {
-    "display_name": "Đường Lê Văn Việt",
-    "street": "Đường Lê Văn Việt",
-    "lat": 10.848,
-    "lon": 106.786,
-    "ward": "Phường Tăng Nhơn Phú",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.848,
-        106.786
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "kinh dương vương": {
-    "display_name": "Đường Kinh Dương Vương",
-    "street": "Đường Kinh Dương Vương",
-    "lat": 10.748,
-    "lon": 106.618,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.745,
-        106.621
-      ],
-      [
-        10.748,
-        106.618
-      ],
-      [
-        10.752,
-        106.614
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường kinh dương vương": {
-    "display_name": "Đường Kinh Dương Vương",
-    "street": "Đường Kinh Dương Vương",
-    "lat": 10.748,
-    "lon": 106.618,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.745,
-        106.621
-      ],
-      [
-        10.748,
-        106.618
-      ],
-      [
-        10.752,
-        106.614
+        10.7322,
+        106.741
       ]
     ],
     "priority": 3,
@@ -1659,1166 +1083,50 @@
     "priority": 3,
     "source": "highway_centerline"
   },
-  "thoai ngoc hau": {
-    "display_name": "Đường Thoại Ngọc Hầu",
-    "street": "Đường Thoại Ngọc Hầu",
-    "lat": 10.7854,
-    "lon": 106.6409,
-    "ward": "Phường Phú Thạnh",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.7763,
-        106.6262
-      ],
-      [
-        10.7854,
-        106.6409
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong thoai ngoc hau": {
-    "display_name": "Đường Thoại Ngọc Hầu",
-    "street": "Đường Thoại Ngọc Hầu",
-    "lat": 10.7854,
-    "lon": 106.6409,
-    "ward": "Phường Phú Thạnh",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.7763,
-        106.6262
-      ],
-      [
-        10.7854,
-        106.6409
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "lý thường kiệt": {
-    "display_name": "Đường Lý Thường Kiệt",
-    "street": "Đường Lý Thường Kiệt",
-    "lat": 10.887,
-    "lon": 106.5906,
-    "ward": "Xã Hóc Môn",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.887,
-        106.5906
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường lý thường kiệt": {
-    "display_name": "Đường Lý Thường Kiệt",
-    "street": "Đường Lý Thường Kiệt",
-    "lat": 10.887,
-    "lon": 106.5906,
-    "ward": "Xã Hóc Môn",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.887,
-        106.5906
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "ly thuong kiet": {
-    "display_name": "Đường Lý Thường Kiệt",
-    "street": "Đường Lý Thường Kiệt",
-    "lat": 10.887,
-    "lon": 106.5906,
-    "ward": "Xã Hóc Môn",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.887,
-        106.5906
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong ly thuong kiet": {
-    "display_name": "Đường Lý Thường Kiệt",
-    "street": "Đường Lý Thường Kiệt",
-    "lat": 10.887,
-    "lon": 106.5906,
-    "ward": "Xã Hóc Môn",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.887,
-        106.5906
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "quốc lộ 50": {
-    "display_name": "Quốc lộ 50",
-    "street": "Quốc lộ 50",
-    "lat": 10.7275,
-    "lon": 106.656,
-    "ward": "Xã Bình Hưng",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.7275,
-        106.656
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường quốc lộ 50": {
-    "display_name": "Quốc lộ 50",
-    "street": "Quốc lộ 50",
-    "lat": 10.7275,
-    "lon": 106.656,
-    "ward": "Xã Bình Hưng",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.7275,
-        106.656
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "quoc lo 50": {
-    "display_name": "Quốc lộ 50",
-    "street": "Quốc lộ 50",
-    "lat": 10.7275,
-    "lon": 106.656,
-    "ward": "Xã Bình Hưng",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.7275,
-        106.656
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong quoc lo 50": {
-    "display_name": "Quốc lộ 50",
-    "street": "Quốc lộ 50",
-    "lat": 10.7275,
-    "lon": 106.656,
-    "ward": "Xã Bình Hưng",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.7275,
-        106.656
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "hồ học lãm": {
-    "display_name": "Đường Hồ Học Lãm",
-    "street": "Đường Hồ Học Lãm",
-    "lat": 10.732,
-    "lon": 106.615,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.732,
-        106.615
-      ],
-      [
-        10.728,
-        106.618
-      ],
-      [
-        10.736,
-        106.612
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường hồ học lãm": {
-    "display_name": "Đường Hồ Học Lãm",
-    "street": "Đường Hồ Học Lãm",
-    "lat": 10.732,
-    "lon": 106.615,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.732,
-        106.615
-      ],
-      [
-        10.728,
-        106.618
-      ],
-      [
-        10.736,
-        106.612
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "ho hoc lam": {
-    "display_name": "Đường Hồ Học Lãm",
-    "street": "Đường Hồ Học Lãm",
-    "lat": 10.732,
-    "lon": 106.615,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.732,
-        106.615
-      ],
-      [
-        10.728,
-        106.618
-      ],
-      [
-        10.736,
-        106.612
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong ho hoc lam": {
-    "display_name": "Đường Hồ Học Lãm",
-    "street": "Đường Hồ Học Lãm",
-    "lat": 10.732,
-    "lon": 106.615,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.732,
-        106.615
-      ],
-      [
-        10.728,
-        106.618
-      ],
-      [
-        10.736,
-        106.612
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "an dương vương": {
-    "display_name": "Đường An Dương Vương",
-    "street": "Đường An Dương Vương",
-    "lat": 10.738,
-    "lon": 106.625,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.738,
-        106.625
-      ],
-      [
-        10.742,
-        106.623
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường an dương vương": {
-    "display_name": "Đường An Dương Vương",
-    "street": "Đường An Dương Vương",
-    "lat": 10.738,
-    "lon": 106.625,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.738,
-        106.625
-      ],
-      [
-        10.742,
-        106.623
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "an duong vuong": {
-    "display_name": "Đường An Dương Vương",
-    "street": "Đường An Dương Vương",
-    "lat": 10.738,
-    "lon": 106.625,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.738,
-        106.625
-      ],
-      [
-        10.742,
-        106.623
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong an duong vuong": {
-    "display_name": "Đường An Dương Vương",
-    "street": "Đường An Dương Vương",
-    "lat": 10.738,
-    "lon": 106.625,
-    "ward": "Phường An Lạc",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.738,
-        106.625
-      ],
-      [
-        10.742,
-        106.623
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "trần văn giàu": {
-    "display_name": "Đường Trần Văn Giàu",
-    "street": "Đường Trần Văn Giàu",
-    "lat": 10.768,
-    "lon": 106.592,
-    "ward": "Phường Tân Tạo",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.768,
-        106.592
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "đường trần văn giàu": {
-    "display_name": "Đường Trần Văn Giàu",
-    "street": "Đường Trần Văn Giàu",
-    "lat": 10.768,
-    "lon": 106.592,
-    "ward": "Phường Tân Tạo",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.768,
-        106.592
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "tran van giau": {
-    "display_name": "Đường Trần Văn Giàu",
-    "street": "Đường Trần Văn Giàu",
-    "lat": 10.768,
-    "lon": 106.592,
-    "ward": "Phường Tân Tạo",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.768,
-        106.592
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "duong tran van giau": {
-    "display_name": "Đường Trần Văn Giàu",
-    "street": "Đường Trần Văn Giàu",
-    "lat": 10.768,
-    "lon": 106.592,
-    "ward": "Phường Tân Tạo",
-    "district": "TP.HCM",
-    "heat_points": [
-      [
-        10.768,
-        106.592
-      ]
-    ],
-    "priority": 3,
-    "source": "highway_centerline"
-  },
-  "linh đông": {
-    "matched_keyword": "Linh Đông",
-    "display_name": "Đường Linh Đông",
-    "ward": "Phường Hiệp Bình",
+  "có nơi": {
+    "matched_keyword": "có nơi",
+    "display_name": "Đường Có Nơi",
+    "ward": "Phường Sài Gòn",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.8484,
-    "lon": 106.7469,
+    "lat": 10.7836,
+    "lon": 106.7029,
     "heat_points": [
       [
-        10.8484,
-        106.7469
+        10.7836,
+        106.7029
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "nguyễn ảnh thủ": {
-    "matched_keyword": "Nguyễn Ảnh Thủ",
-    "display_name": "Đường Nguyễn Ảnh Thủ",
-    "street": "Đường Nguyễn Ảnh Thủ",
-    "ward": "Xã Bà Điểm",
+  "lê văn sỹ - trần": {
+    "matched_keyword": "Lê Văn Sỹ - Trần",
+    "display_name": "Đường Lê Văn Sỹ - Trần",
+    "ward": "Phường Nhiêu Lộc",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.8614,
-    "lon": 106.6112,
+    "lat": 10.7885,
+    "lon": 106.6782,
     "heat_points": [
       [
-        10.8614,
-        106.6112
-      ],
-      [
-        10.857,
-        106.608
-      ],
-      [
-        10.866,
-        106.615
+        10.7885,
+        106.6782
       ]
     ],
-    "type": "ngập sâu trục Nguyễn Ảnh Thủ (giao Song Hành QL22)",
-    "priority": 3
+    "type": "ngập đô thị (OSM tim đường chính xác)"
   },
-  "nguyễn an ninh": {
-    "matched_keyword": "Nguyễn An Ninh",
-    "display_name": "Đường Nguyễn An Ninh",
-    "street": "Đường Nguyễn An Ninh",
-    "ward": "Phường Dĩ An",
-    "district": "TP. Dĩ An (Cửa ngõ TP. Thủ Đức)",
-    "region": "TPHCM",
-    "lat": 10.91465,
-    "lon": 106.76948,
-    "heat_points": [
-      [
-        10.91465,
-        106.76948
-      ],
-      [
-        10.9104,
-        106.7698
-      ]
-    ],
-    "type": "ngập trục đường Nguyễn An Ninh (Phường Dĩ An)",
-    "priority": 3
-  },
-  "số 40": {
-    "matched_keyword": "đường số 40",
-    "display_name": "Đường Số 40 (Phường Hiệp Bình)",
-    "street": "Đường Số 40",
-    "ward": "Phường Hiệp Bình",
-    "district": "TP. Thủ Đức",
-    "region": "TPHCM",
-    "lat": 10.8444,
-    "lon": 106.7331,
-    "heat_points": [
-      [
-        10.8444,
-        106.7331
-      ]
-    ],
-    "type": "ngập sâu trục Đường Số 40 (Phường Hiệp Bình, TP. Thủ Đức)",
-    "priority": 3
-  },
-  "đường số 40": {
-    "matched_keyword": "đường số 40",
-    "display_name": "Đường Số 40 (Phường Hiệp Bình)",
-    "street": "Đường Số 40",
-    "ward": "Phường Hiệp Bình",
-    "district": "TP. Thủ Đức",
-    "region": "TPHCM",
-    "lat": 10.8444,
-    "lon": 106.7331,
-    "heat_points": [
-      [
-        10.8444,
-        106.7331
-      ]
-    ],
-    "type": "ngập sâu trục Đường Số 40 (Phường Hiệp Bình, TP. Thủ Đức)",
-    "priority": 3
-  },
-  "huỳnh tịnh của": {
-    "matched_keyword": "Huỳnh Tịnh Của",
-    "display_name": "Đường Huỳnh Tịnh Của",
+  "phạm đình toái": {
+    "matched_keyword": "Phạm Đình Toái",
+    "display_name": "Đường Phạm Đình Toái",
     "ward": "Phường Xuân Hòa",
     "district": "TP.HCM",
     "region": "TPHCM",
-    "lat": 10.7888,
-    "lon": 106.688,
+    "lat": 10.7761,
+    "lon": 106.6861,
     "heat_points": [
       [
-        10.7888,
-        106.688
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "nội đô": {
-    "matched_keyword": "nội đô",
-    "display_name": "Đường Nội Đô",
-    "ward": "Phường Tân Mỹ",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7219,
-    "lon": 106.731,
-    "heat_points": [
-      [
-        10.7219,
-        106.731
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "cầu đôi": {
-    "matched_keyword": "Cầu Đôi",
-    "display_name": "Cầu Đôi",
-    "ward": "Xã Mỹ Hạnh",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7938,
-    "lon": 106.5057,
-    "heat_points": [
-      [
-        10.7938,
-        106.5057
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "châu văn liêm": {
-    "matched_keyword": "Châu Văn Liêm",
-    "display_name": "Đường Châu Văn Liêm",
-    "ward": "Phường Chợ Lớn",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7532,
-    "lon": 106.6586,
-    "heat_points": [
-      [
-        10.7532,
-        106.6586
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "bình thung": {
-    "matched_keyword": "Bình Thung",
-    "display_name": "Đường Bình Thung",
-    "ward": "Phường Đông Hòa",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.9072,
-    "lon": 106.7967,
-    "heat_points": [
-      [
-        10.9072,
-        106.7967
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "cô bắc": {
-    "matched_keyword": "Cô Bắc",
-    "display_name": "Đường Cô Bắc",
-    "ward": "Phường Cầu Ông Lãnh",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7628,
-    "lon": 106.6924,
-    "heat_points": [
-      [
-        10.7628,
-        106.6924
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "bùi thị xuân": {
-    "matched_keyword": "Bùi Thị Xuân",
-    "display_name": "Đường Bùi Thị Xuân",
-    "ward": "Phường Tân Sơn Hòa",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7922,
-    "lon": 106.6654,
-    "heat_points": [
-      [
-        10.7922,
-        106.6654
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "phạm văn chiêu": {
-    "matched_keyword": "Phạm Văn Chiêu",
-    "display_name": "Đường Phạm Văn Chiêu",
-    "ward": "Phường An Hội Tây",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8482,
-    "lon": 106.648,
-    "heat_points": [
-      [
-        10.8482,
-        106.648
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "bình lợi": {
-    "matched_keyword": "Bình Lợi",
-    "display_name": "Đường Bình Lợi",
-    "ward": "Phường Bình Lợi Trung",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8295,
-    "lon": 106.7058,
-    "heat_points": [
-      [
-        10.8295,
-        106.7058
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "phạm hùng": {
-    "matched_keyword": "Phạm Hùng",
-    "display_name": "Đường Phạm Hùng",
-    "ward": "Xã Bình Hưng",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7204,
-    "lon": 106.6831,
-    "heat_points": [
-      [
-        10.7204,
-        106.6831
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "nguyễn lương bằng": {
-    "matched_keyword": "Nguyễn Lương Bằng",
-    "display_name": "Đường Nguyễn Lương Bằng",
-    "ward": "Phường Tân Mỹ",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7187,
-    "lon": 106.7281,
-    "heat_points": [
-      [
-        10.7187,
-        106.7281
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "đt 747": {
-    "matched_keyword": "ĐT 747",
-    "display_name": "Đường Đt 747",
-    "ward": "Phường Tân Đông Hiệp",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.9697,
-    "lon": 106.7772,
-    "heat_points": [
-      [
-        10.9697,
-        106.7772
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "phú thọ 4": {
-    "matched_keyword": "Phú Thọ 4",
-    "display_name": "Đường Phú Thọ 4",
-    "ward": "Phường Minh Phụng",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7565,
-    "lon": 106.6419,
-    "heat_points": [
-      [
-        10.7565,
-        106.6419
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "rạch cây": {
-    "matched_keyword": "Rạch Cây",
-    "display_name": "Đường Rạch Cây",
-    "ward": "Phường Bình Phú",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7304,
-    "lon": 106.6275,
-    "heat_points": [
-      [
-        10.7304,
-        106.6275
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "tỉnh lộ 43": {
-    "matched_keyword": "tỉnh lộ 43",
-    "display_name": "Đường Tỉnh Lộ 43",
-    "ward": "Phường Tam Bình",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8818,
-    "lon": 106.7293,
-    "heat_points": [
-      [
-        10.8818,
-        106.7293
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "nguyễn văn": {
-    "matched_keyword": "Nguyễn Văn",
-    "display_name": "Đường Nguyễn Văn",
-    "ward": "Phường Thông Tây Hội",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8448,
-    "lon": 106.6539,
-    "heat_points": [
-      [
-        10.8448,
-        106.6539
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "đề thám": {
-    "matched_keyword": "Đề Thám",
-    "display_name": "Đường Đề Thám",
-    "ward": "Phường Cầu Ông Lãnh",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.763,
-    "lon": 106.696,
-    "heat_points": [
-      [
-        10.763,
-        106.696
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "nguyễn thị minh khai": {
-    "matched_keyword": "Nguyễn Thị Minh Khai",
-    "display_name": "Đường Nguyễn Thị Minh Khai",
-    "ward": "Phường Bàn Cờ",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7671,
-    "lon": 106.6832,
-    "heat_points": [
-      [
-        10.7671,
-        106.6832
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "cmt8": {
-    "matched_keyword": "CMT8",
-    "display_name": "Đường Cmt8",
-    "ward": "Phường Thuận An",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.9567,
-    "lon": 106.6769,
-    "heat_points": [
-      [
-        10.9567,
-        106.6769
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "cầu xây": {
-    "matched_keyword": "Cầu Xây",
-    "display_name": "Cầu Xây",
-    "ward": "Phường Tăng Nhơn Phú",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8539,
-    "lon": 106.8075,
-    "heat_points": [
-      [
-        10.8539,
-        106.8075
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "25c vĩnh thanh": {
-    "matched_keyword": "25c Vĩnh thanh",
-    "display_name": "Đường 25C Vĩnh Thanh",
-    "ward": "Phường Trung Mỹ Tây",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8615,
-    "lon": 106.6132,
-    "heat_points": [
-      [
-        10.8615,
-        106.6132
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "nguyễn tri phương": {
-    "matched_keyword": "Nguyễn Tri Phương",
-    "display_name": "Đường Nguyễn Tri Phương",
-    "ward": "Phường An Đông",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7587,
-    "lon": 106.6692,
-    "heat_points": [
-      [
-        10.7587,
-        106.6692
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "lê văn thọ": {
-    "matched_keyword": "Lê Văn Thọ",
-    "display_name": "Đường Lê Văn Thọ",
-    "ward": "Phường An Hội Đông",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8485,
-    "lon": 106.6568,
-    "heat_points": [
-      [
-        10.8485,
-        106.6568
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "tam bình": {
-    "matched_keyword": "Tam Bình",
-    "display_name": "Đường Tam Bình",
-    "ward": "Phường Tam Bình",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8513,
-    "lon": 106.7296,
-    "heat_points": [
-      [
-        10.8513,
-        106.7296
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "cây trâm": {
-    "matched_keyword": "Cây Trâm",
-    "display_name": "Đường Cây Trâm",
-    "ward": "Phường Thông Tây Hội",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8436,
-    "lon": 106.6491,
-    "heat_points": [
-      [
-        10.8436,
-        106.6491
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "số 8": {
-    "matched_keyword": "số 8",
-    "display_name": "Đường Số 8",
-    "ward": "Xã Tân Vĩnh Lộc",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.772,
-    "lon": 106.5644,
-    "heat_points": [
-      [
-        10.772,
-        106.5644
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "số 11": {
-    "matched_keyword": "số 11",
-    "display_name": "Đường Số 11",
-    "ward": "Xã Bình Hưng",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7106,
-    "lon": 106.6408,
-    "heat_points": [
-      [
-        10.7106,
-        106.6408
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "lê đức thọ": {
-    "matched_keyword": "Lê Đức Thọ",
-    "display_name": "Đường Lê Đức Thọ",
-    "ward": "Phường Gò Vấp",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8343,
-    "lon": 106.6817,
-    "heat_points": [
-      [
-        10.8343,
-        106.6817
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "lê thị hoa": {
-    "matched_keyword": "Lê Thị Hoa",
-    "display_name": "Đường Lê Thị Hoa",
-    "ward": "Phường Tam Bình",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8737,
-    "lon": 106.7369,
-    "heat_points": [
-      [
-        10.8737,
-        106.7369
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "nguyễn thị tươi": {
-    "matched_keyword": "Nguyễn Thị Tươi",
-    "display_name": "Đường Nguyễn Thị Tươi",
-    "ward": "Phường Tân Đông Hiệp",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.9568,
-    "lon": 106.7537,
-    "heat_points": [
-      [
-        10.9568,
-        106.7537
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "đường 41": {
-    "matched_keyword": "đường 41",
-    "display_name": "Đường 41",
-    "ward": "Phường Hiệp Bình",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8487,
-    "lon": 106.7276,
-    "heat_points": [
-      [
-        10.8487,
-        106.7276
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "tân thới nhất 08": {
-    "matched_keyword": "Tân Thới Nhất 08",
-    "display_name": "Đường Tân Thới Nhất 08",
-    "ward": "Phường Đông Hưng Thuận",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8336,
-    "lon": 106.6205,
-    "heat_points": [
-      [
-        10.8336,
-        106.6205
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "kha van can": {
-    "matched_keyword": "Kha Van Can",
-    "display_name": "Đường Kha Van Can",
-    "ward": "Phường Thủ Đức",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8453,
-    "lon": 106.75,
-    "heat_points": [
-      [
-        10.8453,
-        106.75
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "võ trần chí": {
-    "matched_keyword": "Võ Trần Chí",
-    "display_name": "Đường Võ Trần Chí",
-    "ward": "Xã Tân Nhựt",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7138,
-    "lon": 106.5735,
-    "heat_points": [
-      [
-        10.7138,
-        106.5735
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "đường võ trần chí": {
-    "matched_keyword": "Đường Võ Trần Chí",
-    "display_name": "Đường Võ Trần Chí",
-    "ward": "Xã Tân Nhựt",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7138,
-    "lon": 106.5735,
-    "heat_points": [
-      [
-        10.7138,
-        106.5735
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "tô ngọc vân": {
-    "matched_keyword": "Tô Ngọc Vân",
-    "display_name": "Đường Tô Ngọc Vân",
-    "ward": "Phường Thới An",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8742,
-    "lon": 106.6749,
-    "heat_points": [
-      [
-        10.8742,
-        106.6749
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "trường chinh ở": {
-    "matched_keyword": "Trường Chinh ở",
-    "display_name": "Đường Trường Chinh Ở",
-    "ward": "Phường Đông Hưng Thuận",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8345,
-    "lon": 106.6208,
-    "heat_points": [
-      [
-        10.8345,
-        106.6208
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "bùi văn ba": {
-    "matched_keyword": "Bùi Văn Ba",
-    "display_name": "Đường Bùi Văn Ba",
-    "ward": "Phường Tân Thuận",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7465,
-    "lon": 106.7404,
-    "heat_points": [
-      [
-        10.7465,
-        106.7404
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "136 bùi văn ba": {
-    "matched_keyword": "136 Bùi Văn Ba",
-    "display_name": "Đường 136 Bùi Văn Ba",
-    "ward": "Phường Tân Thuận",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7465,
-    "lon": 106.7404,
-    "heat_points": [
-      [
-        10.7465,
-        106.7404
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "masteri thảo điền": {
-    "matched_keyword": "Masteri Thảo Điền",
-    "display_name": "Đường Masteri Thảo Điền",
-    "ward": "Phường An Khánh",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.8026,
-    "lon": 106.7424,
-    "heat_points": [
-      [
-        10.8026,
-        106.7424
-      ]
-    ],
-    "type": "ngập đô thị (OSM tim đường chính xác)"
-  },
-  "nam long": {
-    "matched_keyword": "Nam Long",
-    "display_name": "Đường Nam Long",
-    "ward": "Phường Chợ Lớn",
-    "district": "TP.HCM",
-    "region": "TPHCM",
-    "lat": 10.7545,
-    "lon": 106.6622,
-    "heat_points": [
-      [
-        10.7545,
-        106.6622
+        10.7761,
+        106.6861
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"

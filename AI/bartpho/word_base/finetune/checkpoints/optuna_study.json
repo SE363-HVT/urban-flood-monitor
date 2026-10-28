@@ -1,0 +1,45 @@
+{
+  "best_trial_number": 1,
+  "best_val_triplet_f1": 33.16,
+  "best_params": {
+    "learning_rate": 3.0180820828066845e-05,
+    "batch_size": 16,
+    "weight_decay": 0.0015751320499779737
+  },
+  "selection_criterion": "validation_triplet_f1_strict",
+  "git_commit_sha": "721598560d8678ec75bb766716a2ca1309fb157e",
+  "dataset_md5": {
+    "train": "fbd5910d78eeba91c421c657467d4539",
+    "val": "d85a6c8f264ab9df0f14027a65f69c17",
+    "test": "1e4bb123b8e13e18784083c24cab9382"
+  },
+  "all_trials": [
+    {
+      "trial": 1,
+      "val_triplet_f1": 33.16,
+      "params": {
+        "learning_rate": 3.0180820828066845e-05,
+        "batch_size": 16,
+        "weight_decay": 0.0015751320499779737
+      }
+    },
+    {
+      "trial": 2,
+      "val_triplet_f1": 32.51,
+      "params": {
+        "learning_rate": 2.3739403659255558e-05,
+        "batch_size": 16,
+        "weight_decay": 0.005399484409787433
+      }
+    },
+    {
+      "trial": 3,
+      "val_triplet_f1": 32.87,
+      "params": {
+        "learning_rate": 3.871103154885888e-05,
+        "batch_size": 16,
+        "weight_decay": 0.008706020878304856
+      }
+    }
+  ]
+}

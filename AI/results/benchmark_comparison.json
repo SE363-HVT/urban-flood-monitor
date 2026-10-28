@@ -1,0 +1,488 @@
+{
+  "Heuristic (Word Matching)": {
+    "model_name": "Heuristic Word Matching (Lexicon + Distance Pairing)",
+    "pairing_policy": "Nearest-Neighbor Span Distance with Collision Guard",
+    "train_md5": "fc700e6d80f1722576a31d64935d8840",
+    "lexicon_stats": {
+      "unique_aspects_lexicon": 991,
+      "unique_opinions_lexicon": 1667
+    },
+    "Triplet_Strict_Match": {
+      "Precision": 10.47,
+      "Recall": 27.4,
+      "F1": 15.15,
+      "Gold": 635,
+      "Pred": 1662,
+      "Correct": 174
+    },
+    "Aspect_Span": {
+      "Precision": 26.77,
+      "Recall": 72.54,
+      "F1": 39.11
+    },
+    "Opinion_Span": {
+      "Precision": 23.1,
+      "Recall": 46.77,
+      "F1": 30.92
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 9.11,
+        "Recall": 22.22,
+        "F1": 12.92,
+        "Gold": 423,
+        "Pred": 1032,
+        "Correct": 94
+      },
+      "POS": {
+        "Precision": 21.2,
+        "Recall": 52.48,
+        "F1": 30.2,
+        "Gold": 141,
+        "Pred": 349,
+        "Correct": 74
+      },
+      "NEU": {
+        "Precision": 2.14,
+        "Recall": 8.45,
+        "F1": 3.41,
+        "Gold": 71,
+        "Pred": 281,
+        "Correct": 6
+      }
+    },
+    "Macro_Polarity_F1": 15.51
+  },
+  "PhoBERT Base v2": {
+    "Triplet_Strict_Match": {
+      "Precision": 25.27,
+      "Recall": 43.55,
+      "F1": 31.99,
+      "Gold": 636,
+      "Pred": 1096,
+      "Correct": 277
+    },
+    "Aspect_Span": {
+      "Precision": 71.64,
+      "Recall": 67.49,
+      "F1": 69.5
+    },
+    "Opinion_Span": {
+      "Precision": 52.4,
+      "Recall": 53.99,
+      "F1": 53.18
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 23.81,
+        "Recall": 38.92,
+        "F1": 29.54,
+        "Gold": 424,
+        "Pred": 693
+      },
+      "POS": {
+        "Precision": 34.77,
+        "Recall": 68.79,
+        "F1": 46.19,
+        "Gold": 141,
+        "Pred": 279
+      },
+      "NEU": {
+        "Precision": 12.1,
+        "Recall": 21.13,
+        "F1": 15.38,
+        "Gold": 71,
+        "Pred": 124
+      }
+    },
+    "Macro_Polarity_F1": 30.37
+  },
+  "PhoBERT Large": {
+    "Triplet_Strict_Match": {
+      "Precision": 24.88,
+      "Recall": 42.45,
+      "F1": 31.38,
+      "Gold": 636,
+      "Pred": 1085,
+      "Correct": 270
+    },
+    "Aspect_Span": {
+      "Precision": 73.11,
+      "Recall": 66.43,
+      "F1": 69.61
+    },
+    "Opinion_Span": {
+      "Precision": 51.92,
+      "Recall": 53.99,
+      "F1": 52.94
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 23.58,
+        "Recall": 36.32,
+        "F1": 28.6,
+        "Gold": 424,
+        "Pred": 653
+      },
+      "POS": {
+        "Precision": 32.67,
+        "Recall": 70.21,
+        "F1": 44.59,
+        "Gold": 141,
+        "Pred": 303
+      },
+      "NEU": {
+        "Precision": 13.18,
+        "Recall": 23.94,
+        "F1": 17.0,
+        "Gold": 71,
+        "Pred": 129
+      }
+    },
+    "Macro_Polarity_F1": 30.06
+  },
+  "BARTpho Word Base": {
+    "model_name": "vinai/bartpho-word-base",
+    "Triplet_Strict_Match": {
+      "Precision": 41.5,
+      "Recall": 32.28,
+      "F1": 36.32,
+      "Gold": 635,
+      "Pred": 494,
+      "Correct": 205
+    },
+    "Aspect_Span": {
+      "Precision": 71.26,
+      "Recall": 55.87,
+      "F1": 62.63
+    },
+    "Opinion_Span": {
+      "Precision": 53.04,
+      "Recall": 49.81,
+      "F1": 51.37
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 31.85,
+        "Recall": 23.64,
+        "F1": 27.14,
+        "Gold": 423,
+        "Pred": 314,
+        "Correct": 100
+      },
+      "POS": {
+        "Precision": 71.54,
+        "Recall": 65.96,
+        "F1": 68.63,
+        "Gold": 141,
+        "Pred": 130,
+        "Correct": 93
+      },
+      "NEU": {
+        "Precision": 24.0,
+        "Recall": 16.9,
+        "F1": 19.83,
+        "Gold": 71,
+        "Pred": 50,
+        "Correct": 12
+      }
+    },
+    "Macro_Polarity_F1": 38.54,
+    "Evaluation_Time_Seconds": 51.41,
+    "Samples_Per_Second": 8.99
+  },
+  "BARTpho Syllable Base": {
+    "model_name": "vinai/bartpho-syllable-base",
+    "Triplet_Strict_Match": {
+      "Precision": 40.92,
+      "Recall": 32.28,
+      "F1": 36.09,
+      "Gold": 635,
+      "Pred": 501,
+      "Correct": 205
+    },
+    "Aspect_Span": {
+      "Precision": 71.26,
+      "Recall": 56.67,
+      "F1": 63.13
+    },
+    "Opinion_Span": {
+      "Precision": 51.9,
+      "Recall": 49.43,
+      "F1": 50.63
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 33.44,
+        "Recall": 24.59,
+        "F1": 28.34,
+        "Gold": 423,
+        "Pred": 311,
+        "Correct": 104
+      },
+      "POS": {
+        "Precision": 68.84,
+        "Recall": 67.38,
+        "F1": 68.1,
+        "Gold": 141,
+        "Pred": 138,
+        "Correct": 95
+      },
+      "NEU": {
+        "Precision": 11.54,
+        "Recall": 8.45,
+        "F1": 9.76,
+        "Gold": 71,
+        "Pred": 52,
+        "Correct": 6
+      }
+    },
+    "Macro_Polarity_F1": 35.4,
+    "Evaluation_Time_Seconds": 62.15,
+    "Samples_Per_Second": 7.43
+  },
+  "XLM-RoBERTa Base": {
+    "Triplet_Strict_Match": {
+      "Precision": 32.0,
+      "Recall": 42.92,
+      "F1": 36.67,
+      "Gold": 636,
+      "Pred": 853,
+      "Correct": 273
+    },
+    "Aspect_Span": {
+      "Precision": 65.72,
+      "Recall": 73.11,
+      "F1": 69.22
+    },
+    "Opinion_Span": {
+      "Precision": 45.95,
+      "Recall": 54.94,
+      "F1": 50.04
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 28.47,
+        "Recall": 38.3,
+        "F1": 32.66,
+        "Gold": 423,
+        "Pred": 569
+      },
+      "POS": {
+        "Precision": 59.15,
+        "Recall": 68.79,
+        "F1": 63.61,
+        "Gold": 141,
+        "Pred": 164
+      },
+      "NEU": {
+        "Precision": 11.67,
+        "Recall": 19.72,
+        "F1": 14.66,
+        "Gold": 71,
+        "Pred": 120
+      }
+    },
+    "Macro_Polarity_F1": 36.98
+  },
+  "XLM-V Base": {
+    "Triplet_Strict_Match": {
+      "Precision": 35.4,
+      "Recall": 44.88,
+      "F1": 39.58,
+      "Gold": 635,
+      "Pred": 805,
+      "Correct": 285
+    },
+    "Aspect_Span": {
+      "Precision": 67.12,
+      "Recall": 62.86,
+      "F1": 64.92
+    },
+    "Opinion_Span": {
+      "Precision": 46.86,
+      "Recall": 56.65,
+      "F1": 51.29
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 32.07,
+        "Recall": 39.86,
+        "F1": 35.54,
+        "Gold": 424,
+        "Pred": 527,
+        "Correct": 169
+      },
+      "POS": {
+        "Precision": 56.98,
+        "Recall": 69.5,
+        "F1": 62.62,
+        "Gold": 141,
+        "Pred": 172,
+        "Correct": 98
+      },
+      "NEU": {
+        "Precision": 16.98,
+        "Recall": 25.35,
+        "F1": 20.34,
+        "Gold": 71,
+        "Pred": 106,
+        "Correct": 18
+      }
+    },
+    "Macro_Polarity_F1": 39.5,
+    "model_name": "facebook/xlm-v-base",
+    "Evaluation_Time_Seconds": 0.98,
+    "Samples_Per_Second": 471.43
+  },
+  "mT5 Base": {
+    "Triplet_Strict_Match": {
+      "Precision": 43.78,
+      "Recall": 41.57,
+      "F1": 42.65,
+      "Gold_Total": 635,
+      "Pred_Total": 603,
+      "Correct": 264
+    },
+    "Aspect_Span": {
+      "Precision": 72.8,
+      "Recall": 69.68,
+      "F1": 71.21
+    },
+    "Opinion_Span": {
+      "Precision": 55.49,
+      "Recall": 53.8,
+      "F1": 54.63
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 39.02,
+        "Recall": 35.7,
+        "F1": 37.28,
+        "Gold_Count": 423,
+        "Pred_Count": 387
+      },
+      "POS": {
+        "Precision": 69.57,
+        "Recall": 68.09,
+        "F1": 68.82,
+        "Gold_Count": 141,
+        "Pred_Count": 138
+      },
+      "NEU": {
+        "Precision": 21.79,
+        "Recall": 23.94,
+        "F1": 22.82,
+        "Gold_Count": 71,
+        "Pred_Count": 78
+      }
+    },
+    "Macro_Polarity_F1": 42.97,
+    "model_name": "google/mt5-base",
+    "Evaluation_Time_Seconds": 121.4,
+    "Samples_Per_Second": 3.81,
+    "Test_Loss": 0.7746
+  },
+  "Gemma-4-26B": {
+    "Triplet_Strict_Match": {
+      "Precision": 16.38,
+      "Recall": 20.79,
+      "F1": 18.32,
+      "Gold": 635,
+      "Pred": 806,
+      "Correct": 132
+    },
+    "Aspect_Span": {
+      "Precision": 41.36,
+      "Recall": 49.37,
+      "F1": 45.01
+    },
+    "Opinion_Span": {
+      "Precision": 26.81,
+      "Recall": 35.93,
+      "F1": 30.71
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 17.51,
+        "Recall": 17.97,
+        "F1": 17.74,
+        "Gold": 423,
+        "Pred": 434,
+        "Correct": 76
+      },
+      "POS": {
+        "Precision": 23.68,
+        "Recall": 31.91,
+        "F1": 27.19,
+        "Gold": 141,
+        "Pred": 190,
+        "Correct": 45
+      },
+      "NEU": {
+        "Precision": 6.04,
+        "Recall": 15.49,
+        "F1": 8.7,
+        "Gold": 71,
+        "Pred": 182,
+        "Correct": 11
+      }
+    },
+    "Macro_Polarity_F1": 17.88,
+    "model_name": "Gemma-4-26B",
+    "model_id": "gemma-4-26b",
+    "Evaluation_Time_Seconds": 47.16,
+    "Samples_Per_Second": 9.8
+  },
+  "Qwen3.8-27B": {
+    "Triplet_Strict_Match": {
+      "Precision": 15.41,
+      "Recall": 15.75,
+      "F1": 15.58,
+      "Gold": 635,
+      "Pred": 649,
+      "Correct": 100
+    },
+    "Aspect_Span": {
+      "Precision": 42.81,
+      "Recall": 39.68,
+      "F1": 41.19
+    },
+    "Opinion_Span": {
+      "Precision": 31.15,
+      "Recall": 34.41,
+      "F1": 32.7
+    },
+    "Polarity_Per_Class": {
+      "NEG": {
+        "Precision": 23.58,
+        "Recall": 11.82,
+        "F1": 15.75,
+        "Gold": 423,
+        "Pred": 212,
+        "Correct": 50
+      },
+      "POS": {
+        "Precision": 25.83,
+        "Recall": 27.66,
+        "F1": 26.71,
+        "Gold": 141,
+        "Pred": 151,
+        "Correct": 39
+      },
+      "NEU": {
+        "Precision": 3.85,
+        "Recall": 15.49,
+        "F1": 6.16,
+        "Gold": 71,
+        "Pred": 286,
+        "Correct": 11
+      }
+    },
+    "Macro_Polarity_F1": 16.21,
+    "model_name": "Qwen3.8-27B",
+    "model_id": "qwen3.8-27b",
+    "Evaluation_Time_Seconds": 1226.28,
+    "Samples_Per_Second": 0.38
+  }
+}
