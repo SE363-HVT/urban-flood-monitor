@@ -97,7 +97,7 @@ http://localhost:8050
 
 ## 3. CÁC ĐỀ XUẤT CẢI TIẾN GIÚP HỆ THỐNG MẠNH MẼ HƠN NỮA
 
-Dưới góc độ Kỹ sư Dữ liệu Cấp cao (Senior Data Engineer), đây là **4 điểm nâng cấp chiến lược** bạn có thể cân nhắc triển khai để đồ án đạt điểm tối đa:
+Dưới góc độ Kỹ sư Dữ liệu Cấp cao (Senior Data Engineer), đây là **3 đề xuất nâng cấp chiến lược** bạn có thể cân nhắc triển khai:
 
 ### 💡 Đề xuất 1: Điều chỉnh Dynamic Timeout trong `pipeline/veracity_checker.py` (Khuyên làm)
 * **Vấn đề hiện tại:** Dòng 125 file `pipeline/veracity_checker.py` đang để cố định `timeout=0.35s` (350ms). Mức này cực kỳ hoàn hảo cho bài viết văn bản (Fast Path chỉ mất 20ms), nhưng nếu gặp bài đăng có video TikTok/YouTube (Slow Path xử lý tốn 1.5s - 3s) thì sẽ bị quá hạn và rơi về Heuristic dự phòng.
@@ -115,9 +115,8 @@ Dưới góc độ Kỹ sư Dữ liệu Cấp cao (Senior Data Engineer), đây 
   `🏷️ Nhận diện AI: [Đường Võ Văn Ngân] | [ngập lút bánh] | 🔴 Cực kỳ tiêu cực (PhoBERT)`  
   $\rightarrow$ Khi thầy cô bấm vào bất kỳ điểm ngập nào trên bản đồ, thầy cô sẽ thấy ngay lập tức thành quả của mô hình Deep Learning đang hoạt động thời gian thực!
 
-### 💡 Đề xuất 4: Cung cấp `Dockerfile.ai` dự phòng cho Docker Compose
-* Giữ nguyên cách chạy trực tiếp trên Windows `.venv` để tối ưu GPU máy bạn khi demo.
-* Viết thêm 1 file `Dockerfile.ai` gọn nhẹ (~CPU/CUDA) trong thư mục `bigdata/ai_service/` để nếu hội đồng chấm thi yêu cầu *"Toàn bộ hệ thống phải đóng gói chạy được bằng 1 lệnh docker compose up duy nhất trên máy lạ"*, bạn chỉ việc bật cờ cấu hình là xong!
+> [!NOTE]
+> **Quyết định Thiết kế Hạ tầng (Infrastructure Decision):** Nhóm thống nhất **KHÔNG đóng gói AI Microservice vào Docker** vì image PyTorch + CUDA quá nặng (8 - 15 GB), gây lãng phí dung lượng ổ đĩa và khó cấu hình GPU Passthrough trên Windows. Việc chạy trực tiếp trên Windows `.venv` giúp tối ưu hóa 100% card rời **NVIDIA GeForce RTX 3050**, máy chạy mát, khởi động tức thì trong 2 giây và làm chủ hoàn toàn tài nguyên phần cứng.
 
 ---
 
