@@ -100,11 +100,11 @@ http://localhost:8050
 Dưới góc độ Kỹ sư Dữ liệu Cấp cao (Senior Data Engineer), đây là **3 đề xuất nâng cấp chiến lược** bạn có thể cân nhắc triển khai:
 
 ### 💡 Đề xuất 1: Điều chỉnh Dynamic Timeout trong `pipeline/veracity_checker.py` (Khuyên làm)
-* **Vấn đề hiện tại:** Dòng 125 file `pipeline/veracity_checker.py` đang để cố định `timeout=0.35s` (350ms). Mức này cực kỳ hoàn hảo cho bài viết văn bản (Fast Path chỉ mất 20ms), nhưng nếu gặp bài đăng có video TikTok/YouTube (Slow Path xử lý tốn 1.5s - 3s) thì sẽ bị quá hạn và rơi về Heuristic dự phòng.
+* **Vấn đề hiện tại:** Dòng 125 file `pipeline/veracity_checker.py` đang để cố định `timeout=0.35s` (350ms). Mức này cực kỳ hoàn hảo cho bài viết văn bản (Fast Path chỉ mất 20ms), nhưng nếu gặp bài đăng có video đa nền tảng (TikTok, YouTube Shorts, Facebook Reels, Threads Video) thì Slow Path xử lý tốn 1.5s - 3s sẽ bị quá hạn và rơi về Heuristic dự phòng.
 * **Giải pháp nâng cấp:** Thiết lập timeout động linh hoạt:
   - Nếu bài viết chỉ có chữ (`has_media == False`): `timeout = 0.5s`.
   - Nếu bài viết có video/ảnh (`has_media == True`): `timeout = 3.5s`.
-  $\rightarrow$ Giúp 100% video TikTok đều được AI soi ảnh và nghe tiếng thành công.
+  $\rightarrow$ Giúp 100% video từ mọi nền tảng đều được AI soi ảnh và nghe tiếng thành công.
 
 ### 💡 Đề xuất 2: Nâng cấp `stream_audio_in_memory` kết hợp FFmpeg trực tiếp trong RAM
 * Trong [pipeline/multimodal_streamer.py](file:///D:/SE363_RAWDATA/pipeline/multimodal_streamer.py), kết nối luồng pipe giữa `yt-dlp` và `ffmpeg.exe` để chuyển đổi âm thanh trực tiếp sang chuẩn **WAV PCM 16kHz** trong bộ nhớ RAM mà không cần chạm vào ổ cứng. Điều này giúp hàm `wave.open` của PhoWhisper đọc dữ liệu mượt mà tuyệt đối.
@@ -127,7 +127,7 @@ Khi thuyết trình đồ án trước giảng viên, bạn có thể tự tin t
 > *"Kính thưa Thầy Cô, với vai trò là Data Engineer chịu trách nhiệm toàn bộ luồng dữ liệu của hệ thống RadiNet, em đã thiết kế kiến trúc phân tầng độc lập:*
 > 1. * **Tầng Ingestion (Thu thập Đa kênh):** Sử dụng `LiveFreeSocialCrawler` 100 câu truy vấn song song qua 20 workers đạt độ trễ dưới 2 giây trên 5 nền tảng (Facebook, TikTok, Threads, YouTube Shorts, Báo chí) với tỷ lệ 92% Social : 8% Báo chí.*
 > 2. * **Tầng Data Pipeline & Streaming:** Xây dựng cụm Apache Kafka KRaft chuẩn hóa dữ liệu qua Data Contract và Dead Letter Queue (DLQ), kết hợp Apache Spark Streaming xử lý phân tích và làm giàu dữ liệu.*
-> 3. * **Tầng Xác thực Đa tầng (Data Veracity):** Kết hợp trạm khí tượng vệ tinh Open-Meteo đối soát lượng mưa lịch sử với cụm vi dịch vụ Multimodal AI (Port 8001). Kiến trúc AI Dual-Branch phân tách thông minh: Fast Path (PhoBERT $\le 35\text{ms}$) cho văn bản và Slow Path (CLIP Vision + PhoWhisper + BARTpho) cho video TikTok.*
+> 3. * **Tầng Xác thực Đa tầng (Data Veracity):** Kết hợp trạm khí tượng vệ tinh Open-Meteo đối soát lượng mưa lịch sử với cụm vi dịch vụ Multimodal AI (Port 8001). Kiến trúc AI Dual-Branch phân tách thông minh: Fast Path (PhoBERT $\le 35\text{ms}$) cho văn bản và Slow Path (CLIP Vision + PhoWhisper + BARTpho) cho video đa nền tảng (TikTok, YouTube Shorts, Facebook Reels, Threads Video).*
 > 4. * **Tầng Phục vụ (Serving):** Đẩy dữ liệu ra Redis và hiển thị thời gian thực lên Live Heatmap TP.HCM với 3 nhãn cảnh báo trực quan.*
 
 ---
