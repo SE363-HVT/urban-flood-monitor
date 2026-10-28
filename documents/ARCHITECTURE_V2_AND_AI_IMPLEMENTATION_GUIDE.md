@@ -1,29 +1,30 @@
 # Kiến Trúc RadiNet v2 & Lộ Trình Triển Khai Huấn Luyện AI
-**Phiên bản tài liệu:** 2.0  
+**Phiên bản tài liệu:** 2.1 (Reconciled & System-Paper Decoupled)  
 **Hệ thống áp dụng:** Hệ thống Thu thập Dữ liệu Thời gian thực, Dịch vụ Trích xuất AI, Xác thực Địa lý (GIS), và Bảng điều khiển Giám sát Ngập lụt RadiNet  
-**Thời gian:** Tháng 10/2026  
-**Trạng thái:** Bản thiết kế Kiến trúc Chính thức & Sẵn sàng Triển khai  
+**Thời gian cập nhật:** Tháng 10/2026  
+**Trạng thái:** Bản thiết kế Kiến trúc Chính thức, Đồng bộ Thực nghiệm & Sẵn sàng Triển khai  
 
 ---
 
 ## 1. Đánh Giá Tổng Quan: Sơ Đồ Kiến Trúc Cũ Có Còn Hợp Lệ Không?
 
-### Kết Luận: **CÓ — Hoàn toàn Hợp lệ về mặt Kiến trúc, Nâng cấp 4 Thành phần Cốt lõi (v2)**
+### Kết Luận: **CÓ — Hoàn toàn Hợp lệ về mặt Kiến trúc, Nâng cấp 4 Mắt xích Cốt lõi & Chuẩn hóa Phễu Frame**
 
 Mô hình kiến trúc 6 giai đoạn (Nguồn dữ liệu $\rightarrow$ Thu nạp $\rightarrow$ Trích xuất Đa phương thức $\rightarrow$ Dịch vụ AI Trích xuất $\rightarrow$ Xác thực & Tổng hợp $\rightarrow$ Phục vụ & Trực quan hóa) là **hoàn toàn chính xác, tối ưu về mặt vận hành và bám sát các nghiên cứu chuẩn mực về Social Sensing (Cảm biến Xã hội) trên thế giới**. Thiết kế luồng xử lý kép (Fast Path xử lý văn bản tức thì vs. Slow Path xử lý video đa khung hình và ASR âm thanh), cơ chế kiểm chứng chéo đa tài khoản, đối soát dữ liệu vật lý (mưa/triều cường) và hàng đợi kiểm duyệt bán tự động là mô hình tiêu chuẩn công nghiệp.
 
-Tuy nhiên, từ kết quả rà soát sâu 3.922 mẫu gán nhãn, quy chuẩn quản trị cực tính cảm xúc ASTE và hạ tầng định vị GIS của TP.HCM, **4 mắt xích cụ thể** cần được cập nhật để nâng cấp từ sơ đồ ban đầu lên **Sơ Đồ Kiến Trúc v2 (Bản Đặc tả Sản phẩm & Công bố Khoa học)**:
+Tuy nhiên, từ kết quả rà soát sâu 4.621 mẫu gán nhãn, quy chuẩn quản trị cực tính cảm xúc ASTE và hạ tầng định vị GIS của TP.HCM, **4 mắt xích cốt lõi** cùng **quy trình phễu lọc khung hình video (Frame Pipeline)** cần được chuẩn hóa để nâng cấp lên **Sơ Đồ Kiến Trúc v2.1**:
 
-| Mắt xích (Node) | Sơ đồ v1 (Ban đầu) | Sơ đồ v2 (Nâng cấp) | Lý do Kỹ thuật & Giá trị Học thuật |
+| Mắt xích (Node) | Sơ đồ v1 (Ban đầu) | Sơ đồ v2.1 (Nâng cấp & Hiệu chỉnh) | Lý do Kỹ thuật & Giá trị Học thuật |
 | :--- | :--- | :--- | :--- |
+| **`VI` (Xử lý Video & Frame)** | `OpenCV 0.5 FPS, CLIP top-3` | **Phễu Lọc Khung Hình Đa Tầng**: `ffprobe` $\rightarrow$ Lấy mẫu $0.5\text{ FPS}$ (bỏ $15\%$ intro/outro) $\rightarrow$ Khử trùng lặp `pHash` (Hamming $\le 8$) $\rightarrow$ Cổng lọc mờ `Laplacian` & phơi sáng $\rightarrow$ Chọn Top-3 bằng `CLIP MMR` (Diversity-aware) | **Khắc phục lỗi trùng lặp khung hình**: CLIP xếp hạng theo độ tương quan ngập lụt chứ không xét tính đa dạng. Nếu không có `pHash` và cổng lọc mờ, Top-3 sẽ chọn 3 khung hình giống hệt nhau ở góc quay đẹp nhất hoặc chọn nhầm khung hình mờ nhòe do rung lắc dưới mưa. |
 | **`TR` (Bộ ba AI trích xuất)** | `street / severity / level` | `aspect + opinion + polarity + category + severity + confidence` | **Tách rời Cực tính khỏi Ngập lụt**: Cực tính thể hiện *thái độ đánh giá* của người viết đối với thực thể (khen trạm bơm/thoát nước vs phàn nàn), không đồng nghĩa với có ngập hay không. Tầng điều hướng phía sau sẽ phụ trách kích hoạt cảnh báo. |
-| **`GR` (Định vị Địa lý)** *(Mới)* | *Ngầm định / Chưa rõ ràng* | **Dịch vụ Định vị Địa lý & Xác thực Nguồn gốc (GIS Grounding)**: `rapidfuzz` $\rightarrow$ 122 Điểm đen CSGT $\rightarrow$ 168 Phường/Xã NQ-1685 $\rightarrow$ Bộ nhớ đệm động $\rightarrow$ OSM $\rightarrow$ Tọa độ 5 số thập phân + Nhãn nguồn gốc (`SPAN_MATCHED`, `FUZZY`, `DOC_FALLBACK`) | Đây là thế mạnh cạnh tranh lớn nhất của RadiNet so với các nghiên cứu khác. Mọi thực thể trích xuất bắt buộc phải gắn với tọa độ chuẩn và cấp độ tin cậy địa lý có thể kiểm toán. |
-| **`AG` (Bộ tổng hợp Sự kiện)** | Đếm tĩnh `3+ bài / 60 phút` | **Máy Trạng thái Quản lý Vòng đời Sự kiện**: `DETECTED` $\rightarrow$ `ACTIVE` $\rightarrow$ `RESOLVING` $\rightarrow$ `CLOSED` | Tiếp nhận các bộ ba `POS` ("hết ngập", "nước rút") để chuyển trạng thái điểm ngập từ Đang ngập sang Đang rút nước, chuyển màu đường trên bản đồ từ Đỏ sang Xanh, ngăn chặn cảnh báo ảo kéo dài. |
-| **`FC` (Chuỗi Dự phòng)** | Danh sách tĩnh: fine-tuned, LLM, rules | **Chuỗi Leo thang Tin cậy Chuẩn hóa**: PhoBERT ONNX ($\le 50\text{ms}$) $\xrightarrow{\text{conf} < 0.70}$ LLM API (Gemini/Qwen) $\xrightarrow{\text{hết giờ}}$ Regex Luật Từ điển | Đảm bảo độ trễ p95 $\le 50\text{ms}$ cho 90%+ lưu lượng streaming, đồng thời xử lý an toàn các bài đăng đa phương thức phức tạp nhờ LLM fallback. |
+| **`GR` (Định vị Địa lý)** | *Ngầm định / Chưa rõ ràng* | **Dịch vụ Định vị Địa lý & Xác thực Nguồn gốc (GIS Grounding)**: `rapidfuzz` $\rightarrow$ 122 Điểm đen CSGT $\rightarrow$ 168 Phường/Xã NQ-1685 $\rightarrow$ Bộ nhớ đệm động $\rightarrow$ OSM $\rightarrow$ Tọa độ 5 số thập phân + Nhãn nguồn gốc (`SPAN_MATCHED`, `FUZZY`, `OSM_MATCHED`, `DOC_FALLBACK`) | Mọi thực thể trích xuất bắt buộc phải gắn với tọa độ chuẩn và cấp độ tin cậy địa lý có thể kiểm toán. Đồng bộ 4 nhãn enum tương ứng với 4 tầng tra cứu. |
+| **`AG` (Bộ tổng hợp Sự kiện)** | Đếm tĩnh `3+ bài / 60 phút` | **Máy Trạng thái Quản lý Vòng đời Sự kiện (FSM)**: `DETECTED` $\rightarrow$ `ACTIVE` $\rightarrow$ `RESOLVING` $\rightarrow$ `CLOSED` | Tiếp nhận các bộ ba `POS` ("hết ngập", "nước rút") để chuyển trạng thái điểm ngập từ Đang ngập sang Đang rút nước, chuyển màu đường trên bản đồ từ Đỏ sang Xanh, ngăn chặn cảnh báo ảo kéo dài. |
+| **`FC` (Chuỗi Dự phòng)** | Danh sách tĩnh: fine-tuned, LLM, rules | **Chuỗi Leo thang Tin cậy Chuẩn hóa**: PhoBERT Fast Path ($\le 35\text{ms}$) $\xrightarrow{\text{conf} < 0.70}$ LLM Fallback (Gemma-26B/Qwen-27B) $\xrightarrow{\text{timeout}}$ Regex Luật Từ điển | Đảm bảo độ trễ p95 $\le 35\text{ms}$ cho 85%+ lưu lượng streaming, đồng thời xử lý an toàn các bài đăng ngữ nghĩa phức tạp nhờ LLM fallback. |
 
 ---
 
-## 2. Sơ Đồ Kiến Trúc RadiNet v2
+## 2. Sơ Đồ Kiến Trúc RadiNet v2.1
 
 ```mermaid
 flowchart TB
@@ -35,28 +36,28 @@ flowchart TB
 
     subgraph S2["2 - Thu Nạp & Xử Lý Luồng (Ingestion)"]
         CR["Bộ Thu Thập (Crawlers)<br>thăm dò chu kỳ 5-15 phút"]
-        KQ[["Kafka / Redis Stream<br>hàng đợi & băm chống trùng lặp"]]
+        KQ[["Kafka / Redis Stream<br>hàng đợi & băm chống trùng lặp URL"]]
     end
 
     subgraph S3["3 - Trích Xuất Đa Phương Thức (Modality Extraction)"]
-        TX["Khai phá Văn bản<br>tiêu đề, chú thích, emoji, bình luận"]
-        AU["Xử lý Âm thanh<br>PhoWhisper ASR (16kHz mono)"]
-        VI["Xử lý Video<br>OpenCV 0.5 FPS, CLIP top-3 khung hình"]
+        TX["Khai phá Văn bản<br>chuẩn hóa teencode, ánh xạ emoji, tiêu đề"]
+        AU["Xử lý Âm thanh<br>FFmpeg demux → PhoWhisper ASR (16kHz mono)"]
+        VI["Xử lý Video (Phễu Đa Tầng)<br>ffprobe → 0.5 FPS → pHash Dedup → Blur Gate → CLIP MMR top-3"]
     end
 
-    subgraph S4["4 - Dịch Vụ AI Trích Xuất (GPU Workers)"]
-        FP["Luồng Nhanh Fast Path (&le;50ms)<br>PhoBERT-base Span / Table-Filling"]
-        SP["Luồng Chậm Slow Path (~500ms)<br>Hợp nhất Đa phương thức (Text + ASR + Frames)"]
-        FC["Chuỗi Dự phòng Bậc thang<br>PhoBERT &rarr; LLM (Gemini/Qwen) &rarr; Regex Luật"]
+    subgraph S4["4 - Dịch Vụ AI Trích Xuất (AI Microservice Port 8001)"]
+        FP["Luồng Nhanh Fast Path (≤35ms)<br>PhoBERT-base Span/Table Head (Zero Lexical Hallucination)"]
+        SP["Luồng Chậm Slow Path (~1.5s - 5.0s)<br>Hợp nhất Đa phương thức (Text + ASR + CLIP Vectors + BARTpho)"]
+        FC["Chuỗi Dự phòng Bậc thang<br>PhoBERT → LLM (Gemma/Qwen) → Regex Luật"]
         TR["Bộ Ba Dữ Liệu Hoàn Chỉnh<br>aspect + opinion + polarity + category + severity + conf"]
     end
 
     subgraph S5["5 - Định Vị GIS, Xác Thực & Tổng Hợp"]
-        PP["Xác Thực Cấp Bài Đăng<br>băm ảnh phash, độ uy tín tài khoản, tem giờ"]
-        GR["Định Vị Tọa Độ & Nguồn Gốc (GIS)<br>122 CSGT &bull; 168 đơn vị NQ1685 &bull; OSM<br>xuất (lat, lon) + nhãn provenance"]
-        CO["Kiểm Chứng Không - Thời Gian<br>&ge;2 tài khoản độc lập trong bán kính r &le; 500m"]
-        PH["Kiểm Tra Tính Hợp Lý Vật Lý<br>radar mưa + mô hình triều cường + tiền nghiệm 122 điểm"]
-        AG["Máy Trạng Thái Quản Lý Vòng Đời<br>DETECTED &rarr; ACTIVE &rarr; RESOLVING &rarr; CLOSED"]
+        PP["Xác Thực Cấp Bài Đăng (Provenance)<br>băm ảnh phash so kho tư liệu cũ, độ uy tín nick, tem giờ"]
+        GR["Định Vị Tọa Độ & Nguồn Gốc (GIS)<br>122 CSGT • 168 đơn vị NQ1685 • OSM<br>xuất (lat, lon) + nhãn provenance"]
+        CO["Kiểm Chứng Không - Thời Gian<br>≥2 tài khoản độc lập trong bán kính r ≤ 500m"]
+        PH["Kiểm Tra Tính Hợp Lý Vật Lý<br>radar mưa Open-Meteo + mô hình triều cường + tiền nghiệm 122 điểm"]
+        AG["Máy Trạng Thái Quản Lý Vòng Đời<br>DETECTED → ACTIVE → RESOLVING → CLOSED"]
     end
 
     subgraph S6["6 - Phục Vụ & Vận Hành (Serving)"]
@@ -73,15 +74,15 @@ flowchart TB
     %% Luồng AI
     TX --> FP
     AU & VI --> SP
-    FP -->|độ tin cậy &ge; 0.70| TR
+    FP -->|độ tin cậy ≥ 0.70| TR
     FP -->|độ tin cậy < 0.70 / từ mới| FC
     SP --> FC
     FC --> TR
 
     %% Luồng xác thực
     TR --> PP
-    PP -.->|nghi vấn ảnh cũ / spam| HR
-    PP --> GR
+    PP -.->|nghi vấn video cũ / câu view| HR
+    PP -->|xác nhận tư liệu mới| GR
     GR --> CO
     CO --> PH
     PH --> AG
@@ -109,238 +110,193 @@ flowchart TB
 
 ---
 
-## 3. Hệ Thống Mô Hình Cơ Sở (Baselines) & Kế Hoạch Huấn Luyện AI
+## 3. Tách Rời Tuyến Vận Hành Hệ Thống (System Track) & Tuyến Nghiên Cứu Bài Báo (Paper Track)
 
-Để đáp ứng cả hai mục tiêu: **(1) Vận hành hệ thống streaming thời gian thực RadiNet** và **(2) Viết bài báo khoa học chuẩn mực quốc tế (với bảng so sánh SOTA thuyết phục)**, hệ thống áp dụng một tổ hợp mô hình cơ sở (Baseline Suite) chuyên biệt.
-
----
-
-### 3.1 Danh Mục Mô Hình Cơ Sở (Baseline Suite)
-
-| STT | Mô hình Baseline | Nhóm Kiến trúc | Vai trò trong RadiNet | Vai trò trong Bài báo Khoa học | Độ trễ p95 / VRAM |
-| :---: | :--- | :--- | :--- | :--- | :--- |
-| **B1** | **`vinai/phobert-base-v2`** *(Bắt buộc)* | **Discriminative**<br>(RoBERTa + Span/Table Head) | **Fast Path chính**: Trích xuất bộ ba cực nhanh cho luồng Kafka streaming ($\le 35\text{ms}$) | Đại diện nhóm **Span-based / Table-Filling ASTE** (không hallucination) | $\le 35\text{ms}$ (GPU)<br>$\sim 4\text{ GB}$ VRAM |
-| **B2** | **`vinai/bartpho-syllable`** *(Bắt buộc)* | **Generative Seq2Seq**<br>(BART tiếng Việt) | **Slow Path**: Xử lý bài dài, câu ngữ pháp phức tạp, dung hợp text + frames | Đại diện SOTA nhóm **Text-to-Triplet Generative ASTE** | $\sim 280\text{ms}$ (GPU)<br>$\sim 7\text{ GB}$ VRAM |
-| **B3** | **`VietAI/vit5-base`** *(Đối trọng)* | **Generative Seq2Seq**<br>(Google T5 tiếng Việt) | Dự phòng kiểm chứng chéo mô hình sinh | **Mô hình đối trọng (Comparative Baseline)** so sánh trực tiếp với BARTpho | $\sim 260\text{ms}$ (GPU)<br>$\sim 6\text{ GB}$ VRAM |
-| **B4** | **`Gemini 1.5 Flash` / `Qwen 2.5 7B`** *(Baseline)* | **Large Language Model**<br>(Zero-shot / 5-shot Prompting) | **Tầng Dự phòng (Fallback)**: Kích hoạt khi Fast Path có confidence $< 0.70$ | **LLM Baseline**: Chứng minh mô hình fine-tuned vượt trội hơn LLM tổng quát | $\sim 1.200\text{ms}$ (API)<br>Không tốn GPU |
-| **B5** | **`vinai/phowhisper-base`** | **Audio ASR**<br>(Whisper tiếng Việt) | Gỡ băng âm thanh 16kHz từ video TikTok thành văn bản | Đánh giá độ suy hao trích xuất khi văn bản bị lỗi chính tả từ ASR | $\sim 150\text{ms}$ (GPU)<br>$\sim 4\text{ GB}$ VRAM |
-| **B6** | **`openai/clip-vit-base-patch32`** | **Vision Encoder**<br>(CLIP ViT-B/32) | Trích xuất vector đặc trưng $512\text{D}$ từ 3 khung hình video tiêu biểu | Cung cấp tín hiệu thị giác đối soát với văn bản trong Slow Path | $\sim 45\text{ms}$ (GPU)<br>$\sim 3\text{ GB}$ VRAM |
-
----
-
-### 3.2 Đặc Tả Cấu Trúc Dữ Liệu Đầu Vào (Input Schema) & Đầu Ra (Output Schema)
-
-Mỗi họ mô hình trong hệ thống tiếp nhận định dạng dữ liệu và trả về kết quả theo các schema nghiêm ngặt:
-
-#### A. Mô hình Sinh Tuyến Tính Generative ASTE (`BARTpho-syllable` & `ViT5-base`)
-*Áp dụng trong mã nguồn: [`finetune/prepare_dataset.py`](file:///home/counting/Workspaces/ryan/RadiNet/finetune/prepare_dataset.py) và [`finetune/train_generative_aste.py`](file:///home/counting/Workspaces/ryan/RadiNet/finetune/train_generative_aste.py)*
-
-* **Input Schema (Đầu vào mô hình)**:
-  - **Dạng chuỗi (Text String)**: Văn bản câu văn hoặc phụ đề TikTok đã được chuẩn hóa NFC, loại bỏ URL/hashtag rác.
-    ```text
-    "<s> Đường Võ Văn Ngân nước chảy như thác đổ, xe máy chết máy dắt bộ bì bõm. </s>"
-    ```
-  - **Dạng Tensor (PyTorch Input Batch)**:
-    - `input_ids`: `torch.LongTensor` kích thước `[batch_size, max_seq_len]`, với `max_seq_len = 256`. Token hóa qua BPE/SentencePiece Tokenizer tương ứng.
-    - `attention_mask`: `torch.LongTensor` kích thước `[batch_size, max_seq_len]`, gồm các giá trị `1` (token thật) và `0` (padding token).
-
-* **Output Schema (Đầu ra mô hình)**:
-  - **Dạng chuỗi mục tiêu (Target Text String)**: Chuỗi tuyến tính hóa các bộ ba phân cách bởi dấu gạch đứng `|` và dấu chấm phẩy `;`:
-    ```text
-    "(Võ Văn Ngân | nước chảy như thác đổ | NEG) ; (xe máy | chết máy dắt bộ | NEG)"
-    ```
-    *Quy tắc*: Nếu văn bản không có bất kỳ bộ ba ngập lụt nào, chuỗi mục tiêu là `"None"`.
-  - **Dạng Tensor Huấn luyện (Labels)**:
-    - `labels`: `torch.LongTensor` kích thước `[batch_size, max_target_len]`, với `max_target_len = 128`. Các vị trí padding được gán nhãn `-100` để bỏ qua tính Cross-Entropy Loss.
-  - **Dạng Cấu trúc Phân giải (Parsed JSON Objects)**: Hàm [`parse_triplets_from_string()`](file:///home/counting/Workspaces/ryan/RadiNet/finetune/inference.py#L24-L65) giải mã chuỗi thành danh sách Python dict:
-    ```json
-    [
-      {
-        "aspect": "Võ Văn Ngân",
-        "opinion": "nước chảy như thác đổ",
-        "polarity": "NEG"
-      },
-      {
-        "aspect": "xe máy",
-        "opinion": "chết máy dắt bộ",
-        "polarity": "NEG"
-      }
-    ]
-    ```
-
----
-
-#### B. Mô hình Trích Xuất Dựa Trên Đoạn Văn Span-Based / Table-Filling (`PhoBERT-base-v2` Fast Path)
-*Áp dụng cho luồng Streaming thời gian thực: Độ trễ $\le 35\text{ms}$, triệt tiêu 100% ảo giác (zero-hallucination).*
-
-* **Input Schema (Đầu vào mô hình)**:
-  - **Văn bản gốc kèm BPE Tokenizer**:
-    ```text
-    <s> Đường Võ Văn Ngân nước ngập sâu lút bánh xe </s>
-    ```
-  - **Dạng Tensor**:
-    - `input_ids`: `torch.LongTensor [batch_size, seq_len]`.
-    - `attention_mask`: `torch.LongTensor [batch_size, seq_len]`.
-    - `token_type_ids`: `torch.LongTensor [batch_size, seq_len]` (nếu dùng RoBERTa segment).
-
-* **Output Schema (Đầu ra mô hình)**:
-  - **Ma trận Quan hệ Cặp Token (Token-Pair Table Matrix)**: Tensor dự đoán $Y \in \mathbb{R}^{\text{batch\_size} \times L \times L \times C}$, với $L$ là số lượng token trong câu và $C = 6$ lớp nhãn quan hệ:
-    - `0: NONE` — Không có quan hệ giữa token $i$ và token $j$.
-    - `1: ASPECT` — Đường chéo chính $[i, j]$ đánh dấu biên thực thể (Vị trí bắt đầu $\rightarrow$ kết thúc của Aspect: e.g. `[Võ, Ngân]`).
-    - `2: OPINION` — Đường chéo chính $[i, j]$ đánh dấu biên từ ngữ đánh giá (Vị trí của Opinion: e.g. `[ngập, sâu]`).
-    - `3: A-O-POS` — Quan hệ có hướng liên kết Aspect $i$ với Opinion $j$ có cực tính Tích cực (POS).
-    - `4: A-O-NEU` — Quan hệ có hướng liên kết Aspect $i$ với Opinion $j$ có cực tính Trung tính (NEU).
-    - `5: A-O-NEG` — Quan hệ có hướng liên kết Aspect $i$ với Opinion $j$ có cực tính Tiêu cực (NEG).
-  - **Dạng Trích xuất Trực tiếp (Span Boundaries Output)**:
-    ```python
-    {
-      "aspect_span": (1, 4),        # Token 1 đến 4: "Võ Văn Ngân"
-      "opinion_span": (5, 9),       # Token 5 đến 9: "ngập sâu lút bánh xe"
-      "polarity": "NEG",
-      "confidence": 0.942           # Xác suất softmax của ô liên kết
-    }
-    ```
-    *Ưu điểm tuyệt đối*: Aspect luôn là chuỗi con chính xác trong văn bản $\rightarrow$ Đưa trực tiếp vào thuật toán tra cứu GIS mà không cần chuẩn hóa lại.
-
----
-
-#### C. Mô hình Đa Phương Thức Slow Path (`BARTpho` + `CLIP` + `PhoWhisper`)
-*Áp dụng cho các video TikTok phức tạp hoặc bài đăng có mâu thuẫn giữa hình ảnh và lời thoại.*
-
-* **Input Schema (Đầu vào đa phương thức)**:
-  ```python
-  {
-      # 1. Văn bản chú thích (Caption/Title)
-      "caption_input_ids": torch.LongTensor [batch_size, 128],
-      
-      # 2. Âm thanh gỡ băng từ PhoWhisper (16kHz audio transcript)
-      "asr_input_ids": torch.LongTensor [batch_size, 128],
-      
-      # 3. Vector nhúng 3 khung hình ngập trích xuất bởi OpenCV + CLIP ViT-B/32
-      "visual_embeddings": torch.FloatTensor [batch_size, 3, 512],
-      
-      # 4. Mặt nạ chú ý đa phương thức (Cross-modal Attention Mask)
-      "multimodal_attention_mask": torch.LongTensor [batch_size, 128 + 128 + 3]
-  }
-  ```
-
-* **Output Schema (Đầu ra đa phương thức)**:
-  - Chuỗi bộ ba chuẩn kèm **Điểm Nhất Quán Đa Phương Thức (Cross-modal Veracity Score)**:
-    ```python
-    {
-      "triplets": [
-        {"aspect": "Nguyễn Văn Hưởng", "opinion": "ngập sâu bì bõm", "polarity": "NEG"}
-      ],
-      "cross_modal_metrics": {
-        "text_audio_similarity": 0.89,   # Lời thoại trùng khớp nội dung caption
-        "visual_flood_confidence": 0.92, # Khung hình thực sự chứa nước ngập và xe máy
-        "is_genuine_incident": True      # Xác nhận không phải video ghép cảnh cũ
-      }
-    }
-    ```
-
----
-
-#### D. Mô hình Ngôn Ngữ Lớn LLM Fallback (`Gemini 1.5 Flash` / `Qwen 2.5 7B`)
-*Áp dụng trong Tầng Dự phòng (Fallback Chain) khi Fast Path có confidence $< 0.70$.*
-
-* **Input Schema (Prompt Đầu vào)**:
-  - **System Instruction**: Hướng dẫn phân loại theo taxonomy 5 nhóm thực thể, 3 mức nghiêm trọng và quy tắc tách rời cực tính cảm xúc.
-  - **User Content**: Đoạn văn bản kèm yêu cầu trả về duy nhất định dạng JSON RFC-8259:
-    ```text
-    Trích xuất các bộ ba ngập lụt từ câu sau dưới dạng JSON:
-    "Đoạn Thảo Điền năm nay lắp máy bơm thấy nước rút nhanh hẳn, bà con ai cũng khen."
-    ```
-
-* **Output Schema (JSON Chuẩn theo Schema v3 Đồng Nhất)**:
-  ```json
-  [
-    {
-      "aspect": "Thảo Điền",
-      "opinion": "nước rút nhanh hẳn",
-      "polarity": "POS",
-      "aspect_category": "LOCATION_ADMIN",
-      "severity": "RECOVERED",
-      "grounding_provenance": "SPAN_MATCHED",
-      "confidence": 0.96
-    }
-  ]
-  ```
-
----
-
-### 3.3 Lựa Chọn Kiến Trúc Vận Hành: Fast Path vs. Slow Path
+Nhằm tránh việc trộn lẫn giữa các yêu cầu vận hành thời gian thực và bài toán đánh giá học thuật độc lập, kiến trúc RadiNet v2.1 **tách rời hoàn toàn thành hai tuyến công việc (Workstreams)** chia sẻ chung tập dữ liệu cốt lõi HCMC Flood V3:
 
 ```
-                                  Bài Đăng Đầu Vào
-                                         │
-                         Có phải video/audio không chú thích?
-                                   ┌─────┴─────┐
-                                  CÓ          KHÔNG
-                                   │           │
-                                   ▼           ▼
-                           [ Luồng Chậm ]  [ Luồng Nhanh ]
-                            Multi-Modal    PhoBERT-base
-                            Seq2Seq        Span / Table
-                            (BARTpho)     (Độ trễ ≤50ms)
+                                  TẬP DỮ LIỆU HCMC FLOOD V3
+                                   (4.621 mẫu, Split 80/10/10)
+                                          │
+                   ┌──────────────────────┴──────────────────────┐
+                   ▼                                             ▼
+     [ TUYẾN KỸ THUẬT HỆ THỐNG ]                   [ TUYẾN BÀI BÁO KHOA HỌC ]
+      (System Operational Track)                    (Academic Paper Track)
+      • Fast Path: PhoBERT-base-v2                  • Ma trận đối sánh 2×2 (7 Mô hình)
+      • Slow Path: CLIP + PhoWhisper + BARTpho      • Extractive: PhoBERT, XLM-R, XLM-V (778M)
+      • API Serving: FastAPI Port 8001              • Generative: BARTpho, mT5-base (580M - SOTA)
+      • SLAs: Fast ≤35ms | Slow ≤10.0s              • LLMs: Gemma-26B / Qwen-27B (0-shot & 5-shot)
+      • Mục tiêu: Độ trễ thấp, Zero OOM, GIS live   • Mục tiêu: Strict Exact Match F1, Bootstrap CI
 ```
-
-1. **Luồng Nhanh Fast Path (Xương sống vận hành chính)**:
-   - **Mô hình**: `vinai/phobert-base-v2` (B1) kết hợp đầu phân loại cặp token / điền bảng (Span-based Table-Filling).
-   - **Đặc tính**: Độ trễ $\le 35\text{ms}$ trên GPU RTX 2080 Ti ($\le 60\text{ms}$ trên ONNX CPU), không sinh ảo tên đường, bảo đảm bảo toàn chuỗi ký tự phục vụ tra cứu GIS.
-2. **Luồng Chậm Slow Path (Bài viết phức tạp & Đa phương thức)**:
-   - **Mô hình**: `vinai/bartpho-syllable` (B2) kết hợp CLIP ViT-B/32 (B6) và PhoWhisper (B5).
-   - **Đặc tính**: Độ trễ $\sim 450\text{ms}$, dùng để phân giải video TikTok không có caption hoặc bài đăng nghi vấn thông tin giả mạo.
 
 ---
 
-### 3.4 Chiến Lược Tăng Cường Dữ Liệu & Tối Ưu Huấn Luyện
+### 3.1 Tuyến 1: Danh Mục Mô Hình Vận Hành Hệ Thống (System Serving Suite)
 
-#### A. Tăng Cường Dữ Liệu Xử Lý Nhiễu Mạng Xã Hội (Facebook, TikTok)
-Ngôn ngữ mạng xã hội tại TP.HCM thường gõ tắt, thiếu dấu tiếng Việt, hoặc sử dụng tiếng lóng:
-1. **Diacritic Dropout (Xóa dấu ngẫu nhiên)**: Trong quá trình huấn luyện, áp dụng xác suất $20\%$ gỡ bỏ dấu tiếng Việt trên các từ ngẫu nhiên (ví dụ: `Nguyễn Hữu Cảnh` $\rightarrow$ `Nguyen Huu Canh`) giúp mô hình nhận diện chính xác ngay cả khi người dân gõ vội lúc đang chạy xe dưới mưa.
-2. **Chuẩn hóa Tiếng lóng (Teencode Normalization)**: Tạo từ điển tiền xử lý ánh xạ các từ ngập lóng phổ biến (`ngâp`, `ngập sml`, `nước tới háng`, `chết máy`, `ngập banh xác`).
-3. **Bảo tồn Vector Nhúng Biểu Tượng Cảm Xúc (Emoji Retention)**: Giữ nguyên các emoji đặc trưng (🌊, 🌧️, 🛵, 🏊‍♂️, ⛔) trong bộ từ vựng Tokenizer thay vì biến thành `<unk>`, bởi emoji phản ánh cực kỳ rõ nét mức độ nghiêm trọng của điểm ngập.
+Tập trung vào tính ổn định, độ trễ và khả năng phục vụ luồng streaming liên tục:
 
-#### B. Hàm Mất Mát Đa Nhiệm & Hiệu Chuẩn Điểm Tin Cậy (Temperature Scaling)
+| STT | Mã Node | Mô hình Vận hành | Nhóm Kiến trúc | Vai trò Kỹ thuật trong RadiNet | Độ trễ p95 / VRAM (FP16) |
+| :---: | :---: | :--- | :--- | :--- | :--- |
+| **M1** | **`FP`** | **`vinai/phobert-base-v2`** | Discriminative (RoBERTa + Span Head) | **Fast Path chính**: Trích xuất bộ ba cực nhanh cho 85%+ bài viết có text | $\le 35\text{ms}$ (GPU) / $\le 50\text{ms}$ (CPU INT8)<br>$\sim 0.6\text{ GB}$ VRAM |
+| **M2** | **`AU`** | **`vinai/phowhisper-base`** | Audio Speech-to-Text | **Slow Path Audio**: Bóc băng lời nói từ video TikTok không caption | $\sim 800\text{ms} - 1.500\text{ms}$<br>$\sim 0.8\text{ GB}$ VRAM |
+| **M3** | **`VI`** | **`openai/clip-vit-base-patch32`** | Vision Transformer | **Slow Path Vision**: Thẩm định ngập lụt Top-3 khung hình & xuất vector 512D | $\sim 20\text{ms} - 45\text{ms}$ (GPU)<br>$\sim 0.7\text{ GB}$ VRAM |
+| **M4** | **`SP`** | **`vinai/bartpho-syllable`** | Generative Seq2Seq | **Slow Path Fusion**: Trích xuất bộ ba trên ngữ cảnh hợp nhất (Caption + ASR) | $\sim 250\text{ms} - 350\text{ms}$<br>$\sim 1.1\text{ GB}$ VRAM |
+| **M5** | **`FC`** | **`Qwen3.8-27B` / `Gemma-4-26B`** | LLM API Fallback | **Tầng Dự phòng**: Kích hoạt khi Fast Path có confidence $< 0.70$ | $\sim 1.200\text{ms} - 2.500\text{ms}$ (API)<br>Không tốn VRAM cục bộ |
+
+> **Tổng ngân sách VRAM**: Toàn bộ 4 mô hình M1 $\rightarrow$ M4 khi nạp đồng thời ở chế độ **FP16** chỉ chiếm **$3.2\text{ GB} - 3.8\text{ GB}$ VRAM**, vận hành tuyệt đối an toàn trên GPU 11GB (RTX 2080 Ti) với hơn $7\text{ GB}$ dung lượng đệm dự phòng.
+
+---
+
+### 3.2 Tuyến 2: Ma Trận Thực Nghiệm Báo Cáo Khoa Học (Academic Paper Benchmark Matrix)
+
+Tuyến bài báo đánh giá nghiêm ngặt theo tiêu chuẩn **Strict Exact Match Micro Triplet F1** trên tập kiểm thử độc lập Test Split ($N = 462$ câu văn bản, 636 bộ ba nhãn vàng):
+
+| Tập Ngữ Liệu Tiền Huấn Luyện \ Dạng Thức | Trích Xuất (Joint BIO + Span-Pair) | Sinh Chuỗi (Generative Seq2Seq) |
+| :--- | :--- | :--- |
+| **Đặc thù Tiếng Việt** *(Tin tức báo chí: Báo Mới, VnExpress)* | **PhoBERT-base** (135M, F1: 31.99%)<br>**PhoBERT-large** (370M, F1: 31.38%) | **BARTpho-word** (139M, F1: 36.32%)<br>**BARTpho-syllable** (139M, F1: 36.09%) |
+| **Đa Ngữ** *(Dữ liệu cào Web: Common Crawl, mC4)* | **XLM-R-base** (278M, F1: 36.67%)<br>**XLM-V-base** (778M, 902k vocab, F1: **39.58%**) | **mT5-base** (580M, F1: **42.65%** 🏆) |
+
+#### Các Hàng Mở Rộng Ngoài Lưới (Off-Grid Baselines):
+* **Heuristic Baseline (Đường sàn thực nghiệm)**: F1 = $15.15\%$ (P: $10.47\%$, R: $27.40\%$).
+* **LLM Zero-Shot**: **Gemma-4-26B** (F1: $18.32\%$) và **Qwen3.8-27B** (F1: $15.58\%$). *(Khẳng định thực nghiệm: LLM 27B không tinh chỉnh chỉ đạt ngang tầm từ điển tra cứu tĩnh trên bài toán trích xuất ranh giới nghiêm ngặt).*
+* **LLM Few-Shot ($k=5$) & QLoRA Tuning**: Đang hoàn thiện đo lường trên bộ prompt tiêu chuẩn.
+
+---
+
+## 4. Đặc Tả Chi Tiết Phễu Lọc Khung Hình Video (Reconciled Node `VI` Spec)
+
+Để khắc phục nhược điểm của việc gửi thẳng khung hình $0.5\text{ FPS}$ vào CLIP (dẫn tới việc chọn 3 khung hình giống hệt nhau hoặc chọn phải khung hình mờ nhòe do rung lắc), Node **`VI`** triển khai **Phễu Lọc Khung Hình 5 Giai Đoạn**:
+
+```
+Video gốc (TikTok/FB)
+     │
+     ▼
+[ 1. Giai đoạn Kiểm định & Dò thông số (ffprobe) ]
+     │ • Kiểm tra tính toàn vẹn (reject video lỗi / 0 byte)
+     │ • Đọc metadata: thời lượng, FPS thực tế, hướng quay (rotation)
+     ▼
+[ 2. Giai đoạn Lấy mẫu Phân đoạn (OpenCV 0.5 FPS) ]
+     │ • Loại bỏ 15% thời lượng đầu (tránh intro card, mặt người nói)
+     │ • Loại bỏ 15% thời lượng cuối (tránh watermark, logo follow, màn hình đen)
+     │ • Lấy mẫu đều đặn 1 frame mỗi 2 giây trong khoảng [15%, 85%]
+     ▼
+[ 3. Giai đoạn Khử trùng lặp Thị giác (pHash Clustering) ]
+     │ • Tính Perceptual Hash (ImageHash 64-bit) cho từng candidate frame
+     │ • Gom cụm các frame có khoảng cách Hamming ≤ 8
+     │ • Giữ lại frame có độ nét cao nhất trong mỗi cụm (loại bỏ góc quay trùng)
+     ▼
+[ 4. Giai đoạn Cổng Kiểm định Chất lượng (Quality Gates) ]
+     │ • Cổng lọc mờ (Blur Gate): Phương sai Laplacian var(Laplacian) ≥ 100.0
+     │ • Cổng phơi sáng (Exposure Gate): 35 ≤ Độ sáng trung bình ≤ 225
+     ▼
+[ 5. Giai đoạn Chọn lọc Đa dạng Ngập lụt (CLIP MMR Selection) ]
+     │ • Tính điểm tương quan ngập với bộ prompt đóng băng (CANDIDATE_LABELS)
+     │ • Chọn Top-3 bằng thuật toán MMR (Maximal Marginal Relevance, λ = 0.65):
+     │   Score(f) = CLIP_Flood(f) - λ * max_sim(f, selected_frames)
+     ▼
+Xuất 2 Sản Phẩm Đầu Ra:
+  ├── Sản phẩm 1 (Cho Model AI): Tensor nhúng [3, 512] nạp vào BARTpho
+  └── Sản phẩm 2 (Cho Dashboard/Human): Bộ ảnh phân bổ theo dòng thời gian (Temporal Buckets)
+```
+
+### Bộ Nhãn Prompt CLIP Đóng Băng (Frozen Candidate Labels):
+Để đảm bảo điểm số Zero-shot CLIP không bị dao động giữa các phiên thực nghiệm, hệ thống cố định 3 prompt sau:
 ```python
-# Hàm mất mát kết hợp trích xuất biên thực thể (Aspect/Opinion) và phân loại cực tính (Polarity)
-Loss_total = Loss_span_aspect + Loss_span_opinion + alpha * Loss_relation_polarity
+CLIP_CANDIDATE_LABELS = [
+    "a flooded street in a city with deep standing water and submerged vehicles", # Index 0: Điểm ngập
+    "a normal dry city road with clear traffic",                                  # Index 1: Đường khô ráo
+    "an indoor room, food dish, or personal selfie"                               # Index 2: Không liên quan
+]
 ```
-- **Hiệu chuẩn Xác suất (Temperature Scaling - $T$)**: Hiệu chỉnh phân phối xác suất đầu ra trên tập Validation:
-  $$\hat{P}(y|x) = \text{softmax}(z / T)$$
-  Việc hiệu chuẩn đảm bảo khi mô hình dự đoán độ tin cậy $0.70$, xác suất chính xác thực nghiệm đúng bằng $70\%$, giúp ngưỡng kích hoạt chuyển giao sang LLM fallback vận hành hoàn toàn chuẩn xác.
+
+### Xử lý Định dạng Khung hình Đứng ($9:16$ Vertical Video):
+Video TikTok/Shorts có tỉ lệ $9:16$, trong đó phần ngập lụt (mặt đường, bánh xe) nằm chủ yếu ở **$66\%$ phần dưới (lower two-thirds)** của khung hình. Phễu trích xuất thực hiện cắt ưu tiên phần dưới trước khi co về kích thước $224 \times 224$ của CLIP, ngăn chặn việc cắt xén mất mặt đường ngập.
 
 ---
 
-## 4. Tầng Điều Hướng Quyết Định: Tách Rời Cực Tính Cảm Xúc Khỏi Sự Kiện Ngập
+## 5. Đặc Tả Kiến Trúc Fast Path vs. Slow Path & Đánh Giá Ảo Giác
 
-Quy tắc cốt lõi trong tài liệu quản trị là: **Cực tính cảm xúc (Polarity) KHÔNG ĐỒNG NGHĨA với sự xuất hiện của ngập lụt**. Tầng điều hướng sẽ tiếp nhận đầu ra của AI và phân loại hành động nghiệp vụ theo chuẩn Schema v3:
+### 5.1 Luồng Nhanh Fast Path: Triệt Tiêu Ảo Giác Từ Vựng (Zero Lexical Hallucination)
+* **Mô hình**: `vinai/phobert-base-v2` kết hợp đầu phân loại bảng cặp token (Span-based Table-Filling Head).
+* **Bản chất phòng chống ảo giác**:
+  - Khác với mô hình sinh tự hồi quy (Seq2Seq) có thể "bịa" ra tên đường không tồn tại, mô hình dạng Span chỉ gán nhãn vị trí chỉ số bắt đầu và kết thúc (`aspect_span = (start, end)`) trên chính câu văn đầu vào.
+  - **Khẳng định học thuật chuẩn mực**: Mô hình **triệt tiêu hoàn toàn ảo giác từ vựng (Zero Lexical Hallucination)** đối với thực thể tên đường, đảm bảo tên đường đưa vào tra cứu GIS là $100\%$ nguyên văn. *(Lưu ý: Mô hình vẫn có thể mắc lỗi ghép cặp quan hệ hoặc phân loại cực tính nhầm — Relation/Polarity Misclassification).*
+* **Tối ưu hóa Phục vụ (Serving Optimization)**:
+  - Trên GPU: Chạy trực tiếp qua PyTorch FP16 ($\sim 3\text{ms} - 5\text{ms}$).
+  - Trên CPU: Xuất mô hình sang định dạng **ONNX Runtime INT8 Quantization** để đảm bảo độ trễ p95 $\le 50\text{ms}$. *(Lưu ý: Không dùng ONNX FP16 trên CPU vì các tập lệnh AVX/VNNI tối ưu tốt nhất cho định dạng số nguyên INT8; FP16 trên CPU sẽ bị suy hao hiệu năng do phải giải lập phần mềm).*
+
+### 5.2 Luồng Chậm Slow Path: Dung Hợp Thực Tế & Phân Định Tin Tái Sử Dụng
+* **Mô hình**: Hợp nhất `CLIP ViT-B/32` (Thị giác) + `PhoWhisper-base` (Âm thanh) + `BARTpho-syllable` (ASTE).
+* **Giải pháp Dung hợp Khả thi (Late Fusion / Post-hoc Verification)**:
+  - Do tập dữ liệu HCMC Flood V3 không có dữ liệu huấn luyện ghép cặp video-caption quy mô hàng trăm nghìn mẫu để huấn luyện từ đầu một tầng chiếu đa phương thức (cross-attention projection layer), hệ thống áp dụng cơ chế **Dung hợp Hậu kỳ (Late Fusion / Post-hoc Verification)**:
+    1. `PhoWhisper` bóc tách lời thoại thành văn bản phụ trợ.
+    2. Ghép nối văn bản: `Văn bản gốc + " . Lời thoại: " + Audio_Transcript`.
+    3. `BARTpho` thực hiện trích xuất bộ ba ASTE trên ngữ cảnh đã làm giàu.
+    4. Điểm thị giác từ `CLIP` đóng vai trò là **Hệ số Thẩm định Khách quan (Visual Verification Gating)** để nhân trọng số vào `content_confidence_score`.
+* **Phân định Rạch Ròi Tin Tái Sử Dụng (Recycled / Stale Video)**:
+  > [!WARNING]
+  > **Quy tắc An toàn Nghiệp vụ**: Nhãn `is_genuine_incident` (Sự kiện có thật tại thời điểm hiện tại) **TUYỆT ĐỐI KHÔNG ĐƯỢC SUY DIỄN TỪ CLIP HOẶC WHISPER**.
+  > Một video ngập lụt kinh hoàng quay từ bão năm 2022 được đăng lại vào năm 2026 sẽ đạt điểm thị giác CLIP ngập $99\%$ (vì hình ảnh thực sự chứa cảnh ngập sâu). Tính xác thực của sự kiện bắt buộc phải được thẩm định bởi Node **`PP`** (So khớp hàm băm ảnh pHash với kho lưu trữ clip lịch sử) kết hợp Tầng Khí tượng (Open-Meteo) và Tầng Đồng thuận Không - Thời gian.
+
+---
+
+## 6. Tầng Điều Hướng Quyết Định & Bảng Quy Chuẩn Mực Nước
+
+### 6.1 Tiền Xử Lý Chuẩn Hóa Tiếng Lóng & Biểu Tượng Cảm Xúc (Teencode & Emoji Mapping)
+Để đảm bảo các quy tắc điều hướng hoạt động chính xác trên ngôn ngữ mạng xã hội, quy trình tiền xử lý phải chạy **TRƯỚC** khi câu văn được đưa vào bộ luật điều hướng:
+
+1. **Từ điển Ánh xạ Biểu Tượng Cảm Xúc (Emoji-to-Text Mapping)**:
+   Do bộ từ vựng BPE của PhoBERT/BARTpho bị đóng băng (pinned vocabulary), thay vì cố gắng thêm emoji vào tokenizer, hệ thống ánh xạ emoji thành cụm từ ngữ nghĩa:
+   - 🌊 $\rightarrow$ `ngập lênh láng`
+   - 🌧️ $\rightarrow$ `mưa lớn`
+   - 🛵 $\rightarrow$ `xe máy`
+   - 🏊‍♂️ $\rightarrow$ `bì bõm lội nước`
+   - ⛔ $\rightarrow$ `cấm đường`
+
+2. **Chuẩn hóa Tiếng lóng Mạng xã hội**:
+   Ánh xạ các cụm từ địa phương và tiếng lóng:
+   - `nước tới háng` $\rightarrow$ `ngập sâu nửa mét`
+   - `ngập sml` / `ngập banh xác` $\rightarrow$ `ngập rất nặng`
+   - `chết máy` $\rightarrow$ `xe chết máy`
+
+---
+
+### 6.2 Bảng Quy Chuẩn Đo Lường Mực Nước Thực Tế $\rightarrow$ Cấp Độ Nghiêm Trọng (Severity Table)
+
+Để chấm dứt tình trạng mập mờ giữa câu trung tính NEU đo lường và cảnh báo khẩn cấp (ví dụ: *"đường ngập 50cm"*), hệ thống ban hành bảng đối soát mực nước chuẩn:
+
+| Khoảng Mực Nước Đo Lường | Từ Vựng Hiện Trường Đặc Trưng | Cấp Độ Nghiêm Trọng (`severity`) | Tín Hiệu Bản Đồ (`IncidentSignal`) | Màu Hiển Thị GIS |
+| :---: | :--- | :---: | :---: | :---: |
+| **$\ge 50\text{ cm}$** | *"ngập lút bánh"*, *"nước tới yên xe"*, *"chết máy hàng loạt"*, *"tràn vào nhà"*, *"như biển nước"* | **`HIGH`** | **`FLOOD_EMERGENCY`** | 🔴 Đỏ đậm (Nhấp nháy) |
+| **$20\text{ cm} - 49\text{ cm}$** | *"ngập nửa bánh xe"*, *"bì bõm dắt bộ"*, *"ngập sâu vỉa hè"*, *"di chuyển khó khăn"* | **`MEDIUM`** | **`FLOOD_WARNING`** | 🟡 Vàng cam |
+| **$< 20\text{ cm}$** | *"ngập mấp mé"*, *"đọng vũng"*, *"nước ngập nhẹ"*, tin dự báo, số liệu trạm đo thấp | **`LOW`** | **`INFORMATION_ONLY`** | ⚪ Xám nhạt |
+| **$0\text{ cm}$ (Nước rút)** | *"nước rút hết"*, *"đường khô ráo"*, *"hết ngập"*, *"thông thoáng"*, *"chạy bình thường"* | **`RECOVERED`** | **`FLOOD_RESOLVED`** | 🟢 Xanh lục (Giải tỏa) |
+
+---
+
+### 6.3 Mã Nguồn Bộ Điều Hướng Quyết Định (Reconciled Schema v3)
 
 ```python
 """
-Mô-đun Điều hướng Quyết định RadiNet (Decision Routing Module)
-Tách rời thái độ cảm xúc khỏi quy trình kích hoạt cảnh báo ngập lụt trên bản đồ.
-Đồng bộ 100% với Schema v3 quy định trong HUONG_DAN_SUA_DATASET_ASTE_V3.md
+Mô-đun Điều hướng Quyết định RadiNet v2.1
+Đồng bộ 4 nhãn grounding_provenance và bảng ánh xạ mực nước chuẩn.
 """
 from dataclasses import dataclass
-from typing import Optional, Literal
+from typing import Optional, Literal, List
 from enum import Enum
 
 class IncidentSignal(Enum):
-    FLOOD_EMERGENCY = "FLOOD_EMERGENCY"       # Báo động Đỏ: ngập sâu, phương tiện chết máy
+    FLOOD_EMERGENCY = "FLOOD_EMERGENCY"       # Báo động Đỏ: ngập nặng, phương tiện chết máy
     FLOOD_WARNING = "FLOOD_WARNING"           # Báo động Vàng: ngập vừa, nước đang dâng
     FLOOD_RESOLVED = "FLOOD_RESOLVED"         # Tín hiệu Xanh: nước đã rút, đường thông thoáng
-    INFORMATION_ONLY = "INFORMATION_ONLY"     # Thông tin tham khảo: bản tin triều, dự báo
-    IGNORE_SUPPRESS = "IGNORE_SUPPRESS"       # Bỏ qua: tin rác, hỏi bâng quơ, không liên quan
+    INFORMATION_ONLY = "INFORMATION_ONLY"     # Thông tin tham khảo: mực nước thấp, dự báo
+    IGNORE_SUPPRESS = "IGNORE_SUPPRESS"       # Bỏ qua: tin rác, hỏi han, không liên quan
 
-# Tập từ khóa thể hiện nước rút / đường thông
 RESOLUTION_KEYWORDS = {
     "hết ngập", "rút hết", "nước rút", "khô ráo", "thông thoáng", 
     "chạy bình thường", "hết kẹt", "đi lại bình thường", "nước đã rút", "khô queo"
 }
 
-# Tập từ khóa thể hiện ngập nghiêm trọng
 FLOOD_KEYWORDS = {
     "ngập sâu", "ngập nặng", "ngập nửa bánh", "mênh mông", "chết máy",
     "ngập lụt", "dâng cao", "chìm trong biển nước", "ngập lênh láng", "sóng đánh"
@@ -350,41 +306,41 @@ FLOOD_KEYWORDS = {
 class TripletResult:
     aspect: str                   # Tên thực thể có thật trong câu (Verbatim Span)
     opinion: str                  # Từ ngữ đánh giá / đo lường
-    polarity: Literal["POS", "NEU", "NEG"]  # Cực tính cảm xúc (Thái độ đối với Aspect)
-    aspect_category: Literal[     # 5 nhóm thực thể chuẩn Schema v3 (TUYỆT ĐỐI KHÔNG GÁN XE CỘ)
+    polarity: Literal["POS", "NEU", "NEG"]
+    aspect_category: Literal[
         "LOCATION_STREET",        # Tuyến đường, giao lộ, cầu
         "LOCATION_ADMIN",         # Phường, Quận, Khu vực
         "HYDROLOGY",              # Sông, kênh, rạch, hồ điều tiết
         "INFRASTRUCTURE_DRAINAGE",# Trạm bơm, nắp cống, miệng ga, van ngăn triều
-        "RESPONSE_ENTITY"         # Lực lượng ứng trực thoát nước, CSGT điều tiết
+        "RESPONSE_ENTITY"         # CSGT, lực lượng thoát nước đô thị
     ]
-    severity: Literal[            # 4 cấp độ nghiêm trọng chuẩn Schema v3
-        "HIGH",                   # Ngập nặng, xe chết máy, tràn vào nhà
-        "MEDIUM",                 # Ngập nửa bánh xe, di chuyển khó khăn
-        "LOW",                    # Ngập mấp mé vỉa hè, đọng vũng
-        "RECOVERED"               # Nước rút hết, đường khô ráo (dành cho POS)
+    severity: Literal[
+        "HIGH",                   # Ngập >= 50cm, chết máy, tràn vào nhà
+        "MEDIUM",                 # Ngập 20-49cm, nửa bánh xe
+        "LOW",                    # Ngập < 20cm, mấp mé, đọng vũng
+        "RECOVERED"               # Nước rút hết, đường khô ráo
     ]
     grounding_provenance: Literal[
-        "SPAN_MATCHED",           # Trùng khớp tuyệt đối tim đường 122 CSGT / OSM
-        "FUZZY",                  # Khớp mờ danh bạ / viết tắt (rapidfuzz >= 85)
-        "DOC_FALLBACK"            # Fallback tâm Phường/Quận nhắc trong bài viết
+        "SPAN_MATCHED",           # Trùng khớp tuyệt đối tim đường 122 CSGT (Tier 1)
+        "FUZZY",                  # Khớp mờ danh bạ / viết tắt rapidfuzz >= 85 (Tier 2)
+        "OSM_MATCHED",            # Khớp trung điểm tuyến đường OpenStreetMap (Tier 3)
+        "DOC_FALLBACK"            # Fallback tâm Phường/Quận nhắc trong bài (Tier 4)
     ]
     confidence: float             # Điểm tin cậy [0.0 - 1.0]
 
 def route_triplet_to_signal(t: TripletResult) -> IncidentSignal:
     opinion_clean = t.opinion.lower()
     
-    # Quy tắc 1: Tín hiệu giải tỏa (Thái độ POS + từ vựng nước rút / severity RECOVERED)
-    # Tín hiệu này chuyển đường từ màu ĐỎ sang màu XANH trên bản đồ
+    # Quy tắc 1: Tín hiệu giải tỏa (POS + từ vựng nước rút hoặc severity RECOVERED)
     if t.polarity == "POS" and (t.severity == "RECOVERED" or any(k in opinion_clean for k in RESOLUTION_KEYWORDS)):
         return IncidentSignal.FLOOD_RESOLVED
 
-    # Quy tắc 2: Tình huống ngập khẩn cấp (severity HIGH hoặc từ vựng nghiêm trọng)
-    # Ví dụ: "đường ngập 50cm" là câu trung tính (NEU) nhưng là điểm ngập khẩn cấp trên GIS!
+    # Quy tắc 2: Tình huống ngập khẩn cấp (HIGH hoặc từ vựng ngập sâu)
+    # Câu NEU đo lường: "đường ngập 50cm" có severity=HIGH -> kích hoạt Báo động Đỏ
     if t.severity == "HIGH" or any(k in opinion_clean for k in FLOOD_KEYWORDS):
         return IncidentSignal.FLOOD_EMERGENCY
 
-    # Quy tắc 3: Cảnh báo mức độ vừa (severity MEDIUM hoặc bài đo đạc NEU có từ ngập)
+    # Quy tắc 3: Cảnh báo mức độ vừa (MEDIUM hoặc đo đạc NEU có từ ngập)
     if t.severity == "MEDIUM" or (t.polarity == "NEU" and "ngập" in opinion_clean):
         return IncidentSignal.FLOOD_WARNING
 
@@ -392,7 +348,7 @@ def route_triplet_to_signal(t: TripletResult) -> IncidentSignal:
     if t.severity == "LOW" or t.polarity == "NEU":
         return IncidentSignal.INFORMATION_ONLY
 
-    # Quy tắc 5: Phàn nàn chung chung không rõ mức độ ngập
+    # Quy tắc 5: Phàn nàn tiêu cực chung chung không rõ mức độ ngập
     if t.polarity == "NEG":
         if "ngập" in opinion_clean:
             return IncidentSignal.FLOOD_WARNING
@@ -403,9 +359,9 @@ def route_triplet_to_signal(t: TripletResult) -> IncidentSignal:
 
 ---
 
-## 5. Quy Trình Định Vị Địa Lý & Xác Thực Nguồn Gốc Tọa Độ (`GR`)
+## 7. Quy Trình Định Vị Địa Lý & Xác Thực Nguồn Gốc Tọa Độ (`GR`)
 
-Mọi thực thể vị trí trích xuất từ bài viết đều phải được gán tọa độ vật lý `(vĩ độ, kinh độ)` kèm theo nhãn nguồn gốc (provenance) để đảm bảo tính minh bạch:
+Mọi thực thể vị trí trích xuất từ bài viết đều phải được gán tọa độ vật lý `(vĩ độ, kinh độ)` kèm theo 1 trong 4 nhãn nguồn gốc (provenance) đồng bộ tuyệt đối:
 
 ```mermaid
 flowchart TD
@@ -431,83 +387,31 @@ flowchart TD
     style G4 fill:#FEE2E2,stroke:#DC2626
 ```
 
-### 3 Cấp Độ Nguồn Gốc Tọa Độ (Grounding Provenance) Chuẩn Hóa Schema v3
-1. **`SPAN_MATCHED`**: Trùng khớp chuẩn xác từng ký tự (Verbatim Span) trong văn bản với 122 điểm đen CSGT hoặc tuyến đường trên OpenStreetMap TP.HCM (Độ tin cậy: 0.85 – 0.98).
-2. **`FUZZY`**: Khớp mờ danh bạ hoặc từ viết tắt/sai chính tả (ví dụ: *"TXS"* $\rightarrow$ *"Trần Xuân Soạn"*, độ tương đồng Levenshtein $\ge 85\%$) (Độ tin cậy: 0.75 – 0.85).
-3. **`DOC_FALLBACK`**: Bài viết không nêu tên đường cụ thể (*"Khu tôi nước ngập lút bánh"*), gán tọa độ tâm Phường/Xã hoặc Quận theo ngữ cảnh bài viết (Độ tin cậy: 0.40 – 0.65).
-
 ---
 
-## 6. Máy Trạng Thái Quản Lý Vòng Đời Sự Kiện Ngập Lụt (`AG`)
-
-Thay vì chỉ đếm bài viết tĩnh ("3 bài trong 60 phút"), RadiNet v2 quản lý sự kiện theo **Máy Trạng Thái Hữu Hạn (FSM)** cho từng bán kính địa lý ($r = 500\text{m}$):
-
-```mermaid
-stateDiagram-v2
-    [*] --> DETECTED: 1 nguồn báo chí xác thực HOẶC 2 bài đăng mạng xã hội độc lập
-    DETECTED --> ACTIVE: &ge;3 bài xác thực trong 60 phút HOẶC tin cấm đường từ cơ quan chức năng
-    DETECTED --> CANCELLED: Không có thêm bài kiểm chứng sau 45 phút
-
-    ACTIVE --> ACTIVE: Có thêm bài phản ánh ngập / radar mưa xác nhận cường độ lớn
-    ACTIVE --> RESOLVING: Xuất hiện bộ ba POS với từ vựng rút nước ('nước rút', 'hết ngập')
-    ACTIVE --> RESOLVING: Không có bài đăng mới sau 90 phút + vũ lượng mưa/triều giảm sâu
-
-    RESOLVING --> ACTIVE: Xuất hiện bài báo ngập NEG mới trong vòng 30 phút theo dõi
-    RESOLVING --> CLOSED: 60 phút liên tục không phát sinh bài ngập / đường thông thoáng
-    CLOSED --> [*]
-```
-
-### Quy Tắc Chuyển Trạng Thái:
-- **Ngưỡng kiểm chứng độc lập**: Cần tối thiểu 2 tài khoản người dùng khác nhau hoặc 1 cơ quan báo chí chính thống (`VnExpress`, `Tuổi Trẻ`, `Thanh Niên`) để đưa sự kiện từ `DETECTED` lên `ACTIVE`.
-- **Cơ chế chuyển màu từ Đỏ sang Xanh**: Khi một bài đăng `POS` ("đường Nguyễn Hữu Cảnh nước đã rút hết") xuất hiện tại khu vực đang có sự kiện `ACTIVE`:
-  - Sự kiện lập tức chuyển sang trạng thái `RESOLVING`.
-  - Trên Dashboard, biểu tượng chuyển sang trạng thái Nhấp nháy Xanh/Vàng ("Đang rút nước").
-  - Nếu sau 30 phút theo dõi không có bài đăng `NEG` nào phản ánh ngập lại, tuyến đường chính thức chuyển sang màu Xanh (`CLOSED`).
-
----
-
-## 7. Lộ Trình Triển Khai & Checklist Kỹ Thuật Chi Tiết
-
-Để đưa hệ thống RadiNet từ mã nguồn hiện tại đến phiên bản v2 hoàn chỉnh sẵn sàng công bố bài báo khoa học và vận hành thực tế, dưới đây là 4 giai đoạn cụ thể:
+## 8. Lộ Trình Triển Khai Kỹ Thuật (Reconciled Roadmap)
 
 ```mermaid
 timeline
-    title Lộ Trình Thực Hiện RadiNet v2
-    Giai đoạn 1 (Tuần 1-2) : Hoàn thiện Dataset v3 : Cân bằng tỷ lệ &ge;10% POS & &ge;10% NEU : Chạy kiểm định audit_dataset_readiness.py
-    Giai đoạn 2 (Tuần 3-4) : Huấn luyện PhoBERT Fast Path : Xuất ONNX Runtime : Kiểm thử độ trễ p95 (&le;50ms)
-    Giai đoạn 3 (Tuần 5-6) : Đóng gói Microservice Định vị Tọa độ : Tích hợp RapidFuzz & 122 Điểm đen : Ghi nhận nhãn nguồn gốc Provenance
-    Giai đoạn 4 (Tuần 7-8) : Tích hợp Streaming Kafka & Vòng đời FSM : Chạy Replay kiểm thử trên đợt ngập lịch sử : Xuất biểu đồ đánh giá
+    title Lộ Trình Triển Khai RadiNet v2.1
+    Giai đoạn 1 (Đã Hoàn Thành) : Tập Dữ Liệu V3 Hoàn Chỉnh : Đạt cân bằng 4.621 mẫu (NEG 66.7%, POS 22.2%, NEU 11.2%) : Tách độc lập tập Test (N=462)
+    Giai đoạn 2 (Hiện Tại) : Triển Khai Phễu Frame & Microservice : Đóng gói FastAPI 8001 (Fast Path PhoBERT + Slow Path CLIP/Whisper) : Cài đặt pHash & Blur Gate trong extract_tiktok_frames.py
+    Giai đoạn 3 (Tuần Tiếp Theo) : Tuyến Bài Báo Khoa Học : Huấn luyện lại PhoBERT/BARTpho/mT5 trên tập Train V3 đã chuẩn hóa : Chạy Bootstrap CIs & Hoàn thiện bảng SOTA
+    Giai đoạn 4 (Hệ Thống Live) : Vận Hành Luồng Streaming : Kết nối Kafka Ingestion với Fast Path : Kích hoạt vòng đời sự kiện FSM trên Redis/PostGIS
 ```
 
-### Giai đoạn 1: Chuẩn hóa Dữ liệu v3 (Tầng Dữ Liệu)
-- [ ] Chạy script `python scripts/crawl_targeted_pos.py` để cào bổ sung 500+ mẫu `POS` từ các bài báo khánh thành cống thoát nước, nạo vét kênh rạch, nước rút nhanh.
-- [ ] Cân bằng phân phối nhãn đạt tối thiểu **10% POS** và **10% NEU** trong file `hcmc_flood_annotated_v3.json`.
-- [ ] Rà soát tự động đảm bảo 100% không còn hiện tượng dính từ thừa (prepositional noise) bằng công cụ `scripts/audit_dataset_readiness.py`.
+### Checklist Nhiệm Vụ Cụ Thể Theo Tuyến:
 
-### Giai đoạn 2: Huấn luyện Mô Hình AI & Tối Ưu Tốc Độ (Tầng AI)
-- [ ] Cập nhật file `finetune/prepare_dataset.py` để hỗ trợ định dạng nhãn Token Classification / Span-based Table-Filling.
-- [ ] Huấn luyện `vinai/phobert-base-v2` với kỹ thuật Diacritic Dropout ($p=0.20$) trên GPU.
-- [ ] Xuất mô hình sang định dạng **ONNX Runtime** với tối ưu FP16 để bảo đảm độ trễ dưới 50ms khi xử lý luồng streaming.
-- [ ] Thực hiện hiệu chuẩn xác suất (Temperature Scaling) để lấy điểm `confidence` chuẩn.
+#### A. Tuyến Kỹ thuật Hệ thống (System Track):
+- [x] Đóng gói Microservice FastAPI tại `bigdata/ai_service/ai_microservice.py` hỗ trợ 2 nhánh `/predict-fast` và `/predict-slow`.
+- [x] Tối ưu VRAM chạy chế độ FP16 đạt $\sim 1.2\text{ GB}$ VRAM trên RTX 2080 Ti.
+- [ ] Cập nhật `scripts/extract_tiktok_frames.py` với phễu lọc 5 giai đoạn (`pHash` Hamming $\le 8$, `Laplacian var` $\ge 100$, bỏ $15\%$ đầu/cuối).
+- [ ] Tích hợp bảng log phễu (Funnel Logging) thống kê tỷ lệ loại bỏ frame (Sampled $\rightarrow$ Deduped $\rightarrow$ Quality-passed $\rightarrow$ Selected).
+- [ ] Đảm bảo nhãn `is_genuine_incident` được điều hướng qua tầng băm ảnh kho lưu trữ `PP`, không dựa thuần túy vào điểm thị giác CLIP.
 
-### Giai đoạn 3: Tích hợp Định Vị Địa Lý & Tầng Điều Hướng (Tầng Lõi Nghiệp Vụ)
-- [ ] Đóng gói kịch bản [`demo_extract_street_coordinates.py`](file:///home/counting/Workspaces/ryan/RadiNet/scripts/demo_extract_street_coordinates.py) thành lớp dịch vụ `GeoGroundingService`.
-- [ ] Tích hợp logic `route_triplet_to_signal` vào tiến trình xử lý đầu ra của mô hình AI.
-- [ ] Xây dựng cây tìm kiếm không gian KD-Tree cho 122 điểm đen CSGT để tối ưu tốc độ tra cứu tọa độ.
-
-### Giai đoạn 4: Vận Hành Streaming & Tái Hiện Thực Nghiệm (Tầng Hệ Thống & Bài Báo)
-- [ ] Kết nối hàng đợi Kafka Ingestion với nhóm tiến trình xử lý GPU Fast Path.
-- [ ] Lưu trữ và cập nhật trạng thái FSM của các điểm ngập trên Redis / PostGIS.
-- [ ] Thực hiện thực nghiệm **Episode Replay Evaluation** trên các đợt ngập lịch sử (Đợt bão Yagi tháng 09/2024, đợt triều cường rằm tháng 9 Âm lịch năm 2024).
-- [ ] Đo lường độ phủ không gian (Spatial Recall) đối chiếu với danh sách cấm đường trên báo chính thống và tính Macro-F1 trên cả 3 lớp cảm xúc (NEG, NEU, POS).
-
----
-
-## 8. Danh Mục Mã Nguồn & Công Cụ Tham Chiếu
-
-- **Kiểm định dữ liệu**: [`RadiNet/scripts/audit_dataset_readiness.py`](file:///home/counting/Workspaces/ryan/RadiNet/scripts/audit_dataset_readiness.py)
-- **Chuẩn bị tập huấn luyện**: [`RadiNet/finetune/prepare_dataset.py`](file:///home/counting/Workspaces/ryan/RadiNet/finetune/prepare_dataset.py)
-- **Huấn luyện mô hình cơ sở**: [`RadiNet/finetune/train_generative_aste.py`](file:///home/counting/Workspaces/ryan/RadiNet/finetune/train_generative_aste.py)
-- **Trích xuất tọa độ địa lý**: [`RadiNet/scripts/demo_extract_street_coordinates.py`](file:///home/counting/Workspaces/ryan/RadiNet/scripts/demo_extract_street_coordinates.py)
-- **Trích xuất khung hình TikTok**: [`RadiNet/scripts/extract_tiktok_frames.py`](file:///home/counting/Workspaces/ryan/RadiNet/scripts/extract_tiktok_frames.py)
-- **Đặc tả quy chuẩn cực tính cảm xúc**: [`RadiNet/documents/ASTE_POLARITY_AND_ASPECT_SPECIFICATION.md`](file:///home/counting/Workspaces/ryan/RadiNet/documents/ASTE_POLARITY_AND_ASPECT_SPECIFICATION.md)
+#### B. Tuyến Nghiên cứu Bài báo Khoa học (Paper Track):
+- [x] Khóa tập kiểm thử độc lập Test Split ($N = 462$ câu văn bản, 636 bộ ba nhãn vàng).
+- [x] Thiết lập bảng đối sánh thực nghiệm 7 mô hình hoàn chỉnh tại `AI/results/BENCHMARK_TABLE.md`.
+- [ ] Xác nhận toàn bộ các mô hình cơ sở (`PhoBERT`, `BARTpho`, `XLM-R`, `XLM-V`, `mT5-base`) được huấn luyện nhất quán trên file `data/processed/splits/train.json` mới nhất.
+- [ ] Chạy đo lường khoảng tin cậy Bootstrap 95% và kiểm định ý nghĩa thống kê paired-bootstrap.
+- [ ] Đo lường bổ sung các phép thử Few-Shot ($k=5$) trên Gemma-4-26B và Qwen3.8-27B.
