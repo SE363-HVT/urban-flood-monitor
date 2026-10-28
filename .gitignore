@@ -58,7 +58,12 @@ scratch/
 
 *.safetensors
 *.pth
+*.pt
+*.bin
 *.zip
+
+AI/**/checkpoints/tokenizer.json
+data/extracted_frames/live_run_test/
 
 data/buffer_*.jsonl
 data/lakehouse/

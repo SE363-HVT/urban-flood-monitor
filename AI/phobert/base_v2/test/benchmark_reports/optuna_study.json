@@ -1,0 +1,45 @@
+{
+  "best_trial_number": 1,
+  "best_score": 150.28,
+  "best_params": {
+    "learning_rate": 2.7097952542997978e-05,
+    "batch_size": 16,
+    "dropout": 0.2,
+    "weight_decay": 0.00483437145318464
+  },
+  "all_trials": [
+    {
+      "number": 1,
+      "value": 150.28,
+      "params": {
+        "learning_rate": 2.7097952542997978e-05,
+        "batch_size": 16,
+        "dropout": 0.2,
+        "weight_decay": 0.00483437145318464
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 2,
+      "value": 149.36,
+      "params": {
+        "learning_rate": 3.2498779265984714e-05,
+        "batch_size": 16,
+        "dropout": 0.1,
+        "weight_decay": 0.00022853255256339225
+      },
+      "state": "TrialState.COMPLETE"
+    },
+    {
+      "number": 3,
+      "value": 137.32,
+      "params": {
+        "learning_rate": 2.096457334783713e-05,
+        "batch_size": 16,
+        "dropout": 0.2,
+        "weight_decay": 0.0024164826029897516
+      },
+      "state": "TrialState.COMPLETE"
+    }
+  ]
+}

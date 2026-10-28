@@ -1,0 +1,51 @@
+{
+  "Triplet_Strict_Match": {
+    "Precision": 15.41,
+    "Recall": 15.75,
+    "F1": 15.58,
+    "Gold": 635,
+    "Pred": 649,
+    "Correct": 100
+  },
+  "Aspect_Span": {
+    "Precision": 42.81,
+    "Recall": 39.68,
+    "F1": 41.19
+  },
+  "Opinion_Span": {
+    "Precision": 31.15,
+    "Recall": 34.41,
+    "F1": 32.7
+  },
+  "Polarity_Per_Class": {
+    "NEG": {
+      "Precision": 23.58,
+      "Recall": 11.82,
+      "F1": 15.75,
+      "Gold": 423,
+      "Pred": 212,
+      "Correct": 50
+    },
+    "POS": {
+      "Precision": 25.83,
+      "Recall": 27.66,
+      "F1": 26.71,
+      "Gold": 141,
+      "Pred": 151,
+      "Correct": 39
+    },
+    "NEU": {
+      "Precision": 3.85,
+      "Recall": 15.49,
+      "F1": 6.16,
+      "Gold": 71,
+      "Pred": 286,
+      "Correct": 11
+    }
+  },
+  "Macro_Polarity_F1": 16.21,
+  "model_name": "Qwen3.8-27B",
+  "model_id": "qwen3.8-27b",
+  "Evaluation_Time_Seconds": 1226.28,
+  "Samples_Per_Second": 0.38
+}

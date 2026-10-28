@@ -1,0 +1,54 @@
+{
+  "model_name": "Heuristic Word Matching (Lexicon + Distance Pairing)",
+  "pairing_policy": "Nearest-Neighbor Span Distance with Collision Guard",
+  "train_md5": "fc700e6d80f1722576a31d64935d8840",
+  "lexicon_stats": {
+    "unique_aspects_lexicon": 991,
+    "unique_opinions_lexicon": 1667
+  },
+  "Triplet_Strict_Match": {
+    "Precision": 10.47,
+    "Recall": 27.4,
+    "F1": 15.15,
+    "Gold": 635,
+    "Pred": 1662,
+    "Correct": 174
+  },
+  "Aspect_Span": {
+    "Precision": 26.77,
+    "Recall": 72.54,
+    "F1": 39.11
+  },
+  "Opinion_Span": {
+    "Precision": 23.1,
+    "Recall": 46.77,
+    "F1": 30.92
+  },
+  "Polarity_Per_Class": {
+    "NEG": {
+      "Precision": 9.11,
+      "Recall": 22.22,
+      "F1": 12.92,
+      "Gold": 423,
+      "Pred": 1032,
+      "Correct": 94
+    },
+    "POS": {
+      "Precision": 21.2,
+      "Recall": 52.48,
+      "F1": 30.2,
+      "Gold": 141,
+      "Pred": 349,
+      "Correct": 74
+    },
+    "NEU": {
+      "Precision": 2.14,
+      "Recall": 8.45,
+      "F1": 3.41,
+      "Gold": 71,
+      "Pred": 281,
+      "Correct": 6
+    }
+  },
+  "Macro_Polarity_F1": 15.51
+}

@@ -1,0 +1,44 @@
+{
+  "Triplet_Strict_Match": {
+    "Precision": 32.0,
+    "Recall": 42.92,
+    "F1": 36.67,
+    "Gold": 636,
+    "Pred": 853,
+    "Correct": 273
+  },
+  "Aspect_Span": {
+    "Precision": 65.72,
+    "Recall": 73.11,
+    "F1": 69.22
+  },
+  "Opinion_Span": {
+    "Precision": 45.95,
+    "Recall": 54.94,
+    "F1": 50.04
+  },
+  "Polarity_Per_Class": {
+    "NEG": {
+      "Precision": 28.47,
+      "Recall": 38.3,
+      "F1": 32.66,
+      "Gold": 423,
+      "Pred": 569
+    },
+    "POS": {
+      "Precision": 59.15,
+      "Recall": 68.79,
+      "F1": 63.61,
+      "Gold": 141,
+      "Pred": 164
+    },
+    "NEU": {
+      "Precision": 11.67,
+      "Recall": 19.72,
+      "F1": 14.66,
+      "Gold": 71,
+      "Pred": 120
+    }
+  },
+  "Macro_Polarity_F1": 36.98
+}

@@ -1,0 +1,51 @@
+{
+  "Triplet_Strict_Match": {
+    "Precision": 16.38,
+    "Recall": 20.79,
+    "F1": 18.32,
+    "Gold": 635,
+    "Pred": 806,
+    "Correct": 132
+  },
+  "Aspect_Span": {
+    "Precision": 41.36,
+    "Recall": 49.37,
+    "F1": 45.01
+  },
+  "Opinion_Span": {
+    "Precision": 26.81,
+    "Recall": 35.93,
+    "F1": 30.71
+  },
+  "Polarity_Per_Class": {
+    "NEG": {
+      "Precision": 17.51,
+      "Recall": 17.97,
+      "F1": 17.74,
+      "Gold": 423,
+      "Pred": 434,
+      "Correct": 76
+    },
+    "POS": {
+      "Precision": 23.68,
+      "Recall": 31.91,
+      "F1": 27.19,
+      "Gold": 141,
+      "Pred": 190,
+      "Correct": 45
+    },
+    "NEU": {
+      "Precision": 6.04,
+      "Recall": 15.49,
+      "F1": 8.7,
+      "Gold": 71,
+      "Pred": 182,
+      "Correct": 11
+    }
+  },
+  "Macro_Polarity_F1": 17.88,
+  "model_name": "Gemma-4-26B",
+  "model_id": "gemma-4-26b",
+  "Evaluation_Time_Seconds": 47.16,
+  "Samples_Per_Second": 9.8
+}

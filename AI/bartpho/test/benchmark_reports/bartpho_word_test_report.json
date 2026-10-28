@@ -1,0 +1,50 @@
+{
+  "model_name": "vinai/bartpho-word-base",
+  "Triplet_Strict_Match": {
+    "Precision": 39.4,
+    "Recall": 28.98,
+    "F1": 33.39,
+    "Gold": 635,
+    "Pred": 467,
+    "Correct": 184
+  },
+  "Aspect_Span": {
+    "Precision": 70.88,
+    "Recall": 52.54,
+    "F1": 60.35
+  },
+  "Opinion_Span": {
+    "Precision": 49.68,
+    "Recall": 44.11,
+    "F1": 46.73
+  },
+  "Polarity_Per_Class": {
+    "NEG": {
+      "Precision": 28.47,
+      "Recall": 18.91,
+      "F1": 22.73,
+      "Gold": 423,
+      "Pred": 281,
+      "Correct": 80
+    },
+    "POS": {
+      "Precision": 62.68,
+      "Recall": 63.12,
+      "F1": 62.9,
+      "Gold": 141,
+      "Pred": 142,
+      "Correct": 89
+    },
+    "NEU": {
+      "Precision": 34.09,
+      "Recall": 21.13,
+      "F1": 26.09,
+      "Gold": 71,
+      "Pred": 44,
+      "Correct": 15
+    }
+  },
+  "Macro_Polarity_F1": 37.24,
+  "Evaluation_Time_Seconds": 46.31,
+  "Samples_Per_Second": 9.98
+}
