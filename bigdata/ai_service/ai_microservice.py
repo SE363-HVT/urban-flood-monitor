@@ -91,8 +91,12 @@ def load_all_models():
     # 2. Slow Path: CLIP ViT-B/32
     try:
         from transformers import CLIPProcessor, CLIPModel
-        MODELS["clip_model"] = CLIPModel.from_pretrained("openai/clip-vit-base-patch32", local_files_only=True).half().to(DEVICE)
-        MODELS["clip_processor"] = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32", local_files_only=True)
+        try:
+            MODELS["clip_model"] = CLIPModel.from_pretrained("openai/clip-vit-base-patch32", local_files_only=True).half().to(DEVICE)
+            MODELS["clip_processor"] = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32", local_files_only=True)
+        except Exception:
+            MODELS["clip_model"] = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").half().to(DEVICE)
+            MODELS["clip_processor"] = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
         MODELS["clip_model"].eval()
         print("    [+] Branch 2 (Vision): CLIP ViT-B/32 (FP16) loaded successfully.")
     except Exception as e:
