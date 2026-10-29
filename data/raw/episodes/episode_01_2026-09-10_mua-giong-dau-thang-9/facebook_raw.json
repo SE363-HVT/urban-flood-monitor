@@ -783,11 +783,11 @@
     "media_urls": []
   },
   {
-    "id": "b",
+    "id": "b_s00",
     "url": "https://www.facebook.com/baotuoitre/posts/b%E1%BA%A3n-tin-30s-n%C3%B3ng-h%E1%BA%A7m-chui-an-ph%C3%BA-%C4%91%C3%A3-h%E1%BA%BFt-ng%E1%BA%ADp-ng%C6%B0%E1%BB%9Di-%C4%91%E1%BB%95-r%C3%A1c-ra-%C4%91%C6%B0%E1%BB%9Dng-l%C3%BAc-m%C6%B0a-b%E1%BB%8B-c%C3%B4/1429340039330445/",
     "webVideoUrl": "",
     "mediaUrls": [],
-    "text": "Bản tin 30s nóng: Hầm chui An Phú đã hết ngập; Người đổ rác ra đường lúc mưa bị công an mời làm việc Bản tin 30s nóng 11-9: Người đổ rác ra đường lúc mưa bị công an mời làm việc; Đã hút hết nước trong hầm chui nút giao An Phú, xe qua lại bình thườn",
+    "text": "Bản tin 30s nóng: Hầm chui An Phú đã hết ngập; Người đổ rác ra đường lúc mưa bị công an mời làm việc Bản tin 30s nóng 11-9: Người đổ rác ra đường lúc mưa bị công an mời làm việc; Đã hút hết nước trong hầm chui nút giao An Phú, xe qua lại bình thườn.",
     "title": "Bản tin 30s nóng: Hầm chui An Phú đã hết ngập; Người đổ rác ra đường lúc mưa bị công an mời làm việc Bản tin 30s nóng 11-9: Người đổ rác ra đường lúc mưa bị công an mời làm việc; Đã hút hết nước trong hầm chui nút giao An Phú, xe qua lại bình thườn",
     "author": "baotuoitre",
     "authorMeta": {
@@ -797,8 +797,8 @@
     "published": "Fri, 11 Sep 2026 07:00:00 GMT",
     "extracted_date": "2026-09-11",
     "platform": "facebook",
-    "crawled_at": "2026-10-20T09:56:19.148070+00:00",
-    "crawler_source": "free_discovery_engine",
+    "crawled_at": "2026-10-20T10:37:03.056106+00:00",
+    "crawler_source": "sentence_litmus_engine",
     "targeted_intent": "POS"
   },
   {
@@ -840,11 +840,11 @@
     "targeted_intent": "POS"
   },
   {
-    "id": "-tin-tri",
+    "id": "-tin-tri_s00",
     "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/-tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-1392026-t%C3%ACnh-h%C3%ACnh/1394859436153183/",
     "webVideoUrl": "",
     "mediaUrls": [],
-    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 13/9/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên khu vực sông Sài Gòn lên nhanh và ở mức cao. Đến 07h00 ng",
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 13/9/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên khu vực sông Sài Gòn lên nhanh và ở mức cao.",
     "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 13/9/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên khu vực sông Sài Gòn lên nhanh và ở mức cao. Đến 07h00 ng",
     "author": "PhongchongthientaiBRVT",
     "authorMeta": {
@@ -854,28 +854,9 @@
     "published": "Sun, 13 Sep 2026 07:00:00 GMT",
     "extracted_date": "2026-09-13",
     "platform": "facebook",
-    "crawled_at": "2026-10-20T09:56:55.652875+00:00",
-    "crawler_source": "free_discovery_engine",
-    "targeted_intent": "NEU"
-  },
-  {
-    "id": "b_s00",
-    "url": "https://www.facebook.com/baotuoitre/posts/b%E1%BA%A3n-tin-30s-n%C3%B3ng-h%E1%BA%A7m-chui-an-ph%C3%BA-%C4%91%C3%A3-h%E1%BA%BFt-ng%E1%BA%ADp-ng%C6%B0%E1%BB%9Di-%C4%91%E1%BB%95-r%C3%A1c-ra-%C4%91%C6%B0%E1%BB%9Dng-l%C3%BAc-m%C6%B0a-b%E1%BB%8B-c%C3%B4/1429340039330445/",
-    "webVideoUrl": "",
-    "mediaUrls": [],
-    "text": "Bản tin 30s nóng: Hầm chui An Phú đã hết ngập; Người đổ rác ra đường lúc mưa bị công an mời làm việc Bản tin 30s nóng 11-9: Người đổ rác ra đường lúc mưa bị công an mời làm việc; Đã hút hết nước trong hầm chui nút giao An Phú, xe qua lại bình thườn.",
-    "title": "Bản tin 30s nóng: Hầm chui An Phú đã hết ngập; Người đổ rác ra đường lúc mưa bị công an mời làm việc Bản tin 30s nóng 11-9: Người đổ rác ra đường lúc mưa bị công an mời làm việc; Đã hút hết nước trong hầm chui nút giao An Phú, xe qua lại bình thườn",
-    "author": "baotuoitre",
-    "authorMeta": {
-      "name": "baotuoitre"
-    },
-    "createTimeISO": "2026-09-11T07:00:00+00:00",
-    "published": "Fri, 11 Sep 2026 07:00:00 GMT",
-    "extracted_date": "2026-09-11",
-    "platform": "facebook",
-    "crawled_at": "2026-10-20T10:37:03.056106+00:00",
+    "crawled_at": "2026-10-20T10:38:59.299610+00:00",
     "crawler_source": "sentence_litmus_engine",
-    "targeted_intent": "POS"
+    "targeted_intent": "NEU"
   },
   {
     "id": "gi_s00",
@@ -935,22 +916,345 @@
     "targeted_intent": "NEU"
   },
   {
-    "id": "-tin-tri_s00",
-    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/-tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-1392026-t%C3%ACnh-h%C3%ACnh/1394859436153183/",
+    "id": "cu",
+    "url": "https://www.facebook.com/baodantridientu/posts/cu%E1%BB%91i-tu%E1%BA%A7n-ng%C6%B0%E1%BB%9Di-d%C3%A2n-%E1%BB%9F-tphcm-b%C3%AC-b%C3%B5m-l%E1%BB%99i-n%C6%B0%E1%BB%9Bc-v%C3%AC-m%C6%B0a-to-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dngchi%E1%BB%81u-139-tri%E1%BB%81u/1415645434010453/",
     "webVideoUrl": "",
     "mediaUrls": [],
-    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 13/9/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên khu vực sông Sài Gòn lên nhanh và ở mức cao.",
-    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 13/9/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên khu vực sông Sài Gòn lên nhanh và ở mức cao. Đến 07h00 ng",
-    "author": "PhongchongthientaiBRVT",
+    "text": "Cuối tuần, người dân ở TPHCM “bì bõm” lội nước vì mưa to, triều cường Chiều 13/9, triều cường dâng cao kết hợp mưa lớn khiến đường Trần Xuân Soạn và Ung Văn Khiêm (TPHCM) ngập sâu. Nhiều xe máy chật vật qua vùng nước, một số người phải dắt b",
+    "title": "Cuối tuần, người dân ở TPHCM “bì bõm” lội nước vì mưa to, triều cường Chiều 13/9, triều cường dâng cao kết hợp mưa lớn khiến đường Trần Xuân Soạn và Ung Văn Khiêm (TPHCM) ngập sâu. Nhiều xe máy chật vật qua vùng nước, một số người phải dắt b",
+    "author": "baodantridientu",
     "authorMeta": {
-      "name": "PhongchongthientaiBRVT"
+      "name": "baodantridientu"
     },
     "createTimeISO": "2026-09-13T07:00:00+00:00",
     "published": "Sun, 13 Sep 2026 07:00:00 GMT",
     "extracted_date": "2026-09-13",
     "platform": "facebook",
-    "crawled_at": "2026-10-20T10:38:59.299610+00:00",
-    "crawler_source": "sentence_litmus_engine",
-    "targeted_intent": "NEU"
+    "crawled_at": "2026-10-29T15:18:32.751361+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "cu",
+    "url": "https://www.facebook.com/baodantridientu/videos/cu%E1%BB%91i-tu%E1%BA%A7n-ng%C6%B0%E1%BB%9Di-d%C3%A2n-%E1%BB%9F-tphcm-b%C3%AC-b%C3%B5m-l%E1%BB%99i-n%C6%B0%E1%BB%9Bc-v%C3%AC-m%C6%B0a-to-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dngchi%E1%BB%81u-139-tri%E1%BB%81u/1593732522157496/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Dân trí. . Cuối tuần, người dân ở TPHCM “bì bõm” lội nước vì mưa to, triều cường Chiều 13/9, triều cường dâng cao kết hợp mưa lớn khiến đường Trần Xuân Soạn và Ung Văn Khiêm (TPHCM) ngập sâu. Nhiều xe máy chật vật qua vùng nước, một số người p",
+    "title": "Dân trí. . Cuối tuần, người dân ở TPHCM “bì bõm” lội nước vì mưa to, triều cường Chiều 13/9, triều cường dâng cao kết hợp mưa lớn khiến đường Trần Xuân Soạn và Ung Văn Khiêm (TPHCM) ngập sâu. Nhiều xe máy chật vật qua vùng nước, một số người p",
+    "author": "baodantridientu",
+    "authorMeta": {
+      "name": "baodantridientu"
+    },
+    "createTimeISO": "2026-09-13T07:00:00+00:00",
+    "published": "Sun, 13 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-13",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:18:41.342537+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "gi",
+    "url": "https://www.facebook.com/thanhnien/posts/gi%E1%BB%AFa-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-sau-m%C6%B0a-l%E1%BB%9Bn-%E1%BB%9F-tphcm-ng%C6%B0%E1%BB%9Di-ng%C3%A3-xe-ch%E1%BA%BFt-m%C3%A1y-h%C3%A0ng-lo%E1%BA%A1t/1581358390697144/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Giữa đường ngập sau mưa lớn ở TP.HCM: Người ngã, xe chết máy hàng loạt",
+    "title": "Giữa đường ngập sau mưa lớn ở TP.HCM: Người ngã, xe chết máy hàng loạt",
+    "author": "thanhnien",
+    "authorMeta": {
+      "name": "thanhnien"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:18:43.007736+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "1394451922560700",
+    "url": "https://www.facebook.com/groups/otosaigon2023/posts/1394451922560700/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Đinh bộ lĩnh hướng vừa qua Nguyễn Xí bị ngập nặng… Anhem ai đang ở Bxmđ thì chuyển hướng đi ngennn",
+    "title": "Đinh bộ lĩnh hướng vừa qua Nguyễn Xí bị ngập nặng… Anhem ai đang ở Bxmđ thì chuyển hướng đi ngennn",
+    "author": "Facebook Creator",
+    "authorMeta": {
+      "name": "Facebook Creator"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:18:59.348966+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "th",
+    "url": "https://www.facebook.com/viquehuongthuduccuatoi/videos/th%E1%BB%A7-%C4%91%E1%BB%A9cm%C6%B0a-l%E1%BB%9Bn-chi%E1%BB%81u-t%E1%BB%91i-nay-109-c%C3%B3-l%E1%BA%BD-khu-v%E1%BB%B1c-%C4%91%C6%B0%E1%BB%9Dng-linh-%C4%91%C3%B4ng-l%C3%A0-c%C3%B2n-ng%E1%BA%ADp-n%E1%BA%B7ng-/1544464210339172/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Thủ Đức: Mưa lớn chiều tối nay (10/9) có lẽ khu vực đường Linh Đông là còn ngập nặng và nước chảy xiết. Các con đường \"đau khổ\" khi mưa lớn trước đây như Võ Văn Ngân, Dương Văn Cam, Kha Vạn Cân... sau khi được nâng cấp sửa chữa thì tình trạng n",
+    "title": "Thủ Đức: Mưa lớn chiều tối nay (10/9) có lẽ khu vực đường Linh Đông là còn ngập nặng và nước chảy xiết. Các con đường \"đau khổ\" khi mưa lớn trước đây như Võ Văn Ngân, Dương Văn Cam, Kha Vạn Cân... sau khi được nâng cấp sửa chữa thì tình trạng n",
+    "author": "viquehuongthuduccuatoi",
+    "authorMeta": {
+      "name": "viquehuongthuduccuatoi"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:19:11.069313+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "n",
+    "url": "https://www.facebook.com/languoisaigon/posts/n%E1%BB%95i-ti%E1%BA%BFng-l%C3%A0-khu-nh%C3%A0-gi%C3%A0u-nh%C6%B0ng-th%E1%BA%A3o-%C4%91i%E1%BB%81n-v%E1%BA%ABn-kh%E1%BB%91n-kh%E1%BB%95-v%C3%AC-ng%E1%BA%ADp/1625798652909456/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Nổi tiếng là khu nhà giàu, nhưng Thảo Điền vẫn khốn khổ vì ngập👇",
+    "title": "Nổi tiếng là khu nhà giàu, nhưng Thảo Điền vẫn khốn khổ vì ngập👇",
+    "author": "languoisaigon",
+    "authorMeta": {
+      "name": "languoisaigon"
+    },
+    "createTimeISO": "2026-09-13T07:00:00+00:00",
+    "published": "Sun, 13 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-13",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:19:40.470257+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "tp-h",
+    "url": "https://www.facebook.com/vtvthoitiet/videos/tp-h%E1%BB%93-ch%C3%AD-minh-chi%E1%BB%81u-nay-c%C5%A9ng-m%C6%B0a-to-nhi%E1%BB%81u-n%C6%A1ighi-nh%E1%BA%ADn-ng%E1%BA%ADp-s%C3%A2u-t%E1%BA%A1i-%C4%91%C6%B0%E1%BB%9Dng-t%C3%B4-ng%E1%BB%8D/4470076586570232/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TP. Hồ Chí Minh chiều nay cũng mưa to nhiều nơi Ghi nhận ngập sâu tại đường Tô Ngọc Vân (Phường Thới An, TP. Hồ Chí Minh).",
+    "title": "TP. Hồ Chí Minh chiều nay cũng mưa to nhiều nơi Ghi nhận ngập sâu tại đường Tô Ngọc Vân (Phường Thới An, TP. Hồ Chí Minh).",
+    "author": "vtvthoitiet",
+    "authorMeta": {
+      "name": "vtvthoitiet"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:19:45.594676+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "tphcm-m",
+    "url": "https://www.facebook.com/saigongiaiphongnews/videos/tphcm-m%C6%B0a-l%E1%BB%9Bn-g%C3%A2y-ng%E1%BA%ADp-c%E1%BB%A5c-b%E1%BB%99-nhi%E1%BB%81u-ng%C6%B0%E1%BB%9Di-v%E1%BA%A5t-v%E1%BA%A3-tr%C3%AAn-%C4%91%C6%B0%E1%BB%9Dng-v%E1%BB%81-nh%C3%A0/1111242031579572/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TPHCM: Mưa lớn gây ngập cục bộ, nhiều người vất vả trên đường về nhà",
+    "title": "TPHCM: Mưa lớn gây ngập cục bộ, nhiều người vất vả trên đường về nhà",
+    "author": "saigongiaiphongnews",
+    "authorMeta": {
+      "name": "saigongiaiphongnews"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:19:55.133377+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "to",
+    "url": "https://www.facebook.com/toiladanquan2/videos/to%C3%A0n-c%E1%BA%A3nh-ng%E1%BA%ADp-n%C6%B0%E1%BB%9Bc-nguy%E1%BB%85n-duy-trinh-h%E1%BB%93i-chi%E1%BB%81u-t%E1%BB%91i-nay-%C4%91%C6%B0%E1%BB%A3c-b%E1%BA%A1n-h%E1%BB%93ng-nhi-ghi-l%E1%BA%A1i/1623104236138667/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Tôi Là Dân Quận 2. Lê Gia Bảo · Những Ngày Mưa. Toàn cảnh ngập nước Nguyễn Duy Trinh hồi chiều tối nay được bạn Hồng Nhi ghi lại 🥹 Video: hongnhi2010 (tóp tóp)",
+    "title": "Tôi Là Dân Quận 2. Lê Gia Bảo · Những Ngày Mưa. Toàn cảnh ngập nước Nguyễn Duy Trinh hồi chiều tối nay được bạn Hồng Nhi ghi lại 🥹 Video: hongnhi2010 (tóp tóp)",
+    "author": "toiladanquan2",
+    "authorMeta": {
+      "name": "toiladanquan2"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:20:58.667555+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "n",
+    "url": "https://www.facebook.com/baodantridientu/posts/n%C6%B0%E1%BB%9Bc-tr%C3%A0n-v%C3%A0o-nh%C3%A0-nh%C6%B0-th%C3%A1c-ng%C6%B0%E1%BB%9Di-d%C3%A2n-tphcm-ph%E1%BA%A3i-%C4%91i-ng%E1%BB%A7-nh%E1%BB%9Dsau-tr%E1%BA%ADn-m%C6%B0a-l%E1%BB%9Bn-chi%E1%BB%81u/1413383960903267/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Nước tràn vào nhà như thác, người dân TPHCM phải đi ngủ nhờ Sau trận mưa lớn chiều 10/9, nước tràn vào nhiều nhà dân ở xã Hóc Môn (TPHCM) như thác. Đến đêm nước chưa rút, nhiều gia đình phải kê đồ đạc, đi ngủ nhờ.",
+    "title": "Nước tràn vào nhà như thác, người dân TPHCM phải đi ngủ nhờ Sau trận mưa lớn chiều 10/9, nước tràn vào nhiều nhà dân ở xã Hóc Môn (TPHCM) như thác. Đến đêm nước chưa rút, nhiều gia đình phải kê đồ đạc, đi ngủ nhờ.",
+    "author": "baodantridientu",
+    "authorMeta": {
+      "name": "baodantridientu"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:51.113055+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "1898067831174022",
+    "url": "https://www.facebook.com/groups/reviewbatdongsanrk/posts/1898067831174022/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Nước tràn vào nhà như thác, người dân TPHCM phải đi ngủ nhờ Sau trận mưa lớn chiều 10/9, nước tràn vào nhiều nhà dân ở xã Hóc Môn (TPHCM) như thác. Đến đêm nước chưa rút, nhiều gia đình phải kê đồ đạc, đi ngủ nhờ. Nguồn: Dân Trí",
+    "title": "Nước tràn vào nhà như thác, người dân TPHCM phải đi ngủ nhờ Sau trận mưa lớn chiều 10/9, nước tràn vào nhiều nhà dân ở xã Hóc Môn (TPHCM) như thác. Đến đêm nước chưa rút, nhiều gia đình phải kê đồ đạc, đi ngủ nhờ. Nguồn: Dân Trí",
+    "author": "Facebook Creator",
+    "authorMeta": {
+      "name": "Facebook Creator"
+    },
+    "createTimeISO": "2026-09-11T07:00:00+00:00",
+    "published": "Fri, 11 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-11",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:52.597866+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "m",
+    "url": "https://www.facebook.com/DoHoaiThuongDuLichVaCuocSong/videos/m%C6%B0a-ng%E1%BA%ADp-s%C3%A0i-g%C3%B2n-nh%C3%ACn-nh%C6%B0-bi%E1%BB%83n-c%E1%BA%A3/1620624643002391/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "FanPage Đỗ Hoài Thương. . Mưa ngập sài gòn nhiều nơi như biển🙏 #đỗhoàithương #fanpageđỗhoàithương #tintuc",
+    "title": "FanPage Đỗ Hoài Thương. . Mưa ngập sài gòn nhiều nơi như biển🙏 #đỗhoàithương #fanpageđỗhoàithương #tintuc",
+    "author": "DoHoaiThuongDuLichVaCuocSong",
+    "authorMeta": {
+      "name": "DoHoaiThuongDuLichVaCuocSong"
+    },
+    "createTimeISO": "2026-09-12T07:00:00+00:00",
+    "published": "Sat, 12 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-12",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:34:13.789870+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "c",
+    "url": "https://www.facebook.com/yeah1tv/posts/c%E1%BA%ADp-nh%E1%BA%ADt-t%C3%ACnh-h%C3%ACnh-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-%E1%BB%9F-s%C3%A0i-g%C3%B2n-%C4%91ang-b%E1%BB%8B-ng%E1%BA%ADp-n%C6%B0%E1%BB%9Bc-do-m%C6%B0a-l%E1%BB%9Bn-c%C6%A1n-/1545487674283476/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Cập nhật tình hình: Nhiều tuyến đường ở Sài Gòn đang bị ngập nước do mưa lớn. Cơn mưa hiện vẫn chưa có dấu hiệu dứt, việc di chuyển lúc này sẽ khá nguy hiểm. Nếu không có việc gì gấp thì mọi người đừng nên ra đường, hoặc nán lại khi nào tạnh mưa",
+    "title": "Cập nhật tình hình: Nhiều tuyến đường ở Sài Gòn đang bị ngập nước do mưa lớn. Cơn mưa hiện vẫn chưa có dấu hiệu dứt, việc di chuyển lúc này sẽ khá nguy hiểm. Nếu không có việc gì gấp thì mọi người đừng nên ra đường, hoặc nán lại khi nào tạnh mưa",
+    "author": "yeah1tv",
+    "authorMeta": {
+      "name": "yeah1tv"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:34:14.843571+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "m",
+    "url": "https://www.facebook.com/tintucvtv9/posts/m%C6%B0a-l%E1%BB%9Bn-gi%E1%BB%9D-tan-t%E1%BA%A7m-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-t%E1%BA%A1i-tp-h%E1%BB%93-ch%C3%AD-minh-ng%E1%BA%ADp-n%E1%BA%B7ng-b%E1%BA%A1n-%C4%91%C3%A3-v%E1%BB%81-%C4%91%E1%BA%BFn/1562468539244639/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Mưa lớn giờ tan tầm, nhiều tuyến đường tại TP. Hồ Chí Minh ngập nặng 😭 Bạn đã về đến nhà chưaaa?",
+    "title": "Mưa lớn giờ tan tầm, nhiều tuyến đường tại TP. Hồ Chí Minh ngập nặng 😭 Bạn đã về đến nhà chưaaa?",
+    "author": "tintucvtv9",
+    "authorMeta": {
+      "name": "tintucvtv9"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:34:15.997299+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "-tin-tri",
+    "url": "https://www.facebook.com/PhongchongthientaiBRVT/posts/-tin-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-tin-ph%C3%A1t-l%C3%BAc-09-gi%E1%BB%9D-ng%C3%A0y-0992026-t%C3%ACnh-h%C3%ACnh/1391469156492211/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 09/9/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn lên chậm và còn ở mức thấp. Đến 07h00 ngày 0",
+    "title": "📣 TIN TRIỀU CƯỜNG KHU VỰC SÔNG SÀI GÒN ⏰ Tin phát lúc 09 giờ, ngày 09/9/2026 ✅ Tình hình thủy văn đã qua 👉 Trong 24h qua, mực nước đỉnh triều cao nhất ngày tại hầu hết các trạm trên sông Sài Gòn lên chậm và còn ở mức thấp. Đến 07h00 ngày 0",
+    "author": "PhongchongthientaiBRVT",
+    "authorMeta": {
+      "name": "PhongchongthientaiBRVT"
+    },
+    "createTimeISO": "2026-09-09T07:00:00+00:00",
+    "published": "Wed, 09 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-09",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:34:25.337407+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "nhi",
+    "url": "https://www.facebook.com/afamilyvccorp/posts/nhi%E1%BB%81u-n%C6%A1i-t%E1%BA%A1i-tphcm-%C4%91ang-b%E1%BB%8B-ng%E1%BA%ADp-v%C3%AC-m%C6%B0a-nh%C6%B0-tr%C3%BAt-n%C6%B0%E1%BB%9Bc-ngay-l%C3%BAc-n%C3%A0y%E1%BA%A3nh-t%C3%B4i-l%C3%A0-d%C3%A2n/1507216661440722/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Nhiều nơi tại TPHCM đang bị ngập vì mưa như trút nước ngay lúc này Ảnh: Tôi là dân Hóc Môn #TT",
+    "title": "Nhiều nơi tại TPHCM đang bị ngập vì mưa như trút nước ngay lúc này Ảnh: Tôi là dân Hóc Môn #TT",
+    "author": "afamilyvccorp",
+    "authorMeta": {
+      "name": "afamilyvccorp"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:34:46.987415+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "c",
+    "url": "https://www.facebook.com/www.tienphong.vn/posts/c%C6%A1n-m%C6%B0a-l%E1%BB%9Bn-xu%E1%BA%A5t-hi%E1%BB%87n-v%C3%A0o-t%E1%BB%91i-109-khi%E1%BA%BFn-nhi%E1%BB%81u-khu-v%E1%BB%B1c-t%E1%BA%A1i-tphcm-nhanh-ch%C3%B3ng-r%C6%A1i-/1427475059599242/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Cơn mưa lớn xuất hiện vào tối 10/9 khiến nhiều khu vực tại TPHCM nhanh chóng rơi vào tình trạng ngập nước. Một số tuyến đường lênh láng nước khiến việc đi lại của người dân gặp nhiều trở ngại. #tienphong #TPHCM #ngaplut #tacduong",
+    "title": "Cơn mưa lớn xuất hiện vào tối 10/9 khiến nhiều khu vực tại TPHCM nhanh chóng rơi vào tình trạng ngập nước. Một số tuyến đường lênh láng nước khiến việc đi lại của người dân gặp nhiều trở ngại. #tienphong #TPHCM #ngaplut #tacduong",
+    "author": "www.tienphong.vn",
+    "authorMeta": {
+      "name": "www.tienphong.vn"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:35:04.074091+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "tph",
+    "url": "https://www.facebook.com/PHUDINH.VHXH/posts/tph%E1%BB%93-ch%C3%AD-minh-%C4%91%E1%BA%A9y-nhanh-c%C3%A1c-d%E1%BB%B1-%C3%A1n-tho%C3%A1t-n%C6%B0%E1%BB%9Bc-ch%E1%BB%91ng-ng%E1%BA%ADp-h%C6%B0%E1%BB%9Bng-%C4%91%E1%BA%BFn-%C4%91%C3%B4-th%E1%BB%8B-an-to%C3%A0n/1405947988382857/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TP.HỒ CHÍ MINH ĐẨY NHANH CÁC DỰ ÁN THOÁT NƯỚC, CHỐNG NGẬP – HƯỚNG ĐẾN ĐÔ THỊ AN TOÀN, THÍCH ỨNG Sau trận mưa lớn chiều 10/9/2026, tình trạng ngập tại một số tuyến đường tiếp tục cho thấy yêu cầu cấp thiết phải nâng cao năng lực",
+    "title": "TP.HỒ CHÍ MINH ĐẨY NHANH CÁC DỰ ÁN THOÁT NƯỚC, CHỐNG NGẬP – HƯỚNG ĐẾN ĐÔ THỊ AN TOÀN, THÍCH ỨNG Sau trận mưa lớn chiều 10/9/2026, tình trạng ngập tại một số tuyến đường tiếp tục cho thấy yêu cầu cấp thiết phải nâng cao năng lực",
+    "author": "PHUDINH.VHXH",
+    "authorMeta": {
+      "name": "PHUDINH.VHXH"
+    },
+    "createTimeISO": "2026-09-11T07:00:00+00:00",
+    "published": "Fri, 11 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-11",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:35:14.671390+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "b",
+    "url": "https://www.facebook.com/DoHoaiThuongDuLichVaCuocSong/videos/b%C3%ACnh-t%C3%A2n-s%C3%A0i-g%C3%B2n-m%C6%B0a-ng%E1%BA%ADp-chuy%E1%BB%87n-l%E1%BA%A1/1832214794812933/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Sau khi mưa ngập thì phát hiện ở Sài Gòn có quá gian 😅 #đỗhoàithương #fanpageđỗhoàithương #tintuc",
+    "title": "Sau khi mưa ngập thì phát hiện ở Sài Gòn có quá gian 😅 #đỗhoàithương #fanpageđỗhoàithương #tintuc",
+    "author": "DoHoaiThuongDuLichVaCuocSong",
+    "authorMeta": {
+      "name": "DoHoaiThuongDuLichVaCuocSong"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:36:57.761292+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
   }
 ]

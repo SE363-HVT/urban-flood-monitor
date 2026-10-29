@@ -3959,5 +3959,65 @@
     "platform": "tiktok",
     "crawled_at": "2026-10-11T08:48:37.130203+00:00",
     "crawler_source": "free_discovery_engine"
+  },
+  {
+    "id": "7685224470222621960",
+    "url": "https://www.tiktok.com/@dantri.com.vn/video/7685224470222621960",
+    "webVideoUrl": "https://www.tiktok.com/@dantri.com.vn/video/7685224470222621960",
+    "mediaUrls": [
+      "https://www.tiktok.com/@dantri.com.vn/video/7685224470222621960"
+    ],
+    "text": "Cuối tuần, người dân ở TPHCM \"bì bõm\" lội nước vì mưa to, triều cường #dantrinews #xuhuong #LearnOnTikTok",
+    "title": "Cuối tuần, người dân ở TPHCM \"bì bõm\" lội nước vì mưa to, triều cường #dantrinews #xuhuong #LearnOnTikTok",
+    "author": "dantri.com.vn",
+    "authorMeta": {
+      "name": "dantri.com.vn"
+    },
+    "createTimeISO": "2026-09-13T07:00:00+00:00",
+    "published": "Sun, 13 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-13",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:17.877514+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7684093691778125076",
+    "url": "https://www.tiktok.com/@dantri.com.vn/video/7684093691778125076",
+    "webVideoUrl": "https://www.tiktok.com/@dantri.com.vn/video/7684093691778125076",
+    "mediaUrls": [
+      "https://www.tiktok.com/@dantri.com.vn/video/7684093691778125076"
+    ],
+    "text": "Thời tiết 11/9: Mưa lớn 3 miền, TPHCM nguy cơ ngập nặng #dantrinews #xuhuong #LearnOnTikTok #dubaothoitiet #thoitiethomnay",
+    "title": "Thời tiết 11/9: Mưa lớn 3 miền, TPHCM nguy cơ ngập nặng #dantrinews #xuhuong #LearnOnTikTok #dubaothoitiet #thoitiethomnay",
+    "author": "dantri.com.vn",
+    "authorMeta": {
+      "name": "dantri.com.vn"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:21.194219+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7684071990746991888",
+    "url": "https://www.tiktok.com/@dantri.com.vn/video/7684071990746991888",
+    "webVideoUrl": "https://www.tiktok.com/@dantri.com.vn/video/7684071990746991888",
+    "mediaUrls": [
+      "https://www.tiktok.com/@dantri.com.vn/video/7684071990746991888"
+    ],
+    "text": "Nước tràn vào nhà như thác, người dân TPHCM phải đi ngủ nhờ #dantrinews #xuhuong #LearnOnTikTok",
+    "title": "Nước tràn vào nhà như thác, người dân TPHCM phải đi ngủ nhờ #dantrinews #xuhuong #LearnOnTikTok",
+    "author": "dantri.com.vn",
+    "authorMeta": {
+      "name": "dantri.com.vn"
+    },
+    "createTimeISO": "2026-09-10T07:00:00+00:00",
+    "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-10",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:24.761743+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
   }
 ]

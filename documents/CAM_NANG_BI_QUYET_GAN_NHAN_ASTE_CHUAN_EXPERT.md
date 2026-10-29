@@ -159,3 +159,74 @@ Không được thấy chữ `\"ngập\"` là vội vàng đánh nhãn `NEG`! Ph
 3. [ ] **Không dính từ rác**: Đã cắt bỏ sạch sẽ các từ nối thừa ở đầu/đuôi Aspect chưa?
 4. [ ] **Đầy đủ mức độ**: Opinion đã giữ lại đầy đủ cụm từ chỉ chiều sâu, mức độ ngập chưa? (Tuyệt đối không lấy danh từ "đoạn ngập").
 5. [ ] **Đúng ngữ cảnh Polarity**: Nếu là dự án giải quyết ngập hoặc khen nước rút nhanh / ít ngập $\rightarrow$ `POS`; nếu là dự báo/cảnh báo/câu hỏi $\rightarrow$ `NEU`; nếu là ngập thực tế $\rightarrow$ `NEG`.
+
+---
+
+## VII. QUY CHUẨN ADAPTER CHUYỂN ĐỔI SANG ĐỊNH DẠNG ASTE-V2 (SEMEVAL / EMNLP 2020 INDEX FORMAT)
+
+### 1. Tôn chỉ cốt lõi: Bảo toàn 100% ngữ nghĩa & Phương pháp gán nhãn
+* **Nguyên tắc bất biến**: Phương pháp gán nhãn của nhóm **hoàn toàn giữ nguyên** theo đúng Mục I đến Mục VI trong Cẩm nang này.
+* **Vai trò của Adapter**: Adapter chỉ là tầng chuyển đổi hình thức biểu diễn (**Representation Format Adapter**), chuyển đổi từ định dạng lưu trữ ngữ nghĩa JSON của nhóm (`hcmc_flood_annotated_v3_multimodal.json`) sang định dạng tệp phẳng đánh chỉ số token (`aste_data_v2/test_triplets.txt`) để phục vụ so sánh (benchmark) trực tiếp với các mô hình baseline quốc tế trong bài báo khoa học.
+* **Hai tập dữ liệu song hành**:
+  1. `hcmc_flood_annotated_v3_multimodal.json`: Bộ Master 10,000 records chuẩn của nhóm, lưu trữ đầy đủ thuộc tính đa phương thức, toạ độ GIS, thông tin phường xã NQ 1685, xuất xứ gán nhãn (`grounding_provenance`), và mức độ ngập (`severity`).
+  2. `data/processed/aste_v2_emnlp2020/*.txt`: Bộ file sau Adapter theo đúng chuẩn Xu et al. (EMNLP 2020), cấu trúc:
+     ```text
+     tokenized_sentence####[([t_start, ..., t_end], [o_start, ..., o_end], 'POL'), ...]
+     ```
+
+### 2. Cơ chế Tiền tố hóa Ngữ cảnh (Context Prefix Injection) cho DOC_FALLBACK
+* **Thách thức bài toán**: Format chuẩn của Xu et al. bắt buộc mọi từ của Aspect và Opinion phải có mặt trong câu để đánh chỉ số token index `[start, ..., end]`. Tuy nhiên, với các câu thuộc dạng `DOC_FALLBACK` (ngữ cảnh toàn bài báo nói về ngập lụt tại TP. Hồ Chí Minh nhưng tác giả không lặp lại tên thành phố trong câu con đó), trong câu không xuất hiện trực tiếp cụm từ `"TP. Hồ Chí Minh"`.
+* **Giải pháp quy chuẩn**:
+  - Đối với các triplet có `grounding_provenance == "DOC_FALLBACK"`, Adapter sẽ tự động bổ sung tiền tố ngữ cảnh:
+    `Tại TP. Hồ Chí Minh , <câu_gốc>`
+  - Sau khi chèn tiền tố, câu được phân đoạn token rõ ràng (tách biệt các dấu câu `,`, `.`, `!`, `?`, `"` bằng khoảng trắng).
+  - Vị trí của Aspect `TP. Hồ Chí Minh` luôn được định vị chính xác tuyệt đối tại: **`[1, 2, 3, 4]`** (với token 0 là `"Tại"`, token 5 là dấu phẩy `","`).
+  - Vị trí của Opinion được tìm kiếm chính xác tuyệt đối theo chuỗi token trong phần thân câu (từ token 6 trở đi).
+
+### 3. Bảng Minh họa Xác định Chỉ số Token Chính xác Tuyệt đối
+Xét câu văn ví dụ:
+* *Câu gốc*: `"Sáng 11/9, khi nước bắt đầu rút, chị tranh thủ dọn bùn đất."`
+* *Aspect*: `TP. Hồ Chí Minh` (`DOC_FALLBACK`)
+* *Opinion*: `nước bắt đầu rút`
+* *Polarity*: `POS`
+
+Sau khi Adapter áp dụng Context Prefix Injection và phân tách dấu câu chuẩn mực:
+```text
+Tại TP. Hồ Chí Minh , Sáng 11/9 , khi nước bắt đầu rút , chị tranh thủ dọn bùn đất .
+```
+
+Bảng phân rã token 0-indexed:
+| Token Index | Giá trị Token | Chú giải vai trò |
+| :---: | :--- | :--- |
+| `0` | `Tại` | Từ nối tiền tố ngữ cảnh |
+| `1` | `TP.` | **Aspect Token 1** |
+| `2` | `Hồ` | **Aspect Token 2** |
+| `3` | `Chí` | **Aspect Token 3** |
+| `4` | `Minh` | **Aspect Token 4** |
+| `5` | `,` | Dấu phẩy ngăn cách tiền tố |
+| `6` | `Sáng` | Thân câu gốc |
+| `7` | `11/9` | Thân câu gốc |
+| `8` | `,` | Dấu phẩy câu gốc |
+| `9` | `khi` | Liên từ |
+| `10` | `nước` | **Opinion Token 1** |
+| `11` | `bắt` | **Opinion Token 2** |
+| `12` | `đầu` | **Opinion Token 3** |
+| `13` | `rút` | **Opinion Token 4** |
+| `14` | `,` | Dấu phẩy câu gốc |
+| `15` | `chị` | Đại từ |
+| `16` | `tranh` | Thân câu gốc |
+| `17` | `thủ` | Thân câu gốc |
+| `18` | `dọn` | Thân câu gốc |
+| `19` | `bùn` | Thân câu gốc |
+| `20` | `đất` | Thân câu gốc |
+| `21` | `.` | Dấu chấm kết câu |
+
+* Dòng xuất ra chuẩn ASTE-Data-V2:
+```text
+Tại TP. Hồ Chí Minh , Sáng 11/9 , khi nước bắt đầu rút , chị tranh thủ dọn bùn đất .####[([1, 2, 3, 4], [10, 11, 12, 13], 'POS')]
+```
+
+⚠️ **Lưu ý kiểm soát chất lượng (QA)**:
+1. Tuyệt đối không tính nhầm token ranh giới. Opinion `"nước bắt đầu rút"` bắt đầu tại token `10` và kết thúc tại token `13` $\rightarrow$ dãy chỉ số là `[10, 11, 12, 13]`.
+2. Tokenizer trong Adapter phải xử lý tách dấu câu đồng nhất (`Punctuation Isolation`) để đảm bảo không dính dấu phẩy hay dấu chấm vào từ (ví dụ `rút ,` thay vì `rút,`).
+3. Adapter tự động kiểm tra đối soát chéo (Reverse Assertion): Lấy các token tại vị trí `[start, ..., end]` ghép lại phải trùng khớp 100% từng ký tự với Aspect và Opinion gốc. Nếu phát hiện bất kỳ sai lệch nào, Adapter sẽ lập tức báo lỗi và dừng để chuyên gia thẩm tra.

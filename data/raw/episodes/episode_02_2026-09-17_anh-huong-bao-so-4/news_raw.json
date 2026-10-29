@@ -106,5 +106,41 @@
     "text": "Trong 3 giờ tới, mây đối lưu tiếp tục phát triển, gây mưa rào kèm dông, sét tại các khu vực trên, sau đó có khả năng lan sang những khu vực lân cận. Lượng mưa phổ biến từ 8-40mm, có nơi trên 50mm.\n\nTheo số liệu quan trắc, từ 13h ngày 21/9 đến 13h ngày 22/9, nhiều khu vực tại TPHCM xuất hiện mưa diện rộng. Một số trạm ghi nhận lượng mưa lớn, như Nhà Bè 131,6mm, Cát Lái 112,6mm, Cần Giờ 109,8mm, Tam Thôn Hiệp 107,8mm, Bình Chánh 70mm, Long Điền 62,6mm, Bến Cát 41,4mm và Thủ Đức 40mm.\n\nCơ quan khí tượng cảnh báo TPHCM và Nam Bộ tiếp tục có mưa lớn trong vài ngày tới. Người dân cần đề phòng lốc, sét, gió giật mạnh và ngập úng tại các khu vực trũng thấp trong thời gian xảy ra mưa dông.",
     "extracted_date": "2026-09-22",
     "extracted_iso": "2026-09-22T13:30:38+00:00"
+  },
+  {
+    "id": "e8e897a3b89951d4",
+    "url": "https://nld.com.vn/22h-dem-xe-chet-may-la-liet-tren-duong-phan-huy-ich-nguoi-dan-met-moi-dat-xe-loi-nuoc-ve-nha-100260922223327389.htm",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "22h đêm, xe chết máy la liệt trên đường Phan Huy Ích, người dân mệt mỏi dắt xe lội nước về nhà - Tuổi Trẻ",
+    "title": "22h đêm, xe chết máy la liệt trên đường Phan Huy Ích, người dân mệt mỏi dắt xe lội nước về nhà - Tuổi Trẻ",
+    "author": "News Creator",
+    "authorMeta": {
+      "name": "News Creator"
+    },
+    "createTimeISO": "2026-09-22T07:00:00+00:00",
+    "published": "Tue, 22 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-22",
+    "platform": "news",
+    "crawled_at": "2026-10-29T15:22:27.891987+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "37a144b9a42d358e",
+    "url": "https://thanhnien.vn/tphcm-duyet-du-an-chong-ngap-gan-7700-ti-dong-khu-vuc-phia-tay-185260924123732928.htm",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TP.HCM duyệt dự án chống ngập gần 7.700 tỉ đồng khu vực phía tây - Báo Thanh Niên",
+    "title": "TP.HCM duyệt dự án chống ngập gần 7.700 tỉ đồng khu vực phía tây - Báo Thanh Niên",
+    "author": "News Creator",
+    "authorMeta": {
+      "name": "News Creator"
+    },
+    "createTimeISO": "2026-09-24T07:00:00+00:00",
+    "published": "Thu, 24 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-24",
+    "platform": "news",
+    "crawled_at": "2026-10-29T15:22:46.212317+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
   }
 ]

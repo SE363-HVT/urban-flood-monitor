@@ -5279,21 +5279,25 @@
     "crawler_source": "free_discovery_engine"
   },
   {
-    "id": "7695034954635349300",
+    "id": "7695034954635349300_s00",
     "url": "https://www.tiktok.com/@saigontrend.vn/video/7695034954635349300",
     "webVideoUrl": "https://www.tiktok.com/@saigontrend.vn/video/7695034954635349300",
-    "text": "Khi nào Sài Gòn mới hết ngập... #saigontrend #sukien #fantasticnetwork #saigonnews #saigonangi",
+    "mediaUrls": [
+      "https://www.tiktok.com/@saigontrend.vn/video/7695034954635349300"
+    ],
+    "text": "Khi nào Sài Gòn mới hết ngập...",
     "title": "Khi nào Sài Gòn mới hết ngập... #saigontrend #sukien #fantasticnetwork #saigonnews #saigonangi",
     "author": "saigontrend.vn",
     "authorMeta": {
       "name": "saigontrend.vn"
     },
-    "createTimeISO": "2026-10-10T14:00:00+00:00",
-    "published": "Sat, 10 Oct 2026 14:00:00 GMT",
+    "createTimeISO": "2026-10-10T07:00:00+00:00",
+    "published": "Sat, 10 Oct 2026 07:00:00 GMT",
     "extracted_date": "2026-10-10",
     "platform": "tiktok",
-    "crawled_at": "2026-10-11T08:48:20.574071+00:00",
-    "crawler_source": "free_discovery_engine"
+    "crawled_at": "2026-10-20T10:38:16.110816+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "POS"
   },
   {
     "id": "7694233138393910535",
@@ -5991,48 +5995,6 @@
     "crawler_source": "free_discovery_engine"
   },
   {
-    "id": "7695000935298288917",
-    "url": "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917",
-    "webVideoUrl": "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917",
-    "mediaUrls": [
-      "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917"
-    ],
-    "text": "Đỉnh triều cường trên sông Sài Gòn hiện gần chạm mốc lịch sử, trong chiều tối nay (10.10), TP.HCM sẽ đối mặt với nguy cơ ngập trên diện rộng, khả năng kéo dài thêm 2 - 3 ngày tới. Cảnh báo nhiều nơi ngập sâu do mưa lớn kết hợp triều cường cao. Đỉnh tri",
-    "title": "Đỉnh triều cường trên sông Sài Gòn hiện gần chạm mốc lịch sử, trong chiều tối nay (10.10), TP.HCM sẽ đối mặt với nguy cơ ngập trên diện rộng, khả năng kéo dài thêm 2 - 3 ngày tới. Cảnh báo nhiều nơi ngập sâu do mưa lớn kết hợp triều cường cao. Đỉnh tri",
-    "author": "tuan.hoang1985",
-    "authorMeta": {
-      "name": "tuan.hoang1985"
-    },
-    "createTimeISO": "2026-10-10T07:00:00+00:00",
-    "published": "Sat, 10 Oct 2026 07:00:00 GMT",
-    "extracted_date": "2026-10-10",
-    "platform": "tiktok",
-    "crawled_at": "2026-10-20T09:57:09.353058+00:00",
-    "crawler_source": "free_discovery_engine",
-    "targeted_intent": "NEU"
-  },
-  {
-    "id": "7695034954635349300_s00",
-    "url": "https://www.tiktok.com/@saigontrend.vn/video/7695034954635349300",
-    "webVideoUrl": "https://www.tiktok.com/@saigontrend.vn/video/7695034954635349300",
-    "mediaUrls": [
-      "https://www.tiktok.com/@saigontrend.vn/video/7695034954635349300"
-    ],
-    "text": "Khi nào Sài Gòn mới hết ngập...",
-    "title": "Khi nào Sài Gòn mới hết ngập... #saigontrend #sukien #fantasticnetwork #saigonnews #saigonangi",
-    "author": "saigontrend.vn",
-    "authorMeta": {
-      "name": "saigontrend.vn"
-    },
-    "createTimeISO": "2026-10-10T07:00:00+00:00",
-    "published": "Sat, 10 Oct 2026 07:00:00 GMT",
-    "extracted_date": "2026-10-10",
-    "platform": "tiktok",
-    "crawled_at": "2026-10-20T10:38:16.110816+00:00",
-    "crawler_source": "sentence_litmus_engine",
-    "targeted_intent": "POS"
-  },
-  {
     "id": "7695000935298288917_s00",
     "url": "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917",
     "webVideoUrl": "https://www.tiktok.com/@tuan.hoang1985/video/7695000935298288917",
@@ -6052,5 +6014,265 @@
     "crawled_at": "2026-10-20T10:39:15.650351+00:00",
     "crawler_source": "sentence_litmus_engine",
     "targeted_intent": "NEU"
+  },
+  {
+    "id": "7695601661045132552",
+    "url": "https://www.tiktok.com/@thaihuuco/video/7695601661045132552",
+    "webVideoUrl": "https://www.tiktok.com/@thaihuuco/video/7695601661045132552",
+    "mediaUrls": [
+      "https://www.tiktok.com/@thaihuuco/video/7695601661045132552"
+    ],
+    "text": "1 số tuyến đường ở Hiệp Phước, Nhà Bè những ngày có triều cường, mưa, AE cân nhắc khi qua đây nghen. #thaihuuco #nhabe #hiepphuoc #trieucuong #antoangiaothong",
+    "title": "1 số tuyến đường ở Hiệp Phước, Nhà Bè những ngày có triều cường, mưa, AE cân nhắc khi qua đây nghen. #thaihuuco #nhabe #hiepphuoc #trieucuong #antoangiaothong",
+    "author": "thaihuuco",
+    "authorMeta": {
+      "name": "thaihuuco"
+    },
+    "createTimeISO": "2026-10-12T02:24:56+00:00",
+    "published": "Mon, 12 Oct 2026 02:24:56 GMT",
+    "extracted_date": "2026-10-12",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:43.176902+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695046727178456321",
+    "url": "https://www.tiktok.com/@saigonbizz/video/7695046727178456321",
+    "webVideoUrl": "https://www.tiktok.com/@saigonbizz/video/7695046727178456321",
+    "mediaUrls": [
+      "https://www.tiktok.com/@saigonbizz/video/7695046727178456321"
+    ],
+    "text": "Triều cường TP.HCM dâng 1,86 m: đường ngập nặng, xe chết máy",
+    "title": "Triều cường TP.HCM dâng 1,86 m: đường ngập nặng, xe chết máy",
+    "author": "saigonbizz",
+    "authorMeta": {
+      "name": "saigonbizz"
+    },
+    "createTimeISO": "2026-10-10T16:43:03+00:00",
+    "published": "Sat, 10 Oct 2026 16:43:03 GMT",
+    "extracted_date": "2026-10-10",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:43.745653+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695058232431119624",
+    "url": "https://www.tiktok.com/@hungq71/video/7695058232431119624",
+    "webVideoUrl": "https://www.tiktok.com/@hungq71/video/7695058232431119624",
+    "mediaUrls": [
+      "https://www.tiktok.com/@hungq71/video/7695058232431119624"
+    ],
+    "text": "Cảnh báo top 7 con đường ngập sâu nguy hiểm ở quận 7 và Nhà Bè dịp triều cường từ 10/10 -12/10/26 Anh em qua khu này nhớ né nha ☠️😭😭#trieucuong #ngapnuoc #nhabe #q7 #CapCut",
+    "title": "Cảnh báo top 7 con đường ngập sâu nguy hiểm ở quận 7 và Nhà Bè dịp triều cường từ 10/10 -12/10/26 Anh em qua khu này nhớ né nha ☠️😭😭#trieucuong #ngapnuoc #nhabe #q7 #CapCut",
+    "author": "hungq71",
+    "authorMeta": {
+      "name": "hungq71"
+    },
+    "createTimeISO": "2026-10-10T15:16:07+00:00",
+    "published": "Sat, 10 Oct 2026 15:16:07 GMT",
+    "extracted_date": "2026-10-10",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:44.214933+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695536030551788818",
+    "url": "https://www.tiktok.com/@saigonhomnay24h/video/7695536030551788818",
+    "webVideoUrl": "https://www.tiktok.com/@saigonhomnay24h/video/7695536030551788818",
+    "mediaUrls": [
+      "https://www.tiktok.com/@saigonhomnay24h/video/7695536030551788818"
+    ],
+    "text": "Tại sao đỉnh triều cường 10/10 chỉ ngập Quận 7 và Nhà Bè? Xem ngay câu trả lời từ tiến độ dự án 10.000 tỷ chống ngập ở Quận 7 và Nhà Bè đạt 80%.Sang năm khu vực này mới hết ngập Chỗ của anh em hôm nay có bị ngập không? 👇#trieucuong #q7 #nha",
+    "title": "Tại sao đỉnh triều cường 10/10 chỉ ngập Quận 7 và Nhà Bè? Xem ngay câu trả lời từ tiến độ dự án 10.000 tỷ chống ngập ở Quận 7 và Nhà Bè đạt 80%.Sang năm khu vực này mới hết ngập Chỗ của anh em hôm nay có bị ngập không? 👇#trieucuong #q7 #nha",
+    "author": "saigonhomnay24h",
+    "authorMeta": {
+      "name": "saigonhomnay24h"
+    },
+    "createTimeISO": "2026-10-11T22:10:17+00:00",
+    "published": "Sun, 11 Oct 2026 22:10:17 GMT",
+    "extracted_date": "2026-10-11",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:46.578172+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695694841287691541",
+    "url": "https://www.tiktok.com/@smedia89/video/7695694841287691541",
+    "webVideoUrl": "https://www.tiktok.com/@smedia89/video/7695694841287691541",
+    "mediaUrls": [
+      "https://www.tiktok.com/@smedia89/video/7695694841287691541"
+    ],
+    "text": "Nhiều trường ở TP HCM cho học sinh về sớm, tránh triều cường đạt đỉnh 12/10 -13/10 #trieucuong #xuhuong (theo socmedia, vnexpress)",
+    "title": "Nhiều trường ở TP HCM cho học sinh về sớm, tránh triều cường đạt đỉnh 12/10 -13/10 #trieucuong #xuhuong (theo socmedia, vnexpress)",
+    "author": "smedia89",
+    "authorMeta": {
+      "name": "smedia89"
+    },
+    "createTimeISO": "2026-10-12T07:00:00+00:00",
+    "published": "Mon, 12 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-12",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:48.705921+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7694295147793632530",
+    "url": "https://www.tiktok.com/@kenh14official/video/7694295147793632530",
+    "webVideoUrl": "https://www.tiktok.com/@kenh14official/video/7694295147793632530",
+    "mediaUrls": [
+      "https://www.tiktok.com/@kenh14official/video/7694295147793632530"
+    ],
+    "text": "Nhiều hầm xe tại khu biệt thự ở TP.HCM ngập sâu hơn 1 m sau mưa lớn, khiến hàng loạt xe máy, máy móc và tài sản của người dân bị ngâm trong nước, hư hỏng Ảnh & Clip: Di Anh #news #amm #FCGN",
+    "title": "Nhiều hầm xe tại khu biệt thự ở TP.HCM ngập sâu hơn 1 m sau mưa lớn, khiến hàng loạt xe máy, máy móc và tài sản của người dân bị ngâm trong nước, hư hỏng Ảnh & Clip: Di Anh #news #amm #FCGN",
+    "author": "kenh14official",
+    "authorMeta": {
+      "name": "kenh14official"
+    },
+    "createTimeISO": "2026-10-08T07:00:00+00:00",
+    "published": "Thu, 08 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-08",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:01.483759+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695379035227983124",
+    "url": "https://www.tiktok.com/@nanathodia_bds/video/7695379035227983124",
+    "webVideoUrl": "https://www.tiktok.com/@nanathodia_bds/video/7695379035227983124",
+    "mediaUrls": [
+      "https://www.tiktok.com/@nanathodia_bds/video/7695379035227983124"
+    ],
+    "text": "Quận 7 ngày 11/10/26 Đường Đào Trí và Gò ô môi ạ ! ngập lụt 😭😭 #creatorsearchinsights #cáchlàmchovideoxuhướng #nanathodia #xuhuong #ngap",
+    "title": "Quận 7 ngày 11/10/26 Đường Đào Trí và Gò ô môi ạ ! ngập lụt 😭😭 #creatorsearchinsights #cáchlàmchovideoxuhướng #nanathodia #xuhuong #ngap",
+    "author": "nanathodia_bds",
+    "authorMeta": {
+      "name": "nanathodia_bds"
+    },
+    "createTimeISO": "2026-10-11T12:01:00+00:00",
+    "published": "Sun, 11 Oct 2026 12:01:00 GMT",
+    "extracted_date": "2026-10-11",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:03.444606+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7694297679026752776",
+    "url": "https://www.tiktok.com/@baotienphong.official/video/7694297679026752776",
+    "webVideoUrl": "https://www.tiktok.com/@baotienphong.official/video/7694297679026752776",
+    "mediaUrls": [
+      "https://www.tiktok.com/@baotienphong.official/video/7694297679026752776"
+    ],
+    "text": "Tầng hầm ngập sâu, cư dân khu biệt thự hạng sang ở TPHCM 'còng lưng' bơm tát nước",
+    "title": "Tầng hầm ngập sâu, cư dân khu biệt thự hạng sang ở TPHCM 'còng lưng' bơm tát nước",
+    "author": "baotienphong.official",
+    "authorMeta": {
+      "name": "baotienphong.official"
+    },
+    "createTimeISO": "2026-10-08T07:00:00+00:00",
+    "published": "Thu, 08 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-08",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:09.465395+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695967337866071316",
+    "url": "https://www.tiktok.com/@sggp.org.vn/video/7695967337866071316",
+    "webVideoUrl": "https://www.tiktok.com/@sggp.org.vn/video/7695967337866071316",
+    "mediaUrls": [
+      "https://www.tiktok.com/@sggp.org.vn/video/7695967337866071316"
+    ],
+    "text": "Triều cường tại TPHCM đang xuống nhưng vẫn trên dưới báo động 3",
+    "title": "Triều cường tại TPHCM đang xuống nhưng vẫn trên dưới báo động 3",
+    "author": "sggp.org.vn",
+    "authorMeta": {
+      "name": "sggp.org.vn"
+    },
+    "createTimeISO": "2026-10-12T07:00:00+00:00",
+    "published": "Mon, 12 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-12",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:11.601092+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695591303395986708",
+    "url": "https://www.tiktok.com/@dantri.com.vn/video/7695591303395986708",
+    "webVideoUrl": "https://www.tiktok.com/@dantri.com.vn/video/7695591303395986708",
+    "mediaUrls": [
+      "https://www.tiktok.com/@dantri.com.vn/video/7695591303395986708"
+    ],
+    "text": "Người dân TPHCM lội nước ăn cơm tối trong mùa triều cường #dantrinews #LearnOnTikTok #xuhuong",
+    "title": "Người dân TPHCM lội nước ăn cơm tối trong mùa triều cường #dantrinews #LearnOnTikTok #xuhuong",
+    "author": "dantri.com.vn",
+    "authorMeta": {
+      "name": "dantri.com.vn"
+    },
+    "createTimeISO": "2026-10-11T07:00:00+00:00",
+    "published": "Sun, 11 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-11",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:12.656954+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695593291915480340",
+    "url": "https://www.tiktok.com/@vnexpress.official/video/7695593291915480340",
+    "webVideoUrl": "https://www.tiktok.com/@vnexpress.official/video/7695593291915480340",
+    "mediaUrls": [
+      "https://www.tiktok.com/@vnexpress.official/video/7695593291915480340"
+    ],
+    "text": "Triều cường bủa vây đường TP HCM, người dân chờ cả tiếng về nhà #vnexpress #vnego #tphcm",
+    "title": "Triều cường bủa vây đường TP HCM, người dân chờ cả tiếng về nhà #vnexpress #vnego #tphcm",
+    "author": "vnexpress.official",
+    "authorMeta": {
+      "name": "vnexpress.official"
+    },
+    "createTimeISO": "2026-10-11T07:00:00+00:00",
+    "published": "Sun, 11 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-11",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:13.171823+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695574746921962773",
+    "url": "https://www.tiktok.com/@vnexpress.official/video/7695574746921962773",
+    "webVideoUrl": "https://www.tiktok.com/@vnexpress.official/video/7695574746921962773",
+    "mediaUrls": [
+      "https://www.tiktok.com/@vnexpress.official/video/7695574746921962773"
+    ],
+    "text": "Nước tràn vào hàng quán ven sông Sài Gòn trong ngày triều cường #vnexpress #vnego #tphcm",
+    "title": "Nước tràn vào hàng quán ven sông Sài Gòn trong ngày triều cường #vnexpress #vnego #tphcm",
+    "author": "vnexpress.official",
+    "authorMeta": {
+      "name": "vnexpress.official"
+    },
+    "createTimeISO": "2026-10-11T07:00:00+00:00",
+    "published": "Sun, 11 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-11",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:13.681877+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695420011355065601",
+    "url": "https://www.tiktok.com/@vnamedia/video/7695420011355065601",
+    "webVideoUrl": "https://www.tiktok.com/@vnamedia/video/7695420011355065601",
+    "mediaUrls": [
+      "https://www.tiktok.com/@vnamedia/video/7695420011355065601"
+    ],
+    "text": "Triều cường gây ngập sâu tại TP.HCM, sinh hoạt và giao thông đảo lộn Tình trạng ngập do triều cường tại phía Nam TP.HCM đang diễn biến phức tạp, khiến hàng loạt tuyến đường thấp ven sông ngập sâu mênh mông, giao thông nghẽn mạng đúng giờ tan t",
+    "title": "Triều cường gây ngập sâu tại TP.HCM, sinh hoạt và giao thông đảo lộn Tình trạng ngập do triều cường tại phía Nam TP.HCM đang diễn biến phức tạp, khiến hàng loạt tuyến đường thấp ven sông ngập sâu mênh mông, giao thông nghẽn mạng đúng giờ tan t",
+    "author": "vnamedia",
+    "authorMeta": {
+      "name": "vnamedia"
+    },
+    "createTimeISO": "2026-10-11T07:00:00+00:00",
+    "published": "Sun, 11 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-11",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:16.856514+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
   }
 ]

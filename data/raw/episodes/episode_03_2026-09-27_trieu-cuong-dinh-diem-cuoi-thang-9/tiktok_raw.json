@@ -14216,5 +14216,125 @@
     "crawled_at": "2026-10-20T10:39:12.752293+00:00",
     "crawler_source": "sentence_litmus_engine",
     "targeted_intent": "NEU"
+  },
+  {
+    "id": "2e7173be2ea58a30",
+    "url": "https://www.tiktok.com/discover/m%C6%B0a-l%E1%BB%9Bn-g%C3%A2y-ng%E1%BA%ADp-s%C3%A2u-tp-hcm",
+    "webVideoUrl": "https://www.tiktok.com/discover/m%C6%B0a-l%E1%BB%9Bn-g%C3%A2y-ng%E1%BA%ADp-s%C3%A2u-tp-hcm",
+    "mediaUrls": [
+      "https://www.tiktok.com/discover/m%C6%B0a-l%E1%BB%9Bn-g%C3%A2y-ng%E1%BA%ADp-s%C3%A2u-tp-hcm"
+    ],
+    "text": "Mưa Lớn Gây Ngập Sâu Tp Hcm",
+    "title": "Mưa Lớn Gây Ngập Sâu Tp Hcm",
+    "author": "Tiktok Creator",
+    "authorMeta": {
+      "name": "Tiktok Creator"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:57.741021+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7691156197931601173",
+    "url": "https://www.tiktok.com/@danviet.giaitri/video/7691156197931601173",
+    "webVideoUrl": "https://www.tiktok.com/@danviet.giaitri/video/7691156197931601173",
+    "mediaUrls": [
+      "https://www.tiktok.com/@danviet.giaitri/video/7691156197931601173"
+    ],
+    "text": "Đường Nguyễn Ảnh Thủ (Bà Điểm, Thành phố Hồ Chí Minh) đang ngập rất sâu #tiktoknews #onhaxemtin #tiktokdieuky #danviet #thanhphohochiminh #ngapsau",
+    "title": "Đường Nguyễn Ảnh Thủ (Bà Điểm, Thành phố Hồ Chí Minh) đang ngập rất sâu #tiktoknews #onhaxemtin #tiktokdieuky #danviet #thanhphohochiminh #ngapsau",
+    "author": "danviet.giaitri",
+    "authorMeta": {
+      "name": "danviet.giaitri"
+    },
+    "createTimeISO": "2026-09-29T07:00:00+00:00",
+    "published": "Tue, 29 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-29",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:00.357622+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7690822503425445140",
+    "url": "https://www.tiktok.com/@bolonton_/video/7690822503425445140",
+    "webVideoUrl": "https://www.tiktok.com/@bolonton_/video/7690822503425445140",
+    "mediaUrls": [
+      "https://www.tiktok.com/@bolonton_/video/7690822503425445140"
+    ],
+    "text": "+1 quán nướng chất lượng, không gian ngập cây xanh ở Gò Vấp 🥩 #bolonton #OMNuongPhanVanTri #OMNuong #quannuongngon",
+    "title": "+1 quán nướng chất lượng, không gian ngập cây xanh ở Gò Vấp 🥩 #bolonton #OMNuongPhanVanTri #OMNuong #quannuongngon",
+    "author": "bolonton_",
+    "authorMeta": {
+      "name": "bolonton_"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:00.962025+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7691288360979123477",
+    "url": "https://www.tiktok.com/@binhduong24h.vn/video/7691288360979123477",
+    "webVideoUrl": "https://www.tiktok.com/@binhduong24h.vn/video/7691288360979123477",
+    "mediaUrls": [
+      "https://www.tiktok.com/@binhduong24h.vn/video/7691288360979123477"
+    ],
+    "text": "Đoạn CMT8 từ chợ Lái Thiêu ra cầu Phú Long. Mọi người chú ý nguy hiểm khi mưa ngập #binhduong24h",
+    "title": "Đoạn CMT8 từ chợ Lái Thiêu ra cầu Phú Long. Mọi người chú ý nguy hiểm khi mưa ngập #binhduong24h",
+    "author": "binhduong24h.vn",
+    "authorMeta": {
+      "name": "binhduong24h.vn"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:08.868223+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7690426810999295240",
+    "url": "https://www.tiktok.com/@baothanhtra/video/7690426810999295240",
+    "webVideoUrl": "https://www.tiktok.com/@baothanhtra/video/7690426810999295240",
+    "mediaUrls": [
+      "https://www.tiktok.com/@baothanhtra/video/7690426810999295240"
+    ],
+    "text": "Hạ tầng chống ngập - Những điểm nghẽn cần tháo gỡ #baothanhtra #thanhtra #thanhtrachinhphu #tphcm #ngaplut #hatang",
+    "title": "Hạ tầng chống ngập - Những điểm nghẽn cần tháo gỡ #baothanhtra #thanhtra #thanhtrachinhphu #tphcm #ngaplut #hatang",
+    "author": "baothanhtra",
+    "authorMeta": {
+      "name": "baothanhtra"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:22.008680+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7691488244013206792",
+    "url": "https://www.tiktok.com/@60giay.com/video/7691488244013206792",
+    "webVideoUrl": "https://www.tiktok.com/@60giay.com/video/7691488244013206792",
+    "mediaUrls": [
+      "https://www.tiktok.com/@60giay.com/video/7691488244013206792"
+    ],
+    "text": "Tình trạng mưa liên tiếp tại TPHCM: mưa đã tạnh nhiều nhưng nước chưa rút, bà con đang phải chống ngập, bảo vệ tài sản #60giay #theanh28 #tiktoknews",
+    "title": "Tình trạng mưa liên tiếp tại TPHCM: mưa đã tạnh nhiều nhưng nước chưa rút, bà con đang phải chống ngập, bảo vệ tài sản #60giay #theanh28 #tiktoknews",
+    "author": "60giay.com",
+    "authorMeta": {
+      "name": "60giay.com"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T16:33:31.243331+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
   }
 ]

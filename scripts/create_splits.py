@@ -23,9 +23,9 @@ total_count = len(master_data)
 print(f"Loaded Master Dataset: {total_count} samples.")
 
 # Target counts: 80% / 10% / 10%
-target_test = 462
-target_dev = 462
-target_train = total_count - target_test - target_dev  # 3697
+target_test = int(round(total_count * 0.10))
+target_dev = int(round(total_count * 0.10))
+target_train = total_count - target_test - target_dev
 
 print(f"Target split counts -> Train: {target_train}, Dev: {target_dev}, Test: {target_test}")
 
@@ -77,12 +77,10 @@ for sig, groups in signature_groups.items():
     random.shuffle(groups)
     for parent, items in groups:
         # Determine best allocation to maintain targets
-        # Check current counts
         train_deficit = target_train - len(train_items)
         dev_deficit = target_dev - len(dev_items)
         test_deficit = target_test - len(test_items)
         
-        # We need to fill test and dev up to target, remainder goes to train
         item_len = len(items)
         
         # Decide between test, dev, train based on deficit proportion
@@ -98,28 +96,19 @@ for sig, groups in signature_groups.items():
             else:
                 test_items.extend(items)
 
-# Fine-adjust if sizes slightly exceed due to group boundaries
-# If test or dev slightly differs from 462, move single-item groups between splits without breaking parents
-def fine_tune_splits(train, dev, test, target_tr, target_dv, target_ts):
-    # Map single items groups
-    pass
-
 print(f"\nInitial split sizes:")
 print(f"  Train: {len(train_items)}")
 print(f"  Dev:   {len(dev_items)}")
 print(f"  Test:  {len(test_items)}")
 print(f"  Total: {len(train_items) + len(dev_items) + len(test_items)}")
 
-# Adjust so that Dev and Test are exactly 462 and Train is 3697, preserving parent groups
+# Adjust so that Dev and Test match targets closely, preserving parent groups
 while len(dev_items) > target_dev:
-    # Find a group in dev that can move to train
-    # Find candidate
     moved = False
     for i in range(len(dev_items) - 1, -1, -1):
         pid = dev_items[i].get('parent_id') or dev_items[i].get('id')
         p_items = [it for it in dev_items if (it.get('parent_id') or it.get('id')) == pid]
         if len(dev_items) - len(p_items) >= target_dev:
-            # Move p_items to train
             dev_items = [it for it in dev_items if (it.get('parent_id') or it.get('id')) != pid]
             train_items.extend(p_items)
             moved = True
@@ -201,7 +190,6 @@ def compute_stats(split_data):
             stats['severity'][t.get('severity', 'UNKNOWN')] += 1
             stats['aspect_category'][t.get('aspect_category', 'UNKNOWN')] += 1
             
-    # convert defaultdict to regular dict
     stats['polarity'] = dict(stats['polarity'])
     stats['severity'] = dict(stats['severity'])
     stats['aspect_category'] = dict(stats['aspect_category'])

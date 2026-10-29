@@ -9373,5 +9373,525 @@
     "crawled_at": "2026-10-20T10:38:14.453612+00:00",
     "crawler_source": "sentence_litmus_engine",
     "targeted_intent": "POS"
+  },
+  {
+    "id": "7699093072180677908",
+    "url": "https://www.tiktok.com/@baothanhnien.official/video/7699093072180677908",
+    "webVideoUrl": "https://www.tiktok.com/@baothanhnien.official/video/7699093072180677908",
+    "mediaUrls": [
+      "https://www.tiktok.com/@baothanhnien.official/video/7699093072180677908"
+    ],
+    "text": "Hẻm Huỳnh Tấn Phát ngập liên miên 3 tháng: ‘Ngập vô nhà, mấy đứa nhỏ ngủ đâu có được’ #tiktoknews #tiktokthanhnien",
+    "title": "Hẻm Huỳnh Tấn Phát ngập liên miên 3 tháng: ‘Ngập vô nhà, mấy đứa nhỏ ngủ đâu có được’ #tiktoknews #tiktokthanhnien",
+    "author": "baothanhnien.official",
+    "authorMeta": {
+      "name": "baothanhnien.official"
+    },
+    "createTimeISO": "2026-10-21T12:13:19+00:00",
+    "published": "Wed, 21 Oct 2026 12:13:19 GMT",
+    "extracted_date": "2026-10-21",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:45.293320+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7701558979255717127",
+    "url": "https://www.tiktok.com/@theanh28.saigonnews/video/7701558979255717127",
+    "webVideoUrl": "https://www.tiktok.com/@theanh28.saigonnews/video/7701558979255717127",
+    "mediaUrls": [
+      "https://www.tiktok.com/@theanh28.saigonnews/video/7701558979255717127"
+    ],
+    "text": "Đi qua Trần Xuân Soạn ngày triều cường mới hiểu #saigonnews #tiktoknews #theanh28",
+    "title": "Đi qua Trần Xuân Soạn ngày triều cường mới hiểu #saigonnews #tiktoknews #theanh28",
+    "author": "theanh28.saigonnews",
+    "authorMeta": {
+      "name": "theanh28.saigonnews"
+    },
+    "createTimeISO": "2026-10-28T03:42:26+00:00",
+    "published": "Wed, 28 Oct 2026 03:42:26 GMT",
+    "extracted_date": "2026-10-28",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:45.951838+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7696438417814588673",
+    "url": "https://www.tiktok.com/@thuvienphapluat.vn/video/7696438417814588673",
+    "webVideoUrl": "https://www.tiktok.com/@thuvienphapluat.vn/video/7696438417814588673",
+    "mediaUrls": [
+      "https://www.tiktok.com/@thuvienphapluat.vn/video/7696438417814588673"
+    ],
+    "text": "Sau 10 năm chờ đợi, dự án chống ngập 10.000 tỷ tại TP.HCM chuẩn bị về đích! #TPHCM #TVPL #ThuVienPhapLuat #LearnOnTikTok #HoccungTikTok",
+    "title": "Sau 10 năm chờ đợi, dự án chống ngập 10.000 tỷ tại TP.HCM chuẩn bị về đích! #TPHCM #TVPL #ThuVienPhapLuat #LearnOnTikTok #HoccungTikTok",
+    "author": "thuvienphapluat.vn",
+    "authorMeta": {
+      "name": "thuvienphapluat.vn"
+    },
+    "createTimeISO": "2026-10-14T07:00:00+00:00",
+    "published": "Wed, 14 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-14",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:47.636614+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7699289674191260935",
+    "url": "https://www.tiktok.com/@tranthai983/video/7699289674191260935",
+    "webVideoUrl": "https://www.tiktok.com/@tranthai983/video/7699289674191260935",
+    "mediaUrls": [
+      "https://www.tiktok.com/@tranthai983/video/7699289674191260935"
+    ],
+    "text": "TRIỂN KHAI MỞ RỘNG RẠCH THỦ ĐỨC LÀ GIẢI PHÁP CHỐNG NGẬP CHỢ THỦ ĐỨC #batdongsan #timnhathuduc #thaitaisao #caitaorachthuduc #hatanggiaothong",
+    "title": "TRIỂN KHAI MỞ RỘNG RẠCH THỦ ĐỨC LÀ GIẢI PHÁP CHỐNG NGẬP CHỢ THỦ ĐỨC #batdongsan #timnhathuduc #thaitaisao #caitaorachthuduc #hatanggiaothong",
+    "author": "tranthai983",
+    "authorMeta": {
+      "name": "tranthai983"
+    },
+    "createTimeISO": "2026-10-21T07:00:00+00:00",
+    "published": "Wed, 21 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-21",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:50.485003+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "14fb8ef3309f0f2b",
+    "url": "https://www.tiktok.com/discover/s%C3%A0i-g%C3%B2n-landmark-81-c%C3%B3-ng%E1%BA%ADp-kh%C3%B4ng",
+    "webVideoUrl": "https://www.tiktok.com/discover/s%C3%A0i-g%C3%B2n-landmark-81-c%C3%B3-ng%E1%BA%ADp-kh%C3%B4ng",
+    "mediaUrls": [
+      "https://www.tiktok.com/discover/s%C3%A0i-g%C3%B2n-landmark-81-c%C3%B3-ng%E1%BA%ADp-kh%C3%B4ng"
+    ],
+    "text": "Sài Gòn Landmark 81 Có Ngập Không",
+    "title": "Sài Gòn Landmark 81 Có Ngập Không",
+    "author": "Tiktok Creator",
+    "authorMeta": {
+      "name": "Tiktok Creator"
+    },
+    "createTimeISO": "2026-09-14T07:00:00+00:00",
+    "published": "Mon, 14 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-14",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:52.181340+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7655310455518366994",
+    "url": "https://www.tiktok.com/@laixebangcatraitim/video/7655310455518366994",
+    "webVideoUrl": "https://www.tiktok.com/@laixebangcatraitim/video/7655310455518366994",
+    "mediaUrls": [
+      "https://www.tiktok.com/@laixebangcatraitim/video/7655310455518366994"
+    ],
+    "text": "Tài xế ngập ngừng sợ bị phạt khi quẹo phải trước đèn đỏ ở lối mở ngay Ngã Tư Thủ Đức. #laixebangcatraitim #DuyThanh #kinhnghiemlaixe #giaothong #hoclaixe",
+    "title": "Tài xế ngập ngừng sợ bị phạt khi quẹo phải trước đèn đỏ ở lối mở ngay Ngã Tư Thủ Đức. #laixebangcatraitim #DuyThanh #kinhnghiemlaixe #giaothong #hoclaixe",
+    "author": "laixebangcatraitim",
+    "authorMeta": {
+      "name": "laixebangcatraitim"
+    },
+    "createTimeISO": "2026-06-25T07:00:00+00:00",
+    "published": "Thu, 25 Jun 2026 07:00:00 GMT",
+    "extracted_date": "2026-06-25",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:53.082608+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7645291278988545298",
+    "url": "https://www.tiktok.com/@janis1030/video/7645291278988545298",
+    "webVideoUrl": "https://www.tiktok.com/@janis1030/video/7645291278988545298",
+    "mediaUrls": [
+      "https://www.tiktok.com/@janis1030/video/7645291278988545298"
+    ],
+    "text": "Hương Lộ 2 - Mã Lò , Tỉnh Lộ 10 - Mã Lò, mưa to bể cống ngập lòi chành, quí dị ở đoạn Mã Lò này xác định khỏi về nhà với tình trạng thơm tho nha 😮‍💨 Khách em trong đoạn này nên buộc em phải lội cống để giao hàng, trả đơn cho khách 😮‍💨",
+    "title": "Hương Lộ 2 - Mã Lò , Tỉnh Lộ 10 - Mã Lò, mưa to bể cống ngập lòi chành, quí dị ở đoạn Mã Lò này xác định khỏi về nhà với tình trạng thơm tho nha 😮‍💨 Khách em trong đoạn này nên buộc em phải lội cống để giao hàng, trả đơn cho khách 😮‍💨",
+    "author": "janis1030",
+    "authorMeta": {
+      "name": "janis1030"
+    },
+    "createTimeISO": "2026-05-29T07:00:00+00:00",
+    "published": "Fri, 29 May 2026 07:00:00 GMT",
+    "extracted_date": "2026-05-29",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:55.429117+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "0ddafdcdfef7d06f",
+    "url": "https://www.tiktok.com/discover/%C4%91%C6%B0%E1%BB%9Dng-phan-huy-%C3%ADch-g%C3%B2-v%E1%BA%A5p-b%E1%BB%8B-ng%E1%BA%ADp-h%C3%B4m-nay",
+    "webVideoUrl": "https://www.tiktok.com/discover/%C4%91%C6%B0%E1%BB%9Dng-phan-huy-%C3%ADch-g%C3%B2-v%E1%BA%A5p-b%E1%BB%8B-ng%E1%BA%ADp-h%C3%B4m-nay",
+    "mediaUrls": [
+      "https://www.tiktok.com/discover/%C4%91%C6%B0%E1%BB%9Dng-phan-huy-%C3%ADch-g%C3%B2-v%E1%BA%A5p-b%E1%BB%8B-ng%E1%BA%ADp-h%C3%B4m-nay"
+    ],
+    "text": "Đường Phan Huy Ích Gò Vấp Bị Ngập Hôm Nay",
+    "title": "Đường Phan Huy Ích Gò Vấp Bị Ngập Hôm Nay",
+    "author": "Tiktok Creator",
+    "authorMeta": {
+      "name": "Tiktok Creator"
+    },
+    "createTimeISO": "2026-10-19T07:00:00+00:00",
+    "published": "Mon, 19 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-19",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:17:56.368364+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7663367546950716693",
+    "url": "https://www.tiktok.com/@haivivu1989/video/7663367546950716693",
+    "webVideoUrl": "https://www.tiktok.com/@haivivu1989/video/7663367546950716693",
+    "mediaUrls": [
+      "https://www.tiktok.com/@haivivu1989/video/7663367546950716693"
+    ],
+    "text": "Hồng trà sữa Tam Hảo - Vừa mở cửa hàng ở Tỉnh Lộ 43,phường Bình Chiểu, Thủ Đức . Ưu đãi ngập tràn,quá xá là ngon đi #HongTraSuaTamHao",
+    "title": "Hồng trà sữa Tam Hảo - Vừa mở cửa hàng ở Tỉnh Lộ 43,phường Bình Chiểu, Thủ Đức . Ưu đãi ngập tràn,quá xá là ngon đi #HongTraSuaTamHao",
+    "author": "haivivu1989",
+    "authorMeta": {
+      "name": "haivivu1989"
+    },
+    "createTimeISO": "2026-07-16T07:00:00+00:00",
+    "published": "Thu, 16 Jul 2026 07:00:00 GMT",
+    "extracted_date": "2026-07-16",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:02.157879+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "4dbf0382422b49e7",
+    "url": "https://www.tiktok.com/discover/gigamall-th%E1%BB%A7-%C4%91%E1%BB%A9c-b%E1%BB%8B-ng%E1%BA%ADp",
+    "webVideoUrl": "https://www.tiktok.com/discover/gigamall-th%E1%BB%A7-%C4%91%E1%BB%A9c-b%E1%BB%8B-ng%E1%BA%ADp",
+    "mediaUrls": [
+      "https://www.tiktok.com/discover/gigamall-th%E1%BB%A7-%C4%91%E1%BB%A9c-b%E1%BB%8B-ng%E1%BA%ADp"
+    ],
+    "text": "Gigamall Thủ Đức Bị Ngập",
+    "title": "Gigamall Thủ Đức Bị Ngập",
+    "author": "Tiktok Creator",
+    "authorMeta": {
+      "name": "Tiktok Creator"
+    },
+    "createTimeISO": "2026-10-19T07:00:00+00:00",
+    "published": "Mon, 19 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-19",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:04.286100+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7689394379139714324",
+    "url": "https://www.tiktok.com/@thang79797979/video/7689394379139714324",
+    "webVideoUrl": "https://www.tiktok.com/@thang79797979/video/7689394379139714324",
+    "mediaUrls": [
+      "https://www.tiktok.com/@thang79797979/video/7689394379139714324"
+    ],
+    "text": "Chờ thêm 30p ngập quay Mã Lò cho AE xem #xekiengbinhtan #xuhuong",
+    "title": "Chờ thêm 30p ngập quay Mã Lò cho AE xem #xekiengbinhtan #xuhuong",
+    "author": "thang79797979",
+    "authorMeta": {
+      "name": "thang79797979"
+    },
+    "createTimeISO": "2026-09-25T07:00:00+00:00",
+    "published": "Fri, 25 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-25",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:08.143563+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7592245366930656532",
+    "url": "https://www.tiktok.com/@kenh14official/video/7592245366930656532",
+    "webVideoUrl": "https://www.tiktok.com/@kenh14official/video/7592245366930656532",
+    "mediaUrls": [
+      "https://www.tiktok.com/@kenh14official/video/7592245366930656532"
+    ],
+    "text": "Cơn mưa lớn trái mùa khiến nhiều tuyến đường TP.HCM ngập sâu, xe cộ chết máy, học sinh tan trường chật vật giữa biển nước #tphcm #tiktoknews #amm Theo vtcnews.vn",
+    "title": "Cơn mưa lớn trái mùa khiến nhiều tuyến đường TP.HCM ngập sâu, xe cộ chết máy, học sinh tan trường chật vật giữa biển nước #tphcm #tiktoknews #amm Theo vtcnews.vn",
+    "author": "kenh14official",
+    "authorMeta": {
+      "name": "kenh14official"
+    },
+    "createTimeISO": "2026-01-06T08:00:00+00:00",
+    "published": "Tue, 06 Jan 2026 08:00:00 GMT",
+    "extracted_date": "2026-01-06",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:09.991911+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7700455234551991573",
+    "url": "https://www.tiktok.com/@sggp.org.vn/video/7700455234551991573",
+    "webVideoUrl": "https://www.tiktok.com/@sggp.org.vn/video/7700455234551991573",
+    "mediaUrls": [
+      "https://www.tiktok.com/@sggp.org.vn/video/7700455234551991573"
+    ],
+    "text": "TPHCM: Triều cường rằm tháng Chín vượt Báo động 3, cảnh báo ngập úng diện rộng #trieucuong #thoitiet",
+    "title": "TPHCM: Triều cường rằm tháng Chín vượt Báo động 3, cảnh báo ngập úng diện rộng #trieucuong #thoitiet",
+    "author": "sggp.org.vn",
+    "authorMeta": {
+      "name": "sggp.org.vn"
+    },
+    "createTimeISO": "2026-10-25T04:19:20+00:00",
+    "published": "Sun, 25 Oct 2026 04:19:20 GMT",
+    "extracted_date": "2026-10-25",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:12.115712+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7701908390997429522",
+    "url": "https://www.tiktok.com/@dantri.com.vn/video/7701908390997429522",
+    "webVideoUrl": "https://www.tiktok.com/@dantri.com.vn/video/7701908390997429522",
+    "mediaUrls": [
+      "https://www.tiktok.com/@dantri.com.vn/video/7701908390997429522"
+    ],
+    "text": "Xe ba gác \"giải cứu\" người và xe máy giữa dòng triều cường ở TPHCM #dantrinews #xuhuong #LearnOnTikTok",
+    "title": "Xe ba gác \"giải cứu\" người và xe máy giữa dòng triều cường ở TPHCM #dantrinews #xuhuong #LearnOnTikTok",
+    "author": "dantri.com.vn",
+    "authorMeta": {
+      "name": "dantri.com.vn"
+    },
+    "createTimeISO": "2026-10-29T02:18:17+00:00",
+    "published": "Thu, 29 Oct 2026 02:18:17 GMT",
+    "extracted_date": "2026-10-29",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:14.182646+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7701604794191875334",
+    "url": "https://www.tiktok.com/@checkinsaigon.vn/video/7701604794191875334",
+    "webVideoUrl": "https://www.tiktok.com/@checkinsaigon.vn/video/7701604794191875334",
+    "mediaUrls": [
+      "https://www.tiktok.com/@checkinsaigon.vn/video/7701604794191875334"
+    ],
+    "text": "Top các con đường Sài Gòn dễ ngập khi triều cường dâng cao. #checkinsaigon #fantasticnetwork #saigon #doisong #tphcm",
+    "title": "Top các con đường Sài Gòn dễ ngập khi triều cường dâng cao. #checkinsaigon #fantasticnetwork #saigon #doisong #tphcm",
+    "author": "checkinsaigon.vn",
+    "authorMeta": {
+      "name": "checkinsaigon.vn"
+    },
+    "createTimeISO": "2026-10-28T06:40:08+00:00",
+    "published": "Wed, 28 Oct 2026 06:40:08 GMT",
+    "extracted_date": "2026-10-28",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:14.701759+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7701755908191259922",
+    "url": "https://www.tiktok.com/@baothanhnien.official/video/7701755908191259922",
+    "webVideoUrl": "https://www.tiktok.com/@baothanhnien.official/video/7701755908191259922",
+    "mediaUrls": [
+      "https://www.tiktok.com/@baothanhnien.official/video/7701755908191259922"
+    ],
+    "text": "Triều cường dâng cao, bao vây khu dân cư cao cấp ở phía nam TP.HCM #tiktokthanhnien #tiktoknews #trieucuong #tphcm",
+    "title": "Triều cường dâng cao, bao vây khu dân cư cao cấp ở phía nam TP.HCM #tiktokthanhnien #tiktoknews #trieucuong #tphcm",
+    "author": "baothanhnien.official",
+    "authorMeta": {
+      "name": "baothanhnien.official"
+    },
+    "createTimeISO": "2026-10-28T16:26:32+00:00",
+    "published": "Wed, 28 Oct 2026 16:26:32 GMT",
+    "extracted_date": "2026-10-28",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:15.205281+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7701653613583535361",
+    "url": "https://www.tiktok.com/@baothanhnien.official/video/7701653613583535361",
+    "webVideoUrl": "https://www.tiktok.com/@baothanhnien.official/video/7701653613583535361",
+    "mediaUrls": [
+      "https://www.tiktok.com/@baothanhnien.official/video/7701653613583535361"
+    ],
+    "text": "Triều cường đạt đỉnh mưa lớn trở lại, nguy cơ ngập nặng nhiều nơi #tiktokthanhnien #tiktoknews #trieucuong #tphcm",
+    "title": "Triều cường đạt đỉnh mưa lớn trở lại, nguy cơ ngập nặng nhiều nơi #tiktokthanhnien #tiktoknews #trieucuong #tphcm",
+    "author": "baothanhnien.official",
+    "authorMeta": {
+      "name": "baothanhnien.official"
+    },
+    "createTimeISO": "2026-10-28T09:49:34+00:00",
+    "published": "Wed, 28 Oct 2026 09:49:34 GMT",
+    "extracted_date": "2026-10-28",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:15.722609+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7700488846949109012",
+    "url": "https://www.tiktok.com/@vtv.times/video/7700488846949109012",
+    "webVideoUrl": "https://www.tiktok.com/@vtv.times/video/7700488846949109012",
+    "mediaUrls": [
+      "https://www.tiktok.com/@vtv.times/video/7700488846949109012"
+    ],
+    "text": "Đợt triều cường rằm tháng 9 âm lịch tại Nam Bộ đang lên cao, có nơi vượt báo động 3, làm gia tăng nguy cơ ngập trong 2 - 3 ngày tới. #vtvtimes #vtvonline #tiktoknews #thoisu #trieucuong #tphcm",
+    "title": "Đợt triều cường rằm tháng 9 âm lịch tại Nam Bộ đang lên cao, có nơi vượt báo động 3, làm gia tăng nguy cơ ngập trong 2 - 3 ngày tới. #vtvtimes #vtvonline #tiktoknews #thoisu #trieucuong #tphcm",
+    "author": "vtv.times",
+    "authorMeta": {
+      "name": "vtv.times"
+    },
+    "createTimeISO": "2026-10-25T11:00:00+00:00",
+    "published": "Sun, 25 Oct 2026 11:00:00 GMT",
+    "extracted_date": "2026-10-25",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:16.258791+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7701181158750457095",
+    "url": "https://www.tiktok.com/@sggp.org.vn/video/7701181158750457095",
+    "webVideoUrl": "https://www.tiktok.com/@sggp.org.vn/video/7701181158750457095",
+    "mediaUrls": [
+      "https://www.tiktok.com/@sggp.org.vn/video/7701181158750457095"
+    ],
+    "text": "Dự báo mưa gia tăng ở Nam bộ, nguy cơ ngập do triều cường tại TPHCM #thoitiet #muabao #trieucuong",
+    "title": "Dự báo mưa gia tăng ở Nam bộ, nguy cơ ngập do triều cường tại TPHCM #thoitiet #muabao #trieucuong",
+    "author": "sggp.org.vn",
+    "authorMeta": {
+      "name": "sggp.org.vn"
+    },
+    "createTimeISO": "2026-10-27T03:16:17+00:00",
+    "published": "Tue, 27 Oct 2026 03:16:17 GMT",
+    "extracted_date": "2026-10-27",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:17.359966+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695982689815465234",
+    "url": "https://www.tiktok.com/@kienthuckinhte28/video/7695982689815465234",
+    "webVideoUrl": "https://www.tiktok.com/@kienthuckinhte28/video/7695982689815465234",
+    "mediaUrls": [
+      "https://www.tiktok.com/@kienthuckinhte28/video/7695982689815465234"
+    ],
+    "text": "Cảnh tượng 'lạ' ở TPHCM: Người dân tự đào rãnh trong nhà để chống chọi mùa triều cường #tiktoknews #news #TPHCM #50 #41",
+    "title": "Cảnh tượng 'lạ' ở TPHCM: Người dân tự đào rãnh trong nhà để chống chọi mùa triều cường #tiktoknews #news #TPHCM #50 #41",
+    "author": "kienthuckinhte28",
+    "authorMeta": {
+      "name": "kienthuckinhte28"
+    },
+    "createTimeISO": "2026-10-13T04:00:00+00:00",
+    "published": "Tue, 13 Oct 2026 04:00:00 GMT",
+    "extracted_date": "2026-10-13",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:18.885482+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7696084046710918421",
+    "url": "https://www.tiktok.com/@vlive.edu/video/7696084046710918421",
+    "webVideoUrl": "https://www.tiktok.com/@vlive.edu/video/7696084046710918421",
+    "mediaUrls": [
+      "https://www.tiktok.com/@vlive.edu/video/7696084046710918421"
+    ],
+    "text": "Nhiều trường ở TP.HCM cho học sinh về sớm để tránh triều cường dâng cao, bảo đảm an toàn khi di chuyển. #tiktoknews#Vliveedu#vtvcab#hocsinh#TPHCM#dq",
+    "title": "Nhiều trường ở TP.HCM cho học sinh về sớm để tránh triều cường dâng cao, bảo đảm an toàn khi di chuyển. #tiktoknews#Vliveedu#vtvcab#hocsinh#TPHCM#dq",
+    "author": "vlive.edu",
+    "authorMeta": {
+      "name": "vlive.edu"
+    },
+    "createTimeISO": "2026-10-13T09:55:00+00:00",
+    "published": "Tue, 13 Oct 2026 09:55:00 GMT",
+    "extracted_date": "2026-10-13",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:19.435567+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "722aed65ed6d0814",
+    "url": "https://www.tiktok.com/discover/%C4%91%C6%B0%E1%BB%9Dng-m%C3%A3-l%C3%B2-b%C3%ACnh-t%C3%A2n-n%C6%B0%E1%BB%9Bc-ng%E1%BA%ADp",
+    "webVideoUrl": "https://www.tiktok.com/discover/%C4%91%C6%B0%E1%BB%9Dng-m%C3%A3-l%C3%B2-b%C3%ACnh-t%C3%A2n-n%C6%B0%E1%BB%9Bc-ng%E1%BA%ADp",
+    "mediaUrls": [
+      "https://www.tiktok.com/discover/%C4%91%C6%B0%E1%BB%9Dng-m%C3%A3-l%C3%B2-b%C3%ACnh-t%C3%A2n-n%C6%B0%E1%BB%9Bc-ng%E1%BA%ADp"
+    ],
+    "text": "Đường Mã Lò Bình Tân Nước Ngập",
+    "title": "Đường Mã Lò Bình Tân Nước Ngập",
+    "author": "Tiktok Creator",
+    "authorMeta": {
+      "name": "Tiktok Creator"
+    },
+    "createTimeISO": "2026-10-19T07:00:00+00:00",
+    "published": "Mon, 19 Oct 2026 07:00:00 GMT",
+    "extracted_date": "2026-10-19",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T15:18:22.745771+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7695986523157712129",
+    "url": "https://www.tiktok.com/@theanh28.saigonnews/video/7695986523157712129",
+    "webVideoUrl": "https://www.tiktok.com/@theanh28.saigonnews/video/7695986523157712129",
+    "mediaUrls": [
+      "https://www.tiktok.com/@theanh28.saigonnews/video/7695986523157712129"
+    ],
+    "text": "Người dân tự đào rãnh trong nhà để chống chọi mùa triều cường ở TPHCM #saigonnews #theanh28 #tiktoknews",
+    "title": "Người dân tự đào rãnh trong nhà để chống chọi mùa triều cường ở TPHCM #saigonnews #theanh28 #tiktoknews",
+    "author": "theanh28.saigonnews",
+    "authorMeta": {
+      "name": "theanh28.saigonnews"
+    },
+    "createTimeISO": "2026-10-13T04:00:00+00:00",
+    "published": "Tue, 13 Oct 2026 04:00:00 GMT",
+    "extracted_date": "2026-10-13",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T16:33:22.396357+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7660755259291176212",
+    "url": "https://www.tiktok.com/@minn.cookie/video/7660755259291176212",
+    "webVideoUrl": "https://www.tiktok.com/@minn.cookie/video/7660755259291176212",
+    "mediaUrls": [
+      "https://www.tiktok.com/@minn.cookie/video/7660755259291176212"
+    ],
+    "text": "Ở Sài Gòn, có một tiệm Crepe Sầu Riêng nhân ngập tràn ngon ơi là ngon #MinnCookie #AnCungTikTok #ReviewAnNgon #LearnOnTikTok #saurieng",
+    "title": "Ở Sài Gòn, có một tiệm Crepe Sầu Riêng nhân ngập tràn ngon ơi là ngon #MinnCookie #AnCungTikTok #ReviewAnNgon #LearnOnTikTok #saurieng",
+    "author": "minn.cookie",
+    "authorMeta": {
+      "name": "minn.cookie"
+    },
+    "createTimeISO": "2026-07-09T07:00:00+00:00",
+    "published": "Thu, 09 Jul 2026 07:00:00 GMT",
+    "extracted_date": "2026-07-09",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T16:33:22.919385+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7696440286007790856",
+    "url": "https://www.tiktok.com/@cafetek/video/7696440286007790856",
+    "webVideoUrl": "https://www.tiktok.com/@cafetek/video/7696440286007790856",
+    "mediaUrls": [
+      "https://www.tiktok.com/@cafetek/video/7696440286007790856"
+    ],
+    "text": "🌧️\"ĐẠP NƯỚC RẼ SÓNG\" MÙA MƯA SÀI GÒN??? Tưởng tan làm được về nhà sớm, ai dè Sài Gòn tặng ngay combo ngập lụt kinh điển. Thay vì cắm đầu mở Google Maps rồi tự nguyện lao vào “đạp nước rẽ sóng”, dân văn phòng giờ phải chuyển sang hệ th",
+    "title": "🌧️\"ĐẠP NƯỚC RẼ SÓNG\" MÙA MƯA SÀI GÒN??? Tưởng tan làm được về nhà sớm, ai dè Sài Gòn tặng ngay combo ngập lụt kinh điển. Thay vì cắm đầu mở Google Maps rồi tự nguyện lao vào “đạp nước rẽ sóng”, dân văn phòng giờ phải chuyển sang hệ th",
+    "author": "cafetek",
+    "authorMeta": {
+      "name": "cafetek"
+    },
+    "createTimeISO": "2026-10-14T08:39:12+00:00",
+    "published": "Wed, 14 Oct 2026 08:39:12 GMT",
+    "extracted_date": "2026-10-14",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T16:33:24.125623+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "7622146597392010512",
+    "url": "https://www.tiktok.com/@thuvienphapluat.vn/video/7622146597392010512",
+    "webVideoUrl": "https://www.tiktok.com/@thuvienphapluat.vn/video/7622146597392010512",
+    "mediaUrls": [
+      "https://www.tiktok.com/@thuvienphapluat.vn/video/7622146597392010512"
+    ],
+    "text": "Đề nghị mở rộng Quốc lộ 1A: Không còn kẹt xe, chẳng sợ ngập nước #ThuVienPhapLuat #TVPL #Hoccungtiktok #Learnontiktok #HaTangGiaoThong #TPHCM #QuyHoachDoThi",
+    "title": "Đề nghị mở rộng Quốc lộ 1A: Không còn kẹt xe, chẳng sợ ngập nước #ThuVienPhapLuat #TVPL #Hoccungtiktok #Learnontiktok #HaTangGiaoThong #TPHCM #QuyHoachDoThi",
+    "author": "thuvienphapluat.vn",
+    "authorMeta": {
+      "name": "thuvienphapluat.vn"
+    },
+    "createTimeISO": "2026-03-28T07:00:00+00:00",
+    "published": "Sat, 28 Mar 2026 07:00:00 GMT",
+    "extracted_date": "2026-03-28",
+    "platform": "tiktok",
+    "crawled_at": "2026-10-29T16:33:25.600745+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
   }
 ]

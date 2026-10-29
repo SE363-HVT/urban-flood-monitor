@@ -52,6 +52,7 @@ ehthumbs.db
 
 # Backup files
 *.bak
+*.backup*
 
 # Temporary / Scratch test scripts
 scratch/

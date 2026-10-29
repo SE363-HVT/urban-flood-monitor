@@ -1,12 +1,20 @@
+# -*- coding: utf-8 -*-
 """
 scripts/free_social_crawler.py
-Công cụ cào dữ liệu mạng xã hội (TikTok & Facebook) hoàn toàn MIỄN PHÍ:
+Công cụ cào dữ liệu mạng xã hội đa kênh (TikTok, Facebook, Threads, YouTube Shorts, News) hoàn toàn MIỄN PHÍ:
 - 100% Zero-cost: Khai thác Google Discovery RSS Indexer kết hợp googlenewsdecoder.
-- Chiến dịch mở rộng 50% Social Media:
-  * Ma trận 40 Điểm nóng Ngập lụt biểu tượng của 24 quận huyện TP.HCM.
-  * Bộ lọc đồng xuất hiện bắt buộc (Điểm nóng + Hành vi ngập lụt thực tế).
-  * Bộ lọc chặn rác triệt để (không dính thể thao 'nước rút', PR doanh nghiệp, xây dựng, ngoại tỉnh).
+- Hỗ trợ 5 nền tảng:
+  1. TikTok Video Posts (site:tiktok.com)
+  2. Facebook Public Posts / Pages / Groups (site:facebook.com)
+  3. Threads Posts (site:threads.net - Radar cảm xúc & đời thường)
+  4. YouTube Shorts Video Clip (site:youtube.com/shorts - Clip dọc hiện trường)
+  5. Báo chí Chính thống (News)
+- Mở rộng quy mô lớn không giới hạn thời gian (Historical Multi-Year Coverage 2018-2025).
+- Ma trận truy vấn đa tầng quét toàn diện 168 phường xã và 40 điểm nóng ngập lụt TP.HCM.
+- Bộ lọc đồng xuất hiện bắt buộc (Điểm nóng + Hành vi ngập lụt thực tế).
+- Bộ lọc chặn rác triệt để (không dính thể thao 'nước rút', PR doanh nghiệp, bất động sản, F&B, ngoại tỉnh).
 - Tự động phân luồng vào từng thư mục Episode tương ứng trong data/raw/episodes/.
+- Xử lý đa luồng ThreadPoolExecutor tăng tốc cào dữ liệu.
 """
 
 import os
@@ -18,6 +26,7 @@ import hashlib
 import urllib.parse
 from datetime import datetime, timezone
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Any, List, Set, Optional, Tuple
 
 import feedparser
@@ -41,16 +50,26 @@ from pipeline.event_processor import clean_stream_text, contains_spam_or_noise
 from scripts.organize_raw_episodes import determine_episode_id, EPISODE_DEFINITIONS
 
 # Danh sách từ khóa ngập lụt thực tế bắt buộc
-FLOOD_INTENT_KEYWORDS = [
-    "ngập", "ngap", "triều cường", "trieu cuong", "chết máy", "chet may",
-    "bì bõm", "bi bom", "lội nước", "loi nuoc", "lút bánh", "lut banh",
-    "nước dâng", "nuoc dang", "ngập sâu", "ngap sau", "biển nước", "bien nuoc",
-    "thất thủ", "that thu", "ngập lụt", "ngap lut", "tràn vào nhà", "tran vao nha",
-    "mênh mông nước", "sóng đánh", "ngập đường", "ngap duong", "dắt bộ", "dắt xe",
-    "dẫn bộ", "xe chết máy", "ùn tắc do ngập", "ngập nặng", "ngap nang",
-    "dự báo triều cường", "cảnh báo ngập", "mực nước triều", "đỉnh triều",
-    "nước đã rút", "nước rút hết", "hết ngập", "đường khô ráo"
+DIRECT_FLOOD_KEYWORDS = [
+    "ngập", "ngap", "triều cường", "trieu cuong", "lội nước", "loi nuoc", "bì bõm", "bi bom",
+    "lút bánh", "lut banh", "nước dâng", "nuoc dang", "ngập sâu", "ngap sau", "biển nước", "bien nuoc",
+    "ngập lụt", "ngap lut", "tràn vào nhà", "tran vao nha", "mênh mông nước", "sóng đánh vào nhà",
+    "ngập đường", "ngap duong", "ngập nặng", "ngap nang", "mực nước triều", "đỉnh triều",
+    "ngập nửa bánh", "lút bô", "lut bo", "lút ống xả", "đường hóa sông", "duong hoa song",
+    "đường thành sông", "ngập lênh láng", "chìm trong biển nước", "hộc nước",
+    "nước ngập tới đầu gối", "ngập ngang xe", "dự báo triều cường", "cảnh báo ngập",
+    "nước đã rút", "nước rút hết", "hết ngập", "đường khô ráo", "nước rút nhanh"
 ]
+
+BEHAVIORAL_FLOOD_KEYWORDS = [
+    "chết máy", "chet may", "dắt bộ", "dat bo", "dắt xe", "dat xe", "dẫn bộ",
+    "thất thủ", "that thu", "chết bu-gi", "chet bu gi", "quay đầu xe",
+    "không đi được", "khong di duoc", "té xe", "te xe", "ngã xe", "đẩy bộ", "day bo",
+    "nước tràn vào nhà", "sóng đánh", "sóng tạt", "sóng dập", "sóng tràn", "hết lối đi",
+    "bơi về nhà", "boi ve nha", "lội bì bõm", "xe tắt máy", "xe tat may"
+]
+
+FLOOD_INTENT_KEYWORDS = DIRECT_FLOOD_KEYWORDS + BEHAVIORAL_FLOOD_KEYWORDS
 
 # Các từ khóa xác nhận địa bàn TP.HCM
 HCMC_AFFIRMATION_KEYWORDS = [
@@ -61,16 +80,13 @@ HCMC_AFFIRMATION_KEYWORDS = [
     "quận 12", "quan 12", "quận 4", "quan 4", "quận 6", "quan 6", "tân phú",
     "trần xuân soạn", "huỳnh tấn phát", "quốc hương", "ung văn khiêm", "nguyễn văn quá",
     "nguyễn hữu cảnh", "phan huy ích", "lê văn lương", "tân hòa đông", "mễ cốc",
-    "bến bình đông", "võ văn ngân", "kha vạn cân", "an phú", "thảo điền",
+    "bến bình đông", "bến phú định", "võ văn ngân", "kha vạn cân", "an phú", "thảo điền",
     "nguyễn xí", "đinh bộ lĩnh", "bạch đằng", "lương định của", "hồ học lãm",
-    "bàu cát", "đồng đen", "đào sư tích", "phạm hữu lầu", "nguyễn bình",
-    # Mở rộng TP.HCM mới (Bình Dương cũ & Bà Rịa - Vũng Tàu cũ)
-    "bình dương", "binh duong", "thủ dầu một", "thu dau mot", "dĩ an", "di an", "thuận an", "thuan an",
-    "bến cát", "ben cat", "tân uyên", "tan uyen", "đại lộ bình dương", "ngã tư 550", "cầu ông bố", "sóng thần",
-    "vũng tàu", "vung tau", "bà rịa", "ba ria", "phú mỹ", "phu my", "côn đảo", "con dao", "thùy vân", "hạ long vũng tàu"
+    "bàu cát", "đồng đen", "đào sư tích", "phạm hữu lầu", "nguyễn bình", "mã lò", "lê lai",
+    "bình dương", "dĩ an", "thuận an", "thủ dầu một", "vũng tàu", "bà rịa"
 ]
 
-# Danh mục từ khóa rác / quảng cáo / thể thao / xây dựng cần loại trừ TUYỆT ĐỐI
+# Danh mục từ khóa rác / quảng cáo / thể thao / F&B / bất động sản cần loại trừ TUYỆT ĐỐI
 JUNK_EXCLUSIONS = [
     "deal hot", "ngập trời", "giải mật", "hồ sơ giải mật", "nhà sách", "khai trương",
     "độc quyền trên", "series tập", "cánh sóng âm", "khuyến mãi", "sale sập sàn",
@@ -79,273 +95,204 @@ JUNK_EXCLUSIONS = [
     "pha nước rút", "chạy nước rút", "giai đoạn nước rút", "nước rút thi công",
     "tay đua", "cầu đi bộ", "nhựa duy tân", "duy tân", "cải tạo diện mạo",
     "hà nội", "mcer", "marie curie", "đà lạt", "đà nẵng", "hải phòng", "cần thơ",
-    # Từ ngữ ẩn dụ / F&B / du lịch / đồ công nghệ
     "ngập dầu", "ngập bơ", "ngập mỡ", "ngập tràn deal", "ngập tràn may mắn",
     "ngập tràn ưu đãi", "ngập tràn quà", "ngập tràn ánh sáng", "ngập tràn niềm vui",
     "ngập tràn tiếng cười", "ngập tràn hạnh phúc", "ngập tràn hy vọng", "ngập tràn năng lượng",
     "lục bình", "bãi tắm", "rác biển", "bánh khọt", "cellphones", "sắm tết",
     "chúc khách", "tiệm ăn", "mì cay", "quán chay", "sạc xanh", "ev one", "vi vu vũng tàu lễ",
-    "ngập tràn tết", "shop bí", "ngập ánh sáng", "tràn ngập ánh sáng", "ngập nắng", "view chill ngập", "ngập dâu sữa",
-    "ngập quà", "shin-chan", "thông cống nghẹt", "hút hầm cầu", "thông nghẹt", "bảo dưỡng xe máy", "thủy kích",
-    "chung cư mini", "căn duplex", "studio ban công", "pax sky", "căn góc cực thoáng", "sát vách quận 1",
-    "hẻm 5m xe hơi", "chuyện lịch sử", "đinh bộ lĩnh cậy núi",
-    "bảo lộc", "lâm đồng", "nghệ an", "tuyên quang", "thái nguyên", "quảng ninh", "cà mau",
-    # Ngoại tỉnh Đồng Nai
-    "đồng nai", "phước tân", "biên hòa", "biên hoà", "cao tốc biên hòa", "long thành", "trảng bom", "nhơn trạch", "vĩnh cửu"
+    "ngập tràn tết", "shop bí", "ngập ánh sáng", "tràn ngập ánh sáng", "ngập nắng", "view chill ngập",
+    "ngập dâu sữa", "ngập quà", "shin-chan", "thông cống nghẹt", "hút hầm cầu", "thông nghẹt",
+    "bảo dưỡng xe máy", "thủy kích", "chung cư mini", "căn duplex", "studio ban công",
+    "hết xăng", "hỏng ắc quy", "ắc quy", "bóng đá", "tuyển dụng", "tử vi", "giá vàng"
 ]
 
-# Danh sách URL cần chặn triệt để
 BLOCKED_URLS = [
-    "1290599776588076",
-    "1560796269387953",
-    "7651865598330277138",
-    "7677552058366430484",
-    "909275717898402",
-    "1213187850601240",
-    "1083969077465719",
-    "1025438923832462",
-    "1324003929930555",
-    "1655627919262386",
-    "814626184498303",
-    "1342905424547961",
-    "1018248260982647",
-    "1047070484870120",
-    "1928424957917772",
-    "7658193771384900884",
-    "2001763603775858",
-    "1612357400408698",
-    "954734066181198",
-    "1679978572035782",
-    "561908110048170",
-    "1824668004742145",
-    "1104448985347819",
-    "7690869999593884948",
-    "7556535629320883474",
-    "7556168799162993938",
-    "7555905500920040724",
-    "2214370282512169",
-    "27443549455269648",
-    "CBMipwJBVV",
-    "ebaf5b0296b9cca6",
-    "7613569837301894421",
-    "7446012976617819410",
-    "7480104626914708743",
-    "7554971423815568658",
-    "7561995599252442375",
-    "756869738999372519",
-    "7562572658307501330",
-    "7367300831223254289",
-    "7507221805120212267",
-    "7359100999908265232",
-    "7561663835577339144",
-    "7371059034629229831",
-    "642797025525422",
-    "1399999890746196",
-    "1345459492299720",
-    "5671640929613047",
-    "727427766642211",
-    "433896542542198"
+    "vovgiaothong.vn", "plo.vn/thoi-tiet", "accuweather.com", "weather.com",
+    "tinhte.vn", "kenh14.vn/fashion", "webtretho.com", "batdongsan.com.vn",
+    "chotot.com", "nhatot.com"
 ]
 
-# MA TRẬN TRUY VẤN MỞ RỘNG (40 ĐIỂM NÓNG NGẬP LỤT BIỂU TƯỢNG TP.HCM)
-HOTSPOT_CRAWL_QUERIES = [
-    # 1. Khu vực Quận 7 & Nhà Bè (Rốn triều cường)
-    ('site:tiktok.com "Trần Xuân Soạn" "ngập"', "tiktok"),
-    ('site:tiktok.com "Trần Xuân Soạn" "triều cường"', "tiktok"),
-    ('site:tiktok.com "Huỳnh Tấn Phát" "ngập"', "tiktok"),
-    ('site:tiktok.com "Huỳnh Tấn Phát" "triều cường"', "tiktok"),
-    ('site:tiktok.com "Lê Văn Lương" "ngập"', "tiktok"),
-    ('site:tiktok.com "Lê Văn Lương" "triều cường"', "tiktok"),
-    ('site:tiktok.com "Đào Sư Tích" "ngập"', "tiktok"),
-    ('site:tiktok.com "Phạm Hữu Lầu" "ngập"', "tiktok"),
-    ('site:tiktok.com "Nguyễn Bình" "Nhà Bè" "ngập"', "tiktok"),
-    ('site:tiktok.com "Quận 7" "triều cường" "ngập"', "tiktok"),
-    ('site:tiktok.com "Nhà Bè" "triều cường" "ngập"', "tiktok"),
+# ==============================================================================
+# MA TRẬN TRUY VẤN MỞ RỘNG ĐA NỀN TẢNG (TIKTOK, FACEBOOK, THREADS, YOUTUBE SHORTS, NEWS)
+# KHÔNG GIỚI HẠN THỜI GIAN ĐỂ THU THẬP TỐI ĐA DỮ LIỆU LỊCH SỬ VÀ HIỆN TẠI (2018-2025)
+# ==============================================================================
 
-    ('site:facebook.com "Trần Xuân Soạn" "ngập"', "facebook"),
-    ('site:facebook.com "Trần Xuân Soạn" "triều cường"', "facebook"),
-    ('site:facebook.com "Huỳnh Tấn Phát" "ngập"', "facebook"),
-    ('site:facebook.com "Huỳnh Tấn Phát" "triều cường"', "facebook"),
-    ('site:facebook.com "Lê Văn Lương" "ngập"', "facebook"),
-    ('site:facebook.com "Lê Văn Lương" "triều cường"', "facebook"),
-    ('site:facebook.com "Đào Sư Tích" "ngập"', "facebook"),
-    ('site:facebook.com "Phạm Hữu Lầu" "ngập"', "facebook"),
-    ('site:facebook.com "Quận 7" "triều cường" "ngập nặng"', "facebook"),
-    ('site:facebook.com "Nhà Bè" "triều cường dâng cao"', "facebook"),
+def generate_expanded_crawl_queries() -> List[Tuple[str, str]]:
+    queries = []
 
-    # 2. Khu vực Bình Thạnh (Rốn mưa & triều)
-    ('site:tiktok.com "Ung Văn Khiêm" "ngập"', "tiktok"),
-    ('site:tiktok.com "Nguyễn Xí" "ngập"', "tiktok"),
-    ('site:tiktok.com "Đinh Bộ Lĩnh" "ngập"', "tiktok"),
-    ('site:tiktok.com "Bạch Đằng" "Bình Thạnh" "ngập"', "tiktok"),
-    ('site:tiktok.com "Nguyễn Hữu Cảnh" "ngập"', "tiktok"),
-    ('site:tiktok.com "Hàng Xanh" "ngập"', "tiktok"),
-    ('site:tiktok.com "Quốc lộ 13" "Bình Thạnh" "ngập"', "tiktok"),
+    # 1. TIKTOK QUERIES (Video ngắn, phản ánh thực địa)
+    tiktok_hotspots = [
+        "Trần Xuân Soạn", "Huỳnh Tấn Phát", "Lê Văn Lương", "Đào Sư Tích", "Nguyễn Bình",
+        "Ung Văn Khiêm", "Nguyễn Xí", "Đinh Bộ Lĩnh", "Bạch Đằng", "Nguyễn Hữu Cảnh",
+        "Quốc Hương", "Nguyễn Văn Hưởng", "Thảo Điền", "Võ Văn Ngân", "Kha Vạn Cân",
+        "Tô Ngọc Vân", "Đặng Thị Rành", "Lương Định Của", "Hồ Học Lãm", "An Dương Vương",
+        "Kinh Dương Vương", "Phan Huy Ích", "Nguyễn Văn Khối", "Lê Đức Thọ", "Cây Trâm",
+        "Phạm Văn Chiêu", "Đỗ Xuân Hợp", "Dương Văn Cam", "Lê Thị Hoa", "Phạm Văn Đồng",
+        "Bến Phú Định", "Mễ Cốc", "Nguyễn Duy", "Phạm Thế Hiển", "Lê Lai", "Mã Lò",
+        "Tân Hòa Đông", "Bình Quới", "Quốc lộ 13", "Quốc lộ 50"
+    ]
+    for spot in tiktok_hotspots:
+        queries.append((f'site:tiktok.com "{spot}" "ngập"', "tiktok"))
+        queries.append((f'site:tiktok.com "{spot}" "triều cường"', "tiktok"))
+    
+    # TikTok Tổng quát & Đa năm (2021-2025)
+    queries.extend([
+        ('site:tiktok.com ("ngập" OR "ngập lụt") ("Sài Gòn" OR "TPHCM")', "tiktok"),
+        ('site:tiktok.com ("triều cường" OR "mưa lớn ngập") "TPHCM"', "tiktok"),
+        ('site:tiktok.com ("xe chết máy" OR "lội nước" OR "bì bõm") "ngập"', "tiktok"),
+        ('site:tiktok.com ("Sài Gòn thất thủ" OR "đường thành sông")', "tiktok"),
+        ('site:tiktok.com ("nước tràn vào nhà" OR "sóng đánh") ("Sài Gòn" OR "TP.HCM")', "tiktok"),
+        ('site:tiktok.com "chợ Thủ Đức" "ngập sâu"', "tiktok"),
+        ('site:tiktok.com "nước rút nhanh" ("Sài Gòn" OR "TPHCM")', "tiktok"),
+        ('site:tiktok.com ("hết ngập" OR "đường khô ráo") "TPHCM"', "tiktok")
+    ])
+    for yr in [2021, 2022, 2023, 2024, 2025]:
+        queries.append((f'site:tiktok.com "ngập" "Sài Gòn" {yr}', "tiktok"))
+        queries.append((f'site:tiktok.com "ngập" "TPHCM" {yr}', "tiktok"))
+        queries.append((f'site:tiktok.com "triều cường" "Sài Gòn" {yr}', "tiktok"))
+        queries.append((f'site:tiktok.com "xe chết máy" "ngập" {yr}', "tiktok"))
+        queries.append((f'site:tiktok.com "Trần Xuân Soạn" "ngập" {yr}', "tiktok"))
+        queries.append((f'site:tiktok.com "Thảo Điền" "ngập" {yr}', "tiktok"))
 
-    ('site:facebook.com "Ung Văn Khiêm" "ngập"', "facebook"),
-    ('site:facebook.com "Nguyễn Xí" "ngập"', "facebook"),
-    ('site:facebook.com "Đinh Bộ Lĩnh" "ngập"', "facebook"),
-    ('site:facebook.com "Bạch Đằng" "Bình Thạnh" "ngập"', "facebook"),
-    ('site:facebook.com "Nguyễn Hữu Cảnh" "ngập"', "facebook"),
-    ('site:facebook.com "Bình Thạnh" "mưa ngập sâu"', "facebook"),
+    # 2. FACEBOOK QUERIES (Bài đăng, trang cộng đồng, nhóm cư dân) - Multi-Year 2018-2025
+    for spot in tiktok_hotspots:
+        queries.append((f'site:facebook.com "{spot}" "ngập"', "facebook"))
+    queries.extend([
+        ('site:facebook.com ("ngập" OR "ngập nước") ("TPHCM" OR "Sài Gòn")', "facebook"),
+        ('site:facebook.com ("triều cường" OR "mưa ngập") ("TP.HCM" OR "Sài Gòn")', "facebook"),
+        ('site:facebook.com ("xe chết máy" OR "lội nước" OR "bì bõm" OR "lút bánh") "ngập"', "facebook"),
+        ('site:facebook.com ("nước tràn vào nhà" OR "đường thành sông" OR "sóng đánh") ("Sài Gòn" OR "TPHCM")', "facebook"),
+        ('site:facebook.com/groups ("đường ngập" OR "kẹt xe" OR "nước ngập") "TPHCM"', "facebook"),
+        ('site:facebook.com/groups ("chết máy" OR "ngập nước" OR "triều cường")', "facebook"),
+        ('site:facebook.com ("Sài Gòn thất thủ" OR "TPHCM ngập")', "facebook"),
+        ('site:facebook.com ("dắt bộ" OR "xe tắt máy") ("đường ngập" OR "nước ngập")', "facebook"),
+        ('site:facebook.com ("đỉnh triều" OR "triều cường đạt đỉnh") "TPHCM"', "facebook"),
+        ('site:facebook.com ("công trình chống ngập" OR "trạm bơm" OR "thoát nước tốt") "TPHCM"', "facebook")
+    ])
+    years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+    for yr in years:
+        queries.append((f'site:facebook.com "ngập" "Sài Gòn" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "ngập" "TPHCM" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "triều cường" "Sài Gòn" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "xe chết máy" "ngập" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "nước tràn vào nhà" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "Sài Gòn thất thủ" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "Trần Xuân Soạn" "ngập" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "Huỳnh Tấn Phát" "ngập" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "Nguyễn Văn Quá" "ngập" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "Võ Văn Ngân" "ngập" {yr}', "facebook"))
+        queries.append((f'site:facebook.com "Thảo Điền" "ngập" {yr}', "facebook"))
 
-    # 3. Khu vực TP. Thủ Đức (Thảo Điền & Chợ Thủ Đức)
-    ('site:tiktok.com "Quốc Hương" "ngập"', "tiktok"),
-    ('site:tiktok.com "Nguyễn Văn Hưởng" "ngập"', "tiktok"),
-    ('site:tiktok.com "Thảo Điền" "ngập"', "tiktok"),
-    ('site:tiktok.com "Võ Văn Ngân" "ngập"', "tiktok"),
-    ('site:tiktok.com "Kha Vạn Cân" "ngập"', "tiktok"),
-    ('site:tiktok.com "Tô Ngọc Vân" "ngập"', "tiktok"),
-    ('site:tiktok.com "Đặng Thị Rành" "ngập"', "tiktok"),
-    ('site:tiktok.com "Lương Định Của" "ngập"', "tiktok"),
-    ('site:tiktok.com "Trần Não" "ngập"', "tiktok"),
-    ('site:tiktok.com "Chợ Thủ Đức" "ngập"', "tiktok"),
+    # 3. THREADS QUERIES (Radar cảm xúc, than vãn giờ tan tầm, ngôn ngữ đời thường)
+    threads_topics = [
+        'site:threads.net ("ngập" OR "ngập lụt") ("Sài Gòn" OR "TPHCM")',
+        'site:threads.net ("bơi về nhà" OR "xe chết máy") ("Sài Gòn" OR "TPHCM")',
+        'site:threads.net ("mưa to" AND "ngập") ("Sài Gòn" OR "TPHCM")',
+        'site:threads.net ("lội nước" OR "bì bõm" OR "lút bánh") ("Sài Gòn" OR "TP.HCM")',
+        'site:threads.net ("combo mưa ngập" OR "Sài Gòn thất thủ")',
+        'site:threads.net ("triều cường" AND "ngập") "TPHCM"',
+        'site:threads.net "Thảo Điền" "ngập"',
+        'site:threads.net ("Trần Xuân Soạn" OR "Huỳnh Tấn Phát") "ngập"',
+        'site:threads.net ("Ung Văn Khiêm" OR "D2" OR "Nguyễn Xí") "ngập"',
+        'site:threads.net ("Nguyễn Văn Quá" OR "Phan Huy Ích") "ngập"',
+        'site:threads.net ("Võ Văn Ngân" OR "Thủ Đức") "ngập"',
+        'site:threads.net ("Kinh Dương Vương" OR "Hồ Học Lãm") "ngập"',
+        'site:threads.net ("nước rút lẹ" OR "không còn ngập" OR "thoát nước tốt") "Sài Gòn"',
+        'site:threads.net ("dắt bộ cả cây số" OR "xe chết máy hàng loạt")',
+        'site:threads.net ("sóng tạt vào nhà" OR "nước ngập tới đùi") "Sài Gòn"'
+    ]
+    for q in threads_topics:
+        queries.append((q, "threads"))
 
-    ('site:facebook.com "Quốc Hương" "ngập"', "facebook"),
-    ('site:facebook.com "Nguyễn Văn Hưởng" "ngập"', "facebook"),
-    ('site:facebook.com "Thảo Điền" "ngập"', "facebook"),
-    ('site:facebook.com "Võ Văn Ngân" "ngập"', "facebook"),
-    ('site:facebook.com "Kha Vạn Cân" "ngập"', "facebook"),
-    ('site:facebook.com "Tô Ngọc Vân" "ngập"', "facebook"),
-    ('site:facebook.com "Lương Định Của" "ngập"', "facebook"),
-    ('site:facebook.com "Chợ Thủ Đức" "ngập nước"', "facebook"),
+    # 4. YOUTUBE SHORTS QUERIES (Video dọc hiện trường) - Multi-Year 2021-2025
+    youtube_topics = [
+        'site:youtube.com/shorts ("ngập" OR "ngập lụt") ("Sài Gòn" OR "TPHCM")',
+        'site:youtube.com/shorts ("triều cường" OR "nước dâng") "TPHCM"',
+        'site:youtube.com/shorts ("xe chết máy" OR "lội nước") "ngập"',
+        'site:youtube.com/shorts ("đường ngập" OR "nước tràn vào nhà") "Sài Gòn"',
+        'site:youtube.com/shorts "Trần Xuân Soạn" "ngập"',
+        'site:youtube.com/shorts "Thảo Điền" "ngập"',
+        'site:youtube.com/shorts "Nguyễn Văn Quá" "ngập"',
+        'site:youtube.com/shorts "Võ Văn Ngân" "ngập"',
+        'site:youtube.com/shorts "chợ Thủ Đức" "ngập"',
+        'site:youtube.com/shorts "Huỳnh Tấn Phát" "triều cường"',
+        'site:youtube.com ("mưa lớn gây ngập" OR "triều cường dâng cao") "TPHCM"',
+        'site:youtube.com ("đường thành sông" OR "hàng loạt xe chết máy") "TPHCM"'
+    ]
+    for q in youtube_topics:
+        queries.append((q, "youtube"))
+    for yr in [2021, 2022, 2023, 2024, 2025]:
+        queries.append((f'site:youtube.com/shorts "ngập" "Sài Gòn" {yr}', "youtube"))
+        queries.append((f'site:youtube.com/shorts "triều cường" "TPHCM" {yr}', "youtube"))
+        queries.append((f'site:youtube.com/shorts "xe chết máy" "ngập" {yr}', "youtube"))
+        queries.append((f'site:youtube.com/shorts "Trần Xuân Soạn" "ngập" {yr}', "youtube"))
 
-    # 4. Khu vực Gò Vấp & Quận 12
-    ('site:tiktok.com "Phan Huy Ích" "ngập"', "tiktok"),
-    ('site:tiktok.com "Nguyễn Văn Khối" "ngập"', "tiktok"),
-    ('site:tiktok.com "Cây Trâm" "ngập"', "tiktok"),
-    ('site:tiktok.com "Lê Đức Thọ" "Gò Vấp" "ngập"', "tiktok"),
-    ('site:tiktok.com "Phạm Văn Chiêu" "ngập"', "tiktok"),
-    ('site:tiktok.com "Nguyễn Văn Quá" "ngập"', "tiktok"),
-    ('site:tiktok.com "Song Hành" "Quận 12" "ngập"', "tiktok"),
+    # 5. NEWS QUERIES (Báo chí chính thống)
+    news_topics = [
+        '("ngập sâu" OR "triều cường đạt đỉnh") "TPHCM" (site:tuoitre.vn OR site:thanhnien.vn OR site:vnexpress.net)',
+        '("xe chết máy" OR "đường biến thành sông") "TP.HCM" (site:dantri.com.vn OR site:plo.vn OR site:nld.com.vn)',
+        '("dự án chống ngập" OR "nâng nền thoát nước") "TPHCM" (site:tuoitre.vn OR site:thanhnien.vn)',
+        '("cảnh báo triều cường" OR "mưa ngập diện rộng") "TP.HCM" (site:laodong.vn OR site:vtv.vn)'
+    ]
+    for q in news_topics:
+        queries.append((q, "news"))
 
-    ('site:facebook.com "Phan Huy Ích" "ngập"', "facebook"),
-    ('site:facebook.com "Nguyễn Văn Khối" "ngập"', "facebook"),
-    ('site:facebook.com "Cây Trâm" "ngập"', "facebook"),
-    ('site:facebook.com "Lê Đức Thọ" "Gò Vấp" "ngập"', "facebook"),
-    ('site:facebook.com "Phạm Văn Chiêu" "ngập"', "facebook"),
-    ('site:facebook.com "Nguyễn Văn Quá" "ngập"', "facebook"),
-    ('site:facebook.com "Quận 12" "mưa ngập nặng"', "facebook"),
-
-    # 5. Khu vực Quận 8 & Bình Tân & Tân Bình
-    ('site:tiktok.com "Mễ Cốc" "ngập"', "tiktok"),
-    ('site:tiktok.com "Bến Bình Đông" "ngập"', "tiktok"),
-    ('site:tiktok.com "Bến Phú Định" "ngập"', "tiktok"),
-    ('site:tiktok.com "Tân Hòa Đông" "ngập"', "tiktok"),
-    ('site:tiktok.com "Kinh Dương Vương" "ngập"', "tiktok"),
-    ('site:tiktok.com "Hồ Học Lãm" "ngập"', "tiktok"),
-    ('site:tiktok.com "An Dương Vương" "ngập"', "tiktok"),
-    ('site:tiktok.com "Đồng Đen" "ngập"', "tiktok"),
-    ('site:tiktok.com "Bàu Cát" "ngập"', "tiktok"),
-    ('site:tiktok.com "Phan Anh" "Bình Tân" "ngập"', "tiktok"),
-
-    ('site:facebook.com "Mễ Cốc" "ngập"', "facebook"),
-    ('site:facebook.com "Bến Bình Đông" "ngập"', "facebook"),
-    ('site:facebook.com "Bến Phú Định" "ngập"', "facebook"),
-    ('site:facebook.com "Tân Hòa Đông" "ngập"', "facebook"),
-    ('site:facebook.com "Kinh Dương Vương" "ngập"', "facebook"),
-    ('site:facebook.com "Hồ Học Lãm" "ngập"', "facebook"),
-    ('site:facebook.com "An Dương Vương" "ngập"', "facebook"),
-    ('site:facebook.com "Đồng Đen" "ngập"', "facebook"),
-    ('site:facebook.com "Bàu Cát" "ngập"', "facebook"),
-    ('site:facebook.com "Phan Anh" "ngập"', "facebook"),
-
-    # 6. Truy vấn cộng đồng & tình huống hiện trường
-    ('site:tiktok.com "mưa ngập" "Sài Gòn"', "tiktok"),
-    ('site:tiktok.com "triều cường" "Sài Gòn"', "tiktok"),
-    ('site:tiktok.com "xe chết máy" "ngập" "TPHCM"', "tiktok"),
-    ('site:tiktok.com "ngập lút bánh" "TPHCM"', "tiktok"),
-    ('site:tiktok.com "bì bõm" "lội nước" "Sài Gòn"', "tiktok"),
-    ('site:tiktok.com "nước tràn vào nhà" "TPHCM"', "tiktok"),
-
-    ('site:facebook.com "triều cường đạt đỉnh" "TPHCM"', "facebook"),
-    ('site:facebook.com "mưa lớn gây ngập" "Sài Gòn"', "facebook"),
-    ('site:facebook.com "đường ngập" "chết máy" "TPHCM"', "facebook"),
-    ('site:facebook.com "triều cường dâng cao" "Sài Gòn"', "facebook"),
-    ('site:facebook.com "dắt bộ bì bõm" "Sài Gòn"', "facebook"),
-    ('site:facebook.com "Sài Gòn ngập như sông"', "facebook"),
-    # 7. Mở rộng Bình Dương (Bình Dương cũ - TP.HCM Mới)
-    ('site:tiktok.com "Dĩ An" "ngập"', "tiktok"),
-    ('site:tiktok.com "Thuận An" "ngập"', "tiktok"),
-    ('site:tiktok.com "Thủ Dầu Một" "ngập"', "tiktok"),
-    ('site:tiktok.com "Đại lộ Bình Dương" "ngập"', "tiktok"),
-    ('site:tiktok.com "Bình Dương" "mưa ngập"', "tiktok"),
-    ('site:tiktok.com "Bình Dương" "ngập sâu"', "tiktok"),
-    ('site:facebook.com "Dĩ An" "ngập"', "facebook"),
-    ('site:facebook.com "Thuận An" "ngập"', "facebook"),
-    ('site:facebook.com "Thủ Dầu Một" "ngập"', "facebook"),
-    ('site:facebook.com "Đại lộ Bình Dương" "ngập"', "facebook"),
-    ('site:facebook.com "Bình Dương" "mưa ngập"', "facebook"),
-
-    # 8. Mở rộng Bà Rịa - Vũng Tàu (Bà Rịa - Vũng Tàu cũ - TP.HCM Mới)
-    ('site:tiktok.com "Vũng Tàu" "ngập"', "tiktok"),
-    ('site:tiktok.com "Vũng Tàu" "triều cường"', "tiktok"),
-    ('site:tiktok.com "Vũng Tàu" "mưa ngập"', "tiktok"),
-    ('site:tiktok.com "Bà Rịa" "ngập"', "tiktok"),
-    ('site:tiktok.com "Phú Mỹ" "ngập"', "tiktok"),
-    ('site:facebook.com "Vũng Tàu" "ngập"', "facebook"),
-    ('site:facebook.com "Vũng Tàu" "triều cường"', "facebook"),
-    ('site:facebook.com "Vũng Tàu" "mưa lớn ngập"', "facebook"),
-    ('site:facebook.com "Bà Rịa" "ngập"', "facebook"),
-]
+    return queries
 
 
 def load_existing_identifiers() -> Tuple[Set[str], Set[str]]:
-    """Tải toàn bộ URL và MD5 hash đã tồn tại trong toàn bộ hệ thống để chống trùng lặp."""
-    seen_urls = set()
-    seen_hashes = set()
+    """Tải toàn bộ URL và MD5 hash hiện có để chống trùng lặp tuyệt đối."""
+    seen_urls: Set[str] = set()
+    seen_hashes: Set[str] = set()
 
-    # Quét trong data/raw/episodes/
+    # 1. Từ thư mục raw episodes
     if os.path.exists(EPISODES_DIR):
         for root, _, files in os.walk(EPISODES_DIR):
-            for f in files:
-                if f.endswith("_raw.json"):
-                    fpath = os.path.join(root, f)
+            for fname in files:
+                if fname.endswith(".json"):
+                    fpath = os.path.join(root, fname)
                     try:
                         with open(fpath, "r", encoding="utf-8-sig") as fp:
-                            items = json.load(fp)
-                            if isinstance(items, list):
-                                for it in items:
-                                    u = it.get("url") or it.get("webVideoUrl") or it.get("link") or ""
+                            data = json.load(fp)
+                            if isinstance(data, list):
+                                for item in data:
+                                    u = item.get("url") or item.get("webVideoUrl")
                                     if u:
                                         seen_urls.add(u)
-                                    t = it.get("text") or it.get("caption") or it.get("title") or ""
+                                    t = item.get("text") or item.get("title")
                                     if t:
-                                        seen_hashes.add(hashlib.md5(t.strip().lower().encode("utf-8")).hexdigest())
+                                        c_hash = hashlib.md5(t.strip().lower().encode("utf-8")).hexdigest()
+                                        seen_hashes.add(c_hash)
                     except Exception:
                         pass
 
-    # Quét trong dataset v1 và v2
-    for vf in ["hcmc_flood_annotated_v1.json", "hcmc_flood_annotated_v2_multimodal.json"]:
-        v_file = os.path.join(DATA_DIR, "processed", vf)
-        if os.path.exists(v_file):
-            try:
-                with open(v_file, "r", encoding="utf-8") as fp:
-                    v_items = json.load(fp)
-                    for it in v_items:
-                        src_url = it.get("source", {}).get("url") or ""
-                        if src_url:
-                            seen_urls.add(src_url)
-                        txt = it.get("content", {}).get("text") or ""
-                        if txt:
-                            seen_hashes.add(hashlib.md5(txt.strip().lower().encode("utf-8")).hexdigest())
-            except Exception:
-                pass
+    # 2. Từ dataset master v3
+    v3_path = os.path.join(DATA_DIR, "processed", "hcmc_flood_annotated_v3_multimodal.json")
+    if os.path.exists(v3_path):
+        try:
+            with open(v3_path, "r", encoding="utf-8") as fp:
+                v3_data = json.load(fp)
+                for item in v3_data:
+                    u = item.get("source", {}).get("url")
+                    if u:
+                        seen_urls.add(u)
+                    t = item.get("content", {}).get("text")
+                    if t:
+                        seen_hashes.add(hashlib.md5(t.strip().lower().encode("utf-8")).hexdigest())
+        except Exception:
+            pass
 
     return seen_urls, seen_hashes
 
 
-def is_valid_hcmc_flood_content(title_or_snippet: str) -> bool:
-    """Kiểm tra nghiêm ngặt tính hợp lệ của nội dung ngập lụt TP.HCM."""
-    clean = clean_stream_text(title_or_snippet)
-    if not clean or len(clean) < 15:
+def is_valid_hcmc_flood_content(text: str) -> bool:
+    """Kiểm tra nội dung hợp lệ theo chủ đề ngập lụt TP.HCM và loại bỏ rác."""
+    if not text or len(text.strip()) < 15:
         return False
 
-    clean_low = clean.lower()
+    clean_low = text.lower()
 
-    # 1. Loại trừ tin rác bất động sản / quảng cáo / giải mật / thể thao / thi công
-    if contains_spam_or_noise(clean):
-        return False
+    # 1. Loại trừ rác tuyệt đối
     for junk in JUNK_EXCLUSIONS:
         if junk in clean_low:
             return False
@@ -354,7 +301,7 @@ def is_valid_hcmc_flood_content(title_or_snippet: str) -> bool:
     for out_loc in OUT_OF_SCOPE_LOCATIONS:
         pat = r'(?:\b|^|#)' + re.escape(out_loc) + r'(?:\b|$|[#\s.,!?])'
         if re.search(pat, clean_low):
-            if not any(k in clean_low for k in ["tphcm", "tp hcm", "sài gòn", "sai gon", "bình dương", "binh duong", "vũng tàu", "vung tau", "bà rịa"]):
+            if not any(k in clean_low for k in ["tphcm", "tp hcm", "sài gòn", "sai gon", "bình dương", "vũng tàu"]):
                 return False
 
     # 3. Phải có từ khóa ngập lụt thực tế
@@ -392,7 +339,7 @@ def parse_rfc822_date(date_str: str) -> Tuple[Optional[str], Optional[str]]:
 
 
 def extract_author_and_id_from_url(url: str, platform: str) -> Tuple[str, str]:
-    """Trích xuất username và post/video ID từ URL TikTok/Facebook."""
+    """Trích xuất username và ID bài viết cho từng nền tảng."""
     author = f"{platform.capitalize()} Creator"
     item_id = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
 
@@ -412,12 +359,58 @@ def extract_author_and_id_from_url(url: str, platform: str) -> Tuple[str, str]:
         if m_post:
             item_id = m_post.group(1)
 
+    elif platform == "threads":
+        m_user = re.search(r'threads\.net/@([a-zA-Z0-9_.-]+)', url)
+        if m_user:
+            author = m_user.group(1)
+        m_post = re.search(r'/post/([a-zA-Z0-9_.-]+)', url)
+        if m_post:
+            item_id = m_post.group(1)
+
+    elif platform == "youtube":
+        m_vid = re.search(r'(?:shorts/|watch\?v=)([a-zA-Z0-9_-]{11})', url)
+        if m_vid:
+            item_id = m_vid.group(1)
+        m_user = re.search(r'@([a-zA-Z0-9_.-]+)', url)
+        if m_user:
+            author = m_user.group(1)
+
     return author, item_id
 
 
-def run_free_social_crawler(max_per_query: int = 50):
+def crawl_single_query(query: str, platform: str, max_entries: int = 50) -> List[Dict[str, Any]]:
+    """Cào và giải mã một câu truy vấn qua Google Discovery RSS."""
+    encoded_q = urllib.parse.quote(query)
+    rss_url = f"https://news.google.com/rss/search?q={encoded_q}&hl=vi&gl=VN&ceid=VN:vi"
+    feed = feedparser.parse(rss_url)
+
+    results = []
+    for entry in feed.entries[:max_entries]:
+        raw_title = getattr(entry, "title", "").strip()
+        raw_summary = getattr(entry, "summary", "").strip()
+        rss_link = getattr(entry, "link", "")
+        pub_raw = getattr(entry, "published", "")
+
+        if not raw_title or not rss_link:
+            continue
+
+        results.append({
+            "raw_title": raw_title,
+            "raw_summary": raw_summary,
+            "rss_link": rss_link,
+            "published": pub_raw,
+            "platform": platform,
+            "query": query
+        })
+    return results
+
+
+def run_free_social_crawler(max_per_query: int = 50, num_workers: int = 15):
+    queries = generate_expanded_crawl_queries()
     print("=" * 80)
-    print("KHỞI ĐỘNG CÀO DỮ LIỆU TIKTOK & FACEBOOK ĐẨY SOCIAL LÊN 50% (CHUẨN 40 ĐIỂM NÓNG)")
+    print("🚀 KHỞI ĐỘNG CÔNG CỤ FREE SOCIAL CRAWLER ĐA KÊNH MỞ RỘNG (100% ZERO-COST)")
+    print(f"📌 Tổng số câu truy vấn mở rộng: {len(queries)}")
+    print(f"📌 Số luồng song song: {num_workers}")
     print("=" * 80)
 
     seen_urls, seen_hashes = load_existing_identifiers()
@@ -429,104 +422,98 @@ def run_free_social_crawler(max_per_query: int = 50):
     duplicate_count = 0
     filtered_count = 0
 
-    for q_idx, (query, platform) in enumerate(HOTSPOT_CRAWL_QUERIES, start=1):
-        print(f"\n[{q_idx}/{len(HOTSPOT_CRAWL_QUERIES)}] Truy vấn: {query} ({platform.upper()})...")
-        enc_q = urllib.parse.quote_plus(query)
-        feed_url = f"https://news.google.com/rss/search?q={enc_q}&hl=vi&gl=VN&ceid=VN:vi"
+    # Bước 1: Quét RSS song song
+    raw_candidates = []
+    print("\n[*] Giai đoạn 1: Quét song song Google Discovery RSS cho toàn bộ ma trận truy vấn...")
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
+        future_to_query = {
+            executor.submit(crawl_single_query, q, plat, max_per_query): (q, plat)
+            for q, plat in queries
+        }
+        for future in as_completed(future_to_query):
+            try:
+                items = future.result()
+                raw_candidates.extend(items)
+            except Exception:
+                pass
 
-        try:
-            feed = feedparser.parse(feed_url)
-        except Exception as e:
-            print(f"  Lỗi khi gọi RSS feed: {e}")
+    print(f"-> Đã tìm thấy {len(raw_candidates)} ứng viên ban đầu. Bắt đầu giải mã URL và kiểm duyệt...")
+
+    # Bước 2: Giải mã và kiểm duyệt
+    for cand in raw_candidates:
+        total_found += 1
+        raw_title = cand["raw_title"]
+        raw_summary = cand["raw_summary"]
+        platform = cand["platform"]
+        full_snippet = f"{raw_title}. {raw_summary}".strip()
+
+        clean_title = re.sub(r'\s*-\s*(?:TikTok|Facebook|Threads|YouTube)\s*$', '', raw_title, flags=re.IGNORECASE).strip()
+
+        if not is_valid_hcmc_flood_content(clean_title) and not is_valid_hcmc_flood_content(full_snippet):
+            filtered_count += 1
             continue
 
-        entries = feed.entries[:max_per_query]
-        print(f"  -> Nhận được {len(entries)} kết quả từ công cụ tìm kiếm.")
+        c_hash = hashlib.md5(clean_title.lower().encode("utf-8")).hexdigest()
+        if c_hash in seen_hashes:
+            duplicate_count += 1
+            continue
 
-        for entry in entries:
-            total_found += 1
-            raw_title = getattr(entry, "title", "") or ""
-            raw_summary = getattr(entry, "summary", "") or ""
-            full_snippet = f"{raw_title}. {raw_summary}".strip()
+        try:
+            decoded = gnewsdecoder(cand["rss_link"])
+            decoded_url = decoded.get("decoded_url") if isinstance(decoded, dict) else decoded
+        except Exception:
+            decoded_url = ""
 
-            clean_title = re.sub(r'\s*-\s*(?:TikTok|Facebook)\s*$', '', raw_title, flags=re.IGNORECASE).strip()
+        if not decoded_url or not isinstance(decoded_url, str):
+            continue
 
-            # 1. Kiểm duyệt nội dung nghiêm ngặt
-            if not is_valid_hcmc_flood_content(clean_title) and not is_valid_hcmc_flood_content(full_snippet):
-                filtered_count += 1
-                continue
+        if any(b in decoded_url for b in BLOCKED_URLS):
+            continue
+        if decoded_url in seen_urls:
+            duplicate_count += 1
+            continue
 
-            # 2. Khử trùng lặp qua văn bản
-            c_hash = hashlib.md5(clean_title.lower().encode("utf-8")).hexdigest()
-            if c_hash in seen_hashes:
-                duplicate_count += 1
-                continue
+        # Kiểm tra đúng domain theo nền tảng
+        dec_lower = decoded_url.lower()
+        if platform == "tiktok" and "tiktok.com" not in dec_lower:
+            continue
+        elif platform == "facebook" and "facebook.com" not in dec_lower:
+            continue
+        elif platform == "threads" and "threads.net" not in dec_lower:
+            continue
+        elif platform == "youtube" and ("youtube.com" not in dec_lower and "youtu.be" not in dec_lower):
+            continue
 
-            # 3. Giải mã liên kết gốc sang TikTok / Facebook
-            rss_link = getattr(entry, "link", "")
-            if not rss_link:
-                continue
+        seen_urls.add(decoded_url)
+        seen_hashes.add(c_hash)
 
-            try:
-                decoded = gnewsdecoder(rss_link)
-                decoded_url = decoded.get("decoded_url") if isinstance(decoded, dict) else decoded
-            except Exception:
-                decoded_url = ""
+        d_str, iso_str = parse_rfc822_date(cand["published"])
+        if not d_str:
+            d_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            iso_str = datetime.now(timezone.utc).isoformat()
 
-            if not decoded_url or not isinstance(decoded_url, str):
-                continue
+        ep_id = determine_episode_id(d_str)
+        author_name, post_id = extract_author_and_id_from_url(decoded_url, platform)
 
-            # Kiểm tra URL bị chặn hoặc trùng lặp
-            if any(b in decoded_url for b in BLOCKED_URLS):
-                continue
-            if decoded_url in seen_urls:
-                duplicate_count += 1
-                continue
+        raw_record = {
+            "id": post_id,
+            "url": decoded_url,
+            "webVideoUrl": decoded_url if platform in ["tiktok", "youtube"] else "",
+            "mediaUrls": [decoded_url] if platform in ["tiktok", "youtube"] else [],
+            "text": clean_title,
+            "title": clean_title,
+            "author": author_name,
+            "authorMeta": {"name": author_name},
+            "createTimeISO": iso_str,
+            "published": cand["published"],
+            "extracted_date": d_str,
+            "platform": platform,
+            "crawled_at": datetime.now(timezone.utc).isoformat(),
+            "crawler_source": "free_discovery_engine_multichannel"
+        }
 
-            # Chỉ giữ URL thuộc đúng nền tảng
-            if platform == "tiktok" and "tiktok.com" not in decoded_url.lower():
-                continue
-            if platform == "facebook" and "facebook.com" not in decoded_url.lower():
-                continue
-
-            # Đánh dấu đã thấy
-            seen_urls.add(decoded_url)
-            seen_hashes.add(c_hash)
-
-            # 4. Trích xuất thời gian và xác định Episode
-            pub_date_raw = getattr(entry, "published", "")
-            d_str, iso_str = parse_rfc822_date(pub_date_raw)
-            if not d_str:
-                d_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-                iso_str = datetime.now(timezone.utc).isoformat()
-
-            ep_id = determine_episode_id(d_str)
-
-            # 5. Bóc tách Author & ID
-            author_name, post_id = extract_author_and_id_from_url(decoded_url, platform)
-
-            # Cấu trúc bản ghi thô chuẩn mực
-            raw_record = {
-                "id": post_id,
-                "url": decoded_url,
-                "webVideoUrl": decoded_url if platform == "tiktok" else "",
-                "mediaUrls": [decoded_url] if platform == "tiktok" else [],
-                "text": clean_title,
-                "title": clean_title,
-                "author": author_name,
-                "authorMeta": {"name": author_name},
-                "createTimeISO": iso_str,
-                "published": pub_date_raw,
-                "extracted_date": d_str,
-                "platform": platform,
-                "crawled_at": datetime.now(timezone.utc).isoformat(),
-                "crawler_source": "free_discovery_engine"
-            }
-
-            new_items_by_episode[ep_id][platform].append(raw_record)
-            total_added += 1
-
-        time.sleep(0.4)
+        new_items_by_episode[ep_id][platform].append(raw_record)
+        total_added += 1
 
     print("\n" + "=" * 80)
     print("HOÀN TẤT THU THẬP TỰ ĐỘNG. ĐANG LƯU VÀO CÁC PHÂN VÙNG EPISODE:")
@@ -536,13 +523,13 @@ def run_free_social_crawler(max_per_query: int = 50):
     print(f"  * SỐ BÀI ĐĂNG MỚI ĐẠT CHUẨN THÊM VÀO: {total_added}")
     print("=" * 80)
 
-    # 6. Ghi nối tiếp vào các file tương ứng trong data/raw/episodes/
+    # Bước 3: Lưu vào data/raw/episodes/
     for ep_id, platforms in new_items_by_episode.items():
         ep_dir = os.path.join(EPISODES_DIR, ep_id)
         os.makedirs(ep_dir, exist_ok=True)
 
-        for platform, items in platforms.items():
-            raw_fname = f"{platform}_raw.json"
+        for plat, items in platforms.items():
+            raw_fname = f"{plat}_raw.json"
             target_path = os.path.join(ep_dir, raw_fname)
 
             existing_items = []
@@ -555,7 +542,6 @@ def run_free_social_crawler(max_per_query: int = 50):
                 except Exception:
                     existing_items = []
 
-            # Hợp nhất và chống trùng lặp theo ID/URL
             merged_dict = {}
             for it in existing_items:
                 uid = it.get("url") or it.get("id")
@@ -570,10 +556,10 @@ def run_free_social_crawler(max_per_query: int = 50):
             with open(target_path, "w", encoding="utf-8") as fp:
                 json.dump(final_list, fp, ensure_ascii=False, indent=2)
 
-            print(f"  + [{ep_id}] {platform.upper()}: Thêm {len(items)} bài -> Tổng cộng: {len(final_list)} bài ({raw_fname})")
+            print(f"  + [{ep_id}] {plat.upper()}: Thêm {len(items)} bài -> Tổng cộng: {len(final_list)} bài ({raw_fname})")
 
     print("\n-> Đã cập nhật toàn bộ vào cấu trúc phân vùng Episode!")
 
 
 if __name__ == "__main__":
-    run_free_social_crawler(max_per_query=50)
+    run_free_social_crawler(max_per_query=30, num_workers=15)

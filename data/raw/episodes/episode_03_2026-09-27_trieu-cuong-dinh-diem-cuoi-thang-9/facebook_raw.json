@@ -3682,22 +3682,23 @@
     "crawler_source": "free_discovery_engine"
   },
   {
-    "id": "tphcm-c",
+    "id": "tphcm-c_s00",
     "url": "https://www.facebook.com/tapchitrithucznews.vn/posts/tphcm-c%C3%B3-n%C6%A1i-m%C6%B0a-to-v%C3%A0o-bu%E1%BB%95i-t%E1%BB%91i-%C4%91%E1%BB%89nh-tri%E1%BB%81u-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-l%C3%AAn-cao-185-m-c/122185625936670557/",
     "webVideoUrl": "",
     "mediaUrls": [],
-    "text": "TP.HCM có nơi mưa to vào buổi tối, đỉnh triều khu vực sông Sài Gòn lên cao 1,85 m có khả năng xuất hiện ngày 28-30/9",
+    "text": "TP.HCM có nơi mưa to vào buổi tối, đỉnh triều khu vực sông Sài Gòn lên cao 1,85 m có khả năng xuất hiện ngày 28-30/9.",
     "title": "TP.HCM có nơi mưa to vào buổi tối, đỉnh triều khu vực sông Sài Gòn lên cao 1,85 m có khả năng xuất hiện ngày 28-30/9",
     "author": "tapchitrithucznews.vn",
     "authorMeta": {
       "name": "tapchitrithucznews.vn"
     },
-    "createTimeISO": "2026-09-28T01:10:00+00:00",
-    "published": "Mon, 28 Sep 2026 01:10:00 GMT",
-    "extracted_date": "2026-09-28",
+    "createTimeISO": "2026-09-27T07:00:00+00:00",
+    "published": "Sun, 27 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-27",
     "platform": "facebook",
-    "crawled_at": "2026-10-11T09:48:15.855139+00:00",
-    "crawler_source": "free_discovery_engine"
+    "crawled_at": "2026-10-20T10:39:01.688995+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
   },
   {
     "id": "tp-h",
@@ -4168,11 +4169,11 @@
     "crawler_source": "free_discovery_engine"
   },
   {
-    "id": "684b48f5a5eeee32",
+    "id": "684b48f5a5eeee32_s00",
     "url": "https://www.facebook.com/svghongsaigon/posts/%EF%B8%8Ft%E1%BB%9Bi-n%E1%BB%AFa-chi%E1%BB%81u-nay-tphcm-v%C3%A0-mi%E1%BB%81n-t%C3%A2y-%C4%91%E1%BB%91i-m%E1%BA%B7t-%C4%91%E1%BB%89nh-tri%E1%BB%81u-cao-nh%E1%BA%A5t-t%E1%BB%AB-%C4%91%E1%BA%A7u-n%C4%83m-/1644016043949256/",
     "webVideoUrl": "",
     "mediaUrls": [],
-    "text": "🚣‍♂️TỚI NỮA: Chiều nay TPHCM và miền Tây đối mặt đỉnh triều cao nhất từ đầu năm 🤧",
+    "text": "🚣‍♂️TỚI NỮA: Chiều nay TPHCM và miền Tây đối mặt đỉnh triều cao nhất từ đầu năm 🤧.",
     "title": "🚣‍♂️TỚI NỮA: Chiều nay TPHCM và miền Tây đối mặt đỉnh triều cao nhất từ đầu năm 🤧",
     "author": "svghongsaigon",
     "authorMeta": {
@@ -4182,8 +4183,9 @@
     "published": "Mon, 28 Sep 2026 07:27:18 GMT",
     "extracted_date": "2026-09-28",
     "platform": "facebook",
-    "crawled_at": "2026-10-11T17:08:05.989003+00:00",
-    "crawler_source": "free_discovery_engine"
+    "crawled_at": "2026-10-20T10:38:57.878472+00:00",
+    "crawler_source": "sentence_litmus_engine",
+    "targeted_intent": "NEU"
   },
   {
     "id": "bi",
@@ -4252,11 +4254,11 @@
     "media_urls": []
   },
   {
-    "id": "tri",
+    "id": "tri_s00",
     "url": "https://www.facebook.com/tapchitrithucznews.vn/posts/tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-tphcm-%C4%91%E1%BA%A1t-%C4%91%E1%BB%89nh-ng%C6%B0%E1%BB%9Di-d%C3%A2n-ch%E1%BA%ADt-v%E1%BA%ADt-v%E1%BB%81-nh%C3%A0-gi%E1%BB%9D-tan-t%E1%BA%A7mtheo-%C4%91%C3%A0i-kh%C3%AD-t%C6%B0%E1%BB%A3/122185676990670557/",
     "webVideoUrl": "",
     "mediaUrls": [],
-    "text": "Triều cường TP.HCM đạt đỉnh, người dân chật vật về nhà giờ tan tầm Theo Đài Khí tượng thủy văn Nam bộ, TP.HCM và miền Tây sẽ xuất hiện nhiều đợt triều cường kéo dài đến 30/9. Trong đó, giai đoạn đạt đỉnh triều rơi vào ngày 28-30/9. Các khung giờ triều",
+    "text": "Trong đó, giai đoạn đạt đỉnh triều rơi vào ngày 28-30/9.",
     "title": "Triều cường TP.HCM đạt đỉnh, người dân chật vật về nhà giờ tan tầm Theo Đài Khí tượng thủy văn Nam bộ, TP.HCM và miền Tây sẽ xuất hiện nhiều đợt triều cường kéo dài đến 30/9. Trong đó, giai đoạn đạt đỉnh triều rơi vào ngày 28-30/9. Các khung giờ triều",
     "author": "tapchitrithucznews.vn",
     "authorMeta": {
@@ -4266,8 +4268,8 @@
     "published": "Mon, 28 Sep 2026 07:00:00 GMT",
     "extracted_date": "2026-09-28",
     "platform": "facebook",
-    "crawled_at": "2026-10-20T09:56:57.467718+00:00",
-    "crawler_source": "free_discovery_engine",
+    "crawled_at": "2026-10-20T10:39:09.624732+00:00",
+    "crawler_source": "sentence_litmus_engine",
     "targeted_intent": "NEU"
   },
   {
@@ -4290,60 +4292,561 @@
     "targeted_intent": "NEU"
   },
   {
-    "id": "684b48f5a5eeee32_s00",
-    "url": "https://www.facebook.com/svghongsaigon/posts/%EF%B8%8Ft%E1%BB%9Bi-n%E1%BB%AFa-chi%E1%BB%81u-nay-tphcm-v%C3%A0-mi%E1%BB%81n-t%C3%A2y-%C4%91%E1%BB%91i-m%E1%BA%B7t-%C4%91%E1%BB%89nh-tri%E1%BB%81u-cao-nh%E1%BA%A5t-t%E1%BB%AB-%C4%91%E1%BA%A7u-n%C4%83m-/1644016043949256/",
+    "id": "tphcm-tri",
+    "url": "https://www.facebook.com/zingstudioofficial/posts/tphcm-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-d%C3%A2ng-cao-m%E1%BB%99t-s%E1%BB%91-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-c%E1%BB%A5c-b%E1%BB%99/1100077366112100/",
     "webVideoUrl": "",
     "mediaUrls": [],
-    "text": "🚣‍♂️TỚI NỮA: Chiều nay TPHCM và miền Tây đối mặt đỉnh triều cao nhất từ đầu năm 🤧.",
-    "title": "🚣‍♂️TỚI NỮA: Chiều nay TPHCM và miền Tây đối mặt đỉnh triều cao nhất từ đầu năm 🤧",
-    "author": "svghongsaigon",
+    "text": "🌊 TP.HCM: Triều cường dâng cao, một số tuyến đường ngập cục bộ 👇",
+    "title": "🌊 TP.HCM: Triều cường dâng cao, một số tuyến đường ngập cục bộ 👇",
+    "author": "zingstudioofficial",
     "authorMeta": {
-      "name": "svghongsaigon"
-    },
-    "createTimeISO": "2026-09-28T07:27:18+00:00",
-    "published": "Mon, 28 Sep 2026 07:27:18 GMT",
-    "extracted_date": "2026-09-28",
-    "platform": "facebook",
-    "crawled_at": "2026-10-20T10:38:57.878472+00:00",
-    "crawler_source": "sentence_litmus_engine",
-    "targeted_intent": "NEU"
-  },
-  {
-    "id": "tphcm-c_s00",
-    "url": "https://www.facebook.com/tapchitrithucznews.vn/posts/tphcm-c%C3%B3-n%C6%A1i-m%C6%B0a-to-v%C3%A0o-bu%E1%BB%95i-t%E1%BB%91i-%C4%91%E1%BB%89nh-tri%E1%BB%81u-khu-v%E1%BB%B1c-s%C3%B4ng-s%C3%A0i-g%C3%B2n-l%C3%AAn-cao-185-m-c/122185625936670557/",
-    "webVideoUrl": "",
-    "mediaUrls": [],
-    "text": "TP.HCM có nơi mưa to vào buổi tối, đỉnh triều khu vực sông Sài Gòn lên cao 1,85 m có khả năng xuất hiện ngày 28-30/9.",
-    "title": "TP.HCM có nơi mưa to vào buổi tối, đỉnh triều khu vực sông Sài Gòn lên cao 1,85 m có khả năng xuất hiện ngày 28-30/9",
-    "author": "tapchitrithucznews.vn",
-    "authorMeta": {
-      "name": "tapchitrithucznews.vn"
-    },
-    "createTimeISO": "2026-09-27T07:00:00+00:00",
-    "published": "Sun, 27 Sep 2026 07:00:00 GMT",
-    "extracted_date": "2026-09-27",
-    "platform": "facebook",
-    "crawled_at": "2026-10-20T10:39:01.688995+00:00",
-    "crawler_source": "sentence_litmus_engine",
-    "targeted_intent": "NEU"
-  },
-  {
-    "id": "tri_s00",
-    "url": "https://www.facebook.com/tapchitrithucznews.vn/posts/tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-tphcm-%C4%91%E1%BA%A1t-%C4%91%E1%BB%89nh-ng%C6%B0%E1%BB%9Di-d%C3%A2n-ch%E1%BA%ADt-v%E1%BA%ADt-v%E1%BB%81-nh%C3%A0-gi%E1%BB%9D-tan-t%E1%BA%A7mtheo-%C4%91%C3%A0i-kh%C3%AD-t%C6%B0%E1%BB%A3/122185676990670557/",
-    "webVideoUrl": "",
-    "mediaUrls": [],
-    "text": "Trong đó, giai đoạn đạt đỉnh triều rơi vào ngày 28-30/9.",
-    "title": "Triều cường TP.HCM đạt đỉnh, người dân chật vật về nhà giờ tan tầm Theo Đài Khí tượng thủy văn Nam bộ, TP.HCM và miền Tây sẽ xuất hiện nhiều đợt triều cường kéo dài đến 30/9. Trong đó, giai đoạn đạt đỉnh triều rơi vào ngày 28-30/9. Các khung giờ triều",
-    "author": "tapchitrithucznews.vn",
-    "authorMeta": {
-      "name": "tapchitrithucznews.vn"
+      "name": "zingstudioofficial"
     },
     "createTimeISO": "2026-09-28T07:00:00+00:00",
     "published": "Mon, 28 Sep 2026 07:00:00 GMT",
     "extracted_date": "2026-09-28",
     "platform": "facebook",
-    "crawled_at": "2026-10-20T10:39:09.624732+00:00",
-    "crawler_source": "sentence_litmus_engine",
-    "targeted_intent": "NEU"
+    "crawled_at": "2026-10-29T15:18:39.498379+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "t",
+    "url": "https://www.facebook.com/vtvchuyendong/posts/t%E1%BA%A1i-tp-h%E1%BB%93-ch%C3%AD-minh-m%C6%B0a-l%E1%BB%9Bn-k%E1%BA%BFt-h%E1%BB%A3p-v%E1%BB%9Bi-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-%C4%91ang-%C4%91%E1%BA%A1t-%C4%91%E1%BB%89nh-khi%E1%BA%BFn-nhi%E1%BB%81u-tuy/1133957529291192/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Tại TP. Hồ Chí Minh, mưa lớn kết hợp với triều cường đang đạt đỉnh khiến nhiều tuyến đường ngập nước. Những con đường đã xuống cấp càng nguy hiểm khi nước phủ kín mặt đường, che khuất hoàn toàn các ổ gà, hố sâu. Người đi xe máy có thể gặp tai n",
+    "title": "Tại TP. Hồ Chí Minh, mưa lớn kết hợp với triều cường đang đạt đỉnh khiến nhiều tuyến đường ngập nước. Những con đường đã xuống cấp càng nguy hiểm khi nước phủ kín mặt đường, che khuất hoàn toàn các ổ gà, hố sâu. Người đi xe máy có thể gặp tai n",
+    "author": "vtvchuyendong",
+    "authorMeta": {
+      "name": "vtvchuyendong"
+    },
+    "createTimeISO": "2026-09-29T07:00:00+00:00",
+    "published": "Tue, 29 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-29",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:18:44.092926+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "d8c3e673fc05a656",
+    "url": "https://www.facebook.com/tapchitrithucznews.vn/posts/%C4%91%C6%B0%E1%BB%9Dng-khu-nam-tphcm-3-ng%C3%A0y-li%C3%AAn-ti%E1%BA%BFp-ng%E1%BA%ADp-v%C3%AC-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dngtheo-ghi-nh%E1%BA%ADn-c%E1%BB%A7a-tri-th/122185795568670557/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Đường khu Nam TP.HCM 3 ngày liên tiếp ngập vì triều cường Theo ghi nhận của Tri Thức - Znews chiều 29/9, nước triều dâng cao khiến đường Nguyễn Bình (xã Hiệp Phước, TP.HCM) tiếp tục chìm trong nước. Có đoạn ngập khoảng nửa mét, lút bánh xe má",
+    "title": "Đường khu Nam TP.HCM 3 ngày liên tiếp ngập vì triều cường Theo ghi nhận của Tri Thức - Znews chiều 29/9, nước triều dâng cao khiến đường Nguyễn Bình (xã Hiệp Phước, TP.HCM) tiếp tục chìm trong nước. Có đoạn ngập khoảng nửa mét, lút bánh xe má",
+    "author": "tapchitrithucznews.vn",
+    "authorMeta": {
+      "name": "tapchitrithucznews.vn"
+    },
+    "createTimeISO": "2026-09-29T07:00:00+00:00",
+    "published": "Tue, 29 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-29",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:18:48.243438+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "-d",
+    "url": "https://www.facebook.com/kttvhcm/posts/-d%E1%BB%B1-b%C3%A1o-m%E1%BB%B1c-n%C6%B0%E1%BB%9Bc-v%C3%A0-ng%E1%BA%ADp-do-tri%E1%BB%81u-ng%C3%A0y-2992026-t%E1%BA%A1i-khu-v%E1%BB%B1c-hi%E1%BB%87p-ph%C6%B0%E1%BB%9Bctheo-k%E1%BA%BFt-qu/1632450222002536/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "🌊 DỰ BÁO MỰC NƯỚC VÀ NGẬP DO TRIỀU NGÀY 29/9/2026 TẠI KHU VỰC HIỆP PHƯỚC Theo kết quả dự báo thử nghiệm của Khoa Khí tượng Thủy văn và Tài nguyên nước – Trường Đại học Tài nguyên và Môi trường TP.HCM, ngày 29/9/2026, mực nướ",
+    "title": "🌊 DỰ BÁO MỰC NƯỚC VÀ NGẬP DO TRIỀU NGÀY 29/9/2026 TẠI KHU VỰC HIỆP PHƯỚC Theo kết quả dự báo thử nghiệm của Khoa Khí tượng Thủy văn và Tài nguyên nước – Trường Đại học Tài nguyên và Môi trường TP.HCM, ngày 29/9/2026, mực nướ",
+    "author": "kttvhcm",
+    "authorMeta": {
+      "name": "kttvhcm"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:18:49.336812+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "b",
+    "url": "https://www.facebook.com/trungtambaochi.tphcm/posts/b%E1%BA%A3n-%C4%91%E1%BB%93-m%E1%BB%99t-s%E1%BB%91-%C4%91i%E1%BB%83m-th%C6%B0%E1%BB%9Dng-xuy%C3%AAn-ng%E1%BA%ADp-n%E1%BA%B7ng-do-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-b%E1%BA%A3n-%C4%91%E1%BB%93-d%C6%B0%E1%BB%9Bi-%C4%91%C3%A2y/1411911871122053/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "BẢN ĐỒ MỘT SỐ ĐIỂM THƯỜNG XUYÊN NGẬP NẶNG DO TRIỀU CƯỜNG Ở TPHCM Bản đồ dưới đây cập nhật một số khu vực có thể bị ngập do triều cường, giúp người dân chủ động lựa chọn lộ trình di chuyển. https://ttbc-hcm.gov.vn/ban-do-mot-so-diem",
+    "title": "BẢN ĐỒ MỘT SỐ ĐIỂM THƯỜNG XUYÊN NGẬP NẶNG DO TRIỀU CƯỜNG Ở TPHCM Bản đồ dưới đây cập nhật một số khu vực có thể bị ngập do triều cường, giúp người dân chủ động lựa chọn lộ trình di chuyển. https://ttbc-hcm.gov.vn/ban-do-mot-so-diem",
+    "author": "trungtambaochi.tphcm",
+    "authorMeta": {
+      "name": "trungtambaochi.tphcm"
+    },
+    "createTimeISO": "2026-09-28T11:21:15+00:00",
+    "published": "Mon, 28 Sep 2026 11:21:15 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:19:07.280066+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "kho",
+    "url": "https://www.facebook.com/toiladanthuduc.vn/posts/kho%E1%BA%A3ng-16h-chi%E1%BB%81u-30-9-m%C6%B0a-l%E1%BB%9Bn-tr%C3%BAt-xu%E1%BB%91ng-khu-v%E1%BB%B1c-th%E1%BB%A7-%C4%91%E1%BB%A9c-tp-hcm-khi%E1%BA%BFn-nhi%E1%BB%81u-tuy%E1%BA%BF/1525462732945074/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Khoảng 16h chiều 30-9, mưa lớn trút xuống khu vực Thủ Đức (TP HCM) khiến nhiều tuyến đường ngập sâu. Trên đường Tô Ngọc Vân, chỉ sau khoảng 10 phút mưa nặng hạt, nước đã dâng lút bánh xe, chảy xiết. Khu vực giao với đường Linh Đông ngập nặn",
+    "title": "Khoảng 16h chiều 30-9, mưa lớn trút xuống khu vực Thủ Đức (TP HCM) khiến nhiều tuyến đường ngập sâu. Trên đường Tô Ngọc Vân, chỉ sau khoảng 10 phút mưa nặng hạt, nước đã dâng lút bánh xe, chảy xiết. Khu vực giao với đường Linh Đông ngập nặn",
+    "author": "toiladanthuduc.vn",
+    "authorMeta": {
+      "name": "toiladanthuduc.vn"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:19:12.705648+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "f9b49ab114af4690",
+    "url": "https://www.facebook.com/tapchitrithucznews.vn/posts/%C4%91%C6%B0%E1%BB%9Dng-tphcm-h%C3%B3a-s%C3%B4ng-n%C6%B0%E1%BB%9Bc-ch%E1%BA%A3y-v%C3%A0o-nh%C3%A0-d%C3%A2n-nh%C6%B0-su%E1%BB%91i-sau-tr%E1%BA%ADn-m%C6%B0a-l%E1%BB%9Bnchi%E1%BB%81u-t%E1%BB%91i-30/122185956668670557/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Đường TP.HCM hóa sông, nước chảy vào nhà dân như suối sau trận mưa lớn Chiều tối 30/9, mưa lớn tiếp tục trút xuống nhiều khu vực TP.HCM, đúng thời điểm người dân tan ca. 17h tại đường Lý Tế Xuyên, phường Hiệp Bình, nước dâng cao quá đầu gối.",
+    "title": "Đường TP.HCM hóa sông, nước chảy vào nhà dân như suối sau trận mưa lớn Chiều tối 30/9, mưa lớn tiếp tục trút xuống nhiều khu vực TP.HCM, đúng thời điểm người dân tan ca. 17h tại đường Lý Tế Xuyên, phường Hiệp Bình, nước dâng cao quá đầu gối.",
+    "author": "tapchitrithucznews.vn",
+    "authorMeta": {
+      "name": "tapchitrithucznews.vn"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:19:19.878667+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "tp-hcm-",
+    "url": "https://www.facebook.com/vtvthoitiet/posts/tp-hcm-%C4%91%C6%B0%E1%BB%9Dng-l%E1%BA%A1i-bi%E1%BA%BFn-th%C3%A0nh-s%C3%B4ng-n%C6%B0%E1%BB%9Bc-ch%E1%BA%A3y-m%E1%BA%A1nh-%C4%91%C6%B0%E1%BB%9Dng-v%E1%BB%81-nh%C3%A0-h%C3%B4m-nay-xa-qu%C3%A1%C4%91%C3%A2y-l/1540624824760709/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TP. HCM: Đường lại biến thành sông, nước chảy mạnh Đường về nhà hôm nay xa quá Đây là lần ngập thứ 2 trong ngày cuối cùng của tháng 9 Địa điểm: Đường Phan Huy Ích Nguồn: Bùi Quang Phúc",
+    "title": "TP. HCM: Đường lại biến thành sông, nước chảy mạnh Đường về nhà hôm nay xa quá Đây là lần ngập thứ 2 trong ngày cuối cùng của tháng 9 Địa điểm: Đường Phan Huy Ích Nguồn: Bùi Quang Phúc",
+    "author": "vtvthoitiet",
+    "authorMeta": {
+      "name": "vtvthoitiet"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:20:11.617177+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "phan-huy-",
+    "url": "https://www.facebook.com/DoHoaiThuongDuLichVaCuocSong/videos/phan-huy-%C3%ADch-t%C3%A2n-b%C3%ACnh-s%C3%A0i-g%C3%B2n-m%C6%B0a-ng%E1%BA%ADp-kh%E1%BB%A7ng-khi%E1%BA%BFp/4453909114937804/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "FanPage Đỗ Hoài Thương. . 🌨️ mưa ngập sấm chớp liên hồi tân bình thành phố hồ chí minh🙏 #đỗhoàithương #fanpageđỗhoàithương #tintuc",
+    "title": "FanPage Đỗ Hoài Thương. . 🌨️ mưa ngập sấm chớp liên hồi tân bình thành phố hồ chí minh🙏 #đỗhoàithương #fanpageđỗhoàithương #tintuc",
+    "author": "DoHoaiThuongDuLichVaCuocSong",
+    "authorMeta": {
+      "name": "DoHoaiThuongDuLichVaCuocSong"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:20:12.113898+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "nhi",
+    "url": "https://www.facebook.com/www.tienphong.vn/posts/nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-ng%E1%BA%ADp-s%C3%A2u-do-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng/1444120337934714/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Nhiều tuyến đường ở TPHCM ngập sâu do triều cường",
+    "title": "Nhiều tuyến đường ở TPHCM ngập sâu do triều cường",
+    "author": "www.tienphong.vn",
+    "authorMeta": {
+      "name": "www.tienphong.vn"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:20:21.149518+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "m",
+    "url": "https://www.facebook.com/vov1.vn/posts/m%C6%B0a-l%E1%BB%9Bn-b%E1%BA%A5t-ng%E1%BB%9D-tr%C3%BAt-xu%E1%BB%91ng-tphcm-v%C3%A0o-chi%E1%BB%81u-t%E1%BB%91i-30-9-%C4%91%C3%BAng-gi%E1%BB%9D-tan-t%E1%BA%A7m-khi%E1%BA%BFn-nhi%E1%BB%81u/1947839259673377/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "💦💦Mưa lớn bất ngờ trút xuống TP.HCM vào chiều tối 30-9, đúng giờ tan tầm, khiến nhiều tuyến đường ngập sâu, người dân tham gia giao thông di chuyển khó khăn.",
+    "title": "💦💦Mưa lớn bất ngờ trút xuống TP.HCM vào chiều tối 30-9, đúng giờ tan tầm, khiến nhiều tuyến đường ngập sâu, người dân tham gia giao thông di chuyển khó khăn.",
+    "author": "vov1.vn",
+    "authorMeta": {
+      "name": "vov1.vn"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:20:23.260236+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "tphcm-hi",
+    "url": "https://www.facebook.com/NongnghiepvaMoitruongOnline/posts/tphcm-hi%E1%BB%87n-ghi-nh%E1%BA%ADn-159-%C4%91i%E1%BB%83m-th%C6%B0%E1%BB%9Dng-xuy%C3%AAn-ng%E1%BA%ADp-h%E1%BB%87-th%E1%BB%91ng-tho%C3%A1t-n%C6%B0%E1%BB%9Bc-ch%E1%BB%8Bu-s%E1%BB%A9c-n%E1%BA%B7ng/1719450410188863/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TP.HCM hiện ghi nhận 159 điểm thường xuyên ngập. Hệ thống thoát nước chịu sức nặng nề của mưa lớn và triều cường.",
+    "title": "TP.HCM hiện ghi nhận 159 điểm thường xuyên ngập. Hệ thống thoát nước chịu sức nặng nề của mưa lớn và triều cường.",
+    "author": "NongnghiepvaMoitruongOnline",
+    "authorMeta": {
+      "name": "NongnghiepvaMoitruongOnline"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:20:28.584307+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "b",
+    "url": "https://www.facebook.com/baodientu/posts/b%C3%A0i-to%C3%A1n-tho%C3%A1t-ng%E1%BA%ADp-%E1%BB%9F-tphcm-nh%E1%BA%ADn-di%E1%BB%87n-h%C6%A1n-30-%C4%91i%E1%BB%83m-%C4%91en-ng%E1%BA%ADp-n%C6%B0%E1%BB%9Bc-kinh-ni%C3%AAn-c%E1%BB%A9-m%C6%B0a/2070666950346150/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Bài toán thoát ngập ở TP.HCM: Nhận diện hơn 30 “điểm đen” ngập nước kinh niên, cứ mưa là ngập. Trong đó có Thủ Đức (Bài 1)",
+    "title": "Bài toán thoát ngập ở TP.HCM: Nhận diện hơn 30 “điểm đen” ngập nước kinh niên, cứ mưa là ngập. Trong đó có Thủ Đức (Bài 1)",
+    "author": "baodientu",
+    "authorMeta": {
+      "name": "baodientu"
+    },
+    "createTimeISO": "2026-09-27T07:00:00+00:00",
+    "published": "Sun, 27 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-27",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:20:29.094971+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "qu",
+    "url": "https://www.facebook.com/quan9cuatoi/posts/qu%E1%BA%ADn-9-th%E1%BB%A7-%C4%91%E1%BB%A9c-m%C6%B0a-ng%E1%BA%ADp-t%E1%BB%AB-ngo%C3%A0i-%C4%91%C6%B0%E1%BB%9Dng-%C4%91%E1%BA%BFn-v%C3%A0o-trong-nh%C3%A0-qu%C3%A1-kh%E1%BB%95/1775631447905271/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Quận 9, Thủ Đức…. Mưa ngập từ ngoài đường đến vào trong nhà…. Quá khổ…",
+    "title": "Quận 9, Thủ Đức…. Mưa ngập từ ngoài đường đến vào trong nhà…. Quá khổ…",
+    "author": "quan9cuatoi",
+    "authorMeta": {
+      "name": "quan9cuatoi"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:20:59.924010+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "b",
+    "url": "https://www.facebook.com/100080145712368/posts/b%E1%BA%A3n-%C4%91%E1%BB%93-m%E1%BB%99t-s%E1%BB%91-%C4%91i%E1%BB%83m-th%C6%B0%E1%BB%9Dng-xuy%C3%AAn-ng%E1%BA%ADp-n%E1%BA%B7ng-do-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-b%E1%BA%A3n-%C4%91%E1%BB%93-d%C6%B0%E1%BB%9Bi-%C4%91%C3%A2y/1106550845359762/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "🔰BẢN ĐỒ MỘT SỐ ĐIỂM THƯỜNG XUYÊN NGẬP NẶNG DO TRIỀU CƯỜNG Ở TPHCM Bản đồ dưới đây cập nhật một số khu vực có thể bị ngập do triều cường, giúp người dân chủ động lựa chọn lộ trình di chuyển. Theo LDO",
+    "title": "🔰BẢN ĐỒ MỘT SỐ ĐIỂM THƯỜNG XUYÊN NGẬP NẶNG DO TRIỀU CƯỜNG Ở TPHCM Bản đồ dưới đây cập nhật một số khu vực có thể bị ngập do triều cường, giúp người dân chủ động lựa chọn lộ trình di chuyển. Theo LDO",
+    "author": "100080145712368",
+    "authorMeta": {
+      "name": "100080145712368"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:11.262161+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "m",
+    "url": "https://www.facebook.com/saigongiaiphongnews/posts/m%E1%BB%97i-khi-m%C6%B0a-l%E1%BB%9Bn-%C4%91%C6%B0%E1%BB%9Dng-m%C3%A3-l%C3%B2-%C4%91o%E1%BA%A1n-t%E1%BB%AB-t%E1%BB%89nh-l%E1%BB%99-10-%C4%91%E1%BA%BFn-h%C6%B0%C6%A1ng-l%E1%BB%99-2-ph%C6%B0%E1%BB%9Dng-b%C3%ACnh-tr%E1%BB%8B-%C4%91%C3%B4/1634745145112173/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Mỗi khi mưa lớn, đường Mã Lò (đoạn từ Tỉnh lộ 10 đến Hương lộ 2, phường Bình Trị Đông, TPHCM) lại ngập sâu, ảnh hưởng nghiêm trọng đến việc đi lại và sinh hoạt của người dân.",
+    "title": "Mỗi khi mưa lớn, đường Mã Lò (đoạn từ Tỉnh lộ 10 đến Hương lộ 2, phường Bình Trị Đông, TPHCM) lại ngập sâu, ảnh hưởng nghiêm trọng đến việc đi lại và sinh hoạt của người dân.",
+    "author": "saigongiaiphongnews",
+    "authorMeta": {
+      "name": "saigongiaiphongnews"
+    },
+    "createTimeISO": "2026-09-27T07:00:00+00:00",
+    "published": "Sun, 27 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-27",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:16.581079+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "4063204887319130",
+    "url": "https://www.facebook.com/groups/3044432829196346/posts/4063204887319130/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "💥k ngập, k ngập, k ngập , 5ty1 đường MÃ Lò ( gần Tâ.n Kỳ Tâ.n Quý) - 4 tầng BTCT, dt:4×12m, 4 phòng - hẻm xe tăng đậu cửa, sát quận đội, an ninh, yên tĩnh Lh:0869.777.944-(Duy) #nhabinhtan,#nhabinhtangiare,#nhadep",
+    "title": "💥k ngập, k ngập, k ngập , 5ty1 đường MÃ Lò ( gần Tâ.n Kỳ Tâ.n Quý) - 4 tầng BTCT, dt:4×12m, 4 phòng - hẻm xe tăng đậu cửa, sát quận đội, an ninh, yên tĩnh Lh:0869.777.944-(Duy) #nhabinhtan,#nhabinhtangiare,#nhadep",
+    "author": "Facebook Creator",
+    "authorMeta": {
+      "name": "Facebook Creator"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:17.231467+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "m",
+    "url": "https://www.facebook.com/laodongonline/posts/m%C6%B0a-l%E1%BB%9Bn-g%C3%A2y-ng%E1%BA%ADp-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-tphcm-xe-m%C3%A1y-ch%E1%BA%BFt-m%C3%A1y-la-li%E1%BB%87t/1161672646546116/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Mưa lớn gây ngập nhiều tuyến đường TPHCM, xe máy chết máy la liệt",
+    "title": "Mưa lớn gây ngập nhiều tuyến đường TPHCM, xe máy chết máy la liệt",
+    "author": "laodongonline",
+    "authorMeta": {
+      "name": "laodongonline"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:18.189383+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "c",
+    "url": "https://www.facebook.com/24hbinhduong.vn/posts/c%E1%BA%A3nh-b%C3%A1o-m%C6%B0a-l%E1%BB%9Bn-%C4%91ang-ng%E1%BA%ADp-%C4%91o%E1%BA%A1n-c%C3%A1ch-m%E1%BA%A1ng-th%C3%A1ng-t%C3%A1m-t%E1%BB%AB-v%C3%B2ng-xoay-ch%E1%BB%A3-l%C3%A1i-thi%C3%AAu-t/1538686151625510/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Cảnh báo 🆘 Mưa lớn, đang ngập đoạn Cách Mạng Tháng Tám từ vòng xoay chợ Lái Thiêu (tua 18) đến trạm thu phí cầu Phú Long (Quốc Lộ 13). Đã nhiều xe chết máy khi cố qua đoạn ngập. Mọi người lưu ý và nhắc nhau cẩn thận. *Cập nhật từ tin báo của a",
+    "title": "Cảnh báo 🆘 Mưa lớn, đang ngập đoạn Cách Mạng Tháng Tám từ vòng xoay chợ Lái Thiêu (tua 18) đến trạm thu phí cầu Phú Long (Quốc Lộ 13). Đã nhiều xe chết máy khi cố qua đoạn ngập. Mọi người lưu ý và nhắc nhau cẩn thận. *Cập nhật từ tin báo của a",
+    "author": "24hbinhduong.vn",
+    "authorMeta": {
+      "name": "24hbinhduong.vn"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:33.362802+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "c",
+    "url": "https://www.facebook.com/binhduong24htv/posts/c%E1%BA%A3nh-b%C3%A1o-ngay-l%C3%BAc-n%C3%A0y-%C4%91ang-m%C6%B0a-l%E1%BB%9Bn-v%C3%A0-ng%E1%BA%ADp-%C4%91o%E1%BA%A1n-c%C3%A1ch-m%E1%BA%A1ng-th%C3%A1ng-t%C3%A1m-t%E1%BB%AB-v%C3%B2ng-xoay/1549541690550999/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Cảnh báo ngay lúc này 🆘 ĐANG MƯA lớn, và ngập đoạn Cách Mạng Tháng Tám từ vòng xoay chợ Lái Thiêu (tua 18) đến trạm thu phí cầu Phú Long (Quốc Lộ 13). Đã nhiều xe chết máy khi cố qua đoạn ngập. Mọi người lưu ý và nhắc nhau cẩn thận.",
+    "title": "Cảnh báo ngay lúc này 🆘 ĐANG MƯA lớn, và ngập đoạn Cách Mạng Tháng Tám từ vòng xoay chợ Lái Thiêu (tua 18) đến trạm thu phí cầu Phú Long (Quốc Lộ 13). Đã nhiều xe chết máy khi cố qua đoạn ngập. Mọi người lưu ý và nhắc nhau cẩn thận.",
+    "author": "binhduong24htv",
+    "authorMeta": {
+      "name": "binhduong24htv"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:33.972386+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "s",
+    "url": "https://www.facebook.com/duycoi93/videos/s%C3%A0i-g%C3%B2n-th%E1%BA%A5t-th%E1%BB%A7-%C4%91%C3%A2y-c%C3%B3-th%E1%BB%83-n%C3%B3i-l%C3%A0-ng%C3%A0y-n%C6%B0%E1%BB%9Bc-l%C3%AAn-cao-nh%E1%BA%A5t-t%E1%BB%AB-tr%C6%B0%E1%BB%9Bc-gi%E1%BB%9D-duycoivlo/2186997755526082/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Duy Còi Vlog. . Sài Gòn Thất Thủ đây có thể nói là ngày nước lên cao nhất từ trước giờ #Duycoivlog #saigon #TPHCM",
+    "title": "Duy Còi Vlog. . Sài Gòn Thất Thủ đây có thể nói là ngày nước lên cao nhất từ trước giờ #Duycoivlog #saigon #TPHCM",
+    "author": "duycoi93",
+    "authorMeta": {
+      "name": "duycoi93"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:41.699457+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "0c6106f3b94e0d5e",
+    "url": "https://www.facebook.com/saigongiaiphongnews/videos/%C4%91%E1%BB%93ng-nai-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-n%C6%B0%E1%BB%9Bc-tr%C3%A0n-v%C3%A0o-nh%C3%A0-sau-c%C6%A1n-m%C6%B0a-s%C3%A1ng-30-9sggp/2077327906228004/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Báo Sài Gòn Giải Phóng. . Đồng Nai: Đường ngập, nước tràn vào nhà sau cơn mưa sáng 30-9 #SGGP",
+    "title": "Báo Sài Gòn Giải Phóng. . Đồng Nai: Đường ngập, nước tràn vào nhà sau cơn mưa sáng 30-9 #SGGP",
+    "author": "saigongiaiphongnews",
+    "authorMeta": {
+      "name": "saigongiaiphongnews"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T15:21:50.766635+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "tri",
+    "url": "https://www.facebook.com/PhoTeam/videos/tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-k%E1%BA%BFt-h%E1%BB%A3p-m%C6%B0a-%C4%91%C6%B0%E1%BB%9Dng-tr%E1%BA%A7n-xu%C3%A2n-so%E1%BA%A1n-ng%E1%BA%ADp-%C4%91%C3%BAng-gi%E1%BB%9D-tan-t%E1%BA%A7m-tnn/1609815934186543/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Pho. . Triều cường kết hợp mưa, đường Trần Xuân Soạn ngập đúng giờ tan tầm 🥹 #TNN",
+    "title": "Pho. . Triều cường kết hợp mưa, đường Trần Xuân Soạn ngập đúng giờ tan tầm 🥹 #TNN",
+    "author": "PhoTeam",
+    "authorMeta": {
+      "name": "PhoTeam"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:33:35.231171+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "tp-h",
+    "url": "https://www.facebook.com/vtvthoitiet/videos/tp-h%E1%BB%93-ch%C3%AD-minhtri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-g%C3%A2y-ng%E1%BA%ADp-s%C3%A2u-g%E1%BA%A7n-h%E1%BA%BFt-b%C3%A1nh-xe-m%C3%A1y%C4%91%E1%BB%8Ba-%C4%91i%E1%BB%83m-%C4%91%C6%B0%E1%BB%9Dng-nguy%E1%BB%85n/1852967366111341/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TP. Hồ Chí Minh Triều cường gây ngập sâu gần hết bánh xe máy Địa điểm: Đường Nguyễn Bình (Xã Hiệp Phước, TP. Hồ Chí Minh) Nguồn: Bùi Quang Phúc",
+    "title": "TP. Hồ Chí Minh Triều cường gây ngập sâu gần hết bánh xe máy Địa điểm: Đường Nguyễn Bình (Xã Hiệp Phước, TP. Hồ Chí Minh) Nguồn: Bùi Quang Phúc",
+    "author": "vtvthoitiet",
+    "authorMeta": {
+      "name": "vtvthoitiet"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:33:36.221904+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "chi",
+    "url": "https://www.facebook.com/thanhnien/posts/chi%E1%BB%81u-nay-289-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-d%C3%A2ng-cao-%E1%BB%9F-tphcm-xe-ch%E1%BA%BFt-m%C3%A1y-h%E1%BB%8Dc-sinh-l%E1%BB%99i-n%C6%B0%E1%BB%9Bc/1599304808902502/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Chiều nay 28.9 triều cường dâng cao ở TP.HCM: Xe chết máy, học sinh lội nước",
+    "title": "Chiều nay 28.9 triều cường dâng cao ở TP.HCM: Xe chết máy, học sinh lội nước",
+    "author": "thanhnien",
+    "authorMeta": {
+      "name": "thanhnien"
+    },
+    "createTimeISO": "2026-09-28T07:00:00+00:00",
+    "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-28",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:33:49.822688+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "ngay-trong-",
+    "url": "https://www.facebook.com/cuachongngapMDT/posts/ngay-trong-%C4%91%C3%AAm-m%C6%B0a-309-l%E1%BB%B1c-l%C6%B0%E1%BB%A3ng-d%C3%A2n-qu%C3%A2n-ph%C6%B0%E1%BB%9Dng-th%E1%BB%A7-%C4%91%E1%BB%A9c-tphcm-%C4%91%C3%A3-c%C3%B3-m%E1%BA%B7t-%E1%BB%A9ng-c%E1%BB%A9u/1082329107887072/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Ngay trong đêm mưa 30/9, lực lượng dân quân phường Thủ Đức (TP.HCM) đã có mặt, ứng cứu những nhà bị ngập sâu trong hẻm. Nguồn Người Thủ Đức #cuachongngap #vachchannuoc #vachngannuoc #tamchannuoc #trieucuong #ngapung",
+    "title": "Ngay trong đêm mưa 30/9, lực lượng dân quân phường Thủ Đức (TP.HCM) đã có mặt, ứng cứu những nhà bị ngập sâu trong hẻm. Nguồn Người Thủ Đức #cuachongngap #vachchannuoc #vachngannuoc #tamchannuoc #trieucuong #ngapung",
+    "author": "cuachongngapMDT",
+    "authorMeta": {
+      "name": "cuachongngapMDT"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:33:51.962351+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "s",
+    "url": "https://www.facebook.com/langthangsaigonn/posts/s%C3%A0i-g%C3%B2n-m%C6%B0a-x%E1%BB%91i-x%E1%BA%A3-c%E1%BA%ADp-nh%E1%BA%ADt-t%C3%ACnh-h%C3%ACnh-ng%E1%BA%ADp-%C4%91i-c%E1%BA%A3-nh%C3%A0/1404137158506764/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Sài Gòn mưa xối xả, cập nhật tình hình ngập đi cả nhà...",
+    "title": "Sài Gòn mưa xối xả, cập nhật tình hình ngập đi cả nhà...",
+    "author": "langthangsaigonn",
+    "authorMeta": {
+      "name": "langthangsaigonn"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:34:03.545908+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "n",
+    "url": "https://www.facebook.com/thanhlongnguyen.thanhlongvl/videos/n%C6%B0%E1%BB%9Bc-ch%E1%BA%A3y-cu%E1%BB%93n-cu%E1%BB%99n-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-th%C3%A0nh-s%C3%B4ng-t%E1%BA%A1i-th%C3%A0nh-ph%E1%BB%91-h%E1%BB%93-ch%C3%AD-minh-sau-c/4476490242678898/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Nước chảy cuồn cuộn, nhiều tuyến đường thành sông tại thành phố Hồ Chí Minh sau cơn mưa lớn chiều 30/",
+    "title": "Nước chảy cuồn cuộn, nhiều tuyến đường thành sông tại thành phố Hồ Chí Minh sau cơn mưa lớn chiều 30/",
+    "author": "thanhlongnguyen.thanhlongvl",
+    "authorMeta": {
+      "name": "thanhlongnguyen.thanhlongvl"
+    },
+    "createTimeISO": "2026-09-30T13:47:18+00:00",
+    "published": "Wed, 30 Sep 2026 13:47:18 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:34:06.798746+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "td8-c24-d",
+    "url": "https://www.facebook.com/NamQuocSonHa0962786277/posts/td8-c24-d%E1%BB%B1-%C3%A1n-ch%E1%BB%91ng-ng%E1%BA%ADp-do-thu%E1%BB%B7-tri%E1%BB%81u-cho-h%C6%A1n-65-tri%E1%BB%87u-d%C3%A2n-s%E1%BA%AFp-v%E1%BB%81-%C4%91%C3%ADchd%E1%BB%B1-%C3%A1n-gi%E1%BA%A3/1427060282868254/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "TD8 #c24-DỰ ÁN CHỐNG NGẬP DO THUỶ TRIỀU CHO HƠN 6.5 TRIỆU DÂN SẮP VỀ ĐÍCH Dự án giải quyết ngập do triều khu vực Thành phố Hồ Chí Minh nhằm kiểm soát ngập cho diện tích 750km2 với khoảng 6,5 triệu dân thuộc khu bờ hữu sông Sài Gò",
+    "title": "TD8 #c24-DỰ ÁN CHỐNG NGẬP DO THUỶ TRIỀU CHO HƠN 6.5 TRIỆU DÂN SẮP VỀ ĐÍCH Dự án giải quyết ngập do triều khu vực Thành phố Hồ Chí Minh nhằm kiểm soát ngập cho diện tích 750km2 với khoảng 6,5 triệu dân thuộc khu bờ hữu sông Sài Gò",
+    "author": "NamQuocSonHa0962786277",
+    "authorMeta": {
+      "name": "NamQuocSonHa0962786277"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:35:16.809431+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "d",
+    "url": "https://www.facebook.com/tintucvtv9/posts/d%E1%BB%B1-%C3%A1n-c%E1%BA%A3i-thi%E1%BB%87n-h%E1%BB%87-th%E1%BB%91ng-tho%C3%A1t-n%C6%B0%E1%BB%9Bc-n%C6%B0%E1%BB%9Bc-th%E1%BA%A3i-l%C6%B0u-v%E1%BB%B1c-t%C3%A2y-th%C3%A0nh-ph%E1%BB%91-v%E1%BB%9Bi-v%E1%BB%91n-%C4%91%E1%BA%A7u-/1582747353883424/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Dự án cải thiện hệ thống thoát nước, nước thải lưu vực Tây thành phố với vốn đầu tư hơn 7 nghìn tỷ đồng vừa được phê duyệt, kỳ vọng sẽ giải bài toán ngập nước cho 8 phường tại TP. Hồ Chí Minh.",
+    "title": "Dự án cải thiện hệ thống thoát nước, nước thải lưu vực Tây thành phố với vốn đầu tư hơn 7 nghìn tỷ đồng vừa được phê duyệt, kỳ vọng sẽ giải bài toán ngập nước cho 8 phường tại TP. Hồ Chí Minh.",
+    "author": "tintucvtv9",
+    "authorMeta": {
+      "name": "tintucvtv9"
+    },
+    "createTimeISO": "2026-09-30T07:00:00+00:00",
+    "published": "Wed, 30 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-30",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:35:45.015684+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
+  },
+  {
+    "id": "kh",
+    "url": "https://www.facebook.com/baodientudanviet123/videos/kh%C3%B4ng-c%C3%B3-m%C6%B0a-l%E1%BB%9Bn-nh%C6%B0ng-%C4%91%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-v%E1%BA%ABn-ng%E1%BA%ADp-%EF%B8%8Fvideo-quang-sung/2020757401955351/",
+    "webVideoUrl": "",
+    "mediaUrls": [],
+    "text": "Không có mưa lớn nhưng đường ở TPHCM vẫn ngập ⛈️ Video: Quang sung",
+    "title": "Không có mưa lớn nhưng đường ở TPHCM vẫn ngập ⛈️ Video: Quang sung",
+    "author": "baodientudanviet123",
+    "authorMeta": {
+      "name": "baodientudanviet123"
+    },
+    "createTimeISO": "2026-09-27T07:00:00+00:00",
+    "published": "Sun, 27 Sep 2026 07:00:00 GMT",
+    "extracted_date": "2026-09-27",
+    "platform": "facebook",
+    "crawled_at": "2026-10-29T16:35:48.680236+00:00",
+    "crawler_source": "free_discovery_engine_multichannel"
   }
 ]
