@@ -1,145 +1,144 @@
 {
   "dataset_name": "HCMC Multimodal ASTE v3",
   "master_source_file": "data/processed/hcmc_flood_annotated_v3_multimodal.json",
-  "total_master_samples": 10392,
+  "total_master_samples": 10357,
   "random_seed": 42,
   "split_ratio": "80 / 10 / 10",
   "splits": {
     "train": {
       "file": "train.json",
-      "count": 8314,
+      "count": 8285,
       "stats": {
-        "total_samples": 8314,
-        "total_triplets": 12200,
+        "total_samples": 8285,
+        "total_triplets": 12174,
         "polarity": {
-          "NEU": 1071,
-          "NEG": 8243,
-          "POS": 2886
+          "NEU": 1124,
+          "NEG": 8089,
+          "POS": 2961
         },
         "severity": {
-          "LOW": 2506,
-          "HIGH": 5237,
-          "MODERATE": 2646,
-          "MEDIUM": 72,
-          "RECOVERED": 1739
+          "LOW": 2618,
+          "HIGH": 5201,
+          "MODERATE": 2547,
+          "MEDIUM": 76,
+          "RECOVERED": 1732
         },
         "aspect_category": {
-          "HYDROLOGY": 1349,
-          "LOCATION_STREET": 5939,
-          "HUMAN_ACTIVITY": 53,
-          "LOCATION_ADMIN": 3958,
-          "INFRASTRUCTURE_DRAINAGE": 450,
-          "RESPONSE_ENTITY": 97,
-          "INFRASTRUCTURE_TRAFFIC": 10,
-          "INFRASTRUCTURE": 116,
-          "TRAFFIC": 86,
+          "HYDROLOGY": 1374,
+          "LOCATION_STREET": 5993,
+          "HUMAN_ACTIVITY": 47,
+          "LOCATION_ADMIN": 3842,
+          "INFRASTRUCTURE_DRAINAGE": 469,
+          "INFRASTRUCTURE_TRAFFIC": 11,
+          "TRAFFIC": 89,
+          "INFRASTRUCTURE": 111,
+          "RESPONSE_ENTITY": 92,
           "METEOROLOGY": 5,
-          "LOCATION_MARKET": 26,
-          "LOCATION_RIVER": 12,
+          "LOCATION_MARKET": 21,
+          "LOCATION_RIVER": 18,
           "PROPERTY_INFRASTRUCTURE": 1,
-          "LOCATION_RESIDENTIAL": 16,
-          "LOCATION_OTHER": 69,
-          "LOCATION_BRIDGE": 13
+          "LOCATION_OTHER": 74,
+          "LOCATION_BRIDGE": 10,
+          "LOCATION_RESIDENTIAL": 17
         },
         "platforms": {
-          "news": 2154,
-          "tiktok": 1108,
-          "facebook": 2260,
+          "news": 2173,
+          "tiktok": 1109,
+          "facebook": 2212,
           "cda_synthetic_inversion": 768,
-          "youtube": 37,
+          "youtube": 36,
           "expert_curation": 1987
         },
-        "has_media": 1282,
-        "text_only": 7032
+        "has_media": 1256,
+        "text_only": 7029
       }
     },
     "dev": {
       "file": "dev.json",
-      "count": 1039,
+      "count": 1036,
       "stats": {
-        "total_samples": 1039,
-        "total_triplets": 1559,
+        "total_samples": 1036,
+        "total_triplets": 1467,
         "polarity": {
-          "NEU": 197,
-          "NEG": 1058,
-          "POS": 304
+          "NEU": 158,
+          "NEG": 952,
+          "POS": 357
         },
         "severity": {
-          "LOW": 306,
-          "HIGH": 664,
-          "MODERATE": 344,
-          "MEDIUM": 20,
-          "RECOVERED": 225
+          "LOW": 333,
+          "MODERATE": 264,
+          "HIGH": 636,
+          "MEDIUM": 13,
+          "RECOVERED": 221
         },
         "aspect_category": {
-          "HYDROLOGY": 191,
-          "LOCATION_STREET": 727,
-          "LOCATION_ADMIN": 530,
-          "INFRASTRUCTURE_DRAINAGE": 54,
-          "LOCATION_RIVER": 6,
-          "TRAFFIC": 7,
+          "HYDROLOGY": 165,
+          "LOCATION_ADMIN": 466,
+          "RESPONSE_ENTITY": 18,
+          "LOCATION_STREET": 715,
+          "INFRASTRUCTURE_DRAINAGE": 53,
+          "HUMAN_ACTIVITY": 7,
           "INFRASTRUCTURE": 12,
-          "HUMAN_ACTIVITY": 4,
-          "RESPONSE_ENTITY": 8,
-          "LOCATION_OTHER": 10,
-          "LOCATION_MARKET": 4,
-          "INFRASTRUCTURE_TRAFFIC": 1,
-          "LOCATION_RESIDENTIAL": 5
+          "TRAFFIC": 8,
+          "LOCATION_MARKET": 7,
+          "LOCATION_RESIDENTIAL": 4,
+          "LOCATION_BRIDGE": 3,
+          "LOCATION_OTHER": 7,
+          "LOCATION_RIVER": 2
         },
         "platforms": {
-          "news": 275,
-          "tiktok": 134,
-          "facebook": 354,
-          "cda_synthetic_inversion": 23,
+          "news": 263,
+          "tiktok": 126,
+          "facebook": 303,
+          "cda_synthetic_inversion": 91,
           "youtube": 5,
           "expert_curation": 248
         },
-        "has_media": 148,
-        "text_only": 891
+        "has_media": 160,
+        "text_only": 876
       }
     },
     "test": {
       "file": "test.json",
-      "count": 1039,
+      "count": 1036,
       "stats": {
-        "total_samples": 1039,
-        "total_triplets": 1538,
+        "total_samples": 1036,
+        "total_triplets": 1607,
         "polarity": {
-          "NEU": 153,
-          "NEG": 1024,
-          "POS": 361
+          "NEU": 149,
+          "NEG": 1169,
+          "POS": 289
         },
         "severity": {
-          "LOW": 346,
-          "MODERATE": 299,
-          "HIGH": 670,
-          "MEDIUM": 12,
-          "RECOVERED": 211
+          "LOW": 276,
+          "MODERATE": 365,
+          "HIGH": 732,
+          "MEDIUM": 15,
+          "RECOVERED": 219
         },
         "aspect_category": {
-          "HYDROLOGY": 173,
-          "LOCATION_STREET": 806,
-          "LOCATION_ADMIN": 433,
-          "INFRASTRUCTURE_DRAINAGE": 65,
-          "TRAFFIC": 17,
-          "HUMAN_ACTIVITY": 5,
-          "RESPONSE_ENTITY": 11,
-          "INFRASTRUCTURE": 15,
-          "LOCATION_MARKET": 3,
-          "LOCATION_OTHER": 7,
-          "LOCATION_RIVER": 2,
-          "LOCATION_RESIDENTIAL": 1
+          "HYDROLOGY": 174,
+          "LOCATION_STREET": 755,
+          "LOCATION_ADMIN": 573,
+          "INFRASTRUCTURE_DRAINAGE": 47,
+          "HUMAN_ACTIVITY": 8,
+          "TRAFFIC": 13,
+          "INFRASTRUCTURE": 20,
+          "RESPONSE_ENTITY": 6,
+          "LOCATION_RESIDENTIAL": 1,
+          "LOCATION_OTHER": 5,
+          "LOCATION_MARKET": 5
         },
         "platforms": {
-          "news": 287,
-          "tiktok": 126,
-          "facebook": 279,
-          "cda_synthetic_inversion": 95,
-          "youtube": 4,
+          "news": 277,
+          "tiktok": 125,
+          "facebook": 354,
+          "cda_synthetic_inversion": 27,
+          "youtube": 5,
           "expert_curation": 248
         },
-        "has_media": 140,
-        "text_only": 899
+        "has_media": 146,
+        "text_only": 890
       }
     }
   }

@@ -494372,7 +494372,7 @@
     "aste_triplets": [
       {
         "aspect": "Nguyễn Văn Khối",
-        "opinion": "ngập",
+        "opinion": "chật vật di chuyển trong mưa",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_nguynvnk",
@@ -494414,7 +494414,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -494454,7 +494454,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -494538,7 +494538,7 @@
     "aste_triplets": [
       {
         "aspect": "Phan Huy Ích",
-        "opinion": "ngập nặng",
+        "opinion": "ngập hơn 1 m",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_phanhuyc",
@@ -494547,12 +494547,21 @@
       },
       {
         "aspect": "Phan Huy Ích",
-        "opinion": "ngập",
+        "opinion": "ngập nặng",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_phanhuyc",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "ngập hơn 1 m",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
       },
       {
         "aspect": "TP.HCM",
@@ -494562,15 +494571,6 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
     "seq_id": 10004
@@ -494689,6 +494689,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
+        "opinion": "chờ nước rút",
+        "polarity": "NEU",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "DOC_FALLBACK",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP. Hồ Chí Minh",
         "opinion": "nước ngập mênh mông",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
@@ -494698,12 +494707,12 @@
       },
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "dắt bộ",
+        "opinion": "dắt bộ hàng dài",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 10007
@@ -494738,7 +494747,16 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "Dự báo triều cường",
+        "opinion": "Dự báo triều cường vượt báo động III",
+        "polarity": "NEU",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "chỉ đạo khẩn kế hoạch ứng phó",
         "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -494780,7 +494798,7 @@
     "aste_triplets": [
       {
         "aspect": "Phan Huy Ích",
-        "opinion": "ngập sâu",
+        "opinion": "ngập sâu bất thường",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_phanhuyc",
@@ -494822,7 +494840,7 @@
     "aste_triplets": [
       {
         "aspect": "Phan Huy Ích",
-        "opinion": "ngập sâu",
+        "opinion": "ngập sâu bất thường",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_phanhuyc",
@@ -494915,21 +494933,21 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
+        "opinion": "ngập sâu hơn 1 mét",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "TP.HCM",
         "opinion": "phải dắt bộ",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "MODERATE"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
       }
     ],
     "seq_id": 10012
@@ -495088,12 +495106,12 @@
     "aste_triplets": [
       {
         "aspect": "Bạch Đằng",
-        "opinion": "ngập",
+        "opinion": "ngập quá vỉa hè",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_bchng",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "HIGH"
       }
     ],
     "seq_id": 10016
@@ -495128,21 +495146,39 @@
     "aste_triplets": [
       {
         "aspect": "Mã Lò",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "kế hoạch xử lý 50 điểm ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_ml",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
+      },
+      {
+        "aspect": "Mã Lò",
+        "opinion": "khởi công sửa chữa",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": "csgt_ml",
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
       },
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "kế hoạch xử lý 50 điểm ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "khởi công sửa chữa",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
       }
     ],
     "seq_id": 10017
@@ -495177,7 +495213,7 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "Dự báo triều cường",
+        "opinion": "Dự báo triều cường vượt đỉnh",
         "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -495186,46 +495222,6 @@
       }
     ],
     "seq_id": 10018
-  },
-  {
-    "id": "facebook_c0f201cd40d5_s03_10031",
-    "parent_id": "c0f201cd40d5",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "Facebook Creator",
-      "url": "https://www.facebook.com/VietGoal/posts/pfbid02t7v6JUvRDAZ8nHGyKV2WQAuQCw8AKXZyGKwRoCEFHVsBdZSXSvc1NQQss9LZuEbFl"
-    },
-    "published_at": "2026-10-29T17:12:05.183863+00:00",
-    "content": {
-      "title": "Nhờ vậy những ngập ngừng ban đầu đã biến mất mà chỉ còn lại một trái tim nhiệt h",
-      "text": "Nhờ vậy những ngập ngừng ban đầu đã biến mất mà chỉ còn lại một trái tim nhiệt huyết với bóng đá được thể hiện qua sự cố gắng tập chung và thể hiện hết mình dưới cơn mưa nặng hạt cuối buổi tập."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10019
   },
   {
     "id": "facebook_183d1c4a54a1_s02_10032",
@@ -495265,7 +495261,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10020
+    "seq_id": 10019
   },
   {
     "id": "facebook_ab8f0ea7e8b9_s01_10033",
@@ -495305,7 +495301,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10021
+    "seq_id": 10020
   },
   {
     "id": "facebook_ab8f0ea7e8b9_s02_10034",
@@ -495354,7 +495350,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10022
+    "seq_id": 10021
   },
   {
     "id": "facebook_ab8f0ea7e8b9_s04_10035",
@@ -495394,7 +495390,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10023
+    "seq_id": 10022
   },
   {
     "id": "facebook_ab8f0ea7e8b9_s07_10036",
@@ -495426,7 +495422,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -495434,47 +495430,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10024
-  },
-  {
-    "id": "facebook_ab8f0ea7e8b9_s10_10037",
-    "parent_id": "ab8f0ea7e8b9",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "Facebook Creator",
-      "url": "https://www.facebook.com/nhatkyyeunuoc1/posts/pfbid02E2AKF7TDckAiLboLy5jZKYd9FCdVXuKmB4SsT68ycQzM5srhg6YEEdmBZocnatnjl"
-    },
-    "published_at": "2026-10-29T17:12:05.216154+00:00",
-    "content": {
-      "title": "Việc chuyển đổi diện tích bề mặt tự nhiên vốn có khả năng thấm trung bình 50% lư",
-      "text": "Việc chuyển đổi diện tích bề mặt tự nhiên vốn có khả năng thấm trung bình 50% lượng nước mưa thành bề mặt đô thị vốn chỉ thấm được bình quân 15% lượng nước mưa tất yếu làm gia tăng đáng kể lượng nước chảy trên bề mặt gây ra ngập lụt."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10025
+    "seq_id": 10023
   },
   {
     "id": "facebook_ab8f0ea7e8b9_s20_10038",
@@ -495514,7 +495470,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10026
+    "seq_id": 10024
   },
   {
     "id": "facebook_nhi%E1%BB%81u-ng%C6%B0%E1%BB%9Di-ng%C3%A3-nh%C3%A0o-tr%C3%AAn-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-v%C3%AC-m%C6%B0a-l%E1%BB%9Bn-%E1%BB%9F-tphcmc%C6%A1n-m%C6%B0a-l%E1%BB%9Bn-k%C3%A9o-d%C3%A0i-chi%E1%BB%81u_s01_10039",
@@ -495546,15 +495502,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "NGẬP",
+        "opinion": "biến thành sông",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "HIGH"
       }
     ],
-    "seq_id": 10027
+    "seq_id": 10025
   },
   {
     "id": "facebook_nguy%C3%AAn-nh%C3%A2n-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-m%E1%BB%9Bi-%E1%BB%9F-tphcm-ng%E1%BA%ADp-s%C3%A2u-sau-m%C6%B0a-l%E1%BB%9Bn_s03_10040",
@@ -495594,7 +495550,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10028
+    "seq_id": 10026
   },
   {
     "id": "facebook_-deal-s_s01_10041",
@@ -495636,7 +495592,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10029
+    "seq_id": 10027
   },
   {
     "id": "facebook_bhx-b_s01_10043",
@@ -495676,7 +495632,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10030
+    "seq_id": 10028
   },
   {
     "id": "facebook_3a4a7e15656c6f7d_s01_10044",
@@ -495727,7 +495683,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10031
+    "seq_id": 10029
   },
   {
     "id": "facebook_-h_s00_s01_10045",
@@ -495759,7 +495715,7 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -495767,7 +495723,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10032
+    "seq_id": 10030
   },
   {
     "id": "facebook_d_s00_s01_10046",
@@ -495816,7 +495772,7 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 10033
+    "seq_id": 10031
   },
   {
     "id": "facebook_-tri_s04_10047",
@@ -495856,7 +495812,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10034
+    "seq_id": 10032
   },
   {
     "id": "facebook_tr_s02_10048",
@@ -495896,7 +495852,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10035
+    "seq_id": 10033
   },
   {
     "id": "facebook_s_s02_10049",
@@ -495936,7 +495892,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10036
+    "seq_id": 10034
   },
   {
     "id": "facebook_th_s01_10050",
@@ -495968,15 +495924,15 @@
     "aste_triplets": [
       {
         "aspect": "Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10037
+    "seq_id": 10035
   },
   {
     "id": "facebook_m_s01_10051",
@@ -496016,7 +495972,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10038
+    "seq_id": 10036
   },
   {
     "id": "facebook_m_s01_10052",
@@ -496056,7 +496012,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10039
+    "seq_id": 10037
   },
   {
     "id": "facebook_m_s02_10053",
@@ -496096,7 +496052,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10040
+    "seq_id": 10038
   },
   {
     "id": "facebook_c_s01_10054",
@@ -496136,7 +496092,7 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 10041
+    "seq_id": 10039
   },
   {
     "id": "facebook_tri_s01_10056",
@@ -496176,7 +496132,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10042
+    "seq_id": 10040
   },
   {
     "id": "facebook_c_s01_10057",
@@ -496216,7 +496172,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10043
+    "seq_id": 10041
   },
   {
     "id": "facebook_nguy_s02_10058",
@@ -496256,7 +496212,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10044
+    "seq_id": 10042
   },
   {
     "id": "facebook_nguy_s03_10059",
@@ -496296,7 +496252,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10045
+    "seq_id": 10043
   },
   {
     "id": "facebook_s_s01_10060",
@@ -496336,7 +496292,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10046
+    "seq_id": 10044
   },
   {
     "id": "facebook_s_s02_10061",
@@ -496378,7 +496334,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10047
+    "seq_id": 10045
   },
   {
     "id": "facebook_s_s03_10062",
@@ -496418,7 +496374,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10048
+    "seq_id": 10046
   },
   {
     "id": "facebook_s_s04_10063",
@@ -496458,7 +496414,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10049
+    "seq_id": 10047
   },
   {
     "id": "facebook_s_s05_10064",
@@ -496498,7 +496454,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10050
+    "seq_id": 10048
   },
   {
     "id": "facebook_d269985c48fe698d_s01_10065",
@@ -496536,18 +496492,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10051
+    "seq_id": 10049
   },
   {
     "id": "facebook_ktsgonline-m_s01_10066",
@@ -496587,7 +496534,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10052
+    "seq_id": 10050
   },
   {
     "id": "facebook_ktsgonline-m_s02_10067",
@@ -496627,7 +496574,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10053
+    "seq_id": 10051
   },
   {
     "id": "facebook_sau-c_s01_10068",
@@ -496667,7 +496614,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10054
+    "seq_id": 10052
   },
   {
     "id": "facebook_nh_s01_10069",
@@ -496707,7 +496654,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10055
+    "seq_id": 10053
   },
   {
     "id": "facebook_1468221753960385_s01_10070",
@@ -496749,7 +496696,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10056
+    "seq_id": 10054
   },
   {
     "id": "facebook_antv-c_s01_10071",
@@ -496789,7 +496736,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10057
+    "seq_id": 10055
   },
   {
     "id": "facebook_locknlock-x-vincom-th_s01_10072",
@@ -496831,7 +496778,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10058
+    "seq_id": 10056
   },
   {
     "id": "facebook_th_s01_10073",
@@ -496873,7 +496820,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10059
+    "seq_id": 10057
   },
   {
     "id": "facebook_s_s02_10074",
@@ -496913,7 +496860,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10060
+    "seq_id": 10058
   },
   {
     "id": "facebook_jacket-ch_s01_10075",
@@ -496945,15 +496892,15 @@
     "aste_triplets": [
       {
         "aspect": "Sài Gòn",
-        "opinion": "ngập lênh láng",
+        "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
+        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10061
+    "seq_id": 10059
   },
   {
     "id": "facebook_chi_s01_10076",
@@ -496985,7 +496932,7 @@
     "aste_triplets": [
       {
         "aspect": "TP Thủ Đức",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
@@ -496994,7 +496941,7 @@
       },
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -497003,7 +496950,7 @@
       },
       {
         "aspect": "Thủ Đức",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_chthc",
@@ -497011,7 +496958,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10062
+    "seq_id": 10060
   },
   {
     "id": "facebook_tphcm-ghi-k_s01_10077",
@@ -497051,7 +496998,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10063
+    "seq_id": 10061
   },
   {
     "id": "facebook_tr_s01_10078",
@@ -497091,7 +497038,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10064
+    "seq_id": 10062
   },
   {
     "id": "facebook_tr_s01_10079",
@@ -497142,7 +497089,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10065
+    "seq_id": 10063
   },
   {
     "id": "facebook_nhi_s01_10080",
@@ -497174,6 +497121,15 @@
     "aste_triplets": [
       {
         "aspect": "TP HCM",
+        "opinion": "tê liệt",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "TP HCM",
         "opinion": "ngập sâu",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
@@ -497182,7 +497138,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10066
+    "seq_id": 10064
   },
   {
     "id": "facebook_chi_s02_10081",
@@ -497214,24 +497170,24 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
+        "opinion": "xe chết máy",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "DOC_FALLBACK",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "TP. Hồ Chí Minh",
         "opinion": "bì bõm lội nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "MODERATE"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "Nhiều xe chết máy",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "HIGH"
       }
     ],
-    "seq_id": 10067
+    "seq_id": 10065
   },
   {
     "id": "facebook_fa36efeb10b88023_s03_10082",
@@ -497280,7 +497236,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10068
+    "seq_id": 10066
   },
   {
     "id": "facebook_do-_s01_10083",
@@ -497322,7 +497278,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10069
+    "seq_id": 10067
   },
   {
     "id": "facebook_b_s02_10084",
@@ -497354,15 +497310,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
+        "opinion": "SÁNG KIẾN CHỐNG NGẬP BẰNG LU",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10070
+    "seq_id": 10068
   },
   {
     "id": "facebook_tri_s01_10085",
@@ -497400,67 +497356,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10071
-  },
-  {
-    "id": "facebook_tphcm-ng_s01_10086",
-    "parent_id": "tphcm-ng",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "moitruongngaynay",
-      "url": "https://www.facebook.com/moitruongngaynay/posts/tphcm-ng%E1%BA%ADp-s%C3%A2u-v%C3%A0o-chi%E1%BB%81u-t%E1%BB%91i-trong-ba-ng%C3%A0y-t%E1%BB%9Bitrung-t%C3%A2m-d%E1%BB%B1-b%C3%A1o-kh%C3%AD-t%C6%B0%E1%BB%A3ng-th%E1%BB%A7y-v%C4%83/1471372596336984/"
-    },
-    "published_at": "2019-10-27T07:00:00+00:00",
-    "content": {
-      "title": "TPHCM ngập sâu vào chiều tối trong ba ngày tới Trung tâm Dự báo Khí tượng Thủy v",
-      "text": "TPHCM ngập sâu vào chiều tối trong ba ngày tới Trung tâm Dự báo Khí tượng Thủy văn Quốc gia cho biết, mực nước trên sông Cửu Long, sông Sài Gòn tiếp tục lên theo triều và có khả năng đạt mức cao nhất vào ngày 28-30/10/2019."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Sài Gòn",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_cusign",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
-    "seq_id": 10072
+    "seq_id": 10069
   },
   {
     "id": "facebook_n_s01_10087",
@@ -497500,7 +497398,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10073
+    "seq_id": 10070
   },
   {
     "id": "facebook_-kh_s01_10089",
@@ -497540,7 +497438,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10074
+    "seq_id": 10071
   },
   {
     "id": "facebook_-th_s01_10090",
@@ -497572,6 +497470,15 @@
     "aste_triplets": [
       {
         "aspect": "Sài Gòn",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": "csgt_cusign",
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "Sài Gòn",
         "opinion": "ngập cục bộ",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
@@ -497580,47 +497487,7 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 10075
-  },
-  {
-    "id": "facebook_c_s01_10091",
-    "parent_id": "c",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "luagaomekong",
-      "url": "https://www.facebook.com/luagaomekong/posts/c%E1%BA%A3nh-b%C3%A1o-%C4%91%E1%BB%89nh-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-m%E1%BB%9Bi-s%E1%BA%BD-g%C3%A2y-ng%E1%BA%ADp-l%E1%BB%A5t-%E1%BB%9F-v%C3%B9ng-tr%C5%A9ng-th%E1%BA%A5p-%C4%91%C3%B4-th%E1%BB%8B-ven-s%C3%B4ng-/1184100688439876/"
-    },
-    "published_at": "2019-10-12T07:00:00+00:00",
-    "content": {
-      "title": "Cảnh báo đỉnh triều cường mới sẽ gây ngập lụt ở vùng trũng thấp, đô thị ven sông",
-      "text": "Cảnh báo đỉnh triều cường mới sẽ gây ngập lụt ở vùng trũng thấp, đô thị ven sông ĐBSCL Cao Phong 12/10/2019 SGGPO Khu vực ĐBSCL và TPHCM sẽ xuất hiện một đỉnh triều cường mới trong vài ngày tới."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10076
+    "seq_id": 10072
   },
   {
     "id": "facebook_ch_s02_10092",
@@ -497660,7 +497527,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10077
+    "seq_id": 10073
   },
   {
     "id": "facebook_1541147382693425_s01_10093",
@@ -497700,47 +497567,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10078
-  },
-  {
-    "id": "facebook_chi_s01_10094",
-    "parent_id": "chi",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "DiaDiemAnUong",
-      "url": "https://www.facebook.com/DiaDiemAnUong/posts/chi%E1%BB%81u-nay-v%C3%A0-3-ng%C3%A0y-k%E1%BA%BF-ti%E1%BA%BFp-b%C3%A1o-%C4%91%E1%BB%99ng-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-d%C3%A2ng-%C4%91%E1%BB%89nh-%C4%91i%E1%BB%83m-s%C3%A0i-g%C3%B2n-d%E1%BB%B1-b%C3%A1o-n/3131982473495758/"
-    },
-    "published_at": "2019-10-14T07:00:00+00:00",
-    "content": {
-      "title": "Chiều nay và 3 ngày kế tiếp BÁO ĐỘNG TRIỀU CƯỜNG DÂNG ĐỈNH ĐIỂM, Sài Gòn dự báo ",
-      "text": "Chiều nay và 3 ngày kế tiếp BÁO ĐỘNG TRIỀU CƯỜNG DÂNG ĐỈNH ĐIỂM, Sài Gòn dự báo ngập nặng nhiều tuyến đường nên nhà mình ai hay đi đường đó thì chú ý né nè..."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Sài Gòn",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_cusign",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
-    "seq_id": 10079
+    "seq_id": 10074
   },
   {
     "id": "facebook_ch_s01_10095",
@@ -497772,24 +497599,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
+        "opinion": "CHỐNG NGẬP",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10080
+    "seq_id": 10075
   },
   {
     "id": "facebook_tp-hcm-c_s01_10096",
@@ -497821,15 +497639,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
+        "opinion": "CHỐNG NGẬP",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10081
+    "seq_id": 10076
   },
   {
     "id": "facebook_c_s01_10097",
@@ -497861,15 +497679,6 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập sâu cả mét",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "TPHCM",
         "opinion": "tràn vào nhà",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
@@ -497887,7 +497696,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10082
+    "seq_id": 10077
   },
   {
     "id": "facebook_tphcm-n_s01_10098",
@@ -497919,15 +497728,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "nâng đường nối 3 quận lên cao độ 2,1m để chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10083
+    "seq_id": 10078
   },
   {
     "id": "facebook_s_s04_10099",
@@ -497967,47 +497776,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10084
-  },
-  {
-    "id": "facebook_tri_s01_10100",
-    "parent_id": "tri",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "takan87",
-      "url": "https://www.facebook.com/takan87/posts/tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-%E1%BB%9F-tphcm-d%E1%BB%B1-b%C3%A1o-%C4%91%E1%BA%A1t-%C4%91%E1%BB%89nh-t%E1%BB%AB-ng%C3%A0y-19-2111-c%C3%B3-th%E1%BB%83-g%C3%A2y-ng%E1%BA%ADp-nhi%E1%BB%81u-tuy%E1%BA%BFn-/10225877742885195/"
-    },
-    "published_at": "2025-11-19T08:00:00+00:00",
-    "content": {
-      "title": "Triều cường ở TP.HCM dự báo đạt đỉnh từ ngày 19 - 21.11, có thể gây ngập nhiều t",
-      "text": "Triều cường ở TP.HCM dự báo đạt đỉnh từ ngày 19 - 21.11, có thể gây ngập nhiều tuyến đường và khu vực trũng thấp."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10085
+    "seq_id": 10079
   },
   {
     "id": "facebook_tri_s02_10101",
@@ -498047,7 +497816,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10086
+    "seq_id": 10080
   },
   {
     "id": "facebook_v_s03_10102",
@@ -498087,7 +497856,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10087
+    "seq_id": 10081
   },
   {
     "id": "facebook_l_s01_10103",
@@ -498121,7 +497890,7 @@
     "aste_triplets": [
       {
         "aspect": "Võ Văn Ngân",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_vvnngn",
@@ -498130,7 +497899,7 @@
       },
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -498139,7 +497908,7 @@
       },
       {
         "aspect": "Thủ Đức",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_chthc",
@@ -498147,7 +497916,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10088
+    "seq_id": 10082
   },
   {
     "id": "facebook_l_s02_10104",
@@ -498179,15 +497948,24 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP. Hồ Chí Minh",
+        "opinion": "nâng cấp hệ thống thoát nước",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "DOC_FALLBACK",
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10089
+    "seq_id": 10083
   },
   {
     "id": "facebook_tr_s01_10105",
@@ -498227,7 +498005,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10090
+    "seq_id": 10084
   },
   {
     "id": "facebook_nhi_s01_10106",
@@ -498259,15 +498037,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "để chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10091
+    "seq_id": 10085
   },
   {
     "id": "facebook_s_s01_10107",
@@ -498316,7 +498094,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10092
+    "seq_id": 10086
   },
   {
     "id": "facebook_d_s01_10108",
@@ -498348,15 +498126,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "giải quyết ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10093
+    "seq_id": 10087
   },
   {
     "id": "facebook_t_s01_10109",
@@ -498396,7 +498174,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10094
+    "seq_id": 10088
   },
   {
     "id": "facebook_tri_s02_10110",
@@ -498436,7 +498214,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10095
+    "seq_id": 10089
   },
   {
     "id": "facebook_-tri_s01_10111",
@@ -498476,7 +498254,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10096
+    "seq_id": 10090
   },
   {
     "id": "facebook_d_s01_10112",
@@ -498508,15 +498286,24 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "Dự án chống ngập 10.000 tỷ",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP. Hồ Chí Minh",
+        "opinion": "giải quyết ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "DOC_FALLBACK",
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10097
+    "seq_id": 10091
   },
   {
     "id": "facebook_tp-h_s02_10113",
@@ -498554,18 +498341,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "LOW"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "triều cường đạt đỉnh",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "LOW"
       }
     ],
-    "seq_id": 10098
+    "seq_id": 10092
   },
   {
     "id": "facebook_tri_s01_10114",
@@ -498614,7 +498392,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10099
+    "seq_id": 10093
   },
   {
     "id": "facebook_cam-k_s01_10115",
@@ -498646,16 +498424,7 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "hết ngập hoàn toàn",
-        "polarity": "POS",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
-      },
-      {
-        "aspect": "TPHCM",
-        "opinion": "sẽ hết ngập",
+        "opinion": "sẽ hết ngập hoàn toàn",
         "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -498663,7 +498432,7 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 10100
+    "seq_id": 10094
   },
   {
     "id": "facebook_cam-k_s02_10116",
@@ -498701,18 +498470,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10101
+    "seq_id": 10095
   },
   {
     "id": "facebook_393c68d94a439d92_s01_10117",
@@ -498744,15 +498504,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
+        "opinion": "VẬN HÀNH DỰ ÁN CHỐNG NGẬP",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10102
+    "seq_id": 10096
   },
   {
     "id": "facebook_v_s01_10118",
@@ -498792,7 +498552,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10103
+    "seq_id": 10097
   },
   {
     "id": "facebook_s_s02_10119",
@@ -498832,87 +498592,7 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 10104
-  },
-  {
-    "id": "facebook_s_s01_10120",
-    "parent_id": "s",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "TuoiTreCuoi",
-      "url": "https://www.facebook.com/TuoiTreCuoi/posts/s%E1%BB%9F-x%C3%A2y-d%E1%BB%B1ng-tphcm-v%E1%BB%ABa-%C4%91%E1%BA%B7t-h%C3%A0ng-l%E1%BA%ADp-ph%C6%B0%C6%A1ng-%C3%A1n-thu-gi%C3%A1-d%E1%BB%8Bch-v%E1%BB%A5-ch%E1%BB%91ng-ng%E1%BA%ADp-theo-%C4%91%C3%B3-/3100676683343648/"
-    },
-    "published_at": "2020-06-03T07:00:00+00:00",
-    "content": {
-      "title": "Sở Xây dựng TPHCM vừa đặt hàng lập phương án thu giá dịch vụ chống ngập.",
-      "text": "Sở Xây dựng TPHCM vừa đặt hàng lập phương án thu giá dịch vụ chống ngập."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10105
-  },
-  {
-    "id": "facebook_s_s02_10121",
-    "parent_id": "s",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "TuoiTreCuoi",
-      "url": "https://www.facebook.com/TuoiTreCuoi/posts/s%E1%BB%9F-x%C3%A2y-d%E1%BB%B1ng-tphcm-v%E1%BB%ABa-%C4%91%E1%BA%B7t-h%C3%A0ng-l%E1%BA%ADp-ph%C6%B0%C6%A1ng-%C3%A1n-thu-gi%C3%A1-d%E1%BB%8Bch-v%E1%BB%A5-ch%E1%BB%91ng-ng%E1%BA%ADp-theo-%C4%91%C3%B3-/3100676683343648/"
-    },
-    "published_at": "2020-06-03T07:00:00+00:00",
-    "content": {
-      "title": "Theo đó, giá dịch vụ chống ngập trên địa bàn thành phố được đề xuất là 3.668 đồn",
-      "text": "Theo đó, giá dịch vụ chống ngập trên địa bàn thành phố được đề xuất là 3.668 đồng/m2/tháng...!"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10106
+    "seq_id": 10098
   },
   {
     "id": "facebook_h_s01_10122",
@@ -498944,15 +498624,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10107
+    "seq_id": 10099
   },
   {
     "id": "facebook_hi_s01_10123",
@@ -498984,15 +498664,24 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "CHỐNG NGẬP",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10108
+    "seq_id": 10100
   },
   {
     "id": "facebook_782020-t_s01_10124",
@@ -499030,18 +498719,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "MODERATE"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10109
+    "seq_id": 10101
   },
   {
     "id": "facebook_782020-t_s02_10125",
@@ -499081,7 +498761,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10110
+    "seq_id": 10102
   },
   {
     "id": "facebook_-qu_s01_10126",
@@ -499123,15 +498803,6 @@
         "severity": "HIGH"
       },
       {
-        "aspect": "Tô Ngọc Vân",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tngcvn",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      },
-      {
         "aspect": "THỦ ĐỨC",
         "opinion": "hàng loạt xe chết máy",
         "polarity": "NEG",
@@ -499139,18 +498810,9 @@
         "gazetteer_id": "csgt_chthc",
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "THỦ ĐỨC",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10111
+    "seq_id": 10103
   },
   {
     "id": "facebook_-qu_s02_10127",
@@ -499190,7 +498852,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10112
+    "seq_id": 10104
   },
   {
     "id": "facebook_chi_s01_10128",
@@ -499222,7 +498884,7 @@
     "aste_triplets": [
       {
         "aspect": "Bùi Viện",
-        "opinion": "nhiều xe chết máy",
+        "opinion": "xe chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
@@ -499237,18 +498899,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "Bùi Viện",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10113
+    "seq_id": 10105
   },
   {
     "id": "facebook_chi_s01_10129",
@@ -499295,18 +498948,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "bì bõm",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10114
+    "seq_id": 10106
   },
   {
     "id": "facebook_b250689606da2f5b_s01_10130",
@@ -499348,7 +498992,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10115
+    "seq_id": 10107
   },
   {
     "id": "facebook_khuy_s01_10131",
@@ -499388,7 +499032,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10116
+    "seq_id": 10108
   },
   {
     "id": "facebook_khuy_s03_10132",
@@ -499429,7 +499073,7 @@
       },
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "nhiều xe chết máy",
+        "opinion": "xe chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -499437,7 +499081,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10117
+    "seq_id": 10109
   },
   {
     "id": "facebook_n_s01_10133",
@@ -499477,7 +499121,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10118
+    "seq_id": 10110
   },
   {
     "id": "facebook_d_s02_10134",
@@ -499517,7 +499161,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10119
+    "seq_id": 10111
   },
   {
     "id": "facebook_m_s01_10135",
@@ -499549,7 +499193,7 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -499557,7 +499201,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10120
+    "seq_id": 10112
   },
   {
     "id": "facebook_b_s01_10136",
@@ -499589,7 +499233,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "NGẬP",
+        "opinion": "NGẬP NƯỚC",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -499597,7 +499241,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10121
+    "seq_id": 10113
   },
   {
     "id": "facebook_b_s01_10137",
@@ -499635,18 +499279,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10122
+    "seq_id": 10114
   },
   {
     "id": "facebook_b_s02_10138",
@@ -499686,7 +499321,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10123
+    "seq_id": 10115
   },
   {
     "id": "facebook_tr_s01_10139",
@@ -499718,7 +499353,7 @@
     "aste_triplets": [
       {
         "aspect": "Thủ Đức",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_chthc",
@@ -499727,7 +499362,7 @@
       },
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -499735,7 +499370,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10124
+    "seq_id": 10116
   },
   {
     "id": "facebook_s_s01_10140",
@@ -499767,7 +499402,16 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "giảm ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -499775,7 +499419,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10125
+    "seq_id": 10117
   },
   {
     "id": "facebook_b_s01_10141",
@@ -499807,15 +499451,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
+        "opinion": "DỰ ÁN CHỐNG NGẬP 10.000 TỶ",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10126
+    "seq_id": 10118
   },
   {
     "id": "facebook_b65c7a45c5d262ad_s01_10142",
@@ -499849,24 +499493,24 @@
     "aste_triplets": [
       {
         "aspect": "Võ Văn Ngân",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_vvnngn",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       },
       {
         "aspect": "THỦ ĐỨC",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_chthc",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10127
+    "seq_id": 10119
   },
   {
     "id": "facebook_r_s04_10143",
@@ -499906,7 +499550,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10128
+    "seq_id": 10120
   },
   {
     "id": "facebook_th_s01_10144",
@@ -499946,7 +499590,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10129
+    "seq_id": 10121
   },
   {
     "id": "facebook_ng_s02_10145",
@@ -499986,7 +499630,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10130
+    "seq_id": 10122
   },
   {
     "id": "facebook_theo-_s01_10146",
@@ -500018,15 +499662,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "để chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10131
+    "seq_id": 10123
   },
   {
     "id": "facebook_chi_s01_10147",
@@ -500066,7 +499710,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10132
+    "seq_id": 10124
   },
   {
     "id": "facebook_csgt-v_s02_10148",
@@ -500106,7 +499750,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10133
+    "seq_id": 10125
   },
   {
     "id": "facebook_t_s01_10149",
@@ -500146,7 +499790,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10134
+    "seq_id": 10126
   },
   {
     "id": "facebook_t_s02_10150",
@@ -500180,21 +499824,21 @@
     "aste_triplets": [
       {
         "aspect": "Trần Hưng Đạo",
-        "opinion": "phải dắt bộ",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_trnhngo",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      },
-      {
-        "aspect": "Trần Hưng Đạo",
         "opinion": "chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_trnhngo",
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
+      },
+      {
+        "aspect": "Trần Hưng Đạo",
+        "opinion": "phải dắt bộ",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": "csgt_trnhngo",
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MODERATE"
       },
       {
         "aspect": "Trần Hưng Đạo",
@@ -500206,7 +499850,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10135
+    "seq_id": 10127
   },
   {
     "id": "facebook_-chi_s01_10151",
@@ -500238,15 +499882,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập mênh mông",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "HIGH"
       }
     ],
-    "seq_id": 10136
+    "seq_id": 10128
   },
   {
     "id": "facebook_-chi_s02_10152",
@@ -500284,18 +499928,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10137
+    "seq_id": 10129
   },
   {
     "id": "facebook_squid-game-ph_s01_10153",
@@ -500335,7 +499970,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10138
+    "seq_id": 10130
   },
   {
     "id": "facebook_squid-game-ph_s02_10154",
@@ -500375,7 +500010,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10139
+    "seq_id": 10131
   },
   {
     "id": "facebook_d_s01_10155",
@@ -500413,18 +500048,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "LOW"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10140
+    "seq_id": 10132
   },
   {
     "id": "facebook_d_s02_10156",
@@ -500466,7 +500092,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10141
+    "seq_id": 10133
   },
   {
     "id": "facebook_m_s03_10157",
@@ -500515,7 +500141,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10142
+    "seq_id": 10134
   },
   {
     "id": "facebook_c_s01_10158",
@@ -500549,15 +500175,15 @@
     "aste_triplets": [
       {
         "aspect": "Cây Trâm",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_cytrm",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10143
+    "seq_id": 10135
   },
   {
     "id": "facebook_-c_s01_10159",
@@ -500597,7 +500223,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10144
+    "seq_id": 10136
   },
   {
     "id": "facebook_cu_s01_10160",
@@ -500637,47 +500263,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10145
-  },
-  {
-    "id": "facebook_h_s01_10161",
-    "parent_id": "h",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "toiladanq7",
-      "url": "https://www.facebook.com/toiladanq7/posts/h%C3%B4m-nay-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-%C4%91%E1%BA%A1t-%C4%91%E1%BB%89nh-d%C3%A2ng-cao-nh%E1%BA%A5t-n%C4%83m-t%E1%BA%A1i-tphcm-trong-%C4%91%C3%B3-c%C3%B3-qu%E1%BA%ADn-7-v%C3%A0-n/1597577417257394/"
-    },
-    "published_at": "2021-12-03T08:00:00+00:00",
-    "content": {
-      "title": "Hôm nay, triều cường đạt đỉnh dâng cao nhất năm tại TP.HCM trong đó có Quận 7 và",
-      "text": "Hôm nay, triều cường đạt đỉnh dâng cao nhất năm tại TP.HCM trong đó có Quận 7 và Nhà Bè."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP.HCM",
-        "opinion": "triều cường đạt đỉnh",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      }
-    ],
-    "seq_id": 10146
+    "seq_id": 10137
   },
   {
     "id": "facebook_h_s02_10162",
@@ -500737,7 +500323,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10147
+    "seq_id": 10138
   },
   {
     "id": "facebook_h_s01_10163",
@@ -500777,7 +500363,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10148
+    "seq_id": 10139
   },
   {
     "id": "facebook_h_s02_10164",
@@ -500817,7 +500403,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10149
+    "seq_id": 10140
   },
   {
     "id": "facebook_c_s01_10165",
@@ -500857,7 +500443,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10150
+    "seq_id": 10141
   },
   {
     "id": "facebook_b3344a99c7aee4f1_s01_10166",
@@ -500891,7 +500477,7 @@
     "aste_triplets": [
       {
         "aspect": "Huỳnh Tấn Phát",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_hunhtnph",
@@ -500899,7 +500485,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10151
+    "seq_id": 10142
   },
   {
     "id": "facebook_gi_s01_10167",
@@ -500931,15 +500517,24 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "giảm ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10152
+    "seq_id": 10143
   },
   {
     "id": "facebook_gi_s02_10168",
@@ -500971,15 +500566,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "giảm ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10153
+    "seq_id": 10144
   },
   {
     "id": "facebook_tr_s01_10169",
@@ -501011,7 +500606,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -501019,7 +500614,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10154
+    "seq_id": 10145
   },
   {
     "id": "facebook_nhi_s01_10170",
@@ -501059,7 +500654,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10155
+    "seq_id": 10146
   },
   {
     "id": "facebook_n_s04_10171",
@@ -501099,47 +500694,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10156
-  },
-  {
-    "id": "facebook_kabul-l_s02_10172",
-    "parent_id": "kabul-l",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "BBCnewsVietnamese",
-      "url": "https://www.facebook.com/BBCnewsVietnamese/posts/kabul-l%C3%A0-s%C3%A0i-g%C3%B2n-c%E1%BB%A7a-t%E1%BB%95ng-th%E1%BB%91ng-bidenkhi-m%E1%BB%B9-ti%E1%BA%BFp-t%E1%BB%A5c-r%C3%BAt-qu%C3%A2n-kh%E1%BB%8Fi-th%E1%BB%A7-%C4%91%C3%B4-afghan/4837855462893824/"
-    },
-    "published_at": "2021-08-17T07:00:00+00:00",
-    "content": {
-      "title": "Khi Mỹ tiếp tục rút quân khỏi thủ đô Afghanistan, mạng xã hội tràn ngập hình ảnh",
-      "text": "Khi Mỹ tiếp tục rút quân khỏi thủ đô Afghanistan, mạng xã hội tràn ngập hình ảnh chiếc trực thăng sơ tán người khỏi đại sứ quán Mỹ ở Kabul."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10157
+    "seq_id": 10147
   },
   {
     "id": "facebook_eaf3f331d2fdaeab_s01_10173",
@@ -501173,15 +500728,15 @@
     "aste_triplets": [
       {
         "aspect": "Nguyễn Văn Quá",
-        "opinion": "ngập lênh láng",
+        "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_nguynvnq",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
+        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10158
+    "seq_id": 10148
   },
   {
     "id": "facebook_theo-ghi-nh_s01_10174",
@@ -501268,7 +500823,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10159
+    "seq_id": 10149
   },
   {
     "id": "facebook_nhi_s01_10175",
@@ -501300,7 +500855,7 @@
     "aste_triplets": [
       {
         "aspect": "Võ Văn Kiệt",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
@@ -501309,7 +500864,7 @@
       },
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -501317,47 +500872,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10160
-  },
-  {
-    "id": "facebook_-c_s01_10176",
-    "parent_id": "-c",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "evnhcmc1900545454",
-      "url": "https://www.facebook.com/evnhcmc1900545454/posts/-c%E1%BA%A3nh-b%C3%A1o-%C4%91%E1%BB%A3t-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-cu%E1%BB%91i-th%C3%A1ng-c%C3%A1c-khu-v%E1%BB%B1c-nh%C6%B0-qu%E1%BA%ADn-2-qu%E1%BA%ADn-4-qu%E1%BA%ADn-8-qu%E1%BA%ADn-9/290484759960153/"
-    },
-    "published_at": "2022-05-25T07:00:00+00:00",
-    "content": {
-      "title": "💦💦💦 CẢNH BÁO ĐỢT TRIỀU CƯỜNG CUỐI THÁNG 🌧 Các khu vực như quận 2, quận 4, quận 8",
-      "text": "💦💦💦 CẢNH BÁO ĐỢT TRIỀU CƯỜNG CUỐI THÁNG 🌧 Các khu vực như quận 2, quận 4, quận 8, quận 9, Thủ Đức, Bình Thạnh có khả năng ngập từ 10-20cm, có nơi 30cm do đợt triều cường cuối tháng (từ hôm nay đến ngày 02/6/2022)."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Thủ Đức",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10161
+    "seq_id": 10150
   },
   {
     "id": "facebook_s_s01_10177",
@@ -501397,7 +500912,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10162
+    "seq_id": 10151
   },
   {
     "id": "facebook_s_s02_10178",
@@ -501429,15 +500944,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10163
+    "seq_id": 10152
   },
   {
     "id": "facebook_chi_s01_10179",
@@ -501477,7 +500992,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10164
+    "seq_id": 10153
   },
   {
     "id": "facebook_chi_s02_10180",
@@ -501509,15 +501024,15 @@
     "aste_triplets": [
       {
         "aspect": "Cao Thị Chính",
-        "opinion": "ngập",
+        "opinion": "ngập quá bánh xe",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "HIGH"
       }
     ],
-    "seq_id": 10165
+    "seq_id": 10154
   },
   {
     "id": "facebook_do-_s01_10181",
@@ -501557,7 +501072,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10166
+    "seq_id": 10155
   },
   {
     "id": "facebook_tphcm-tri_s01_10182",
@@ -501591,24 +501106,24 @@
     "aste_triplets": [
       {
         "aspect": "Huỳnh Tấn Phát",
-        "opinion": "NGẬP",
+        "opinion": "NGẬP QUÁ BÁNH XE",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_hunhtnph",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "HIGH"
       },
       {
         "aspect": "TP.HCM",
-        "opinion": "NGẬP",
+        "opinion": "NGẬP QUÁ BÁNH XE",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "HIGH"
       }
     ],
-    "seq_id": 10167
+    "seq_id": 10156
   },
   {
     "id": "facebook_t_s01_10183",
@@ -501648,7 +501163,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10168
+    "seq_id": 10157
   },
   {
     "id": "facebook_02826a93e43cb88f_s01_10184",
@@ -501680,7 +501195,7 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "Xe chết máy hàng loạt",
+        "opinion": "Xe chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
@@ -501688,7 +501203,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10169
+    "seq_id": 10158
   },
   {
     "id": "facebook_ab3343c3a569e84d_s01_10185",
@@ -501729,7 +501244,7 @@
       },
       {
         "aspect": "Sài Gòn",
-        "opinion": "NGẬP",
+        "opinion": "NGẬP NƯỚC",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
@@ -501737,7 +501252,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10170
+    "seq_id": 10159
   },
   {
     "id": "facebook_ng_s01_10186",
@@ -501769,24 +501284,24 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
+        "opinion": "CHỐNG NGẬP",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "DOC_FALLBACK",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP. Hồ Chí Minh",
         "opinion": "ngập úng nghiêm trọng",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10171
+    "seq_id": 10160
   },
   {
     "id": "facebook_sau-nh_s01_10187",
@@ -501818,15 +501333,6 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "rút hết",
-        "polarity": "POS",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "RECOVERED"
-      },
-      {
-        "aspect": "TP.HCM",
         "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
@@ -501835,7 +501341,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10172
+    "seq_id": 10161
   },
   {
     "id": "facebook_c_s01_10188",
@@ -501873,18 +501379,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10173
+    "seq_id": 10162
   },
   {
     "id": "facebook_tphcm-quy_s01_10189",
@@ -501916,24 +501413,60 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
+        "opinion": "DỰ ÁN CHỐNG NGẬP 10.000 TỶ",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "để chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "Giải quyết ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
       },
       {
         "aspect": "TPHCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
+        "opinion": "DỰ ÁN CHỐNG NGẬP 10.000 TỶ",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TPHCM",
+        "opinion": "để chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TPHCM",
+        "opinion": "Giải quyết ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10174
+    "seq_id": 10163
   },
   {
     "id": "facebook_kh_s01_10190",
@@ -501973,7 +501506,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10175
+    "seq_id": 10164
   },
   {
     "id": "facebook_kh_s02_10191",
@@ -502005,15 +501538,15 @@
     "aste_triplets": [
       {
         "aspect": "Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10176
+    "seq_id": 10165
   },
   {
     "id": "facebook_s_s01_10192",
@@ -502045,7 +501578,7 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -502054,7 +501587,7 @@
       },
       {
         "aspect": "Sài Gòn",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
@@ -502062,7 +501595,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10177
+    "seq_id": 10166
   },
   {
     "id": "facebook_ch_s01_10193",
@@ -502102,7 +501635,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10178
+    "seq_id": 10167
   },
   {
     "id": "facebook_s_s01_10194",
@@ -502142,47 +501675,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10179
-  },
-  {
-    "id": "facebook_mong-r_s02_10195",
-    "parent_id": "mong-r",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "yeah1news",
-      "url": "https://www.facebook.com/yeah1news/posts/mong-r%E1%BA%B1ng-n%C4%83m-m%E1%BB%9Bi-%C4%91%E1%BA%BFn-%C3%BD-th%E1%BB%A9c-c%E1%BB%A7a-ng%C6%B0%E1%BB%9Di-d%C3%A2n-l%E1%BA%A1i-c%C3%A0ng-t%E1%BB%91t-h%C6%A1n-sau-%C4%91%C3%AAm-countdown-r%E1%BB%B1/4937123449708537/"
-    },
-    "published_at": "2022-01-01T08:00:00+00:00",
-    "content": {
-      "title": "Sau đêm Countdown rực rỡ chào đón năm mới 2022, khu vực quanh phố đi bộ Nguyễn H",
-      "text": "Sau đêm Countdown rực rỡ chào đón năm mới 2022, khu vực quanh phố đi bộ Nguyễn Huệ (TPHCM) ngập tràn rác thải khiến nhân viên môi trường ngao ngán."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10180
+    "seq_id": 10168
   },
   {
     "id": "facebook_kinh-ho_s01_10196",
@@ -502222,15 +501715,6 @@
         "severity": "HIGH"
       },
       {
-        "aspect": "H.Hóc Môn",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      },
-      {
         "aspect": "TP.HCM",
         "opinion": "ngập sâu",
         "polarity": "NEG",
@@ -502238,18 +501722,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10181
+    "seq_id": 10169
   },
   {
     "id": "facebook_theo-d_s02_10197",
@@ -502281,7 +501756,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -502289,7 +501764,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10182
+    "seq_id": 10170
   },
   {
     "id": "facebook_nhi_s01_10198",
@@ -502329,7 +501804,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10183
+    "seq_id": 10171
   },
   {
     "id": "facebook_n_s01_10199",
@@ -502369,7 +501844,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10184
+    "seq_id": 10172
   },
   {
     "id": "facebook_n_s02_10200",
@@ -502409,7 +501884,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10185
+    "seq_id": 10173
   },
   {
     "id": "facebook_n_s03_10201",
@@ -502449,47 +501924,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10186
-  },
-  {
-    "id": "facebook_m_s01_10202",
-    "parent_id": "m",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "BuiAn.HDVN",
-      "url": "https://www.facebook.com/BuiAn.HDVN/posts/m%E1%BB%99t-tu%E1%BA%A7n-ng%E1%BA%ADp-tr%C3%A0n-%C3%A2m-thanh-ng%C3%A0y-mai-av-show-s%C3%A0i-g%C3%B2n-2022-ch%C3%ADnh-th%E1%BB%A9c-khai-m%E1%BA%A1c-sa/6381198458561425/"
-    },
-    "published_at": "2022-11-23T08:00:00+00:00",
-    "content": {
-      "title": "Một tuần ngập tràn âm thanh Ngày mai, AV Show Sài Gòn 2022 chính thức khai mạc.",
-      "text": "Một tuần ngập tràn âm thanh Ngày mai, AV Show Sài Gòn 2022 chính thức khai mạc."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_cusign",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10187
+    "seq_id": 10174
   },
   {
     "id": "facebook_-_s01_10203",
@@ -502529,7 +501964,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10188
+    "seq_id": 10175
   },
   {
     "id": "facebook_-s_s01_10204",
@@ -502569,7 +502004,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10189
+    "seq_id": 10176
   },
   {
     "id": "facebook_nh_s03_10205",
@@ -502609,7 +502044,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10190
+    "seq_id": 10177
   },
   {
     "id": "facebook_3265823042022-230252v_s01_10206",
@@ -502649,7 +502084,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10191
+    "seq_id": 10178
   },
   {
     "id": "facebook_tphcm-m_s01_10207",
@@ -502681,21 +502116,21 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
+        "opinion": "xe chết máy",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "TP.HCM",
         "opinion": "bì bõm lội nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "MODERATE"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "nhiều xe chết máy",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
       },
       {
         "aspect": "TP.HCM",
@@ -502708,7 +502143,7 @@
       },
       {
         "aspect": "TP.HCM",
-        "opinion": "bì bõm",
+        "opinion": "NGẬP NƯỚC",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -502716,13 +502151,13 @@
         "severity": "MODERATE"
       },
       {
-        "aspect": "TP.HCM",
-        "opinion": "NGẬP",
+        "aspect": "TPHCM",
+        "opinion": "xe chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "HIGH"
       },
       {
         "aspect": "TPHCM",
@@ -502735,15 +502170,6 @@
       },
       {
         "aspect": "TPHCM",
-        "opinion": "nhiều xe chết máy",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "TPHCM",
         "opinion": "ngập sâu",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
@@ -502753,16 +502179,7 @@
       },
       {
         "aspect": "TPHCM",
-        "opinion": "bì bõm",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      },
-      {
-        "aspect": "TPHCM",
-        "opinion": "NGẬP",
+        "opinion": "NGẬP NƯỚC",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -502770,7 +502187,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10192
+    "seq_id": 10179
   },
   {
     "id": "facebook_ng_s01_10208",
@@ -502810,15 +502227,6 @@
         "severity": "HIGH"
       },
       {
-        "aspect": "Chu Văn An",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      },
-      {
         "aspect": "TPHCM",
         "opinion": "ngập sâu",
         "polarity": "NEG",
@@ -502826,18 +502234,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10193
+    "seq_id": 10180
   },
   {
     "id": "facebook_c_s01_10209",
@@ -502869,7 +502268,7 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -502877,7 +502276,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10194
+    "seq_id": 10181
   },
   {
     "id": "facebook_c_s03_10210",
@@ -502909,15 +502308,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập lênh láng",
+        "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "HIGH"
+        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10195
+    "seq_id": 10182
   },
   {
     "id": "facebook_ng_s01_10211",
@@ -502957,7 +502356,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10196
+    "seq_id": 10183
   },
   {
     "id": "facebook_chi_s01_10213",
@@ -503017,7 +502416,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10197
+    "seq_id": 10184
   },
   {
     "id": "facebook_baa6e8b1a00727cb_s01_10214",
@@ -503049,8 +502448,8 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "Triều cường đạt đỉnh",
-        "polarity": "NEU",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
@@ -503064,18 +502463,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "MODERATE"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10198
+    "seq_id": 10185
   },
   {
     "id": "facebook_tri_s01_10215",
@@ -503107,24 +502497,24 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "NGẬP LÊNH LÁNG",
+        "opinion": "NGẬP",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
+        "severity": "MODERATE"
       },
       {
         "aspect": "Sài Gòn",
-        "opinion": "NGẬP LÊNH LÁNG",
+        "opinion": "NGẬP",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
+        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10199
+    "seq_id": 10186
   },
   {
     "id": "facebook_tri_s02_10216",
@@ -503164,7 +502554,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10200
+    "seq_id": 10187
   },
   {
     "id": "facebook_tri_s03_10217",
@@ -503204,7 +502594,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10201
+    "seq_id": 10188
   },
   {
     "id": "facebook_tphcm-tri_s01_10218",
@@ -503244,7 +502634,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10202
+    "seq_id": 10189
   },
   {
     "id": "facebook_-r_s01_10219",
@@ -503284,7 +502674,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10203
+    "seq_id": 10190
   },
   {
     "id": "facebook_tphcm-v_s01_10220",
@@ -503325,7 +502715,7 @@
       },
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -503343,7 +502733,7 @@
       },
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -503351,7 +502741,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10204
+    "seq_id": 10191
   },
   {
     "id": "facebook_tr_s01_10221",
@@ -503391,7 +502781,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10205
+    "seq_id": 10192
   },
   {
     "id": "facebook_tr_s02_10222",
@@ -503423,24 +502813,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "nhiều xe chết máy",
+        "opinion": "xe chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10206
+    "seq_id": 10193
   },
   {
     "id": "facebook_th_s01_10223",
@@ -503489,7 +502870,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10207
+    "seq_id": 10194
   },
   {
     "id": "facebook_th_s02_10224",
@@ -503521,7 +502902,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -503529,7 +502910,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10208
+    "seq_id": 10195
   },
   {
     "id": "facebook_chi_s01_10225",
@@ -503569,7 +502950,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10209
+    "seq_id": 10196
   },
   {
     "id": "facebook_chi_s02_10226",
@@ -503601,7 +502982,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "xe chết máy la liệt",
+        "opinion": "xe chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -503609,7 +502990,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10210
+    "seq_id": 10197
   },
   {
     "id": "facebook_clip-tphcm-_s03_10227",
@@ -503641,16 +503022,7 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập lênh láng",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "TP.HCM",
-        "opinion": "nhiều xe chết máy",
+        "opinion": "xe chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -503658,7 +503030,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10211
+    "seq_id": 10198
   },
   {
     "id": "facebook_clip-tphcm-_s04_10228",
@@ -503699,7 +503071,7 @@
       },
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
@@ -503707,47 +503079,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10212
-  },
-  {
-    "id": "facebook_clip-tphcm-_s05_10229",
-    "parent_id": "clip-tphcm-",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "tamdamedia.eu",
-      "url": "https://www.facebook.com/tamdamedia.eu/videos/clip-tphcm-%C4%91%C6%B0%E1%BB%9Dng-ng%E1%BA%ADp-l%C3%AAnh-l%C3%A1ng-sau-m%C6%B0a-l%E1%BB%9Bn-nhi%E1%BB%81u-xe-ch%E1%BA%BFt-m%C3%A1yc%C6%A1n-m%C6%B0a-l%E1%BB%9Bn-chi%E1%BB%81u-2/362370019702253/"
-    },
-    "published_at": "2023-10-23T07:00:00+00:00",
-    "content": {
-      "title": "Đến tối cùng ngày, nhiều người vẫn phải vất vả bì bõm trên",
-      "text": "Đến tối cùng ngày, nhiều người vẫn phải vất vả bì bõm trên"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "bì bõm",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10213
+    "seq_id": 10199
   },
   {
     "id": "facebook_f2a0198b717c9277_s03_10231",
@@ -503787,7 +503119,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10214
+    "seq_id": 10200
   },
   {
     "id": "facebook_1244417499450940_s01_10232",
@@ -503829,7 +503161,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10215
+    "seq_id": 10201
   },
   {
     "id": "facebook_chi_s01_10233",
@@ -503869,7 +503201,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10216
+    "seq_id": 10202
   },
   {
     "id": "facebook_th_s01_10235",
@@ -503918,7 +503250,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10217
+    "seq_id": 10203
   },
   {
     "id": "facebook_ng_s01_10236",
@@ -503958,7 +503290,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10218
+    "seq_id": 10204
   },
   {
     "id": "facebook_ng_s03_10237",
@@ -503998,7 +503330,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10219
+    "seq_id": 10205
   },
   {
     "id": "facebook_ng_s04_10238",
@@ -504038,7 +503370,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10220
+    "seq_id": 10206
   },
   {
     "id": "facebook_kh_s01_10239",
@@ -504078,7 +503410,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10221
+    "seq_id": 10207
   },
   {
     "id": "facebook_hai-d_s01_10240",
@@ -504110,24 +503442,24 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       },
       {
         "aspect": "Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10222
+    "seq_id": 10208
   },
   {
     "id": "facebook_s_s01_10241",
@@ -504167,7 +503499,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10223
+    "seq_id": 10209
   },
   {
     "id": "facebook_s_s02_10242",
@@ -504207,7 +503539,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10224
+    "seq_id": 10210
   },
   {
     "id": "facebook_s_s03_10243",
@@ -504247,7 +503579,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10225
+    "seq_id": 10211
   },
   {
     "id": "facebook_con-_s01_10244",
@@ -504287,7 +503619,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10226
+    "seq_id": 10212
   },
   {
     "id": "facebook_c_s01_10245",
@@ -504327,47 +503659,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10227
-  },
-  {
-    "id": "facebook_m_s01_10246",
-    "parent_id": "m",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "HondaOtoSaiGonCongHoa",
-      "url": "https://www.facebook.com/HondaOtoSaiGonCongHoa/posts/m%E1%BB%ABng-t%C3%A2n-ni%C3%AAn-h%E1%BB%93ng-ph%C3%A1t-%C4%91%C3%B3n-t%C3%A0i-l%E1%BB%99c-ng%E1%BA%ADp-tr%C3%A0n-l%E1%BB%85-khai-xu%C3%A2n-%C4%91%E1%BA%A7u-n%C4%83m-m%E1%BB%9Bi-v%C3%A0-t%E1%BA%B7ng-l/932021142262653/"
-    },
-    "published_at": "2024-02-18T08:00:00+00:00",
-    "content": {
-      "title": "Mừng Tân Niên Hồng Phát 🧧🧧 Đón Tài Lộc Ngập Tràn 🧧🧧 Lễ Khai xuân đầu năm mới và ",
-      "text": "Mừng Tân Niên Hồng Phát 🧧🧧 Đón Tài Lộc Ngập Tràn 🧧🧧 Lễ Khai xuân đầu năm mới và tặng lì xì 🎉🎉 tại Honda Ôtô Sài Gòn - Cộng Hòa đã diễn ra vào sáng nay [mùng 10 Tết] với sự hiện diện của Ban Lãnh đạo cùng toàn thể nhân viên đại lý."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Sài Gòn",
-        "opinion": "Ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_cusign",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10228
+    "seq_id": 10213
   },
   {
     "id": "facebook_4d904346416137dc_s01_10247",
@@ -504407,7 +503699,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10229
+    "seq_id": 10214
   },
   {
     "id": "facebook_-kh_s01_10248",
@@ -504447,7 +503739,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10230
+    "seq_id": 10215
   },
   {
     "id": "facebook_nhi_s01_10249",
@@ -504487,7 +503779,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10231
+    "seq_id": 10216
   },
   {
     "id": "facebook_tphcm-l_s01_10250",
@@ -504527,7 +503819,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10232
+    "seq_id": 10217
   },
   {
     "id": "facebook_sau-khi-_s01_10251",
@@ -504559,15 +503851,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập 10.000 tỷ",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10233
+    "seq_id": 10218
   },
   {
     "id": "facebook_t_s02_10252",
@@ -504605,18 +503897,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "bì bõm",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10234
+    "seq_id": 10219
   },
   {
     "id": "facebook_fapas-th_s04_10253",
@@ -504656,47 +503939,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10235
-  },
-  {
-    "id": "facebook_-jm-178-v_s02_10254",
-    "parent_id": "-jm-178-v",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "jm.com.vn",
-      "url": "https://www.facebook.com/jm.com.vn/posts/-jm-178-v%C3%B5-v%C4%83n-ng%C3%A2n-loading-100-c%C3%A1c-n%C3%A0ng-%C4%91%C3%A3-chu%E1%BA%A9n-b%E1%BB%8B-tinh-th%E1%BA%A7n-%C4%91%E1%BB%83-qua-nh%C3%A0-m%E1%BB%9Bi-c%E1%BB%A7/1496696383710724/"
-    },
-    "published_at": "2017-12-01T08:00:00+00:00",
-    "content": {
-      "title": "Đội ngũ nhân viên nhà JM vẫn đang bận rộn TRANG TRÍ lại không gian và treo NGẬP ",
-      "text": "Đội ngũ nhân viên nhà JM vẫn đang bận rộn TRANG TRÍ lại không gian và treo NGẬP KỆ những chiếc đầm xinh đẹp để ma"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10236
+    "seq_id": 10220
   },
   {
     "id": "facebook_86d548db85efa101_s01_10255",
@@ -504736,7 +503979,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10237
+    "seq_id": 10221
   },
   {
     "id": "facebook_xem-th_s01_10257",
@@ -504768,15 +504011,6 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "triều cường đạt đỉnh",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "TPHCM",
         "opinion": "ngập sâu",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
@@ -504785,7 +504019,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10238
+    "seq_id": 10222
   },
   {
     "id": "facebook_tri_s01_10258",
@@ -504826,6 +504060,15 @@
       },
       {
         "aspect": "TP.HCM",
+        "opinion": "thành sông",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "HIGH"
+      },
+      {
+        "aspect": "TP.HCM",
         "opinion": "ngập sâu",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
@@ -504834,7 +504077,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10239
+    "seq_id": 10223
   },
   {
     "id": "facebook_kh_s01_10259",
@@ -504874,7 +504117,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10240
+    "seq_id": 10224
   },
   {
     "id": "facebook_s_s01_10260",
@@ -504914,7 +504157,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10241
+    "seq_id": 10225
   },
   {
     "id": "facebook_8684713714966998_s01_10261",
@@ -504956,7 +504199,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10242
+    "seq_id": 10226
   },
   {
     "id": "facebook_8684713714966998_s02_10262",
@@ -505025,7 +504268,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10243
+    "seq_id": 10227
   },
   {
     "id": "facebook_-ng_s01_10263",
@@ -505065,7 +504308,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10244
+    "seq_id": 10228
   },
   {
     "id": "facebook_-tphcm-b_s01_10264",
@@ -505097,15 +504340,24 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "chống ngập",
+        "polarity": "POS",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "biến thành sông",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "HIGH"
       }
     ],
-    "seq_id": 10245
+    "seq_id": 10229
   },
   {
     "id": "facebook_tphcm-_s01_10265",
@@ -505145,7 +504397,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10246
+    "seq_id": 10230
   },
   {
     "id": "facebook_tphcm-_s02_10266",
@@ -505177,7 +504429,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -505185,7 +504437,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10247
+    "seq_id": 10231
   },
   {
     "id": "facebook_c_s01_10267",
@@ -505225,7 +504477,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10248
+    "seq_id": 10232
   },
   {
     "id": "facebook_tphcm-tri_s01_10268",
@@ -505257,15 +504509,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10249
+    "seq_id": 10233
   },
   {
     "id": "facebook_theo-s_s01_10269",
@@ -505297,15 +504549,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10250
+    "seq_id": 10234
   },
   {
     "id": "facebook_tphcm-t_s01_10270",
@@ -505337,24 +504589,24 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
+        "opinion": "CHỐNG NGẬP",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       },
       {
         "aspect": "TP.HCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10251
+    "seq_id": 10235
   },
   {
     "id": "facebook_1744608339483252_s01_10271",
@@ -505386,7 +504638,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "Hàng loạt phương tiện chết máy",
+        "opinion": "chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -505394,7 +504646,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10252
+    "seq_id": 10236
   },
   {
     "id": "facebook_chi_s01_10272",
@@ -505434,7 +504686,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10253
+    "seq_id": 10237
   },
   {
     "id": "facebook_chi_s02_10273",
@@ -505474,7 +504726,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10254
+    "seq_id": 10238
   },
   {
     "id": "facebook_t_s01_10274",
@@ -505512,18 +504764,9 @@
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "HIGH"
-      },
-      {
-        "aspect": "TPHCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10255
+    "seq_id": 10239
   },
   {
     "id": "facebook_ng_s01_10275",
@@ -505572,7 +504815,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10256
+    "seq_id": 10240
   },
   {
     "id": "facebook_s_s01_10276",
@@ -505612,7 +504855,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10257
+    "seq_id": 10241
   },
   {
     "id": "facebook_trong-kh_s01_10277",
@@ -505652,47 +504895,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10258
-  },
-  {
-    "id": "facebook_g_s02_10278",
-    "parent_id": "g",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "caphethubay",
-      "url": "https://www.facebook.com/caphethubay/posts/g%C3%B3c-nh%C3%ACns%C3%A0i-g%C3%B2n-c%C3%B2n-b%E1%BB%8B-d%E1%BA%B1n-v%E1%BA%B7t-v%C3%A0i-ch%E1%BB%A5c-n%C4%83m-n%E1%BB%AFam%E1%BA%A5y-ng%C3%A0y-qua-nhi%E1%BB%81u-khu-v%E1%BB%B1c-trong-/1130638535886965/"
-    },
-    "published_at": "2025-10-28T07:00:00+00:00",
-    "content": {
-      "title": "Mấy ngày qua, nhiều khu vực trong TP, người dân lại bì bõm trong biển nước cộng ",
-      "text": "Mấy ngày qua, nhiều khu vực trong TP, người dân lại bì bõm trong biển nước cộng hưởng của mưa + xả lũ + triều cường."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "bì bõm",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10259
+    "seq_id": 10242
   },
   {
     "id": "facebook_kh_s01_10279",
@@ -505734,7 +504937,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10260
+    "seq_id": 10243
   },
   {
     "id": "facebook_c_s01_10280",
@@ -505801,7 +505004,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10261
+    "seq_id": 10244
   },
   {
     "id": "facebook_tri_s01_10281",
@@ -505833,55 +505036,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10262
-  },
-  {
-    "id": "facebook_mi_s03_10284",
-    "parent_id": "mi",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "thudaumotbd",
-      "url": "https://www.facebook.com/thudaumotbd/posts/mi%E1%BB%81n-t%C3%A2y-s%C3%B4ng-n%C6%B0%E1%BB%9Bc-gi%E1%BB%AFa-l%C3%B2ng-th%E1%BB%A7-d%E1%BA%A7u-m%E1%BB%99t-s%C3%A1ng-18112024-t%E1%BA%A1i-b%C3%ACnh-d%C6%B0%C6%A1ng-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dn/976338951189810/"
-    },
-    "published_at": "2024-11-20T08:00:00+00:00",
-    "content": {
-      "title": "Tiểu thương người thì ngồi co ro đợi nước rút, người thì bì bõm dọn hàng, cố gắn",
-      "text": "Tiểu thương người thì ngồi co ro đợi nước rút, người thì bì bõm dọn hàng, cố gắng duy trì buôn bán."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "bì bõm",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10263
+    "seq_id": 10245
   },
   {
     "id": "facebook_tri_s01_10285",
@@ -505921,7 +505084,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10264
+    "seq_id": 10246
   },
   {
     "id": "facebook_c_s02_10286",
@@ -505961,7 +505124,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10265
+    "seq_id": 10247
   },
   {
     "id": "facebook_c_s01_10287",
@@ -506001,7 +505164,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10266
+    "seq_id": 10248
   },
   {
     "id": "facebook_c_s02_10288",
@@ -506041,7 +505204,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10267
+    "seq_id": 10249
   },
   {
     "id": "facebook_h_s02_10289",
@@ -506081,7 +505244,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10268
+    "seq_id": 10250
   },
   {
     "id": "facebook_nhi_s01_10290",
@@ -506130,7 +505293,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10269
+    "seq_id": 10251
   },
   {
     "id": "facebook_ng_s01_10291",
@@ -506170,7 +505333,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10270
+    "seq_id": 10252
   },
   {
     "id": "facebook_c_s01_10292",
@@ -506211,7 +505374,7 @@
       },
       {
         "aspect": "Thủ Đức",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": "csgt_chthc",
@@ -506219,7 +505382,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10271
+    "seq_id": 10253
   },
   {
     "id": "facebook_nh_s01_10293",
@@ -506259,7 +505422,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10272
+    "seq_id": 10254
   },
   {
     "id": "facebook_-grand-opening-vikings-15-tr_s01_10294",
@@ -506301,7 +505464,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10273
+    "seq_id": 10255
   },
   {
     "id": "facebook_duy-nh_s01_10295",
@@ -506343,7 +505506,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10274
+    "seq_id": 10256
   },
   {
     "id": "facebook_t_s01_10296",
@@ -506385,7 +505548,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10275
+    "seq_id": 10257
   },
   {
     "id": "facebook_s_s02_10298",
@@ -506417,15 +505580,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập lênh láng",
+        "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "HIGH"
+        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10276
+    "seq_id": 10258
   },
   {
     "id": "facebook_kh_s01_10299",
@@ -506465,7 +505628,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10277
+    "seq_id": 10259
   },
   {
     "id": "facebook_s_s01_10300",
@@ -506505,7 +505668,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10278
+    "seq_id": 10260
   },
   {
     "id": "facebook_31690212300622347_s01_10301",
@@ -506545,7 +505708,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10279
+    "seq_id": 10261
   },
   {
     "id": "facebook_31690212300622347_s02_10302",
@@ -506585,7 +505748,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10280
+    "seq_id": 10262
   },
   {
     "id": "facebook_1398927838526103_s01_10303",
@@ -506625,7 +505788,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10281
+    "seq_id": 10263
   },
   {
     "id": "facebook_s_s01_10304",
@@ -506665,7 +505828,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10282
+    "seq_id": 10264
   },
   {
     "id": "facebook_-s_s01_10305",
@@ -506705,7 +505868,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10283
+    "seq_id": 10265
   },
   {
     "id": "facebook_h_s01_10306",
@@ -506737,15 +505900,15 @@
     "aste_triplets": [
       {
         "aspect": "Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10284
+    "seq_id": 10266
   },
   {
     "id": "facebook_c_s01_10307",
@@ -506794,7 +505957,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10285
+    "seq_id": 10267
   },
   {
     "id": "facebook_c_s02_10308",
@@ -506834,7 +505997,7 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 10286
+    "seq_id": 10268
   },
   {
     "id": "facebook_h_s01_10309",
@@ -506866,15 +506029,15 @@
     "aste_triplets": [
       {
         "aspect": "Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10287
+    "seq_id": 10269
   },
   {
     "id": "facebook_01072025ng_s02_10310",
@@ -506914,7 +506077,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10288
+    "seq_id": 10270
   },
   {
     "id": "facebook_d_s01_10311",
@@ -506955,15 +506118,15 @@
       },
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10289
+    "seq_id": 10271
   },
   {
     "id": "facebook_tphcm-ng_s01_10312",
@@ -506995,7 +506158,7 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "Ngập",
+        "opinion": "Ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -507003,47 +506166,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10290
-  },
-  {
-    "id": "facebook_avshow-tphcm-2025ph_s03_10313",
-    "parent_id": "avshow-tphcm-2025ph",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "nambinhad",
-      "url": "https://www.facebook.com/nambinhad/videos/avshow-tphcm-2025ph%C3%B2ng-thi%C3%AAn-h%C3%A0-audio-tr%C3%A0n-ng%E1%BA%ADp-c%C3%A1c-huy%E1%BB%81n-tho%E1%BA%A1i-%C3%A2m-thanhharbeth-/655290597141323/"
-    },
-    "published_at": "2025-09-05T07:00:00+00:00",
-    "content": {
-      "title": "[AVSHOW TPHCM 2025] PHÒNG THIÊN HÀ AUDIO TRÀN NGẬP CÁC HUYỀN THOẠI ÂM THANH Harb",
-      "text": "[AVSHOW TPHCM 2025] PHÒNG THIÊN HÀ AUDIO TRÀN NGẬP CÁC HUYỀN THOẠI ÂM THANH Harbeth, Accuphase và Goldmund – ba cái tên huyền thoại sẽ cùng hội tụ trong không gian trình diễn của Thiên Hà Audio tại AV Show TP.H"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10291
+    "seq_id": 10272
   },
   {
     "id": "facebook_1991051924787490_s01_10314",
@@ -507075,15 +506198,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "Nguy cơ ngập",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10292
+    "seq_id": 10273
   },
   {
     "id": "facebook_th_s01_10315",
@@ -507115,15 +506238,6 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "Triều cường đạt đỉnh",
-        "polarity": "NEU",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "LOW"
-      },
-      {
-        "aspect": "TP. Hồ Chí Minh",
         "opinion": "nước tràn vào nhà",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
@@ -507150,7 +506264,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10293
+    "seq_id": 10274
   },
   {
     "id": "facebook_4274145852860657_s01_10316",
@@ -507190,9 +506304,18 @@
         "gazetteer_id": "csgt_nguynvnq",
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "RECOVERED"
+      },
+      {
+        "aspect": "Nguyễn Văn Quá",
+        "opinion": "ngập nước",
+        "polarity": "NEG",
+        "aspect_category": "LOCATION_STREET",
+        "gazetteer_id": "csgt_nguynvnq",
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10294
+    "seq_id": 10275
   },
   {
     "id": "facebook_1982423082317041_s01_10317",
@@ -507232,7 +506355,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10295
+    "seq_id": 10276
   },
   {
     "id": "facebook_h_s01_10318",
@@ -507272,7 +506395,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10296
+    "seq_id": 10277
   },
   {
     "id": "facebook_kh_s02_10320",
@@ -507312,7 +506435,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10297
+    "seq_id": 10278
   },
   {
     "id": "facebook_kh_s01_10322",
@@ -507354,7 +506477,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10298
+    "seq_id": 10279
   },
   {
     "id": "facebook_b8d6672544702f4e_s02_10323",
@@ -507394,7 +506517,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10299
+    "seq_id": 10280
   },
   {
     "id": "facebook_b8d6672544702f4e_s04_10324",
@@ -507434,7 +506557,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10300
+    "seq_id": 10281
   },
   {
     "id": "news_b7e46ccfdd73_s05_10325",
@@ -507474,7 +506597,7 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 10301
+    "seq_id": 10282
   },
   {
     "id": "news_ce1188468130_s19_10326",
@@ -507514,7 +506637,7 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 10302
+    "seq_id": 10283
   },
   {
     "id": "news_7cf0f43d3e1c_s26_10327",
@@ -507554,7 +506677,7 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 10303
+    "seq_id": 10284
   },
   {
     "id": "news_dc37513b34fe_s19_10328",
@@ -507586,15 +506709,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chờ nước rút",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10304
+    "seq_id": 10285
   },
   {
     "id": "news_e8fee8b00cc8_s23_10329",
@@ -507626,7 +506749,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "Xe chết máy la liệt",
+        "opinion": "Xe chết máy",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -507634,7 +506757,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10305
+    "seq_id": 10286
   },
   {
     "id": "news_1024f7e09e28_s14_10330",
@@ -507674,7 +506797,7 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 10306
+    "seq_id": 10287
   },
   {
     "id": "news_2d00d7dd75a1_s06_10331",
@@ -507706,15 +506829,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập lênh láng",
+        "opinion": "ngập",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "HIGH"
+        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10307
+    "seq_id": 10288
   },
   {
     "id": "news_2d00d7dd75a1_s10_10332",
@@ -507754,7 +506877,7 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 10308
+    "seq_id": 10289
   },
   {
     "id": "news_7b9c5ef558a0_s08_10333",
@@ -507794,7 +506917,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10309
+    "seq_id": 10290
   },
   {
     "id": "news_cd23c92ef632_s26_10334",
@@ -507836,49 +506959,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10310
-  },
-  {
-    "id": "news_54b3b4304b95_s28_10335",
-    "parent_id": "54b3b4304b95",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "news",
-      "author": "News Creator",
-      "url": "https://congan.com.vn/doi-song/qua-met-moi-dan-sai-gon-hoi-khi-nao-thanh-pho-het-ngap_65737.html"
-    },
-    "published_at": "Mon, 26 Nov 2018 08:00:00 GMT",
-    "content": {
-      "title": "Đáng nói, ông Phước cho biết trước đây nhà ông chưa bao giờ bị ngập, nhưng kể từ",
-      "text": "Đáng nói, ông Phước cho biết trước đây nhà ông chưa bao giờ bị ngập, nhưng kể từ khi con đường Huỳnh Tấn Phát thi công nâng cấp, khiến cho các con hẻm bị thấp hơn mặt đường, nên khi mưa xuống nước không rút được và cứ thế là bị ngập."
-    },
-    "location": {
-      "locations": [
-        "Huỳnh Tấn Phát"
-      ],
-      "ward": "Phường Phú Thuận",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Huỳnh Tấn Phát",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_hunhtnph",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10311
+    "seq_id": 10291
   },
   {
     "id": "news_a39345fc3ce9_s32_10336",
@@ -507910,15 +506991,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10312
+    "seq_id": 10292
   },
   {
     "id": "news_94da6d5c4de9_s13_10337",
@@ -507958,7 +507039,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10313
+    "seq_id": 10293
   },
   {
     "id": "news_94da6d5c4de9_s14_10338",
@@ -507996,58 +507077,9 @@
         "gazetteer_id": "csgt_chthc",
         "grounding_provenance": "SPAN_MATCHED",
         "severity": "LOW"
-      },
-      {
-        "aspect": "Thủ Đức",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
       }
     ],
-    "seq_id": 10314
-  },
-  {
-    "id": "news_1ae3e02738a6_s01_10339",
-    "parent_id": "1ae3e02738a6",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "news",
-      "author": "News Creator",
-      "url": "https://vnexpress.net/de-xuat-xay-ho-ngam-duoi-san-bong-de-xoa-ron-ngap-o-tp-hcm-4946859.html"
-    },
-    "published_at": "Fri, 03 Oct 2025 07:00:00 GMT",
-    "content": {
-      "title": "Hồ điều tiết ngầm được đề xuất xây dựng dưới sân bóng đá Linh Tây, khả năng trữ ",
-      "text": "Hồ điều tiết ngầm được đề xuất xây dựng dưới sân bóng đá Linh Tây, khả năng trữ 13.000 m3 nước, giúp xử lý những khu vực ngập sâu ở Thủ Đức."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Thủ Đức",
-        "opinion": "ngập sâu",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_chthc",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      }
-    ],
-    "seq_id": 10315
+    "seq_id": 10294
   },
   {
     "id": "news_7e5b8e0024cb_s05_10340",
@@ -508096,7 +507128,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10316
+    "seq_id": 10295
   },
   {
     "id": "news_bf9a0dfd8247ce76_s01_10341",
@@ -508136,7 +507168,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10317
+    "seq_id": 10296
   },
   {
     "id": "tiktok_7573176188013759751_s01_10342",
@@ -508178,7 +507210,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10318
+    "seq_id": 10297
   },
   {
     "id": "tiktok_7582608195898608916_s02_10343",
@@ -508212,7 +507244,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "Ngập",
+        "opinion": "Ngập Nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -508220,7 +507252,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10319
+    "seq_id": 10298
   },
   {
     "id": "tiktok_7542923270455135496_s01_10345",
@@ -508262,7 +507294,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10320
+    "seq_id": 10299
   },
   {
     "id": "tiktok_7565167964014677256_s01_10346",
@@ -508304,133 +507336,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10321
-  },
-  {
-    "id": "tiktok_7581655039375183124_s01_10347",
-    "parent_id": "7581655039375183124",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "tiktok",
-      "author": "pipfood1",
-      "url": "https://www.tiktok.com/@pipfood1/video/7581655039375183124"
-    },
-    "published_at": "2025-12-09T00:54:11.000Z",
-    "content": {
-      "title": "Chợ thủ đức sáng 9/12 thất thủ nước ngập quá chời ớt nay cay hơn hôm qua 1kg ớt ",
-      "text": "Chợ thủ đức sáng 9/12 thất thủ nước ngập quá chời ớt nay cay hơn hôm qua 1kg ớt mua được 1,5kg thịt kkk#khoinghiep #xaykenhtiktok #amthuc #pipfood #comvanphong"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": true,
-      "media_urls": [
-        "https://www.tiktok.com/@pipfood1/video/7581655039375183124"
-      ]
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10322
-  },
-  {
-    "id": "tiktok_7562416231656017159_s01_10352",
-    "parent_id": "7562416231656017159",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "tiktok",
-      "author": "banhbaokeptanhoadong",
-      "url": "https://www.tiktok.com/@banhbaokeptanhoadong/video/7562416231656017159"
-    },
-    "published_at": "2025-10-17T07:00:00+00:00",
-    "content": {
-      "title": "\" Ngập nhân - tràn sốt chỉ 35 cành có ngay Bao Kẹp Tôm Xúc Xích Sốt Phô Mai \" 📍1",
-      "text": "\" Ngập nhân - tràn sốt chỉ 35 cành có ngay Bao Kẹp Tôm Xúc Xích Sốt Phô Mai \" 📍158 Tân Hòa Đông P14 Q6 bán sáng 6g đến 10g #food #banhbaokep #anvatSaiGon #Quan6 #anvatngon"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": true,
-      "media_urls": [
-        "https://www.tiktok.com/@banhbaokeptanhoadong/video/7562416231656017159"
-      ]
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Tân Hòa Đông",
-        "opinion": "Ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_tnhang",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10323
-  },
-  {
-    "id": "tiktok_7580719382733540626_s01_10353",
-    "parent_id": "7580719382733540626",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "tiktok",
-      "author": "dichoicunghuy",
-      "url": "https://www.tiktok.com/@dichoicunghuy/video/7580719382733540626"
-    },
-    "published_at": "2025-12-06T08:00:00+00:00",
-    "content": {
-      "title": "Giáng sinh ngập tràn tại quán cafe nằm trong khu phố Hàn.",
-      "text": "Giáng sinh ngập tràn tại quán cafe nằm trong khu phố Hàn."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": true,
-      "media_urls": [
-        "https://www.tiktok.com/@dichoicunghuy/video/7580719382733540626"
-      ]
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10324
+    "seq_id": 10300
   },
   {
     "id": "tiktok_7495400536288660754_s01_10355",
@@ -508472,133 +507378,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10325
-  },
-  {
-    "id": "tiktok_7251202504585776389_s01_10357",
-    "parent_id": "7251202504585776389",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "tiktok",
-      "author": "baro.phe",
-      "url": "https://www.tiktok.com/@baro.phe/video/7251202504585776389"
-    },
-    "published_at": "2023-07-02T07:00:00+00:00",
-    "content": {
-      "title": "Những quán cà phê tràn ngập cây xanh ở Sài Gòn (phần 1) #coffee #cafe #caphe #xu",
-      "text": "Những quán cà phê tràn ngập cây xanh ở Sài Gòn (phần 1) #coffee #cafe #caphe #xuhuong #trending #paophe #saigon #reviewcafe"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": true,
-      "media_urls": [
-        "https://www.tiktok.com/@baro.phe/video/7251202504585776389"
-      ]
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Sài Gòn",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": "csgt_cusign",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10326
-  },
-  {
-    "id": "tiktok_7254875624878165254_s01_10358",
-    "parent_id": "7254875624878165254",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "tiktok",
-      "author": "saigondulich",
-      "url": "https://www.tiktok.com/@saigondulich/video/7254875624878165254"
-    },
-    "published_at": "2023-07-12T07:00:00+00:00",
-    "content": {
-      "title": "#VomCoffee Quán cafe tràn ngập hoa và hoa: Vòm Coffee, 251 Tô Hiến Thành, phường",
-      "text": "#VomCoffee Quán cafe tràn ngập hoa và hoa: Vòm Coffee, 251 Tô Hiến Thành, phường 13, Quận 10, Tp.Hồ Chí Minh."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": true,
-      "media_urls": [
-        "https://www.tiktok.com/@saigondulich/video/7254875624878165254"
-      ]
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10327
-  },
-  {
-    "id": "tiktok_7568877255246581000_s01_10361",
-    "parent_id": "7568877255246581000",
-    "episode_id": "historical_archive",
-    "episode_title": "historical_archive",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "tiktok",
-      "author": "cuocsongquanhta_leduchai",
-      "url": "https://www.tiktok.com/@cuocsongquanhta_leduchai/video/7568877255246581000"
-    },
-    "published_at": "2025-11-04T08:00:00+00:00",
-    "content": {
-      "title": "Theo các nhà khoa học cảnh báo chỉ 5 năm nữa tức đến năm 2030, TPHCM khả năng sẽ",
-      "text": "Theo các nhà khoa học cảnh báo chỉ 5 năm nữa tức đến năm 2030, TPHCM khả năng sẽ có thêm khoảng 20Km2 ngập lụt nghiêm trọng và một số công trình sụt lún."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": true,
-      "media_urls": [
-        "https://www.tiktok.com/@cuocsongquanhta_leduchai/video/7568877255246581000"
-      ]
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10328
+    "seq_id": 10301
   },
   {
     "id": "facebook_m_s02_10363",
@@ -508638,7 +507418,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10329
+    "seq_id": 10302
   },
   {
     "id": "facebook_a6a14082c1bf9978_s01_10364",
@@ -508680,7 +507460,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10330
+    "seq_id": 10303
   },
   {
     "id": "facebook_1172072178611043_s01_10365",
@@ -508720,7 +507500,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10331
+    "seq_id": 10304
   },
   {
     "id": "facebook_t_s01_10366",
@@ -508760,7 +507540,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10332
+    "seq_id": 10305
   },
   {
     "id": "facebook_m_s01_10367",
@@ -508800,7 +507580,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10333
+    "seq_id": 10306
   },
   {
     "id": "facebook_m_s03_10368",
@@ -508832,15 +507612,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10334
+    "seq_id": 10307
   },
   {
     "id": "facebook_c_s02_10369",
@@ -508880,7 +507660,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10335
+    "seq_id": 10308
   },
   {
     "id": "facebook_n_s01_10370",
@@ -508949,7 +507729,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10336
+    "seq_id": 10309
   },
   {
     "id": "facebook_s_s01_10371",
@@ -508989,7 +507769,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10337
+    "seq_id": 10310
   },
   {
     "id": "facebook_c_s02_10372",
@@ -509029,7 +507809,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10338
+    "seq_id": 10311
   },
   {
     "id": "facebook_-_s01_10373",
@@ -509069,7 +507849,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10339
+    "seq_id": 10312
   },
   {
     "id": "facebook_n_s01_10374",
@@ -509101,64 +507881,24 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       },
       {
         "aspect": "Sài Gòn",
-        "opinion": "ngập úng",
-        "polarity": "NEG",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10340
-  },
-  {
-    "id": "facebook_rau-ng_s01_10375",
-    "parent_id": "rau-ng",
-    "episode_id": "sporadic_flood_events",
-    "episode_title": "sporadic_flood_events",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "MCV.baygiolamsao",
-      "url": "https://www.facebook.com/MCV.baygiolamsao/posts/rau-ng%E1%BA%ADp-t%E1%BB%A7-t%C3%B4m-nh%C6%B0-n%C3%BAi-qu%C3%A1n-b%C3%BAn-m%E1%BA%AFm-c%C3%B3-g%C3%ACngu%E1%BB%93n-ng%E1%BB%8Dc-s%C3%A0i-g%C3%B2n-ph%E1%BB%91b%E1%BA%A3n-quy%E1%BB%81n-%C4%91%C6%B0%E1%BB%A3c-b/1695942002209526/"
-    },
-    "published_at": "2026-10-28T13:30:54+00:00",
-    "content": {
-      "title": "Rau Ngập Tủ, Tôm Như Núi Quán Bún Mắm Có Gì?",
-      "text": "Rau Ngập Tủ, Tôm Như Núi Quán Bún Mắm Có Gì?"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "Ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10341
+    "seq_id": 10313
   },
   {
     "id": "facebook_shipper-l_s01_10376",
@@ -509190,7 +507930,7 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -509198,7 +507938,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10342
+    "seq_id": 10314
   },
   {
     "id": "facebook_chi_s03_10377",
@@ -509238,7 +507978,7 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 10343
+    "seq_id": 10315
   },
   {
     "id": "facebook_tp-h_s03_10378",
@@ -509278,7 +508018,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10344
+    "seq_id": 10316
   },
   {
     "id": "facebook_to_s01_10379",
@@ -509318,47 +508058,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10345
-  },
-  {
-    "id": "facebook_to_s04_10380",
-    "parent_id": "to",
-    "episode_id": "sporadic_flood_events",
-    "episode_title": "sporadic_flood_events",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "thanhnien",
-      "url": "https://www.facebook.com/thanhnien/posts/to%C3%A0n-c%E1%BA%A3nh-ng%E1%BA%ADp-tphcm-sau-m%C6%B0a-l%E1%BB%9Bn-v%C3%AC-sao-c%E1%BB%91ng-v%E1%BA%ABn-tho%C3%A1t-n%C6%B0%E1%BB%9Bc-nh%C6%B0ng-n%C6%B0%E1%BB%9Bc-r%C3%BAt-qu%C3%A1-c/1621542760012040/"
-    },
-    "published_at": "2026-10-18T07:00:00+00:00",
-    "content": {
-      "title": "Có nơi đường không ngập, hàng quán vẫn vắng khách…",
-      "text": "Có nơi đường không ngập, hàng quán vẫn vắng khách…"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "không ngập",
-        "polarity": "POS",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "RECOVERED"
-      }
-    ],
-    "seq_id": 10346
+    "seq_id": 10317
   },
   {
     "id": "facebook_5af1af3b182d4cb0_s01_10381",
@@ -509390,15 +508090,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10347
+    "seq_id": 10318
   },
   {
     "id": "facebook_d_s01_10382",
@@ -509430,15 +508130,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "giải quyết ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10348
+    "seq_id": 10319
   },
   {
     "id": "facebook_5659c8276b927d94_s01_10383",
@@ -509478,7 +508178,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10349
+    "seq_id": 10320
   },
   {
     "id": "facebook_xe-ba-g_s01_10384",
@@ -509527,7 +508227,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10350
+    "seq_id": 10321
   },
   {
     "id": "facebook_xe-ba-g_s02_10385",
@@ -509567,7 +508267,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10351
+    "seq_id": 10322
   },
   {
     "id": "facebook_-chuy_s01_10386",
@@ -509599,15 +508299,15 @@
     "aste_triplets": [
       {
         "aspect": "SÀI GÒN",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
+        "opinion": "CHỐNG NGẬP",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": "csgt_cusign",
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10352
+    "seq_id": 10323
   },
   {
     "id": "facebook_-chuy_s02_10387",
@@ -509639,15 +508339,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10353
+    "seq_id": 10324
   },
   {
     "id": "facebook_29030172576603664_s03_10388",
@@ -509679,7 +508379,7 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -509687,7 +508387,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10354
+    "seq_id": 10325
   },
   {
     "id": "facebook_-b_s01_10389",
@@ -509728,57 +508428,15 @@
       },
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10355
-  },
-  {
-    "id": "facebook_ti_s02_10390",
-    "parent_id": "ti",
-    "episode_id": "sporadic_flood_events",
-    "episode_title": "sporadic_flood_events",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "ansapsaigon",
-      "url": "https://www.facebook.com/ansapsaigon/videos/ti%E1%BB%87m-b%C3%A1nh-nama-donut-m%E1%BB%9Bi-%E1%BB%9F-th%E1%BA%A3o-%C4%91i%E1%BB%81n-b%E1%BB%AFa-m%C3%ACnh-%C4%91i-nh%E1%BA%ADt-vs-h%C3%A0n-th%E1%BA%A5y-%C4%91ang-hot-ki%E1%BB%83u-/2009739443249070/"
-    },
-    "published_at": "2026-06-02T07:00:00+00:00",
-    "content": {
-      "title": "Bữa mình đi Nhật vs Hàn thấy đang hot kiểu bánh donut này rồi mà giờ về Thảo Điề",
-      "text": "Bữa mình đi Nhật vs Hàn thấy đang hot kiểu bánh donut này rồi mà giờ về Thảo Điền thấy cũng có, mà còn ngon và sáng tạo nữa, nó là kiểu bánh donut tươi, lớp vỏ bánh mềm xốp hơn và bên trong thì ngập kem tươ"
-    },
-    "location": {
-      "locations": [
-        "Thảo Điền"
-      ],
-      "ward": "Phường An Khánh",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Thảo Điền",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_thoin",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10356
+    "seq_id": 10326
   },
   {
     "id": "facebook_ng_s01_10391",
@@ -509827,7 +508485,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10357
+    "seq_id": 10327
   },
   {
     "id": "facebook_d7c603e23bd96b0a_s02_10392",
@@ -509867,7 +508525,7 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 10358
+    "seq_id": 10328
   },
   {
     "id": "facebook_d7c603e23bd96b0a_s03_10393",
@@ -509907,7 +508565,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10359
+    "seq_id": 10329
   },
   {
     "id": "facebook_qu_s01_10394",
@@ -509947,47 +508605,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10360
-  },
-  {
-    "id": "facebook_tphcm-chu_s02_10395",
-    "parent_id": "tphcm-chu",
-    "episode_id": "sporadic_flood_events",
-    "episode_title": "sporadic_flood_events",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "songbatdongsann",
-      "url": "https://www.facebook.com/songbatdongsann/posts/tphcm-chu%E1%BA%A9n-b%E1%BB%8B-%C4%91%C6%B0a-d%E1%BB%B1-%C3%A1n-ng%C4%83n-tri%E1%BB%81u-10000-t%E1%BB%89-v%C3%A0o-ho%E1%BA%A1t-%C4%91%E1%BB%99ng-20-ph%C6%B0%E1%BB%9Dng-x%C3%A3-s%E1%BA%AFp-tho%C3%A1/122194985918798864/"
-    },
-    "published_at": "2026-10-28T02:26:50+00:00",
-    "content": {
-      "title": "Dự án ngăn triều 10.000 tỉ đồng (giai đoạn 1) dự kiến sẽ chính thức vận hành, gi",
-      "text": "Dự án ngăn triều 10.000 tỉ đồng (giai đoạn 1) dự kiến sẽ chính thức vận hành, giúp giảm ngập triều cường trực tiếp cho 20 phường, xã trên diện tích rộng"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10361
+    "seq_id": 10330
   },
   {
     "id": "facebook_1792735925226828_s01_10396",
@@ -510029,7 +508647,7 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 10362
+    "seq_id": 10331
   },
   {
     "id": "facebook_4131196867185282_s01_10397",
@@ -510071,7 +508689,7 @@
         "severity": "RECOVERED"
       }
     ],
-    "seq_id": 10363
+    "seq_id": 10332
   },
   {
     "id": "facebook_th_s01_10399",
@@ -510103,15 +508721,15 @@
     "aste_triplets": [
       {
         "aspect": "Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10364
+    "seq_id": 10333
   },
   {
     "id": "facebook_ch_s01_10400",
@@ -510143,15 +508761,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "Chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10365
+    "seq_id": 10334
   },
   {
     "id": "facebook_1835407474348297_s01_10401",
@@ -510183,15 +508801,15 @@
     "aste_triplets": [
       {
         "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "Dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10366
+    "seq_id": 10335
   },
   {
     "id": "facebook_m_s01_10402",
@@ -510231,7 +508849,7 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 10367
+    "seq_id": 10336
   },
   {
     "id": "facebook_-tin-c_s01_10403",
@@ -510271,7 +508889,7 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 10368
+    "seq_id": 10337
   },
   {
     "id": "facebook_c_s01_10405",
@@ -510303,15 +508921,24 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "Cảnh báo triều cường",
+        "polarity": "NEU",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
+      },
+      {
+        "aspect": "TP.HCM",
+        "opinion": "nguy cơ ngập",
+        "polarity": "NEU",
+        "aspect_category": "LOCATION_ADMIN",
+        "gazetteer_id": null,
+        "grounding_provenance": "SPAN_MATCHED",
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10369
+    "seq_id": 10338
   },
   {
     "id": "facebook_chi_s01_10406",
@@ -510343,7 +508970,7 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -510351,7 +508978,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10370
+    "seq_id": 10339
   },
   {
     "id": "facebook_chi_s02_10407",
@@ -510391,7 +509018,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10371
+    "seq_id": 10340
   },
   {
     "id": "facebook_-tri_s02_10408",
@@ -510431,7 +509058,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10372
+    "seq_id": 10341
   },
   {
     "id": "facebook_-loa-loa-loa-coopmart-hu_s02_10409",
@@ -510473,7 +509100,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10373
+    "seq_id": 10342
   },
   {
     "id": "facebook_tphcm-kh_s01_10410",
@@ -510505,57 +509132,15 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập 10.000 tỷ",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10374
-  },
-  {
-    "id": "facebook_2042474473379593_s01_10411",
-    "parent_id": "2042474473379593",
-    "episode_id": "sporadic_flood_events",
-    "episode_title": "sporadic_flood_events",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "facebook",
-      "author": "Facebook Creator",
-      "url": "https://www.facebook.com/groups/1099020331058350/posts/2042474473379593/"
-    },
-    "published_at": "2026-08-21T07:00:00+00:00",
-    "content": {
-      "title": "NHÀ 2 TẦNG MỚI HẺM 1982 HUỲNH TẤN PHÁT - HẺM BÊ TÔNG CAO RÁO KO NGẬP - HẺM THÔNG",
-      "text": "NHÀ 2 TẦNG MỚI HẺM 1982 HUỲNH TẤN PHÁT - HẺM BÊ TÔNG CAO RÁO KO NGẬP - HẺM THÔNG - 🌺🌺Giá chỉ nhỉnh 4 tỷ - Diện tích: 54m( 6x9) - Thiết kế: 1 trệt 1 lầu 3pn 2wc ( Có phòng ngủ tầng trệt) - Xung quanh tiện ích ngập tràn - Đi Phú Mỹ Hưng 4p"
-    },
-    "location": {
-      "locations": [
-        "Huỳnh Tấn Phát"
-      ],
-      "ward": "Phường Phú Thuận",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "HUỲNH TẤN PHÁT",
-        "opinion": "NGẬP",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_hunhtnph",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10375
+    "seq_id": 10343
   },
   {
     "id": "facebook_33578875328422692_s01_10412",
@@ -510595,7 +509180,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10376
+    "seq_id": 10344
   },
   {
     "id": "facebook_33578875328422692_s02_10413",
@@ -510637,7 +509222,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10377
+    "seq_id": 10345
   },
   {
     "id": "facebook_33578875328422692_s03_10414",
@@ -510677,7 +509262,7 @@
         "severity": "LOW"
       }
     ],
-    "seq_id": 10378
+    "seq_id": 10346
   },
   {
     "id": "facebook_sau-b_s01_10415",
@@ -510717,47 +509302,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10379
-  },
-  {
-    "id": "news_722b20a7793e_s23_10416",
-    "parent_id": "722b20a7793e",
-    "episode_id": "sporadic_flood_events",
-    "episode_title": "sporadic_flood_events",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "news",
-      "author": "News Creator",
-      "url": "https://vovgiaothong.vn/newsaudio/mua-lon-lien-tuc-tphcm-ngap-sau-da-den-luc-chuyen-tu-duy-tu-chong-ngap-sang-quan-ly-nuoc-d55586.html"
-    },
-    "published_at": "Fri, 25 Sep 2026 10:09:19 GMT",
-    "content": {
-      "title": "“Giữ”: Phải bảo vệ rừng, bảo vệ các khu đất ngập nước, hồ tự nhiên, đồng thời bả",
-      "text": "“Giữ”: Phải bảo vệ rừng, bảo vệ các khu đất ngập nước, hồ tự nhiên, đồng thời bảo vệ không gian dành cho nước trước đây - không chỉ sông, hồ, kênh rạch mà cả các hồ điều tiết tự nhiên hoặc nhân tạo."
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": false,
-      "media_urls": []
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10380
+    "seq_id": 10347
   },
   {
     "id": "news_71edeedf7379f980_s01_10417",
@@ -510789,15 +509334,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10381
+    "seq_id": 10348
   },
   {
     "id": "tiktok_7689647759468825863_s01_10419",
@@ -510831,24 +509376,15 @@
     "aste_triplets": [
       {
         "aspect": "Hồ Chí Minh",
-        "opinion": "ngập nặng",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập 10.000 tỷ",
+        "polarity": "POS",
         "aspect_category": "LOCATION_STREET",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "HIGH"
-      },
-      {
-        "aspect": "Hồ Chí Minh",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": null,
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10382
+    "seq_id": 10349
   },
   {
     "id": "tiktok_7689647759468825863_s02_10420",
@@ -510899,7 +509435,7 @@
         "severity": "HIGH"
       }
     ],
-    "seq_id": 10383
+    "seq_id": 10350
   },
   {
     "id": "tiktok_7689647759468825863_s03_10421",
@@ -510941,7 +509477,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10384
+    "seq_id": 10351
   },
   {
     "id": "tiktok_7689647759468825863_s05_10422",
@@ -510983,7 +509519,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10385
+    "seq_id": 10352
   },
   {
     "id": "tiktok_7689647759468825863_s12_10424",
@@ -511017,15 +509553,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10386
+    "seq_id": 10353
   },
   {
     "id": "tiktok_cf8a92e83ab26f11_s01_10426",
@@ -511059,101 +509595,15 @@
     "aste_triplets": [
       {
         "aspect": "TP.HCM",
-        "opinion": "ngập",
-        "polarity": "NEG",
+        "opinion": "dự án chống ngập",
+        "polarity": "POS",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
         "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
+        "severity": "LOW"
       }
     ],
-    "seq_id": 10387
-  },
-  {
-    "id": "tiktok_7651237080747724040_s01_10427",
-    "parent_id": "7651237080747724040",
-    "episode_id": "sporadic_flood_events",
-    "episode_title": "sporadic_flood_events",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "tiktok",
-      "author": "stanley1913_vietnam",
-      "url": "https://www.tiktok.com/@stanley1913_vietnam/video/7651237080747724040"
-    },
-    "published_at": "2026-06-14T07:00:00+00:00",
-    "content": {
-      "title": "Ngày hội bóng đá lớn nhất hành tinh đã chính thức bắt đầu và Stanley Vincom Mega",
-      "text": "Ngày hội bóng đá lớn nhất hành tinh đã chính thức bắt đầu và Stanley Vincom Mega Mall Thảo Điền cũng đang ngập tràn nguồn năng lượng của mùa giải."
-    },
-    "location": {
-      "locations": [
-        "Thảo Điền"
-      ],
-      "ward": "Phường An Khánh",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": true,
-      "media_urls": [
-        "https://www.tiktok.com/@stanley1913_vietnam/video/7651237080747724040"
-      ]
-    },
-    "aste_triplets": [
-      {
-        "aspect": "Thảo Điền",
-        "opinion": "ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_STREET",
-        "gazetteer_id": "csgt_thoin",
-        "grounding_provenance": "SPAN_MATCHED",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10388
-  },
-  {
-    "id": "tiktok_7642554080652545301_s01_10429",
-    "parent_id": "7642554080652545301",
-    "episode_id": "sporadic_flood_events",
-    "episode_title": "sporadic_flood_events",
-    "crawl_batch": "batch_5_social_multiyear_exceed_10k",
-    "is_new_crawl": true,
-    "source": {
-      "platform": "tiktok",
-      "author": "reviewsaigon.59",
-      "url": "https://www.tiktok.com/@reviewsaigon.59/video/7642554080652545301"
-    },
-    "published_at": "2026-05-21T07:00:00+00:00",
-    "content": {
-      "title": "Tiệm Bánh Tacos Ngon Rẻ Siêu Ngập Ngụa Nhân Ở Quận 8 Nè!?",
-      "text": "Tiệm Bánh Tacos Ngon Rẻ Siêu Ngập Ngụa Nhân Ở Quận 8 Nè!?"
-    },
-    "location": {
-      "locations": [],
-      "ward": "Chưa xác định",
-      "city": "Hồ Chí Minh",
-      "legacy_district": "TP.HCM"
-    },
-    "media": {
-      "has_media": true,
-      "media_urls": [
-        "https://www.tiktok.com/@reviewsaigon.59/video/7642554080652545301"
-      ]
-    },
-    "aste_triplets": [
-      {
-        "aspect": "TP. Hồ Chí Minh",
-        "opinion": "Ngập",
-        "polarity": "NEG",
-        "aspect_category": "LOCATION_ADMIN",
-        "gazetteer_id": null,
-        "grounding_provenance": "DOC_FALLBACK",
-        "severity": "MODERATE"
-      }
-    ],
-    "seq_id": 10389
+    "seq_id": 10354
   },
   {
     "id": "tiktok_7696440286007790856_s02_10431",
@@ -511195,7 +509645,7 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10390
+    "seq_id": 10355
   },
   {
     "id": "tiktok_7622146597392010512_s01_10432",
@@ -511229,7 +509679,7 @@
     "aste_triplets": [
       {
         "aspect": "TPHCM",
-        "opinion": "ngập",
+        "opinion": "ngập nước",
         "polarity": "NEG",
         "aspect_category": "LOCATION_ADMIN",
         "gazetteer_id": null,
@@ -511237,6 +509687,6 @@
         "severity": "MODERATE"
       }
     ],
-    "seq_id": 10391
+    "seq_id": 10356
   }
 ]
