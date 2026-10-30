@@ -189,6 +189,49 @@ class SparkFloodProcessor:
         self.active_events_cache: List[Dict[str, Any]] = []
         self.redis_client = self._init_redis()
         self.dlq_producer = self._init_dlq_producer()
+        self._warm_up_cache()
+
+    def _warm_up_cache(self):
+        """Khởi động nạp trước các sự kiện còn hiệu lực trong 24 giờ từ Redis hoặc file đệm."""
+        current_time = int(time.time())
+        retention = 86400
+        loaded = {}
+        if self.redis_client:
+            try:
+                keys = self.redis_client.keys("flood:event:*")
+                if keys:
+                    pipe = self.redis_client.pipeline()
+                    for k in keys:
+                        pipe.get(k)
+                    vals = pipe.execute()
+                    for v in vals:
+                        if v:
+                            try:
+                                ev = json.loads(v)
+                                cid = ev.get("canonical_id") or ev.get("id")
+                                ctime = ev.get("create_time", 0) or ev.get("timestamp", 0)
+                                if cid and (current_time - ctime) <= retention:
+                                    loaded[cid] = ev
+                            except Exception:
+                                pass
+            except Exception as e:
+                print(f"[Spark Engine] Cảnh báo warm up Redis: {e}")
+
+        if not loaded and os.path.exists(STREAM_STATE_FILE):
+            try:
+                with open(STREAM_STATE_FILE, "r", encoding="utf-8") as sf:
+                    data = json.load(sf)
+                    for ev in data.get("events", []):
+                        cid = ev.get("canonical_id") or ev.get("id")
+                        ctime = ev.get("create_time", 0) or ev.get("timestamp", 0)
+                        if cid and (current_time - ctime) <= retention:
+                            loaded[cid] = ev
+            except Exception:
+                pass
+
+        self.active_events_cache = list(loaded.values())
+        if self.active_events_cache:
+            print(f"[Spark Engine] Đã warm-up {len(self.active_events_cache)} sự kiện đang hoạt động từ storage.")
 
     def _create_spark_session(self) -> SparkSession:
         """Khởi tạo cụm Spark Session tối ưu phân tán đa lõi CPU."""
@@ -379,38 +422,104 @@ class SparkFloodProcessor:
         print(f"[PySpark Stream] Hoàn tất micro-batch #{batch_id}. Đã xuất bản {len(clustered_batch)} sự kiện (đã gom cụm & xác thực)!")
 
     def _update_hot_dashboard_state(self, new_events: List[Dict[str, Any]]):
-        """Cập nhật Hot Cache phục vụ Leaflet Dashboard tức thì (< 3ms)."""
+        """Cập nhật Hot Cache phục vụ Leaflet Dashboard tức thì (< 3ms) theo cơ chế cộng dồn (Cumulative Ingestion)."""
         current_time = int(time.time())
-        window_seconds = 7200  # Cửa sổ tin tức 2 giờ
-        social_window_seconds = 86400  # Giới hạn tối đa nghiêm ngặt 24 giờ cho Mạng xã hội, DROP toàn bộ bài > 24h
+        retention_window = 86400  # Giữ lại toàn bộ tin tức trong vòng 24 giờ qua (3 tầng độ tươi)
 
-        combined = {ev["canonical_id"]: ev for ev in self.active_events_cache}
+        # 1. TẬP HỢP TẤT CẢ SỰ KIỆN HIỆN CÓ:
+        # Nạp từ Redis và STREAM_STATE_FILE để đảm bảo PySpark KHÔNG BAO GIỜ ghi đè làm mất các tin do Apify cào sâu
+        combined_map = {}
+
+        # a. Từ Redis Serving Store
+        if self.redis_client:
+            try:
+                keys = self.redis_client.keys("flood:event:*")
+                if keys:
+                    pipe = self.redis_client.pipeline()
+                    for k in keys:
+                        pipe.get(k)
+                    vals = pipe.execute()
+                    for v in vals:
+                        if v:
+                            try:
+                                ev = json.loads(v)
+                                cid = ev.get("canonical_id") or ev.get("id")
+                                if cid:
+                                    combined_map[cid] = ev
+                            except Exception:
+                                pass
+            except Exception as e:
+                print(f"[Spark Engine] Cảnh báo đọc Redis: {e}")
+
+        # b. Từ file đệm cục bộ STREAM_STATE_FILE
+        if os.path.exists(STREAM_STATE_FILE):
+            try:
+                with open(STREAM_STATE_FILE, "r", encoding="utf-8") as sf:
+                    file_data = json.load(sf)
+                    for ev in file_data.get("events", []):
+                        cid = ev.get("canonical_id") or ev.get("id")
+                        if cid and cid not in combined_map:
+                            combined_map[cid] = ev
+            except Exception:
+                pass
+
+        # c. Từ in-memory cache của Spark
+        for ev in self.active_events_cache:
+            cid = ev.get("canonical_id") or ev.get("id")
+            if cid and cid not in combined_map:
+                combined_map[cid] = ev
+
+        # d. Thêm batch sự kiện mới từ micro-batch hiện tại
         for ev in new_events:
             cid = ev.get("canonical_id") or ev.get("id")
-            combined[cid] = ev
+            if cid:
+                combined_map[cid] = ev
+
+        # 2. LỌC VÀ KHỬ TRÙNG LẶP THEO CHỮ KÝ NGỮ NGHĨA
+        # Áp dụng cơ chế cộng dồn (Cumulative Merge): Google RSS (M) + Bing (N) + Apify (K) = M + N + K
+        deduped = []
+        seen_ids = set()
+        seen_semantics = set()
+
+        all_candidate_events = list(combined_map.values())
 
         if self.mode == "live":
             # CHẾ ĐỘ LIVE: CHẶN 100% BẢN GHI SIMULATION!
-            # Lọc theo cửa sổ: Tin tức <= 2 giờ, Mạng xã hội TikTok & Facebook <= 24 giờ
-            active_list = [
-                ev for ev in combined.values()
+            # Giữ lại TOÀN BỘ các tin trong vòng 24 giờ qua (<= 86400s) cho mọi nền tảng
+            filtered_candidates = [
+                ev for ev in all_candidate_events
                 if ev.get("platform") not in ["simulation", "sim"]
                 and not str(ev.get("canonical_id", "")).startswith("sim_")
                 and ev.get("crawler_source") != "simulation_replayer"
-                and (
-                    (ev.get("platform") in ["tiktok", "facebook"] and (current_time - ev.get("create_time", 0)) <= social_window_seconds)
-                    or (ev.get("platform") not in ["tiktok", "facebook"] and (current_time - ev.get("create_time", 0)) <= window_seconds)
-                )
+                and (current_time - (ev.get("create_time", 0) or ev.get("timestamp", 0))) <= retention_window
             ]
         else:
-            # CHẾ ĐỘ SIMULATION: Cho phép hiển thị dữ liệu mô phỏng
-            active_list = [
-                ev for ev in combined.values()
+            filtered_candidates = [
+                ev for ev in all_candidate_events
                 if ev.get("platform") in ["simulation", "sim"] or str(ev.get("canonical_id", "")).startswith("sim_")
             ]
 
-        # Luôn cập nhật và tính toán lại nhãn phân loại cùng thời gian tương đối
-        for ev in active_list:
+        for ev in filtered_candidates:
+            cid = str(ev.get("canonical_id") or ev.get("id") or "")
+            loc = ev.get("location", {}) or {}
+            street = str(loc.get("street") or "")
+            opinion = str(ev.get("opinion") or "")
+            txt = str(ev.get("text") or ev.get("title") or "")[:35].strip().lower()
+            sem_sig = (street.lower(), opinion.lower(), txt)
+
+            if cid and cid in seen_ids:
+                continue
+            if street and sem_sig in seen_semantics:
+                continue
+
+            if cid:
+                seen_ids.add(cid)
+            if street:
+                seen_semantics.add(sem_sig)
+            deduped.append(ev)
+
+        # 3. TÍNH TOÁN LẠI 3 TẦNG ĐỘ TƯƠI CHO TOÀN BỘ DANH SÁCH
+        for ev in deduped:
             ctime = ev.get("create_time", 0) or ev.get("timestamp", 0)
             age = max(0, current_time - ctime) if ctime > 0 else 0
             if age <= 7200:
@@ -425,35 +534,41 @@ class SparkFloodProcessor:
 
             ev["relative_time"] = format_relative_time(ctime, current_time)
 
-        # ƯU TIÊN SỐ 1: TIN TRONG 2 GIỜ LÊN ĐẦU -> MẠNG XÃ HỘI (TIKTOK/FACEBOOK) -> ĐỘ NGHIÊM TRỌNG
-        active_list.sort(key=lambda x: (
-            2 if x.get("freshness") == "strict_2h" or (current_time - x.get("create_time", 0)) <= 7200 else (
-                1 if x.get("freshness") == "recent_4h" or (current_time - x.get("create_time", 0)) <= 14400 else 0
+        # Ưu tiên sắp xếp: Tin trong 2 giờ -> MXH (TikTok/Facebook/Threads/YouTube) -> Trọng số -> Thời gian
+        deduped.sort(key=lambda x: (
+            2 if x.get("freshness") == "strict_2h" or (current_time - (x.get("create_time", 0) or x.get("timestamp", 0))) <= 7200 else (
+                1 if x.get("freshness") == "recent_4h" or (current_time - (x.get("create_time", 0) or x.get("timestamp", 0))) <= 14400 else 0
             ),
-            1 if x.get("platform") in ["tiktok", "facebook"] else 0,
+            1 if x.get("platform") in ["tiktok", "facebook", "threads", "youtube"] else 0,
             x.get("weight", 1.0),
-            x.get("create_time", 0)
+            x.get("create_time", 0) or x.get("timestamp", 0)
         ), reverse=True)
-        self.active_events_cache = active_list
+
+        self.active_events_cache = deduped
+
+        has_apify = any(ev.get("crawler_source") in ["apify_facebook", "apify_tiktok"] for ev in deduped)
+        window_title = "Google RSS + Bing + Apify Deep Crawl (24h)" if has_apify else "Google RSS + Bing Streaming (24h)"
 
         out_data = {
             "mode": f"live_streaming_spark_{self.mode}",
             "updated_at": datetime.now(timezone.utc).isoformat(),
-            "window": "120 phút",
-            "events_count": len(active_list),
-            "events": active_list
+            "window": window_title,
+            "events_count": len(deduped),
+            "events": deduped
         }
 
-        # 1. Ghi Redis In-Memory Serving Store (< 3ms)
+        # 4. GHI REDIS THEO CƠ CHẾ UPSERT (< 3ms)
         if self.redis_client:
             try:
                 pipe = self.redis_client.pipeline()
-                for ev in active_list:
+                for ev in deduped:
                     cid = ev.get("canonical_id") or ev.get("id")
-                    loc = ev.get("location", {})
+                    if not cid:
+                        continue
+                    loc = ev.get("location", {}) or {}
                     lat = loc.get("lat") or ev.get("lat")
                     lon = loc.get("lon") or ev.get("lon")
-                    ctime = ev.get("create_time", current_time)
+                    ctime = ev.get("create_time") or ev.get("timestamp") or current_time
 
                     if lat and lon:
                         pipe.geoadd("flood:geo:index", (lon, lat, cid))
@@ -461,12 +576,12 @@ class SparkFloodProcessor:
                     pipe.set(f"flood:event:{cid}", json.dumps(ev, ensure_ascii=False), ex=86400)
 
                 pipe.set("flood:serving:mode", self.mode)
-                pipe.set("flood:serving:window", "120 phút")
+                pipe.set("flood:serving:window", window_title)
                 pipe.execute()
             except Exception as e:
                 print(f"[Spark Engine] Lỗi ghi Redis: {e}")
 
-        # 2. Ghi File đệm cục bộ (Fallback)
+        # 5. GHI FILE ĐỆM CỤC BỘ NGUYÊN TỬ (Atomic Replace)
         try:
             temp_file = f"{STREAM_STATE_FILE}.tmp"
             with open(temp_file, "w", encoding="utf-8") as f:

@@ -169,22 +169,38 @@ def enrich_events_with_veracity(events: List[Dict[str, Any]]) -> List[Dict[str, 
 
 
 def fetch_current_all_events() -> List[Dict[str, Any]]:
-    """Lấy danh sách tất cả sự kiện hiện có từ Redis hoặc buffer file hoặc memory."""
-    r_client = get_redis_client()
-    if r_client:
-        r_events = fetch_events_from_redis(r_client)
-        if r_events:
-            return r_events
+    """Lấy danh sách tất cả sự kiện hiện có hợp nhất từ cả Redis, buffer file và memory."""
+    all_events_map = {}
+
+    # 1. Từ file buffer live_stream_state.json
     stream_state_file = os.path.join(ROOT_DIR, "data", "live_stream_state.json")
     if os.path.exists(stream_state_file):
         try:
             with open(stream_state_file, "r", encoding="utf-8") as sf:
                 data = json.load(sf)
-                if data.get("events"):
-                    return data["events"]
+                for ev in data.get("events", []):
+                    cid = ev.get("canonical_id") or ev.get("id")
+                    if cid:
+                        all_events_map[cid] = ev
         except Exception:
             pass
-    return list(GLOBAL_STATE.get("events", []))
+
+    # 2. Từ Redis In-Memory Serving Store
+    r_client = get_redis_client()
+    if r_client:
+        r_events = fetch_events_from_redis(r_client)
+        for ev in r_events:
+            cid = ev.get("canonical_id") or ev.get("id")
+            if cid:
+                all_events_map[cid] = ev
+
+    # 3. Từ memory GLOBAL_STATE
+    for ev in GLOBAL_STATE.get("events", []):
+        cid = ev.get("canonical_id") or ev.get("id")
+        if cid and cid not in all_events_map:
+            all_events_map[cid] = ev
+
+    return list(all_events_map.values())
 
 
 def merge_and_deduplicate_events(base_events: List[Dict[str, Any]], new_events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -238,13 +254,29 @@ def merge_and_deduplicate_events(base_events: List[Dict[str, Any]], new_events: 
         combined.append(ev)
 
     current_time = int(time.time())
+    for ev in combined:
+        ctime = ev.get("create_time", 0) or ev.get("timestamp", 0)
+        age = max(0, current_time - ctime) if ctime > 0 else 0
+        if not ev.get("freshness") or not ev.get("status_tag"):
+            if age <= 7200:
+                ev["freshness"] = "strict_2h"
+                ev["status_tag"] = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
+            elif age <= 14400:
+                ev["freshness"] = "recent_4h"
+                ev["status_tag"] = "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)"
+            else:
+                ev["freshness"] = "within_24h"
+                ev["status_tag"] = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
+        if not ev.get("relative_time"):
+            ev["relative_time"] = format_relative_time(ctime, current_time)
+
     combined.sort(key=lambda x: (
-        2 if x.get("freshness") == "strict_2h" or (current_time - x.get("create_time", 0)) <= 7200 else (
-            1 if x.get("freshness") == "recent_4h" or (current_time - x.get("create_time", 0)) <= 14400 else 0
+        2 if x.get("freshness") == "strict_2h" or (current_time - (x.get("create_time", 0) or x.get("timestamp", 0))) <= 7200 else (
+            1 if x.get("freshness") == "recent_4h" or (current_time - (x.get("create_time", 0) or x.get("timestamp", 0))) <= 14400 else 0
         ),
-        1 if x.get("platform") in ["tiktok", "facebook"] else 0,
+        1 if x.get("platform") in ["tiktok", "facebook", "threads", "youtube"] else 0,
         x.get("weight", 1.0),
-        x.get("create_time", 0)
+        x.get("create_time", 0) or x.get("timestamp", 0)
     ), reverse=True)
 
     return combined
@@ -255,11 +287,7 @@ def sync_to_storage(events: List[Dict[str, Any]], mode: str, window_label: str):
     if r_client:
         try:
             pipe = r_client.pipeline()
-            event_keys = r_client.keys("flood:event:*")
-            if event_keys:
-                pipe.delete(*event_keys)
-            pipe.delete("flood:timeline:zset", "flood:geo:index")
-
+            # Cơ chế Upsert liên tục: Giữ nguyên các key còn hạn, không xóa trắng gây mất dữ liệu song song
             for ev in events:
                 cid = ev.get("canonical_id") or ev.get("id")
                 loc = ev.get("location", {})
@@ -582,7 +610,7 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
             # Truy vấn lại trạng thái sự kiện mới nhất ngay tại thời điểm hoàn thành cào Apify
             # để không bao giờ ghi đè hoặc quay lui (rollback) các tin do Freecrawl streaming vừa đẩy vào Redis
             fresh_storage_events = fetch_current_all_events()
-            base_events = merge_and_deduplicate_events(GLOBAL_STATE.get("events", []), fresh_storage_events)
+            base_events = fresh_storage_events
             merged_events = merge_and_deduplicate_events(base_events, new_events)
             
             window_label = GLOBAL_STATE.get("active_window", "120 phút")
