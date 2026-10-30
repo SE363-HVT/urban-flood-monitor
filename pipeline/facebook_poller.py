@@ -226,7 +226,7 @@ class FacebookPoller:
 
         for raw in raw_items:
             post_id = str(raw.get("id") or raw.get("postId") or "")
-            text = raw.get("text") or raw.get("message") or raw.get("caption") or ""
+            text = raw.get("postText") or raw.get("text") or raw.get("message") or raw.get("caption") or raw.get("content") or ""
             cleaned = clean_stream_text(text)
             if not cleaned:
                 continue
@@ -301,23 +301,42 @@ class FacebookPoller:
                 "url": post_url
             }
 
-            if post_time >= cutoff_window:
+            age_seconds = max(0, current_time - post_time)
+            if age_seconds <= 7200:
+                ev["freshness"] = "strict_2h"
+                ev["status_tag"] = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
+                ev["weight"] = ev.get("weight", 2.0) * 1.3
                 events_window.append(ev)
-                if post_id:
-                    self.state_manager.mark_seen(f"fb_{post_id}", post_time)
-            elif post_time >= cutoff_24h:
+            elif age_seconds <= 14400:
+                ev["freshness"] = "recent_4h"
+                ev["status_tag"] = "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)"
+                ev["weight"] = ev.get("weight", 2.0) * 1.1
                 events_24h.append(ev)
-            elif post_time >= cutoff_72h:
+            elif age_seconds <= 86400:
+                ev["freshness"] = "within_24h"
+                ev["status_tag"] = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
+                ev["weight"] = ev.get("weight", 2.0) * 1.0
+                events_24h.append(ev)
+            elif age_seconds <= 259200:
                 events_72h.append(ev)
+
+            if age_seconds <= 86400 and post_id:
+                self.state_manager.mark_seen(f"fb_{post_id}", post_time)
 
         self.state_manager.save()
 
-        display_events = events_window
-        win_label = f"{window_minutes // 60} giờ qua" if (window_minutes >= 60 and window_minutes % 60 == 0) else f"{window_minutes} phút"
+        # Giữ lại toàn bộ sự kiện <= 24 giờ để đưa lên Heatmap theo 3 tầng độ tươi
+        all_24h_events = events_window + events_24h
+        display_events = all_24h_events
+        win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
         if not display_events:
             win_label = f"{win_label} (Không có bài đăng mới)"
 
-        display_events.sort(key=lambda x: (x.get("weight", 1.0), x.get("create_time", 0)), reverse=True)
+        display_events.sort(key=lambda x: (
+            3 if x.get("freshness") == "strict_2h" else (2 if x.get("freshness") == "recent_4h" else 1),
+            x.get("weight", 1.0),
+            x.get("create_time", 0)
+        ), reverse=True)
 
         stats = {
             "platform": "facebook",

@@ -81,7 +81,11 @@ class MultiPlatformPoller:
             seen.add(k)
             deduped.append(ev)
 
-        deduped.sort(key=lambda x: (x.get("weight", 1.0), x.get("create_time", 0)), reverse=True)
+        deduped.sort(key=lambda x: (
+            3 if x.get("freshness") == "strict_2h" else (2 if x.get("freshness") == "recent_4h" else 1),
+            x.get("weight", 1.0),
+            x.get("create_time", 0)
+        ), reverse=True)
         stats["total_events"] = len(deduped)
 
         print("\n[MultiPoller] TỔNG HỢP KẾT QUẢ CÀO TOÀN DIỆN THỜI GIAN THỰC:")

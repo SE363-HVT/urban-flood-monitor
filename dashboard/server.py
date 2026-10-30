@@ -561,9 +561,6 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         elif self.path == "/api/trigger-apify":
             print(f"\n[API Apify] Nhận yêu cầu cào sâu Apify ({GLOBAL_STATE['mode'].upper()}) từ giao diện...")
-            current_events = fetch_current_all_events()
-            print(f"   ℹ️ Đang có sẵn {len(current_events)} sự kiện từ nguồn Freecrawl / hệ thống.")
-
             new_events = []
             poller = GLOBAL_STATE.get("poller")
             if poller:
@@ -575,19 +572,22 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
 
                     if raw_events:
                         new_events = enrich_events_with_veracity(raw_events)
-                        print(f"   ✓ [Apify Raw Ingestion] Nhận được {len(raw_events)} tin thô -> {len(new_events)} sự kiện sau bóc tách & xác thực.")
+                        print(f"   ✓ [Apify Raw Ingestion] Nhận được {len(raw_events)} tin thô -> {len(new_events)} sự kiện sau bóc tách & xác thực (lọc <= 24h, 3 tầng độ tươi).")
                     else:
                         print("   ⚠️ [Apify Live] Không thu được tin mới từ đợt cào này (giữ nguyên sự kiện hiện có).")
                 except Exception as e:
                     print(f"   ❌ [API Apify] Lỗi khi cào Apify: {e}")
 
-            # HÒA TRỘN CỘNG DỒN (CUMULATIVE MERGE):
-            # Giữ nguyên 100% sự kiện Freecrawl đang có, cộng thêm sự kiện mới từ Apify (8 + N)
-            merged_events = merge_and_deduplicate_events(current_events, new_events)
+            # HÒA TRỘN CỘNG DỒN CHỐNG RACE CONDITION (CUMULATIVE MERGE):
+            # Truy vấn lại trạng thái sự kiện mới nhất ngay tại thời điểm hoàn thành cào Apify
+            # để không bao giờ ghi đè hoặc quay lui (rollback) các tin do Freecrawl streaming vừa đẩy vào Redis
+            fresh_storage_events = fetch_current_all_events()
+            base_events = merge_and_deduplicate_events(GLOBAL_STATE.get("events", []), fresh_storage_events)
+            merged_events = merge_and_deduplicate_events(base_events, new_events)
             
             window_label = GLOBAL_STATE.get("active_window", "120 phút")
             if new_events:
-                window_label = "Freecrawl + Apify Deep Crawl"
+                window_label = "Freecrawl + Apify Deep Crawl (24h)"
 
             GLOBAL_STATE["events"] = merged_events
             GLOBAL_STATE["active_window"] = window_label
@@ -595,7 +595,7 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
 
             # Đồng bộ danh sách đã gộp vào Redis và file đệm
             sync_to_storage(merged_events, GLOBAL_STATE["mode"], window_label)
-            print(f"   ✅ [Heatmap Updated] Tổng số sự kiện hiển thị trên bản đồ: {len(merged_events)} điểm ngập (gồm {len(current_events)} tin sẵn có + {len(new_events)} tin Apify mới).\n")
+            print(f"   ✅ [Heatmap Updated] Tổng số sự kiện hiển thị trên bản đồ: {len(merged_events)} điểm ngập (gồm {len(base_events)} tin sẵn có + {len(new_events)} tin Apify mới).\n")
 
             res = json.dumps({"status": "apify_polled", "new_count": len(new_events), "total_count": len(merged_events)}).encode("utf-8")
             self.send_response(200)

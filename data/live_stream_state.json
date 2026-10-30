@@ -1,9 +1,157 @@
 {
   "mode": "live_streaming_spark_live",
-  "updated_at": "2026-10-30T06:38:42.132079+00:00",
+  "updated_at": "2026-10-30T13:54:12.854816+00:00",
   "window": "120 phút",
-  "events_count": 11,
+  "events_count": 5,
   "events": [
+    {
+      "id": "tp-hcm-m",
+      "canonical_id": "facebook_tp-hcm-m",
+      "platform": "facebook",
+      "media_type": "post",
+      "author": "congdongvnexpress",
+      "text": "TP HCM: Mỗi tối, khu vực phường Tân Mỹ xuất hiện khoảng 50 người lội nước ngập ngang eo, đẩy xe chết máy và sửa miễn phí cho người đi đường",
+      "create_time": 1793358362,
+      "created_at_iso": "2026-10-30T11:06:02+00:00",
+      "timestamp": 1793358362,
+      "historical_timestamp": null,
+      "relative_time": "2 giờ 42 phút trước",
+      "freshness": "recent_4h",
+      "status_tag": "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)",
+      "location": {
+        "street": "Phường Tân Mỹ",
+        "display_name": "Phường Tân Mỹ",
+        "ward": "Phường Tân Mỹ",
+        "administrative_unit": "Phường Tân Mỹ",
+        "district": "TP.HCM",
+        "lat": 10.776,
+        "lon": 106.71,
+        "heat_points": [
+          [
+            10.776,
+            106.71
+          ]
+        ],
+        "cause": "rain",
+        "cause_label": "Khu vực địa giới hành chính",
+        "source": "pyspark_streaming_engine"
+      },
+      "aspect": "Phường Tân Mỹ",
+      "opinion": "chết máy",
+      "severity": "high",
+      "weight": 3.0,
+      "url": "https://www.facebook.com/congdongvnexpress/posts/tp-hcm-m%E1%BB%97i-t%E1%BB%91i-khu-v%E1%BB%B1c-ph%C6%B0%E1%BB%9Dng-t%C3%A2n-m%E1%BB%B9-xu%E1%BA%A5t-hi%E1%BB%87n-kho%E1%BA%A3ng-50-ng%C6%B0%E1%BB%9Di-l%E1%BB%99i-n%C6%B0%E1%BB%9Bc-ng%E1%BA%ADp-nga/1594165216078817/",
+      "veracity": {
+        "confidence_score": 0.76,
+        "status": "confirmed",
+        "status_label": "Đã xác thực",
+        "evidence_count": 1,
+        "correlated_event_ids": [],
+        "content_check": {
+          "source": "friend_multimodal_ai",
+          "branch": "fast_path",
+          "visual_verified": false,
+          "content_score": 0.85,
+          "triplets": [
+            {
+              "aspect": "phường Tân Mỹ",
+              "opinion": "lội nước ngập ngang eo",
+              "polarity": "NEG",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "HIGH",
+              "grounding_provenance": "SPAN_MATCHED",
+              "confidence": 0.9838,
+              "aspect_span": [
+                11,
+                13
+              ],
+              "opinion_span": [
+                19,
+                23
+              ]
+            },
+            {
+              "aspect": "phường Tân Mỹ",
+              "opinion": "chết máy",
+              "polarity": "NEG",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "HIGH",
+              "grounding_provenance": "SPAN_MATCHED",
+              "confidence": 0.9976,
+              "aspect_span": [
+                11,
+                13
+              ],
+              "opinion_span": [
+                27,
+                28
+              ]
+            },
+            {
+              "aspect": "TP. Hồ Chí Minh",
+              "opinion": "lội nước ngập ngang eo",
+              "polarity": "NEG",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "HIGH",
+              "grounding_provenance": "DOC_FALLBACK",
+              "confidence": 0.9871,
+              "aspect_span": [
+                0,
+                0
+              ],
+              "opinion_span": [
+                19,
+                23
+              ]
+            },
+            {
+              "aspect": "TP. Hồ Chí Minh",
+              "opinion": "chết máy",
+              "polarity": "NEG",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "HIGH",
+              "grounding_provenance": "DOC_FALLBACK",
+              "confidence": 0.999,
+              "aspect_span": [
+                0,
+                0
+              ],
+              "opinion_span": [
+                27,
+                28
+              ]
+            }
+          ],
+          "audio_transcript": "",
+          "timeout_used": 0.5
+        },
+        "weather_check": {
+          "checked": true,
+          "precipitation_mm": 0.1,
+          "score": 0.85,
+          "plausible": true,
+          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.1 mm/h lúc 18h)"
+        },
+        "is_tidal_point": true,
+        "consensus_window_minutes": 60,
+        "evaluated_at": "2026-10-30T13:48:52.085235+00:00"
+      },
+      "report_count": 1,
+      "sources": [
+        "facebook"
+      ],
+      "cluster_label": "Báo cáo đơn lẻ",
+      "is_cluster": false,
+      "posts_summary": [
+        {
+          "author": "congdongvnexpress",
+          "text": "TP HCM: Mỗi tối, khu vực phường Tân Mỹ xuất hiện khoảng 50 người lội nước ngập ngang eo, đẩy xe chết máy và sửa miễn phí cho người đi đường",
+          "url": "https://www.facebook.com/congdongvnexpress/posts/tp-hcm-m%E1%BB%97i-t%E1%BB%91i-khu-v%E1%BB%B1c-ph%C6%B0%E1%BB%9Dng-t%C3%A2n-m%E1%BB%B9-xu%E1%BA%A5t-hi%E1%BB%87n-kho%E1%BA%A3ng-50-ng%C6%B0%E1%BB%9Di-l%E1%BB%99i-n%C6%B0%E1%BB%9Bc-ng%E1%BA%ADp-nga/1594165216078817/",
+          "platform": "facebook",
+          "create_time": 1793358362
+        }
+      ]
+    },
     {
       "id": "tri",
       "canonical_id": "facebook_tri",
@@ -15,9 +163,9 @@
       "created_at_iso": "2026-10-30T04:37:23+00:00",
       "timestamp": 1793335043,
       "historical_timestamp": null,
-      "relative_time": "2 giờ 1 phút trước",
-      "freshness": "recent_4h",
-      "status_tag": "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)",
+      "relative_time": "9 giờ 11 phút trước",
+      "freshness": "within_24h",
+      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
       "location": {
         "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
         "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
@@ -42,27 +190,116 @@
       "weight": 2.0,
       "url": "https://www.facebook.com/saigonbizz/posts/tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-tphcm-b%E1%BA%AFt-%C4%91%E1%BA%A7u-xu%E1%BB%91ng-nhanh-sau-nhi%E1%BB%81u-ng%C3%A0y-d%C3%A2ng-cao-ng%C6%B0%E1%BB%9Di-d%C3%A2n-%C4%91%E1%BB%81-ph%C3%B2ng/122183479214969016/",
       "veracity": {
-        "confidence_score": 0.74,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
+        "confidence_score": 0.76,
+        "status": "confirmed",
+        "status_label": "Đã xác thực",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "heuristic_baseline",
-          "visual_verified": true,
-          "content_score": 0.75,
-          "triplets": []
+          "source": "friend_multimodal_ai",
+          "branch": "fast_path",
+          "visual_verified": false,
+          "content_score": 0.85,
+          "triplets": [
+            {
+              "aspect": "Triều cường",
+              "opinion": "bắt đầu xuống nhanh",
+              "polarity": "NEU",
+              "aspect_category": "HYDROLOGY",
+              "severity": "LOW",
+              "grounding_provenance": "SPAN_MATCHED",
+              "confidence": 0.8833,
+              "aspect_span": [
+                1,
+                2
+              ],
+              "opinion_span": [
+                5,
+                8
+              ]
+            },
+            {
+              "aspect": "TP.HCM",
+              "opinion": "bắt đầu xuống nhanh",
+              "polarity": "NEU",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "LOW",
+              "grounding_provenance": "SPAN_MATCHED",
+              "confidence": 0.5073,
+              "aspect_span": [
+                3,
+                4
+              ],
+              "opinion_span": [
+                5,
+                8
+              ]
+            },
+            {
+              "aspect": "TP.HCM",
+              "opinion": "ngập úng",
+              "polarity": "NEG",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "LOW",
+              "grounding_provenance": "SPAN_MATCHED",
+              "confidence": 0.9951,
+              "aspect_span": [
+                3,
+                4
+              ],
+              "opinion_span": [
+                19,
+                20
+              ]
+            },
+            {
+              "aspect": "TP. Hồ Chí Minh",
+              "opinion": "bắt đầu xuống nhanh",
+              "polarity": "NEU",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "LOW",
+              "grounding_provenance": "DOC_FALLBACK",
+              "confidence": 0.9491,
+              "aspect_span": [
+                0,
+                0
+              ],
+              "opinion_span": [
+                5,
+                8
+              ]
+            },
+            {
+              "aspect": "TP. Hồ Chí Minh",
+              "opinion": "ngập úng",
+              "polarity": "NEG",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "LOW",
+              "grounding_provenance": "DOC_FALLBACK",
+              "confidence": 0.9986,
+              "aspect_span": [
+                0,
+                0
+              ],
+              "opinion_span": [
+                19,
+                20
+              ]
+            }
+          ],
+          "audio_transcript": "",
+          "timeout_used": 0.5
         },
         "weather_check": {
           "checked": true,
-          "precipitation_mm": 0.0,
-          "score": 0.9,
+          "precipitation_mm": 0.4,
+          "score": 0.85,
           "plausible": true,
-          "reason": "Điểm ngập triều cường đặc trưng (PC08 CSGT) - Triều dâng ven sông/kênh rạch (Open-Meteo fallback: <urlopen error timed out>)"
+          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.4 mm/h lúc 11h)"
         },
         "is_tidal_point": true,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-30T06:17:04.170087+00:00"
+        "evaluated_at": "2026-10-30T13:48:52.085573+00:00"
       },
       "report_count": 1,
       "sources": [
@@ -81,6 +318,120 @@
       ]
     },
     {
+      "id": "4961981700757430",
+      "canonical_id": "facebook_4961981700757430",
+      "platform": "facebook",
+      "media_type": "post",
+      "author": "Facebook Creator",
+      "text": "TP.HCM: SẮP ĐƯA DỰ ÁN 10.000 TỈ VÀO VẬN HÀNH, NGƯỜI DÂN CÒN PHẢI BÌ BÕM LỘI NƯỚC? 🚨 Bảo vệ 6,5 triệu dân nhưng liệu có trị dứt điểm cảnh ngập khi mưa cực đoan kết hợp triều cường? Sở Xây dựng đã đưa ra phản hồi chính thức, xem chi tiế",
+      "create_time": 1793325576,
+      "created_at_iso": "2026-10-30T01:59:36+00:00",
+      "timestamp": 1793325576,
+      "historical_timestamp": null,
+      "relative_time": "11 giờ 49 phút trước",
+      "freshness": "within_24h",
+      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
+      "location": {
+        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
+        "district": "TP.HCM",
+        "lat": 10.7769,
+        "lon": 106.7009,
+        "heat_points": [
+          [
+            10.7769,
+            106.7009
+          ]
+        ],
+        "cause": "rain",
+        "cause_label": "Mưa lớn, nước không thoát kịp",
+        "source": "pyspark_streaming_engine"
+      },
+      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
+      "opinion": "bì bõm",
+      "severity": "medium",
+      "weight": 2.0,
+      "url": "https://www.facebook.com/groups/groupnguoidongnai/posts/4961981700757430/",
+      "veracity": {
+        "confidence_score": 0.76,
+        "status": "confirmed",
+        "status_label": "Đã xác thực",
+        "evidence_count": 1,
+        "correlated_event_ids": [],
+        "content_check": {
+          "source": "friend_multimodal_ai",
+          "branch": "fast_path",
+          "visual_verified": false,
+          "content_score": 0.85,
+          "triplets": [
+            {
+              "aspect": "triều cường",
+              "opinion": "ngập",
+              "polarity": "NEG",
+              "aspect_category": "HYDROLOGY",
+              "severity": "HIGH",
+              "grounding_provenance": "SPAN_MATCHED",
+              "confidence": 1.0,
+              "aspect_span": [
+                62,
+                64
+              ],
+              "opinion_span": [
+                55,
+                55
+              ]
+            },
+            {
+              "aspect": "TP. Hồ Chí Minh",
+              "opinion": "ngập",
+              "polarity": "NEG",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "HIGH",
+              "grounding_provenance": "DOC_FALLBACK",
+              "confidence": 1.0,
+              "aspect_span": [
+                0,
+                0
+              ],
+              "opinion_span": [
+                55,
+                55
+              ]
+            }
+          ],
+          "audio_transcript": "",
+          "timeout_used": 0.5
+        },
+        "weather_check": {
+          "checked": true,
+          "precipitation_mm": 0.1,
+          "score": 0.85,
+          "plausible": true,
+          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.1 mm/h lúc 8h)"
+        },
+        "is_tidal_point": true,
+        "consensus_window_minutes": 60,
+        "evaluated_at": "2026-10-30T13:48:52.076297+00:00"
+      },
+      "report_count": 1,
+      "sources": [
+        "facebook"
+      ],
+      "cluster_label": "Báo cáo đơn lẻ",
+      "is_cluster": false,
+      "posts_summary": [
+        {
+          "author": "Facebook Creator",
+          "text": "TP.HCM: SẮP ĐƯA DỰ ÁN 10.000 TỈ VÀO VẬN HÀNH, NGƯỜI DÂN CÒN PHẢI BÌ BÕM LỘI NƯỚC? 🚨 Bảo vệ 6,5 triệu dân nhưng liệu có trị dứt điểm cảnh ngập khi mưa cực đoan kết hợp triều cường? Sở Xây dựng đã đưa ra phản hồi chính thức, xem chi tiế",
+          "url": "https://www.facebook.com/groups/groupnguoidongnai/posts/4961981700757430/",
+          "platform": "facebook",
+          "create_time": 1793325576
+        }
+      ]
+    },
+    {
       "id": "1629744798145514",
       "canonical_id": "facebook_1629744798145514",
       "platform": "facebook",
@@ -91,9 +442,9 @@
       "created_at_iso": "2026-10-30T03:42:49+00:00",
       "timestamp": 1793331769,
       "historical_timestamp": null,
-      "relative_time": "2 giờ 55 phút trước",
-      "freshness": "recent_4h",
-      "status_tag": "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)",
+      "relative_time": "10 giờ 6 phút trước",
+      "freshness": "within_24h",
+      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
       "location": {
         "street": "Phường Thủ Đức",
         "display_name": "Phường Thủ Đức",
@@ -118,27 +469,30 @@
       "weight": 1.2,
       "url": "https://www.facebook.com/groups/908562366930431/posts/1629744798145514/",
       "veracity": {
-        "confidence_score": 0.72,
+        "confidence_score": 0.58,
         "status": "suspect",
         "status_label": "Nghi vấn (Chờ kiểm chứng)",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "heuristic_baseline",
-          "visual_verified": true,
-          "content_score": 0.75,
-          "triplets": []
+          "source": "friend_multimodal_ai",
+          "branch": "fast_path",
+          "visual_verified": false,
+          "content_score": 0.4,
+          "triplets": [],
+          "audio_transcript": "",
+          "timeout_used": 0.5
         },
         "weather_check": {
           "checked": true,
-          "precipitation_mm": 0.1,
+          "precipitation_mm": 0.2,
           "score": 0.85,
           "plausible": true,
-          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.1 mm/h lúc 10h)"
+          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.2 mm/h lúc 10h)"
         },
         "is_tidal_point": true,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-30T06:38:42.131610+00:00"
+        "evaluated_at": "2026-10-30T13:48:52.084801+00:00"
       },
       "report_count": 1,
       "sources": [
@@ -157,235 +511,6 @@
       ]
     },
     {
-      "id": "183c3a4a26039758",
-      "canonical_id": "facebook_183c3a4a26039758",
-      "platform": "facebook",
-      "media_type": "post",
-      "author": "vungdatRongvn",
-      "text": "🐉 Đường Lê Văn Lương ở Phước Kiểng Nhà Bè bị “Dềnh nước” .. vì triều cường. #vungdatRong #denhnuoc #ngapnuoc #trieucuong #phuockieng #nhabe",
-      "create_time": 1793263160,
-      "created_at_iso": "2026-10-29T08:39:20+00:00",
-      "timestamp": 1793263160,
-      "historical_timestamp": null,
-      "relative_time": "21 giờ 59 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Lê Văn Lương",
-        "display_name": "Lê Văn Lương",
-        "ward": "Xã Nhà Bè",
-        "administrative_unit": "Xã Nhà Bè",
-        "district": "TP.HCM",
-        "lat": 10.705,
-        "lon": 106.703,
-        "heat_points": [
-          [
-            10.705,
-            106.703
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Lê Văn Lương",
-      "opinion": "ngập nước",
-      "severity": "medium",
-      "weight": 2.0,
-      "url": "https://www.facebook.com/vungdatRongvn/videos/%C4%91%C6%B0%E1%BB%9Dng-l%C3%AA-v%C4%83n-l%C6%B0%C6%A1ng-%E1%BB%9F-ph%C6%B0%E1%BB%9Bc-ki%E1%BB%83ng-nh%C3%A0-b%C3%A8-b%E1%BB%8B-d%E1%BB%81nh-n%C6%B0%E1%BB%9Bc-v%C3%AC-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dngvungdatrong-d/1433820174859056/",
-      "veracity": {
-        "confidence_score": 0.72,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "heuristic_baseline",
-          "visual_verified": true,
-          "content_score": 0.75,
-          "triplets": []
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.6,
-          "score": 0.85,
-          "plausible": true,
-          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.6 mm/h lúc 15h)"
-        },
-        "is_tidal_point": true,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-30T06:16:59.376059+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "facebook"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "vungdatRongvn",
-          "text": "🐉 Đường Lê Văn Lương ở Phước Kiểng Nhà Bè bị “Dềnh nước” .. vì triều cường. #vungdatRong #denhnuoc #ngapnuoc #trieucuong #phuockieng #nhabe",
-          "url": "https://www.facebook.com/vungdatRongvn/videos/%C4%91%C6%B0%E1%BB%9Dng-l%C3%AA-v%C4%83n-l%C6%B0%C6%A1ng-%E1%BB%9F-ph%C6%B0%E1%BB%9Bc-ki%E1%BB%83ng-nh%C3%A0-b%C3%A8-b%E1%BB%8B-d%E1%BB%81nh-n%C6%B0%E1%BB%9Bc-v%C3%AC-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dngvungdatrong-d/1433820174859056/",
-          "platform": "facebook",
-          "create_time": 1793263160
-        }
-      ],
-      "title": "🐉 Đường Lê Văn Lương ở Phước Kiểng Nhà Bè bị “Dềnh nước” .. vì triều cường. #vungdatRong #denhnuoc #ngapnuoc #trieucuong #phuockieng #nhabe"
-    },
-    {
-      "id": "gi",
-      "canonical_id": "facebook_gi",
-      "platform": "facebook",
-      "media_type": "post",
-      "author": "saigontv.rvn",
-      "text": "Giải bơi lội chưa kết thúc, TP.HCM có nơi mưa to chiều tối, triều cường cao hết ngày 31/10‼ &nbsp;&nbsp; Facebook",
-      "create_time": 1793262015,
-      "created_at_iso": "2026-10-29T08:20:15+00:00",
-      "timestamp": 1793262015,
-      "historical_timestamp": null,
-      "relative_time": "22 giờ 18 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
-        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "heat_points": [
-          [
-            10.7769,
-            106.7009
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "opinion": "ngập nước",
-      "severity": "medium",
-      "weight": 2.0,
-      "url": "https://www.facebook.com/saigontv.rvn/posts/gi%E1%BA%A3i-b%C6%A1i-l%E1%BB%99i-ch%C6%B0a-k%E1%BA%BFt-th%C3%BAc-tphcm-c%C3%B3-n%C6%A1i-m%C6%B0a-to-chi%E1%BB%81u-t%E1%BB%91i-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-cao-h%E1%BA%BFt-ng%C3%A0/1680015390157506/",
-      "veracity": {
-        "confidence_score": 0.72,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "heuristic_baseline",
-          "visual_verified": true,
-          "content_score": 0.75,
-          "triplets": []
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.6,
-          "score": 0.85,
-          "plausible": true,
-          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.6 mm/h lúc 15h)"
-        },
-        "is_tidal_point": true,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-30T06:16:59.371779+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "facebook"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "saigontv.rvn",
-          "text": "Giải bơi lội chưa kết thúc, TP.HCM có nơi mưa to chiều tối, triều cường cao hết ngày 31/10‼ &nbsp;&nbsp; Facebook",
-          "url": "https://www.facebook.com/saigontv.rvn/posts/gi%E1%BA%A3i-b%C6%A1i-l%E1%BB%99i-ch%C6%B0a-k%E1%BA%BFt-th%C3%BAc-tphcm-c%C3%B3-n%C6%A1i-m%C6%B0a-to-chi%E1%BB%81u-t%E1%BB%91i-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-cao-h%E1%BA%BFt-ng%C3%A0/1680015390157506/",
-          "platform": "facebook",
-          "create_time": 1793262015
-        }
-      ]
-    },
-    {
-      "id": "3100247970318198",
-      "canonical_id": "facebook_3100247970318198",
-      "platform": "facebook",
-      "media_type": "post",
-      "author": "Facebook Creator",
-      "text": "🚨 Bảo vệ 6,5 triệu dân nhưng liệu có trị dứt điểm cảnh ngập khi mưa cực đoan kết hợp triều cường?",
-      "create_time": 1793325589,
-      "created_at_iso": "2026-10-30T01:59:49+00:00",
-      "timestamp": 1793325589,
-      "historical_timestamp": null,
-      "relative_time": "4 giờ 38 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
-        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "heat_points": [
-          [
-            10.7769,
-            106.7009
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "opinion": "mưa ngập",
-      "severity": "low",
-      "weight": 1.2,
-      "url": "https://www.facebook.com/groups/1785056498504025/posts/3100247970318198/",
-      "veracity": {
-        "confidence_score": 0.74,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "heuristic_baseline",
-          "visual_verified": true,
-          "content_score": 0.75,
-          "triplets": []
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.0,
-          "score": 0.9,
-          "plausible": true,
-          "reason": "Điểm ngập triều cường đặc trưng (PC08 CSGT) - Triều dâng ven sông/kênh rạch (không phụ thuộc mưa)"
-        },
-        "is_tidal_point": true,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-30T06:16:59.381688+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "facebook"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "Facebook Creator",
-          "text": "🚨 Bảo vệ 6,5 triệu dân nhưng liệu có trị dứt điểm cảnh ngập khi mưa cực đoan kết hợp triều cường?",
-          "url": "https://www.facebook.com/groups/1785056498504025/posts/3100247970318198/",
-          "platform": "facebook",
-          "create_time": 1793325589
-        }
-      ]
-    },
-    {
       "id": "nh",
       "canonical_id": "facebook_nh",
       "platform": "facebook",
@@ -396,7 +521,7 @@
       "created_at_iso": "2026-10-29T14:17:33+00:00",
       "timestamp": 1793283453,
       "historical_timestamp": null,
-      "relative_time": "16 giờ 21 phút trước",
+      "relative_time": "23 giờ 31 phút trước",
       "freshness": "within_24h",
       "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
       "location": {
@@ -423,16 +548,71 @@
       "weight": 1.2,
       "url": "https://www.facebook.com/daitruyenthanhcuchi/posts/nh%E1%BA%B1m-gi%C3%BAp-ng%C6%B0%E1%BB%9Di-d%C3%A2n-ch%E1%BB%A7-%C4%91%E1%BB%99ng-h%C6%A1n-khi-di-chuy%E1%BB%83n-trong-th%E1%BB%9Di-%C4%91i%E1%BB%83m-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-th%C3%A0nh/1102193195960145/",
       "veracity": {
-        "confidence_score": 0.78,
+        "confidence_score": 0.81,
         "status": "confirmed",
         "status_label": "Đã xác thực",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "heuristic_baseline",
-          "visual_verified": true,
-          "content_score": 0.75,
-          "triplets": []
+          "source": "friend_multimodal_ai",
+          "branch": "fast_path",
+          "visual_verified": false,
+          "content_score": 0.85,
+          "triplets": [
+            {
+              "aspect": "triều cường",
+              "opinion": "Bản đồ số ứng phó",
+              "polarity": "POS",
+              "aspect_category": "HYDROLOGY",
+              "severity": "LOW",
+              "grounding_provenance": "SPAN_MATCHED",
+              "confidence": 0.6988,
+              "aspect_span": [
+                41,
+                43
+              ],
+              "opinion_span": [
+                36,
+                40
+              ]
+            },
+            {
+              "aspect": "TP. Hồ Chí Minh",
+              "opinion": "chủ động",
+              "polarity": "POS",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "LOW",
+              "grounding_provenance": "DOC_FALLBACK",
+              "confidence": 0.966,
+              "aspect_span": [
+                0,
+                0
+              ],
+              "opinion_span": [
+                5,
+                6
+              ]
+            },
+            {
+              "aspect": "TP. Hồ Chí Minh",
+              "opinion": "Bản đồ số ứng phó",
+              "polarity": "POS",
+              "aspect_category": "LOCATION_ADMIN",
+              "severity": "LOW",
+              "grounding_provenance": "DOC_FALLBACK",
+              "confidence": 0.9029,
+              "aspect_span": [
+                0,
+                0
+              ],
+              "opinion_span": [
+                36,
+                40
+              ]
+            }
+          ],
+          "audio_transcript": "",
+          "timeout_used": 0.5
         },
         "weather_check": {
           "checked": true,
@@ -443,7 +623,7 @@
         },
         "is_tidal_point": true,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-30T06:16:59.204366+00:00"
+        "evaluated_at": "2026-10-30T13:48:52.075906+00:00"
       },
       "report_count": 1,
       "sources": [
@@ -458,158 +638,6 @@
           "url": "https://www.facebook.com/daitruyenthanhcuchi/posts/nh%E1%BA%B1m-gi%C3%BAp-ng%C6%B0%E1%BB%9Di-d%C3%A2n-ch%E1%BB%A7-%C4%91%E1%BB%99ng-h%C6%A1n-khi-di-chuy%E1%BB%83n-trong-th%E1%BB%9Di-%C4%91i%E1%BB%83m-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-th%C3%A0nh/1102193195960145/",
           "platform": "facebook",
           "create_time": 1793283453
-        }
-      ]
-    },
-    {
-      "id": "tr",
-      "canonical_id": "facebook_tr",
-      "platform": "facebook",
-      "media_type": "post",
-      "author": "tintucvtv9",
-      "text": "Trước tình trạng triều cường gây ngập nhiều tuyến đường tại TP.",
-      "create_time": 1793277658,
-      "created_at_iso": "2026-10-29T12:40:58+00:00",
-      "timestamp": 1793277658,
-      "historical_timestamp": null,
-      "relative_time": "17 giờ 57 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
-        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "heat_points": [
-          [
-            10.7769,
-            106.7009
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "opinion": "mưa ngập",
-      "severity": "low",
-      "weight": 1.2,
-      "url": "https://www.facebook.com/tintucvtv9/videos/tr%C6%B0%E1%BB%9Bc-t%C3%ACnh-tr%E1%BA%A1ng-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-g%C3%A2y-ng%E1%BA%ADp-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-t%E1%BA%A1i-tp-h%E1%BB%93-ch%C3%AD-minh-b%E1%BA%A3n-%C4%91/1633802508423318/",
-      "veracity": {
-        "confidence_score": 0.72,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "heuristic_baseline",
-          "visual_verified": true,
-          "content_score": 0.75,
-          "triplets": []
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.4,
-          "score": 0.85,
-          "plausible": true,
-          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.4 mm/h lúc 19h)"
-        },
-        "is_tidal_point": true,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-30T06:24:06.000648+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "facebook"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "tintucvtv9",
-          "text": "Trước tình trạng triều cường gây ngập nhiều tuyến đường tại TP.",
-          "url": "https://www.facebook.com/tintucvtv9/videos/tr%C6%B0%E1%BB%9Bc-t%C3%ACnh-tr%E1%BA%A1ng-tri%E1%BB%81u-c%C6%B0%E1%BB%9Dng-g%C3%A2y-ng%E1%BA%ADp-nhi%E1%BB%81u-tuy%E1%BA%BFn-%C4%91%C6%B0%E1%BB%9Dng-t%E1%BA%A1i-tp-h%E1%BB%93-ch%C3%AD-minh-b%E1%BA%A3n-%C4%91/1633802508423318/",
-          "platform": "facebook",
-          "create_time": 1793277658
-        }
-      ]
-    },
-    {
-      "id": "c",
-      "canonical_id": "facebook_c",
-      "platform": "facebook",
-      "media_type": "post",
-      "author": "cauduongvietnam.vn",
-      "text": "Cận cảnh rạch Đá Đỏ, TP.HCM: Diện mạo mới dần lộ diện, kỳ vọng giảm ngập khu Đông &nbsp;&nbsp; Facebook",
-      "create_time": 1793269803,
-      "created_at_iso": "2026-10-29T10:30:03+00:00",
-      "timestamp": 1793269803,
-      "historical_timestamp": null,
-      "relative_time": "20 giờ 8 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
-        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "heat_points": [
-          [
-            10.7769,
-            106.7009
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "opinion": "mưa ngập",
-      "severity": "low",
-      "weight": 1.2,
-      "url": "https://www.facebook.com/cauduongvietnam.vn/posts/c%E1%BA%ADn-c%E1%BA%A3nh-r%E1%BA%A1ch-%C4%91%C3%A1-%C4%91%E1%BB%8F-tphcm-di%E1%BB%87n-m%E1%BA%A1o-m%E1%BB%9Bi-d%E1%BA%A7n-l%E1%BB%99-di%E1%BB%87n-k%E1%BB%B3-v%E1%BB%8Dng-gi%E1%BA%A3m-ng%E1%BA%ADp-khu-%C4%91%C3%B4ng/1603415745131198/",
-      "veracity": {
-        "confidence_score": 0.72,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "heuristic_baseline",
-          "visual_verified": true,
-          "content_score": 0.75,
-          "triplets": []
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.6,
-          "score": 0.85,
-          "plausible": true,
-          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.6 mm/h lúc 17h)"
-        },
-        "is_tidal_point": false,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-30T06:16:59.249039+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "facebook"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "cauduongvietnam.vn",
-          "text": "Cận cảnh rạch Đá Đỏ, TP.HCM: Diện mạo mới dần lộ diện, kỳ vọng giảm ngập khu Đông &nbsp;&nbsp; Facebook",
-          "url": "https://www.facebook.com/cauduongvietnam.vn/posts/c%E1%BA%ADn-c%E1%BA%A3nh-r%E1%BA%A1ch-%C4%91%C3%A1-%C4%91%E1%BB%8F-tphcm-di%E1%BB%87n-m%E1%BA%A1o-m%E1%BB%9Bi-d%E1%BA%A7n-l%E1%BB%99-di%E1%BB%87n-k%E1%BB%B3-v%E1%BB%8Dng-gi%E1%BA%A3m-ng%E1%BA%ADp-khu-%C4%91%C3%B4ng/1603415745131198/",
-          "platform": "facebook",
-          "create_time": 1793269803
         }
       ]
     }

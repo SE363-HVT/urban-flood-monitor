@@ -138,23 +138,43 @@ class TikTokPoller:
                 continue
 
             events_all_matched.append(event)
-            if c_time >= cutoff_window:
+            age_seconds = max(0, current_time - c_time)
+            if age_seconds <= 7200:
+                event["freshness"] = "strict_2h"
+                event["status_tag"] = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
+                event["weight"] = event.get("weight", 2.0) * 1.3
                 events_window.append(event)
-                self.state_manager.mark_seen(vid_id, c_time)
-            elif c_time >= cutoff_24h:
+            elif age_seconds <= 14400:
+                event["freshness"] = "recent_4h"
+                event["status_tag"] = "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)"
+                event["weight"] = event.get("weight", 2.0) * 1.1
                 events_24h.append(event)
-            elif c_time >= cutoff_72h:
+            elif age_seconds <= 86400:
+                event["freshness"] = "within_24h"
+                event["status_tag"] = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
+                event["weight"] = event.get("weight", 2.0) * 1.0
+                events_24h.append(event)
+            elif age_seconds <= 259200:
                 events_72h.append(event)
+
+            if age_seconds <= 86400 and vid_id:
+                self.state_manager.mark_seen(vid_id, c_time)
 
         self.state_manager.save()
 
-        display_events = events_window
-        win_label = f"{window_minutes // 60} giờ qua" if (window_minutes >= 60 and window_minutes % 60 == 0) else f"{window_minutes} phút"
+        # Hiển thị toàn bộ các sự kiện ngập lụt trong 24 giờ qua (3 tầng độ tươi)
+        all_24h_events = events_window + events_24h
+        display_events = all_24h_events
+        win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
         if not display_events:
             win_label = f"{win_label} (Không có ngập mới)"
 
-        # Sắp xếp theo mức độ nghiêm trọng và thời gian mới nhất
-        display_events.sort(key=lambda x: (x.get("weight", 1.0), x.get("create_time", 0)), reverse=True)
+        # Sắp xếp: Ưu tiên <2h lên đầu, sau đó 2-4h, sau đó 4-24h, kèm theo trọng số và thời gian mới nhất
+        display_events.sort(key=lambda x: (
+            3 if x.get("freshness") == "strict_2h" else (2 if x.get("freshness") == "recent_4h" else 1),
+            x.get("weight", 1.0),
+            x.get("create_time", 0)
+        ), reverse=True)
 
         stats = {
             "mode": "live",

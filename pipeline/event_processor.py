@@ -513,14 +513,15 @@ def analyze_severity_heuristic(text: str) -> Optional[Dict[str, Any]]:
             }
 
     has_rain = any(rk in clean_text for rk in ("mưa lớn", "mưa to", "mưa giông", "triều cường", "mưa kéo dài"))
-    has_flood = "ngập" in clean_text
+    has_flood = any(k in clean_text for k in ("ngập", "ngap", "triều cường", "trieucuong", "trieu cuong", "nước dâng", "nuoc dang", "thất thủ", "thatthu", "that thu", "bì bõm", "lội nước", "dắt bộ", "chết máy", "chet may"))
 
     if has_flood:
+        opinion_word = "triều cường dâng" if any(k in clean_text for k in ("triều cường", "trieucuong", "trieu cuong")) else "mưa ngập"
         return {
-            "opinion": "mưa ngập",
+            "opinion": opinion_word,
             "sentiment": "negative",
-            "severity_level": "low",
-            "weight": 1.2
+            "severity_level": "medium" if opinion_word == "triều cường dâng" else "low",
+            "weight": 1.8 if opinion_word == "triều cường dâng" else 1.2
         }
 
     return None
