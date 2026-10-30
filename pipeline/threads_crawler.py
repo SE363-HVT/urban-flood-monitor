@@ -197,7 +197,7 @@ def fetch_threads_post_via_jina(post_url: str) -> Optional[Dict[str, Any]]:
     }
 
     try:
-        resp = requests.get(jina_url, headers=headers, timeout=12)
+        resp = requests.get(jina_url, headers=headers, timeout=4)
         if resp.status_code != 200:
             return None
         md_text = resp.text
@@ -404,9 +404,9 @@ class ThreadsMultiStreamCrawler:
         cutoff_ts = now_ts - (window_minutes * 60)
 
         # 1. Hợp nhất truy vấn theo Trụ cột 1 & 3
-        active_queries = SPOKEN_FLOOD_QUERIES[:8] + HOTSPOT_THREAD_QUERIES[:8]
+        active_queries = SPOKEN_FLOOD_QUERIES[:4] + HOTSPOT_THREAD_QUERIES[:4]
         discovered_urls = self.discover_urls_for_queries(active_queries, max_per_query=2)
-        radar_urls = self.scan_account_radar_urls(TARGET_RADAR_ACCOUNTS, max_per_acc=2)
+        radar_urls = self.scan_account_radar_urls(TARGET_RADAR_ACCOUNTS[:5], max_per_acc=1)
         all_candidate_urls = (discovered_urls | radar_urls) - self.seen_urls
 
         events = []
@@ -415,7 +415,7 @@ class ThreadsMultiStreamCrawler:
 
         # 2. Bóc tách nội dung song song (Trụ cột 2)
         with ThreadPoolExecutor(max_workers=min(12, len(all_candidate_urls))) as pool:
-            futures = {pool.submit(fetch_threads_post_via_jina, u): u for u in list(all_candidate_urls)[:max_items * 2]}
+            futures = {pool.submit(fetch_threads_post_via_jina, u): u for u in list(all_candidate_urls)[:max_items]}
             for f in as_completed(futures):
                 try:
                     post = f.result()

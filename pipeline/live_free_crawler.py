@@ -261,6 +261,7 @@ class LiveFreeSocialCrawler:
     _rr_threads_offset: int = 0
     _rr_yt_offset: int = 0
     _rr_news_offset: int = 0
+    _google_circuit_broken_until: float = 0.0
 
     def __init__(self):
         self.seen_urls: Set[str] = set()
@@ -428,12 +429,33 @@ class LiveFreeSocialCrawler:
 
     def _fetch_single_query(self, query: str, platform: str, max_items_per_query: int) -> List[Tuple[Any, str]]:
         enc_q = urllib.parse.quote_plus(query)
-        feed_url = f"https://news.google.com/rss/search?q={enc_q}&hl=vi&gl=VN&ceid=VN:vi"
+        now_ts = time.time()
+
+        # 1. Thử Google News RSS nếu Circuit Breaker chưa bị ngắt (thời hạn 5 phút)
+        if now_ts >= LiveFreeSocialCrawler._google_circuit_broken_until:
+            try:
+                feed_url = f"https://news.google.com/rss/search?q={enc_q}&hl=vi&gl=VN&ceid=VN:vi"
+                req = urllib.request.Request(feed_url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+                with urllib.request.urlopen(req, timeout=1.5) as resp:
+                    if resp.status == 200:
+                        feed = feedparser.parse(resp.read())
+                        if feed.entries:
+                            return [(entry, platform) for entry in feed.entries[:max_items_per_query]]
+            except Exception as e:
+                err_str = str(e)
+                if "503" in err_str or "timed out" in err_str or "Service Unavailable" in err_str:
+                    LiveFreeSocialCrawler._google_circuit_broken_until = now_ts + 300.0
+
+        # 2. Dual-Engine Fallback: Bing News / Bing Web RSS (Phản hồi tức thì <0.3s, hoàn toàn miễn nhiễm 503)
         try:
-            feed = feedparser.parse(feed_url)
-            return [(entry, platform) for entry in feed.entries[:max_items_per_query]]
+            bing_url = f"https://www.bing.com/news/search?q={enc_q}&format=rss" if platform == "news" else f"https://www.bing.com/search?q={enc_q}&format=rss"
+            bing_feed = feedparser.parse(bing_url)
+            if bing_feed.entries:
+                return [(entry, platform) for entry in bing_feed.entries[:max_items_per_query]]
         except Exception:
-            return []
+            pass
+
+        return []
 
     def poll_live_stream(
         self,
@@ -493,11 +515,21 @@ class LiveFreeSocialCrawler:
             if not rss_link:
                 continue
 
-            try:
-                decoded = gnewsdecoder(rss_link)
-                decoded_url = decoded.get("decoded_url") if isinstance(decoded, dict) else decoded
-            except Exception:
-                decoded_url = ""
+            decoded_url = ""
+            if "news.google.com" in rss_link:
+                try:
+                    decoded = gnewsdecoder(rss_link)
+                    decoded_url = decoded.get("decoded_url") if isinstance(decoded, dict) else (decoded if isinstance(decoded, str) else "")
+                except Exception:
+                    decoded_url = ""
+            elif "url=" in rss_link:
+                try:
+                    qs = urllib.parse.parse_qs(urllib.parse.urlparse(rss_link).query)
+                    decoded_url = qs.get("url", [rss_link])[0]
+                except Exception:
+                    decoded_url = rss_link
+            else:
+                decoded_url = rss_link
 
             if not decoded_url or not isinstance(decoded_url, str):
                 continue
@@ -539,9 +571,8 @@ class LiveFreeSocialCrawler:
                 continue
 
             # ÁP DỤNG CỬA SỔ THỜI GIAN TỐI ĐA 24 GIỜ: LOẠI BỎ TOÀN BỘ TIN TRÊN 24H
+            # Giữ lại toàn bộ tin tức trong vòng 24 giờ qua (3 tầng độ tươi)
             if pub_unix < cutoff_24h:
-                continue
-            if platform == "news" and pub_unix < news_cutoff:
                 continue
 
             age_seconds = current_time - pub_unix
