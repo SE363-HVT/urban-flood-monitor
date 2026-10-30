@@ -49,7 +49,7 @@
 Tập dữ liệu đã được phân chia theo cơ chế **Parent-grouped (chống rò rỉ dữ liệu 100%)** với hạt ngẫu nhiên `RANDOM_SEED = 42`:
 
 | Tập dữ liệu | Đường dẫn File | Số lượng mẫu | Tỷ lệ (%) | Tổng số Triplets | Mẫu có Media | Nhãn Cảm xúc (NEG / POS / NEU) |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| :--- | :--- | :---: | :---: | :---: | :---: | :--- :---: |
 | **Train** | [`data/processed/splits/train.json`](../data/processed/splits/train.json) | **8,199** | 80.00% | 12,113 | 1,212 (14.8%) | 8,086 NEG (66.8%) / 2,893 POS (23.9%) / 1,134 NEU (9.4%) |
 | **Dev / Val** | [`data/processed/splits/dev.json`](../data/processed/splits/dev.json) | **1,025** | 10.00% | 1,506 | 158 (15.4%) | 1,002 NEG (66.5%) / 346 POS (23.0%) / 158 NEU (10.5%) |
 | **Test** | [`data/processed/splits/test.json`](../data/processed/splits/test.json) | **1,025** | 10.00% | 1,502 | 175 (17.1%) | 1,014 NEG (67.5%) / **348 POS** (23.2%) / **140 NEU** (9.3%) |
@@ -116,23 +116,22 @@ Mở cửa sổ PowerShell thứ 3 và thực hiện kiểm thử nhanh:
 # 1. Kiểm tra Health Check:
 curl.exe http://localhost:8001/health
 
-# 2. Bắn tin nhắn văn bản vào Fast Path (< 35ms):
-curl.exe -X POST http://localhost:8001/api/v1/predict-fast `
-     -H "Content-Type: application/json" `
-     -d "{\"text\": \"Đường Nguyễn Hữu Cảnh ngập sâu lút nửa bánh xe rồi bà con ơi\"}"
+# 2. Bắn tin nhắn văn bản vào Fast Path (< 35ms) (sử dụng --data-binary với nháy đơn để PowerShell không tách từ):
+curl.exe -X POST http://localhost:8001/api/v1/predict-fast -H "Content-Type: application/json" --data-binary '{\"text\": \"Đường Nguyễn Hữu Cảnh ngập sâu lút nửa bánh xe rồi bà con ơi\"}'
 ```
 * **Kết quả trả về chuẩn mực**:
   ```json
   {
     "status": "success",
+    "branch": "fast_path",
     "latency_ms": 24.5,
     "triplets": [
       {
         "aspect": "Đường Nguyễn Hữu Cảnh",
-        "opinion": "ngập sâu lút nửa bánh xe",
+        "opinion": "ngập sâu lút nửa bánh xe rồi",
         "polarity": "NEG",
         "severity": "HIGH",
-        "confidence": 0.9998
+        "confidence": 0.9999
       }
     ]
   }
