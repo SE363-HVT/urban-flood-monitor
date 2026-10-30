@@ -251,6 +251,29 @@ NEWS_QUERIES = [
 ]
 
 
+def parse_vietnamese_rss_date(entry: Any) -> int:
+    """Giai ma thoi gian dang bai chuan xac (UTC Timestamp), ho tro ca tieng Anh va tieng Viet cua Bing."""
+    pub_parsed = getattr(entry, "published_parsed", None)
+    if pub_parsed:
+        try:
+            return calendar.timegm(pub_parsed)
+        except Exception:
+            pass
+
+    raw_pub = str(getattr(entry, "published", "") or getattr(entry, "updated", "") or "")
+    if raw_pub:
+        # Nhan dien dinh dang ngay tieng Viet cua Bing: e.g. 'Th 6, 30 thg 10 2026 12:20:00 GMT'
+        m = re.search(r'(\d{1,2})\s+thg\s+(\d{1,2})\s+(\d{4})\s+(\d{1,2}):(\d{1,2}):(\d{1,2})', raw_pub)
+        if m:
+            try:
+                day, month, year, h, mi, s = map(int, m.groups())
+                dt = datetime(year, month, day, h, mi, s, tzinfo=timezone.utc)
+                return int(dt.timestamp())
+            except Exception:
+                pass
+    return 0
+
+
 class LiveFreeSocialCrawler:
     """
     Crawler thu thập thời gian thực (Live Multi-Channel Streaming Ingestion) hoàn toàn miễn phí.
@@ -427,16 +450,24 @@ class LiveFreeSocialCrawler:
 
         return selected
 
-    def _fetch_single_query(self, query: str, platform: str, max_items_per_query: int) -> List[Tuple[Any, str]]:
+    def _clean_query_for_bing(self, query: str) -> str:
+        """Chuan hoa cau truy van cho Bing (loai bo cu phap rieng cua Google)."""
+        cleaned = re.sub(r'\s*when:\w+', '', query)
+        cleaned = cleaned.replace('(', '').replace(')', '').replace('"', '')
+        cleaned = re.sub(r'\bOR\b', ' ', cleaned)
+        cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+        return cleaned
+
+    def _fetch_google_query(self, query: str, platform: str, max_items_per_query: int) -> List[Tuple[Any, str]]:
+        """Worker chuyen sau Google News RSS (12 workers song song). Tu dong failover sang Bing neu bi 503."""
         enc_q = urllib.parse.quote_plus(query)
         now_ts = time.time()
 
-        # 1. Thử Google News RSS nếu Circuit Breaker chưa bị ngắt (thời hạn 5 phút)
         if now_ts >= LiveFreeSocialCrawler._google_circuit_broken_until:
             try:
                 feed_url = f"https://news.google.com/rss/search?q={enc_q}&hl=vi&gl=VN&ceid=VN:vi"
                 req = urllib.request.Request(feed_url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
-                with urllib.request.urlopen(req, timeout=1.5) as resp:
+                with urllib.request.urlopen(req, timeout=1.8) as resp:
                     if resp.status == 200:
                         feed = feedparser.parse(resp.read())
                         if feed.entries:
@@ -446,7 +477,13 @@ class LiveFreeSocialCrawler:
                 if "503" in err_str or "timed out" in err_str or "Service Unavailable" in err_str:
                     LiveFreeSocialCrawler._google_circuit_broken_until = now_ts + 300.0
 
-        # 2. Dual-Engine Fallback: Bing News / Bing Web RSS (Phản hồi tức thì <0.3s, hoàn toàn miễn nhiễm 503)
+        # Tu dong chuyen tiep sang Bing neu Google gap su co rate limit
+        return self._fetch_bing_query(query, platform, max_items_per_query)
+
+    def _fetch_bing_query(self, query: str, platform: str, max_items_per_query: int) -> List[Tuple[Any, str]]:
+        """Worker chuyen sau Microsoft Bing RSS (8 workers song song). Ho tro ca News RSS va Web Social RSS."""
+        clean_q = self._clean_query_for_bing(query)
+        enc_q = urllib.parse.quote_plus(clean_q)
         try:
             bing_url = f"https://www.bing.com/news/search?q={enc_q}&format=rss" if platform == "news" else f"https://www.bing.com/search?q={enc_q}&format=rss"
             bing_feed = feedparser.parse(bing_url)
@@ -454,7 +491,6 @@ class LiveFreeSocialCrawler:
                 return [(entry, platform) for entry in bing_feed.entries[:max_items_per_query]]
         except Exception:
             pass
-
         return []
 
     def poll_live_stream(
@@ -485,11 +521,17 @@ class LiveFreeSocialCrawler:
 
         active_queries = self.get_interleaved_queries(max_queries=max_queries)
 
-        # 1. Quét song song 20 worker xử lý 100 feed RSS
+        # 1. Quet song song 2 dong co doc lap: 12 Google Workers + 8 Bing Workers (Tong 20 workers, 100 queries)
+        # - Phan bo 60% queries cho Google va 40% queries cho Bing de giam tai Google, phong ngua rate limit
+        split_idx = int(len(active_queries) * 0.6)
+        google_batch = active_queries[:split_idx]  # 60 queries
+        bing_batch = active_queries[split_idx:]    # 40 queries
+
         raw_entries: List[Tuple[Any, str]] = []
-        with ThreadPoolExecutor(max_workers=20) as pool:
-            futures = [pool.submit(self._fetch_single_query, q, p, max_items_per_query) for q, p in active_queries]
-            for f in as_completed(futures):
+        with ThreadPoolExecutor(max_workers=12) as g_pool, ThreadPoolExecutor(max_workers=8) as b_pool:
+            g_futures = [g_pool.submit(self._fetch_google_query, q, p, max_items_per_query) for q, p in google_batch]
+            b_futures = [b_pool.submit(self._fetch_bing_query, q, p, max_items_per_query) for q, p in bing_batch]
+            for f in as_completed(g_futures + b_futures):
                 try:
                     res = f.result()
                     if res:
@@ -557,14 +599,7 @@ class LiveFreeSocialCrawler:
                     continue
 
             # Xác định thời gian đăng bài chuẩn xác (UTC -> Unix Timestamp)
-            pub_parsed = getattr(entry, "published_parsed", None)
-            if pub_parsed:
-                try:
-                    pub_unix = calendar.timegm(pub_parsed)
-                except Exception:
-                    pub_unix = 0
-            else:
-                pub_unix = 0
+            pub_unix = parse_vietnamese_rss_date(entry)
 
             # TUYỆT ĐỐI KHÔNG GÁN BỪA THỜI GIAN NẾU KHÔNG CÓ TIMESTAMP THẬT
             if pub_unix == 0:
