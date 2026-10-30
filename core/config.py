@@ -2,7 +2,7 @@
 """
 core/config.py - Cấu hình hệ thống Ingestion & Dashboard
 Thu thập dữ liệu ngập lụt đô thị gần thời gian thực đa nền tảng:
-1. TikTok Video: Video & Hashtag ngập lụt TP.HCM (Tối ưu cân bằng tốc độ & độ bao phủ).
+1. TikTok Video: Video & Hashtag ngập lụt TP.HCM (Tối ưu tốc độ phản hồi ~60s, chống timeout).
 2. Facebook: Tìm kiếm bài đăng ngập lụt thời gian thực qua Actor tối ưu chi phí & lọc sạch rác.
 """
 
@@ -12,26 +12,20 @@ import os
 APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "apify_api_wTDd6uCOPAyo3sDLx864GjAmUflbBh1Ff9o0")
 
 # ==========================================
-# 1. Cấu hình Actor cào TikTok Video (Tối ưu cân bằng: ~60-80s, chống timeout 300s)
+# 1. Cấu hình Actor cào TikTok Video (Tối ưu phản hồi < 90s, an toàn dưới timeout 300s)
 # ==========================================
 ACTOR_ID = "clockworks~free-tiktok-scraper"
 
 DEFAULT_HASHTAGS = [
     "ngapsaigon",
     "muangap",
-    "trieucuong",
-    "ngapnuoc",
-    "ngapduong"
+    "trieucuong"
 ]
 
 DEFAULT_SEARCH_QUERIES = [
     "ngập TPHCM",
     "ngập Sài Gòn",
-    "mưa ngập TP.HCM",
-    "triều cường Sài Gòn",
-    "xe chết máy ngập",
-    "ngập đường TP.HCM",
-    "mưa ngập nước Sài Gòn"
+    "mưa ngập TP.HCM"
 ]
 
 # ==========================================

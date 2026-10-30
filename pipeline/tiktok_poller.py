@@ -3,7 +3,7 @@
 pipeline/tiktok_poller.py - Thu thập dữ liệu video TikTok thời gian thực
 Hỗ trợ cả chế độ:
 - LIVE: Cào TikTok thật bằng cơ chế Video Search Queries + Hashtags bản địa qua Apify.
-        Tối ưu số lượng truy vấn để cào nhanh (~60-80s), tránh nguy cơ timeout 300s.
+        Tối ưu số lượng truy vấn để cào nhanh (~60-90s), tránh nguy cơ timeout 300s.
 - SIMULATION: Phát lại dữ liệu mô phỏng từ file dataset sạch (100% TP.HCM).
 """
 
@@ -37,7 +37,7 @@ class TikTokPoller:
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
         Cào TikTok thật bằng cơ chế Video Search Queries + Hashtags bản địa:
-        - Tối ưu 7 câu query trọng điểm + 5 hashtag thịnh hành (hoàn thành ~60-80s, an toàn dưới timeout 300s).
+        - Tối ưu 3 câu query trọng điểm + 3 hashtag thịnh hành (hoàn thành ~60-90s, an toàn dưới timeout 300s).
         - Thu thập và xử lý video về ngập lụt, mưa lớn, triều cường tại TP.HCM.
         """
         if not self.apify_token:
@@ -51,7 +51,7 @@ class TikTokPoller:
         print(f"[Apify Live] Danh sách Hashtags ({len(target_hashtags)} tags): {target_hashtags}...")
 
         url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs?token={self.apify_token}"
-        # Giới hạn 10 kết quả mỗi trang để cân bằng giữa độ phủ tin tức và tốc độ hoàn thành (~60-80s)
+        # Giới hạn 10 kết quả mỗi trang để cân bằng giữa độ phủ tin tức và tốc độ hoàn thành (~60-90s)
         run_input = {
             "searchQueries": target_queries,
             "hashtags": target_hashtags,
@@ -73,10 +73,10 @@ class TikTokPoller:
             
             print(f"[Apify Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
 
-            # 2. Chờ Actor hoàn thành (tối đa 130 giây)
+            # 2. Chờ Actor hoàn thành (tối đa 240 giây)
             poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
             status = "RUNNING"
-            for _ in range(65):
+            for _ in range(120):
                 time.sleep(2.0)
                 try:
                     status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
