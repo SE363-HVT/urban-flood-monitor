@@ -168,33 +168,42 @@ class FacebookPoller:
             "searchType": "latest",
         }
 
-        resp = requests.post(url, json=run_input, timeout=30)
-        resp.raise_for_status()
-        run_data = resp.json().get("data", {})
-        run_id = run_data.get("id")
-        dataset_id = run_data.get("defaultDatasetId")
+        raw_items = []
+        try:
+            resp = requests.post(url, json=run_input, timeout=30)
+            if resp.status_code == 429:
+                print("[Facebook Live] ⚠️ Apify Facebook Actor đạt giới hạn tần suất (Rate Limit). Bỏ qua kênh Facebook đợt này.")
+                return [], {"status": "rate_limited", "facebook_count": 0}
+            resp.raise_for_status()
+            run_data = resp.json().get("data", {})
+            run_id = run_data.get("id")
+            dataset_id = run_data.get("defaultDatasetId")
 
-        print(f"[Facebook Live] Actor đang chạy (Run ID: {run_id}). Đang đợi kết quả...")
+            print(f"[Facebook Live] Actor đang chạy (Run ID: {run_id}). Đang đợi kết quả...")
 
-        poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
-        status = "RUNNING"
-        for _ in range(50):
-            time.sleep(2.5)
-            try:
-                s_resp = requests.get(poll_url, timeout=10).json().get("data", {})
-                status = s_resp.get("status")
-                if status in ["SUCCEEDED", "FAILED", "ABORTED", "TIMED-OUT"]:
-                    break
-            except Exception:
-                pass
+            poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
+            status = "RUNNING"
+            for _ in range(50):
+                time.sleep(2.5)
+                try:
+                    s_resp = requests.get(poll_url, timeout=10).json().get("data", {})
+                    status = s_resp.get("status")
+                    if status in ["SUCCEEDED", "FAILED", "ABORTED", "TIMED-OUT"]:
+                        break
+                except Exception:
+                    pass
 
-        if status != "SUCCEEDED":
-            raise RuntimeError(f"Facebook Actor kết thúc với trạng thái: {status}")
+            if status != "SUCCEEDED":
+                print(f"[Facebook Live] ⚠️ Facebook Actor dừng với trạng thái: {status} (có thể do rate limit/quota).")
+                return [], {"status": status, "facebook_count": 0}
 
-        items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={self.apify_token}"
-        items_resp = requests.get(items_url, timeout=30)
-        items_resp.raise_for_status()
-        raw_items = items_resp.json()
+            items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={self.apify_token}"
+            items_resp = requests.get(items_url, timeout=30)
+            items_resp.raise_for_status()
+            raw_items = items_resp.json()
+        except Exception as e:
+            print(f"[Facebook Live] ⚠️ Lỗi kết nối cào Facebook qua Apify: {e}")
+            return [], {"status": "error", "facebook_count": 0}
 
         try:
             os.makedirs("data", exist_ok=True)

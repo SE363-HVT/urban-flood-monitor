@@ -64,35 +64,44 @@ class TikTokPoller:
         }
 
         # 1. Khởi chạy Actor
-        resp = requests.post(url, json=run_input, timeout=30)
-        resp.raise_for_status()
-        run_data = resp.json().get("data", {})
-        run_id = run_data.get("id")
-        dataset_id = run_data.get("defaultDatasetId")
-        
-        print(f"[Apify Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
+        raw_items = []
+        try:
+            resp = requests.post(url, json=run_input, timeout=30)
+            if resp.status_code == 429:
+                print("[Apify Live] ⚠️ Apify TikTok Actor đạt giới hạn tần suất (Rate Limit). Bỏ qua TikTok đợt này.")
+                return [], {"status": "rate_limited", "tiktok_count": 0}
+            resp.raise_for_status()
+            run_data = resp.json().get("data", {})
+            run_id = run_data.get("id")
+            dataset_id = run_data.get("defaultDatasetId")
+            
+            print(f"[Apify Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
 
-        # 2. Chờ Actor hoàn thành
-        poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
-        status = "RUNNING"
-        for _ in range(120):
-            time.sleep(2.5)
-            try:
-                status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
-                status = status_resp.get("status")
-                if status in ["SUCCEEDED", "FAILED", "ABORTED", "TIMED-OUT"]:
-                    break
-            except Exception:
-                pass
-        
-        if status != "SUCCEEDED":
-            raise RuntimeError(f"Actor Apify kết thúc với trạng thái: {status}")
+            # 2. Chờ Actor hoàn thành
+            poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
+            status = "RUNNING"
+            for _ in range(120):
+                time.sleep(2.5)
+                try:
+                    status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
+                    status = status_resp.get("status")
+                    if status in ["SUCCEEDED", "FAILED", "ABORTED", "TIMED-OUT"]:
+                        break
+                except Exception:
+                    pass
+            
+            if status != "SUCCEEDED":
+                print(f"[Apify Live] ⚠️ TikTok Actor dừng với trạng thái: {status}.")
+                return [], {"status": status, "tiktok_count": 0}
 
-        # 3. Lấy dữ liệu từ Dataset
-        items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={self.apify_token}"
-        items_resp = requests.get(items_url, timeout=30)
-        items_resp.raise_for_status()
-        raw_items = items_resp.json()
+            # 3. Lấy dữ liệu từ Dataset
+            items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={self.apify_token}"
+            items_resp = requests.get(items_url, timeout=30)
+            items_resp.raise_for_status()
+            raw_items = items_resp.json()
+        except Exception as e:
+            print(f"[Apify Live] ⚠️ Lỗi kết nối cào TikTok qua Apify: {e}")
+            return [], {"status": "error", "tiktok_count": 0}
 
         # Lưu bản sao raw debug
         os.makedirs("data", exist_ok=True)
