@@ -87,7 +87,12 @@ NON_FLOOD_EXCLUSIONS = [
     "hết xăng", "het xang", "hỏng ắc quy", "ắc quy", "ac quy", "bể ống nước", "vỡ ống nước",
     "quên tắt vòi", "tiệm sửa", "tiem sua", "sửa xe", "bảo dưỡng xe", "quán ăn", "trà sữa",
     "trận đấu", "bóng đá", "hội chợ", "liveshow", "concert", "khuyến mãi", "say xỉn",
-    "say rượu", "va chạm giao thông", "cướp giật", "tai nạn giao thông", "cháy xe"
+    "say rượu", "va chạm giao thông", "cướp giật", "tai nạn giao thông", "cháy xe",
+    "halloween", "spooktacular", "hotel", "khách sạn", "resort", "foodtour", "food tour",
+    "ẩm thực", "ăn vặt", "vé máy bay", "transit tour", "quá cảnh", "visa", "đặt vé",
+    "buffet", "cocktail", "quán bar", "pub", "lounge", "spa", "massage", "bán nhà",
+    "cho thuê", "phòng trọ", "bất động sản", "căn hộ", "sổ hồng", "sổ đỏ", "xe lướt",
+    "bán xe", "vios", "accent", "ford everest"
 ]
 
 FLOOD_INTENT_KEYWORDS = DIRECT_FLOOD_KEYWORDS + BEHAVIORAL_FLOOD_KEYWORDS
@@ -116,7 +121,9 @@ JUNK_EXCLUSIONS = [
 
 TRUSTED_NEWS_DOMAINS = [
     "tuoitre.vn", "thanhnien.vn", "vnexpress.net", "dantri.com.vn",
-    "plo.vn", "nld.com.vn", "vietnamnet.vn", "vtcnews.vn", "laodong.vn", "vtv.vn"
+    "plo.vn", "nld.com.vn", "vietnamnet.vn", "vtcnews.vn", "laodong.vn", "vtv.vn",
+    "tienphong.vn", "baomoi.com", "sggp.org.vn", "vov.vn", "znews.vn", "zingnews.vn",
+    "cand.com.vn", "hanoimoi.vn", "kinhtedothi.vn", "bnews.vn"
 ]
 
 # ==============================================================================
@@ -481,11 +488,12 @@ class LiveFreeSocialCrawler:
         return self._fetch_bing_query(query, platform, max_items_per_query)
 
     def _fetch_bing_query(self, query: str, platform: str, max_items_per_query: int) -> List[Tuple[Any, str]]:
-        """Worker chuyen sau Microsoft Bing RSS (8 workers song song). Ho tro ca News RSS va Web Social RSS."""
+        """Worker chuyên sâu Microsoft Bing News RSS (8 workers song song). Chuẩn hóa tiếng Việt và tin tức trong 24h."""
         clean_q = self._clean_query_for_bing(query)
         enc_q = urllib.parse.quote_plus(clean_q)
         try:
-            bing_url = f"https://www.bing.com/news/search?q={enc_q}&format=rss" if platform == "news" else f"https://www.bing.com/search?q={enc_q}&format=rss"
+            # Bing News RSS cho thị trường Việt Nam (vi-VN), lọc tin mới trong ngày (&qft=interval="7")
+            bing_url = f"https://www.bing.com/news/search?q={enc_q}&format=rss&mkt=vi-VN&setlang=vi&qft=interval%3d%227%22"
             bing_feed = feedparser.parse(bing_url)
             if bing_feed.entries:
                 return [(entry, platform) for entry in bing_feed.entries[:max_items_per_query]]
@@ -564,10 +572,16 @@ class LiveFreeSocialCrawler:
                     decoded_url = decoded.get("decoded_url") if isinstance(decoded, dict) else (decoded if isinstance(decoded, str) else "")
                 except Exception:
                     decoded_url = ""
-            elif "url=" in rss_link:
+            elif "bing.com" in rss_link or "url=" in rss_link.lower():
                 try:
                     qs = urllib.parse.parse_qs(urllib.parse.urlparse(rss_link).query)
-                    decoded_url = qs.get("url", [rss_link])[0]
+                    target = qs.get("url", [""])[0]
+                    if target:
+                        decoded_url = urllib.parse.unquote(target)
+                        if not decoded_url.startswith("http"):
+                            decoded_url = f"https://{decoded_url}"
+                    else:
+                        decoded_url = rss_link
                 except Exception:
                     decoded_url = rss_link
             else:

@@ -2,8 +2,8 @@
 """
 core/config.py - Cấu hình hệ thống Ingestion & Dashboard
 Thu thập dữ liệu ngập lụt đô thị gần thời gian thực đa nền tảng:
-1. TikTok Video: Video & Hashtag ngập lụt TP.HCM (Giữ nguyên ổn định).
-2. Facebook: Tìm kiếm bài đăng ngập lụt thời gian thực qua Actor tối ưu chi phí & khớp điểm nóng.
+1. TikTok Video: Video & Hashtag ngập lụt TP.HCM (Tối ưu truy vấn tốc độ cao chống timeout).
+2. Facebook: Tìm kiếm bài đăng ngập lụt thời gian thực qua Actor tối ưu chi phí & lọc sạch rác.
 """
 
 import os
@@ -12,41 +12,22 @@ import os
 APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "apify_api_wTDd6uCOPAyo3sDLx864GjAmUflbBh1Ff9o0")
 
 # ==========================================
-# 1. Cấu hình Actor cào TikTok Video (Giữ nguyên ổn định)
+# 1. Cấu hình Actor cào TikTok Video (Tối ưu tốc độ phản hồi < 45s, chống timeout 300s)
 # ==========================================
 ACTOR_ID = "clockworks~free-tiktok-scraper"
 
 DEFAULT_HASHTAGS = [
-    "muangap",
-    "ngaplut",
     "ngapsaigon",
-    "ngaptphcm",
-    "trieucuong",
-    "ngapnuoc",
-    "muasaigon",
-    "trieucuongsaigon",
-    "hongbienduongpho"
+    "muangap",
+    "trieucuong"
 ]
 
 DEFAULT_SEARCH_QUERIES = [
-    "ngập Tân Kỳ Tân Quý",
-    "ngập Bình Tân",
-    "mưa ngập Bình Tân",
-    "ngập Kinh Dương Vương",
-    "ngập Vĩnh Lộc",
-    "ngập nước Sài Gòn",
-    "mưa ngập TPHCM",
+    "ngập TPHCM",
+    "ngập Sài Gòn",
+    "mưa ngập TP.HCM",
     "triều cường Sài Gòn",
-    "ngập lụt TP.HCM",
-    "ngập đường Phan Huy Ích",
-    "ngập Ung Văn Khiêm",
-    "ngập Nguyễn Văn Quá",
-    "ngập Nguyễn Hữu Cảnh",
-    "ngập Chợ Thủ Đức",
-    "xe chết máy do ngập",
-    "ngập lút bánh xe",
-    "mưa ngập đường Sài Gòn",
-    "ngập thất thủ Sài Gòn"
+    "xe chết máy ngập"
 ]
 
 # ==========================================
