@@ -105,8 +105,12 @@ def load_all_models():
     # 3. Slow Path: PhoWhisper-base ASR
     try:
         from transformers import WhisperProcessor, WhisperForConditionalGeneration
-        MODELS["whisper_model"] = WhisperForConditionalGeneration.from_pretrained("vinai/phowhisper-base").half().to(DEVICE)
-        MODELS["whisper_processor"] = WhisperProcessor.from_pretrained("vinai/phowhisper-base")
+        try:
+            MODELS["whisper_model"] = WhisperForConditionalGeneration.from_pretrained("vinai/phowhisper-base", local_files_only=True).half().to(DEVICE)
+            MODELS["whisper_processor"] = WhisperProcessor.from_pretrained("vinai/phowhisper-base", local_files_only=True)
+        except Exception:
+            MODELS["whisper_model"] = WhisperForConditionalGeneration.from_pretrained("vinai/phowhisper-base").half().to(DEVICE)
+            MODELS["whisper_processor"] = WhisperProcessor.from_pretrained("vinai/phowhisper-base")
         MODELS["whisper_model"].eval()
         print("    [+] Branch 2 (Audio): PhoWhisper-base ASR (FP16) loaded successfully.")
     except Exception as e:
