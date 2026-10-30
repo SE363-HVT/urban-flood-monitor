@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
 """
-pipeline/tiktok_poller.py
-Crawl video TikTok qua Apify Actor (clockworks~free-tiktok-scraper).
-Tối ưu hóa thời gian thực thi < 45s, chống timeout 300s và áp dụng phân loại độ tươi 3 tầng trong 24 giờ.
+pipeline/tiktok_poller.py - Thu thập dữ liệu video TikTok thời gian thực
+Hỗ trợ cả chế độ:
+- LIVE: Cào TikTok thật bằng cơ chế Video Search Queries + Hashtags bản địa qua Apify.
+        Tối ưu số lượng truy vấn để cào nhanh (~60-80s), tránh nguy cơ timeout 300s.
+- SIMULATION: Phát lại dữ liệu mô phỏng từ file dataset sạch (100% TP.HCM).
 """
 
 import os
 import json
 import time
 import requests
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Tuple, Optional
 
-from core.state_manager import StateManager
-from core.config import APIFY_TOKEN, ACTOR_ID, DEFAULT_SEARCH_QUERIES, DEFAULT_HASHTAGS, DEFAULT_WINDOW_MINUTES
+from core.config import APIFY_TOKEN, ACTOR_ID, DEFAULT_HASHTAGS, DEFAULT_SEARCH_QUERIES, DEFAULT_WINDOW_MINUTES
 from pipeline.event_processor import process_tiktok_item
 from pipeline.simulation_replayer import SimulationReplayer
+from core.state_manager import StateManager
 
-DEFAULT_RAW_FILE = os.path.join("data", "raw", "dataset_tiktok-scraper-urban_2026-09-29_10-39-28-832.json")
 LAST_CRAWL_DEBUG_FILE = os.path.join("data", "last_crawled_tiktok.json")
 
 class TikTokPoller:
@@ -31,12 +32,12 @@ class TikTokPoller:
         self,
         hashtags: Optional[List[str]] = None,
         search_queries: Optional[List[str]] = None,
-        max_items: int = 15,
+        max_items: int = 30,
         window_minutes: int = DEFAULT_WINDOW_MINUTES
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
         Cào TikTok thật bằng cơ chế Video Search Queries + Hashtags bản địa:
-        - Tối ưu 4 câu query cốt lõi + 3 hashtag thịnh hành để hoàn thành nhanh (< 45s), chống timeout 300s.
+        - Tối ưu 7 câu query trọng điểm + 5 hashtag thịnh hành (hoàn thành ~60-80s, an toàn dưới timeout 300s).
         - Thu thập và xử lý video về ngập lụt, mưa lớn, triều cường tại TP.HCM.
         """
         if not self.apify_token:
@@ -50,11 +51,11 @@ class TikTokPoller:
         print(f"[Apify Live] Danh sách Hashtags ({len(target_hashtags)} tags): {target_hashtags}...")
 
         url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs?token={self.apify_token}"
-        # Giới hạn 5 kết quả mỗi trang để hoàn thành siêu tốc (< 45s)
+        # Giới hạn 10 kết quả mỗi trang để cân bằng giữa độ phủ tin tức và tốc độ hoàn thành (~60-80s)
         run_input = {
             "searchQueries": target_queries,
             "hashtags": target_hashtags,
-            "resultsPerPage": 5,
+            "resultsPerPage": 10,
             "maxItems": max_items,
         }
 
@@ -72,10 +73,10 @@ class TikTokPoller:
             
             print(f"[Apify Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
 
-            # 2. Chờ Actor hoàn thành (tối đa 90 giây)
+            # 2. Chờ Actor hoàn thành (tối đa 130 giây)
             poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
             status = "RUNNING"
-            for _ in range(45):
+            for _ in range(65):
                 time.sleep(2.0)
                 try:
                     status_resp = requests.get(poll_url, timeout=10).json().get("data", {})

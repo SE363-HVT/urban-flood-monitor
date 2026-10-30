@@ -955,7 +955,7 @@
                 const res = await fetch('/api/trigger-apify', { method: 'POST' });
                 const data = await res.json();
                 await fetchRealtimeEvents();
-                alert('Đã hoàn tất cào sâu qua Apify! Nhận được ' + (data.count || 0) + ' điểm ngập.');
+                alert('Đã hoàn tất cào sâu qua Apify! Nhận được ' + (data.new_count !== undefined ? data.new_count : (data.count || 0)) + ' tin mới (Tổng: ' + (data.total_count || data.count || 0) + ' tin trên bản đồ).');
             } catch (err) {
                 console.error("Lỗi khi cào Apify:", err);
                 alert("Lỗi khi gọi API cào Apify!");
