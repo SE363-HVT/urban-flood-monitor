@@ -32,7 +32,7 @@ if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
 from pipeline.simulation_replayer import SimulationReplayer
-from scripts.organize_raw_episodes import determine_episode_id, extract_item_date, EPISODE_DEFINITIONS
+from scripts.crawlers.organize_raw_episodes import determine_episode_id, extract_item_date, EPISODE_DEFINITIONS
 
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 PROCESSED_V2 = os.path.join(DATA_DIR, "processed", "hcmc_flood_annotated_v2_multimodal.json")

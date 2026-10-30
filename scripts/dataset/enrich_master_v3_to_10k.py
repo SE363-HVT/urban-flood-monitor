@@ -35,13 +35,13 @@ if ROOT_DIR not in sys.path:
 
 from core.gazetteer import HOTSPOTS, CSGT_HOTSPOTS, OUT_OF_SCOPE_LOCATIONS, normalize_text
 from core.admin_resolver import RESOLVER
-from scripts.build_dataset_v3 import (
+from scripts.dataset.build_dataset_v3 import (
     extract_v3_triplets_refined,
     clean_administrative_location,
     VALID_WARDS,
     OUT_OF_SCOPE_WORDS
 )
-from scripts.organize_raw_episodes import determine_episode_id
+from scripts.crawlers.organize_raw_episodes import determine_episode_id
 
 V3_PATH = os.path.join(ROOT_DIR, "data", "processed", "hcmc_flood_annotated_v3_multimodal.json")
 BACKUP_PATH = os.path.join(ROOT_DIR, "data", "processed", "hcmc_flood_annotated_v3_multimodal.backup_4621.json")
@@ -386,7 +386,7 @@ def build_10k_dataset():
         remaining_needed = needed - len(newly_added_records)
         print(f"\n[*] Nguồn 5: Sinh {remaining_needed} mẫu tăng cường đa dạng theo đúng Cẩm nang chuyên gia...")
 
-        from scripts.augment_cda_pos import REAL_STREETS
+        from scripts.dataset.augment_cda_pos import REAL_STREETS
 
         # Danh sách bối cảnh thời gian phong phú
         time_prefixes = [

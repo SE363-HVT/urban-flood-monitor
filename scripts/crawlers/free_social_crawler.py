@@ -47,7 +47,7 @@ EPISODES_DIR = os.path.join(DATA_DIR, "raw", "episodes")
 
 from core.gazetteer import normalize_text, HOTSPOTS, CSGT_HOTSPOTS, OUT_OF_SCOPE_LOCATIONS
 from pipeline.event_processor import clean_stream_text, contains_spam_or_noise
-from scripts.organize_raw_episodes import determine_episode_id, EPISODE_DEFINITIONS
+from scripts.crawlers.organize_raw_episodes import determine_episode_id, EPISODE_DEFINITIONS
 
 # Danh sách từ khóa ngập lụt thực tế bắt buộc
 DIRECT_FLOOD_KEYWORDS = [

@@ -20,7 +20,7 @@ PROJECT_ROOT = os.path.dirname(AI_DIR)
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from scripts.train_phobert_aste import PhoBertASTEPredictor
+from scripts.training.train_phobert_aste import PhoBertASTEPredictor
 
 DEFAULT_CHECKPOINT = os.path.join(PHOBERT_DIR, "finetune", "checkpoints", "phobert_large")
 if not os.path.exists(DEFAULT_CHECKPOINT):

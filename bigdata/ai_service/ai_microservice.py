@@ -80,7 +80,7 @@ def load_all_models():
 
     # 1. Fast Path: PhoBERT-base-v2 ASTE
     try:
-        from scripts.train_phobert_aste import PhoBertASTEPredictor
+        from scripts.training.train_phobert_aste import PhoBertASTEPredictor
         phobert_ckpt = os.path.join(ROOT_DIR, "AI", "phobert", "base_v2", "finetune", "checkpoints")
         if os.path.exists(os.path.join(phobert_ckpt, "best_phobert_aste.pt")):
             MODELS["phobert_fast"] = PhoBertASTEPredictor(checkpoint_dir=phobert_ckpt, device=DEVICE_STR)

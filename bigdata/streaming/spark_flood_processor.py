@@ -51,7 +51,7 @@ from core.admin_resolver import RESOLVER
 from pipeline.veracity_checker import VeracityChecker
 from pipeline.event_processor import clean_stream_text, analyze_severity_heuristic, format_relative_time
 from pipeline.spatio_temporal_clusterer import SpatioTemporalClusterer
-from scripts.organize_raw_episodes import determine_episode_id
+from scripts.crawlers.organize_raw_episodes import determine_episode_id
 
 os.environ['PYSPARK_PYTHON'] = sys.executable
 os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable

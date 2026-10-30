@@ -51,7 +51,7 @@ def main():
     print("\n[Phase 0] Loading all 4 models into VRAM (One-time warmup)...")
     
     # 1. PhoBERT
-    from scripts.train_phobert_aste import PhoBertASTEPredictor
+    from scripts.training.train_phobert_aste import PhoBertASTEPredictor
     phobert_ckpt = os.path.join(ROOT_DIR, "AI", "phobert", "base_v2", "finetune", "checkpoints")
     phobert = PhoBertASTEPredictor(checkpoint_dir=phobert_ckpt, device="cuda:0" if torch.cuda.is_available() else "cpu")
     

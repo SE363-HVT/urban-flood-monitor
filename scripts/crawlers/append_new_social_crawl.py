@@ -23,8 +23,8 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
-from scripts.reannotate_expert_batches import extract_expert_triplets, clean_aspect_text
-from scripts.cleanse_and_resolve_gazetteer import resolve_ward_for_record
+from scripts.dataset.reannotate_expert_batches import extract_expert_triplets, clean_aspect_text
+from scripts.dataset.cleanse_and_resolve_gazetteer import resolve_ward_for_record
 
 V3_PATH = os.path.join(ROOT_DIR, "data", "processed", "hcmc_flood_annotated_v3_multimodal.json")
 

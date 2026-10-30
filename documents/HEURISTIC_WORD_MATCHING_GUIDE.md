@@ -308,7 +308,7 @@ To run the heuristic benchmark and regenerate the official report:
 source /home/counting/anaconda3/envs/ryan_env/bin/activate
 
 # 2. Run the benchmark synthesis script
-python scripts/benchmark_heuristic_baseline.py
+python scripts/benchmarks/benchmark_heuristic_baseline.py
 ```
 
 The script will automatically update:

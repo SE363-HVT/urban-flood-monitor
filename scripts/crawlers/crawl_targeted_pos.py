@@ -36,7 +36,7 @@ EPISODES_DIR = os.path.join(DATA_DIR, "raw", "episodes")
 
 from core.gazetteer import normalize_text, HOTSPOTS, OUT_OF_SCOPE_LOCATIONS
 from pipeline.event_processor import clean_stream_text, contains_spam_or_noise
-from scripts.organize_raw_episodes import determine_episode_id
+from scripts.crawlers.organize_raw_episodes import determine_episode_id
 
 # -----------------------------------------------------------------------------
 # 1. RÀO CHẮN TRẠNG THÁI CHƯA RÚT / BẾ TẮC (ÁP DỤNG TRÊN TỪNG CÂU)

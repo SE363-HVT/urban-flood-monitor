@@ -32,8 +32,8 @@ if ROOT_DIR not in sys.path:
 
 from core.gazetteer import HOTSPOTS, CSGT_HOTSPOTS
 from core.admin_resolver import RESOLVER
-from scripts.cleanse_and_resolve_gazetteer import STREET_TO_OFFICIAL_WARD, resolve_ward_for_record
-from scripts.reannotate_expert_batches import KNOWN_STREETS, HYDROLOGY_LIST, INFRASTRUCTURE_LIST
+from scripts.dataset.cleanse_and_resolve_gazetteer import STREET_TO_OFFICIAL_WARD, resolve_ward_for_record
+from scripts.dataset.reannotate_expert_batches import KNOWN_STREETS, HYDROLOGY_LIST, INFRASTRUCTURE_LIST
 from scratch.filter_junk_precise import compiled_junk
 
 V3_PATH = os.path.join(ROOT_DIR, "data", "processed", "hcmc_flood_annotated_v3_multimodal.json")

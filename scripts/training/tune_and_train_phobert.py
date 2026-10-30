@@ -100,7 +100,7 @@ def audit_phobert_truncation(tokenizer, train_file: str, dev_file: str, test_fil
     sys.stdout.flush()
     return audit_results
 
-from scripts.train_phobert_aste import (
+from scripts.training.train_phobert_aste import (
     ASTEJsonDataset,
     aste_collate_fn,
     PhoBertForASTE,

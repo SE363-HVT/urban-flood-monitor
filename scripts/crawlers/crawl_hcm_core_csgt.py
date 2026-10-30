@@ -38,7 +38,7 @@ EPISODES_DIR = os.path.join(DATA_DIR, "raw", "episodes")
 AUDIT_LOG_FILE = os.path.join(DATA_DIR, "crawl_csgt_audit.json")
 
 from pipeline.event_processor import clean_stream_text, contains_spam_or_noise
-from scripts.organize_raw_episodes import determine_episode_id
+from scripts.crawlers.organize_raw_episodes import determine_episode_id
 
 FLOOD_INTENT_KEYWORDS = [
     "ngập", "ngap", "triều cường", "trieu cuong", "chết máy", "chet may",

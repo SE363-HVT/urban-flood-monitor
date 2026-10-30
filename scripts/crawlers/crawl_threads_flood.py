@@ -36,8 +36,8 @@ if ROOT_DIR not in sys.path:
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 EPISODES_DIR = os.path.join(DATA_DIR, "raw", "episodes")
 
-from scripts.organize_raw_episodes import determine_episode_id
-from scripts.free_social_crawler import (
+from scripts.crawlers.organize_raw_episodes import determine_episode_id
+from scripts.crawlers.free_social_crawler import (
     FLOOD_INTENT_KEYWORDS,
     HCMC_AFFIRMATION_KEYWORDS,
     JUNK_EXCLUSIONS,

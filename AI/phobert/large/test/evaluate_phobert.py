@@ -22,7 +22,7 @@ PROJECT_ROOT = os.path.dirname(AI_DIR)
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from scripts.train_phobert_aste import (
+from scripts.training.train_phobert_aste import (
     ASTEJsonDataset,
     aste_collate_fn,
     PhoBertForASTE,

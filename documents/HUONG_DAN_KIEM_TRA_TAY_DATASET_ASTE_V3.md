@@ -125,7 +125,7 @@ Khi bạn cuộn xuống cuối file JSON (các mẫu có ID bắt đầu bằng
 Nếu bạn muốn kiểm tra quét nhanh toàn bộ file bằng máy tính trước khi soi từng dòng bằng mắt, chỉ cần mở terminal và chạy script đã chuẩn bị sẵn:
 
 ```bash
-python scripts/generate_full_stats_v3.py
+python scripts/figures/generate_full_stats_v3.py
 ```
 
 Nếu màn hình hiển thị:

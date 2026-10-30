@@ -47,7 +47,7 @@ PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-from scripts.train_mt5_aste import (
+from scripts.training.train_mt5_aste import (
     MT5ASTEDataset,
     mt5_collate_fn,
     evaluate_val_loss_and_f1,

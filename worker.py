@@ -48,7 +48,7 @@ try:
 except Exception:
     pass
 
-from scripts.tune_and_train_mt5 import run_pipeline
+from scripts.training.tune_and_train_mt5 import run_pipeline
 
 # Configure all parameters internally (no command-line exposure)
 args = argparse.Namespace(

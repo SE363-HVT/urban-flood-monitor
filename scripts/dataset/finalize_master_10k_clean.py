@@ -29,8 +29,8 @@ if ROOT_DIR not in sys.path:
 
 from core.gazetteer import HOTSPOTS, CSGT_HOTSPOTS, OUT_OF_SCOPE_LOCATIONS
 from core.admin_resolver import RESOLVER
-from scripts.cleanse_and_resolve_gazetteer import resolve_ward_for_record
-from scripts.reannotate_expert_batches import (
+from scripts.dataset.cleanse_and_resolve_gazetteer import resolve_ward_for_record
+from scripts.dataset.reannotate_expert_batches import (
     TRAILING_WORDS, RICH_OPINIONS, KNOWN_STREETS,
     HYDROLOGY_LIST, INFRASTRUCTURE_LIST
 )
