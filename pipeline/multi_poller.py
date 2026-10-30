@@ -103,3 +103,7 @@ class MultiPoller:
         replayer = SimulationReplayer.get_instance()
         events, stats = replayer.poll(batch_size=batch_size)
         return events, stats
+
+
+# Bí danh tương thích ngược cho dashboard/server.py
+MultiPlatformPoller = MultiPoller
