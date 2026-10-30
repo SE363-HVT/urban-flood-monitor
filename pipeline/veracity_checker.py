@@ -5,7 +5,9 @@ Module Xác Thực Dữ Liệu & Phòng Chống Báo Cáo Sai Lệch / Tin Giả
 
 Cơ chế hoạt động (Multi-tier Defense):
 1. Tầng 1: Đánh giá độ tin cậy nội dung & hình ảnh (Content/Visual Verification).
-   - Kết nối Multimodal AI Microservice (Port 8001) qua HTTP REST API.
+   - Kết nối Multimodal AI Microservice (Port 8001) qua HTTP REST API với Dynamic Adaptive Timeout:
+     * has_media == False (Văn bản thuần): timeout = 0.5s (Fast Path PhoBERT <= 35ms)
+     * has_media == True (Video/ảnh): timeout = 3.5s (Slow Path CLIP + PhoWhisper + BARTpho)
    - Graceful fallback: Dùng luật heuristic kiểm tra link media và từ khóa nếu microservice offline.
 2. Tầng 2: Đối soát Khí tượng thực tế (Weather Cross-Check).
    - Live Mode: Truy vấn lượng mưa Open-Meteo Forecast API theo đúng tọa độ điểm ngập VÀ KHUNG GIỜ ĐĂNG BÀI (Asia/Bangkok).
@@ -101,20 +103,47 @@ class VeracityChecker:
         self.weather_cache: Dict[str, Dict[str, Any]] = {}
 
     # =========================================================================
-    # ĐIỂM CẮM TÍCH HỢP (EXTENSION POINT) CHO MÔ HÌNH AI
+    # ĐIỂM CẮM TÍCH HỢP (EXTENSION POINT) CHO MÔ HÌNH AI VỚI DYNAMIC TIMEOUT
     # =========================================================================
     def evaluate_content_ai(self, event: Dict[str, Any]) -> Dict[str, Any]:
         """
         Đánh giá độ tin cậy từ nội dung đa phương thái (Chữ, Âm thanh, Hình ảnh).
         Ưu tiên gọi Multimodal AI Microservice (Port 8001).
+        Áp dụng Dynamic Timeout:
+          - has_media == False (Văn bản): timeout = 0.5s (Fast Path)
+          - has_media == True (Video/Ảnh): timeout = 3.5s (Slow Path)
         Nếu microservice offline hoặc timeout -> Fallback an toàn sang Heuristic Baseline.
         """
-        # 1. Thử kết nối Microservice AI với timeout siêu ngắn 0.35s
+        media_val = event.get("media")
+        raw_url = str(event.get("url") or "")
+        media_urls = list(event.get("media_urls") or [])
+        video_url = event.get("video_url")
+
+        is_video_link = any(v in raw_url.lower() for v in ["tiktok.com", "youtube.com", "youtu.be", "/reel/", "/videos/"])
+
+        has_media = bool(
+            media_urls or
+            video_url or
+            is_video_link or
+            event.get("media_type") == "video" or
+            (isinstance(media_val, dict) and media_val.get("has_media")) or
+            (isinstance(media_val, list) and len(media_val) > 0)
+        )
+
+        # Dynamic Adaptive Timeout theo Đề xuất Chiến lược 1
+        ai_timeout = 3.5 if has_media else 0.5
+
+        # 1. Thử kết nối Microservice AI với Dynamic Timeout
         try:
+            effective_media = media_urls
+            if not effective_media and is_video_link:
+                effective_media = [raw_url]
+
             payload = {
                 "post_id": str(event.get("id") or event.get("canonical_id") or "event_raw"),
                 "text": event.get("text") or event.get("title", ""),
-                "media_urls": event.get("media_urls", []) or ([event.get("url")] if event.get("url") else [])
+                "media_urls": effective_media,
+                "video_url": video_url or (raw_url if is_video_link else None)
             }
             req_data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
             req = urllib.request.Request(
@@ -122,34 +151,26 @@ class VeracityChecker:
                 data=req_data,
                 headers={"Content-Type": "application/json", "User-Agent": "SE363-Veracity/2.5"}
             )
-            with urllib.request.urlopen(req, timeout=0.35) as resp:
+            with urllib.request.urlopen(req, timeout=ai_timeout) as resp:
                 if resp.status == 200:
                     ai_resp = json.loads(resp.read().decode("utf-8"))
                     if ai_resp.get("status") == "success":
                         v_pred = ai_resp.get("visual_prediction", {})
+                        triplets = ai_resp.get("aste_triplets") or ai_resp.get("triplets") or []
+                        branch = ai_resp.get("branch", "slow_path" if has_media else "fast_path")
                         return {
                             "source": "friend_multimodal_ai",
-                            "visual_verified": v_pred.get("is_flood", False),
+                            "branch": branch,
+                            "visual_verified": v_pred.get("is_flood", False) if has_media else False,
                             "content_score": round(float(ai_resp.get("content_confidence_score", 0.85)), 2),
-                            "triplets": ai_resp.get("aste_triplets", []),
-                            "audio_transcript": ai_resp.get("audio_transcript", "")
+                            "triplets": triplets,
+                            "audio_transcript": ai_resp.get("audio_transcript", ""),
+                            "timeout_used": ai_timeout
                         }
         except Exception:
             pass
 
         # 2. CƠ CHẾ DỰ PHÒNG (HEURISTIC BASELINE):
-        media_val = event.get("media")
-        has_media = False
-        if (
-            event.get("media_urls") or
-            event.get("video_url") or
-            event.get("media_type") == "video" or
-            bool(event.get("url")) or
-            (isinstance(media_val, dict) and media_val.get("has_media")) or
-            (isinstance(media_val, list) and len(media_val) > 0)
-        ):
-            has_media = True
-
         text = str(event.get("text", "")).lower()
 
         if has_media:
@@ -164,9 +185,10 @@ class VeracityChecker:
 
         return {
             "source": "heuristic_baseline",
+            "branch": "heuristic",
             "visual_verified": visual_verified,
             "content_score": round(content_score, 2),
-            "triplets": event.get("aste_triplets", [])
+            "triplets": event.get("aste_triplets", []) or event.get("triplets", [])
         }
 
     # =========================================================================

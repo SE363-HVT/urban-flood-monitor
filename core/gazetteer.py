@@ -1822,7 +1822,7 @@ for h in HOTSPOTS:
 OUT_OF_SCOPE_LOCATIONS = [
     # Miền Bắc
     "hà nội", "ha noi", "hanoi", "hà đông", "ha dong", "hadong", "cầu giấy", "cau giay", "hoàn kiếm", "hoan kiem",
-    "đống đa", "dong da", "ba đình", "ba dinh", "hai bà trưng", "thanh xuân", "hoàng mai", "long biên",
+    "đống đa", "dong da", "ba đình", "ba dinh", "hai bà trưng", "thanh xuân", "hoàng mai", "long biên", "hoàng ngân", "hoang ngan", "quan nhân", "quan nhan", "royal city", "royalcity", "nguyễn trãi hà nội", "tây hồ", "mỹ đình", "nam từ liêm", "bắc từ liêm",
     "thái nguyên", "thai nguyen", "thainguyen", "yên bái", "yen bai", "yenbai", "lào cai", "lao cai", "laocai",
     "quảng ninh", "quang ninh", "quangninh", "hạ long", "ha long", "halong", "hải phòng", "hai phong", "haiphong",
     "hải dương", "hai duong", "bắc ninh", "bac ninh", "bắc giang", "bac giang", "phú thọ", "phu tho",
@@ -2071,7 +2071,7 @@ BOGUS_ROAD_PHRASES = set([
     "tân sơn nhất",
     "tân thuận",
     # Hiện tượng & miêu tả nước
-    "có nơi", "thành sông", "hóa sông", "như sông", "biến thành", "ngập sâu", "chết máy",
+    "có nơi", "thành sông", "hóa sông", "vào dễ đi", "dễ đi", "đường vào dễ đi", "hạn chế ngập", "không ngập", "bao ngập", "ko ngập", "rút lui cứ hẹp dần", "sắt bắc - nam", "ông lớn đường", "như sông", "biến thành", "ngập sâu", "chết máy",
     "dâng cao", "rút lui", "chưa từng", "bì bõm", "lội nước", "kẹt xe", "mênh mông",
     "biển nước", "ngập tràn", "liên tục", "dồn ứ", "giá rẻ", "phố không", "vô hẻm", "và hẻm",
     "điểm trường", "trục lộ", "giao thông", "sau trận", "hơn 100", "yên xe", "chiếc xe",

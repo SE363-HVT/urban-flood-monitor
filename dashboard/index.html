@@ -291,6 +291,8 @@
         }
         .platform-badge.tiktok { background: rgba(254, 44, 85, 0.2); color: #ff6b8b; border: 1px solid rgba(254, 44, 85, 0.4); }
         .platform-badge.facebook { background: rgba(24, 119, 242, 0.2); color: #70b4ff; border: 1px solid rgba(24, 119, 242, 0.4); }
+        .platform-badge.threads { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
+        .platform-badge.youtube { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
 
         .feed-text {
             font-size: 12px;
@@ -567,6 +569,17 @@
             100% { transform: scale(2.2); opacity: 0; }
         }
 
+        .threads-marker-pin {
+            background: #9333ea !important;
+            box-shadow: 0 0 12px #c084fc !important;
+            border: 2px solid #ffffff !important;
+            font-weight: 800 !important;
+            font-size: 13px !important;
+        }
+        .threads-marker-pin::after {
+            border: 2px solid #c084fc !important;
+        }
+
         .csgt-marker-pin {
             width: 26px;
             height: 26px;
@@ -610,7 +623,7 @@
                 <div id="badge-mode" class="mode-pill">SIMULATION</div>
             </div>
             <div class="title">Urban Flood Monitor TP.HCM</div>
-            <div class="subtitle">Giám sát ngập lụt đa nguồn (TikTok + Facebook) & CSGT PC08</div>
+            <div class="subtitle">Giám sát ngập lụt đa nguồn (TikTok + Facebook + Threads) & CSGT PC08</div>
         </div>
 
         <div class="stats-grid">
@@ -710,7 +723,11 @@
             <div class="legend-title">Phân biệt Điểm ngập trên bản đồ</div>
             <div class="legend-row">
                 <div style="width: 14px; height: 14px; border-radius: 50%; background: #ef4444; border: 2px solid white; box-shadow: 0 0 6px #ef4444;"></div>
-                <span><b>🔴 Sự cố ngập Live:</b> Người dân đăng MXH (nhấp nháy)</span>
+                <span><b>🔴 Sự cố TikTok/FB:</b> Người dân đăng video/bài viết (nhấp nháy đỏ)</span>
+            </div>
+            <div class="legend-row">
+                <div style="width: 14px; height: 14px; border-radius: 50%; background: #9333ea; border: 2px solid white; box-shadow: 0 0 6px #c084fc;"></div>
+                <span><b>🟣 Phản ánh Threads:</b> Sinh viên/Dân văn phòng (@ nhấp nháy tím)</span>
             </div>
             <div class="legend-row">
                 <div style="width: 14px; height: 14px; background: #f59e0b; border-radius: 4px; border: 1px solid white;"></div>
@@ -775,6 +792,9 @@
 
         let autoPollTimer = null;
         let isAutoPollActive = true;
+        let currentOpenPopupEventId = null;
+        let lastEventsSignature = '';
+        let activeMarkersById = {};
 
         // Khởi chạy
         window.addEventListener('DOMContentLoaded', async () => {
@@ -863,8 +883,17 @@
                 document.getElementById('badge-mode').innerText = serverCurrentMode.toUpperCase();
 
                 updateModeButtonUI();
-                renderLiveMapAndFeed(currentEvents);
-                renderLeaderboard(currentEvents);
+
+                // Tạo chữ ký kiểm tra dữ liệu thay đổi để chống hủy marker làm tắt popup của user
+                const newSignature = `${serverCurrentMode}_${currentEvents.length}_` + 
+                    (currentEvents.length > 0 ? (currentEvents[0].canonical_id || currentEvents[0].id || '') + '_' + (currentEvents[0].create_time || '') : '');
+                
+                // Chỉ vẽ lại marker khi thực sự có dữ liệu mới HOẶC khi không có popup nào đang được xem
+                if (newSignature !== lastEventsSignature || !map._popup) {
+                    lastEventsSignature = newSignature;
+                    renderLiveMapAndFeed(currentEvents);
+                    renderLeaderboard(currentEvents);
+                }
             } catch (err) {
                 console.error("Lỗi tải sự kiện:", err);
             }
@@ -1015,7 +1044,11 @@
                 });
 
                 const m = L.marker([spot.lat, spot.lon], { icon: icon });
-                m.bindPopup(popupContent);
+                m.bindPopup(popupContent, {
+                    closeOnClick: false,
+                    autoClose: true,
+                    autoPan: true
+                });
                 csgtMarkersGroup.addLayer(m);
             });
         }
@@ -1058,7 +1091,10 @@
 
         // Vẽ các sự kiện thời gian thực (Icon đỏ nhấp nháy) & danh sách Feed
         function renderLiveMapAndFeed(events) {
+            const previousOpenId = currentOpenPopupEventId;
+
             liveMarkersGroup.clearLayers();
+            activeMarkersById = {};
             const feedList = document.getElementById('feed-list');
             feedList.innerHTML = '';
 
@@ -1197,8 +1233,48 @@
                 let markerHtml = '';
                 if (isCitywide) {
                     markerHtml = `<div class="citywide-marker-pin" title="Phản ánh diện rộng">🌐</div>`;
+                } else if (platform === 'threads') {
+                    markerHtml = `<div class="live-marker-pin threads-marker-pin" title="${loc.display_name || 'Threads'}">@</div>`;
                 } else {
                     markerHtml = `<div class="live-marker-pin" title="${loc.display_name || 'Ngập lụt'}">${isHigh ? '⚠️' : '🌊'}</div>`;
+                }
+
+                // Trích xuất ASTE Triplet cho Đề xuất 3
+                const contentCheck = v.content_check || {};
+                const tripletsList = (contentCheck.triplets && contentCheck.triplets.length > 0) 
+                    ? contentCheck.triplets 
+                    : (ev.triplets || ev.aste_triplets || []);
+                const primaryTriplet = tripletsList[0] || {};
+
+                const aspectSpan = primaryTriplet.aspect || ev.aspect || cleanStreet || (rawStreet || 'Điểm ngập TP.HCM');
+                const opinionSpan = primaryTriplet.opinion || ev.opinion || 'ngập nước';
+                const polarityRaw = (primaryTriplet.polarity || ev.polarity || 'NEG').toUpperCase();
+                
+                let modelSource = 'PhoBERT Fast Path';
+                if (contentCheck.source === 'friend_multimodal_ai') {
+                    modelSource = contentCheck.branch === 'slow_path' ? 'BARTpho Slow Path' : 'PhoBERT Fast Path';
+                } else if (contentCheck.source === 'heuristic_baseline') {
+                    modelSource = 'PhoBERT ASTE';
+                }
+                const tripletConf = primaryTriplet.confidence !== undefined 
+                    ? Math.round(primaryTriplet.confidence * 100) 
+                    : (vScore || 99);
+
+                let polarityLabel = '🔴 Cực kỳ tiêu cực';
+                let polBadgeBg = 'rgba(239, 68, 68, 0.2)';
+                let polBadgeColor = '#f87171';
+                let polBadgeBorder = 'rgba(239, 68, 68, 0.4)';
+
+                if (polarityRaw === 'POS') {
+                    polarityLabel = '🟢 Tích cực (Khô ráo)';
+                    polBadgeBg = 'rgba(34, 197, 94, 0.2)';
+                    polBadgeColor = '#4ade80';
+                    polBadgeBorder = 'rgba(34, 197, 94, 0.4)';
+                } else if (polarityRaw === 'NEU') {
+                    polarityLabel = '🟡 Trung tính (Dự báo)';
+                    polBadgeBg = 'rgba(234, 179, 8, 0.2)';
+                    polBadgeColor = '#fde047';
+                    polBadgeBorder = 'rgba(234, 179, 8, 0.4)';
                 }
 
                 const customIcon = L.divIcon({
@@ -1208,10 +1284,11 @@
                     iconAnchor: [14, 14]
                 });
 
+                const eventKey = ev.canonical_id || ev.id || `${lat}_${lon}`;
                 const marker = L.marker([lat, lon], { icon: customIcon });
 
                 const popupContent = `
-                    <div style="font-family: sans-serif; font-size: 12px; min-width: 280px; max-width: 320px; color: #1e293b;">
+                    <div style="font-family: sans-serif; font-size: 12px; min-width: 290px; max-width: 340px; color: #1e293b;">
                         <div style="background: ${timeColor}; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-bottom: 6px; display: flex; justify-content: space-between;">
                             <span>${timeTag}</span>
                             <span>${relativeTimeStr}</span>
@@ -1222,11 +1299,37 @@
                             <span><b>Điểm ngập trọng điểm:</b> Được báo cáo bởi ${ev.report_count} người</span>
                         </div>
                         ` : ''}
-                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 4px; color: #0f172a;">${primaryTitle}</div>
+                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; color: #0f172a;">${primaryTitle}</div>
                         <div style="font-size: 11px; color: #475569; margin-bottom: 6px;">
                             ${secondarySubtitle}
                         </div>
-                        <div style="background: #f1f5f9; padding: 6px 8px; border-radius: 4px; font-size: 11px; color: #334155; margin-bottom: 6px; font-style: italic; max-height: 80px; overflow-y: auto;">
+
+                        <!-- ĐỀ XUẤT 3: THẺ NHẬN DIỆN ASTE TRIPLET CHUYÊN SÂU CỦA AI -->
+                        <div style="background: #0f172a; border: 1px solid #38bdf8; border-radius: 6px; padding: 7px 9px; margin-bottom: 6px; box-shadow: inset 0 0 8px rgba(56, 189, 248, 0.15);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                                <span style="font-size: 10px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 4px;">
+                                    <span>🏷️</span> NHẬN DIỆN AI (ASTE TRIPLET)
+                                </span>
+                                <span style="background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 4px; font-size: 9.5px; font-weight: 700;">
+                                    ${modelSource} - ${tripletConf}%
+                                </span>
+                            </div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 11px;">
+                                <span style="background: #1e293b; color: #38bdf8; border: 1px solid #0284c7; padding: 2px 6px; border-radius: 4px; font-weight: 600;" title="Thực thể Địa lý (Aspect Entity)">
+                                    📍 [${aspectSpan}]
+                                </span>
+                                <span style="color: #64748b; font-weight: bold;">|</span>
+                                <span style="background: #1e293b; color: #facc15; border: 1px solid #ca8a04; padding: 2px 6px; border-radius: 4px; font-weight: 600;" title="Trạng thái ngập (Opinion Term)">
+                                    🌊 [${opinionSpan}]
+                                </span>
+                                <span style="color: #64748b; font-weight: bold;">|</span>
+                                <span style="background: ${polBadgeBg}; color: ${polBadgeColor}; border: 1px solid ${polBadgeBorder}; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 10px;" title="Cực tính">
+                                    ${polarityLabel}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div style="background: #f1f5f9; padding: 8px 10px; border-radius: 6px; font-size: 11.5px; color: #1e293b; margin-bottom: 6px; line-height: 1.45; max-height: 150px; overflow-y: auto; word-break: break-word; white-space: pre-wrap;">
                             "${ev.text || ev.title || 'Người dân phản ánh ngập lụt'}"
                         </div>
                         
@@ -1257,7 +1360,26 @@
                         </div>
                     </div>
                 `;
-                marker.bindPopup(popupContent);
+
+                // Cấu hình Popup: closeOnClick: false để không tắt khi bấm map, autoClose: true để chuyển khi bấm điểm khác
+                marker.bindPopup(popupContent, {
+                    closeOnClick: false,
+                    autoClose: true,
+                    autoPan: true
+                });
+
+                marker.on('popupopen', () => {
+                    currentOpenPopupEventId = eventKey;
+                });
+                marker.on('popupclose', () => {
+                    setTimeout(() => {
+                        if (!map._popup) {
+                            currentOpenPopupEventId = null;
+                        }
+                    }, 150);
+                });
+
+                activeMarkersById[eventKey] = marker;
                 liveMarkersGroup.addLayer(marker);
 
                 // Feed card (Bên thanh trái)
@@ -1276,6 +1398,22 @@
                     <div style="font-size: 11px; color: #38bdf8; margin-bottom: 4px;">
                         ${secondarySubtitle}
                     </div>
+
+                    <!-- THẺ ASTE TRIPLET TRÊN FEED -->
+                    <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 6px; padding: 5px 8px; margin: 5px 0; font-size: 11px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 9.5px; color: #38bdf8; font-weight: 700; margin-bottom: 3px;">
+                            <span>🏷️ AI Triplet:</span>
+                            <span style="color: #94a3b8;">${modelSource} (${tripletConf}%)</span>
+                        </div>
+                        <div style="display: flex; gap: 4px; flex-wrap: wrap; align-items: center; font-size: 10.5px;">
+                            <span style="color: #38bdf8; font-weight: 600;">[${aspectSpan}]</span>
+                            <span style="color: #64748b;">|</span>
+                            <span style="color: #facc15; font-weight: 600;">[${opinionSpan}]</span>
+                            <span style="color: #64748b;">|</span>
+                            <span style="color: ${polBadgeColor}; font-weight: 700;">${polarityLabel}</span>
+                        </div>
+                    </div>
+
                     ${ev.report_count && ev.report_count > 1 ? `
                     <div style="font-size: 11px; font-weight: 700; color: #a855f7; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
                         <span>👥</span>
@@ -1299,6 +1437,11 @@
                 `;
                 feedList.appendChild(card);
             });
+
+            // Tự động khôi phục popup đang mở trên marker tương ứng nếu có
+            if (previousOpenId && activeMarkersById[previousOpenId]) {
+                activeMarkersById[previousOpenId].openPopup();
+            }
 
             // Update heatlayer
             if (heatLayer) map.removeLayer(heatLayer);

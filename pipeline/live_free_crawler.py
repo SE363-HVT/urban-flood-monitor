@@ -357,21 +357,22 @@ class LiveFreeSocialCrawler:
 
     def extract_clean_quote(self, title: str, summary: str = "") -> str:
         """
-        Trích xuất câu hoàn chỉnh có ngữ cảnh ngập lụt chuẩn mực.
+        Trích xuất văn bản trọn vẹn (Full text) của bài đăng từ Mạng Xã Hội (Facebook, TikTok, Threads, YouTube)
+        hoặc Báo chí, loại bỏ hậu tố kênh tin rác và giữ nguyên ngữ cảnh đầy đủ (không cắt cụt).
         """
-        clean_t = re.sub(r'\s*-\s*(?:TikTok|Facebook|Threads|YouTube|VnExpress|Tuổi Trẻ|Thanh Niên|Dân Trí|PLO|NLD)\s*$', '', title, flags=re.IGNORECASE).strip()
+        clean_t = re.sub(r'\s*-\s*(?:TikTok|Facebook|Threads|YouTube|VnExpress|Tuổi Trẻ|Thanh Niên|Dân Trí|PLO|NLD|Báo [^-\n]+)\s*$', '', title, flags=re.IGNORECASE).strip()
         if not summary:
             return clean_t
 
         clean_sum = re.sub(r'<[^>]+>', ' ', summary)
+        clean_sum = re.sub(r'&nbsp;', ' ', clean_sum)
+        clean_sum = re.sub(r'\s*-\s*(?:TikTok|Facebook|Threads|YouTube|VnExpress|Tuổi Trẻ|Thanh Niên|Dân Trí|PLO|NLD|Báo [^-\n]+)\s*$', '', clean_sum, flags=re.IGNORECASE)
+        clean_sum = re.sub(r'\s+(?:Facebook|TikTok|Threads|YouTube)\s*$', '', clean_sum, flags=re.IGNORECASE)
         clean_sum = re.sub(r'\s+', ' ', clean_sum).strip()
 
-        sentences = re.split(r'(?<=[.!?])\s+', clean_sum)
-        for s in sentences:
-            s_clean = s.strip()
-            if len(s_clean) >= 15 and any(k in s_clean.lower() for k in ["ngập", "triều cường", "chết máy", "nước dâng", "lút bánh", "bơi về nhà"]):
-                if len(s_clean) <= 140:
-                    return s_clean
+        # Nếu clean_sum dài hơn và chứa đầy đủ ngữ cảnh bài viết, ưu tiên clean_sum
+        if len(clean_sum) > len(clean_t) and not clean_sum.startswith("http"):
+            return clean_sum
 
         return clean_t
 
@@ -630,6 +631,31 @@ class LiveFreeSocialCrawler:
                 }
 
                 events_window.append(event)
+
+        # TÍCH HỢP TRỤ CỘT 4: KHAI THÁC THREADS ĐA LUỒNG (TOPIC & RADAR THỰC ĐỊA TP.HCM)
+        try:
+            from pipeline.threads_crawler import ThreadsMultiStreamCrawler
+            threads_engine = ThreadsMultiStreamCrawler(max_workers=6)
+            threads_events = threads_engine.poll_threads_live(window_minutes=window_minutes, max_items=8)
+            for tev in threads_events:
+                age_s = max(0, current_time - tev.get("create_time", current_time))
+                if age_s <= 7200:
+                    tev["freshness"] = "strict_2h"
+                    tev["status_tag"] = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
+                    tev["weight"] = 4.5
+                elif age_s <= 14400:
+                    tev["freshness"] = "recent_4h"
+                    tev["status_tag"] = "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)"
+                    tev["weight"] = 3.5
+                else:
+                    tev["freshness"] = "within_24h"
+                    tev["status_tag"] = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
+                    tev["weight"] = 2.5
+                if "location" in tev and isinstance(tev["location"], dict):
+                    tev["location"]["priority"] = 1
+                events_window.append(tev)
+        except Exception:
+            pass
 
         # SẮP XẾP ƯU TIÊN: TIN TRONG 2 GIỜ LÊN ĐẦU TIÊN -> MẠNG XÃ HỘI (TIKTOK/FB/THREADS/YT) -> ĐỘ NGHIÊM TRỌNG
         events_window.sort(key=lambda x: (

@@ -33,6 +33,35 @@ BDS_SPAM_KEYWORDS = [
   "thương lượng",
   "giá bán:",
   "giá chỉ",
+  "bán căn hộ",
+  "căn hộ chung cư",
+  "chung cư mini",
+  "căn hộ mini",
+  "bán chung cư",
+  "mua nhà",
+  "mua bán nhà đất",
+  "tìm nhà",
+  "cần mua nhà",
+  "bán đất",
+  "mua đất",
+  "giá yêu thương",
+  "giá tốt",
+  "xe hơi tận nhà",
+  "ô tô đỗ cửa",
+  "ô tô vào tận nơi",
+  "ô tô tận cửa",
+  "buôn bán sầm uất",
+  "kinh doanh sầm uất",
+  "khu vực sầm uất",
+  "xem thực tế",
+  "đến xem thực tế",
+  "liên hệ em",
+  "nhanh tay liên hệ",
+  "văn phòng trọn gói",
+  "cho thuê văn phòng",
+  "cho thuê căn hộ",
+  "đầy đủ tiện nghi",
+  "nội thất cơ bản",
   "tỷ tl",
   "tỉ tl",
   "t.ỷ",
@@ -116,7 +145,20 @@ BDS_NEGATION_PHRASES = [
   "không lo ngập",
   "sạch sẽ không ngập",
   "đường cao không ngập",
-  "vị trí cao không ngập"
+  "vị trí cao không ngập",
+  "bao ngập",
+  "bao ngập nước",
+  "bao test ngập",
+  "hạn chế ngập",
+  "hạn chế ngập nước",
+  "ko ngập",
+  "ko bị ngập",
+  "không hề ngập",
+  "chưa từng ngập",
+  "đường không ngập",
+  "đường ko ngập",
+  "tuyệt đối không ngập",
+  "cam kết ko ngập"
 ]
 
 ADS_METAPHOR_PATTERNS = [
@@ -156,7 +198,10 @@ ADS_METAPHOR_PATTERNS = [
   "ngập tràn tiếng cười",
   "ngập tràn yêu thương",
   "cửa sổ ngập tràn",
-  "ban công siêu thoáng"
+  "ban công siêu thoáng",
+  "tiện ích ngập tràn",
+  "ngập tràn tiện ích",
+  "tiện ích xung quanh"
 ]
 
 EDUCATION_SPAM_KEYWORDS = [
@@ -389,8 +434,24 @@ def is_valid_vietnamese_content(text: str) -> bool:
     return any(ch in VIETNAMESE_DIACRITICS for ch in text_lower)
 
 
+
+BDS_REGEX_PATTERNS = [
+    re.compile(r'\b(?:giá|chỉ|tầm|tài chính|ngân sách)\s*(?::|\s)\s*(?:từ\s+)?\d+[\d.,]*\s*(?:tỷ|tỉ|triệu|tr)\b', re.IGNORECASE),
+    re.compile(r'\b\d+[\d.,]*\s*(?:tỷ|tỉ)\s*(?:tl|thương lượng)?\s*(?:mua|bán|thuê|cho thuê)\b', re.IGNORECASE),
+    re.compile(r'\b(?:mua|bán|thuê|cho thuê)\s+(?:nhà|đất|căn hộ|phòng|chung cư)\b', re.IGNORECASE),
+    re.compile(r'\b\d+\s*(?:lầu|phòng ngủ|pn)\b', re.IGNORECASE),
+    re.compile(r'\b\d+m\s*x\s*\d+m\b', re.IGNORECASE),
+    re.compile(r'\b\d+x\d+m\b', re.IGNORECASE),
+    re.compile(r'\bhẻm\s+\d+m\b', re.IGNORECASE),
+    re.compile(r'\b(?:xe hơi|ô tô)\s+(?:tận nhà|đỗ cửa|vào tận nơi)\b', re.IGNORECASE),
+    re.compile(r'\b(?:lh|zalo|hotline|sđt|phone)\s*(?:zalo)?\s*[:\s]?\s*\d{8,12}\b', re.IGNORECASE),
+    re.compile(r'\bib\s+\d{8,12}\b', re.IGNORECASE),
+]
+
 def contains_spam_or_noise(text: str) -> bool:
     text_lower = text.lower()
+    if any(p.search(text_lower) for p in BDS_REGEX_PATTERNS):
+        return True
     if any(k in text_lower for k in BDS_SPAM_KEYWORDS):
         return True
     if any(k in text_lower for k in BDS_NEGATION_PHRASES):
