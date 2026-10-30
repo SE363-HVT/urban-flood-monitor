@@ -1,51 +1,51 @@
 {
   "Triplet_Strict_Match": {
-    "Precision": 15.41,
-    "Recall": 15.75,
-    "F1": 15.58,
+    "Precision": 14.39,
+    "Recall": 12.13,
+    "F1": 13.16,
     "Gold": 635,
-    "Pred": 649,
-    "Correct": 100
+    "Pred": 535,
+    "Correct": 77
   },
   "Aspect_Span": {
-    "Precision": 42.81,
-    "Recall": 39.68,
-    "F1": 41.19
+    "Precision": 42.62,
+    "Recall": 32.54,
+    "F1": 36.9
   },
   "Opinion_Span": {
-    "Precision": 31.15,
-    "Recall": 34.41,
-    "F1": 32.7
+    "Precision": 31.4,
+    "Recall": 28.9,
+    "F1": 30.1
   },
   "Polarity_Per_Class": {
     "NEG": {
-      "Precision": 23.58,
-      "Recall": 11.82,
-      "F1": 15.75,
+      "Precision": 24.36,
+      "Recall": 8.98,
+      "F1": 13.13,
       "Gold": 423,
-      "Pred": 212,
-      "Correct": 50
+      "Pred": 156,
+      "Correct": 38
     },
     "POS": {
-      "Precision": 25.83,
-      "Recall": 27.66,
-      "F1": 26.71,
+      "Precision": 23.19,
+      "Recall": 22.7,
+      "F1": 22.94,
       "Gold": 141,
-      "Pred": 151,
-      "Correct": 39
+      "Pred": 138,
+      "Correct": 32
     },
     "NEU": {
-      "Precision": 3.85,
-      "Recall": 15.49,
-      "F1": 6.16,
+      "Precision": 2.9,
+      "Recall": 9.86,
+      "F1": 4.49,
       "Gold": 71,
-      "Pred": 286,
-      "Correct": 11
+      "Pred": 241,
+      "Correct": 7
     }
   },
-  "Macro_Polarity_F1": 16.21,
+  "Macro_Polarity_F1": 13.52,
   "model_name": "Qwen3.8-27B",
   "model_id": "qwen3.8-27b",
-  "Evaluation_Time_Seconds": 1226.28,
-  "Samples_Per_Second": 0.38
+  "Evaluation_Time_Seconds": 786.31,
+  "Samples_Per_Second": 0.59
 }

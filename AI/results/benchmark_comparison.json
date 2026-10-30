@@ -238,8 +238,8 @@
       }
     },
     "Macro_Polarity_F1": 35.4,
-    "Evaluation_Time_Seconds": 62.15,
-    "Samples_Per_Second": 7.43
+    "Evaluation_Time_Seconds": 62.69,
+    "Samples_Per_Second": 7.37
   },
   "XLM-RoBERTa Base": {
     "Triplet_Strict_Match": {
@@ -331,9 +331,7 @@
       }
     },
     "Macro_Polarity_F1": 39.5,
-    "model_name": "facebook/xlm-v-base",
-    "Evaluation_Time_Seconds": 0.98,
-    "Samples_Per_Second": 471.43
+    "model_name": "facebook/xlm-v-base"
   },
   "mT5 Base": {
     "Triplet_Strict_Match": {
@@ -379,8 +377,8 @@
     },
     "Macro_Polarity_F1": 42.97,
     "model_name": "google/mt5-base",
-    "Evaluation_Time_Seconds": 121.4,
-    "Samples_Per_Second": 3.81,
+    "Evaluation_Time_Seconds": 124.18,
+    "Samples_Per_Second": 3.72,
     "Test_Loss": 0.7746
   },
   "Gemma-4-26B": {

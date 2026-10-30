@@ -1,0 +1,50 @@
+{
+  "model_name": "vinai/bartpho-syllable-base",
+  "Triplet_Strict_Match": {
+    "Precision": 22.36,
+    "Recall": 14.33,
+    "F1": 17.47,
+    "Gold": 635,
+    "Pred": 407,
+    "Correct": 91
+  },
+  "Aspect_Span": {
+    "Precision": 36.61,
+    "Recall": 23.65,
+    "F1": 28.74
+  },
+  "Opinion_Span": {
+    "Precision": 25.8,
+    "Recall": 19.96,
+    "F1": 22.51
+  },
+  "Polarity_Per_Class": {
+    "NEG": {
+      "Precision": 2.91,
+      "Recall": 1.42,
+      "F1": 1.91,
+      "Gold": 423,
+      "Pred": 206,
+      "Correct": 6
+    },
+    "POS": {
+      "Precision": 56.38,
+      "Recall": 59.57,
+      "F1": 57.93,
+      "Gold": 141,
+      "Pred": 149,
+      "Correct": 84
+    },
+    "NEU": {
+      "Precision": 2.0,
+      "Recall": 1.41,
+      "F1": 1.65,
+      "Gold": 71,
+      "Pred": 50,
+      "Correct": 1
+    }
+  },
+  "Macro_Polarity_F1": 20.5,
+  "Evaluation_Time_Seconds": 86.87,
+  "Samples_Per_Second": 5.32
+}

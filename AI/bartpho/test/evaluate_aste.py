@@ -99,8 +99,8 @@ def evaluate():
     start_eval_time = time.time()
 
     for item in tqdm(test_samples, desc="Inference trên Test set"):
-        text = item["input_text"]
-        gold_raw = item.get("raw_triplets", [])
+        text = item.get("input_text") or item.get("content", {}).get("text", "")
+        gold_raw = item.get("raw_triplets") or item.get("aste_triplets", [])
 
         gold_set = set(tuple_from_dict(t) for t in gold_raw)
         gold_aspects = set(t[0] for t in gold_set)

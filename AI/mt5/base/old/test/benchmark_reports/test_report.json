@@ -1,0 +1,48 @@
+{
+  "Triplet_Strict_Match": {
+    "Precision": 43.78,
+    "Recall": 41.57,
+    "F1": 42.65,
+    "Gold_Total": 635,
+    "Pred_Total": 603,
+    "Correct": 264
+  },
+  "Aspect_Span": {
+    "Precision": 72.8,
+    "Recall": 69.68,
+    "F1": 71.21
+  },
+  "Opinion_Span": {
+    "Precision": 55.49,
+    "Recall": 53.8,
+    "F1": 54.63
+  },
+  "Polarity_Per_Class": {
+    "NEG": {
+      "Precision": 39.02,
+      "Recall": 35.7,
+      "F1": 37.28,
+      "Gold_Count": 423,
+      "Pred_Count": 387
+    },
+    "POS": {
+      "Precision": 69.57,
+      "Recall": 68.09,
+      "F1": 68.82,
+      "Gold_Count": 141,
+      "Pred_Count": 138
+    },
+    "NEU": {
+      "Precision": 21.79,
+      "Recall": 23.94,
+      "F1": 22.82,
+      "Gold_Count": 71,
+      "Pred_Count": 78
+    }
+  },
+  "Macro_Polarity_F1": 42.97,
+  "model_name": "google/mt5-base",
+  "Evaluation_Time_Seconds": 124.18,
+  "Samples_Per_Second": 3.72,
+  "Test_Loss": 0.7746
+}

@@ -1,0 +1,48 @@
+{
+  "Triplet_Strict_Match": {
+    "Precision": 35.4,
+    "Recall": 44.88,
+    "F1": 39.58,
+    "Gold": 635,
+    "Pred": 805,
+    "Correct": 285
+  },
+  "Aspect_Span": {
+    "Precision": 67.12,
+    "Recall": 62.86,
+    "F1": 64.92
+  },
+  "Opinion_Span": {
+    "Precision": 46.86,
+    "Recall": 56.65,
+    "F1": 51.29
+  },
+  "Polarity_Per_Class": {
+    "NEG": {
+      "Precision": 32.07,
+      "Recall": 39.86,
+      "F1": 35.54,
+      "Gold": 424,
+      "Pred": 527,
+      "Correct": 169
+    },
+    "POS": {
+      "Precision": 56.98,
+      "Recall": 69.5,
+      "F1": 62.62,
+      "Gold": 141,
+      "Pred": 172,
+      "Correct": 98
+    },
+    "NEU": {
+      "Precision": 16.98,
+      "Recall": 25.35,
+      "F1": 20.34,
+      "Gold": 71,
+      "Pred": 106,
+      "Correct": 18
+    }
+  },
+  "Macro_Polarity_F1": 39.5,
+  "model_name": "facebook/xlm-v-base"
+}

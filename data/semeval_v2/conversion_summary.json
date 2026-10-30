@@ -1,0 +1,26 @@
+{
+  "train": {
+    "total_samples": 3697,
+    "total_gold_triplets": 5029,
+    "aligned_triplets": 4432,
+    "alignment_rate_pct": 88.13,
+    "txt_output": "/home/counting/Workspaces/ryan/RadiNet/data/semeval_v2/train.txt",
+    "json_output": "/home/counting/Workspaces/ryan/RadiNet/data/semeval_v2/train.json"
+  },
+  "dev": {
+    "total_samples": 462,
+    "total_gold_triplets": 662,
+    "aligned_triplets": 600,
+    "alignment_rate_pct": 90.63,
+    "txt_output": "/home/counting/Workspaces/ryan/RadiNet/data/semeval_v2/dev.txt",
+    "json_output": "/home/counting/Workspaces/ryan/RadiNet/data/semeval_v2/dev.json"
+  },
+  "test": {
+    "total_samples": 462,
+    "total_gold_triplets": 636,
+    "aligned_triplets": 574,
+    "alignment_rate_pct": 90.25,
+    "txt_output": "/home/counting/Workspaces/ryan/RadiNet/data/semeval_v2/test.txt",
+    "json_output": "/home/counting/Workspaces/ryan/RadiNet/data/semeval_v2/test.json"
+  }
+}
