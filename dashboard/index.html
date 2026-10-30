@@ -1329,9 +1329,7 @@
                             </div>
                         </div>
 
-                        <div style="background: #f1f5f9; padding: 8px 10px; border-radius: 6px; font-size: 11.5px; color: #1e293b; margin-bottom: 6px; line-height: 1.45; max-height: 150px; overflow-y: auto; word-break: break-word; white-space: pre-wrap;">
-                            "${ev.text || ev.title || 'Người dân phản ánh ngập lụt'}"
-                        </div>
+                        <div style="background: #f1f5f9; padding: 8px 10px; border-radius: 6px; font-size: 11.5px; color: #1e293b; margin-bottom: 6px; line-height: 1.45; max-height: 150px; overflow-y: auto; word-break: break-word; text-indent: 0; text-align: left; white-space: pre-line;">"${(ev.text || ev.title || 'Người dân phản ánh ngập lụt').trim()}"</div>
                         
                         <!-- KHUNG XÁC THỰC VERACITY ĐẦY ĐỦ -->
                         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 8px; margin-bottom: 6px;">

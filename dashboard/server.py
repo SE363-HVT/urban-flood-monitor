@@ -167,6 +167,88 @@ def enrich_events_with_veracity(events: List[Dict[str, Any]]) -> List[Dict[str, 
     return clustered
 
 
+
+def fetch_current_all_events() -> List[Dict[str, Any]]:
+    """Lấy danh sách tất cả sự kiện hiện có từ Redis hoặc buffer file hoặc memory."""
+    r_client = get_redis_client()
+    if r_client:
+        r_events = fetch_events_from_redis(r_client)
+        if r_events:
+            return r_events
+    stream_state_file = os.path.join(ROOT_DIR, "data", "live_stream_state.json")
+    if os.path.exists(stream_state_file):
+        try:
+            with open(stream_state_file, "r", encoding="utf-8") as sf:
+                data = json.load(sf)
+                if data.get("events"):
+                    return data["events"]
+        except Exception:
+            pass
+    return list(GLOBAL_STATE.get("events", []))
+
+
+def merge_and_deduplicate_events(base_events: List[Dict[str, Any]], new_events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    Hòa trộn (merge) danh sách sự kiện mới vào danh sách hiện tại theo cơ chế cộng dồn (Cumulative Ingestion):
+    - Đảm bảo: 8 tin Freecrawl + N tin Apify = 8 + N tin trên Heatmap (tuyệt đối không ghi đè mất tin).
+    - Khử trùng lặp thông minh theo canonical_id / id và chữ ký ngữ nghĩa (street + opinion + text[:35]).
+    """
+    combined = []
+    seen_ids = set()
+    seen_semantics = set()
+
+    # 1. Nạp sự kiện mới (ưu tiên cao)
+    for ev in (new_events or []):
+        cid = str(ev.get("canonical_id") or ev.get("id") or "")
+        loc = ev.get("location", {}) or {}
+        street = str(loc.get("street") or "")
+        opinion = str(ev.get("opinion") or "")
+        txt = str(ev.get("text") or ev.get("title") or "")[:35].strip().lower()
+        sem_sig = (street.lower(), opinion.lower(), txt)
+
+        if cid and cid in seen_ids:
+            continue
+        if street and sem_sig in seen_semantics:
+            continue
+
+        if cid:
+            seen_ids.add(cid)
+        if street:
+            seen_semantics.add(sem_sig)
+        combined.append(ev)
+
+    # 2. Nạp sự kiện hiện tại (Freecrawl / hệ thống)
+    for ev in (base_events or []):
+        cid = str(ev.get("canonical_id") or ev.get("id") or "")
+        loc = ev.get("location", {}) or {}
+        street = str(loc.get("street") or "")
+        opinion = str(ev.get("opinion") or "")
+        txt = str(ev.get("text") or ev.get("title") or "")[:35].strip().lower()
+        sem_sig = (street.lower(), opinion.lower(), txt)
+
+        if cid and cid in seen_ids:
+            continue
+        if street and sem_sig in seen_semantics:
+            continue
+
+        if cid:
+            seen_ids.add(cid)
+        if street:
+            seen_semantics.add(sem_sig)
+        combined.append(ev)
+
+    current_time = int(time.time())
+    combined.sort(key=lambda x: (
+        2 if x.get("freshness") == "strict_2h" or (current_time - x.get("create_time", 0)) <= 7200 else (
+            1 if x.get("freshness") == "recent_4h" or (current_time - x.get("create_time", 0)) <= 14400 else 0
+        ),
+        1 if x.get("platform") in ["tiktok", "facebook"] else 0,
+        x.get("weight", 1.0),
+        x.get("create_time", 0)
+    ), reverse=True)
+
+    return combined
+
 def sync_to_storage(events: List[Dict[str, Any]], mode: str, window_label: str):
     """Ghi đồng bộ tức thì vào Redis In-Memory Store (<3ms) và file JSON fallback."""
     r_client = get_redis_client()
@@ -479,8 +561,11 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         elif self.path == "/api/trigger-apify":
             print(f"\n[API Apify] Nhận yêu cầu cào sâu Apify ({GLOBAL_STATE['mode'].upper()}) từ giao diện...")
-            events = []
-            poller = GLOBAL_STATE["poller"]
+            current_events = fetch_current_all_events()
+            print(f"   ℹ️ Đang có sẵn {len(current_events)} sự kiện từ nguồn Freecrawl / hệ thống.")
+
+            new_events = []
+            poller = GLOBAL_STATE.get("poller")
             if poller:
                 try:
                     if GLOBAL_STATE["mode"] == "live":
@@ -488,21 +573,31 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
                     else:
                         raw_events, stats = poller.poll_simulation(window_minutes=GLOBAL_STATE["window_minutes"])
 
-                    events = enrich_events_with_veracity(raw_events)
-                    events.sort(key=lambda x: (
-                        1 if x.get("platform") in ["tiktok", "facebook"] else 0,
-                        x.get("weight", 1.0),
-                        x.get("create_time", 0)
-                    ), reverse=True)
-                    window_label = stats.get("active_window", "Cào sâu Apify")
-                    GLOBAL_STATE["events"] = events
-                    GLOBAL_STATE["active_window"] = window_label
-                    GLOBAL_STATE["last_updated"] = int(time.time())
-                    sync_to_storage(events, GLOBAL_STATE["mode"], window_label)
+                    if raw_events:
+                        new_events = enrich_events_with_veracity(raw_events)
+                        print(f"   ✓ [Apify Raw Ingestion] Nhận được {len(raw_events)} tin thô -> {len(new_events)} sự kiện sau bóc tách & xác thực.")
+                    else:
+                        print("   ⚠️ [Apify Live] Không thu được tin mới từ đợt cào này (giữ nguyên sự kiện hiện có).")
                 except Exception as e:
-                    print(f"[API Apify] Lỗi khi cào Apify: {e}")
+                    print(f"   ❌ [API Apify] Lỗi khi cào Apify: {e}")
 
-            res = json.dumps({"status": "apify_polled", "count": len(events)}).encode("utf-8")
+            # HÒA TRỘN CỘNG DỒN (CUMULATIVE MERGE):
+            # Giữ nguyên 100% sự kiện Freecrawl đang có, cộng thêm sự kiện mới từ Apify (8 + N)
+            merged_events = merge_and_deduplicate_events(current_events, new_events)
+            
+            window_label = GLOBAL_STATE.get("active_window", "120 phút")
+            if new_events:
+                window_label = "Freecrawl + Apify Deep Crawl"
+
+            GLOBAL_STATE["events"] = merged_events
+            GLOBAL_STATE["active_window"] = window_label
+            GLOBAL_STATE["last_updated"] = int(time.time())
+
+            # Đồng bộ danh sách đã gộp vào Redis và file đệm
+            sync_to_storage(merged_events, GLOBAL_STATE["mode"], window_label)
+            print(f"   ✅ [Heatmap Updated] Tổng số sự kiện hiển thị trên bản đồ: {len(merged_events)} điểm ngập (gồm {len(current_events)} tin sẵn có + {len(new_events)} tin Apify mới).\n")
+
+            res = json.dumps({"status": "apify_polled", "new_count": len(new_events), "total_count": len(merged_events)}).encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Content-Length", str(len(res)))

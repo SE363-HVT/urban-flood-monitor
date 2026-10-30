@@ -55,10 +55,11 @@ class TikTokPoller:
         print(f"[Apify Live] Danh sách Hashtags ({len(target_hashtags)} tags): {target_hashtags[:4]}...")
 
         url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs?token={self.apify_token}"
+        # Sử dụng đầy đủ queries & hashtags để cào sâu toàn diện kho video ngập lụt
         run_input = {
-            "searchQueries": target_queries[:5],
-            "hashtags": target_hashtags[:4],
-            "resultsPerPage": 5,
+            "searchQueries": target_queries,
+            "hashtags": target_hashtags,
+            "resultsPerPage": 10,
             "maxItems": max_items,
         }
 
@@ -74,7 +75,7 @@ class TikTokPoller:
         # 2. Chờ Actor hoàn thành
         poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
         status = "RUNNING"
-        for _ in range(50):
+        for _ in range(120):
             time.sleep(2.5)
             try:
                 status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
