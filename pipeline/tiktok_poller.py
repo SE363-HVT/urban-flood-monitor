@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 pipeline/tiktok_poller.py - Module Thu Thập Dữ Liệu Video TikTok Đô Thị
 Thuần túy phục vụ Video bài đăng (đã loại bỏ hoàn toàn các chức năng Livestream/Live Chat).

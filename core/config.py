@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 core/config.py - Cấu hình hệ thống Ingestion & Dashboard
 Thu thập dữ liệu ngập lụt đô thị gần thời gian thực đa nền tảng:

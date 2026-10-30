@@ -6,7 +6,7 @@ from pathlib import Path
 
 # Add project root
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from scripts.test_purging_filter import to_remove_indices
+from scripts.dataset.purging_filter import to_remove_indices
 
 input_file = Path('data/processed/hcmc_flood_annotated_v3_multimodal.json')
 with open(input_file, 'r', encoding='utf-8') as f:

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 pipeline/multi_poller.py - Bộ Thu Thập Dữ Liệu Song Song Đa Nền Tảng Toàn Diện (TikTok + Facebook)
 Chế độ LIVE chạy đồng thời 2 nguồn bằng đa luồng (concurrent.futures.ThreadPoolExecutor):

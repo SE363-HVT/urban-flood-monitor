@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 pipeline/facebook_poller.py - Module Thu Thập Dữ Liệu Ngập Lụt Từ Facebook
 Tối ưu hóa thu thập thời gian thực với Actor chuyên sâu:
