@@ -458,8 +458,9 @@ class LiveFreeSocialCrawler:
         return selected
 
     def _clean_query_for_bing(self, query: str) -> str:
-        """Chuan hoa cau truy van cho Bing (loai bo cu phap rieng cua Google)."""
-        cleaned = re.sub(r'\s*when:\w+', '', query)
+        """Chuan hoa cau truy van cho Bing (loai bo site:, cu phap rieng cua Google)."""
+        cleaned = re.sub(r'site:\S+', '', query)
+        cleaned = re.sub(r'\s*when:\w+', '', cleaned)
         cleaned = cleaned.replace('(', '').replace(')', '').replace('"', '')
         cleaned = re.sub(r'\bOR\b', ' ', cleaned)
         cleaned = re.sub(r'\s+', ' ', cleaned).strip()
@@ -485,7 +486,8 @@ class LiveFreeSocialCrawler:
                     LiveFreeSocialCrawler._google_circuit_broken_until = now_ts + 300.0
 
         # Tu dong chuyen tiep sang Bing neu Google gap su co rate limit
-        return self._fetch_bing_query(query, platform, max_items_per_query)
+        bing_plat = "news" if platform in ["facebook", "tiktok", "threads", "youtube"] else platform
+        return self._fetch_bing_query(query, bing_plat, max_items_per_query)
 
     def _fetch_bing_query(self, query: str, platform: str, max_items_per_query: int) -> List[Tuple[Any, str]]:
         """Worker chuyên sâu Microsoft Bing News RSS (8 workers song song). Chuẩn hóa tiếng Việt và tin tức trong 24h."""
@@ -596,17 +598,19 @@ class LiveFreeSocialCrawler:
                 continue
 
             dec_low = decoded_url.lower()
-            if platform == "tiktok":
-                if "tiktok.com" not in dec_low and not any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
+            if any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
+                platform = "news"
+            elif platform == "tiktok":
+                if "tiktok.com" not in dec_low:
                     continue
             elif platform == "facebook":
-                if "facebook.com" not in dec_low and not any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
+                if "facebook.com" not in dec_low:
                     continue
             elif platform == "threads":
-                if "threads.net" not in dec_low and not any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
+                if "threads.net" not in dec_low:
                     continue
             elif platform == "youtube":
-                if "youtube.com" not in dec_low and "youtu.be" not in dec_low and not any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
+                if "youtube.com" not in dec_low and "youtu.be" not in dec_low:
                     continue
             elif platform == "news":
                 if not any(d in dec_low for d in TRUSTED_NEWS_DOMAINS):
