@@ -56,9 +56,9 @@ class TikTokPoller:
 
         url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs?token={self.apify_token}"
         run_input = {
-            "searchQueries": target_queries,
-            "hashtags": target_hashtags,
-            "resultsPerPage": 10,
+            "searchQueries": target_queries[:5],
+            "hashtags": target_hashtags[:4],
+            "resultsPerPage": 5,
             "maxItems": max_items,
         }
 

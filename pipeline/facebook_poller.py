@@ -158,15 +158,14 @@ class FacebookPoller:
         print(f"[Facebook Live] Truy vấn tìm kiếm ({len(queries)}): {queries[:3]}...")
 
         url = f"https://api.apify.com/v2/acts/{FB_ACTOR_ID}/runs?token={self.apify_token}"
+        main_query = queries[0] if isinstance(queries, list) and queries else "mưa ngập TP.HCM"
+        if isinstance(queries, list) and len(queries) > 1:
+            main_query = f"{queries[0]} OR {queries[1]}"
         run_input = {
-            "queries": queries,
+            "query": main_query,
             "locations": target_locations,
             "maxPosts": max_posts,
             "searchType": "latest",
-            "proxy": {
-                "useApifyProxy": True,
-                "apifyProxyGroups": ["RESIDENTIAL"]
-            }
         }
 
         resp = requests.post(url, json=run_input, timeout=30)
