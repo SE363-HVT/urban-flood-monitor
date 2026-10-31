@@ -775,7 +775,7 @@ class LiveFreeSocialCrawler:
             return events
 
         # Danh mục từ khóa tìm kiếm theo đề xuất của người dùng (ưu tiên "ngập" và "triều cường")
-        search_keywords = ["ngập", "triều cường", "ngập lụt", "thoát nước"]
+        search_keywords = ["ngập", "triều cường", "ngập lụt", "ngập úng"]
         kw_idx = LiveFreeSocialCrawler._rr_1022_kw_idx % len(search_keywords)
         active_keywords = [
             search_keywords[kw_idx],
@@ -841,9 +841,15 @@ class LiveFreeSocialCrawler:
                             pub_unix = current_time
 
                     age_seconds = max(0, current_time - pub_unix)
-                    # Lọc trong vòng 72 giờ
-                    if age_seconds > 86400 * 3:
+                    # Lọc nghiêm ngặt trong vòng 24 giờ
+                    if age_seconds > 86400:
                         continue
+
+                    # Loại trừ phản ánh tranh chấp hóa đơn nước, lạm thu không liên quan ngập
+                    low_check = f"{title} {desc}".lower()
+                    if any(bad in low_check for bad in ["lạm thu", "tiền nước", "giá nước", "hóa đơn", "cấp nước", "thu phí nước"]):
+                        if not any(f in low_check for f in ["ngập sâu", "ngập đường", "tràn vào nhà", "ngập lụt", "triều cường"]):
+                            continue
 
                     pet_id = item.get("id")
                     report_url = f"https://1022.tphcm.gov.vn/vi/phan-anh-kien-nghi/tra-cuu/chi-tiet/{pet_id}" if pet_id else f"https://1022.tphcm.gov.vn/vi/phan-anh-kien-nghi/tra-cuu?code={code}"
