@@ -3,12 +3,11 @@
 pipeline/live_free_crawler.py
 Module Cào Dữ liệu Đa Kênh Trực tiếp Hoàn Toàn Miễn Phí (Live Free Multi-Channel Crawler):
 - Phục vụ riêng cho LIVE MODE Streaming Ingestion.
-- 100% Zero-cost: Khai thác song song 5 luồng dữ liệu độc lập:
-  1. YouTube Real-time Video Stream (Cả Video ngang & YouTube Shorts dọc thực địa) [ĐỀ XUẤT 1]
-  2. VOV Giao Thông Live Citizen Ticker (Phản ánh nóng từ người dân & tài xế gọi về tổng đài) [ĐỀ XUẤT 2]
-  3. Cổng Phản Ánh Cư Dân Đô Thị TP.HCM (Cổng 1022 TP.HCM & Cổng Cảnh Báo Giao Thông TP.HCM) [CITIZEN REPORTS]
-  4. Google Discovery RSS (với giải mã Destination URL bằng googlenewsdecoder)
-  5. Threads Scanner (Radar thực địa TP.HCM)
+- 100% Zero-cost: Khai thác song song các luồng dữ liệu thời gian thực độc lập THẬT 100%:
+  1. YouTube Real-time Video Stream (Cả Video ngang & YouTube Shorts dọc thực địa - 100% Link Thật)
+  2. VOV Giao Thông Live Citizen Ticker (Phản ánh nóng từ người dân & tài xế gọi về tổng đài VOV Giao Thông)
+  3. Google Discovery RSS & Destination URL Decoder
+  4. Threads Scanner (Radar thực địa TP.HCM)
 - Phân bổ 16 workers chuyên sâu tối ưu hóa băng thông và CPU.
 - XỬ LÝ CHUẨN XÁC 100% THỜI GIAN THỰC TẾ (REAL TIMESTAMP):
   * Trích xuất thời gian tải lên thật (real upload date/timestamp) từ YouTube/Shorts/VOV/Cộng đồng.
@@ -241,33 +240,16 @@ NEWS_QUERIES = [
     '("ngập" OR "triều cường") ("TP.HCM" OR "Sài Gòn") ("tuyến đường" OR "giao thông") when:4h'
 ]
 
-# DANH MỤC CÁC CỔNG PHẢN ÁNH CƯ DÂN & CẢNH BÁO ĐÔ THỊ TP.HCM (PHƯƠNG ÁN A - CITIZEN REPORTS)
-CITIZEN_PORTAL_SOURCES = [
-    {
-        "id": "cổng_1022_tphcm",
-        "name": "Cổng Thông Tin Tiếp Nhận & Xử Lý Phản Ánh Sự Cố Đô Thị 1022 TP.HCM",
-        "url": "https://1022.tphcm.gov.vn",
-        "domain": "1022.tphcm.gov.vn",
-        "category": "incident_1022"
-    },
-    {
-        "id": "cổng_giaothong_tphcm",
-        "name": "Cổng Cảnh Báo Giao Thông & Ngập Lụt Đô Thị TP.HCM (Sở GTVT)",
-        "url": "https://giaothong.hochiminhcity.gov.vn",
-        "domain": "giaothong.hochiminhcity.gov.vn",
-        "category": "traffic_alert"
-    }
-]
+# Ghi chú: Cổng 1022/Giao thông TP.HCM không cung cấp public permalink, đã gỡ bỏ hoàn toàn template giả lập.
 
 
 class LiveFreeSocialCrawler:
     """
-    Crawler Chuyên Sâu Thời Gian Thực Miễn Phí (Zero Cost & 16 Workers):
-    - Động cơ 1: YouTube Videos & Shorts Realtime (Lọc sp=EgIIAg%253D%253D + Real Timestamp < 24h)
-    - Động cơ 2: VOV Giao Thông Live Citizen Ticker (Cảnh báo nóng từ tài xế & tổng đài)
-    - Động cơ 3: Cổng Phản Ánh Cư Dân 1022 & Cảnh Báo Giao Thông TP.HCM (Citizen Reports)
-    - Động cơ 4: Google Discovery RSS Realtime & Destination URL Decoder
-    - Động cơ 5: Threads Multi-Stream Radar Scanner
+    Crawler Chuyên Sâu Thời Gian Thực Miễn Phí (Zero Cost & 16 Workers - 100% LINK THẬT):
+    - Động cơ 1: YouTube Videos & Shorts Realtime (8 Workers, Lọc sp=EgIIAg%253D%253D + Real Timestamp < 24h)
+    - Động cơ 2: VOV Giao Thông Live Citizen Ticker (4 Workers, Cảnh báo nóng từ tài xế & tổng đài)
+    - Động cơ 3: Google Discovery RSS Realtime & Destination URL Decoder (4 Workers)
+    - Động cơ 4: Threads Multi-Stream Radar Scanner
     """
 
     _rr_fb_offset = 0
@@ -462,7 +444,7 @@ class LiveFreeSocialCrawler:
         candidate_entries = []
         try:
             with YoutubeDL(ydl_opts_search) as ydl:
-                for search_url, search_type in YOUTUBE_TODAY_SEARCH_URLS[:4]:
+                for search_url, search_type in YOUTUBE_TODAY_SEARCH_URLS:
                     try:
                         res = ydl.extract_info(search_url, download=False)
                         if not res or 'entries' not in res:
@@ -494,8 +476,8 @@ class LiveFreeSocialCrawler:
             return []
 
         # 4 Workers song song xác thực thời gian đăng thật
-        with ThreadPoolExecutor(max_workers=4) as pool:
-            futures = [pool.submit(self._fetch_single_yt_details, c[0]) for c in candidate_entries[:8]]
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            futures = [pool.submit(self._fetch_single_yt_details, c[0]) for c in candidate_entries[:16]]
             for f in as_completed(futures):
                 try:
                     v_url, real_title, real_ts, channel, duration = f.result()
@@ -606,7 +588,9 @@ class LiveFreeSocialCrawler:
 
         urls_to_scan = [
             "https://vovgiaothong.vn",
-            "https://vovgiaothong.vn/tin-tuc-giao-thong"
+            "https://vovgiaothong.vn/tin-tuc-giao-thong",
+            "https://vovgiaothong.vn/thoi-su/",
+            "https://vovgiaothong.vn/do-thi/"
         ]
 
         seen_titles = set()
@@ -696,167 +680,6 @@ class LiveFreeSocialCrawler:
 
         return events
 
-    def _fetch_citizen_portal_reports(self, max_items: int = 6) -> List[Dict[str, Any]]:
-        """
-        ĐỘNG CƠ CÀO CÁC CỔNG PHẢN ÁNH & CẢNH BÁO CƯ DÂN TP.HCM (PHƯƠNG ÁN A - CITIZEN REPORTS):
-        - Thay thế hoàn toàn cơ chế quét Facebook Group.
-        - Khai thác dữ liệu phản ánh thực tế từ người dân gửi lên các cổng dịch vụ đô thị TP.HCM:
-          1. Cổng Thông tin Tiếp Nhận & Xử Lý Phản Ánh 1022 TP.HCM (Sự cố ngập lụt, cống nghẹt từ người dân)
-          2. Cổng Cảnh báo Giao thông TP.HCM (giaothong.hochiminhcity.gov.vn - Sở GTVT điều tiết ngập)
-        - 100% Công khai, không phụ thuộc tài khoản mạng xã hội, không lo bị khóa hay nhóm riêng tư.
-        - BAO PHỦ ĐỦ 3 TẦNG THỜI GIAN CHUẨN XÁC:
-          * < 2h: 🔴 ĐANG DIỄN RA (< 2 GIỜ)
-          * 2-4h: 🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)
-          * 4-24h: 🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)
-        - Tương thích 100% schema và bộ phân giải GIS chuẩn NQ 1685.
-        """
-        events = []
-        current_time = int(time.time())
-
-        # Danh mục tin phản ánh sự cố ngập nước từ cư dân gửi lên các Cổng 1022, Giao thông & Thoát nước TP.HCM
-        citizen_reports = [
-            # TẦNG 1: < 2 GIỜ - 🔴 ĐANG DIỄN RA (< 2 GIỜ)
-            (
-                "cổng_1022_tphcm",
-                "Cổng Tiếp Nhận Phản Ánh 1022 TP.HCM",
-                "Phản ánh người dân: Đoạn đường Quốc Hương và Nguyễn Văn Hưởng (Thảo Điền, TP. Thủ Đức) ngập sâu hơn 40cm do triều dâng, xe máy chết máy liên tục cần xử lý khẩn cấp.",
-                "https://1022.tphcm.gov.vn/su-co/1022-NG-",
-                "ngập sâu chết máy",
-                1800  # 30 phút trước -> < 2h
-            ),
-            (
-                "cổng_1022_tphcm",
-                "Cổng Tiếp Nhận Phản Ánh 1022 TP.HCM",
-                "Phản ánh người dân: Mưa to gây ngập nước chảy xiết tại khu vực Chợ Thủ Đức và đường Võ Văn Ngân, nước tràn vào nhà dân buôn bán, xe cộ dắt bộ bì bõm.",
-                "https://1022.tphcm.gov.vn/su-co/1022-TD-",
-                "nước tràn vào nhà chết máy",
-                4500  # 1.25 giờ trước -> < 2h
-            ),
-            # TẦNG 2: 2 - 4 GIỜ - 🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)
-            (
-                "cổng_1022_tphcm",
-                "Cổng Tiếp Nhận Phản Ánh 1022 TP.HCM",
-                "Phản ánh người dân: Cơn mưa lớn đã kết thúc hơn 2 tiếng trước nhưng đoạn đường Nguyễn Gia Trí (D2 cũ) và Ung Văn Khiêm (Bình Thạnh) nước vẫn còn ngập sâu, rác nghẹt miệng cống thoát nước làm nước rút rất chậm.",
-                "https://1022.tphcm.gov.vn/su-co/1022-BT-",
-                "nước rút chậm sau mưa dứt",
-                9000  # 2.5 giờ trước -> 2-4h
-            ),
-            (
-                "cổng_1022_tphcm",
-                "Cổng Tiếp Nhận Phản Ánh 1022 TP.HCM",
-                "Phản ánh người dân: Tuyến đường Nguyễn Văn Quá (Quận 12) sau mưa giông trưa nay nước vẫn còn ngập nửa bánh xe đoạn chân cầu Tham Lương, cống thoát nước chưa thông.",
-                "https://1022.tphcm.gov.vn/su-co/1022-Q12-",
-                "ngập nước cống nghẹt sau mưa",
-                12600  # 3.5 giờ trước -> 2-4h
-            ),
-            # TẦNG 3: 4 - 24 GIỜ - 🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)
-            (
-                "cổng_giaothong_tphcm",
-                "Cổng Cảnh Báo Giao Thông TP.HCM (Sở GTVT)",
-                "Cảnh báo giao thông đô thị: Dự báo đợt triều cường rằm dâng cao gây ngập tràn bờ tuyến đường Trần Xuân Soạn và Huỳnh Tấn Phát (Quận 7) từ 17h00 đến 19h30, người đi đường hạn chế lưu thông.",
-                "https://giaothong.hochiminhcity.gov.vn/canh-bao/GT-Q7-",
-                "cảnh báo triều cường tràn bờ",
-                25200  # 7 giờ trước -> 4-24h
-            ),
-            (
-                "cổng_giaothong_tphcm",
-                "Cổng Cảnh Báo Giao Thông TP.HCM (Sở GTVT)",
-                "Cảnh báo điều tiết giao thông: Tổng hợp ngập sâu cục bộ tại khu vực Hầm chui An Phú và các nhánh kết nối, khuyến nghị xe ô tô con chuyển hướng lưu thông qua trục Mai Chí Thọ.",
-                "https://giaothong.hochiminhcity.gov.vn/canh-bao/GT-AP-",
-                "tổng hợp cảnh báo ngập sâu hầm chui",
-                43200  # 12 giờ trước -> 4-24h
-            )
-        ]
-
-        for portal_id, portal_name, raw_content, base_url, opinion_type, age_sec in citizen_reports:
-            if len(events) >= max_items:
-                break
-
-            # BỘ LỌC NGHIÊM NGẶT 24 GIỜ: LOẠI BỎ HOÀN TOÀN TIN QUÁ 24H
-            if age_sec > 86400 or age_sec < 0:
-                continue
-
-            report_hash = hashlib.md5(raw_content.encode("utf-8")).hexdigest()
-            if report_hash in self.seen_hashes:
-                continue
-
-            matched_spots = match_all_hotspots(raw_content)
-            if not matched_spots:
-                continue
-
-            self.seen_hashes.add(report_hash)
-            pub_unix = current_time - age_sec
-            pub_iso = datetime.fromtimestamp(pub_unix, timezone.utc).isoformat()
-            item_code = int(pub_unix % 100000)
-            report_url = f"{base_url}{item_code}"
-            post_id = f"citizen_{portal_id}_{item_code}"
-
-            # PHÂN LOẠI CHUẨN XÁC 3 TẦNG THỜI GIAN THEO AGE_SEC
-            if age_sec <= 7200:
-                freshness = "strict_2h"
-                status_tag = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
-                event_weight = 4.5
-                event_priority = 1
-            elif age_sec <= 14400:
-                freshness = "recent_4h"
-                status_tag = "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)"
-                event_weight = 3.5
-                event_priority = 2
-            else:
-                freshness = "within_24h"
-                status_tag = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
-                event_weight = 2.5
-                event_priority = 3
-
-            for spot_idx, spot in enumerate(matched_spots[:1]):
-                st_name = spot.get("street") or spot.get("display_name", "")
-                sub_id = f"{post_id}_s{spot_idx}" if len(matched_spots) > 1 else str(post_id)
-                canonical_id = f"citizen_report_{sub_id}"
-
-                severity = "high" if any(w in raw_content.lower() for w in ["chết máy", "lút bánh", "chảy xiết", "thủy kích", "tràn bờ", "ngập sâu", "khẩn cấp"]) else "medium"
-
-                event = {
-                    "id": str(sub_id),
-                    "canonical_id": canonical_id,
-                    "url": report_url,
-                    "platform": "citizen_report",
-                    "media_type": "incident_report",
-                    "author": portal_name,
-                    "text": f"[{portal_name}] {raw_content}",
-                    "title": raw_content[:90],
-                    "create_time": pub_unix,
-                    "created_at_iso": pub_iso,
-                    "timestamp": pub_unix,
-                    "relative_time": format_relative_time(pub_unix, current_time),
-                    "location": {
-                        "street": st_name,
-                        "display_name": st_name if st_name else "Điểm ngập TP. Hồ Chí Minh",
-                        "ward": spot.get("ward", "Toàn TP.HCM"),
-                        "administrative_unit": spot.get("ward", "Toàn TP.HCM"),
-                        "district": spot.get("district", "TP.HCM"),
-                        "region": spot.get("region", "TPHCM"),
-                        "lat": spot["lat"],
-                        "lon": spot["lon"],
-                        "heat_points": spot.get("heat_points", [[spot["lat"], spot["lon"]]]),
-                        "priority": event_priority,
-                        "type": spot.get("type", "ngập úng đô thị"),
-                        "cause": spot.get("cause", "rain"),
-                        "cause_label": "Cổng phản ánh sự cố đô thị & cảnh báo giao thông",
-                        "source": "citizen_reports_multi_portal"
-                    },
-                    "aspect": st_name or spot.get("ward", ""),
-                    "opinion": opinion_type,
-                    "severity": severity,
-                    "weight": event_weight,
-                    "freshness": freshness,
-                    "status_tag": status_tag,
-                    "crawler_source": "citizen_reports_multi_portal"
-                }
-                events.append(event)
-                if len(events) >= max_items:
-                    break
-
-        return events
 
     def poll_live_stream(
         self,
@@ -1027,10 +850,7 @@ class LiveFreeSocialCrawler:
         events_window.extend(vov_events)
         total_scanned += len(vov_events)
 
-        # 4. ĐỘNG CƠ CÀO CÁC CỔNG PHẢN ÁNH & CẢNH BÁO CƯ DÂN TP.HCM (4 WORKERS - PHƯƠNG ÁN A)
-        portal_events = self._fetch_citizen_portal_reports(max_items=6)
-        events_window.extend(portal_events)
-        total_scanned += len(portal_events)
+
 
         # 5. ĐỘNG CƠ CÀO THREADS RADAR SCANNER (4 WORKERS)
         try:
