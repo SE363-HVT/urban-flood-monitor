@@ -937,6 +937,7 @@ class LiveFreeSocialCrawler:
         events = []
         current_time = int(time.time())
         feeds = [
+            ("Báo VnExpress", "https://vnexpress.net/rss/thoi-su.rss"),
             ("Báo Tuổi Trẻ", "https://tuoitre.vn/rss/thoi-su.rss"),
             ("Báo Thanh Niên", "https://thanhnien.vn/rss/thoi-su.rss")
         ]
@@ -955,8 +956,20 @@ class LiveFreeSocialCrawler:
                     if not raw_title or not raw_url:
                         continue
 
-                    full_text = f"{raw_title} {raw_summary}"
-                    if not any(k in full_text.lower() for k in ["ngập", "triều cường", "mưa", "giao thông", "kẹt xe", "ùn tắc", "đường", "hạ tầng", "sân bay", "csgt"]):
+                    full_text = f"{raw_title} {raw_summary}".strip()
+                    low = full_text.lower()
+                    strict_flood_keywords = [
+                        "ngập", "ngập lụt", "ngập úng", "ngập sâu", "ngập nước",
+                        "triều cường", "nước dâng", "mưa ngập", "chìm trong nước",
+                        "sạt lở bờ sông", "bể bờ bao", "vỡ bờ bao", "chết máy do nước"
+                    ]
+                    # BẮT BUỘC phải chứa từ khóa ngập lụt / triều cường
+                    if not any(k in low for k in strict_flood_keywords):
+                        continue
+
+                    # LOẠI BỎ triệt để các tin tức không liên quan (sinh con, đặt tên đường, cứu nạn không do ngập)
+                    irrelevant_news = ["sinh con", "sản phụ", "đặt tên đường", "hiến máu", "cháy nhà", "hỏa hoạn", "bắt tạm giam", "lừa đảo"]
+                    if any(irr in low for irr in irrelevant_news):
                         continue
 
                     matched_spots = match_all_hotspots(full_text)

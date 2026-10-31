@@ -1,8 +1,8 @@
 {
   "mode": "live_streaming_spark_live",
-  "updated_at": "2026-10-31T10:48:19.128922+00:00",
+  "updated_at": "2026-10-31T12:06:00.755350+00:00",
   "window": "Google RSS + Bing Streaming (24h)",
-  "events_count": 1,
+  "events_count": 5,
   "events": [
     {
       "id": "5669a6e1b15c",
@@ -15,9 +15,9 @@
       "created_at_iso": "2026-10-31T10:03:46+00:00",
       "timestamp": 1793441026,
       "historical_timestamp": null,
-      "relative_time": "44 phút trước",
-      "freshness": "strict_2h",
-      "status_tag": "🔴 ĐANG DIỄN RA (< 2 GIỜ)",
+      "relative_time": "2 giờ 2 phút trước",
+      "freshness": "recent_4h",
+      "status_tag": "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)",
       "location": {
         "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
         "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
@@ -63,7 +63,7 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-31T10:48:19.126315+00:00"
+        "evaluated_at": "2026-10-31T12:04:34.694557+00:00"
       },
       "report_count": 1,
       "sources": [
