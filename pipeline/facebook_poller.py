@@ -279,8 +279,8 @@ class FacebookPoller:
                 continue
 
             age_seconds = max(0, current_time - created_time)
-            if age_seconds > 259200:
-                # Loại bỏ bài cũ quá 72 giờ (3 ngày)
+            if age_seconds > 86400:
+                # Loại bỏ bài cũ quá 24 giờ
                 continue
 
             # Chống trùng lặp nội dung
@@ -342,7 +342,7 @@ class FacebookPoller:
                 "weight": 2.2
             }
 
-            # Phân tầng mức độ tươi (thêm tầng 24-72h cho đợt triều cường gần nhất)
+            # Phân tầng chuẩn 3 mức độ tươi trong 24 giờ
             if age_seconds <= 7200:
                 event["freshness"] = "strict_2h"
                 event["status_tag"] = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
@@ -353,39 +353,25 @@ class FacebookPoller:
                 event["status_tag"] = "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)"
                 event["weight"] *= 1.1
                 events_24h.append(event)
-            elif age_seconds <= 86400:
+            else:
                 event["freshness"] = "within_24h"
                 event["status_tag"] = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
                 event["weight"] *= 1.0
                 events_24h.append(event)
-            else:
-                event["freshness"] = "recent_72h"
-                event["status_tag"] = "🟣 ĐỢT TRIỀU CƯỜNG / MƯA GẦN ĐÂY (24-72 GIỜ)"
-                event["weight"] *= 0.8
-                events_72h.append(event)
 
             if post_id:
                 self.state_manager.mark_seen(f"fb_{post_id}", created_time)
 
         self.state_manager.save()
 
-        # Hiển thị thông minh: Ưu tiên 24h, tự động bổ sung đợt triều cường gần nhất (72h) nếu 24h qua khô ráo
-        all_24h_events = events_window + events_24h
-        if len(all_24h_events) < 5 and events_72h:
-            display_events = all_24h_events + events_72h[:(10 - len(all_24h_events))]
-            win_label = "72 giờ qua (Bao gồm đợt triều cường gần nhất)"
-        else:
-            display_events = all_24h_events
-            win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
+        # Chế độ Live Mode nghiêm ngặt: Giữ đúng 24 giờ qua (3 tầng độ tươi)
+        display_events = events_window + events_24h
+        win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
         if not display_events:
             win_label = f"{win_label} (Không có ngập mới)"
 
         display_events.sort(key=lambda x: (
-            4 if x.get("freshness") == "strict_2h" else (
-                3 if x.get("freshness") == "recent_4h" else (
-                    2 if x.get("freshness") == "within_24h" else 1
-                )
-            ),
+            3 if x.get("freshness") == "strict_2h" else (2 if x.get("freshness") == "recent_4h" else 1),
             x.get("weight", 1.0),
             x.get("create_time", 0)
         ), reverse=True)

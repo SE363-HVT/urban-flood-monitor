@@ -150,34 +150,20 @@ class TikTokPoller:
                 event["status_tag"] = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
                 event["weight"] = event.get("weight", 2.0) * 1.0
                 events_24h.append(event)
-            elif age_seconds <= 259200:
-                event["freshness"] = "recent_72h"
-                event["status_tag"] = "🟣 ĐỢT TRIỀU CƯỜNG / MƯA GẦN ĐÂY (24-72 GIỜ)"
-                event["weight"] = event.get("weight", 2.0) * 0.8
-                events_72h.append(event)
 
             if age_seconds <= 86400 and vid_id:
                 self.state_manager.mark_seen(vid_id, c_time)
 
         self.state_manager.save()
 
-        # Hiển thị thông minh: Ưu tiên 24h, tự động bổ sung đợt triều cường gần nhất (72h) nếu 24h qua khô ráo
-        all_24h_events = events_window + events_24h
-        if len(all_24h_events) < 5 and events_72h:
-            display_events = all_24h_events + events_72h[:(10 - len(all_24h_events))]
-            win_label = "72 giờ qua (Bao gồm đợt triều cường gần nhất)"
-        else:
-            display_events = all_24h_events
-            win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
+        # Chế độ Live Mode nghiêm ngặt: Giữ đúng cửa sổ 24 giờ qua (3 tầng cảnh báo)
+        display_events = events_window + events_24h
+        win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
         if not display_events:
             win_label = f"{win_label} (Không có ngập mới)"
 
         display_events.sort(key=lambda x: (
-            4 if x.get("freshness") == "strict_2h" else (
-                3 if x.get("freshness") == "recent_4h" else (
-                    2 if x.get("freshness") == "within_24h" else 1
-                )
-            ),
+            3 if x.get("freshness") == "strict_2h" else (2 if x.get("freshness") == "recent_4h" else 1),
             x.get("weight", 1.0),
             x.get("create_time", 0)
         ), reverse=True)

@@ -82,11 +82,7 @@ class MultiPoller:
             deduped.append(ev)
 
         deduped.sort(key=lambda x: (
-            4 if x.get("freshness") == "strict_2h" else (
-                3 if x.get("freshness") == "recent_4h" else (
-                    2 if x.get("freshness") == "within_24h" else 1
-                )
-            ),
+            3 if x.get("freshness") == "strict_2h" else (2 if x.get("freshness") == "recent_4h" else 1),
             x.get("weight", 1.0),
             x.get("create_time", 0)
         ), reverse=True)

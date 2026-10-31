@@ -1086,10 +1086,8 @@
                 return { tag: '🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)', freshness: 'recent_4h', badgeClass: 'medium', color: '#ea580c' };
             } else if (diff <= 86400) {
                 return { tag: '🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)', freshness: 'within_24h', badgeClass: 'amber', color: '#d97706' };
-            } else if (diff <= 259200) {
-                return { tag: '🟣 ĐỢT TRIỀU CƯỜNG / MƯA GẦN ĐÂY (24-72 GIỜ)', freshness: 'recent_72h', badgeClass: 'purple', color: '#a855f7' };
             }
-            return null; // Bỏ hoàn toàn các bài cũ quá 72 giờ
+            return null; // Bỏ hoàn toàn các bài cũ quá 24 giờ
         }
 
         // Vẽ các sự kiện thời gian thực (Icon đỏ nhấp nháy) & danh sách Feed
