@@ -268,6 +268,7 @@
         .severity-badge.medium { background-color: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); }
         .severity-badge.low { background-color: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
         .severity-badge.amber { background-color: rgba(234, 179, 8, 0.2); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.4); }
+        .severity-badge.purple { background-color: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
 
         .veracity-badge {
             font-size: 10px;
@@ -1085,8 +1086,10 @@
                 return { tag: '🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)', freshness: 'recent_4h', badgeClass: 'medium', color: '#ea580c' };
             } else if (diff <= 86400) {
                 return { tag: '🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)', freshness: 'within_24h', badgeClass: 'amber', color: '#d97706' };
+            } else if (diff <= 259200) {
+                return { tag: '🟣 ĐỢT TRIỀU CƯỜNG / MƯA GẦN ĐÂY (24-72 GIỜ)', freshness: 'recent_72h', badgeClass: 'purple', color: '#a855f7' };
             }
-            return null; // Bỏ hoàn toàn các bài cũ quá 24 giờ
+            return null; // Bỏ hoàn toàn các bài cũ quá 72 giờ
         }
 
         // Vẽ các sự kiện thời gian thực (Icon đỏ nhấp nháy) & danh sách Feed

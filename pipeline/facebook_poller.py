@@ -172,16 +172,24 @@ class FacebookPoller:
         print(f"\n[Facebook Live] Bắt đầu cào thời gian thực từ Facebook...")
         print(f"[Facebook Live] Truy vấn tìm kiếm ({len(queries)}): {queries[:3]}...")
 
-        # Actor scraper_one~facebook-posts-search nhận tham số "query" dạng chuỗi (hỗ trợ toán tử OR)
+        # Hỗ trợ Actor danek~facebook-search-ppr (ổn định, có recent_posts) và fallback
         query_str = " OR ".join(queries[:3]) if isinstance(queries, list) else str(queries)
 
         url = f"https://api.apify.com/v2/acts/{FB_ACTOR_ID}/runs?token={self.apify_token}"
-        run_input = {
-            "query": query_str,
-            "locations": target_locations,
-            "maxPosts": max_posts,
-            "searchType": "latest"
-        }
+        if "danek" in str(FB_ACTOR_ID):
+            run_input = {
+                "query": query_str,
+                "search_type": "posts",
+                "recent_posts": True,
+                "max_posts": max_posts
+            }
+        else:
+            run_input = {
+                "query": query_str,
+                "locations": target_locations,
+                "maxPosts": max_posts,
+                "searchType": "latest"
+            }
 
         raw_items = []
         try:
@@ -198,7 +206,7 @@ class FacebookPoller:
 
             poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
             status = "RUNNING"
-            for _ in range(60):
+            for _ in range(90):
                 time.sleep(2.0)
                 try:
                     status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
@@ -238,8 +246,12 @@ class FacebookPoller:
         seen_texts = set()
 
         for raw in raw_items:
-            post_id = str(raw.get("id") or raw.get("postId") or "")
-            text = raw.get("postText") or raw.get("text") or raw.get("message") or raw.get("caption") or raw.get("content") or ""
+            post_id = str(raw.get("post_id") or raw.get("id") or raw.get("postId") or "")
+            text = raw.get("message") or raw.get("message_rich") or raw.get("postText") or raw.get("text") or raw.get("caption") or raw.get("content") or ""
+            if not text and raw.get("album_preview"):
+                for alb in raw.get("album_preview", []):
+                    if alb.get("caption"):
+                        text += " " + alb["caption"]
             cleaned = clean_stream_text(text)
             if not cleaned or len(cleaned) < 15:
                 continue
@@ -267,8 +279,8 @@ class FacebookPoller:
                 continue
 
             age_seconds = max(0, current_time - created_time)
-            if age_seconds > 86400:
-                # Loại bỏ bài cũ quá 24 giờ
+            if age_seconds > 259200:
+                # Loại bỏ bài cũ quá 72 giờ (3 ngày)
                 continue
 
             # Chống trùng lặp nội dung
@@ -289,7 +301,11 @@ class FacebookPoller:
             media_urls = extract_facebook_media_urls(raw)
             media_type = "video" if raw.get("videoUrl") or raw.get("isVideo") else ("image" if media_urls else "none")
 
-            author_name = raw.get("authorName") or raw.get("pageName") or "Người dân TP.HCM"
+            author_data = raw.get("author")
+            author_name = (
+                author_data.get("name") if isinstance(author_data, dict)
+                else (raw.get("author_title") or raw.get("authorName") or raw.get("pageName") or "Người dân TP.HCM")
+            )
             source_page = raw.get("pageName") or "Facebook Post"
 
             canonical_id = f"fb_{post_id}" if post_id else f"fb_{hash(cleaned)}"
@@ -326,7 +342,7 @@ class FacebookPoller:
                 "weight": 2.2
             }
 
-            # Phân tầng 3 mức độ tươi
+            # Phân tầng mức độ tươi (thêm tầng 24-72h cho đợt triều cường gần nhất)
             if age_seconds <= 7200:
                 event["freshness"] = "strict_2h"
                 event["status_tag"] = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
@@ -337,20 +353,39 @@ class FacebookPoller:
                 event["status_tag"] = "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)"
                 event["weight"] *= 1.1
                 events_24h.append(event)
-            else:
+            elif age_seconds <= 86400:
                 event["freshness"] = "within_24h"
                 event["status_tag"] = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
                 event["weight"] *= 1.0
                 events_24h.append(event)
+            else:
+                event["freshness"] = "recent_72h"
+                event["status_tag"] = "🟣 ĐỢT TRIỀU CƯỜNG / MƯA GẦN ĐÂY (24-72 GIỜ)"
+                event["weight"] *= 0.8
+                events_72h.append(event)
 
             if post_id:
                 self.state_manager.mark_seen(f"fb_{post_id}", created_time)
 
         self.state_manager.save()
 
+        # Hiển thị thông minh: Ưu tiên 24h, tự động bổ sung đợt triều cường gần nhất (72h) nếu 24h qua khô ráo
         all_24h_events = events_window + events_24h
-        all_24h_events.sort(key=lambda x: (
-            3 if x.get("freshness") == "strict_2h" else (2 if x.get("freshness") == "recent_4h" else 1),
+        if len(all_24h_events) < 5 and events_72h:
+            display_events = all_24h_events + events_72h[:(10 - len(all_24h_events))]
+            win_label = "72 giờ qua (Bao gồm đợt triều cường gần nhất)"
+        else:
+            display_events = all_24h_events
+            win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
+        if not display_events:
+            win_label = f"{win_label} (Không có ngập mới)"
+
+        display_events.sort(key=lambda x: (
+            4 if x.get("freshness") == "strict_2h" else (
+                3 if x.get("freshness") == "recent_4h" else (
+                    2 if x.get("freshness") == "within_24h" else 1
+                )
+            ),
             x.get("weight", 1.0),
             x.get("create_time", 0)
         ), reverse=True)
@@ -360,10 +395,10 @@ class FacebookPoller:
             "current_time": current_time,
             "total_crawled": len(raw_items),
             "events_window": len(events_window),
-            "total_events_displayed": len(all_24h_events),
-            "active_window": "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
+            "total_events_displayed": len(display_events),
+            "active_window": win_label
         }
-        return all_24h_events, stats
+        return display_events, stats
 
     def poll_simulation(
         self,

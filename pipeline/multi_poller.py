@@ -50,23 +50,23 @@ class MultiPoller:
             future_fb = executor.submit(self.facebook_poller.poll_live_apify, window_minutes=window_minutes)
 
             try:
-                tt_events, tt_stats = future_tt.result(timeout=360)
+                tt_events, tt_stats = future_tt.result(timeout=400)
                 stats["tiktok_count"] = len(tt_events)
                 stats["active_window"] = tt_stats.get("active_window", stats["active_window"])
                 combined_events.extend(tt_events)
                 print(f"[MultiPoller] TikTok hoàn thành: {len(tt_events)} sự kiện.")
             except TimeoutError:
-                print("[MultiPoller] TikTok timeout: Quá thời gian chờ (360s).")
+                print("[MultiPoller] TikTok timeout: Quá thời gian chờ (400s).")
             except Exception as e:
                 print(f"[MultiPoller] TikTok error: {type(e).__name__}: {e}")
 
             try:
-                fb_events, fb_stats = future_fb.result(timeout=360)
+                fb_events, fb_stats = future_fb.result(timeout=400)
                 stats["facebook_count"] = len(fb_events)
                 combined_events.extend(fb_events)
                 print(f"[MultiPoller] Facebook hoàn thành: {len(fb_events)} sự kiện ngập lụt.")
             except TimeoutError:
-                print("[MultiPoller] Facebook timeout: Quá thời gian chờ (360s).")
+                print("[MultiPoller] Facebook timeout: Quá thời gian chờ (400s).")
             except Exception as e:
                 print(f"[MultiPoller] Facebook error: {type(e).__name__}: {e}")
 
@@ -82,7 +82,11 @@ class MultiPoller:
             deduped.append(ev)
 
         deduped.sort(key=lambda x: (
-            3 if x.get("freshness") == "strict_2h" else (2 if x.get("freshness") == "recent_4h" else 1),
+            4 if x.get("freshness") == "strict_2h" else (
+                3 if x.get("freshness") == "recent_4h" else (
+                    2 if x.get("freshness") == "within_24h" else 1
+                )
+            ),
             x.get("weight", 1.0),
             x.get("create_time", 0)
         ), reverse=True)

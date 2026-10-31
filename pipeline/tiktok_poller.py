@@ -32,7 +32,7 @@ class TikTokPoller:
         self,
         hashtags: Optional[List[str]] = None,
         search_queries: Optional[List[str]] = None,
-        max_items: int = 30,
+        max_items: int = 50,
         window_minutes: int = DEFAULT_WINDOW_MINUTES
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
@@ -55,7 +55,7 @@ class TikTokPoller:
         run_input = {
             "searchQueries": target_queries,
             "hashtags": target_hashtags,
-            "resultsPerPage": 10,
+            "resultsPerPage": 15,
             "maxItems": max_items,
         }
 
@@ -73,10 +73,10 @@ class TikTokPoller:
             
             print(f"[Apify Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
 
-            # 2. Chờ Actor hoàn thành (tối đa 240 giây)
+            # 2. Chờ Actor hoàn thành (tối đa 360 giây)
             poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
             status = "RUNNING"
-            for _ in range(120):
+            for _ in range(180):
                 time.sleep(2.0)
                 try:
                     status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
@@ -151,6 +151,9 @@ class TikTokPoller:
                 event["weight"] = event.get("weight", 2.0) * 1.0
                 events_24h.append(event)
             elif age_seconds <= 259200:
+                event["freshness"] = "recent_72h"
+                event["status_tag"] = "🟣 ĐỢT TRIỀU CƯỜNG / MƯA GẦN ĐÂY (24-72 GIỜ)"
+                event["weight"] = event.get("weight", 2.0) * 0.8
                 events_72h.append(event)
 
             if age_seconds <= 86400 and vid_id:
@@ -158,16 +161,23 @@ class TikTokPoller:
 
         self.state_manager.save()
 
-        # Hiển thị toàn bộ các sự kiện ngập lụt trong 24 giờ qua (3 tầng độ tươi)
+        # Hiển thị thông minh: Ưu tiên 24h, tự động bổ sung đợt triều cường gần nhất (72h) nếu 24h qua khô ráo
         all_24h_events = events_window + events_24h
-        display_events = all_24h_events
-        win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
+        if len(all_24h_events) < 5 and events_72h:
+            display_events = all_24h_events + events_72h[:(10 - len(all_24h_events))]
+            win_label = "72 giờ qua (Bao gồm đợt triều cường gần nhất)"
+        else:
+            display_events = all_24h_events
+            win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
         if not display_events:
             win_label = f"{win_label} (Không có ngập mới)"
 
-        # Sắp xếp: Ưu tiên <2h lên đầu, sau đó 2-4h, sau đó 4-24h, kèm theo trọng số và thời gian mới nhất
         display_events.sort(key=lambda x: (
-            3 if x.get("freshness") == "strict_2h" else (2 if x.get("freshness") == "recent_4h" else 1),
+            4 if x.get("freshness") == "strict_2h" else (
+                3 if x.get("freshness") == "recent_4h" else (
+                    2 if x.get("freshness") == "within_24h" else 1
+                )
+            ),
             x.get("weight", 1.0),
             x.get("create_time", 0)
         ), reverse=True)

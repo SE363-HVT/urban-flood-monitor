@@ -19,19 +19,24 @@ ACTOR_ID = "clockworks~free-tiktok-scraper"
 DEFAULT_HASHTAGS = [
     "ngapsaigon",
     "muangap",
-    "trieucuong"
+    "trieucuong",
+    "saigonngap",
+    "trieucuongsaigon",
+    "ngaptphcm"
 ]
 
 DEFAULT_SEARCH_QUERIES = [
     "ngập TPHCM",
     "ngập Sài Gòn",
-    "mưa ngập TP.HCM"
+    "mưa ngập TP.HCM",
+    "triều cường Sài Gòn",
+    "triều cường TPHCM"
 ]
 
 # ==========================================
 # 2. Cấu hình Actor cào Facebook (Chuyên sâu TP.HCM & Tiết kiệm tối đa)
 # ==========================================
-FB_ACTOR_ID = "scraper_one~facebook-posts-search"
+FB_ACTOR_ID = "danek~facebook-search-ppr"
 FB_SEARCH_PPR_ACTOR_ID = FB_ACTOR_ID
 FB_CRAWL_STRATEGY = os.environ.get("FB_CRAWL_STRATEGY", "search")
 
@@ -50,12 +55,11 @@ FB_TARGET_PAGE_IDENTIFIERS = [
 ]
 
 FB_SEARCH_QUERIES = [
+    "triều cường ngập Sài Gòn",
     "mưa ngập TP.HCM",
     "ngập đường Sài Gòn",
-    "triều cường ngập Sài Gòn",
-    "ngập xe chết máy",
-    "#ngapsaigon",
-    "#muangap"
+    "ngập xe chết máy TPHCM",
+    "#ngapsaigon"
 ]
 
 FB_SEARCH_LOCATIONS = ["Ho Chi Minh City"]
