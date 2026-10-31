@@ -12,6 +12,7 @@
    - [Phương án A: Khởi động Tự động 1-Click (Khuyến nghị)](#phương-án-a-khởi-động-tự-động-1-click-khuyến-nghị)
    - [Phương án B: Khởi động Thủ công Từng Tầng (Debug / Trình diễn)](#phương-án-b-khởi-động-thủ-công-từng-tầng)
 6. [Các Lệnh Kiểm tra, Giám sát & Khắc phục Sự cố](#6-các-lệnh-kiểm-tra-giám-sát--khắc-phục-sự-cố)
+7. [Các Hạn Chế & Vấn Đề Crawling Chưa Giải Quyết Triệt Để](#7-các-hạn-chế--vấn-đề-crawling-chưa-giải-quyết-triệt-để)
 
 ---
 
@@ -263,6 +264,55 @@ Khi muốn dọn sạch bản đồ và xóa cache để chạy lại đợt cà
 # 2. Dừng cụm Docker containers:
 docker compose -f bigdata\docker-compose.yml down
 ```
+
+---
+
+## 7. CÁC HẠN CHẾ & VẤN ĐỀ CRAWLING CHƯA GIẢI QUYẾT TRIỆT ĐỂ
+
+Dưới đây là tổng hợp các rào cản kỹ thuật thực tế và lý do vì sao một số luồng thu nạp dữ liệu mạng xã hội (đặc biệt là **Threads**) hiện tại chưa hoạt động hiệu quả như kỳ vọng để bạn tham khảo và phát triển thêm sau này:
+
+---
+
+### ⚠️ 1. Vấn đề luồng cào Threads (Instagram Threads) chưa trả về dữ liệu
+
+Mặc dù mã nguồn đã có module `ThreadsMultiStreamCrawler` (`pipeline/threads_crawler.py`) và giao diện Dashboard đã thiết kế sẵn icon ghim tím `@` cho Threads, nhưng trên thực tế **chưa bao giờ có bài viết Threads nào xuất hiện trên Live Heatmap**.
+
+#### 🔍 Nguyên nhân kỹ thuật cốt lõi:
+1. **Google News RSS không lập chỉ mục Threads**:
+   - Hàm `find_threads_via_google_rss` sử dụng endpoint `https://news.google.com/rss/search?q=site:threads.net...`.
+   - Google News RSS được thiết kế độc quyền để lập chỉ mục cho **các cơ quan báo chí chính thống được kiểm duyệt** (News Publishers như VnExpress, Tuổi Trẻ,...). Google News **hoàn toàn không lập chỉ mục bài viết từ mạng xã hội `threads.net`**. Do đó, truy vấn này luôn trả về 0 kết quả (`0 URLs`).
+2. **DuckDuckGo chặn request cào tự động (Bot Challenge HTTP 202)**:
+   - Hàm dự phòng `find_threads_via_ddg_fast` gọi tới DuckDuckGo HTML Lite (`https://html.duckduckgo.com/html/`).
+   - DuckDuckGo hiện tại áp dụng cơ chế chống bot bằng cách trả về mã `HTTP 202` kèm trang xác thực (Bot Challenge) đối với các request không mang session/cookie từ trình duyệt thật. Kết quả trả về không có link bài viết.
+3. **Cơ chế bảo mật khắt khe của Meta Threads**:
+   - Threads là một ứng dụng Single Page Application (React SPA), toàn bộ nội dung được tải động qua GraphQL API nội bộ với các header bảo mật nghiêm ngặt (`X-IG-App-ID`, `X-FB-LSD`, encrypted session tokens).
+   - Threads chặn 100% các request HTTP tĩnh (không chạy JavaScript) và cấm cào tự do nếu không có Headless Browser (như Playwright/Puppeteer) hoặc Proxy dân cư xoay vòng (Residential Proxies).
+4. **Chưa có Worker Threads trong Apify Poller**:
+   - Trong `pipeline/multi_poller.py`, luồng cào sâu qua Apify mới chỉ tích hợp **TikTok** (`TikTokPoller`) và **Facebook** (`FacebookPoller`), chưa có `ThreadsPoller`.
+
+#### 💡 Hướng giải quyết đề xuất cho tương lai:
+- Tích hợp một Actor Apify chuyên dụng cho Threads (ví dụ: `igview-owner~threads-search-scraper` hoặc `burbn~threads-search-scraper`) vào `MultiPoller` tương tự như TikTok và Facebook khi cần quét chuyên sâu.
+- Sử dụng Headless Browser có điều khiển (Playwright Stealth) để cuộn trang và chặn bắt gói tin GraphQL API của Threads.
+
+---
+
+### ⚠️ 2. Vấn đề dữ liệu Facebook qua cơ chế cào tìm kiếm công khai (Search Scraper)
+
+1. **Hiện tượng bài đăng chỉ có ảnh/album không kèm chữ (Empty Text)**:
+   - Trên Facebook, rất nhiều người dùng và nhóm cộng đồng đăng ảnh hiện trường ngập lụt nhưng **không hề viết caption mô tả** (trường `postText` hoặc `message` rỗng).
+   - Mặc dù hệ thống đã bổ sung bóc tách `album_preview.caption`, nhưng nếu người đăng không gõ chữ thì bộ đối soát địa lý (Gazetteer) không thể nhận diện được tên đường hay phường/xã để chấm tọa độ lên bản đồ.
+2. **Phụ thuộc vào mức độ hiển thị công khai (Public Privacy)**:
+   - Các bài phản ánh trong nhóm kín (Closed Groups) hoặc trang cá nhân ở chế độ Bạn bè (Friends-only) không thể cào được qua bất kỳ công cụ hợp pháp nào nếu không có tài khoản ủy quyền đăng nhập.
+
+---
+
+### ⚠️ 3. Vấn đề phân bố độ tươi của TikTok theo thuật toán tìm kiếm (Recency vs. Virality)
+
+1. **Thuật toán TikTok ưu tiên độ lan tỏa (Engagement/Virality) hơn thời gian thực**:
+   - Khi tìm kiếm theo từ khóa hoặc hashtag (`#ngapsaigon`, `#trieucuong`), API của TikTok mặc định trả về các video có nhiều lượt xem, tương tác cao nhất của đợt ngập/triều cường gần nhất (thường là 2-4 ngày trước hoặc vài tuần trước).
+2. **Khi thời tiết trong 24 giờ qua khô ráo**:
+   - Nếu trong ngày hôm nay TP.HCM không có mưa lớn, người dùng không đăng video ngập mới. TikTok API sẽ trả về các video ngập cũ từ đợt trước.
+   - Khi đó, bộ lọc nghiêm ngặt `<= 24 giờ` của hệ thống sẽ tự động loại bỏ các video cũ này, dẫn đến kết quả trả về trong chu kỳ là 0 video.
 
 ---
 *Tài liệu được cập nhật tự động theo phiên bản mã nguồn mới nhất ngày 31/10/2026.*
