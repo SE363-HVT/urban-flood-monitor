@@ -258,10 +258,10 @@ CITIZEN_PORTAL_SOURCES = [
         "category": "traffic_alert"
     },
     {
-        "id": "cổng_thoatnuoc_udimap",
+        "id": "thoatnuoc_udc",
         "name": "Cổng Cảnh Báo Ngập & Hạ Tầng Thoát Nước TP.HCM (UDI Maps)",
-        "url": "https://udimap.vn",
-        "domain": "udimap.vn",
+        "url": "https://udc.com.vn",
+        "domain": "udc.com.vn",
         "category": "flood_udi"
     }
 ]
@@ -744,10 +744,10 @@ class LiveFreeSocialCrawler:
             ),
             # TẦNG 2: 2 - 4 GIỜ - 🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)
             (
-                "cổng_thoatnuoc_udimap",
+                "thoatnuoc_udc",
                 "Cổng Cảnh Báo Thoát Nước UDI TP.HCM",
                 "Ghi nhận hạ tầng thoát nước: Cơn mưa lớn đã kết thúc nhưng đường D2 Nguyễn Gia Trí và Ung Văn Khiêm (Bình Thạnh) nước rút rất chậm do nghẽn miệng hố ga, các phương tiện di chuyển chậm.",
-                "https://udimap.vn/canh-bao/UDI-BT-",
+                "https://udc.com.vn/canh-bao-ngap/UDC-BT-",
                 "nước rút chậm sau mưa dứt",
                 9000  # 2.5 giờ trước -> 2-4h
             ),
