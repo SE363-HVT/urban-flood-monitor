@@ -2,18 +2,17 @@
 """
 pipeline/threads_crawler.py
 Module Khai Thác Kho Dữ Liệu Mạng Xã Hội Threads (Instagram Threads) Chuyên Sâu:
-Kiến trúc 4 Trụ Cột Đột Phá Cho Heatmap Đa Luồng:
+Kiến trúc 4 Trụ Cột Cho Heatmap Đa Luồng:
 1. Trụ cột 1: Phân loại theo Cụm Mục / Topics & Ngữ cảnh đời thường (Spoken natural language)
    - Bỏ hoàn toàn phụ thuộc vào hashtag (do Threads giới hạn tối đa 1 thẻ chủ đề).
    - Quét theo 3 cụm mục tiêu: Cảm thán đời thường tan tầm, Hotspots sinh viên/văn phòng, Topic slugs.
-2. Trụ cột 2: Cơ chế Bóc tách Đa tầng (Multi-Engine Discovery + Headless Reader + Meta App Header)
-   - Kết hợp DuckDuckGo Lite, Bing Search Decoded, và Direct Threads Search SERP via Jina Reader.
+2. Trụ cột 2: Cơ chế Bóc tách Đa tầng (DuckDuckGo Lite Discovery + Headless Reader)
    - Bóc tách Markdown DOM, lấy trọn vẹn văn bản, tác giả, ngày giờ thực tế và ảnh hiện trường.
 3. Trụ cột 3: Radar Tài Khoản Thực Địa TP.HCM (Targeted Account Radar)
    - Giám sát danh sách 35+ tài khoản cộng đồng, sinh viên, đời sống tại các "rốn ngập" (Thủ Đức, D2 Bình Thạnh, Q7).
 4. Trụ cột 4: Chuẩn hóa Luồng Sự Kiện GIS Đa luồng cho Heatmap & Apache Kafka
    - Phân giải tọa độ tự động qua Gazetteer chuẩn NQ 1685.
-   - Chuẩn hóa schema đồng bộ 100% với TikTok và Facebook.
+   - Chuẩn hóa schema đồng bộ 100% với TikTok, Facebook và YouTube.
 """
 
 import os
@@ -29,6 +28,13 @@ import urllib.request
 from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Any, List, Set, Optional, Tuple
+
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 import requests
 from bs4 import BeautifulSoup
@@ -132,7 +138,7 @@ TARGET_RADAR_ACCOUNTS = [
 
 
 # =============================================================================
-# TRỤ CỘT 2: CƠ CHẾ DISCOVERY ĐA TẦNG (SEARCH ENGINES + HEADLESS READER)
+# TRỤ CỘT 2: CƠ CHẾ DISCOVERY (WEB DISCOVERY + HEADLESS READER)
 # =============================================================================
 
 def find_threads_via_ddg_lite(query: str, max_results: int = 5) -> Set[str]:
@@ -144,45 +150,12 @@ def find_threads_via_ddg_lite(query: str, max_results: int = 5) -> Set[str]:
     }
     found = set()
     try:
-        resp = requests.post(url, data=data, headers=headers, timeout=8)
+        resp = requests.post(url, data=data, headers=headers, timeout=6)
         pattern = r"https?://(?:www\.)?threads\.net/@([a-zA-Z0-9_.-]+)/post/([a-zA-Z0-9_.-]+)"
         for m in re.finditer(pattern, resp.text):
             found.add(f"https://www.threads.net/@{m.group(1)}/post/{m.group(2)}")
             if len(found) >= max_results:
                 break
-    except Exception:
-        pass
-    return found
-
-
-def find_threads_via_bing_decode(query: str, max_results: int = 5) -> Set[str]:
-    """Tìm link Threads qua Bing Search và giải mã URL Base64."""
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "Accept-Language": "vi,en;q=0.9",
-    }
-    found = set()
-    url = f"https://www.bing.com/search?q={urllib.parse.quote('site:threads.net ' + query)}"
-    try:
-        resp = requests.get(url, headers=headers, timeout=8)
-        soup = BeautifulSoup(resp.text, "html.parser")
-        for a in soup.find_all("a"):
-            href = a.get("href", "")
-            if "/ck/a?" in href:
-                parsed = urllib.parse.parse_qs(urllib.parse.urlparse(href).query)
-                u = parsed.get("u", [""])[0]
-                if u.startswith("a1"):
-                    try:
-                        raw_b64 = u[2:]
-                        raw_b64 += "=" * ((4 - len(raw_b64) % 4) % 4)
-                        decoded = base64.b64decode(raw_b64).decode("utf-8", errors="ignore")
-                        m = re.search(r"https?://(?:www\.)?threads\.net/@([a-zA-Z0-9_.-]+)/post/([a-zA-Z0-9_.-]+)", decoded)
-                        if m:
-                            found.add(f"https://www.threads.net/@{m.group(1)}/post/{m.group(2)}")
-                            if len(found) >= max_results:
-                                break
-                    except Exception:
-                        pass
     except Exception:
         pass
     return found
@@ -290,13 +263,13 @@ def fetch_threads_post_via_jina(post_url: str) -> Optional[Dict[str, Any]]:
 class ThreadsMultiStreamCrawler:
     """
     Crawler Chuyên Sâu Threads Khai Thác Đa Nguồn:
-    - Quét song song 8-12 workers
+    - Quét song song đa luồng
     - Hợp nhất Topic Queries, Spoken Queries và Account Radar
     - Tự động map tọa độ GIS với Gazetteer TP.HCM (NQ 1685)
     - Tương thích 100% với Kafka Topic social.live.raw & Leaflet Heatmap
     """
 
-    def __init__(self, max_workers: int = 10):
+    def __init__(self, max_workers: int = 6):
         self.max_workers = max_workers
         self.seen_urls: Set[str] = set()
         self.seen_hashes: Set[str] = set()
@@ -304,12 +277,8 @@ class ThreadsMultiStreamCrawler:
     def discover_urls_for_queries(self, queries: List[str], max_per_query: int = 3) -> Set[str]:
         """Quét song song lấy danh sách URLs bài viết Threads."""
         urls = set()
-        with ThreadPoolExecutor(max_workers=self.max_workers) as pool:
-            futures = []
-            for q in queries:
-                futures.append(pool.submit(find_threads_via_ddg_lite, q, max_per_query))
-                futures.append(pool.submit(find_threads_via_bing_decode, q, max_per_query))
-
+        with ThreadPoolExecutor(max_workers=min(self.max_workers, len(queries) or 1)) as pool:
+            futures = [pool.submit(find_threads_via_ddg_lite, q, max_per_query) for q in queries]
             for f in as_completed(futures):
                 try:
                     res = f.result()
@@ -321,7 +290,7 @@ class ThreadsMultiStreamCrawler:
 
     def scan_account_radar_urls(self, accounts: List[str], max_per_acc: int = 2) -> Set[str]:
         """Quét các bài đăng gần nhất từ Radar tài khoản cộng đồng TP.HCM."""
-        radar_queries = [f"site:threads.net/@{acc} (ngập OR mưa OR triều cường OR kẹt xe)" for acc in accounts[:15]]
+        radar_queries = [f"site:threads.net/@{acc} (ngập OR mưa OR triều cường OR kẹt xe)" for acc in accounts[:8]]
         return self.discover_urls_for_queries(radar_queries, max_per_query=max_per_acc)
 
     def is_valid_flood_post(self, text: str) -> bool:
@@ -414,7 +383,7 @@ class ThreadsMultiStreamCrawler:
             return events
 
         # 2. Bóc tách nội dung song song (Trụ cột 2)
-        with ThreadPoolExecutor(max_workers=min(12, len(all_candidate_urls))) as pool:
+        with ThreadPoolExecutor(max_workers=min(6, len(all_candidate_urls))) as pool:
             futures = {pool.submit(fetch_threads_post_via_jina, u): u for u in list(all_candidate_urls)[:max_items]}
             for f in as_completed(futures):
                 try:
@@ -482,9 +451,9 @@ class ThreadsMultiStreamCrawler:
 # Thử nghiệm chạy độc lập
 if __name__ == "__main__":
     print("=" * 80)
-    print("🚀 KIỂM THỬ MODULE THREADS MULTI-STREAM CRAWLER THEO 4 TRỤ CỘT")
+    print("KIỂM THỬ MODULE THREADS MULTI-STREAM CRAWLER")
     print("=" * 80)
-    crawler = ThreadsMultiStreamCrawler(max_workers=8)
+    crawler = ThreadsMultiStreamCrawler(max_workers=6)
     print("[*] Đang chạy quét Threads thời gian thực theo Cụm Mục & Radar...")
     t0 = time.time()
     res_events = crawler.poll_threads_live(window_minutes=240, max_items=5)
