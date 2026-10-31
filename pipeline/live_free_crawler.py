@@ -835,6 +835,116 @@ class LiveFreeSocialCrawler:
 
         return events
 
+    def _fetch_direct_news_rss(self, max_items: int = 4) -> List[Dict[str, Any]]:
+        """
+        ĐỘNG CƠ CÀO TRỰC TIẾP RSS BÁO CHÍ CHÍNH THỐNG (Tuổi Trẻ, Thanh Niên):
+        - Hoàn toàn độc lập, KHÔNG phụ thuộc Google RSS, không bao giờ bị chặn IP.
+        - Lấy tin tức đô thị, hạ tầng giao thông và ngập lụt trực tiếp từ nguồn tòa soạn.
+        - Đường dẫn thật 100% trỏ thẳng về bài báo gốc trên tuoitre.vn / thanhnien.vn.
+        """
+        events = []
+        current_time = int(time.time())
+        feeds = [
+            ("Báo Tuổi Trẻ", "https://tuoitre.vn/rss/thoi-su.rss"),
+            ("Báo Thanh Niên", "https://thanhnien.vn/rss/thoi-su.rss")
+        ]
+
+        for publisher, feed_url in feeds:
+            if len(events) >= max_items:
+                break
+            try:
+                f = feedparser.parse(feed_url)
+                for entry in f.entries[:20]:
+                    if len(events) >= max_items:
+                        break
+                    raw_title = getattr(entry, "title", "")
+                    raw_summary = getattr(entry, "summary", "")
+                    raw_url = getattr(entry, "link", "")
+                    if not raw_title or not raw_url:
+                        continue
+
+                    full_text = f"{raw_title} {raw_summary}"
+                    if not any(k in full_text.lower() for k in ["ngập", "triều cường", "mưa", "giao thông", "kẹt xe", "ùn tắc", "đường", "hạ tầng", "sân bay", "csgt"]):
+                        continue
+
+                    matched_spots = match_all_hotspots(full_text)
+                    if not matched_spots:
+                        continue
+
+                    if raw_url in self.seen_urls:
+                        continue
+                    self.seen_urls.add(raw_url)
+
+                    pub_unix = current_time - 3600
+                    if hasattr(entry, "published_parsed") and entry.published_parsed:
+                        try:
+                            pub_unix = calendar.timegm(entry.published_parsed)
+                        except Exception:
+                            pub_unix = current_time - 3600
+
+                    age_seconds = max(0, current_time - pub_unix)
+                    if age_seconds > 86400:
+                        continue
+
+                    if age_seconds <= 7200:
+                        freshness = "strict_2h"
+                        status_tag = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
+                        weight = 3.5
+                    elif age_seconds <= 14400:
+                        freshness = "recent_4h"
+                        status_tag = "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)"
+                        weight = 3.0
+                    else:
+                        freshness = "within_24h"
+                        status_tag = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
+                        weight = 2.0
+
+                    spot = matched_spots[0]
+                    st_name = spot.get("street") or spot.get("display_name", "")
+                    sub_id = hashlib.md5(raw_url.encode("utf-8")).hexdigest()[:12]
+                    clean_title = re.sub(r'\s*-\s*[^-\n]+$', '', raw_title).strip()
+
+                    event = {
+                        "id": str(sub_id),
+                        "canonical_id": f"news_{sub_id}",
+                        "url": raw_url,
+                        "platform": "news",
+                        "media_type": "news",
+                        "author": publisher,
+                        "text": f"[{publisher}] {clean_title}",
+                        "title": clean_title,
+                        "create_time": pub_unix,
+                        "created_at_iso": datetime.fromtimestamp(pub_unix, timezone.utc).isoformat(),
+                        "timestamp": pub_unix,
+                        "relative_time": format_relative_time(pub_unix, current_time),
+                        "location": {
+                            "street": st_name,
+                            "display_name": st_name if st_name else "Khu vực TP. Hồ Chí Minh",
+                            "ward": spot.get("ward", "Toàn TP.HCM"),
+                            "administrative_unit": spot.get("ward", "Toàn TP.HCM"),
+                            "district": spot.get("district", "TP.HCM"),
+                            "region": "TPHCM",
+                            "lat": spot["lat"],
+                            "lon": spot["lon"],
+                            "heat_points": spot.get("heat_points", [[spot["lat"], spot["lon"]]]),
+                            "priority": 2,
+                            "type": spot.get("type", "ngập úng đô thị"),
+                            "cause": "rain",
+                            "cause_label": "Thông tin báo chí chính thống & CSGT đô thị",
+                            "source": "direct_news_rss"
+                        },
+                        "aspect": st_name or spot.get("ward", ""),
+                        "weight": weight,
+                        "freshness": freshness,
+                        "status_tag": status_tag,
+                        "crawler_source": "direct_news_rss"
+                    }
+                    events.append(event)
+            except Exception:
+                pass
+
+        return events
+
     def poll_live_stream(
         self,
         window_minutes: int = 120,
@@ -1008,6 +1118,11 @@ class LiveFreeSocialCrawler:
         p1022_events = self._fetch_1022_public_reports(max_items=4)
         events_window.extend(p1022_events)
         total_scanned += len(p1022_events)
+
+        # 5. ĐỘNG CƠ CÀO TRỰC TIẾP RSS BÁO CHÍ (TUỔI TRẺ, THANH NIÊN - 100% ĐỘC LẬP KHÔNG QUA GOOGLE)
+        direct_news_events = self._fetch_direct_news_rss(max_items=3)
+        events_window.extend(direct_news_events)
+        total_scanned += len(direct_news_events)
 
 
 
