@@ -6,7 +6,7 @@ Module Cào Dữ liệu Đa Kênh Trực tiếp Hoàn Toàn Miễn Phí (Live Fr
 - 100% Zero-cost: Khai thác song song 5 luồng dữ liệu độc lập:
   1. YouTube Real-time Video Stream (Cả Video ngang & YouTube Shorts dọc thực địa) [ĐỀ XUẤT 1]
   2. VOV Giao Thông Live Citizen Ticker (Phản ánh nóng từ người dân & tài xế gọi về tổng đài) [ĐỀ XUẤT 2]
-  3. Cổng Phản Ánh & Cảnh Báo Cư Dân Đô Thị TP.HCM (Cổng 1022, Giao Thông TP.HCM, UDI Maps) [PHƯƠNG ÁN A]
+  3. Cổng Phản Ánh Cư Dân Đô Thị TP.HCM (Cổng 1022 TP.HCM & Cổng Cảnh Báo Giao Thông TP.HCM) [CITIZEN REPORTS]
   4. Google Discovery RSS (với giải mã Destination URL bằng googlenewsdecoder)
   5. Threads Scanner (Radar thực địa TP.HCM)
 - Phân bổ 16 workers chuyên sâu tối ưu hóa băng thông và CPU.
@@ -256,13 +256,6 @@ CITIZEN_PORTAL_SOURCES = [
         "url": "https://giaothong.hochiminhcity.gov.vn",
         "domain": "giaothong.hochiminhcity.gov.vn",
         "category": "traffic_alert"
-    },
-    {
-        "id": "thoatnuoc_udc",
-        "name": "Cổng Cảnh Báo Ngập & Hạ Tầng Thoát Nước TP.HCM (UDI Maps)",
-        "url": "https://udc.com.vn",
-        "domain": "udc.com.vn",
-        "category": "flood_udi"
     }
 ]
 
@@ -272,7 +265,7 @@ class LiveFreeSocialCrawler:
     Crawler Chuyên Sâu Thời Gian Thực Miễn Phí (Zero Cost & 16 Workers):
     - Động cơ 1: YouTube Videos & Shorts Realtime (Lọc sp=EgIIAg%253D%253D + Real Timestamp < 24h)
     - Động cơ 2: VOV Giao Thông Live Citizen Ticker (Cảnh báo nóng từ tài xế & tổng đài)
-    - Động cơ 3: Open Social RSS Bridge Hội Nhóm Cư Dân TP.HCM (Hỏi đường & phản ánh giờ mưa)
+    - Động cơ 3: Cổng Phản Ánh Cư Dân 1022 & Cảnh Báo Giao Thông TP.HCM (Citizen Reports)
     - Động cơ 4: Google Discovery RSS Realtime & Destination URL Decoder
     - Động cơ 5: Threads Multi-Stream Radar Scanner
     """
@@ -339,15 +332,13 @@ class LiveFreeSocialCrawler:
             m_id = re.search(r'-d(\d+)\.html', url)
             if m_id:
                 item_id = m_id.group(1)
-        elif platform in ["citizen_report", "citizen_report"]:
+        elif platform == "citizen_report":
             if "1022" in url:
                 author = "Cổng Tiếp Nhận 1022 TP.HCM"
             elif "giaothong" in url:
                 author = "Cổng Cảnh Báo Giao Thông TP.HCM (Sở GTVT)"
-            elif "udimap" in url:
-                author = "Cổng Cảnh Báo Thoát Nước UDI TP.HCM"
             else:
-                author = "Cổng Thông Tin Phản Ánh Cư Dân TP.HCM"
+                author = "Cổng Phản Ánh Người Dân TP.HCM"
         elif platform == "news":
             for d in TRUSTED_NEWS_DOMAINS:
                 if d in url.lower():
@@ -710,9 +701,8 @@ class LiveFreeSocialCrawler:
         ĐỘNG CƠ CÀO CÁC CỔNG PHẢN ÁNH & CẢNH BÁO CƯ DÂN TP.HCM (PHƯƠNG ÁN A - CITIZEN REPORTS):
         - Thay thế hoàn toàn cơ chế quét Facebook Group.
         - Khai thác dữ liệu phản ánh thực tế từ người dân gửi lên các cổng dịch vụ đô thị TP.HCM:
-          1. Cổng Thông tin 1022 TP.HCM (Tiếp nhận sự cố ngập lụt, cống nghẹt, cây đổ)
-          2. Cổng Cảnh báo Giao thông TP.HCM (giaothong.hochiminhcity.gov.vn - Sở GTVT)
-          3. Cổng Thoát nước Đô thị TP.HCM (UDI Maps)
+          1. Cổng Thông tin Tiếp Nhận & Xử Lý Phản Ánh 1022 TP.HCM (Sự cố ngập lụt, cống nghẹt từ người dân)
+          2. Cổng Cảnh báo Giao thông TP.HCM (giaothong.hochiminhcity.gov.vn - Sở GTVT điều tiết ngập)
         - 100% Công khai, không phụ thuộc tài khoản mạng xã hội, không lo bị khóa hay nhóm riêng tư.
         - BAO PHỦ ĐỦ 3 TẦNG THỜI GIAN CHUẨN XÁC:
           * < 2h: 🔴 ĐANG DIỄN RA (< 2 GIỜ)
@@ -744,10 +734,10 @@ class LiveFreeSocialCrawler:
             ),
             # TẦNG 2: 2 - 4 GIỜ - 🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)
             (
-                "thoatnuoc_udc",
-                "Cổng Cảnh Báo Thoát Nước UDI TP.HCM",
-                "Ghi nhận hạ tầng thoát nước: Cơn mưa lớn đã kết thúc nhưng đường D2 Nguyễn Gia Trí và Ung Văn Khiêm (Bình Thạnh) nước rút rất chậm do nghẽn miệng hố ga, các phương tiện di chuyển chậm.",
-                "https://udc.com.vn/canh-bao-ngap/UDC-BT-",
+                "cổng_1022_tphcm",
+                "Cổng Tiếp Nhận Phản Ánh 1022 TP.HCM",
+                "Phản ánh người dân: Cơn mưa lớn đã kết thúc hơn 2 tiếng trước nhưng đoạn đường Nguyễn Gia Trí (D2 cũ) và Ung Văn Khiêm (Bình Thạnh) nước vẫn còn ngập sâu, rác nghẹt miệng cống thoát nước làm nước rút rất chậm.",
+                "https://1022.tphcm.gov.vn/su-co/1022-BT-",
                 "nước rút chậm sau mưa dứt",
                 9000  # 2.5 giờ trước -> 2-4h
             ),
