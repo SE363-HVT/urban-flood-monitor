@@ -24,6 +24,10 @@ Implements the 2-Branch AI Architecture defined in ARCHITECTURE_V2_AND_AI_IMPLEM
 
 import os
 import sys
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning, module='transformers')
+from transformers import logging as tf_logging
+tf_logging.set_verbosity_error()
 import io
 import time
 import wave
@@ -249,7 +253,7 @@ def execute_slow_path(text: str, video_url: Optional[str]) -> Dict[str, Any]:
                 feat = inputs.input_features.half().to(DEVICE)
                 with torch.no_grad():
                     pred_ids = MODELS["whisper_model"].generate(feat, language="vi", task="transcribe")
-                audio_transcript = MODELS["whisper_processor"].batch_decode(pred_ids, skip_special_tokens=True)[0].strip()
+                audio_transcript = MODELS["whisper_processor"].batch_decode(pred_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0].strip()
         except Exception as e:
             print(f"[SlowPath] PhoWhisper ASR error: {e}")
 

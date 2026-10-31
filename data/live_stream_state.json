@@ -1,29 +1,29 @@
 {
   "mode": "live_streaming_spark_live",
-  "updated_at": "2026-10-31T10:38:31.277367+00:00",
-  "window": "2 giờ qua",
-  "events_count": 2,
+  "updated_at": "2026-10-31T10:48:19.128922+00:00",
+  "window": "Google RSS + Bing Streaming (24h)",
+  "events_count": 1,
   "events": [
     {
       "id": "5669a6e1b15c",
       "canonical_id": "youtube_5669a6e1b15c",
-      "url": "https://www.youtube.com/watch?v=2yw8C_WLT5A",
       "platform": "youtube",
       "media_type": "video",
       "author": "Tung Thanh Ly Vietnam",
       "text": "[YouTube Video • Tung Thanh Ly Vietnam] TP.HCM: MƯA XÁM HỒN, NGẬP NHƯ SÔNG nhiều nơi, nhiều quận, Giữa trưa mà tưởng đã 6 giờ tối! (Thời lượng: 1097s)",
-      "title": "TP.HCM: MƯA XÁM HỒN, NGẬP NHƯ SÔNG nhiều nơi, nhiều quận, Giữa trưa mà tưởng đã 6 giờ tối!",
       "create_time": 1793441026,
       "created_at_iso": "2026-10-31T10:03:46+00:00",
       "timestamp": 1793441026,
-      "relative_time": "34 phút trước",
+      "historical_timestamp": null,
+      "relative_time": "44 phút trước",
+      "freshness": "strict_2h",
+      "status_tag": "🔴 ĐANG DIỄN RA (< 2 GIỜ)",
       "location": {
         "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
         "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
         "ward": "Toàn thành phố (Chưa rõ phường/xã)",
         "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
         "district": "TP.HCM",
-        "region": "TPHCM",
         "lat": 10.7769,
         "lon": 106.7009,
         "heat_points": [
@@ -32,19 +32,15 @@
             106.7009
           ]
         ],
-        "priority": 1,
-        "type": "ngập diện rộng toàn thành phố",
         "cause": "rain",
-        "cause_label": "Mưa lớn hoặc triều cường",
-        "source": "youtube_realtime_crawler"
+        "cause_label": "Mưa lớn, nước không thoát kịp",
+        "source": "pyspark_streaming_engine"
       },
       "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "weight": 4.5,
-      "freshness": "strict_2h",
-      "status_tag": "🔴 ĐANG DIỄN RA (< 2 GIỜ)",
-      "crawler_source": "youtube_realtime_crawler",
-      "lat": 10.7769,
-      "lon": 106.7009,
+      "opinion": "như sông",
+      "severity": "high",
+      "weight": 3.0,
+      "url": "https://www.youtube.com/watch?v=2yw8C_WLT5A",
       "veracity": {
         "confidence_score": 0.72,
         "status": "suspect",
@@ -67,7 +63,7 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-31T10:38:31.252267+00:00"
+        "evaluated_at": "2026-10-31T10:48:19.126315+00:00"
       },
       "report_count": 1,
       "sources": [
@@ -82,83 +78,6 @@
           "url": "https://www.youtube.com/watch?v=2yw8C_WLT5A",
           "platform": "youtube",
           "create_time": 1793441026
-        }
-      ]
-    },
-    {
-      "id": "399d8c8dacdf",
-      "canonical_id": "youtube_shorts_399d8c8dacdf",
-      "platform": "youtube",
-      "media_type": "video",
-      "author": "Báo Lao Động",
-      "text": "[YouTube Shorts • Báo Lao Động] Triều cường dâng cao, nhiều tuyến đường TPHCM ngập nước chiều tối 27.10 | Báo Lao Động (Thời lượng: 68s)",
-      "create_time": 1793356216,
-      "created_at_iso": "2026-10-30T10:30:16+00:00",
-      "timestamp": 1793356216,
-      "historical_timestamp": null,
-      "relative_time": "23 giờ 46 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
-        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "heat_points": [
-          [
-            10.7769,
-            106.7009
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "opinion": "ngập nước",
-      "severity": "medium",
-      "weight": 2.0,
-      "url": "https://www.youtube.com/shorts/BiJqxVaeMU8",
-      "veracity": {
-        "confidence_score": 0.72,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "heuristic_baseline",
-          "branch": "heuristic",
-          "visual_verified": true,
-          "content_score": 0.75,
-          "triplets": []
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.9,
-          "score": 0.85,
-          "plausible": true,
-          "reason": "Trạm khí tượng thời gian thực: Có mưa (0.9 mm/h lúc 17h)"
-        },
-        "is_tidal_point": true,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-10-31T10:17:12.862833+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "youtube"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "Báo Lao Động",
-          "text": "[YouTube Shorts • Báo Lao Động] Triều cường dâng cao, nhiều tuyến đường TPHCM ngập nước chiều tối 27.10 | Báo Lao Động (Thời lượng: 68s)",
-          "url": "https://www.youtube.com/shorts/BiJqxVaeMU8",
-          "platform": "youtube",
-          "create_time": 1793356216
         }
       ]
     }

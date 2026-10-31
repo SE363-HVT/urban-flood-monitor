@@ -131,10 +131,14 @@ YOUTUBE_TODAY_SEARCH_URLS = [
     ("https://www.youtube.com/results?search_query=trieu+cuong+Sai+Gon&sp=EgIIAg%253D%253D", "video"),
     ("https://www.youtube.com/results?search_query=ngap+Tran+Xuan+Soan&sp=EgIIAg%253D%253D", "video"),
     ("https://www.youtube.com/results?search_query=ngap+Thao+Dien&sp=EgIIAg%253D%253D", "video"),
+    ("https://www.youtube.com/results?search_query=ngap+Cho+Thu+Duc&sp=EgIIAg%253D%253D", "video"),
+    ("https://www.youtube.com/results?search_query=ngap+Quan+8&sp=EgIIAg%253D%253D", "video"),
     ("https://www.youtube.com/results?search_query=shorts+ngap+TPHCM&sp=EgIIAg%253D%253D", "shorts"),
     ("https://www.youtube.com/results?search_query=shorts+trieu+cuong+Sai+Gon&sp=EgIIAg%253D%253D", "shorts"),
     ("https://www.youtube.com/results?search_query=shorts+xe+chet+may+ngap&sp=EgIIAg%253D%253D", "shorts"),
     ("https://www.youtube.com/results?search_query=shorts+ngap+Tran+Xuan+Soan&sp=EgIIAg%253D%253D", "shorts"),
+    ("https://www.youtube.com/results?search_query=shorts+ngap+Thao+Dien&sp=EgIIAg%253D%253D", "shorts"),
+    ("https://www.youtube.com/results?search_query=shorts+ngap+nuoc+Sai+Gon&sp=EgIIAg%253D%253D", "shorts"),
 ]
 
 # MA TRẬN TRUY VẤN FACEBOOK, TIKTOK, THREADS
@@ -252,6 +256,7 @@ class LiveFreeSocialCrawler:
     - Động cơ 4: Threads Multi-Stream Radar Scanner
     """
 
+    _rr_yt_offset = 0
     _rr_fb_offset = 0
     _rr_tiktok_offset = 0
     _rr_threads_offset = 0
@@ -441,10 +446,19 @@ class LiveFreeSocialCrawler:
             'no_warnings': True,
         }
 
+        # Cơ chế Cuộn / Luân phiên Truy vấn (Rolling Query Pagination)
+        n_queries = len(YOUTUBE_TODAY_SEARCH_URLS)
+        start_idx = LiveFreeSocialCrawler._rr_yt_offset % n_queries
+        selected_queries = [
+            YOUTUBE_TODAY_SEARCH_URLS[(start_idx + i) % n_queries]
+            for i in range(min(6, n_queries))
+        ]
+        LiveFreeSocialCrawler._rr_yt_offset = (start_idx + 4) % n_queries
+
         candidate_entries = []
         try:
             with YoutubeDL(ydl_opts_search) as ydl:
-                for search_url, search_type in YOUTUBE_TODAY_SEARCH_URLS:
+                for search_url, search_type in selected_queries:
                     try:
                         res = ydl.extract_info(search_url, download=False)
                         if not res or 'entries' not in res:
@@ -520,11 +534,20 @@ class LiveFreeSocialCrawler:
                         event_weight = 2.5
                         event_priority = 3
 
-                    is_short = "/shorts/" in v_url
+                    # Nhận diện chính xác YouTube Shorts (qua URL, thời lượng <= 60s hoặc query tag)
+                    clean_id_m = re.search(r'(?:v=|/shorts/|youtu\.be/)([a-zA-Z0-9_-]{11})', v_url)
+                    raw_id = clean_id_m.group(1) if clean_id_m else hashlib.md5(v_url.encode("utf-8")).hexdigest()[:11]
+                    is_short = bool("/shorts/" in v_url or (duration and duration <= 60) or ("shorts" in v_url.lower()))
+                    if is_short and "/shorts/" not in v_url:
+                        final_url = f"https://www.youtube.com/shorts/{raw_id}"
+                    else:
+                        final_url = v_url
+
                     vid_tag = "YouTube Shorts" if is_short else "YouTube Video"
+                    media_type = "short_video" if is_short else "video"
                     desc = f"[{vid_tag} • {channel}] {real_title} (Thời lượng: {duration}s)"
                     pub_iso = datetime.fromtimestamp(real_ts, timezone.utc).isoformat()
-                    vid_id = hashlib.md5(v_url.encode("utf-8")).hexdigest()[:12]
+                    vid_id = hashlib.md5(final_url.encode("utf-8")).hexdigest()[:12]
 
                     for spot_idx, spot in enumerate(matched_spots[:1]):
                         st_name = spot.get("street") or spot.get("display_name", "")
@@ -534,9 +557,9 @@ class LiveFreeSocialCrawler:
                         event = {
                             "id": str(sub_id),
                             "canonical_id": canonical_id,
-                            "url": v_url,
+                            "url": final_url,
                             "platform": "youtube",
-                            "media_type": "video",
+                            "media_type": media_type,
                             "author": channel,
                             "text": desc,
                             "title": real_title,
