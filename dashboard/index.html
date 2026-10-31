@@ -1100,6 +1100,19 @@
 
             const heatPoints = [];
 
+            // Đếm số lượng marker tại cùng tọa độ để chống chồng lấn (co-location radial jitter)
+            const coordCountMap = {};
+            events.forEach(ev => {
+                const loc = ev.location || {};
+                const lat = loc.lat || ev.lat;
+                const lon = loc.lon || ev.lon;
+                if (lat && lon) {
+                    const key = `${lat.toFixed(4)}_${lon.toFixed(4)}`;
+                    coordCountMap[key] = (coordCountMap[key] || 0) + 1;
+                }
+            });
+            const coordIndexMap = {};
+
             if (events.length === 0) {
                 feedList.innerHTML = `
                     <div style="padding: 48px 20px; text-align: center; color: #94a3b8; font-size: 13px;">
@@ -1285,7 +1298,21 @@
                 });
 
                 const eventKey = ev.canonical_id || ev.id || `${lat}_${lon}`;
-                const marker = L.marker([lat, lon], { icon: customIcon });
+
+                // Tính toán vị trí hiển thị: Nếu có nhiều điểm tại cùng 1 vị trí thì tách nhẹ ra xung quanh
+                const coordKey = `${lat.toFixed(4)}_${lon.toFixed(4)}`;
+                let plotLat = lat;
+                let plotLon = lon;
+                if (coordCountMap[coordKey] > 1) {
+                    const cIdx = coordIndexMap[coordKey] || 0;
+                    coordIndexMap[coordKey] = cIdx + 1;
+                    const angle = (cIdx * 2 * Math.PI) / coordCountMap[coordKey];
+                    const radius = 0.00035; // Lệch nhẹ ~35m để thấy rõ cả 2 pin riêng biệt
+                    plotLat = lat + radius * Math.cos(angle);
+                    plotLon = lon + radius * Math.sin(angle);
+                }
+
+                const marker = L.marker([plotLat, plotLon], { icon: customIcon });
 
                 const popupContent = `
                     <div style="font-family: sans-serif; font-size: 12px; min-width: 290px; max-width: 340px; color: #1e293b;">
@@ -1384,7 +1411,7 @@
                 const card = document.createElement('div');
                 card.className = 'feed-card';
                 card.onclick = () => {
-                    map.flyTo([lat, lon], 15);
+                    map.flyTo([plotLat, plotLon], 15);
                     marker.openPopup();
                 };
 

@@ -247,6 +247,13 @@ NEWS_QUERIES = [
 # Ghi chú: Cổng 1022/Giao thông TP.HCM không cung cấp public permalink, đã gỡ bỏ hoàn toàn template giả lập.
 
 
+class YtDlpMuteLogger:
+    def debug(self, msg): pass
+    def warning(self, msg): pass
+    def error(self, msg): pass
+    def info(self, msg): pass
+
+
 class LiveFreeSocialCrawler:
     """
     Crawler Chuyên Sâu Thời Gian Thực Miễn Phí (Zero Cost & 16 Workers - 100% LINK THẬT):
@@ -410,14 +417,16 @@ class LiveFreeSocialCrawler:
     def _fetch_single_yt_details(self, vid_url: str) -> Tuple[str, str, Optional[int], str, int]:
         """Trích xuất metadata chi tiết và THỜI GIAN ĐĂNG TẢI THẬT (real upload timestamp)."""
         ydl_opts_single = {
+            'logger': YtDlpMuteLogger(),
             'quiet': True,
             'skip_download': True,
             'no_warnings': True,
+            'ignoreerrors': True,
         }
         try:
             with YoutubeDL(ydl_opts_single) as ydl:
                 info = ydl.extract_info(vid_url, download=False)
-                if not info:
+                if not info or info.get('live_status') in ('is_upcoming', 'post_live') or info.get('is_live'):
                     return vid_url, "", None, "", 0
                 title = info.get('title') or ""
                 real_ts = info.get('timestamp')
@@ -443,10 +452,12 @@ class LiveFreeSocialCrawler:
         cutoff_24h = current_time - 86400
 
         ydl_opts_search = {
+            'logger': YtDlpMuteLogger(),
             'quiet': True,
             'skip_download': True,
             'extract_flat': True,
             'no_warnings': True,
+            'ignoreerrors': True,
         }
 
         # Cơ chế Cuộn / Luân phiên Truy vấn (Rolling Query Pagination)
@@ -467,7 +478,7 @@ class LiveFreeSocialCrawler:
                         if not res or 'entries' not in res:
                             continue
                         for entry in res['entries'][:max_items_per_query]:
-                            if not entry:
+                            if not entry or entry.get('live_status') in ('is_upcoming', 'post_live'):
                                 continue
                             vid_id = entry.get('id')
                             if not vid_id:
