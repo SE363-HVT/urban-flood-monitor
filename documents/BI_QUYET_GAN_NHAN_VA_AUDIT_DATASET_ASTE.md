@@ -135,3 +135,21 @@ Khi cào dữ liệu từ mạng xã hội (TikTok / Facebook), crawler thườn
   - Sau khi nộp, chạy script tính Cohen's Kappa để lấy số liệu $\ge 0.70$ đưa vào bài báo.
 * **Phase 3 (Về đích: Thuận làm từ 6.251 ➔ 10.249)**:
   - Chia nhỏ thành từng lô 50 mẫu, áp dụng triệt để bộ lọc rác tỉnh ngoài và cẩm nang này để hoàn tất toàn bộ Master Dataset.
+
+---
+
+## 📚 IX. TÀI LIỆU THAM KHẢO CỐT LÕI (CORE REFERENCE DOCUMENTS)
+
+Để thực hiện gán nhãn và kiểm định chính xác tuyệt đối cho các giai đoạn tiếp theo (Phase 2 & Phase 3), Agent / Annotator bắt buộc phải đọc kết hợp đầy đủ **3 tài liệu nền tảng** sau:
+
+1. **Cẩm nang chuyên gia gốc tiếng Việt**:
+   * [`documents/CAM_NANG_BI_QUYET_GAN_NHAN_ASTE_CHUAN_EXPERT.md`](file:///D:/SE363_RAWDATA/documents/CAM_NANG_BI_QUYET_GAN_NHAN_ASTE_CHUAN_EXPERT.md)
+   * *Nội dung*: Cẩm nang chi tiết bằng tiếng Việt đúc kết từ 110 mẫu vàng thực tế tại TP.HCM. Giải thích cặn kẽ về bản chất ngữ nghĩa tiếng Việt, cách bóc tách thực thể không dính từ rác, Opinion không lấy danh từ trơ trọi, và bảng phân định sắc thái `POS` / `NEG` / `NEU` theo ngữ cảnh đời thực.
+
+2. **Hệ thống quy chuẩn tiếng Anh của nhóm**:
+   * [`documents/UNIFIED_SYSTEM_GUIDE.md`](file:///D:/SE363_RAWDATA/documents/UNIFIED_SYSTEM_GUIDE.md)
+   * *Nội dung*: Bản đặc tả kiến trúc Single Source of Truth (SSOT) chuẩn hóa theo định dạng quốc tế SemEval ASTE-Data-V2 (Xu et al., EMNLP 2020), định nghĩa mô hình học sâu Dual-Branch và 4 tầng đối soát thực địa GIS.
+
+3. **System Prompt Kiểm định & Thẩm định chuyên dụng**:
+   * [`label_prompt.txt`](file:///D:/SE363_RAWDATA/label_prompt.txt)
+   * *Nội dung*: Bộ system prompt 211 dòng bằng tiếng Anh quy định các mã lỗi chuẩn (`FORMAT_ERROR`, `SPAN_BOUNDARY`, `ASPECT_VEHICLE`, `POLARITY_WRONG`, `DOC_FALLBACK_MISUSE`, `NOT_FLOOD_RELEVANT`) và nguyên tắc ưu tiên quyết định (`ERROR` $\rightarrow$ `REJECT` $\rightarrow$ `HUMAN_REVIEW` $\rightarrow$ `CORRECT` $\rightarrow$ `ACCEPT`).
