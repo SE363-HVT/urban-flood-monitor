@@ -1,0 +1,185 @@
+================================================================================
+TỔNG HỢP CÁC CÂU BỊ LOẠI BỎ (REJECTED RECORDS) TRONG PHASE 2 (RECORDS 501 - 2500)
+TỔNG CỘNG: 36 / 2000 RECORDS BỊ LOẠI (DÁN NHÃN ####[])
+================================================================================
+
+--- [Record Master #505 | Phase2 #5] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Sài Gòn 1968 - Sài Gòn Trong Cơn Nguy Ngập # vietnamwar # xh # QLVNCH # 1968
+NHÃN GỐC TỪ MASTER: [([0, 1], [8, 9], 'NEG')]
+
+--- [Record Master #508 | Phase2 #8] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Dự báo thời tiết nông vụ ngày 29 / 09 / 2026 | Hôm nay triều cường Tây Nam Bộ ở mức cao | VTVWDB
+NHÃN GỐC TỪ MASTER: [([15, 16], [20, 21, 22], 'NEU')]
+
+--- [Record Master #586 | Phase2 #86] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Kcn Giao Long lúc này 😳 😳 😳 Ngập hơn nữa banh xe luôn rồi 🤣 🤣 🤣 # xuhuong # bentre71 🌴 🥥 # kcngiaolong # tiktok
+NHÃN GỐC TỪ MASTER: [([0, 1, 2], [8, 9, 10, 11, 12, 13, 14], 'NEG')]
+
+--- [Record Master #626 | Phase2 #126] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Hà Nội)
+TEXT: CÓ NÊN XÓA BỎ BẢO HIỂM XE MÁY ? TP. HCM , Hà Nội và nhiều tỉnh thành trên cả nước trong những ngày qua mưa lớn , nhiều tuyến đường biến thành sông , hàng loạt xe máy chết máy , ngâm nước , người dân phải móc tiền túi sửa chữa . Và cũng từ đây , một câu hỏi rất thực tế được đặt ra : chúng ta năm nào cũng phải mua bảo hiểm xe máy bắt buộc , vậy khi chiếc xe bị ngập nước , hư hỏng thì bảo hiểm có giúp được gì không ? Câu trả lời là : Bảo hiểm trách nhiệm dân sự bắt buộc của chủ xe máy không bồi thường thiệt hại cho chính chiếc xe bị ngập . Theo Tuổi Trẻ ngày 02 tháng 10 , 2026 , loại bảo hiểm thường được bán khoảng 66 . 000 đồng / năm thực chất nhằm bồi thường thiệt hại cho người thứ ba khi chủ xe gây tai nạn . Còn loại bảo hiểm khoảng 10 . 000 – 50 . 000 đồng thường là bảo hiểm tai nạn cho người ngồi trên xe và không phải loại bảo hiểm bắt buộc nói trên . Như vậy , nói bảo hiểm này “ không có tác dụng gì ” thì chưa chính xác . Nhưng có một câu hỏi khác đáng để nhìn thẳng hơn vào vấn đề hiện nay là , một loại bảo hiểm đã được quy định bắt buộc đối với hàng triệu người dân thì quyền lợi của người mua có đang tương xứng , dễ tiếp cận và đủ rõ ràng hay chưa ? Theo Nghị định 67 / 2023 / NĐ - CP , phí bảo hiểm trách nhiệm dân sự bắt buộc đối với mô tô hai bánh từ 50cc trở lên là 60 . 000 đồng / năm chưa bao gồm thuế VAT ; dưới 50cc là 55 . 000 đồng . Mục đích của loại bảo hiểm này là bảo vệ trách nhiệm dân sự của chủ xe đối với người khác , chứ không phải bảo hiểm vật chất cho chiếc xe của mình . Mức trách nhiệm đối với thiệt hại về sức khỏe , tính mạng có thể lên tới 150 triệu đồng / người / vụ . Người dân mua xe để đi làm , kiếm sống . Mưa xuống , đường ngập , xe hư có thể mất vài trăm nghìn đến vài triệu đồng sửa chữa . Nhưng tờ bảo hiểm bắt buộc họ mang theo lại không bảo vệ chính tài sản đang bị thiệt hại ấy . Vì vậy , vấn đề không nên chỉ dừng lại ở câu hỏi “ có nên bỏ bảo hiểm xe máy bắt buộc hay không ? ” mà cần nhìn rộng hơn là : nếu tiếp tục bắt buộc , có nên xem xét lại phạm vi bảo hiểm , thủ tục bồi thường và quyền lợi thực tế của người dân ? Một chính sách bắt buộc muốn tồn tại lâu dài thì người dân không chỉ cần biết mình phải mua , mà còn phải hiểu rõ , mình đang mua để được bảo vệ điều gì ? Bảo hiểm để bảo vệ tính mạng , tài sản hay chỉ bảo vệ cái đáng phải bảo ? Còn như mưa gió , ngập nước là không chính đáng ? Điều đặc biệt là trong được hợp được bảo hiệm như xảy ra tai / a / n nhưng khi làm thủ tục thì lại rất rườm rà , đôi lúc chủ phương tiện cũng không muốn làm thủ tục để được nhận bảo hiểm vì các thủ túc quá rườm ra mất thời gian từ ngày này qua ngày khác . Thậm chí có trường hợp vừa mua xe nhưng người khác gây ra tai / a / n cho mình , đến lúc gọi bảo hiểm thì họ chỉ nhận được sự hỗ trợ phí cẩu xe , đưa xe đến hãng để sửa chữa . Đặc biệt chi phí là mình phải trả toàn bộ . Như vậy sinh ra bảo hiểm để làm gì ? Theo bạn , bảo hiểm xe máy bắt buộc hiện nay nên giữ nguyên , cải tổ , xem xét bỏ tính bắt buộc hay mạnh mẽ hơn là nên xóa bỏ nó ? # noithangnoithat # leminhhung # baohiemxemay # baohiem # batbuoc # xoabo # vodung # baohiembatbuoc # BaoHiem
+NHÃN GỐC TỪ MASTER: [([9, 10], [28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43], 'NEG')]
+
+--- [Record Master #656 | Phase2 #156] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: CƠN MƯA LỚN CHIỀU NAY 8 / 10 , TÂN MAI NGẬP NẶNG ! ! 🌊 🌊 🌊 ⛈ ⛈ ⛈ # mưa # muagio # ngaplut # bienhoa # đồngnai
+NHÃN GỐC TỪ MASTER: [([9, 10], [11, 12], 'NEG')]
+
+--- [Record Master #665 | Phase2 #165] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: chợ bình thủy quê tôi ngập quá ngập rồi chỗ mọi người có ngập không ? # DũngVlogs83 # nuocngapcantho # cuocsongthuongngay # 65cầnthơ # chợbìnhthủy
+NHÃN GỐC TỪ MASTER: [([0, 1, 2], [5, 6, 7, 8], 'NEG')]
+
+--- [Record Master #718 | Phase2 #218] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Khu vực ven biển phía đông của Nam bộ cần lưu ý đề phòng nguy cơ cao gây ngập úng , tràn đê bao ở các khu vực trũng , thấp ven biển , ven sông , ngoài đê bao ảnh hưởng đến giao thông , sản xuất nông nghiệp , nuôi trồng thủy sản , ô nhiễm nguồn nước và sinh hoạt của người dân .
+NHÃN GỐC TỪ MASTER: [([22, 23], [14, 15, 16, 17, 18, 19, 20, 21], 'NEU'), ([7, 8], [14, 15, 16, 17, 18, 19], 'NEU')]
+
+--- [Record Master #727 | Phase2 #227] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Nhiều người phải xuống xe dắt bộ , lội qua dòng nước đục .
+NHÃN GỐC TỪ MASTER: [([10, 11], [5, 6], 'NEG')]
+
+--- [Record Master #729 | Phase2 #229] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: 18h , mực nước dâng cao quá nửa bánh xe , khiến hàng loạt phương tiện chết máy .
+NHÃN GỐC TỪ MASTER: [([2, 3], [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 'NEG')]
+
+--- [Record Master #804 | Phase2 #304] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Đại diện Đài Khí tượng Thủy văn Nam Bộ khuyến cáo , người dân cần đề phòng ngập úng tại các khu vực trũng thấp , đô thị công nghiệp , vùng ven sông và kênh rạch ; đồng thời cảnh giác trước các hiện tượng thời tiết nguy hiểm trong mưa dông như lốc , sét , mưa đá và gió giật mạnh .
+NHÃN GỐC TỪ MASTER: [([35, 36], [14, 15, 16, 17, 18], 'NEU')]
+
+--- [Record Master #827 | Phase2 #327] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Ông Lê Đình Quyết , Trưởng phòng Dự báo , Đài Khí tượng thủy văn Nam Bộ cho biết tình trạng ngập ở khu vực Nam Bộ cần được xem xét riêng cho từng vùng .
+NHÃN GỐC TỪ MASTER: [([23, 24, 25, 26], [19, 20, 21], 'NEG')]
+
+--- [Record Master #837 | Phase2 #337] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Đối với đồng bằng sông Cửu Long , cơ chế ngập tương tự , song thời điểm ngập nặng thường rơi vào tháng 9 , 10 âm lịch .
+NHÃN GỐC TỪ MASTER: [([15, 16, 17, 18], [20, 21, 22, 23, 24, 25, 26, 27], 'NEU')]
+
+--- [Record Master #2037 | Phase2 #1537] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Tại TP. Hồ Chí Minh , Trực Tiếp Ngập Lụt Miền Trung # nguyentuankhi # theanh28 # xuhuong2025 🥰 # Hashtag
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [8], 'NEG')]
+
+--- [Record Master #2057 | Phase2 #1557] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Điện Biên)
+TEXT: Quy Nhơn ngay lúc này cần nhờ mọi người chia sẻ để người dân và tài xế có hướng đi khác để tránh đi qua đập tràn đường Điện Biên Phủ hướng ra QL19 đang bị chặn xe do ngập nha ! Nước đang dâng cao nên Bà Con chủ động ứng phó nhé ! # quynhon # ngaplut # canhbao # chiase # giaothong
+NHÃN GỐC TỪ MASTER: [([27, 28, 29, 30], [39], 'NEG')]
+
+--- [Record Master #2058 | Phase2 #1558] ---
+LÝ DO LOẠI: Tin thương mại/Quảng cáo/Bán hàng
+TEXT: Tại TP. Hồ Chí Minh , Cùng save lại những điều cần nhớ khi xe chết máy khi ngập nước mùa mưa bão nha ⛈ ️ Hoàng Mai , Thanh Xuân sáng nay ổn không ạ 🙁 # honda # xemay # hanoinews # meovat # thuykich # kinhnghiem # hanoi
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [14, 15, 16], 'NEG')]
+
+--- [Record Master #2060 | Phase2 #1560] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Tại TP. Hồ Chí Minh , # otochutin - # thuanphatauto Tranh Luận Ngập Nước # checktetxe # checkxengapnuoc # ngapnuoc
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [13], 'NEG')]
+
+--- [Record Master #2062 | Phase2 #1562] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Ngập nước do mưa to hay triều cường giờ chỉ còn là cái tên ! Khách nhà em mãi đỉnh . # xuhuong # ngapnuoc # ngaplut # cửachốngngập # tphcm
+NHÃN GỐC TỪ MASTER: [([6, 7], [0], 'NEG')]
+
+--- [Record Master #2065 | Phase2 #1565] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Gia Lai)
+TEXT: Tại Gia Lai , mưa lớn những ngày qua đã làm ngập lụt trên diện rộng và sạt lở một số tuyến giao thông trọng điểm . Sáng nay ( 19 / 11 ) , do nước lớn , Quốc lộ 1 qua Gia Lai đã bị chia cắt , giao thông tê liệt . # vtv24 # vtvdigital # tiktoknews # gialai # ngaplut
+NHÃN GỐC TỪ MASTER: [([39, 40, 41], [46, 47, 48], 'NEG')]
+
+--- [Record Master #2076 | Phase2 #1576] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Ngập lụt ngã tư đường phố , ngã 4 văn phú hà đông # capcut # ngaplut # hadong # muabao # mienbac
+NHÃN GỐC TỪ MASTER: [([7, 8, 9, 10, 11, 12], [0, 1], 'NEG')]
+
+--- [Record Master #2078 | Phase2 #1578] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Gia Lai)
+TEXT: Tại TP. Hồ Chí Minh , Ngập lụt bủa vây nhiều khu vực ở Gia Lai TPO - Do ảnh hưởng của các đợt mưa lớn những ngày qua , trên địa bàn phía Đông tỉnh Gia Lai đã bắt đầu xảy ra ngập lụt tại một số khu vực . # tienphong # ngaplut # gialai
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [6], 'NEG')]
+
+--- [Record Master #2091 | Phase2 #1591] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Gia Lai, GIA LAI)
+TEXT: Tại TP. Hồ Chí Minh , MƯA LỚN GÂY NGẬP LỤT Ở GIA LAI TPO - Từ đêm qua đến sáng 18 / 11 , khu vực phía Đông tỉnh Gia Lai mưa lớn kéo dài gây ngập lụt cục bộ tại một số địa phương . # tienphong # gialai # ngaplut
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [9], 'NEG')]
+
+--- [Record Master #2150 | Phase2 #1650] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Đà Lạt)
+TEXT: Trời ơi Sài Gòn đang yên lành Tự nhiên hai bà cô tp Đà Lạt xuống , mà có một cô hồi giờ chỉ biết đi làm nay dẫn con nhỏ cháu đi uống cà phê chi cho trời Sài Gòn đổ cơn mưa ngập nước bì bõm .
+NHÃN GỐC TỪ MASTER: [([2, 3], [46, 47], 'NEG')]
+
+--- [Record Master #2320 | Phase2 #1820] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Tại TP. Hồ Chí Minh , Kết thúc hành trình đi làm mùa ngập . Vậy là tuii đã chính thức quay lại cuộc sống thường ngày 🌊 # minhthuynt # muangap # hanoimua # ngaplut # viral
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [13], 'NEG')]
+
+--- [Record Master #2322 | Phase2 #1822] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Đồng Tháp)
+TEXT: Tại TP. Hồ Chí Minh , Đồng Tháp nước ngập 2 cô gái lên nóc nhà ngồi live
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [9], 'NEG')]
+
+--- [Record Master #2326 | Phase2 #1826] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Buôn Ma Thuột)
+TEXT: Tại TP. Hồ Chí Minh , Buôn Ma Thuột hôm nay mưa to quá ngập lụt nước khu vực từ Thiện Hạnh đến km3 # bmt # reviewbuonmathuot # 47daklak # lulut # ngaplut
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [14], 'NEG')]
+
+--- [Record Master #2333 | Phase2 #1833] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Tại TP. Hồ Chí Minh , Ngập ở nhà trang 4 giờ 25 chiều hôm nay # congchuacuaanh # nuoc # ngap # lulut # nuocngap
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [6], 'NEG')]
+
+--- [Record Master #2335 | Phase2 #1835] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Tại TP. Hồ Chí Minh , đi vỏ lãi mùa nước ngập # 65cầnthơ # cầnthơ # chợbìnhthủy # Dũngvlogs # nuocngapcantho
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [11], 'NEG')]
+
+--- [Record Master #2338 | Phase2 #1838] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Đồng Tháp)
+TEXT: Tình trạng triều cường đầu tháng 8 âm lịch kết hợp lũ thượng nguồn và mưa lớn liên tục những ngày qua gây ngập một số khu vực trũng thấp ở tỉnh Đồng Tháp . Đáng chú ý , các khu vực chưa có đê bao hoặc đê bao không đảm bảo an toàn có nguy cơ bị ảnh hưởng # nguoiduatin24h # tinnong # socialnews # trieucuong # ngaplut
+NHÃN GỐC TỪ MASTER: [([44, 45], [23], 'NEG'), ([2, 3], [23], 'NEG')]
+
+--- [Record Master #2339 | Phase2 #1839] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Dù mùa lũ năm nay được dự báo không lớn , triều cường tại Đồng bằng sông Cửu Long đang dâng cao , nhiều nơi vượt báo động 3 . Kết hợp với mưa lớn và nước từ thượng nguồn đổ về , nguy cơ ngập lụt , sạt lở và mất an toàn giao thông tiếp tục gia tăng . # VTV9 # tiktoknews # nhipsongphuongnam # DBSCL # trieucuong # lulut
+NHÃN GỐC TỪ MASTER: [([11, 12], [43, 44, 45], 'NEU')]
+
+--- [Record Master #2350 | Phase2 #1850] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Nhà Hẻm Nguyễn Xí Có Ngập Như Lời Đồn # trongbdshcm # bds # bdsbinhthanh # nhaphosaigon # bdshcm
+NHÃN GỐC TỪ MASTER: [([2, 3], [5], 'NEG')]
+
+--- [Record Master #2368 | Phase2 #1868] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Mưa vàng giải nhiệt Nam bộ , nhưng TP. HCM lại ngập sâu đến 1 mét # TiktokNews # CầnThơ # tintuc # MuaLonTPHCM # NgapUng # ThoiTietNamBo
+NHÃN GỐC TỪ MASTER: [([8, 9], [11, 12], 'NEG')]
+
+--- [Record Master #2445 | Phase2 #1945] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Tìm 1 phòng gần thcs Tam Bình , BV Tam Hà , Tô Ngọc Vân , QL1A . Thoáng ko ngập , yên tĩnh an ninh , share cc cũng được ạ
+NHÃN GỐC TỪ MASTER: [([12, 13, 14], [20], 'NEG'), ([5, 6], [20], 'NEG')]
+
+--- [Record Master #2460 | Phase2 #1960] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Hà Nội)
+TEXT: Hà Nội nắng nóng , TPHCM triều cường đạt đỉnh # sggpnews # saigongiaiphong # sggp # dubaothoitiet # thoitiet
+NHÃN GỐC TỪ MASTER: [([6, 7], [8, 9], 'NEU')]
+
+--- [Record Master #2467 | Phase2 #1967] ---
+LÝ DO LOẠI: Tin thương mại/Quảng cáo/Bán hàng
+TEXT: Tại TP. Hồ Chí Minh , Ngập tràn xe mới cực hấp dẫn vừa cập bến ngày 29 / 9 mà anh chị không nên bỏ lỡ # toantrung # toantrunggialai # toantrungtphcm @ Em Toàn Honda @ otogialai0777262626 @ LoanNguyenXeLuot
+NHÃN GỐC TỪ MASTER: [([1, 2, 3, 4], [6], 'NEG')]
+
+--- [Record Master #2488 | Phase2 #1988] ---
+LÝ DO LOẠI: Tỉnh ngoài phạm vi (Hà Nội)
+TEXT: Hà Nội nắng nóng , TPHCM triều cường đạt đỉnh # SGGP
+NHÃN GỐC TỪ MASTER: [([6, 7], [8, 9], 'NEU')]
+
+--- [Record Master #2491 | Phase2 #1991] ---
+LÝ DO LOẠI: Không chứa địa danh/tên đường cụ thể hoặc gán sai bản chất (xe cộ, con người, cảm thán câu like)
+TEXT: Về phan thiết mưa ngập lối đi Vô sài gòn mưa tầm tả là sao 🤷 ‍ ♀ ️
+NHÃN GỐC TỪ MASTER: [([8, 9], [4], 'NEG')]
+

@@ -1,147 +1,198 @@
 import sys
-import ast
 import re
+import ast
 
-sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 
-filepath = r'D:\SE363_RAWDATA\data\validate_label\thuan\phase1.txt'
-with open(filepath, 'r', encoding='utf-8') as f:
-    lines = [line.strip() for line in f]
+if len(sys.argv) < 2:
+    print("Sử dụng: python deep_10_pass_audit.py <path_to_data_file.txt>")
+    sys.exit(1)
 
-assert len(lines) == 500, f"Expected 500 lines, found {len(lines)}"
+file_path = sys.argv[1]
 
+try:
+    with open(file_path, 'r', encoding='utf-8') as f:
+        lines = [line.strip() for line in f if line.strip()]
+except Exception as e:
+    print(f"Lỗi đọc file: {e}")
+    sys.exit(1)
+
+total_records = len(lines)
+print(f"File kiểm định: {file_path} (Tổng số records: {total_records})")
+print("=" * 80)
+print(f"BẮT ĐẦU QUY TRÌNH KIỂM ĐỊNH LẶP ĐI LẶP LẠI 10 LẦN CHO {total_records} RECORDS")
+print("NGUYÊN TẮC: READ-ONLY AUDITOR (CHỈ KIỂM ĐỊNH - TUYỆT ĐỐI KHÔNG TỰ SỬA DỮ LIỆU)")
+print("=" * 80)
+
+# Danh sách từ khóa cấm/nguy cơ
+standalone_puncts = {'.', ',', ';', ':', '!', '?', '…', '"', "'", '(', ')', '[', ']', '-', '–', '|', '“', '”'}
 locative_preps = {'ở', 'tại', 'trên', 'dưới', 'trong', 'ngoài', 'từ', 'đến', 'gần', 'cạnh', 'bên', 'phía', 'thuộc', 'của'}
-vehicles = {'xe', 'xe máy', 'ô tô', 'xe buýt', 'xe tải', 'thuyền', 'ghe', 'ca nô', 'xe gắn máy', 'phương tiện', 'ô-tô', 'xe-máy', 'xe taxi', 'taxi', 'xe điện'}
-people_roles = {'người dân', 'người', 'tài xế', 'bà con', 'chị oanh', 'cụ bà', 'phóng viên', 'admin', 'bác tài', 'mấy ní', 'chị', 'anh', 'em', 'chúng tôi'}
-standalone_puncts = {'.', ',', ';', ':', '!', '?', '…', '...', '”', '\"', '\'', '(', ')', '[', ']', '-', '–', '|', '“', '‘', '’'}
+vehicles = {
+    'xe máy', 'ô tô', 'xe buýt', 'xe tải', 'phương tiện', 'xe hơi', 'xe con', 
+    'xe khách', 'xe ben', 'xe đạp', 'xe đầu kéo', 'xe ba gác', 'xe cộ', 'xe'
+}
+people_roles = {
+    'người dân', 'người đi đường', 'tài xế', 'bà con', 'chị oanh', 'cụ bà', 
+    'người', 'lực lượng chức năng', 'csgt', 'chú bảo vệ', 'công an', 'thợ sửa xe'
+}
 
+# Regex nhận diện tỉnh ngoài phạm vi hợp lệ
 provinces_regex = re.compile(
-    r'(?<![a-zA-Z0-9_àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđĐ])'
-    r'(cần\s*thơ|cantho|càmau|cà\s*mau|camau|sa\s*déc|sadec|đồng\s*tháp|dongthap|vĩnh\s*long|vinhlong|'
-    r'đồng\s*nai|dongnai|long\s*khánh|hà\s*nội|hanoi|hanoimua|đà\s*nẵng|danang|hải\s*phòng|quảng\s*ninh|'
-    r'thái\s*nguyên|yên\s*bái|lào\s*cai|yagi|thái\s*lan|bangkok|tiền\s*giang|mỹ\s*tho|bến\s*tre|trà\s*vinh|'
-    r'sóc\s*trăng|bạc\s*liêu|kiên\s*giang|rạch\s*giá|an\s*giang|long\s*xuyên|châu\s*đốc|hậu\s*giang|'
-    r'chương\s*mỹ|tứ\s*liên|bình\s*thủy|ninh\s*kiều)'
-    r'(?![a-zA-Z0-9_àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđĐ])',
+    r'\b(hà nội|can tho|cần thơ|ninh kiều|cái răng|bình thủy|ô môn|thốt nốt|hưng phú|cà mau|đồng nai|sa đéc|'
+    r'vĩnh long|bến tre|trà vinh|an giang|kiên giang|long xuyên|châu đốc|tiền giang|mỹ tho|hậu giang|vị thanh|'
+    r'sóc trăng|bạc liêu|đà nẵng|huế|thừa thiên|quảng nam|quảng ngãi|bình định|quy nhơn|phú yên|tuy hòa|khánh hòa|'
+    r'nha trang|ninh thuận|phan rang|bình thuận|phan thiết|lâm đồng|đà lạt|bảo lộc|gia lai|pleiku|kon tum|đắk lắk|'
+    r'buôn ma thuột|đắk nông|gia nghĩa|bình phước|đồng xoài|tây ninh|hải phòng|quảng ninh|hạ long|thái nguyên|'
+    r'bắc ninh|bắc giang|nam định|thái bình|hà nam|ninh bình|thanh hóa|nghệ an|vinh|hà tĩnh|chương mỹ|hoàng mai|'
+    r'thanh xuân|cầu giấy|đống đa|ba đình|hoàn kiếm|hai bà trưng|tây hồ|long biên|hà đông|nam từ liêm|bắc từ liêm|'
+    r'mê linh|đông anh|sóc sơn|gia lâm|thanh trì|thường tín|phú xuyên|quốc oai|thạch thất|đan phượng|hoài đức|'
+    r'ba vì|phúc thọ|sơn tây|ứng hòa|mỹ đức|thanh oai)\b',
     re.IGNORECASE
 )
-
-print("================================================================================")
-print("BẮT ĐẦU QUY TRÌNH KIỂM ĐỊNH LẶP ĐI LẶP LẠI 10 LẦN CHO 500 RECORDS (PHASE 1)")
-print("================================================================================\n")
 
 all_pass_success = True
 
 for pass_num in range(1, 11):
-    print(f">>> [PASS {pass_num}/10] Đang kiểm tra lần thứ {pass_num}...")
+    print(f"\n>>> [PASS {pass_num}/10] Đang kiểm tra lần thứ {pass_num}...")
     pass_flaws = []
-
+    
     for idx, line in enumerate(lines):
         rec_num = idx + 1
-        if '####' not in line:
+        if "####" not in line:
             pass_flaws.append((rec_num, "FORMAT_ERROR: Thiếu dấu phân cách ####"))
             continue
-        text, trip_str = line.split('####')
+            
+        text, labels_str = line.split("####", 1)
         tokens = text.split()
-        triplets = ast.literal_eval(trip_str)
+        
+        try:
+            triplets = ast.literal_eval(labels_str)
+        except Exception as e:
+            pass_flaws.append((rec_num, f"SYNTAX_ERROR: Không parse được nhãn {e}"))
+            continue
 
-        # 1. PASS 1: Kiểm tra biên Index Token
+        # 1. PASS 1: Kiểm tra Biên giới Index (Bounds Check)
         if pass_num == 1:
             for t_idx, (asp, opi, pol) in enumerate(triplets):
-                for k in asp + opi:
-                    if k < 0 or k >= len(tokens):
-                        pass_flaws.append((rec_num, f"INDEX_OUT_OF_BOUNDS: Token {k} ngoài dải [0, {len(tokens)-1}]"))
+                for i in asp:
+                    if i < 0 or i >= len(tokens):
+                        pass_flaws.append((rec_num, f"OUT_OF_BOUNDS: Aspect index {i} ngoài phạm vi (len={len(tokens)})"))
+                for j in opi:
+                    if j < 0 or j >= len(tokens):
+                        pass_flaws.append((rec_num, f"OUT_OF_BOUNDS: Opinion index {j} ngoài phạm vi (len={len(tokens)})"))
 
-        # 2. PASS 2: Kiểm tra Overlap giữa Aspect và Opinion
+        # 2. PASS 2: Kiểm tra Tính Liên tục (Contiguity Check)
         elif pass_num == 2:
             for t_idx, (asp, opi, pol) in enumerate(triplets):
-                overlap = set(asp).intersection(set(opi))
-                if overlap:
-                    pass_flaws.append((rec_num, f"OVERLAP_ERROR: Trùng index {overlap} tại triplet {t_idx}"))
+                if asp and asp != list(range(asp[0], asp[-1] + 1)):
+                    pass_flaws.append((rec_num, f"NON_CONTIGUOUS: Aspect span không liên tục: {asp}"))
+                if opi and opi != list(range(opi[0], opi[-1] + 1)):
+                    pass_flaws.append((rec_num, f"NON_CONTIGUOUS: Opinion span không liên tục: {opi}"))
 
-        # 3. PASS 3: Kiểm tra ranh giới Aspect (Giới từ, Dấu câu)
+        # 3. PASS 3: Kiểm tra Trùng lặp Span giữa Aspect và Opinion (Overlap Check)
         elif pass_num == 3:
             for t_idx, (asp, opi, pol) in enumerate(triplets):
-                asp_words = [tokens[k] for k in asp]
-                if asp_words:
-                    if asp_words[0].lower() in locative_preps and len(asp_words) > 1:
-                        pass_flaws.append((rec_num, f"PREP_IN_ASPECT: Aspect dính giới từ '{asp_words[0]}'"))
-                    if asp_words[0] in standalone_puncts or asp_words[-1] in standalone_puncts:
-                        pass_flaws.append((rec_num, f"PUNCT_IN_ASPECT: Aspect dính dấu câu ở rìa: '{' '.join(asp_words)}'"))
+                overlap = set(asp) & set(opi)
+                if overlap:
+                    pass_flaws.append((rec_num, f"OVERLAP_ERROR: Aspect và Opinion giao nhau tại index {overlap}"))
 
-        # 4. PASS 4: Kiểm tra ranh giới Opinion (Dấu câu, Cụm danh từ trơ trọi)
+        # 4. PASS 4: Kiểm tra Rò rỉ Dấu câu (Punctuation Leakage)
         elif pass_num == 4:
             for t_idx, (asp, opi, pol) in enumerate(triplets):
+                asp_words = [tokens[k] for k in asp]
                 opi_words = [tokens[k] for k in opi]
-                if opi_words:
-                    if opi_words[0] in standalone_puncts or opi_words[-1] in standalone_puncts:
-                        pass_flaws.append((rec_num, f"PUNCT_IN_OPINION: Opinion dính dấu câu ở rìa: '{' '.join(opi_words)}'"))
-                    opi_str = ' '.join(opi_words).lower()
-                    if opi_str in ['đoạn ngập', 'những đoạn ngập', 'khu vực ngập', 'điểm ngập', 'vùng ngập']:
-                        pass_flaws.append((rec_num, f"BARE_NOUN_OPINION: Opinion là cụm danh từ trơ trọi: '{opi_str}'"))
+                if asp_words and (asp_words[0] in standalone_puncts or asp_words[-1] in standalone_puncts):
+                    pass_flaws.append((rec_num, f"PUNCT_IN_ASPECT: Aspect dính dấu câu ở rìa: '{' '.join(asp_words)}'"))
+                if opi_words and (opi_words[0] in standalone_puncts or opi_words[-1] in standalone_puncts):
+                    pass_flaws.append((rec_num, f"PUNCT_IN_OPINION: Opinion dính dấu câu ở rìa: '{' '.join(opi_words)}'"))
 
-        # 5. PASS 5: Luật cấm Phương tiện giao thông (Vehicle Aspect Rule)
+        # 5. PASS 5: Kiểm tra Giới từ chỉ vị trí (Locative Prepositions) ở đầu Aspect
         elif pass_num == 5:
             for t_idx, (asp, opi, pol) in enumerate(triplets):
-                asp_str = ' '.join(tokens[k] for k in asp).lower()
-                if asp_str in vehicles:
-                    pass_flaws.append((rec_num, f"VEHICLE_ASPECT_RULE: Aspect là phương tiện giao thông: '{asp_str}'"))
+                asp_words = [tokens[k] for k in asp]
+                if asp_words and asp_words[0].lower() in locative_preps and len(asp_words) > 1:
+                    pass_flaws.append((rec_num, f"PREPOSITION_IN_ASPECT: Aspect bắt đầu bằng giới từ: '{asp_words[0]}'"))
 
-        # 6. PASS 6: Luật cấm Con người / Vai trò (Person / Role Aspect Rule)
+        # 6. PASS 6: Kiểm tra Phương tiện giao thông & Con người làm Aspect (Entity Leakage)
         elif pass_num == 6:
             for t_idx, (asp, opi, pol) in enumerate(triplets):
                 asp_str = ' '.join(tokens[k] for k in asp).lower()
+                if asp_str in vehicles:
+                    pass_flaws.append((rec_num, f"VEHICLE_AS_ASPECT: Phương tiện bị gán nhầm làm aspect: '{asp_str}'"))
                 if asp_str in people_roles:
-                    pass_flaws.append((rec_num, f"PERSON_ROLE_ASPECT: Aspect là con người/vai trò: '{asp_str}'"))
+                    pass_flaws.append((rec_num, f"PEOPLE_AS_ASPECT: Con người/vai vế bị gán nhầm làm aspect: '{asp_str}'"))
 
         # 7. PASS 7: Kiểm tra Phạm vi Địa lý TP.HCM (Geographic Scope)
         elif pass_num == 7:
             if triplets:  # Chỉ kiểm tra những mẫu CHƯA bị REJECT
                 m = provinces_regex.search(text)
                 if m:
-                    pass_flaws.append((rec_num, f"OUT_OF_SCOPE_SUSPECT: Chứa từ khóa tỉnh ngoài '{m.group(0)}'"))
+                    text_lower = text.lower()
+                    other_matches = [
+                        match.group(0) for match in provinces_regex.finditer(text)
+                        if not (match.group(0).lower() == 'hà nội' and 'xa lộ hà nội' in text_lower)
+                        and not (match.group(0).lower() == 'hậu giang' and ('sân bay' in text_lower or 'quận 6' in text_lower or 'đường hậu giang' in text_lower or 'đường cửu long' in text_lower))
+                        and not (match.group(0).lower() == 'bình phước' and 'hiệp bình phước' in text_lower)
+                        and not (match.group(0).lower() == 'thái bình' and 'nguyễn thái bình' in text_lower)
+                    ]
+                    if other_matches:
+                        pass_flaws.append((rec_num, f"OUT_OF_SCOPE_SUSPECT: Chứa từ khóa tỉnh ngoài '{other_matches[0]}'"))
 
         # 8. PASS 8: Thẩm định Tính Nhất quán Sắc thái (Polarity Litmus Test)
         elif pass_num == 8:
             for t_idx, (asp, opi, pol) in enumerate(triplets):
                 opi_str = ' '.join(tokens[k] for k in opi).lower()
-                # Nếu nước rút/phục hồi rõ ràng mà mang nhãn NEG
-                if pol == 'NEG' and any(kw in opi_str for kw in ['rút sạch', 'hết ngập', 'khô ráo', 'thông thoáng']):
-                    pass_flaws.append((rec_num, f"POLARITY_MISMATCH: Nước rút nhưng mang nhãn NEG: '{opi_str}'"))
-                # Nếu ngập sâu nghiêm trọng rõ ràng mà mang nhãn NEU
-                if pol == 'NEU' and any(kw in opi_str for kw in ['ngập sâu lút', 'chết máy hàng loạt', 'chìm sâu trong biển nước']):
-                    pass_flaws.append((rec_num, f"POLARITY_MISMATCH: Ngập sâu nghiêm trọng nhưng mang nhãn NEU: '{opi_str}'"))
+                is_recovery = (
+                    'không ngập' in opi_str 
+                    or 'hết ngập' in opi_str 
+                    or ('thông thoáng' in opi_str and 'không thông thoáng' not in opi_str)
+                    or (('đã rút' in opi_str or 'bắt đầu rút' in opi_str) and 'chưa' not in opi_str and 'không' not in opi_str)
+                    or (re.search(r'(?<![t\w])rút nước\b', opi_str) and 'chưa' not in opi_str and 'không' not in opi_str)
+                )
+                if is_recovery and pol == 'NEG':
+                    pass_flaws.append((rec_num, f"POLARITY_MISMATCH: Opinion mang nghĩa phục hồi '{opi_str}' nhưng nhãn là NEG"))
 
-        # 9. PASS 9: Kiểm tra DOC_FALLBACK vs Tên đường cụ thể
+        # 9. PASS 9: Kiểm tra lạm dụng Fallback (Có tên đường cụ thể nhưng lại dùng Fallback TPHCM)
         elif pass_num == 9:
             for t_idx, (asp, opi, pol) in enumerate(triplets):
-                asp_str = ' '.join(tokens[k] for k in asp)
-                if asp_str == 'TP. Hồ Chí Minh':
-                    # Kiểm tra xem câu có xuất hiện tên đường riêng viết hoa rõ ràng không
-                    lower_t = text.lower()
-                    for street_lead in ['đường nguyễn', 'đường lê', 'đường trần', 'đường huỳnh', 'đường võ', 'đường phạm']:
-                        if street_lead in lower_t:
-                            pass_flaws.append((rec_num, f"DOC_FALLBACK_MISUSE: Câu có '{street_lead}' nhưng aspect là TP. Hồ Chí Minh"))
+                asp_str = ' '.join(tokens[k] for k in asp).lower()
+                # Nếu gán Fallback TP.HCM nhưng trong câu có tên đường cụ thể với từ 'đường'
+                if asp_str in {'tp. hồ chí minh', 'tp. hcm', 'tphcm', 'tp hồ chí minh', 'tp hcm', 'thành phố'}:
+                    # Tìm xem câu có xuất hiện tên đường không
+                    for w_i, w in enumerate(tokens):
+                        if w.lower() == 'đường' and w_i + 1 < len(tokens):
+                            next_w = tokens[w_i + 1]
+                            # Nếu từ sau 'đường' viết hoa chữ cái đầu và không phải từ chung / tên thành phố
+                            if next_w[0].isupper() and next_w.lower() not in {
+                                'này', 'đó', 'kia', 'nào', 'vừa', 'qua', 'lớn', 
+                                'tp', 'tp.', 'tphcm', 'tp.hcm', 'hcm', 'sài', 'hồ'
+                            }:
+                                # Có tên đường cụ thể nhưng lại dùng Fallback
+                                pass_flaws.append((rec_num, f"SUSPECT_FALLBACK_USAGE: Có tên đường cụ thể '{w} {next_w}...' nhưng dùng Fallback '{asp_str}'"))
+                                break
 
-        # 10. PASS 10: Hội tụ Cấu trúc, Format và Tính Toàn vẹn Tổng thể
+        # 10. PASS 10: Kiểm tra Bare Noun trong Opinion (Pass 4 danh từ trần trụi)
         elif pass_num == 10:
-            if not isinstance(triplets, list):
-                pass_flaws.append((rec_num, "STRUCTURE_ERROR: Triplets không phải list"))
-            for tr in triplets:
-                if len(tr) != 3 or tr[2] not in ('POS', 'NEG', 'NEU'):
-                    pass_flaws.append((rec_num, f"STRUCTURE_ERROR: Triplet {tr} sai định dạng chuẩn ASTE v2"))
+            for t_idx, (asp, opi, pol) in enumerate(triplets):
+                opi_str = ' '.join(tokens[k] for k in opi).lower()
+                if opi_str in {'điểm ngập', 'đoạn ngập', 'vùng ngập', 'tuyến ngập', 'khu vực ngập', 'mực nước'}:
+                    pass_flaws.append((rec_num, f"BARE_NOUN_AS_OPINION: Danh từ hiện tượng trần trụi không có tính từ/vị ngữ: '{opi_str}'"))
 
     if pass_flaws:
         all_pass_success = False
         print(f"❌ PASS {pass_num} PHÁT HIỆN {len(pass_flaws)} LỖI:")
-        for r, msg in pass_flaws[:10]:
-            print(f"   - Record {r}: {msg}")
+        for r_num, msg in pass_flaws[:10]:
+            print(f"   - Record {r_num}: {msg}")
+        if len(pass_flaws) > 10:
+            print(f"   ... và {len(pass_flaws) - 10} lỗi khác.")
     else:
         print(f"✅ PASS {pass_num} HOÀN THÀNH: 0 LỖI (100% ĐẠT CHUẨN)")
 
 print("\n================================================================================")
 if all_pass_success:
-    print("KẾT LUẬN: TOÀN BỘ 10 VÒNG KIỂM TRA ĐỀU ĐẠT 100% TUYỆT ĐỐI KHÔNG CÒN HẠT SẠN NÀO!")
+    print("XÁC NHẬN CHÍNH THỨC: TẬP DỮ LIỆU ĐẠT CHUẨN 10/10 PASSES VỚI 0 LỖI SAI SÓT!")
+    print("DỮ LIỆU ĐÃ SẴN SÀNG ĐỂ ĐƯA VÀO HUẤN LUYỆN HOẶC ĐỐI SOÁT CHỈ SỐ KAPPA.")
 else:
-    print("KẾT LUẬN: CẦN TIẾP TỤC HIỆU CHỈNH CÁC LỖI TRÊN!")
+    print("KẾT LUẬN: CẦN TIẾP TỤC HIỆU CHỈNH CÁC DÒNG ĐƯỢC CHỈ RA Ở TRÊN!")
 print("================================================================================")

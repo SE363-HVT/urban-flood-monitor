@@ -967,5 +967,197 @@
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "nội bộ": {
+    "matched_keyword": "nội bộ",
+    "display_name": "Đường Nội Bộ",
+    "ward": "Phường Hòa Hưng",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7744,
+    "lon": 106.6712,
+    "heat_points": [
+      [
+        10.7744,
+        106.6712
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "phan thúc duyện": {
+    "matched_keyword": "Phan Thúc Duyện",
+    "display_name": "Đường Phan Thúc Duyện",
+    "ward": "Phường Tân Sơn Nhất",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.8054,
+    "lon": 106.6585,
+    "heat_points": [
+      [
+        10.8054,
+        106.6585
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "trẻ em": {
+    "matched_keyword": "trẻ em",
+    "display_name": "Đường Trẻ Em",
+    "ward": "Phường An Hội Tây",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.8409,
+    "lon": 106.645,
+    "heat_points": [
+      [
+        10.8409,
+        106.645
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "hạ tầng": {
+    "matched_keyword": "hạ tầng",
+    "display_name": "Đường Hạ Tầng",
+    "ward": "Phường Tăng Nhơn Phú",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.8332,
+    "lon": 106.7899,
+    "heat_points": [
+      [
+        10.8332,
+        106.7899
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "doanh nghiệp": {
+    "matched_keyword": "doanh nghiệp",
+    "display_name": "Đường Doanh Nghiệp",
+    "ward": "Phường Tân Hưng",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7232,
+    "lon": 106.7219,
+    "heat_points": [
+      [
+        10.7232,
+        106.7219
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "lý chính thắng": {
+    "matched_keyword": "Lý Chính Thắng",
+    "display_name": "Đường Lý Chính Thắng",
+    "ward": "Phường Xuân Hòa",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7865,
+    "lon": 106.6846,
+    "heat_points": [
+      [
+        10.7865,
+        106.6846
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "cao tốc": {
+    "matched_keyword": "cao tốc",
+    "display_name": "Đường Cao Tốc",
+    "ward": "Phường Long Trường",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7953,
+    "lon": 106.797,
+    "heat_points": [
+      [
+        10.7953,
+        106.797
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "trường chinh": {
+    "matched_keyword": "Trường Chinh",
+    "display_name": "Đường Trường Chinh",
+    "ward": "Phường Tây Thạnh",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.8049,
+    "lon": 106.6354,
+    "heat_points": [
+      [
+        10.8049,
+        106.6354
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "sông lu": {
+    "matched_keyword": "Sông Lu",
+    "display_name": "Đường Sông Lu",
+    "ward": "Xã Bình Mỹ",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.9876,
+    "lon": 106.6063,
+    "heat_points": [
+      [
+        10.9876,
+        106.6063
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "thới an 17a": {
+    "matched_keyword": "Thới An 17A",
+    "display_name": "Đường Thới An 17A",
+    "ward": "Phường Thới An",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.8586,
+    "lon": 106.6606,
+    "heat_points": [
+      [
+        10.8586,
+        106.6606
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "hư hỏng": {
+    "matched_keyword": "hư hỏng",
+    "display_name": "Đường Hư Hỏng",
+    "ward": "Phường Bàn Cờ",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7705,
+    "lon": 106.6848,
+    "heat_points": [
+      [
+        10.7705,
+        106.6848
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "nguyễn duy": {
+    "matched_keyword": "Nguyễn Duy",
+    "display_name": "Đường Nguyễn Duy",
+    "ward": "Phường Chánh Hưng",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7463,
+    "lon": 106.6747,
+    "heat_points": [
+      [
+        10.7463,
+        106.6747
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
   }
 }
