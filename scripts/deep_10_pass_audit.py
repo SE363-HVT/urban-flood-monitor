@@ -131,7 +131,7 @@ for pass_num in range(1, 11):
                     text_lower = text.lower()
                     other_matches = [
                         match.group(0) for match in provinces_regex.finditer(text)
-                        if not (match.group(0).lower() == 'hà nội' and 'xa lộ hà nội' in text_lower)
+                        if not (match.group(0).lower() == 'hà nội' and ('xa lộ hà nội' in text_lower or 'triều cường ở tphcm' in text_lower))
                         and not (match.group(0).lower() == 'hậu giang' and ('sân bay' in text_lower or 'quận 6' in text_lower or 'đường hậu giang' in text_lower or 'đường cửu long' in text_lower))
                         and not (match.group(0).lower() == 'bình phước' and 'hiệp bình phước' in text_lower)
                         and not (match.group(0).lower() == 'thái bình' and 'nguyễn thái bình' in text_lower)
@@ -145,7 +145,7 @@ for pass_num in range(1, 11):
                 opi_str = ' '.join(tokens[k] for k in opi).lower()
                 is_recovery = (
                     'không ngập' in opi_str 
-                    or 'hết ngập' in opi_str 
+                    or ('hết ngập' in opi_str and 'chưa' not in opi_str and 'không' not in opi_str) 
                     or ('thông thoáng' in opi_str and 'không thông thoáng' not in opi_str)
                     or (('đã rút' in opi_str or 'bắt đầu rút' in opi_str) and 'chưa' not in opi_str and 'không' not in opi_str)
                     or (re.search(r'(?<![t\w])rút nước\b', opi_str) and 'chưa' not in opi_str and 'không' not in opi_str)
@@ -166,7 +166,8 @@ for pass_num in range(1, 11):
                             # Nếu từ sau 'đường' viết hoa chữ cái đầu và không phải từ chung / tên thành phố
                             if next_w[0].isupper() and next_w.lower() not in {
                                 'này', 'đó', 'kia', 'nào', 'vừa', 'qua', 'lớn', 
-                                'tp', 'tp.', 'tphcm', 'tp.hcm', 'hcm', 'sài', 'hồ'
+                                'tp', 'tp.', 'tphcm', 'tp.hcm', 'hcm', 'sài', 'hồ',
+                                'ngập', 'phố', 'xá', 'hóa', 'thành', 'biến'
                             }:
                                 # Có tên đường cụ thể nhưng lại dùng Fallback
                                 pass_flaws.append((rec_num, f"SUSPECT_FALLBACK_USAGE: Có tên đường cụ thể '{w} {next_w}...' nhưng dùng Fallback '{asp_str}'"))
