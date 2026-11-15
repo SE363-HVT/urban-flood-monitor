@@ -3,6 +3,7 @@
 pipeline/tiktok_poller.py - Thu thập dữ liệu video TikTok thời gian thực
 Hỗ trợ cả chế độ:
 - LIVE: Cào TikTok thật bằng cơ chế Video Search Queries + Hashtags bản địa qua Apify.
+        Tích hợp Smart Key Rotation qua ApifyPoolManager.
         Tối ưu số lượng truy vấn để cào nhanh (~60-90s), tránh nguy cơ timeout 300s.
 - SIMULATION: Phát lại dữ liệu mô phỏng từ file dataset sạch (100% TP.HCM).
 """
@@ -37,20 +38,32 @@ class TikTokPoller:
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
         Cào TikTok thật bằng cơ chế Video Search Queries + Hashtags bản địa:
+        - Tự động lấy active token từ ApifyPoolManager (với cơ chế Failover khi hết hạn mức).
         - Tối ưu 3 câu query trọng điểm + 3 hashtag thịnh hành (hoàn thành ~60-90s, an toàn dưới timeout 300s).
         - Thu thập và xử lý video về ngập lụt, mưa lớn, triều cường tại TP.HCM.
         """
-        if not self.apify_token:
-            raise ValueError("Chưa cấu hình APIFY_TOKEN. Vui lòng cung cấp token trong core/config.py.")
+        pool_mgr = None
+        active_token = self.apify_token
+        try:
+            from core.apify_pool import ApifyPoolManager, mask_token
+            pool_mgr = ApifyPoolManager.get_instance()
+            if not active_token or active_token == APIFY_TOKEN:
+                active_token = pool_mgr.get_active_token()
+        except Exception:
+            pool_mgr = None
+
+        if not active_token:
+            raise ValueError("Chưa cấu hình APIFY_TOKEN. Vui lòng cung cấp token trong core/config.py hoặc Apify Pool.")
 
         target_hashtags = hashtags or DEFAULT_HASHTAGS
         target_queries = search_queries or DEFAULT_SEARCH_QUERIES
 
-        print(f"\n[Apify Live] Đang gửi yêu cầu cào Video TikTok (Hybrid Tối Ưu: Search Queries + Hashtags)...")
+        masked_disp = active_token[:12] + "..." + active_token[-4:] if len(active_token) >= 16 else active_token
+        print(f"\n[Apify Live] Đang gửi yêu cầu cào Video TikTok qua Apify Key ({masked_disp})...")
         print(f"[Apify Live] Từ khóa điểm nóng TP.HCM ({len(target_queries)} queries): {target_queries}...")
         print(f"[Apify Live] Danh sách Hashtags ({len(target_hashtags)} tags): {target_hashtags}...")
 
-        url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs?token={self.apify_token}"
+        url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs?token={active_token}"
         # Giới hạn 10 kết quả mỗi trang để cân bằng giữa độ phủ tin tức và tốc độ hoàn thành (~60-90s)
         run_input = {
             "searchQueries": target_queries,
@@ -66,6 +79,13 @@ class TikTokPoller:
             if resp.status_code == 429:
                 print("[Apify Live] ⚠️ Apify TikTok Actor đạt giới hạn tần suất (Rate Limit). Bỏ qua TikTok đợt này.")
                 return [], {"status": "rate_limited", "tiktok_count": 0}
+            if resp.status_code in [401, 402]:
+                err_label = "Hết hạn mức $5 (HTTP 402 Quota Exceeded)" if resp.status_code == 402 else "Token không hợp lệ (HTTP 401)"
+                print(f"[Apify Live] ⚠️ Apify TikTok gặp lỗi: {err_label} đối với key {masked_disp}!")
+                if pool_mgr:
+                    pool_mgr.mark_exhausted(active_token, reason=err_label)
+                return [], {"status": "exhausted", "error": err_label, "tiktok_count": 0}
+
             resp.raise_for_status()
             run_data = resp.json().get("data", {})
             run_id = run_data.get("id")
@@ -74,7 +94,7 @@ class TikTokPoller:
             print(f"[Apify Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
 
             # 2. Chờ Actor hoàn thành (tối đa 360 giây)
-            poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
+            poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={active_token}"
             status = "RUNNING"
             for _ in range(180):
                 time.sleep(2.0)
@@ -91,7 +111,7 @@ class TikTokPoller:
                 return [], {"status": status, "tiktok_count": 0}
 
             # 3. Lấy dữ liệu từ Dataset
-            items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={self.apify_token}"
+            items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={active_token}"
             items_resp = requests.get(items_url, timeout=30)
             items_resp.raise_for_status()
             raw_items = items_resp.json()

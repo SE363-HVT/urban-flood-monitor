@@ -2,7 +2,8 @@
 """
 pipeline/facebook_poller.py
 Thu thập và xử lý bài đăng ngập lụt từ Facebook thông qua Apify REST API
-sử dụng Actor scraper_one~facebook-posts-search (hoặc simulation dataset tĩnh).
+sử dụng Actor danek~facebook-search-ppr (hoặc simulation dataset tĩnh).
+Tích hợp Smart Key Rotation qua ApifyPoolManager.
 Tối ưu hóa:
 - Lọc rác quảng cáo, bất động sản, xe cộ, từ ngữ ẩn dụ ("ngập tràn", "tràn ngập").
 - Lọc bài đăng chỉ giữ lại bài có thời gian thực tế <= 24 giờ (loại bỏ fallback gán thời gian hiện tại).
@@ -163,19 +164,32 @@ class FacebookPoller:
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
         Cào trực tiếp các bài đăng ngập lụt từ Facebook thông qua Apify REST API.
+        - Tự động lấy active token từ ApifyPoolManager (với cơ chế Failover khi hết hạn mức).
         """
-        if not self.apify_token:
-            raise ValueError("Chưa cấu hình APIFY_TOKEN trong core/config.py.")
+        pool_mgr = None
+        active_token = self.apify_token
+        try:
+            from core.apify_pool import ApifyPoolManager, mask_token
+            pool_mgr = ApifyPoolManager.get_instance()
+            if not active_token or active_token == APIFY_TOKEN:
+                active_token = pool_mgr.get_active_token()
+        except Exception:
+            pool_mgr = None
+
+        if not active_token:
+            raise ValueError("Chưa cấu hình APIFY_TOKEN trong core/config.py hoặc Apify Pool.")
 
         queries = search_queries or FB_SEARCH_QUERIES
         target_locations = FB_SEARCH_LOCATIONS
-        print(f"\n[Facebook Live] Bắt đầu cào thời gian thực từ Facebook...")
+
+        masked_disp = active_token[:12] + "..." + active_token[-4:] if len(active_token) >= 16 else active_token
+        print(f"\n[Facebook Live] Bắt đầu cào thời gian thực từ Facebook qua Apify Key ({masked_disp})...")
         print(f"[Facebook Live] Truy vấn tìm kiếm ({len(queries)}): {queries[:3]}...")
 
         # Hỗ trợ Actor danek~facebook-search-ppr (ổn định, có recent_posts) và fallback
         query_str = " OR ".join(queries[:3]) if isinstance(queries, list) else str(queries)
 
-        url = f"https://api.apify.com/v2/acts/{FB_ACTOR_ID}/runs?token={self.apify_token}"
+        url = f"https://api.apify.com/v2/acts/{FB_ACTOR_ID}/runs?token={active_token}"
         if "danek" in str(FB_ACTOR_ID):
             run_input = {
                 "query": query_str,
@@ -197,6 +211,13 @@ class FacebookPoller:
             if resp.status_code == 429:
                 print("[Facebook Live] ⚠️ Apify Facebook Actor đạt giới hạn tần suất (Rate Limit). Bỏ qua Facebook đợt này.")
                 return [], {"status": "rate_limited", "facebook_count": 0}
+            if resp.status_code in [401, 402]:
+                err_label = "Hết hạn mức $5 (HTTP 402 Quota Exceeded)" if resp.status_code == 402 else "Token không hợp lệ (HTTP 401)"
+                print(f"[Facebook Live] ⚠️ Apify Facebook gặp lỗi: {err_label} đối với key {masked_disp}!")
+                if pool_mgr:
+                    pool_mgr.mark_exhausted(active_token, reason=err_label)
+                return [], {"status": "exhausted", "error": err_label, "facebook_count": 0}
+
             resp.raise_for_status()
             run_data = resp.json().get("data", {})
             run_id = run_data.get("id")
@@ -204,7 +225,7 @@ class FacebookPoller:
 
             print(f"[Facebook Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
 
-            poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={self.apify_token}"
+            poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={active_token}"
             status = "RUNNING"
             for _ in range(90):
                 time.sleep(2.0)
@@ -220,7 +241,7 @@ class FacebookPoller:
                 print(f"[Facebook Live] ⚠️ Facebook Actor dừng với trạng thái: {status}.")
                 return [], {"status": status, "facebook_count": 0}
 
-            items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={self.apify_token}"
+            items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={active_token}"
             items_resp = requests.get(items_url, timeout=30)
             items_resp.raise_for_status()
             raw_items = items_resp.json()
@@ -248,125 +269,95 @@ class FacebookPoller:
         for raw in raw_items:
             post_id = str(raw.get("post_id") or raw.get("id") or raw.get("postId") or "")
             text = raw.get("message") or raw.get("message_rich") or raw.get("postText") or raw.get("text") or raw.get("caption") or raw.get("content") or ""
-            if not text and raw.get("album_preview"):
-                for alb in raw.get("album_preview", []):
-                    if alb.get("caption"):
-                        text += " " + alb["caption"]
-            cleaned = clean_stream_text(text)
-            if not cleaned or len(cleaned) < 15:
+            text = clean_stream_text(text)
+
+            if not text or len(text) < 15:
                 continue
 
-            low_text = cleaned.lower()
-
-            # 1. Lọc tuyệt đối quảng cáo, bất động sản, vé máy bay, buffet, hotel
-            if any(spam in low_text for spam in STRICT_SPAM_KEYWORDS):
+            # Kiểm tra từ khóa rác & spam quảng cáo
+            text_lower = text.lower()
+            if any(spam_word in text_lower for spam_word in STRICT_SPAM_KEYWORDS):
                 continue
 
-            # 2. Xử lý từ ẩn dụ "ngập tràn", "tràn ngập": Chỉ hợp lệ nếu có ngữ cảnh ngập nước/mưa lụt thật
-            if "ngập tràn" in low_text or "tràn ngập" in low_text:
-                if not any(term in low_text for term in DIRECT_FLOOD_TERMS):
-                    continue
-
-            # 3. Phải chứa ít nhất 1 từ khóa ngập lụt
-            if not any(k in low_text for k in FLOOD_INTENT_KEYWORDS):
+            # Kiểm tra ý định ngập lụt
+            has_direct_flood = any(term in text_lower for term in DIRECT_FLOOD_TERMS)
+            has_intent_flood = any(term in text_lower for term in FLOOD_INTENT_KEYWORDS)
+            if not has_direct_flood and not has_intent_flood:
                 continue
 
-            # 4. Trích xuất thời gian thực tế - Bắt buộc phải có ngày giờ và <= 24 giờ
-            raw_time = raw.get("time") or raw.get("date") or raw.get("timestamp") or raw.get("created_time")
-            created_time = parse_facebook_timestamp(raw_time)
-            if not created_time:
-                # Loại bỏ bài không có timestamp thực tế
+            # Khử trùng lặp nội dung
+            text_sig = text[:40].strip().lower()
+            if text_sig in seen_texts:
+                continue
+            seen_texts.add(text_sig)
+
+            # Chuẩn hóa thời gian thực tế của bài viết
+            raw_time_field = raw.get("time") or raw.get("created_time") or raw.get("timestamp") or raw.get("date")
+            post_timestamp = parse_facebook_timestamp(raw_time_field)
+            if not post_timestamp:
                 continue
 
-            age_seconds = max(0, current_time - created_time)
-            if age_seconds > 86400:
-                # Loại bỏ bài cũ quá 24 giờ
+            # Lọc nghiêm ngặt: Chỉ nhận bài đăng trong vòng 24 giờ qua
+            if post_timestamp < cutoff_24h:
                 continue
 
-            # Chống trùng lặp nội dung
-            text_key = cleaned[:40].strip()
-            if text_key in seen_texts:
-                continue
-            seen_texts.add(text_key)
-
-            # Khớp địa danh TP.HCM qua Gazetteer
-            location_info = match_hotspot(cleaned)
-            if not location_info:
+            # Định vị địa lý
+            location = match_hotspot(text)
+            if not location or not location.get("street"):
                 continue
 
-            raw_street = location_info.get("street") or ""
-            ward = location_info.get("ward") or "TP.HCM"
-            district = location_info.get("district") or "TP.HCM"
+            # Phân tích mức độ nghiêm trọng
+            severity, triplets = analyze_severity_heuristic(text)
 
+            # Trích xuất hình ảnh / video
             media_urls = extract_facebook_media_urls(raw)
-            media_type = "video" if raw.get("videoUrl") or raw.get("isVideo") else ("image" if media_urls else "none")
 
-            author_data = raw.get("author")
-            author_name = (
-                author_data.get("name") if isinstance(author_data, dict)
-                else (raw.get("author_title") or raw.get("authorName") or raw.get("pageName") or "Người dân TP.HCM")
-            )
-            source_page = raw.get("pageName") or "Facebook Post"
-
-            canonical_id = f"fb_{post_id}" if post_id else f"fb_{hash(cleaned)}"
+            author = raw.get("author") or raw.get("user") or {}
+            author_name = author.get("name") if isinstance(author, dict) else str(author)
+            post_url = raw.get("url") or raw.get("post_url") or f"https://www.facebook.com/{post_id}"
 
             event = {
-                "id": canonical_id,
-                "canonical_id": canonical_id,
+                "id": f"fb_{post_id}" if post_id else f"fb_{int(post_timestamp)}",
                 "platform": "facebook",
-                "create_time": created_time,
-                "historical_timestamp": created_time,
-                "text": cleaned,
-                "clean_text": cleaned,
-                "aspect": raw_street or ward,
-                "opinion": "ngập nước",
-                "polarity": "negative",
-                "confidence": 0.88,
-                "severity": analyze_severity_heuristic(cleaned),
-                "location": {
-                    "street": raw_street,
-                    "ward": ward,
-                    "district": district,
-                    "lat": location_info["lat"],
-                    "lon": location_info["lon"],
-                    "display_name": location_info.get("display_name", f"{raw_street}, {ward}")
-                },
-                "media_type": media_type,
+                "author": author_name or "Cộng đồng Facebook",
+                "text": text,
+                "create_time": post_timestamp,
+                "timestamp": post_timestamp,
+                "relative_time": format_relative_time(post_timestamp, current_time),
+                "location": location,
+                "lat": location.get("lat"),
+                "lon": location.get("lon"),
+                "severity": severity,
+                "triplets": triplets,
                 "media_urls": media_urls,
-                "author": author_name,
-                "source_page": source_page,
-                "likes": int(raw.get("likesCount") or raw.get("reactionsCount") or 0),
-                "comments": int(raw.get("commentsCount") or 0),
-                "shares": int(raw.get("sharesCount") or 0),
-                "url": raw.get("url") or raw.get("postUrl") or "https://www.facebook.com",
-                "weight": 2.2
+                "url": post_url,
+                "crawler_source": "apify_facebook"
             }
 
-            # Phân tầng chuẩn 3 mức độ tươi trong 24 giờ
+            age_seconds = max(0, current_time - post_timestamp)
             if age_seconds <= 7200:
                 event["freshness"] = "strict_2h"
                 event["status_tag"] = "🔴 ĐANG DIỄN RA (< 2 GIỜ)"
-                event["weight"] *= 1.3
+                event["weight"] = 2.6
                 events_window.append(event)
             elif age_seconds <= 14400:
                 event["freshness"] = "recent_4h"
                 event["status_tag"] = "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)"
-                event["weight"] *= 1.1
+                event["weight"] = 2.2
                 events_24h.append(event)
             else:
                 event["freshness"] = "within_24h"
                 event["status_tag"] = "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)"
-                event["weight"] *= 1.0
+                event["weight"] = 2.0
                 events_24h.append(event)
 
             if post_id:
-                self.state_manager.mark_seen(f"fb_{post_id}", created_time)
+                self.state_manager.mark_seen(f"fb_{post_id}", post_timestamp)
 
         self.state_manager.save()
 
-        # Chế độ Live Mode nghiêm ngặt: Giữ đúng 24 giờ qua (3 tầng độ tươi)
         display_events = events_window + events_24h
-        win_label = "24 giờ qua (3 tầng cảnh báo: <2h, 2-4h, 4-24h)"
+        win_label = "24 giờ qua (Facebook Live Stream)"
         if not display_events:
             win_label = f"{win_label} (Không có ngập mới)"
 
@@ -382,15 +373,20 @@ class FacebookPoller:
             "total_crawled": len(raw_items),
             "events_window": len(events_window),
             "total_events_displayed": len(display_events),
+            "facebook_count": len(display_events),
             "active_window": win_label
         }
         return display_events, stats
 
     def poll_simulation(
         self,
+        file_path: Optional[str] = None,
         window_minutes: int = DEFAULT_WINDOW_MINUTES,
         batch_size: int = 15
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
-        """Phát lại dữ liệu mô phỏng bài đăng Facebook từ kho dữ liệu sạch."""
+        """
+        Phát lại dòng bài đăng Facebook mô phỏng từ kho dữ liệu sạch:
+        data/processed/hcmc_flood_annotated_v1.json (100% trong TP.HCM).
+        """
         replayer = SimulationReplayer.get_instance()
         return replayer.poll(batch_size=batch_size, platform_filter="facebook")

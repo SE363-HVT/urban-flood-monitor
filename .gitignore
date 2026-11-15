@@ -68,3 +68,5 @@ data/extracted_frames/live_run_test/
 
 data/buffer_*.jsonl
 data/lakehouse/
+data/apify_token_pool.json
+data/apify_token_pool.json.tmp

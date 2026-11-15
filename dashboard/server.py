@@ -878,6 +878,21 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(body)
             return
 
+        elif self.path.startswith("/api/apify-pool/status") or self.path == "/api/apify-pool":
+            from core.apify_pool import ApifyPoolManager
+            pool_mgr = ApifyPoolManager.get_instance()
+            data = pool_mgr.get_pool_status(mask_tokens=True)
+            body = json.dumps(data, ensure_ascii=False).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Connection", "close")
+            self.end_headers()
+            self.wfile.write(body)
+            return
+
         else:
             super().do_GET()
 
@@ -1071,13 +1086,82 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(res)
             return
 
+        elif self.path.startswith("/api/apify-pool/"):
+            action = self.path.replace("/api/apify-pool/", "").split("?")[0].strip().lower()
+            from core.apify_pool import ApifyPoolManager
+            pool_mgr = ApifyPoolManager.get_instance()
+
+            payload = {}
+            try:
+                length = int(self.headers.get('Content-Length', 0))
+                if length > 0:
+                    raw_body = self.rfile.read(length).decode('utf-8')
+                    payload = json.loads(raw_body)
+            except Exception:
+                payload = {}
+
+            resp_data = {"status": "error", "message": "Yêu cầu không hợp lệ"}
+
+            if action == "add":
+                token = (payload.get("token") or "").strip()
+                label = (payload.get("label") or "").strip()
+                resp_data = pool_mgr.add_token(token, label=label, check_now=True)
+            elif action in ["remove", "delete"]:
+                tok_id = (payload.get("token_id") or payload.get("token") or "").strip()
+                target_token = None
+                for acc in pool_mgr.tokens:
+                    t = acc.get("token", "")
+                    if t == tok_id or (len(t) >= 14 and (t[:10] + t[-4:]) == tok_id):
+                        target_token = t
+                        break
+                if target_token and pool_mgr.remove_token(target_token):
+                    resp_data = {"status": "success", "message": "Đã xóa tài khoản khỏi Pool thành công", "pool": pool_mgr.get_pool_status()}
+                else:
+                    resp_data = {"status": "error", "message": "Không tìm thấy token trong Pool"}
+            elif action == "set-active":
+                tok_id = (payload.get("token_id") or payload.get("token") or "").strip()
+                target_token = None
+                for acc in pool_mgr.tokens:
+                    t = acc.get("token", "")
+                    if t == tok_id or (len(t) >= 14 and (t[:10] + t[-4:]) == tok_id):
+                        target_token = t
+                        break
+                if target_token and pool_mgr.set_manual_active(target_token):
+                    resp_data = {"status": "success", "message": "Đã ghim thủ công tài khoản thành công", "pool": pool_mgr.get_pool_status()}
+                else:
+                    resp_data = {"status": "error", "message": "Không tìm thấy token cần ghim"}
+            elif action == "rotate":
+                new_tok, msg = pool_mgr.rotate_next(reason="admin_manual_rotate")
+                resp_data = {"status": "success", "message": msg, "pool": pool_mgr.get_pool_status()}
+            elif action == "toggle-mode":
+                new_mode = payload.get("mode")
+                if not new_mode:
+                    new_mode = "manual" if pool_mgr.mode == "auto" else "auto"
+                pool_mgr.set_mode(new_mode)
+                resp_data = {"status": "success", "mode": pool_mgr.mode, "pool": pool_mgr.get_pool_status()}
+            elif action == "refresh":
+                pool_data = pool_mgr.refresh_all(timeout_sec=3.5)
+                resp_data = {"status": "success", "message": "Đã cập nhật số dư tất cả tài khoản", "pool": pool_data}
+
+            res = json.dumps(resp_data, ensure_ascii=False).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(res)))
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Connection", "close")
+            self.end_headers()
+            self.wfile.write(res)
+            return
+
         self.send_error(404, "Endpoint not found")
 
 
 def start_server(port: int = DEFAULT_PORT, mode: str = "live", apify_token: str = None, window_minutes: int = DEFAULT_WINDOW_MINUTES, clean_start: bool = False):
     GLOBAL_STATE["mode"] = mode
     GLOBAL_STATE["window_minutes"] = window_minutes
-    token = apify_token or APIFY_TOKEN
+    from core.apify_pool import ApifyPoolManager
+    pool_mgr = ApifyPoolManager.get_instance()
+    token = apify_token or pool_mgr.get_active_token()
     poller = MultiPlatformPoller(apify_token=token)
     GLOBAL_STATE["poller"] = poller
     fb_strategy = os.environ.get("FB_CRAWL_STRATEGY", FB_CRAWL_STRATEGY)

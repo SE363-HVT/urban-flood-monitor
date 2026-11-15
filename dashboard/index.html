@@ -1480,13 +1480,22 @@
                 </div>
                 <span class="nav-key-badge">[6]</span>
             </div>
+
+            <div class="nav-section-title" style="color: #38bdf8;">Quản Trị API Cloud</div>
+            <div class="nav-link" data-panel="panel-apify-pool" onclick="switchPanel('panel-apify-pool', 'QUẢN LÝ POOL TÀI KHOẢN APIFY ($5/THÁNG)')">
+                <div class="nav-link-left">
+                    <span class="nav-icon">🔑</span>
+                    <span>Pool Key Apify</span>
+                </div>
+                <span class="nav-key-badge">[7]</span>
+            </div>
         </nav>
 
         <div class="sidebar-footer">
             <div class="mode-container">
                 <div class="mode-header">
                     <span class="mode-sublabel">CHẾ ĐỘ NGUỒN TIN</span>
-                    <span class="hotkeys-badge">Phím 1-6 • Esc</span>
+                    <span class="hotkeys-badge">Phím 1-7 • Esc</span>
                 </div>
                 <div id="badge-mode" class="mode-pill">DEMO SIMULATION</div>
             </div>
@@ -1834,6 +1843,102 @@
                                     <span id="health-crawler-rate" class="health-m-val">12 posts/phút</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= PANEL 7: APIFY MULTI-ACCOUNT POOL MANAGER ================= -->
+            <section id="panel-apify-pool" class="view-panel">
+                <div class="analytics-container">
+                    <div class="analytics-header-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <div class="analytics-title" style="display: flex; align-items: center; gap: 10px;">
+                                <span>🔑 Quản Lý Pool Tài Khoản Apify ($5/Tháng)</span>
+                                <span id="pool-mode-badge" class="health-status-badge online" style="font-size: 11px;">AUTO-ROTATE</span>
+                            </div>
+                            <div class="analytics-subtitle">Tự động xoay API Key khi cạn hạn mức, phân bổ tải đa tài khoản và đổi thủ công tức thì theo ý Admin</div>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                            <div style="display: flex; background: rgba(255, 255, 255, 0.06); padding: 3px; border-radius: 8px; border: 1px solid var(--border-subtle); gap: 4px;">
+                                <button id="btn-pool-auto" onclick="setApifyPoolMode('auto')" style="padding: 6px 12px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s;" title="Hệ thống tự động chọn tài khoản tối ưu và xoay khi hết $5">
+                                    🔄 Tự Động Xoay
+                                </button>
+                                <button id="btn-pool-manual" onclick="setApifyPoolMode('manual')" style="padding: 6px 12px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s;" title="Cố định dùng tài khoản do Admin bấm Ghim bên dưới">
+                                    📌 Ghim Thủ Công
+                                </button>
+                            </div>
+                            <button class="btn btn-secondary" onclick="rotateApifyKeyNow()" style="padding: 6px 12px; font-size: 11px;" title="Chuyển ngay sang Key tiếp theo trong Pool">
+                                <span>⏭️ Xoay Key Tiếp</span>
+                            </button>
+                            <button class="btn btn-secondary" onclick="refreshApifyPoolUsage()" style="padding: 6px 12px; font-size: 11px;" title="Đồng bộ số dư thực tế từ Apify Cloud">
+                                <span>⚡ Làm Mới Số Dư</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 4 KPI Cards -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 14px;">
+                        <div class="kpi-card">
+                            <span class="kpi-title">Tổng Hạn Mức Toàn Pool</span>
+                            <span id="kpi-pool-total" class="kpi-value" style="color: #38bdf8;">$0.00</span>
+                            <span id="kpi-pool-accs" class="kpi-sub" style="color: var(--text-muted);">0 tài khoản kết nối</span>
+                        </div>
+                        <div class="kpi-card">
+                            <span class="kpi-title">Đã Tiêu Thụ Trong Tháng</span>
+                            <span id="kpi-pool-used" class="kpi-value" style="color: #f59e0b;">$0.00</span>
+                            <span id="kpi-pool-pct" class="kpi-sub" style="color: #f59e0b;">0.0% hạn mức</span>
+                        </div>
+                        <div class="kpi-card">
+                            <span class="kpi-title">Số Dư Còn Khả Dụng</span>
+                            <span id="kpi-pool-remaining" class="kpi-value" style="color: #10b981;">$0.00</span>
+                            <span id="kpi-pool-status" class="kpi-sub" style="color: #10b981;">Sẵn sàng cào TikTok/Facebook</span>
+                        </div>
+                        <div class="kpi-card">
+                            <span class="kpi-title">Key Đang Kích Hoạt (Active)</span>
+                            <span id="kpi-pool-active-tok" class="kpi-value" style="font-size: 15px; font-family: monospace; word-break: break-all; color: #a78bfa;">--</span>
+                            <span id="kpi-pool-active-label" class="kpi-sub" style="color: #94a3b8;">Đang kiểm tra...</span>
+                        </div>
+                    </div>
+
+                    <!-- Add New Token Card -->
+                    <div class="health-node-card" style="margin-top: 16px; padding: 18px 22px;">
+                        <div style="font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 8px;">➕ Thêm Tài Khoản Apify Mới Vào Pool</div>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <input id="input-new-token" type="text" placeholder="Dán mã API Token (bắt đầu bằng apify_api_...)" 
+                                   style="flex: 2; min-width: 280px; padding: 8px 12px; background: rgba(11, 15, 23, 0.7); border: 1px solid var(--border-subtle); border-radius: 6px; color: #fff; font-size: 12px; font-family: monospace;">
+                            <input id="input-new-label" type="text" placeholder="Tên gợi nhớ (vd: Acc 2 - thuan161)" 
+                                   style="flex: 1; min-width: 180px; padding: 8px 12px; background: rgba(11, 15, 23, 0.7); border: 1px solid var(--border-subtle); border-radius: 6px; color: #fff; font-size: 12px;">
+                            <button id="btn-add-token" class="btn btn-primary" onclick="addNewApifyToken()" style="padding: 8px 18px; font-size: 12px;">
+                                <span>➕ Thêm & Kiểm Tra</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Accounts Table Card -->
+                    <div class="health-node-card" style="margin-top: 16px; padding: 18px 22px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+                            <div style="font-size: 14px; font-weight: 700; color: #e2e8f0;">Danh Sách Tài Khoản Trong Pool</div>
+                            <span id="pool-synced-at" style="font-size: 11px; color: var(--text-muted);">Đồng bộ lần cuối: --</span>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                                <thead>
+                                    <tr style="border-bottom: 1px solid var(--border-subtle); text-align: left; color: var(--text-muted); font-size: 11px; text-transform: uppercase;">
+                                        <th style="padding: 10px 8px;">Tài Khoản / Ghi Chú</th>
+                                        <th style="padding: 10px 8px;">Mã Token</th>
+                                        <th style="padding: 10px 8px;">Gói Cước</th>
+                                        <th style="padding: 10px 8px; width: 200px;">Đã Tiêu Thụ ($ / $5)</th>
+                                        <th style="padding: 10px 8px;">Trạng Thái</th>
+                                        <th style="padding: 10px 8px; text-align: right;">Thao Tác Admin</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="apify-accounts-tbody">
+                                    <tr>
+                                        <td colspan="6" style="padding: 24px; text-align: center; color: var(--text-muted);">Đang tải dữ liệu Pool...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -3105,12 +3210,16 @@
                 'panel-trends': '#/trends',
                 'panel-throughput': '#/throughput',
                 'panel-feed': '#/feed',
-                'panel-health': '#/system-health'
+                'panel-health': '#/system-health',
+                'panel-apify-pool': '#/apify-pool'
             };
             window.location.hash = hashMapping[panelId] || '#/heatmap';
 
             if (panelId === 'panel-heatmap') {
                 triggerMapResizeSafe();
+            }
+            if (panelId === 'panel-apify-pool') {
+                fetchApifyPoolStatus();
             }
             setTimeout(() => resizeAllCharts(), 200);
         }
@@ -3171,7 +3280,8 @@
                 '#/trends': () => switchPanel('panel-trends', 'DIỄN BIẾN THEO THỜI GIAN (6H QUA)'),
                 '#/throughput': () => switchPanel('panel-throughput', 'TỐC ĐỘ THU THẬP & KIỂM ĐỊNH DỮ LIỆU'),
                 '#/feed': () => switchPanel('panel-feed', 'DÒNG TIN HIỆN TRƯỜNG THỜI GIAN THỰC'),
-                '#/system-health': () => switchPanel('panel-health', 'TRẠNG THÁI HỆ THỐNG & VI DỊCH VỤ')
+                '#/system-health': () => switchPanel('panel-health', 'TRẠNG THÁI HỆ THỐNG & VI DỊCH VỤ'),
+                '#/apify-pool': () => switchPanel('panel-apify-pool', 'QUẢN LÝ POOL TÀI KHOẢN APIFY ($5/THÁNG)')
             },
 
             init() {
@@ -3196,6 +3306,7 @@
                     if (e.key === '4') switchPanel('panel-throughput', 'TỐC ĐỘ THU THẬP & KIỂM ĐỊNH DỮ LIỆU');
                     if (e.key === '5') switchPanel('panel-feed', 'DÒNG TIN HIỆN TRƯỜNG THỜI GIAN THỰC');
                     if (e.key === '6') switchPanel('panel-health', 'TRẠNG THÁI HỆ THỐNG & VI DỊCH VỤ');
+                    if (e.key === '7') switchPanel('panel-apify-pool', 'QUẢN LÝ POOL TÀI KHOẢN APIFY ($5/THÁNG)');
                     if (e.key === 'f' || e.key === 'F') toggleFullScreen();
                     if (e.key === 'r' || e.key === 'R') manualRefreshAll();
                 });
@@ -3634,6 +3745,298 @@
             fetchDashboardSummary();
             startDashboardSummaryPoll();
         });
+
+        // =============================================================================
+        // 8. APIFY POOL MANAGER CLIENT JAVASCRIPT
+        // =============================================================================
+        let cachedApifyPoolData = null;
+
+        async function fetchApifyPoolStatus() {
+            try {
+                const res = await fetch('/api/apify-pool/status');
+                const data = await res.json();
+                cachedApifyPoolData = data;
+                renderApifyPoolUI(data);
+            } catch (err) {
+                console.error("Lỗi tải Apify Pool:", err);
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function formatApifyUsd(val) {
+            const num = parseFloat(val) || 0.0;
+            if (num === 0.0) return '$0.00';
+            if (num > 0.0 && num < 0.01) return '$' + num.toFixed(3);
+            return '$' + num.toFixed(2);
+        }
+
+        function renderApifyPoolUI(data) {
+            if (!data) return;
+
+            // 1. Cập nhật Badge & Nhóm Nút Chuyển Chế Độ Rõ Ràng
+            const isAuto = (data.mode === 'auto');
+            const modeBadge = document.getElementById('pool-mode-badge');
+            if (modeBadge) {
+                modeBadge.innerText = isAuto ? '🟢 ĐANG TỰ ĐỘNG XOAY' : '📌 ĐANG GHIM THỦ CÔNG';
+                modeBadge.style.color = isAuto ? '#10b981' : '#c084fc';
+                modeBadge.style.borderColor = isAuto ? 'rgba(16, 185, 129, 0.4)' : 'rgba(192, 132, 252, 0.4)';
+                modeBadge.style.background = isAuto ? 'rgba(16, 185, 129, 0.12)' : 'rgba(192, 132, 252, 0.15)';
+            }
+
+            const btnAuto = document.getElementById('btn-pool-auto');
+            const btnManual = document.getElementById('btn-pool-manual');
+            if (btnAuto && btnManual) {
+                if (isAuto) {
+                    btnAuto.style.background = '#0ea5e9';
+                    btnAuto.style.color = '#ffffff';
+                    btnAuto.style.boxShadow = '0 0 10px rgba(14, 165, 233, 0.4)';
+                    btnManual.style.background = 'transparent';
+                    btnManual.style.color = '#94a3b8';
+                    btnManual.style.boxShadow = 'none';
+                } else {
+                    btnManual.style.background = '#a855f7';
+                    btnManual.style.color = '#ffffff';
+                    btnManual.style.boxShadow = '0 0 10px rgba(168, 85, 247, 0.4)';
+                    btnAuto.style.background = 'transparent';
+                    btnAuto.style.color = '#94a3b8';
+                    btnAuto.style.boxShadow = 'none';
+                }
+            }
+
+            // 2. Cập nhật 4 KPI Cards
+            const elTotal = document.getElementById('kpi-pool-total');
+            if (elTotal) elTotal.innerText = formatApifyUsd(data.total_quota_usd);
+
+            const elAccs = document.getElementById('kpi-pool-accs');
+            if (elAccs) elAccs.innerText = (data.total_accounts || 0) + ' tài khoản (' + (data.active_accounts || 0) + ' khả dụng)';
+
+            const elUsed = document.getElementById('kpi-pool-used');
+            if (elUsed) elUsed.innerText = formatApifyUsd(data.total_used_usd);
+
+            const elPct = document.getElementById('kpi-pool-pct');
+            if (elPct) elPct.innerText = (data.overall_usage_percent || 0).toFixed(1) + '% hạn mức';
+
+            const elRem = document.getElementById('kpi-pool-remaining');
+            if (elRem) elRem.innerText = formatApifyUsd(data.total_remaining_usd);
+
+            const elStatus = document.getElementById('kpi-pool-status');
+            if (elStatus) {
+                if (data.total_remaining_usd > 1.0) {
+                    elStatus.innerText = '🟢 Dồi dào, sẵn sàng cào sâu';
+                    elStatus.style.color = '#10b981';
+                } else if (data.total_remaining_usd > 0.1) {
+                    elStatus.innerText = '🟡 Sắp hết, nên bổ sung thêm key';
+                    elStatus.style.color = '#f59e0b';
+                } else {
+                    elStatus.innerText = '🔴 Toàn bộ đã cạn $5/tháng';
+                    elStatus.style.color = '#ef4444';
+                }
+            }
+
+            const elActiveTok = document.getElementById('kpi-pool-active-tok');
+            if (elActiveTok) elActiveTok.innerText = data.active_token_masked || '--';
+
+            const elActiveLabel = document.getElementById('kpi-pool-active-label');
+            if (elActiveLabel) elActiveLabel.innerText = data.active_account_label || (isAuto ? 'Tự động chọn key tốt nhất' : 'Thủ công ghim');
+
+            const elSynced = document.getElementById('pool-synced-at');
+            if (elSynced && data.last_synced_iso) {
+                const dt = new Date(data.last_synced_iso);
+                elSynced.innerText = 'Đồng bộ lúc: ' + dt.toLocaleTimeString('vi-VN');
+            }
+
+            // 3. Render Bảng Tài Khoản
+            const tbody = document.getElementById('apify-accounts-tbody');
+            if (!tbody) return;
+
+            const accounts = data.accounts || [];
+            if (accounts.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="padding: 24px; text-align: center; color: var(--text-muted);">Chưa có tài khoản nào trong Pool. Hãy thêm mã Token bên trên.</td></tr>';
+                return;
+            }
+
+            let html = '';
+            accounts.forEach(acc => {
+                const isAct = acc.is_active;
+                const pct = Math.min(Math.max(acc.usage_percent || 0, 0), 100);
+                const barColor = pct < 60 ? '#10b981' : (pct < 90 ? '#f59e0b' : '#ef4444');
+                const tokId = acc.token_id || '';
+
+                let statusBadge = '';
+                if (acc.status === 'EXHAUSTED') {
+                    statusBadge = '<span class="health-status-badge offline" style="font-size: 10px;">🔴 HẾT $5</span>';
+                } else if (acc.status === 'INVALID') {
+                    statusBadge = '<span class="health-status-badge offline" style="font-size: 10px;">⚠️ LỖI KEY</span>';
+                } else if (isAct) {
+                    statusBadge = '<span class="health-status-badge online" style="font-size: 10px; border-color: #38bdf8; background: rgba(14, 165, 233, 0.2); color: #38bdf8;">🟢 ĐANG DÙNG</span>';
+                } else {
+                    statusBadge = '<span class="health-status-badge online" style="font-size: 10px;">🟢 SẴN SÀNG</span>';
+                }
+
+                html += `
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05); ${isAct ? 'background: rgba(14, 165, 233, 0.06);' : ''}">
+                    <td style="padding: 12px 8px;">
+                        <div style="font-weight: 700; color: #fff;">${escapeHtml(acc.label || 'Tài khoản')}</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">${escapeHtml(acc.email || acc.username || 'Apify Account')}</div>
+                    </td>
+                    <td style="padding: 12px 8px; font-family: monospace; color: #cbd5e1;">${escapeHtml(acc.masked_token || '')}</td>
+                    <td style="padding: 12px 8px;"><span class="hotkeys-badge">${escapeHtml(acc.plan || 'FREE')}</span></td>
+                    <td style="padding: 12px 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px;">
+                            <span style="font-weight: 700; color: #f8fafc;">${formatApifyUsd(acc.monthly_usage_usd)}</span>
+                            <span style="color: var(--text-muted);">/ $${(acc.monthly_limit_usd || 5.0).toFixed(2)} (${pct.toFixed(0)}%)</span>
+                        </div>
+                        <div style="width: 100%; height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden;">
+                            <div style="width: ${pct}%; height: 100%; background: ${barColor}; transition: width 0.3s;"></div>
+                        </div>
+                    </td>
+                    <td style="padding: 12px 8px;">${statusBadge}</td>
+                    <td style="padding: 12px 8px; text-align: right;">
+                        <div style="display: flex; gap: 6px; justify-content: flex-end;">
+                            ${isAct ? '' : `<button class="btn btn-secondary" style="padding: 4px 8px; font-size: 10px;" onclick="setApifyActiveKey('${tokId}')" title="Ghim dùng làm Key chính thủ công">📌 Ghim</button>`}
+                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 10px; color: #f87171; border-color: rgba(239, 68, 68, 0.3);" onclick="removeApifyToken('${tokId}')" title="Xóa khỏi Pool">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        async function setApifyPoolMode(targetMode) {
+            try {
+                const res = await fetch('/api/apify-pool/toggle-mode', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ mode: targetMode })
+                });
+                const data = await res.json();
+                if (data.pool) renderApifyPoolUI(data.pool);
+                else fetchApifyPoolStatus();
+            } catch (err) {
+                console.error("Lỗi set mode:", err);
+            }
+        }
+
+        async function toggleApifyPoolMode() {
+            const currentMode = cachedApifyPoolData ? cachedApifyPoolData.mode : 'auto';
+            const nextMode = currentMode === 'auto' ? 'manual' : 'auto';
+            await setApifyPoolMode(nextMode);
+        }
+
+        async function rotateApifyKeyNow() {
+            try {
+                const res = await fetch('/api/apify-pool/rotate', { method: 'POST' });
+                const data = await res.json();
+                if (data.message) {
+                    alert(data.message);
+                }
+                if (data.pool) renderApifyPoolUI(data.pool);
+                else fetchApifyPoolStatus();
+            } catch (err) {
+                console.error("Lỗi rotate:", err);
+            }
+        }
+
+        async function setApifyActiveKey(tokenId) {
+            if (!tokenId) return;
+            try {
+                const res = await fetch('/api/apify-pool/set-active', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token_id: tokenId })
+                });
+                const data = await res.json();
+                if (data.pool) renderApifyPoolUI(data.pool);
+                else fetchApifyPoolStatus();
+            } catch (err) {
+                console.error("Lỗi ghim key:", err);
+            }
+        }
+
+        async function addNewApifyToken() {
+            const inputTok = document.getElementById('input-new-token');
+            const inputLbl = document.getElementById('input-new-label');
+            const btn = document.getElementById('btn-add-token');
+
+            const tokenVal = (inputTok ? inputTok.value : '').trim();
+            const labelVal = (inputLbl ? inputLbl.value : '').trim();
+
+            if (!tokenVal) {
+                alert("Vui lòng dán mã API Token!");
+                return;
+            }
+            if (!tokenVal.startsWith("apify_api_")) {
+                alert("Mã Token Apify phải bắt đầu bằng 'apify_api_'!");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<span>⏳ Đang kiểm tra...</span>';
+
+            try {
+                const res = await fetch('/api/apify-pool/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: tokenVal, label: labelVal })
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    if (inputTok) inputTok.value = '';
+                    if (inputLbl) inputLbl.value = '';
+                    fetchApifyPoolStatus();
+                    alert("Đã thêm thành công Token vào Pool!");
+                } else {
+                    alert(data.message || "Không thể thêm Token.");
+                }
+            } catch (err) {
+                console.error("Lỗi thêm token:", err);
+                alert("Lỗi kết nối khi thêm Token.");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>➕ Thêm & Kiểm Tra</span>';
+            }
+        }
+
+        async function removeApifyToken(tokenId) {
+            if (!tokenId) return;
+            if (!confirm("Bạn có chắc chắn muốn xóa tài khoản này khỏi Pool không?")) return;
+
+            try {
+                const res = await fetch('/api/apify-pool/remove', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token_id: tokenId })
+                });
+                const data = await res.json();
+                if (data.pool) renderApifyPoolUI(data.pool);
+                else fetchApifyPoolStatus();
+            } catch (err) {
+                console.error("Lỗi xóa token:", err);
+            }
+        }
+
+        async function refreshApifyPoolUsage() {
+            try {
+                const res = await fetch('/api/apify-pool/refresh', { method: 'POST' });
+                const data = await res.json();
+                if (data.pool) renderApifyPoolUI(data.pool);
+                else fetchApifyPoolStatus();
+            } catch (err) {
+                console.error("Lỗi refresh pool:", err);
+            }
+        }
+
     </script>
 </body>
 </html>
