@@ -1,3 +1,4 @@
+from pipeline.event_processor import analyze_severity_heuristic
 # -*- coding: utf-8 -*-
 """
 pipeline/veracity_checker.py
@@ -119,7 +120,7 @@ class VeracityChecker:
         media_urls = list(event.get("media_urls") or [])
         video_url = event.get("video_url")
 
-        is_video_link = any(v in raw_url.lower() for v in ["tiktok.com", "youtube.com", "youtu.be", "/reel/", "/videos/"])
+        is_video_link = any(v in raw_url.lower() for v in ["tiktok.com", "youtube.com", "youtu.be", "/reel/", "/videos/", "/video"]) or ("video" in raw_url.lower())
 
         has_media = bool(
             media_urls or
@@ -178,17 +179,42 @@ class VeracityChecker:
             content_score = 0.75
         else:
             visual_verified = False
-            content_score = 0.50
+            content_score = 0.55
 
         if any(k in text for k in ["chết máy", "lút bánh", "dắt bộ", "bì bõm", "ngập sâu", "thất thủ", "ngập lụt", "biển nước"]):
-            content_score = min(1.0, content_score + 0.15)
+            content_score = min(1.0, content_score + 0.20)
+
+        # Trích xuất ASTE triplets động theo ngữ cảnh bài đăng (Đề xuất 3)
+        triplets = event.get("aste_triplets", []) or event.get("triplets", [])
+        if not triplets:
+            analysis = analyze_severity_heuristic(event.get("text", "") or event.get("title", ""))
+            aspect_name = (
+                event.get("aspect") or
+                (event.get("location", {}).get("display_name") if isinstance(event.get("location"), dict) else "") or
+                event.get("street") or
+                "Điểm ngập TP.HCM"
+            )
+            if analysis:
+                triplets = [{
+                    "aspect": aspect_name,
+                    "opinion": analysis.get("opinion", "ngập nước"),
+                    "polarity": analysis.get("polarity", "NEG"),
+                    "confidence": 0.88
+                }]
+            else:
+                triplets = [{
+                    "aspect": aspect_name,
+                    "opinion": "ngập nước",
+                    "polarity": "NEG",
+                    "confidence": 0.70
+                }]
 
         return {
             "source": "heuristic_baseline",
             "branch": "heuristic",
             "visual_verified": visual_verified,
             "content_score": round(content_score, 2),
-            "triplets": event.get("aste_triplets", []) or event.get("triplets", [])
+            "triplets": triplets
         }
 
     # =========================================================================
@@ -465,6 +491,18 @@ class VeracityChecker:
                 label = "Cảnh báo tin không xác thực"
 
             event_copy = dict(event)
+            if content_eval.get("triplets"):
+                prim = content_eval["triplets"][0]
+                if not event_copy.get("opinion"):
+                    event_copy["opinion"] = prim.get("opinion")
+                if not event_copy.get("polarity"):
+                    event_copy["polarity"] = prim.get("polarity")
+                if not event_copy.get("sentiment"):
+                    pol = str(prim.get("polarity", "NEG")).upper()
+                    event_copy["sentiment"] = "positive" if pol == "POS" else ("neutral" if pol == "NEU" else "negative")
+                if not event_copy.get("triplets"):
+                    event_copy["triplets"] = content_eval["triplets"]
+
             event_copy["veracity"] = {
                 "confidence_score": total_confidence,
                 "status": status,

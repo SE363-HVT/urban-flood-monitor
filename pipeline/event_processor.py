@@ -162,6 +162,24 @@ BDS_NEGATION_PHRASES = [
 ]
 
 ADS_METAPHOR_PATTERNS = [
+    "tràn ngập",
+    "về tràn ngập",
+    "màu mới về tràn ngập",
+    "màu mới về",
+    "phục vụ cho các tín đồ",
+    "tín đồ nail",
+    "tiệm nail",
+    "làm móng",
+    "nối mi",
+    "ghé lên tay",
+    "tiện ích ngập tràn",
+    "ngập tràn ánh sáng",
+    "studio ban công",
+    "ban công thoáng mát",
+    "vài bước chân đến vincom",
+    "vài bước chân đến",
+    "sát vincom",
+    "ngay vincom",
   "ưu đãi ngập tràn",
   "ngập tràn ưu đãi",
   "ngập tràn niềm vui",
@@ -280,34 +298,17 @@ SPORTS_AND_LEISURE_KEYWORDS = [
 ]
 
 PROJECT_AND_MACRO_KEYWORDS = [
-  "phương án thiết kế cho dự án quỹ đất",
-  "dự án quỹ đất",
-  "nghiên cứu dự án hơn",
-  "dự án hơn 10.000 tỉ",
-  "chuẩn bị mở rộng đường",
-  "giải phóng mặt bằng",
-  "chuyên gia hiến kế chống ngập",
-  "solutions for urban flood",
-  "chi hơn 142.340 tỷ",
-  "mệnh lệnh",
+  # Chỉ loại trừ tin chính trị, tuyên truyền, nghị quyết hành chính không chứa dữ liệu ngập/chống ngập thực tế
   "mệnh lệnh không được thay đổi",
   "bộ đội cụ hồ",
-  "thủ tướng",
-  "thủ tướng chính phủ",
-  "phó thủ tướng",
-  "chính trị",
   "tin nội chính",
   "ctvn",
   "chinhtrivietnam",
   "tinnoichinh",
-  "duanchongngaptphcm",
   "thutuongleminhhung",
-  "kênh tham lương",
-  "hồ điều tiết ngầm",
-  "vì sao phải sống chung",
-  "dự án chống ngập",
-  "công trình về đích",
-  "bàn giao",
+  "phương án thiết kế cho dự án quỹ đất",
+  "dự án quỹ đất",
+  "chi hơn 142.340 tỷ",
   "6,5 triệu người dân"
 ]
 
@@ -345,6 +346,62 @@ FOREIGN_NOISE_WORDS = [
   "ayrılıklarr",
   "kesfet",
   "malzemeler"
+]
+
+CAR_SALES_SPAM_KEYWORDS = [
+    "suzuki",
+    "otocugiare",
+    "ô tô cũ",
+    "máy số zin",
+    "không đâm đụng",
+    "không tai nạn",
+    "không ngập nước",
+    "bao test ngập",
+    "bao ngập nước",
+    "bao test",
+    "sàn ô tô",
+    "xe lướt",
+    "chạy chuẩn km",
+    "chuẩn odo",
+    "auto sài gòn",
+    "xe đẹp máy êm",
+    "vào thẳng vấn đề để khỏi mất thời gian",
+    "chính chủ bán xe",
+    "thu mua xe cũ",
+    "salon ô tô",
+    "chính chủ cần bán xe",
+    "xe một đời chủ",
+    "keo chỉ zin"
+]
+
+BEAUTY_AND_SALON_KEYWORDS = [
+    "nail",
+    "làm móng",
+    "nối mi",
+    "tiệm nail",
+    "mẫu móng",
+    "ghé lên tay",
+    "chăm sóc móng",
+    "phun xăm",
+    "spa làm đẹp",
+    "tín đồ làm đẹp",
+    "tín đồ nail"
+]
+
+ROUTINE_CIVIL_PETITIONS = [
+    "chuẩn bị nâng cấp hẻm",
+    "nâng hẻm lên",
+    "nâng cấp hẻm",
+    "lấn chiếm lòng lề đường",
+    "lấn hết lòng lề đường",
+    "để bảng hiệu",
+    "nối dây điện",
+    "nắp hố ga thoát nước mưa bị hỏng đã hơn một năm",
+    "nắp hố ga bị hỏng",
+    "nắp cống bị hỏng",
+    "vỡ nắp hố ga",
+    "hỏng nắp hố ga",
+    "tiềm ẩn nguy hiểm cho người đi đường"
 ]
 
 HIGH_SEVERITY_KEYWORDS = [
@@ -436,6 +493,10 @@ def is_valid_vietnamese_content(text: str) -> bool:
 
 
 BDS_REGEX_PATTERNS = [
+    re.compile(r'\b\d+\s*tr\s+(?:suzuki|kia|hyundai|toyota|honda|mazda|ford|mitsubishi|vinfast|xl7|vios|accent|innova)\b', re.IGNORECASE),
+    re.compile(r'\b(?:máy số zin|keo chỉ zin|không đâm đụng|không ngập nước)\b', re.IGNORECASE),
+    re.compile(r'\b(?:vài bước chân đến|bước chân ra|ngay vincom|sát vincom)\b', re.IGNORECASE),
+    re.compile(r'\b(?:chỉ nhỉnh|nhỉnh)\s+\d+[\d.,]*\s*(?:tỷ|tỉ)\b', re.IGNORECASE),
     re.compile(r'\b(?:giá|chỉ|tầm|tài chính|ngân sách)\s*(?::|\s)\s*(?:từ\s+)?\d+[\d.,]*\s*(?:tỷ|tỉ|triệu|tr)\b', re.IGNORECASE),
     re.compile(r'\b\d+[\d.,]*\s*(?:tỷ|tỉ)\s*(?:tl|thương lượng)?\s*(?:mua|bán|thuê|cho thuê)\b', re.IGNORECASE),
     re.compile(r'\b(?:mua|bán|thuê|cho thuê)\s+(?:nhà|đất|căn hộ|phòng|chung cư)\b', re.IGNORECASE),
@@ -457,6 +518,12 @@ def contains_spam_or_noise(text: str) -> bool:
     if any(k in text_lower for k in BDS_NEGATION_PHRASES):
         return True
     if any(k in text_lower for k in ADS_METAPHOR_PATTERNS):
+        return True
+    if any(k in text_lower for k in CAR_SALES_SPAM_KEYWORDS):
+        return True
+    if any(k in text_lower for k in BEAUTY_AND_SALON_KEYWORDS):
+        return True
+    if any(k in text_lower for k in ROUTINE_CIVIL_PETITIONS):
         return True
     if any(k in text_lower for k in EDUCATION_SPAM_KEYWORDS):
         return True
@@ -493,35 +560,117 @@ def analyze_severity_heuristic(text: str) -> Optional[Dict[str, Any]]:
     hàm sẽ trả về None (TUYỆT ĐỐI KHÔNG mặc định gán 'có ngập nước').
     """
     clean_text = normalize_text(text)
+    lower_raw = text.lower()
 
+    # 0. Dự án / Công trình thủy lợi & giải pháp chống ngập (Theo chuẩn BI_QUYET_GAN_NHAN_VA_AUDIT_DATASET_ASTE.md)
+    anti_flood_projects = ["dự án 10.000", "dự án ngăn triều", "dự án chống ngập", "công trình chống ngập", "cống ngăn triều", "hồ điều tiết", "trạm bơm chống ngập", "kênh tham lương", "cống kiểm soát triều"]
+    if any(p in lower_raw for p in anti_flood_projects):
+        if any(w in lower_raw for w in ["kỳ vọng hết ngập", "giải quyết ngập", "chống ngập triệt để", "hết ngập", "khánh thành", "về đích", "hoàn thành", "sắp hoàn thành"]):
+            return {
+                "opinion": "kỳ vọng hết ngập / giải quyết ngập",
+                "sentiment": "positive",
+                "polarity": "POS",
+                "severity_level": "low",
+                "weight": 2.5
+            }
+        elif any(w in lower_raw for w in ["sẽ vận hành", "dự kiến vận hành", "chuẩn bị vận hành", "tiến độ", "khởi công", "bàn giao"]):
+            return {
+                "opinion": "kế hoạch vận hành dự án chống ngập",
+                "sentiment": "neutral",
+                "polarity": "NEU",
+                "severity_level": "medium",
+                "weight": 2.0
+            }
+
+    # 1. Phát hiện trạng thái TÍCH CỰC (Nước rút, khô ráo, thông thoáng, hết ngập)
+    pos_keywords = [
+        "nước đã rút", "nước rút", "đã rút hết", "khô ráo", "thông thoáng",
+        "hết ngập", "xe cộ lưu thông bình thường", "nước rút dần", "không còn ngập"
+    ]
+    if any(pk in lower_raw for pk in pos_keywords):
+        return {
+            "opinion": "nước đã rút / thông thoáng",
+            "sentiment": "positive",
+            "polarity": "POS",
+            "severity_level": "low",
+            "weight": 1.0
+        }
+
+    # 2. Phát hiện trạng thái TRUNG TÍNH (Dự báo, cảnh báo trước triều cường/mưa)
+    neu_keywords = [
+        "dự báo triều cường", "cảnh báo triều cường", "dự báo ngập",
+        "cảnh báo ngập", "có thể gây ngập", "triều cường đạt đỉnh", "khả năng ngập"
+    ]
+    if any(nk in lower_raw for nk in neu_keywords) and not any(hk in clean_text for hk in HIGH_SEVERITY_KEYWORDS):
+        return {
+            "opinion": "dự báo triều cường",
+            "sentiment": "neutral",
+            "polarity": "NEU",
+            "severity_level": "medium",
+            "weight": 1.5
+        }
+
+    # 3. Sự cố nghẹt cống / hố ga trào ngược gây ngập thực tế
+    sewer_flood_keywords = [
+        "cống trào ngược", "hố ga trào", "nghẹt cống gây ngập", "nghẹt cống dẫn đến ngập",
+        "tắc cống ngập", "cống không thoát kịp", "trào ngược nước ngập", "nước thải trào ngược",
+        "ngập do nghẹt cống", "nghẹt cống tràn nước"
+    ]
+    for sk in sewer_flood_keywords:
+        if sk in lower_raw:
+            return {
+                "opinion": "cống nghẹt trào nước",
+                "sentiment": "negative",
+                "polarity": "NEG",
+                "severity_level": "medium",
+                "weight": 2.2
+            }
+
+    # 4. Ngập nghiêm trọng (HIGH SEVERITY)
     for kw in HIGH_SEVERITY_KEYWORDS:
         if kw in clean_text:
             return {
                 "opinion": kw,
                 "sentiment": "negative",
+                "polarity": "NEG",
                 "severity_level": "high",
                 "weight": 3.0
             }
 
+    # 5. Ngập trung bình (MEDIUM SEVERITY)
     for kw in MEDIUM_SEVERITY_KEYWORDS:
         if kw in clean_text:
             return {
                 "opinion": kw,
                 "sentiment": "negative",
+                "polarity": "NEG",
                 "severity_level": "medium",
                 "weight": 2.0
             }
 
-    has_rain = any(rk in clean_text for rk in ("mưa lớn", "mưa to", "mưa giông", "triều cường", "mưa kéo dài"))
+    # 6. Ngập do mưa hoặc triều cường nói chung
     has_flood = any(k in clean_text for k in ("ngập", "ngap", "triều cường", "trieucuong", "trieu cuong", "nước dâng", "nuoc dang", "thất thủ", "thatthu", "that thu", "bì bõm", "lội nước", "dắt bộ", "chết máy", "chet may"))
 
     if has_flood:
-        opinion_word = "triều cường dâng" if any(k in clean_text for k in ("triều cường", "trieucuong", "trieu cuong")) else "mưa ngập"
+        if any(k in clean_text for k in ("triều cường", "trieucuong", "trieu cuong")):
+            opinion_word = "triều cường dâng"
+            sev = "medium"
+            wt = 1.8
+        elif any(k in clean_text for k in ("mưa", "mua")):
+            opinion_word = "mưa lớn ngập đường"
+            sev = "medium"
+            wt = 1.8
+        else:
+            opinion_word = "ngập úng cục bộ"
+            sev = "low"
+            wt = 1.2
+
         return {
             "opinion": opinion_word,
             "sentiment": "negative",
-            "severity_level": "medium" if opinion_word == "triều cường dâng" else "low",
-            "weight": 1.8 if opinion_word == "triều cường dâng" else 1.2
+            "polarity": "NEG",
+            "severity_level": sev,
+            "weight": wt
         }
 
     return None
@@ -598,8 +747,15 @@ def process_tiktok_item(item: Dict[str, Any], reference_time: Optional[int] = No
         "aspect": hotspot["display_name"],
         "opinion": analysis["opinion"],
         "sentiment": analysis["sentiment"],
+        "polarity": analysis.get("polarity", "NEG"),
         "severity": analysis["severity_level"],
         "weight": analysis["weight"],
+        "triplets": [{
+            "aspect": hotspot["display_name"],
+            "opinion": analysis["opinion"],
+            "polarity": analysis.get("polarity", "NEG"),
+            "confidence": 0.88
+        }],
         "url": video_url
     }
 

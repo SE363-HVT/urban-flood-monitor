@@ -1943,34 +1943,56 @@ def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
     if len(words) < 2 and not any(ch.isdigit() for ch in search_target):
         return None
 
-    headers = {"User-Agent": "SE363-PrecisionGIS/4.0 (contact: student@hcmut.edu.vn)"}
+    headers = {"User-Agent": "SE363-PrecisionGIS/5.0 (contact: student@hcmut.edu.vn)"}
     ACCEPTED_OSM_CLASSES = {"highway", "building", "place", "landuse", "amenity", "tourism", "boundary"}
 
+    ROAD_RANK = {
+        "motorway": 110,
+        "trunk": 100,
+        "primary": 90,
+        "secondary": 80,
+        "tertiary": 70,
+        "unclassified": 50,
+        "residential": 40
+    }
+
+    def _select_best_centerline(items_list: list) -> Optional[dict]:
+        candidates = []
+        for d in items_list:
+            if d.get("class") != "highway":
+                continue
+            disp_name = d.get("display_name", "")
+            # Ưu tiên trục đường chính, bỏ qua hẻm/ngách nhánh phụ khi tìm kiếm tên đường lớn
+            is_alley = any(h in disp_name.lower() for h in ["hẻm", "ngách", "ngõ", "kiệt"])
+            rtype = d.get("type", "")
+            base_rank = ROAD_RANK.get(rtype, 20)
+            if is_alley:
+                base_rank -= 30
+            candidates.append((base_rank, float(d.get("importance", 0)), d))
+        if candidates:
+            candidates.sort(key=lambda x: (x[0], x[1]), reverse=True)
+            return candidates[0][2]
+        return None
+
     item = None
-    # 1. Thử truy vấn cấu trúc street + city với search_target
+    # 1. Thử truy vấn cấu trúc street + city với search_target và osm_type=W (Chỉ lấy Way tim đường)
     try:
-        url_structured = f"https://nominatim.openstreetmap.org/search?street={urllib.parse.quote(search_target)}&city={urllib.parse.quote('Thành phố Hồ Chí Minh')}&format=json&limit=5"
+        url_structured = f"https://nominatim.openstreetmap.org/search?street={urllib.parse.quote(search_target)}&city={urllib.parse.quote('Thành phố Hồ Chí Minh')}&format=json&limit=10&osm_type=W"
         req1 = urllib.request.Request(url_structured, headers=headers)
-        with urllib.request.urlopen(req1, timeout=4) as resp:
+        with urllib.request.urlopen(req1, timeout=6) as resp:
             data = json.loads(resp.read().decode("utf-8"))
-            for d in data:
-                if d.get("class") == "highway":
-                    item = d
-                    break
+            item = _select_best_centerline(data)
     except Exception:
         item = None
 
-    # 2. Dự phòng truy vấn toàn văn với search_target
+    # 2. Dự phòng truy vấn toàn văn với search_target và osm_type=W
     if not item:
         try:
-            url_fallback = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(search_target + ', Hồ Chí Minh, Việt Nam')}&format=json&limit=5"
+            url_fallback = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(search_target + ', Hồ Chí Minh, Việt Nam')}&format=json&limit=10&osm_type=W"
             req2 = urllib.request.Request(url_fallback, headers=headers)
-            with urllib.request.urlopen(req2, timeout=4) as resp:
+            with urllib.request.urlopen(req2, timeout=6) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
-                for d in data:
-                    if d.get("class") == "highway":
-                        item = d
-                        break
+                item = _select_best_centerline(data)
                 if not item:
                     for d in data:
                         if d.get("class") in ACCEPTED_OSM_CLASSES:
@@ -1982,14 +2004,11 @@ def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
     # 3. Dự phòng với query gốc nếu search_target khác query
     if not item and search_target != query:
         try:
-            url_fallback2 = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(query + ', Hồ Chí Minh, Việt Nam')}&format=json&limit=5"
+            url_fallback2 = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(query + ', Hồ Chí Minh, Việt Nam')}&format=json&limit=10"
             req3 = urllib.request.Request(url_fallback2, headers=headers)
-            with urllib.request.urlopen(req3, timeout=4) as resp:
+            with urllib.request.urlopen(req3, timeout=6) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
-                for d in data:
-                    if d.get("class") == "highway":
-                        item = d
-                        break
+                item = _select_best_centerline(data)
                 if not item:
                     for d in data:
                         if d.get("class") in ACCEPTED_OSM_CLASSES:

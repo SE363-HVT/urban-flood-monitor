@@ -54,7 +54,7 @@ if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
 from core.gazetteer import normalize_text, HOTSPOTS, CSGT_HOTSPOTS, OUT_OF_SCOPE_LOCATIONS, match_all_hotspots
-from pipeline.event_processor import clean_stream_text, contains_spam_or_noise, format_relative_time
+from pipeline.event_processor import clean_stream_text, contains_spam_or_noise, format_relative_time, analyze_severity_heuristic
 
 # TỪ KHÓA CHỈ DẤU NGẬP TRỰC TIẾP
 DIRECT_FLOOD_KEYWORDS = [
@@ -274,6 +274,15 @@ class LiveFreeSocialCrawler:
         self.seen_hashes: Set[str] = set()
 
     def is_valid_content(self, text: str) -> bool:
+        if not text:
+            return False
+        # 1. Làm sạch và kiểm tra bộ lọc spam, quảng cáo BĐS, mua bán xe, làm đẹp
+        cleaned = clean_stream_text(text)
+        if not cleaned:
+            return False
+        if contains_spam_or_noise(text):
+            return False
+
         low = text.lower()
         if any(j in low for j in JUNK_EXCLUSIONS):
             return False
@@ -282,6 +291,12 @@ class LiveFreeSocialCrawler:
         if any(e in low for e in NON_FLOOD_EXCLUSIONS):
             if not any(f in low for f in ["ngập sâu", "chết máy", "triều cường", "lút bánh", "lội nước"]):
                 return False
+
+        # 2. Bắt buộc có biểu hiện ngập lụt thực tế từ heuristic analyzer
+        analysis = analyze_severity_heuristic(cleaned)
+        if not analysis:
+            return False
+
         has_flood = any(k in low for k in FLOOD_INTENT_KEYWORDS)
         if not has_flood:
             return False
@@ -587,6 +602,16 @@ class LiveFreeSocialCrawler:
                                 "source": "youtube_realtime_crawler"
                             },
                             "aspect": st_name or spot.get("ward", ""),
+                            "opinion": (analyze_severity_heuristic(full_text) or {}).get("opinion", "mưa lớn ngập đường"),
+                            "polarity": (analyze_severity_heuristic(full_text) or {}).get("polarity", "NEG"),
+                            "sentiment": (analyze_severity_heuristic(full_text) or {}).get("sentiment", "negative"),
+                            "severity": (analyze_severity_heuristic(full_text) or {}).get("severity_level", "medium"),
+                            "triplets": [{
+                                "aspect": st_name or spot.get("ward", ""),
+                                "opinion": (analyze_severity_heuristic(full_text) or {}).get("opinion", "mưa lớn ngập đường"),
+                                "polarity": (analyze_severity_heuristic(full_text) or {}).get("polarity", "NEG"),
+                                "confidence": 0.88
+                            }],
                             "weight": event_weight,
                             "freshness": freshness,
                             "status_tag": status_tag,
@@ -693,6 +718,16 @@ class LiveFreeSocialCrawler:
                                 "source": "vov_traffic_ticker"
                             },
                             "aspect": st_name or spot.get("ward", ""),
+                            "opinion": (analyze_severity_heuristic(raw_title) or {}).get("opinion", "ngập úng giao thông"),
+                            "polarity": (analyze_severity_heuristic(raw_title) or {}).get("polarity", "NEG"),
+                            "sentiment": (analyze_severity_heuristic(raw_title) or {}).get("sentiment", "negative"),
+                            "severity": (analyze_severity_heuristic(raw_title) or {}).get("severity_level", "medium"),
+                            "triplets": [{
+                                "aspect": st_name or spot.get("ward", ""),
+                                "opinion": (analyze_severity_heuristic(raw_title) or {}).get("opinion", "ngập úng giao thông"),
+                                "polarity": (analyze_severity_heuristic(raw_title) or {}).get("polarity", "NEG"),
+                                "confidence": 0.88
+                            }],
                             "weight": 4.0,
                             "freshness": "strict_2h",
                             "status_tag": "🔴 ĐANG DIỄN RA (< 2 GIỜ)",
@@ -834,11 +869,48 @@ class LiveFreeSocialCrawler:
                     if age_seconds > 86400:
                         continue
 
-                    # Loại trừ phản ánh tranh chấp hóa đơn nước, lạm thu không liên quan ngập
+                    # BỘ LỌC TẬN GỐC PHẢN ÁNH 1022 (CITIZEN REPORTS):
                     low_check = f"{title} {desc}".lower()
-                    if any(bad in low_check for bad in ["lạm thu", "tiền nước", "giá nước", "hóa đơn", "cấp nước", "thu phí nước"]):
-                        if not any(f in low_check for f in ["ngập sâu", "ngập đường", "tràn vào nhà", "ngập lụt", "triều cường"]):
+
+                    # 1. Loại bỏ các phản ánh hành chính, trật tự đô thị, tranh chấp hóa đơn, vỉa hè
+                    admin_exclusions = [
+                        "lạm thu", "tiền nước", "giá nước", "hóa đơn", "cấp nước", "thu phí nước",
+                        "trật tự đô thị", "lấn chiếm", "lòng lề đường", "biển hiệu", "bảng hiệu",
+                        "dây điện", "tiếng ồn", "xả rác", "vệ sinh môi trường", "chặt tỉa cây",
+                        "ổ gà", "hố sụt", "sụp lún vỉa hè", "nâng hẻm", "nâng cấp hẻm", "chuẩn bị nâng"
+                    ]
+                    if any(bad in low_check for bad in admin_exclusions):
+                        if not any(f in low_check for f in ["ngập sâu", "xe chết máy", "tràn vào nhà", "nước dâng ngập"]):
                             continue
+
+                    # 2. Kiểm tra bộ lọc spam & rác chung
+                    if contains_spam_or_noise(low_check):
+                        continue
+
+                    # 3. Xử lý triệt để cống/hố ga: Phân biệt hỏng kết cấu vs mưa lớn nghẹt cống gây ngập
+                    sewer_structure_words = ["nắp hố ga", "hố ga", "nắp cống", "miệng cống", "cống thoát nước", "mương thoát nước"]
+                    is_sewer_report = any(sw in low_check for sw in sewer_structure_words)
+                    
+                    flood_impact_words = [
+                        "ngập", "ngap", "nước tràn", "trào ngược", "ứ đọng nước", "ứ nước",
+                        "không thoát kịp", "nước ngập", "ngập đường", "ngập sâu", "chết máy",
+                        "bì bõm", "nước dâng", "tràn vào nhà", "ngập lụt", "triều cường"
+                    ]
+                    has_flood_impact = any(fw in low_check for fw in flood_impact_words)
+
+                    # Nếu chỉ phản ánh cống/hố ga mà không có ngập nước thực tế -> Bỏ qua
+                    if is_sewer_report and not has_flood_impact:
+                        continue
+
+                    # Loại bỏ các phản ánh nắp hố ga hỏng lâu năm, tiềm ẩn nguy hiểm mà không ngập
+                    if any(dmg in low_check for dmg in ["bị hỏng đã hơn một năm", "hỏng hơn một năm", "bị hỏng đã lâu", "bị vỡ", "tiềm ẩn nguy hiểm"]):
+                        if not any(active in low_check for active in ["ngập sâu", "ngập đường", "nước tràn vào nhà", "xe chết máy"]):
+                            continue
+
+                    # Bắt buộc phân tích được biểu hiện ngập lụt
+                    analysis_1022 = analyze_severity_heuristic(low_check)
+                    if not analysis_1022:
+                        continue
 
                     pet_id = item.get("id")
                     report_url = f"https://1022.tphcm.gov.vn/vi/phan-anh-kien-nghi/tra-cuu/chi-tiet/{pet_id}" if pet_id else f"https://1022.tphcm.gov.vn/vi/phan-anh-kien-nghi/tra-cuu?code={code}"
@@ -919,6 +991,16 @@ class LiveFreeSocialCrawler:
                             "source": "portal_1022_official_api"
                         },
                         "aspect": st_name,
+                        "opinion": analysis_1022.get("opinion", "cống nghẹt trào nước"),
+                        "polarity": analysis_1022.get("polarity", "NEG"),
+                        "sentiment": analysis_1022.get("sentiment", "negative"),
+                        "severity": analysis_1022.get("severity_level", "medium"),
+                        "triplets": [{
+                            "aspect": st_name,
+                            "opinion": analysis_1022.get("opinion", "cống nghẹt trào nước"),
+                            "polarity": analysis_1022.get("polarity", "NEG"),
+                            "confidence": 0.90
+                        }],
                         "weight": weight,
                         "freshness": freshness,
                         "status_tag": status_tag,
@@ -1206,6 +1288,16 @@ class LiveFreeSocialCrawler:
                         "source": "live_free_crawler"
                     },
                     "aspect": st_name or spot.get("ward", ""),
+                    "opinion": (analyze_severity_heuristic(quote_text) or {}).get("opinion", "ngập nước"),
+                    "polarity": (analyze_severity_heuristic(quote_text) or {}).get("polarity", "NEG"),
+                    "sentiment": (analyze_severity_heuristic(quote_text) or {}).get("sentiment", "negative"),
+                    "severity": (analyze_severity_heuristic(quote_text) or {}).get("severity_level", "medium"),
+                    "triplets": [{
+                        "aspect": st_name or spot.get("ward", ""),
+                        "opinion": (analyze_severity_heuristic(quote_text) or {}).get("opinion", "ngập nước"),
+                        "polarity": (analyze_severity_heuristic(quote_text) or {}).get("polarity", "NEG"),
+                        "confidence": 0.88
+                    }],
                     "weight": event_weight,
                     "freshness": freshness,
                     "status_tag": status_tag,

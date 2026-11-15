@@ -1159,5 +1159,53 @@
       ]
     ],
     "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "đường 54": {
+    "matched_keyword": "đường 54",
+    "display_name": "Đường 54",
+    "ward": "Phường Cát Lái",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7814,
+    "lon": 106.7575,
+    "heat_points": [
+      [
+        10.7814,
+        106.7575
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "54": {
+    "matched_keyword": "đường 54",
+    "display_name": "Đường 54",
+    "ward": "Phường Cát Lái",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.7814,
+    "lon": 106.7575,
+    "heat_points": [
+      [
+        10.7814,
+        106.7575
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
+  },
+  "hà huy giáp": {
+    "matched_keyword": "Hà Huy Giáp",
+    "display_name": "Đường Hà Huy Giáp",
+    "ward": "Phường An Phú Đông",
+    "district": "TP.HCM",
+    "region": "TPHCM",
+    "lat": 10.8663,
+    "lon": 106.6799,
+    "heat_points": [
+      [
+        10.8663,
+        106.6799
+      ]
+    ],
+    "type": "ngập đô thị (OSM tim đường chính xác)"
   }
 }

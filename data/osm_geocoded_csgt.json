@@ -709,9 +709,9 @@
     "lon": 106.71701
   },
   "csgt_tide_39": {
-    "lat": 10.875,
-    "lon": 106.685,
-    "osm_name": "Hẻm 827 Đường Hà Huy Giáp, Khu phố 16, Phường Thới An, Thành",
+    "lat": 10.865,
+    "lon": 106.6815,
+    "osm_name": "Đường Hà Huy Giáp (Trục tim đường chính), Phường Thạnh Lộc - An Phú Đông, Quận 12, Thành phố Hồ Chí Minh",
     "query": "Đường Hà Huy Giáp, Thành phố Hồ Chí Minh"
   }
 }
