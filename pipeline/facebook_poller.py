@@ -167,29 +167,16 @@ class FacebookPoller:
         - Tự động lấy active token từ ApifyPoolManager (với cơ chế Failover khi hết hạn mức).
         """
         pool_mgr = None
-        active_token = self.apify_token
         try:
             from core.apify_pool import ApifyPoolManager, mask_token
             pool_mgr = ApifyPoolManager.get_instance()
-            if not active_token or active_token == APIFY_TOKEN:
-                active_token = pool_mgr.get_active_token()
         except Exception:
             pool_mgr = None
 
-        if not active_token:
-            raise ValueError("Chưa cấu hình APIFY_TOKEN trong core/config.py hoặc Apify Pool.")
-
         queries = search_queries or FB_SEARCH_QUERIES
         target_locations = FB_SEARCH_LOCATIONS
-
-        masked_disp = active_token[:12] + "..." + active_token[-4:] if len(active_token) >= 16 else active_token
-        print(f"\n[Facebook Live] Bắt đầu cào thời gian thực từ Facebook qua Apify Key ({masked_disp})...")
-        print(f"[Facebook Live] Truy vấn tìm kiếm ({len(queries)}): {queries[:3]}...")
-
-        # Hỗ trợ Actor danek~facebook-search-ppr (ổn định, có recent_posts) và fallback
         query_str = " OR ".join(queries[:3]) if isinstance(queries, list) else str(queries)
 
-        url = f"https://api.apify.com/v2/acts/{FB_ACTOR_ID}/runs?token={active_token}"
         if "danek" in str(FB_ACTOR_ID):
             run_input = {
                 "query": query_str,
@@ -205,49 +192,73 @@ class FacebookPoller:
                 "searchType": "latest"
             }
 
+        # Vòng lặp Failover thông minh: Tự động đổi key và thử lại nếu gặp HTTP 401 hoặc 402 ($5 Quota Exceeded)
+        max_attempts = 3
         raw_items = []
-        try:
-            resp = requests.post(url, json=run_input, timeout=30)
-            if resp.status_code == 429:
-                print("[Facebook Live] ⚠️ Apify Facebook Actor đạt giới hạn tần suất (Rate Limit). Bỏ qua Facebook đợt này.")
-                return [], {"status": "rate_limited", "facebook_count": 0}
-            if resp.status_code in [401, 402]:
-                err_label = "Hết hạn mức $5 (HTTP 402 Quota Exceeded)" if resp.status_code == 402 else "Token không hợp lệ (HTTP 401)"
-                print(f"[Facebook Live] ⚠️ Apify Facebook gặp lỗi: {err_label} đối với key {masked_disp}!")
-                if pool_mgr:
-                    pool_mgr.mark_exhausted(active_token, reason=err_label)
-                return [], {"status": "exhausted", "error": err_label, "facebook_count": 0}
+        for attempt in range(max_attempts):
+            active_token = pool_mgr.get_active_token() if pool_mgr else (self.apify_token or APIFY_TOKEN)
+            if not active_token:
+                raise ValueError("Chưa cấu hình APIFY_TOKEN trong core/config.py hoặc Apify Pool.")
 
-            resp.raise_for_status()
-            run_data = resp.json().get("data", {})
-            run_id = run_data.get("id")
-            dataset_id = run_data.get("defaultDatasetId")
+            masked_disp = active_token[:12] + "..." + active_token[-4:] if len(active_token) >= 16 else active_token
+            print(f"\n[Facebook Live] Bắt đầu cào thời gian thực từ Facebook qua Apify Key ({masked_disp}) [Lần thử {attempt + 1}/{max_attempts}]...")
+            if attempt == 0:
+                print(f"[Facebook Live] Truy vấn tìm kiếm ({len(queries)}): {queries[:3]}...")
 
-            print(f"[Facebook Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
+            url = f"https://api.apify.com/v2/acts/{FB_ACTOR_ID}/runs?token={active_token}"
 
-            poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={active_token}"
-            status = "RUNNING"
-            for _ in range(90):
-                time.sleep(2.0)
-                try:
-                    status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
-                    status = status_resp.get("status")
-                    if status in ["SUCCEEDED", "FAILED", "ABORTED", "TIMED-OUT"]:
-                        break
-                except Exception:
-                    pass
+            try:
+                resp = requests.post(url, json=run_input, timeout=30)
+                if resp.status_code == 429:
+                    print("[Facebook Live] ⚠️ Apify Facebook Actor đạt giới hạn tần suất (Rate Limit). Bỏ qua Facebook đợt này.")
+                    return [], {"status": "rate_limited", "facebook_count": 0}
+                if resp.status_code in [401, 402]:
+                    err_label = "Hết hạn mức $5 (HTTP 402 Quota Exceeded)" if resp.status_code == 402 else "Token không hợp lệ (HTTP 401)"
+                    print(f"[Facebook Live] ⚠️ Key ({masked_disp}) gặp lỗi: {err_label}!")
+                    if pool_mgr:
+                        pool_mgr.mark_exhausted(active_token, reason=err_label)
+                        if attempt < max_attempts - 1:
+                            print(f"[Facebook Live] 🔄 Tự động Failover: Đã đánh dấu EXHAUSTED và xoay sang Key kế tiếp trong Pool để thử lại cào ngay...")
+                            time.sleep(1.0)
+                            continue
+                    return [], {"status": "exhausted", "error": err_label, "facebook_count": 0}
 
-            if status != "SUCCEEDED":
-                print(f"[Facebook Live] ⚠️ Facebook Actor dừng với trạng thái: {status}.")
-                return [], {"status": status, "facebook_count": 0}
+                resp.raise_for_status()
+                run_data = resp.json().get("data", {})
+                run_id = run_data.get("id")
+                dataset_id = run_data.get("defaultDatasetId")
 
-            items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={active_token}"
-            items_resp = requests.get(items_url, timeout=30)
-            items_resp.raise_for_status()
-            raw_items = items_resp.json()
-        except Exception as e:
-            print(f"[Facebook Live] ⚠️ Lỗi kết nối cào Facebook qua Apify: {e}")
-            return [], {"status": "error", "facebook_count": 0}
+                print(f"[Facebook Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
+
+                poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={active_token}"
+                status = "RUNNING"
+                for _ in range(90):
+                    time.sleep(2.0)
+                    try:
+                        status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
+                        status = status_resp.get("status")
+                        if status in ["SUCCEEDED", "FAILED", "ABORTED", "TIMED-OUT"]:
+                            break
+                    except Exception:
+                        pass
+
+                if status != "SUCCEEDED":
+                    print(f"[Facebook Live] ⚠️ Facebook Actor dừng với trạng thái: {status}.")
+                    return [], {"status": status, "facebook_count": 0}
+
+                items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={active_token}"
+                items_resp = requests.get(items_url, timeout=30)
+                items_resp.raise_for_status()
+                raw_items = items_resp.json()
+                break  # Hoàn thành xuất sắc, thoát khỏi vòng lặp thử lại!
+            except Exception as e:
+                print(f"[Facebook Live] ⚠️ Lỗi kết nối cào Facebook qua Apify: {e}")
+                if attempt < max_attempts - 1 and pool_mgr:
+                    print(f"[Facebook Live] 🔄 Tự động thử lại với Key khác trong Pool...")
+                    pool_mgr.rotate_next(reason="network_retry")
+                    time.sleep(1.0)
+                    continue
+                return [], {"status": "error", "facebook_count": 0}
 
         os.makedirs("data", exist_ok=True)
         try:

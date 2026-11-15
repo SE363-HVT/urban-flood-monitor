@@ -43,28 +43,15 @@ class TikTokPoller:
         - Thu thập và xử lý video về ngập lụt, mưa lớn, triều cường tại TP.HCM.
         """
         pool_mgr = None
-        active_token = self.apify_token
         try:
             from core.apify_pool import ApifyPoolManager, mask_token
             pool_mgr = ApifyPoolManager.get_instance()
-            if not active_token or active_token == APIFY_TOKEN:
-                active_token = pool_mgr.get_active_token()
         except Exception:
             pool_mgr = None
-
-        if not active_token:
-            raise ValueError("Chưa cấu hình APIFY_TOKEN. Vui lòng cung cấp token trong core/config.py hoặc Apify Pool.")
 
         target_hashtags = hashtags or DEFAULT_HASHTAGS
         target_queries = search_queries or DEFAULT_SEARCH_QUERIES
 
-        masked_disp = active_token[:12] + "..." + active_token[-4:] if len(active_token) >= 16 else active_token
-        print(f"\n[Apify Live] Đang gửi yêu cầu cào Video TikTok qua Apify Key ({masked_disp})...")
-        print(f"[Apify Live] Từ khóa điểm nóng TP.HCM ({len(target_queries)} queries): {target_queries}...")
-        print(f"[Apify Live] Danh sách Hashtags ({len(target_hashtags)} tags): {target_hashtags}...")
-
-        url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs?token={active_token}"
-        # Giới hạn 10 kết quả mỗi trang để cân bằng giữa độ phủ tin tức và tốc độ hoàn thành (~60-90s)
         run_input = {
             "searchQueries": target_queries,
             "hashtags": target_hashtags,
@@ -72,52 +59,76 @@ class TikTokPoller:
             "maxItems": max_items,
         }
 
-        # 1. Khởi chạy Actor
+        # Vòng lặp Failover thông minh: Tự động đổi key và thử lại nếu gặp HTTP 401 hoặc 402 ($5 Quota Exceeded)
+        max_attempts = 3
         raw_items = []
-        try:
-            resp = requests.post(url, json=run_input, timeout=30)
-            if resp.status_code == 429:
-                print("[Apify Live] ⚠️ Apify TikTok Actor đạt giới hạn tần suất (Rate Limit). Bỏ qua TikTok đợt này.")
-                return [], {"status": "rate_limited", "tiktok_count": 0}
-            if resp.status_code in [401, 402]:
-                err_label = "Hết hạn mức $5 (HTTP 402 Quota Exceeded)" if resp.status_code == 402 else "Token không hợp lệ (HTTP 401)"
-                print(f"[Apify Live] ⚠️ Apify TikTok gặp lỗi: {err_label} đối với key {masked_disp}!")
-                if pool_mgr:
-                    pool_mgr.mark_exhausted(active_token, reason=err_label)
-                return [], {"status": "exhausted", "error": err_label, "tiktok_count": 0}
+        for attempt in range(max_attempts):
+            active_token = pool_mgr.get_active_token() if pool_mgr else (self.apify_token or APIFY_TOKEN)
+            if not active_token:
+                raise ValueError("Chưa cấu hình APIFY_TOKEN. Vui lòng cung cấp token trong core/config.py hoặc Apify Pool.")
 
-            resp.raise_for_status()
-            run_data = resp.json().get("data", {})
-            run_id = run_data.get("id")
-            dataset_id = run_data.get("defaultDatasetId")
-            
-            print(f"[Apify Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
+            masked_disp = active_token[:12] + "..." + active_token[-4:] if len(active_token) >= 16 else active_token
+            print(f"\n[Apify Live] Đang gửi yêu cầu cào Video TikTok qua Apify Key ({masked_disp}) [Lần thử {attempt + 1}/{max_attempts}]...")
+            if attempt == 0:
+                print(f"[Apify Live] Từ khóa điểm nóng TP.HCM ({len(target_queries)} queries): {target_queries}...")
+                print(f"[Apify Live] Danh sách Hashtags ({len(target_hashtags)} tags): {target_hashtags}...")
 
-            # 2. Chờ Actor hoàn thành (tối đa 360 giây)
-            poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={active_token}"
-            status = "RUNNING"
-            for _ in range(180):
-                time.sleep(2.0)
-                try:
-                    status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
-                    status = status_resp.get("status")
-                    if status in ["SUCCEEDED", "FAILED", "ABORTED", "TIMED-OUT"]:
-                        break
-                except Exception:
-                    pass
-            
-            if status != "SUCCEEDED":
-                print(f"[Apify Live] ⚠️ TikTok Actor dừng với trạng thái: {status}.")
-                return [], {"status": status, "tiktok_count": 0}
+            url = f"https://api.apify.com/v2/acts/{ACTOR_ID}/runs?token={active_token}"
 
-            # 3. Lấy dữ liệu từ Dataset
-            items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={active_token}"
-            items_resp = requests.get(items_url, timeout=30)
-            items_resp.raise_for_status()
-            raw_items = items_resp.json()
-        except Exception as e:
-            print(f"[Apify Live] ⚠️ Lỗi kết nối cào TikTok qua Apify: {e}")
-            return [], {"status": "error", "tiktok_count": 0}
+            try:
+                resp = requests.post(url, json=run_input, timeout=30)
+                if resp.status_code == 429:
+                    print("[Apify Live] ⚠️ Apify TikTok Actor đạt giới hạn tần suất (Rate Limit). Bỏ qua TikTok đợt này.")
+                    return [], {"status": "rate_limited", "tiktok_count": 0}
+                if resp.status_code in [401, 402]:
+                    err_label = "Hết hạn mức $5 (HTTP 402 Quota Exceeded)" if resp.status_code == 402 else "Token không hợp lệ (HTTP 401)"
+                    print(f"[Apify Live] ⚠️ Key ({masked_disp}) gặp lỗi: {err_label}!")
+                    if pool_mgr:
+                        pool_mgr.mark_exhausted(active_token, reason=err_label)
+                        if attempt < max_attempts - 1:
+                            print(f"[Apify Live] 🔄 Tự động Failover: Đã đánh dấu EXHAUSTED và xoay sang Key kế tiếp trong Pool để thử lại cào ngay...")
+                            time.sleep(1.0)
+                            continue
+                    return [], {"status": "exhausted", "error": err_label, "tiktok_count": 0}
+
+                resp.raise_for_status()
+                run_data = resp.json().get("data", {})
+                run_id = run_data.get("id")
+                dataset_id = run_data.get("defaultDatasetId")
+                
+                print(f"[Apify Live] Actor đang chạy (Run ID: {run_id}). Đang chờ kết quả...")
+
+                # 2. Chờ Actor hoàn thành (tối đa 360 giây)
+                poll_url = f"https://api.apify.com/v2/actor-runs/{run_id}?token={active_token}"
+                status = "RUNNING"
+                for _ in range(180):
+                    time.sleep(2.0)
+                    try:
+                        status_resp = requests.get(poll_url, timeout=10).json().get("data", {})
+                        status = status_resp.get("status")
+                        if status in ["SUCCEEDED", "FAILED", "ABORTED", "TIMED-OUT"]:
+                            break
+                    except Exception:
+                        pass
+                
+                if status != "SUCCEEDED":
+                    print(f"[Apify Live] ⚠️ TikTok Actor dừng với trạng thái: {status}.")
+                    return [], {"status": status, "tiktok_count": 0}
+
+                # 3. Lấy dữ liệu từ Dataset
+                items_url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?token={active_token}"
+                items_resp = requests.get(items_url, timeout=30)
+                items_resp.raise_for_status()
+                raw_items = items_resp.json()
+                break  # Hoàn thành xuất sắc, thoát khỏi vòng lặp thử lại!
+            except Exception as e:
+                print(f"[Apify Live] ⚠️ Lỗi kết nối cào TikTok qua Apify: {e}")
+                if attempt < max_attempts - 1 and pool_mgr:
+                    print(f"[Apify Live] 🔄 Tự động thử lại với Key khác trong Pool...")
+                    pool_mgr.rotate_next(reason="network_retry")
+                    time.sleep(1.0)
+                    continue
+                return [], {"status": "error", "tiktok_count": 0}
 
         # Lưu bản sao raw debug
         os.makedirs("data", exist_ok=True)

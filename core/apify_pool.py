@@ -223,8 +223,9 @@ class ApifyPoolManager:
     def get_active_token(self) -> str:
         """
         Lấy Token đang kích hoạt để thực hiện cào dữ liệu.
-        - Chế độ Manual: Dùng key do Admin chỉ định.
-        - Chế độ Auto: Tự động chọn key ACTIVE có số dư cao nhất.
+        - Chế độ Manual: Dùng key do Admin chỉ định (nếu key đó hết hạn, tự failover sang key active).
+        - Chế độ Auto: Giữ key hiện tại nếu còn ACTIVE (> $0.05). Nếu key hiện tại hết hạn hoặc rỗng,
+          tự động xoay sang key kế tiếp còn hoạt động trong pool.
         - Fallback: Trả về APIFY_TOKEN gốc nếu pool không có key nào khả dụng.
         """
         with _LOCK:
@@ -235,28 +236,36 @@ class ApifyPoolManager:
             if self.mode == "manual" and self.active_token:
                 for acc in self.tokens:
                     if acc.get("token") == self.active_token:
-                        if acc.get("status") != "EXHAUSTED":
+                        if acc.get("status") not in ["EXHAUSTED", "INVALID"]:
                             return self.active_token
                         else:
-                            print(f"[ApifyPool] Key thủ công ({mask_token(self.active_token)}) đã hết hạn ngạch. Tạm thời xoay tự động...")
+                            print(f"[ApifyPool] Key thủ công ({mask_token(self.active_token)}) đã hết hạn/lỗi. Tạm thời failover sang key kế tiếp...")
                             break
 
-            # 2. Chế độ Tự động (Auto-Rotate)
+            # 2. Chế độ Tự động (Auto-Rotate) hoặc Failover từ Manual
+            current_acc = None
+            if self.active_token:
+                for acc in self.tokens:
+                    if acc.get("token") == self.active_token:
+                        current_acc = acc
+                        break
+
+            # Nếu token hiện tại còn tốt (ACTIVE/UNCHECKED và còn dư > $0.05) thì tiếp tục dùng
+            if current_acc and current_acc.get("status") in ["ACTIVE", "UNCHECKED"] and current_acc.get("remaining_usd", 5.0) > 0.05:
+                return self.active_token
+
+            # Token hiện tại đã hết tiền hoặc chưa chọn -> Xoay sang token tiếp theo còn dùng được
             active_candidates = [
                 acc for acc in self.tokens
-                if acc.get("status") in ["ACTIVE", "UNCHECKED"]
+                if acc.get("status") in ["ACTIVE", "UNCHECKED"] and acc.get("remaining_usd", 5.0) > 0.05
             ]
 
             if active_candidates:
-                # Ưu tiên tài khoản còn nhiều tiền nhất (remaining_usd cao nhất)
-                best_acc = max(active_candidates, key=lambda x: x.get("remaining_usd", 0.0))
-                best_tok = best_acc.get("token")
-                if self.active_token != best_tok:
-                    self.active_token = best_tok
-                    self._save_pool()
-                return best_tok
+                next_tok, _ = self.rotate_next(reason="auto_exhaustion_or_initial")
+                if next_tok:
+                    return next_tok
 
-            # 3. Nếu toàn bộ đều EXHAUSTED hoặc INVALID, dùng fallback đầu tiên
+            # 3. Fallback cuối cùng
             if self.active_token:
                 return self.active_token
             return APIFY_TOKEN
