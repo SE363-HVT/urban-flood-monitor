@@ -230,9 +230,68 @@
         }
 
         .nav-icon {
-            font-size: 15px;
             width: 20px;
-            text-align: center;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+        .nav-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover .nav-icon {
+            color: #f8fafc;
+        }
+        .nav-link:hover .nav-icon svg {
+            transform: scale(1.1);
+        }
+        .nav-link.active .nav-icon {
+            color: #38bdf8;
+        }
+        .nav-link.active .nav-icon svg {
+            filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+        }
+
+        /* Enterprise Vector Indicator Dots */
+        .pulse-dot-green {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            display: inline-block;
+            animation: livePulseGreen 2s infinite;
+        }
+        @keyframes livePulseGreen {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .live-dot-red {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            display: inline-block;
+            margin-right: 4px;
+            animation: livePulseRed 2s infinite;
+        }
+        @keyframes livePulseRed {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
 
         .nav-key-badge {
@@ -1425,14 +1484,16 @@
                     <span class="brand-title-sub">Giám Sát & Điều Hành Ngập</span>
                 </div>
             </div>
-            <button id="btn-toggle-sidebar" class="sidebar-toggle-btn" onclick="toggleSidebar()" title="Thu gọn Menu (Ctrl+B)">◀</button>
+            <button id="btn-toggle-sidebar" class="sidebar-toggle-btn" onclick="toggleSidebar()" title="Thu gọn Menu (Ctrl+B)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
         </div>
 
         <nav class="nav-menu">
             <div class="nav-section-title">Bản Đồ Không Gian</div>
             <div class="nav-link active" data-panel="panel-heatmap" onclick="switchPanel('panel-heatmap', 'BẢN ĐỒ NHIỆT NGẬP LỤT THỜI GIAN THỰC')">
                 <div class="nav-link-left">
-                    <span class="nav-icon">🗺️</span>
+                    <span class="nav-icon" title="Bản Đồ Nhiệt Không Gian">
+                        <svg viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+                    </span>
                     <span>Bản Đồ Nhiệt</span>
                 </div>
                 <span class="nav-key-badge">[1]</span>
@@ -1441,7 +1502,9 @@
             <div class="nav-section-title geo">Thống Kê Địa Giới</div>
             <div class="nav-link" data-panel="panel-wards" onclick="switchPanel('panel-wards', 'XẾP HẠNG ĐIỂM NGẬP THEO PHƯỜNG / XÃ MỚI (NQ 1685)')">
                 <div class="nav-link-left">
-                    <span class="nav-icon">📊</span>
+                    <span class="nav-icon" title="Thống Kê Phường Xã & Vùng Đô Thị">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                    </span>
                     <span>Phường/Xã & Vùng</span>
                 </div>
                 <span class="nav-key-badge">[2]</span>
@@ -1450,7 +1513,9 @@
             <div class="nav-section-title analytics">Phân Tích Dữ Liệu</div>
             <div class="nav-link" data-panel="panel-trends" onclick="switchPanel('panel-trends', 'DIỄN BIẾN THEO THỜI GIAN (6H QUA)')">
                 <div class="nav-link-left">
-                    <span class="nav-icon">📈</span>
+                    <span class="nav-icon" title="Diễn Biến Theo Giờ">
+                        <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                    </span>
                     <span>Diễn Biến Theo Giờ</span>
                 </div>
                 <span class="nav-key-badge">[3]</span>
@@ -1458,7 +1523,9 @@
 
             <div class="nav-link" data-panel="panel-throughput" onclick="switchPanel('panel-throughput', 'TỐC ĐỘ THU THẬP & KIỂM ĐỊNH DỮ LIỆU')">
                 <div class="nav-link-left">
-                    <span class="nav-icon">⚡</span>
+                    <span class="nav-icon" title="Tốc Độ Thu Thập & Xử Lý Pipeline">
+                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </span>
                     <span>Tốc Độ Thu Thập</span>
                 </div>
                 <span class="nav-key-badge">[4]</span>
@@ -1467,7 +1534,9 @@
             <div class="nav-section-title infra">Hiện Trường & Hạ Tầng</div>
             <div class="nav-link" data-panel="panel-feed" onclick="switchPanel('panel-feed', 'DÒNG TIN HIỆN TRƯỜNG THỜI GIAN THỰC')">
                 <div class="nav-link-left">
-                    <span class="nav-icon">🔔</span>
+                    <span class="nav-icon" title="Tin Báo Hiện Trường Trực Tiếp">
+                        <svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                    </span>
                     <span>Tin Báo Hiện Trường</span>
                 </div>
                 <span class="nav-key-badge">[5]</span>
@@ -1475,7 +1544,9 @@
 
             <div class="nav-link" data-panel="panel-health" onclick="switchPanel('panel-health', 'TRẠNG THÁI HỆ THỐNG & VI DỊCH VỤ')">
                 <div class="nav-link-left">
-                    <span class="nav-icon">💓</span>
+                    <span class="nav-icon" title="Sức Khỏe Hệ Thống & Vi Dịch Vụ">
+                        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </span>
                     <span>Sức Khỏe Hệ Thống</span>
                 </div>
                 <span class="nav-key-badge">[6]</span>
@@ -1484,7 +1555,9 @@
             <div class="nav-section-title" style="color: #38bdf8;">Quản Trị API Cloud</div>
             <div class="nav-link" data-panel="panel-apify-pool" onclick="switchPanel('panel-apify-pool', 'QUẢN LÝ POOL TÀI KHOẢN APIFY ($5/THÁNG)')">
                 <div class="nav-link-left">
-                    <span class="nav-icon">🔑</span>
+                    <span class="nav-icon" title="Quản Lý Pool Key Apify">
+                        <svg viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+                    </span>
                     <span>Pool Key Apify</span>
                 </div>
                 <span class="nav-key-badge">[7]</span>
@@ -1500,11 +1573,13 @@
                 <div id="badge-mode" class="mode-pill">DEMO SIMULATION</div>
             </div>
             <div style="display: flex; gap: 6px;">
-                <button id="btn-toggle-mode" class="btn btn-secondary" style="flex: 1; padding: 6px 8px; font-size: 11px;" onclick="toggleServerMode()">
-                    <span>⚡ Chuyển Mode</span>
+                <button id="btn-toggle-mode" class="btn btn-secondary" style="flex: 1; padding: 6px 8px; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; gap: 5px;" onclick="toggleServerMode()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                    <span>Chuyển Mode</span>
                 </button>
-                <button id="btn-reset" class="btn btn-secondary" style="padding: 6px 10px; font-size: 11px;" onclick="resetStreamState()" title="Làm sạch nạp lại từ đầu">
-                    <span>🧹 Nạp lại</span>
+                <button id="btn-reset" class="btn btn-secondary" style="padding: 6px 10px; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; gap: 5px;" onclick="resetStreamState()" title="Làm sạch nạp lại từ đầu">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                    <span>Nạp lại</span>
                 </button>
             </div>
         </div>
@@ -1516,7 +1591,7 @@
         <!-- TOP BAR (SMOOTH HORIZONTAL SCROLL) -->
         <header id="topbar">
             <div class="topbar-left">
-                <button id="btn-expand-sidebar" class="topbar-toggle-btn" onclick="toggleSidebar()" title="Mở rộng Menu (Ctrl+B)">☰</button>
+                <button id="btn-expand-sidebar" class="topbar-toggle-btn" onclick="toggleSidebar()" title="Mở rộng Menu (Ctrl+B)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
                 <span id="current-page-title" class="page-heading">BẢN ĐỒ NHIỆT NGẬP LỤT THỜI GIAN THỰC</span>
             </div>
 
@@ -1538,23 +1613,28 @@
 
             <!-- ACTIONS (NEVER CUT OFF, HORIZONTALLY SCROLLABLE) -->
             <div class="topbar-actions">
-                <button id="btn-poll" class="btn" onclick="triggerPoll()" title="Cào nhanh miễn phí không tốn credit Apify">
-                    <span>🔄 Cào Free</span>
+                <button id="btn-poll" class="btn" onclick="triggerPoll()" title="Cào nhanh miễn phí không tốn credit Apify" style="display: inline-flex; align-items: center; gap: 5px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+                    <span>Cào Free</span>
                 </button>
-                <button id="btn-apify" class="btn" style="background: linear-gradient(135deg, #7c3aed, #4f46e5);" onclick="triggerApifyPoll()" title="Gọi Apify Actor cào sâu Facebook & TikTok">
-                    <span>🚀 Cào Apify</span>
+                <button id="btn-apify" class="btn" style="background: linear-gradient(135deg, #7c3aed, #4f46e5); display: inline-flex; align-items: center; gap: 5px;" onclick="triggerApifyPoll()" title="Gọi Apify Actor cào sâu Facebook & TikTok">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><polygon points="12 11 10 15 14 15 12 19" fill="currentColor"/></svg>
+                    <span>Cào Apify</span>
                 </button>
-                <button id="btn-proximity" class="btn btn-proximity" onclick="openProximityScanner()">
-                    <span>📍 Quanh tôi</span>
+                <button id="btn-proximity" class="btn btn-proximity" onclick="openProximityScanner()" style="display: inline-flex; align-items: center; gap: 5px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                    <span>Quanh tôi</span>
                 </button>
                 <button id="btn-autopoll" class="btn btn-secondary active" onclick="toggleAutoPoll()" title="Tự động đồng bộ mỗi 3s">
-                    <span id="txt-autopoll">🟢 Tự động (3s)</span>
+                    <span id="txt-autopoll" style="display: inline-flex; align-items: center; gap: 6px;"><span class="pulse-dot-green"></span><span>Tự động (3s)</span></span>
                 </button>
-                <button class="btn btn-secondary" onclick="toggleFullScreen()" title="Toàn màn hình (F)">
-                    <span>⛶ [F]</span>
+                <button class="btn btn-secondary" onclick="toggleFullScreen()" title="Toàn màn hình (F)" style="display: inline-flex; align-items: center; gap: 4px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                    <span>[F]</span>
                 </button>
-                <button class="btn btn-secondary" onclick="manualRefreshAll()" title="Làm mới tức thì (R)">
-                    <span>🔄 [R]</span>
+                <button class="btn btn-secondary" onclick="manualRefreshAll()" title="Làm mới tức thì (R)" style="display: inline-flex; align-items: center; gap: 4px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+                    <span>[R]</span>
                 </button>
             </div>
         </header>
@@ -1568,7 +1648,7 @@
                     <!-- Search Bar -->
                     <div class="search-bar-container">
                         <div class="search-input-wrapper">
-                            <span class="search-icon">🔍</span>
+                            <span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
                             <input id="search-input" class="search-input" type="text" placeholder="Tìm tên đường hoặc phường/xã mới..." oninput="handleSearchInput(this.value)" />
                         </div>
                         <div id="search-dropdown" class="search-dropdown"></div>
@@ -1576,20 +1656,24 @@
 
                     <!-- Map Layer Controls Floating on Map -->
                     <div class="map-layer-controls">
-                        <button id="btn-toggle-live" class="btn btn-secondary active" style="padding: 5px 9px; font-size: 11px;" onclick="toggleLiveLayer()">
-                            <span>🔴 Live MXH</span>
+                        <button id="btn-toggle-live" class="btn btn-secondary active" style="padding: 5px 9px; font-size: 11px; display: inline-flex; align-items: center;" onclick="toggleLiveLayer()">
+                            <span class="live-dot-red"></span><span>Live MXH</span>
                         </button>
-                        <button id="btn-toggle-csgt" class="btn btn-secondary active" style="padding: 5px 9px; font-size: 11px;" onclick="toggleCsgtLayer()">
-                            <span>⚠️ CSGT</span>
+                        <button id="btn-toggle-csgt" class="btn btn-secondary active" style="padding: 5px 9px; font-size: 11px; display: inline-flex; align-items: center; gap: 4px;" onclick="toggleCsgtLayer()">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            <span>CSGT</span>
                         </button>
-                        <button id="btn-heatmap" class="btn btn-secondary active" style="padding: 5px 9px; font-size: 11px;" onclick="toggleHeatmap()">
-                            <span>🌡️ Quầng nhiệt</span>
+                        <button id="btn-heatmap" class="btn btn-secondary active" style="padding: 5px 9px; font-size: 11px; display: inline-flex; align-items: center; gap: 4px;" onclick="toggleHeatmap()">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>
+                            <span>Quầng nhiệt</span>
                         </button>
-                        <button id="btn-toggle-map-drawer" class="btn btn-secondary active" style="padding: 5px 9px; font-size: 11px;" onclick="toggleMapLiveDrawer()" title="Mở/Đóng Cột Tin Tức Trực Tiếp">
-                            <span>📋 Dòng tin Live (<b id="drawer-feed-count">12</b>)</span>
+                        <button id="btn-toggle-map-drawer" class="btn btn-secondary active" style="padding: 5px 9px; font-size: 11px; display: inline-flex; align-items: center; gap: 4px;" onclick="toggleMapLiveDrawer()" title="Mở/Đóng Cột Tin Tức Trực Tiếp">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/></svg>
+                            <span>Dòng tin (<b id="drawer-feed-count">12</b>)</span>
                         </button>
-                        <button class="btn btn-secondary" style="padding: 5px 9px; font-size: 11px;" onclick="toggleSidebar()" title="Ẩn/Hiện Sidebar Menu (Ctrl+B)">
-                            <span>◀▶ Menu</span>
+                        <button class="btn btn-secondary" style="padding: 5px 9px; font-size: 11px; display: inline-flex; align-items: center; gap: 4px;" onclick="toggleSidebar()" title="Ẩn/Hiện Sidebar Menu (Ctrl+B)">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg>
+                            <span>Menu</span>
                         </button>
                     </div>
 
@@ -1854,25 +1938,29 @@
                     <div class="analytics-header-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
                         <div>
                             <div class="analytics-title" style="display: flex; align-items: center; gap: 10px;">
-                                <span>🔑 Quản Lý Pool Tài Khoản Apify ($5/Tháng)</span>
+                                <span style="display: inline-flex; align-items: center; gap: 8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg> Quản Lý Pool Tài Khoản Apify ($5/Tháng)</span>
                                 <span id="pool-mode-badge" class="health-status-badge online" style="font-size: 11px;">AUTO-ROTATE</span>
                             </div>
                             <div class="analytics-subtitle">Tự động xoay API Key khi cạn hạn mức, phân bổ tải đa tài khoản và đổi thủ công tức thì theo ý Admin</div>
                         </div>
                         <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
                             <div style="display: flex; background: rgba(255, 255, 255, 0.06); padding: 3px; border-radius: 8px; border: 1px solid var(--border-subtle); gap: 4px;">
-                                <button id="btn-pool-auto" onclick="setApifyPoolMode('auto')" style="padding: 6px 12px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s;" title="Hệ thống tự động chọn tài khoản tối ưu và xoay khi hết $5">
-                                    🔄 Tự Động Xoay
+                                <button id="btn-pool-auto" onclick="setApifyPoolMode('auto')" style="padding: 6px 12px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px;" title="Hệ thống tự động chọn tài khoản tối ưu và xoay khi hết $5">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+                                    Tự Động Xoay
                                 </button>
-                                <button id="btn-pool-manual" onclick="setApifyPoolMode('manual')" style="padding: 6px 12px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s;" title="Cố định dùng tài khoản do Admin bấm Ghim bên dưới">
-                                    📌 Ghim Thủ Công
+                                <button id="btn-pool-manual" onclick="setApifyPoolMode('manual')" style="padding: 6px 12px; font-size: 11px; font-weight: 700; border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px;" title="Cố định dùng tài khoản do Admin bấm Ghim bên dưới">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                                    Ghim Thủ Công
                                 </button>
                             </div>
-                            <button class="btn btn-secondary" onclick="rotateApifyKeyNow()" style="padding: 6px 12px; font-size: 11px;" title="Chuyển ngay sang Key tiếp theo trong Pool">
-                                <span>⏭️ Xoay Key Tiếp</span>
+                            <button class="btn btn-secondary" onclick="rotateApifyKeyNow()" style="padding: 6px 12px; font-size: 11px; display: inline-flex; align-items: center; gap: 5px;" title="Chuyển ngay sang Key tiếp theo trong Pool">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+                                <span>Xoay Key Tiếp</span>
                             </button>
-                            <button class="btn btn-secondary" onclick="refreshApifyPoolUsage()" style="padding: 6px 12px; font-size: 11px;" title="Đồng bộ số dư thực tế từ Apify Cloud">
-                                <span>⚡ Làm Mới Số Dư</span>
+                            <button class="btn btn-secondary" onclick="refreshApifyPoolUsage()" style="padding: 6px 12px; font-size: 11px; display: inline-flex; align-items: center; gap: 5px;" title="Đồng bộ số dư thực tế từ Apify Cloud">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                                <span>Làm Mới Số Dư</span>
                             </button>
                         </div>
                     </div>
@@ -1903,14 +1991,15 @@
 
                     <!-- Add New Token Card -->
                     <div class="health-node-card" style="margin-top: 16px; padding: 18px 22px;">
-                        <div style="font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 8px;">➕ Thêm Tài Khoản Apify Mới Vào Pool</div>
+                        <div style="font-size: 13px; font-weight: 700; color: #38bdf8; margin-bottom: 8px; display: inline-flex; align-items: center; gap: 6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Thêm Tài Khoản Apify Mới Vào Pool</div>
                         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                             <input id="input-new-token" type="text" placeholder="Dán mã API Token (bắt đầu bằng apify_api_...)" 
                                    style="flex: 2; min-width: 280px; padding: 8px 12px; background: rgba(11, 15, 23, 0.7); border: 1px solid var(--border-subtle); border-radius: 6px; color: #fff; font-size: 12px; font-family: monospace;">
                             <input id="input-new-label" type="text" placeholder="Tên gợi nhớ (vd: Acc 2 - thuan161)" 
                                    style="flex: 1; min-width: 180px; padding: 8px 12px; background: rgba(11, 15, 23, 0.7); border: 1px solid var(--border-subtle); border-radius: 6px; color: #fff; font-size: 12px;">
-                            <button id="btn-add-token" class="btn btn-primary" onclick="addNewApifyToken()" style="padding: 8px 18px; font-size: 12px;">
-                                <span>➕ Thêm & Kiểm Tra</span>
+                            <button id="btn-add-token" class="btn btn-primary" onclick="addNewApifyToken()" style="padding: 8px 18px; font-size: 12px; display: inline-flex; align-items: center; gap: 6px;">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                <span>Thêm & Kiểm Tra</span>
                             </button>
                         </div>
                     </div>
@@ -2149,9 +2238,9 @@
             const btn = document.getElementById('btn-toggle-mode');
             if (btn) {
                 if (serverCurrentMode === 'live') {
-                    btn.innerHTML = '🔄 Sang Simulation';
+                    btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg><span>Sang Sim</span>';
                 } else {
-                    btn.innerHTML = '⚡ Sang Live';
+                    btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Sang Live</span>';
                 }
             }
             updateModeBadgeUI(serverCurrentMode);
@@ -3174,7 +3263,11 @@
             document.body.classList.toggle('sidebar-collapsed');
             const isCollapsed = document.body.classList.contains('sidebar-collapsed');
             const btn = document.getElementById('btn-toggle-sidebar');
-            if (btn) btn.innerText = isCollapsed ? '▶' : '◀';
+            if (btn) {
+                btn.innerHTML = isCollapsed
+                    ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'
+                    : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>';
+            }
 
             triggerMapResizeSafe();
             setTimeout(() => resizeAllCharts(), 250);
@@ -3875,11 +3968,11 @@
                 if (acc.status === 'EXHAUSTED') {
                     statusBadge = '<span class="health-status-badge offline" style="font-size: 10px;">🔴 HẾT $5</span>';
                 } else if (acc.status === 'INVALID') {
-                    statusBadge = '<span class="health-status-badge offline" style="font-size: 10px;">⚠️ LỖI KEY</span>';
+                    statusBadge = '<span class="health-status-badge offline" style="font-size: 10px; display: inline-flex; align-items: center; gap: 4px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #ef4444;"></span>LỖI KEY</span>';
                 } else if (isAct) {
-                    statusBadge = '<span class="health-status-badge online" style="font-size: 10px; border-color: #38bdf8; background: rgba(14, 165, 233, 0.2); color: #38bdf8;">🟢 ĐANG DÙNG</span>';
+                    statusBadge = '<span class="health-status-badge online" style="font-size: 10px; border-color: #38bdf8; background: rgba(14, 165, 233, 0.2); color: #38bdf8; display: inline-flex; align-items: center; gap: 4px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #38bdf8;"></span>ĐANG DÙNG</span>';
                 } else {
-                    statusBadge = '<span class="health-status-badge online" style="font-size: 10px;">🟢 SẴN SÀNG</span>';
+                    statusBadge = '<span class="health-status-badge online" style="font-size: 10px; display: inline-flex; align-items: center; gap: 4px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981;"></span>SẴN SÀNG</span>';
                 }
 
                 html += `
@@ -3902,8 +3995,8 @@
                     <td style="padding: 12px 8px;">${statusBadge}</td>
                     <td style="padding: 12px 8px; text-align: right;">
                         <div style="display: flex; gap: 6px; justify-content: flex-end;">
-                            ${isAct ? '' : `<button class="btn btn-secondary" style="padding: 4px 8px; font-size: 10px;" onclick="setApifyActiveKey('${tokId}')" title="Ghim dùng làm Key chính thủ công">📌 Ghim</button>`}
-                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 10px; color: #f87171; border-color: rgba(239, 68, 68, 0.3);" onclick="removeApifyToken('${tokId}')" title="Xóa khỏi Pool">🗑️</button>
+                            ${isAct ? '' : `<button class="btn btn-secondary" style="padding: 4px 8px; font-size: 10px; display: inline-flex; align-items: center; gap: 3px;" onclick="setApifyActiveKey('${tokId}')" title="Ghim dùng làm Key chính thủ công"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>Ghim</button>`}
+                            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 10px; color: #f87171; border-color: rgba(239, 68, 68, 0.3); display: inline-flex; align-items: center; justify-content: center;" onclick="removeApifyToken('${tokId}')" title="Xóa khỏi Pool"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>
                         </div>
                     </td>
                 </tr>
