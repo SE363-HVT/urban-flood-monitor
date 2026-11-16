@@ -181,17 +181,38 @@
             width: 3px;
             height: 12px;
             border-radius: 2px;
-            background: linear-gradient(180deg, #38bdf8, #3b82f6);
+            background: linear-gradient(180deg, #60a5fa, #3b82f6);
             flex-shrink: 0;
         }
+        .nav-section-title.spatial {
+            color: #60a5fa;
+        }
+        .nav-section-title.spatial::before {
+            background: linear-gradient(180deg, #60a5fa, #3b82f6);
+        }
+        .nav-section-title.geo {
+            color: #34d399;
+        }
         .nav-section-title.geo::before {
-            background: linear-gradient(180deg, #10b981, #059669);
+            background: linear-gradient(180deg, #34d399, #10b981);
+        }
+        .nav-section-title.analytics {
+            color: #fbbf24;
         }
         .nav-section-title.analytics::before {
-            background: linear-gradient(180deg, #f59e0b, #d97706);
+            background: linear-gradient(180deg, #fbbf24, #f59e0b);
+        }
+        .nav-section-title.infra {
+            color: #e879f9;
         }
         .nav-section-title.infra::before {
-            background: linear-gradient(180deg, #ec4899, #8b5cf6);
+            background: linear-gradient(180deg, #f472b6, #c084fc);
+        }
+        .nav-section-title.cloud {
+            color: #38bdf8;
+        }
+        .nav-section-title.cloud::before {
+            background: linear-gradient(180deg, #38bdf8, #0ea5e9);
         }
 
         .nav-link {
@@ -1488,7 +1509,7 @@
         </div>
 
         <nav class="nav-menu">
-            <div class="nav-section-title">Bản Đồ Không Gian</div>
+            <div class="nav-section-title spatial">Bản Đồ Không Gian</div>
             <div class="nav-link active" data-panel="panel-heatmap" onclick="switchPanel('panel-heatmap', 'BẢN ĐỒ NHIỆT NGẬP LỤT THỜI GIAN THỰC')">
                 <div class="nav-link-left">
                     <span class="nav-icon" title="Bản Đồ Nhiệt Không Gian">
@@ -1552,7 +1573,7 @@
                 <span class="nav-key-badge">[6]</span>
             </div>
 
-            <div class="nav-section-title" style="color: #38bdf8;">Quản Trị API Cloud</div>
+            <div class="nav-section-title cloud">Quản Trị API Cloud</div>
             <div class="nav-link" data-panel="panel-apify-pool" onclick="switchPanel('panel-apify-pool', 'QUẢN LÝ POOL TÀI KHOẢN APIFY ($5/THÁNG)')">
                 <div class="nav-link-left">
                     <span class="nav-icon" title="Quản Lý Pool Key Apify">
