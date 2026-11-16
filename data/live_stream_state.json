@@ -1,195 +1,9 @@
 {
-  "mode": "live_streaming_spark_live",
-  "updated_at": "2026-11-15T15:48:34.424617+00:00",
-  "window": "Google RSS + Bing Streaming (24h)",
-  "events_count": 16,
+  "mode": "live_streaming_spark_simulation",
+  "updated_at": "2026-11-16T09:02:42.727348+00:00",
+  "window": "2 giờ qua (Mô phỏng TP.HCM)",
+  "events_count": 11,
   "events": [
-    {
-      "id": "b7e760cabde47241",
-      "canonical_id": "facebook_b7e760cabde47241",
-      "platform": "facebook",
-      "media_type": "post",
-      "author": "giaothongonline",
-      "text": "TP.HCM: Dự án chống ngập 10.000 tỷ đồng sẽ vận hành vào ngày 30/11",
-      "create_time": 1794751290,
-      "created_at_iso": "2026-11-15T14:01:30+00:00",
-      "timestamp": 1794751290,
-      "historical_timestamp": null,
-      "relative_time": "1 giờ 47 phút trước",
-      "freshness": "strict_2h",
-      "status_tag": "🔴 ĐANG DIỄN RA (< 2 GIỜ)",
-      "location": {
-        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
-        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "heat_points": [
-          [
-            10.7769,
-            106.7009
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "opinion": "kế hoạch vận hành dự án chống ngập",
-      "severity": "medium",
-      "weight": 2.0,
-      "url": "https://www.facebook.com/giaothongonline/posts/tphcm-d%E1%BB%B1-%C3%A1n-ch%E1%BB%91ng-ng%E1%BA%ADp-10000-t%E1%BB%B7-%C4%91%E1%BB%93ng-s%E1%BA%BD-v%E1%BA%ADn-h%C3%A0nh-v%C3%A0o-ng%C3%A0y-3011/1833917714862111/",
-      "polarity": "NEG",
-      "sentiment": "negative",
-      "triplets": [
-        {
-          "aspect": "TP.HCM",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            1,
-            3
-          ],
-          "opinion_span": [
-            8,
-            8
-          ]
-        },
-        {
-          "aspect": "Dự án chống",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.9999,
-          "aspect_span": [
-            5,
-            7
-          ],
-          "opinion_span": [
-            8,
-            8
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 1.0,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            8,
-            8
-          ]
-        }
-      ],
-      "veracity": {
-        "confidence_score": 0.64,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
-          "visual_verified": false,
-          "content_score": 0.85,
-          "triplets": [
-            {
-              "aspect": "TP.HCM",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                1,
-                3
-              ],
-              "opinion_span": [
-                8,
-                8
-              ]
-            },
-            {
-              "aspect": "Dự án chống",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.9999,
-              "aspect_span": [
-                5,
-                7
-              ],
-              "opinion_span": [
-                8,
-                8
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 1.0,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                8,
-                8
-              ]
-            }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.0,
-          "score": 0.5,
-          "plausible": true,
-          "reason": "Không ghi nhận mưa lúc 21h (ngập do triều cường hoặc đọng nước)"
-        },
-        "is_tidal_point": false,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:44:05.812030+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "facebook"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "giaothongonline",
-          "text": "TP.HCM: Dự án chống ngập 10.000 tỷ đồng sẽ vận hành vào ngày 30/11",
-          "url": "https://www.facebook.com/giaothongonline/posts/tphcm-d%E1%BB%B1-%C3%A1n-ch%E1%BB%91ng-ng%E1%BA%ADp-10000-t%E1%BB%B7-%C4%91%E1%BB%93ng-s%E1%BA%BD-v%E1%BA%ADn-h%C3%A0nh-v%C3%A0o-ng%C3%A0y-3011/1833917714862111/",
-          "platform": "facebook",
-          "create_time": 1794751290
-        }
-      ]
-    },
     {
       "id": "news_7a9e93d983_s02",
       "platform": "news",
@@ -226,54 +40,24 @@
       "weight": 3.0,
       "url": "https://tienphong.vn/trieu-cuong-len-cao-tphcm-de-phong-ngap-khi-mua-lon-post1875912.tpo",
       "veracity": {
-        "confidence_score": 0.8600000000000001,
+        "confidence_score": 0.7400000000000001,
         "status": "confirmed",
         "status_label": "Đã xác thực (Đồng thuận cao)",
         "evidence_count": 3,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.85,
+          "content_score": 0.55,
           "triplets": [
             {
-              "aspect": "mực nước sông Sài Gòn",
-              "opinion": "được dự báo biến đổi chậm",
-              "polarity": "NEU",
-              "aspect_category": "HYDROLOGY",
-              "severity": "LOW",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.9993,
-              "aspect_span": [
-                8,
-                12
-              ],
-              "opinion_span": [
-                13,
-                19
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "được dự báo biến đổi chậm",
-              "polarity": "NEU",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "LOW",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 0.9921,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                13,
-                19
-              ]
+              "aspect": "sông sài gòn",
+              "opinion": "ngập nước",
+              "polarity": "NEG",
+              "confidence": 0.7
             }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -284,50 +68,22 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:44:56.568846+00:00",
+        "evaluated_at": "2026-11-16T09:02:23.793323+00:00",
         "spatial_consensus_count": 3
       },
-      "create_time": 1794754727,
-      "created_at_iso": "2026-11-15T14:58:47+00:00",
-      "relative_time": "49 phút trước",
+      "create_time": 1794816972,
+      "created_at_iso": "2026-11-16T08:16:12+00:00",
+      "relative_time": "46 phút trước",
       "lat": 10.7769,
       "lon": 106.7009,
-      "timestamp": 1794754727,
-      "polarity": "NEU",
+      "timestamp": 1794816972,
+      "polarity": "NEG",
       "triplets": [
         {
-          "aspect": "mực nước sông Sài Gòn",
-          "opinion": "được dự báo biến đổi chậm",
-          "polarity": "NEU",
-          "aspect_category": "HYDROLOGY",
-          "severity": "LOW",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.9993,
-          "aspect_span": [
-            8,
-            12
-          ],
-          "opinion_span": [
-            13,
-            19
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "được dự báo biến đổi chậm",
-          "polarity": "NEU",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "LOW",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 0.9921,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            13,
-            19
-          ]
+          "aspect": "sông sài gòn",
+          "opinion": "ngập nước",
+          "polarity": "NEG",
+          "confidence": 0.7
         }
       ],
       "freshness": "strict_2h",
@@ -344,21 +100,120 @@
           "text": "Trong 1-2 ngày tới, mực nước sông Sài Gòn được dự báo biến đổi chậm, sau đó giảm dần nhưng vẫn ở mức cao.",
           "url": "https://tienphong.vn/trieu-cuong-len-cao-tphcm-de-phong-ngap-khi-mua-lon-post1875912.tpo",
           "platform": "news",
-          "create_time": 1794754727
+          "create_time": 1794816972
         },
         {
           "author": "tienphong.vn",
           "text": "Mưa lớn kết hợp triều cường có thể làm gia tăng nguy cơ ngập tại các vùng trũng thấp, khu vực ven sông, gây ảnh hưởng đến việc đi lại cũng như hoạt động kinh tế - xã hội trên địa bàn TPHCM.",
           "url": "https://tienphong.vn/trieu-cuong-len-cao-tphcm-de-phong-ngap-khi-mua-lon-post1875912.tpo",
           "platform": "news",
-          "create_time": 1794757192
+          "create_time": 1794819437
         },
         {
           "author": "tienphong.vn",
           "text": "Đáng chú ý, triều cường trên sông Sài Gòn đang ở mức cao.",
           "url": "https://tienphong.vn/trieu-cuong-len-cao-tphcm-de-phong-ngap-khi-mua-lon-post1875912.tpo",
           "platform": "news",
-          "create_time": 1794752263
+          "create_time": 1794814508
+        }
+      ]
+    },
+    {
+      "id": "news_9c14af9d80_s01",
+      "platform": "news",
+      "published_at": "2026-09-11T07:00:00+00:00",
+      "historical_timestamp": 1789110000,
+      "media_type": "post",
+      "author": "Báo VietNamNet",
+      "text": "Trận mưa lớn kéo dài tối qua khiến đường Nguyễn Văn Hưởng (phường An Khánh, TPHCM) ngập sâu khoảng nửa mét.",
+      "location": {
+        "street": "Đường Nguyễn Văn Hưởng",
+        "display_name": "Đường Nguyễn Văn Hưởng",
+        "ward": "Phường An Khánh",
+        "administrative_unit": "Phường An Khánh",
+        "district": "TP.HCM",
+        "region": "TPHCM",
+        "lat": 10.809,
+        "lon": 106.731,
+        "heat_points": [
+          [
+            10.809,
+            106.731
+          ]
+        ],
+        "priority": 3,
+        "type": "Tuyến đường Đường Nguyễn Văn Hưởng",
+        "cause": "rain",
+        "cause_label": "Mưa lớn, nước không thoát kịp",
+        "source": "annotated_dataset_v1"
+      },
+      "aspect": "nguyễn văn hưởng",
+      "opinion": "ngập sâu gây cản trở và đảo lộn giao thông",
+      "sentiment": "negative",
+      "severity": "high",
+      "weight": 3.0,
+      "url": "https://vietnamnet.vn/tphcm-sau-tran-mua-lon-hiem-gap-ngap-ca-dem-nguoi-dan-deo-ung-bi-bom-don-nha-2554307.html",
+      "veracity": {
+        "confidence_score": 0.72,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
+        "evidence_count": 1,
+        "correlated_event_ids": [],
+        "content_check": {
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
+          "visual_verified": false,
+          "content_score": 0.75,
+          "triplets": [
+            {
+              "aspect": "nguyễn văn hưởng",
+              "opinion": "ngập sâu",
+              "polarity": "NEG",
+              "confidence": 0.88
+            }
+          ]
+        },
+        "weather_check": {
+          "checked": true,
+          "precipitation_mm": 0.7,
+          "score": 0.85,
+          "plausible": true,
+          "reason": "Trạm khí tượng lịch sử đối soát: Có mưa (0.7 mm/h lúc 14h ngày 2026-09-11)"
+        },
+        "is_tidal_point": false,
+        "consensus_window_minutes": 60,
+        "evaluated_at": "2026-11-16T09:02:20.005739+00:00"
+      },
+      "create_time": 1794812537,
+      "created_at_iso": "2026-11-16T07:02:17+00:00",
+      "relative_time": "2 giờ trước",
+      "lat": 10.809,
+      "lon": 106.731,
+      "timestamp": 1794812537,
+      "polarity": "NEG",
+      "triplets": [
+        {
+          "aspect": "nguyễn văn hưởng",
+          "opinion": "ngập sâu",
+          "polarity": "NEG",
+          "confidence": 0.88
+        }
+      ],
+      "freshness": "strict_2h",
+      "status_tag": "🔴 ĐANG DIỄN RA (< 2 GIỜ)",
+      "report_count": 1,
+      "sources": [
+        "news"
+      ],
+      "cluster_label": "Báo cáo đơn lẻ",
+      "is_cluster": false,
+      "posts_summary": [
+        {
+          "author": "Báo VietNamNet",
+          "text": "Trận mưa lớn kéo dài tối qua khiến đường Nguyễn Văn Hưởng (phường An Khánh, TPHCM) ngập sâu khoảng nửa mét.",
+          "url": "https://vietnamnet.vn/tphcm-sau-tran-mua-lon-hiem-gap-ngap-ca-dem-nguoi-dan-deo-ung-bi-bom-don-nha-2554307.html",
+          "platform": "news",
+          "create_time": 1794812537
         }
       ]
     },
@@ -406,19 +261,24 @@
       "weight": 2.5,
       "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
       "veracity": {
-        "confidence_score": 0.6900000000000001,
+        "confidence_score": 0.75,
         "status": "confirmed",
         "status_label": "Đã xác thực (Đồng thuận cao)",
         "evidence_count": 2,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.4,
-          "triplets": [],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          "content_score": 0.55,
+          "triplets": [
+            {
+              "aspect": "51 vào để xử lý điểm",
+              "opinion": "ngập nặng",
+              "polarity": "NEG",
+              "confidence": 0.88
+            }
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -429,15 +289,24 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:44:55.329830+00:00",
+        "evaluated_at": "2026-11-16T09:02:21.948559+00:00",
         "spatial_consensus_count": 2
       },
-      "create_time": 1794755220,
-      "created_at_iso": "2026-11-15T15:07:00+00:00",
-      "relative_time": "41 phút trước",
+      "create_time": 1794817465,
+      "created_at_iso": "2026-11-16T08:24:25+00:00",
+      "relative_time": "37 phút trước",
       "lat": 10.665,
       "lon": 107.035,
-      "timestamp": 1794755220,
+      "timestamp": 1794817465,
+      "polarity": "NEG",
+      "triplets": [
+        {
+          "aspect": "51 vào để xử lý điểm",
+          "opinion": "ngập nặng",
+          "polarity": "NEG",
+          "confidence": 0.88
+        }
+      ],
       "freshness": "strict_2h",
       "status_tag": "🔴 ĐANG DIỄN RA (< 2 GIỜ)",
       "report_count": 2,
@@ -452,14 +321,14 @@
           "text": "Thành phố đã đưa dự án tuyến thoát nước chính dọc quốc lộ 51 vào để xử lý điểm ngập nặng này. Bình Dương cũ có nhiều điểm ngập",
           "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
           "platform": "news",
-          "create_time": 1794755220
+          "create_time": 1794817465
         },
         {
           "author": "tuoitre.vn",
           "text": "Quốc lộ 51 giao Huỳnh Thúc Kháng được xếp mức ngập nặng.",
           "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
           "platform": "news",
-          "create_time": 1794754234
+          "create_time": 1794816479
         }
       ]
     },
@@ -507,71 +376,24 @@
       "weight": 2.5,
       "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
       "veracity": {
-        "confidence_score": 0.81,
+        "confidence_score": 0.6900000000000001,
         "status": "confirmed",
         "status_label": "Đã xác thực (Đồng thuận cao)",
         "evidence_count": 2,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.85,
+          "content_score": 0.55,
           "triplets": [
             {
-              "aspect": "Phan Văn Hớn",
-              "opinion": "ngập nặng.",
+              "aspect": "phan văn hớn",
+              "opinion": "ngập nặng",
               "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                2,
-                6
-              ],
-              "opinion_span": [
-                20,
-                22
-              ]
-            },
-            {
-              "aspect": "xã Bà Điểm",
-              "opinion": "ngập nặng.",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.9999,
-              "aspect_span": [
-                10,
-                13
-              ],
-              "opinion_span": [
-                20,
-                22
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập nặng.",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 0.9996,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                20,
-                22
-              ]
+              "confidence": 0.88
             }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -582,67 +404,22 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:44:58.381160+00:00",
+        "evaluated_at": "2026-11-16T09:02:26.662165+00:00",
         "spatial_consensus_count": 2
       },
-      "create_time": 1794751770,
-      "created_at_iso": "2026-11-15T14:09:30+00:00",
-      "relative_time": "1 giờ 39 phút trước",
+      "create_time": 1794814015,
+      "created_at_iso": "2026-11-16T07:26:55+00:00",
+      "relative_time": "1 giờ 35 phút trước",
       "lat": 10.84857,
       "lon": 106.58924,
-      "timestamp": 1794751770,
+      "timestamp": 1794814015,
       "polarity": "NEG",
       "triplets": [
         {
-          "aspect": "Phan Văn Hớn",
-          "opinion": "ngập nặng.",
+          "aspect": "phan văn hớn",
+          "opinion": "ngập nặng",
           "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            2,
-            6
-          ],
-          "opinion_span": [
-            20,
-            22
-          ]
-        },
-        {
-          "aspect": "xã Bà Điểm",
-          "opinion": "ngập nặng.",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.9999,
-          "aspect_span": [
-            10,
-            13
-          ],
-          "opinion_span": [
-            20,
-            22
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập nặng.",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 0.9996,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            20,
-            22
-          ]
+          "confidence": 0.88
         }
       ],
       "freshness": "strict_2h",
@@ -659,14 +436,14 @@
           "text": "Đường Phan Văn Hớn, đoạn qua xã Bà Điểm, được xác định là điểm ngập nặng.",
           "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
           "platform": "news",
-          "create_time": 1794751770
+          "create_time": 1794814015
         },
         {
           "author": "tuoitre.vn",
           "text": "Trong danh sách này có các điểm ngập trên đường Phan Văn Hớn, Bình Quới, Lã Xuân Oai, Nguyễn Duy Trinh, ĐT744, quốc lộ 1K, quốc lộ 51...",
           "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
           "platform": "news",
-          "create_time": 1794751277
+          "create_time": 1794813522
         }
       ]
     },
@@ -706,54 +483,24 @@
       "weight": 1.8,
       "url": "https://tuoitre.vn/mua-lon-la-duong-to-ngoc-van-cho-thu-duc-thanh-song-ngong-du-an-hon-5000-ti-100260912164509047.htm",
       "veracity": {
-        "confidence_score": 0.76,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
+        "confidence_score": 0.64,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.85,
+          "content_score": 0.55,
           "triplets": [
             {
               "aspect": "Thủ Đức",
-              "opinion": "ngập",
+              "opinion": "mưa lớn ngập đường",
               "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                10,
-                11
-              ],
-              "opinion_span": [
-                3,
-                3
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 1.0,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                3,
-                3
-              ]
+              "confidence": 0.88
             }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -764,49 +511,21 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:45:00.239445+00:00"
+        "evaluated_at": "2026-11-16T09:02:29.525068+00:00"
       },
-      "create_time": 1794756699,
-      "created_at_iso": "2026-11-15T15:31:39+00:00",
-      "relative_time": "16 phút trước",
+      "create_time": 1794818944,
+      "created_at_iso": "2026-11-16T08:49:04+00:00",
+      "relative_time": "13 phút trước",
       "lat": 10.84,
       "lon": 106.71,
-      "timestamp": 1794756699,
+      "timestamp": 1794818944,
       "polarity": "NEG",
       "triplets": [
         {
           "aspect": "Thủ Đức",
-          "opinion": "ngập",
+          "opinion": "mưa lớn ngập đường",
           "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            10,
-            11
-          ],
-          "opinion_span": [
-            3,
-            3
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 1.0,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            3,
-            3
-          ]
+          "confidence": 0.88
         }
       ],
       "freshness": "strict_2h",
@@ -823,7 +542,7 @@
           "text": "Tình trạng ngập tại khu vực trung tâm TP Thủ Đức (cũ) không mới nhưng là bài toán nan giải mỗi mùa mưa.",
           "url": "https://tuoitre.vn/mua-lon-la-duong-to-ngoc-van-cho-thu-duc-thanh-song-ngong-du-an-hon-5000-ti-100260912164509047.htm",
           "platform": "news",
-          "create_time": 1794756699
+          "create_time": 1794818944
         }
       ]
     },
@@ -871,105 +590,24 @@
       "weight": 1.8,
       "url": "https://danviet.vn/mua-lon-chieu-10-9-nhieu-nguoi-dan-tphcm-vat-va-loi-nuoc-xe-chet-may-d1458403.html",
       "veracity": {
-        "confidence_score": 0.76,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
+        "confidence_score": 0.64,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.85,
+          "content_score": 0.55,
           "triplets": [
             {
-              "aspect": "Nguyễn Văn Khối",
-              "opinion": "ngập",
+              "aspect": "tp.hcm",
+              "opinion": "mưa lớn ngập đường",
               "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                13,
-                15
-              ],
-              "opinion_span": [
-                44,
-                44
-              ]
-            },
-            {
-              "aspect": "đường số 8",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                17,
-                19
-              ],
-              "opinion_span": [
-                44,
-                44
-              ]
-            },
-            {
-              "aspect": "Thông Tây Hội",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                22,
-                25
-              ],
-              "opinion_span": [
-                44,
-                44
-              ]
-            },
-            {
-              "aspect": "TP.HCM",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                27,
-                29
-              ],
-              "opinion_span": [
-                44,
-                44
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 1.0,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                44,
-                44
-              ]
+              "confidence": 0.88
             }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -980,100 +618,21 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:45:01.545818+00:00"
+        "evaluated_at": "2026-11-16T09:02:31.384571+00:00"
       },
-      "create_time": 1794756206,
-      "created_at_iso": "2026-11-15T15:23:26+00:00",
-      "relative_time": "25 phút trước",
+      "create_time": 1794818451,
+      "created_at_iso": "2026-11-16T08:40:51+00:00",
+      "relative_time": "21 phút trước",
       "lat": 10.8438,
       "lon": 106.64812,
-      "timestamp": 1794756206,
+      "timestamp": 1794818451,
       "polarity": "NEG",
       "triplets": [
         {
-          "aspect": "Nguyễn Văn Khối",
-          "opinion": "ngập",
+          "aspect": "tp.hcm",
+          "opinion": "mưa lớn ngập đường",
           "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            13,
-            15
-          ],
-          "opinion_span": [
-            44,
-            44
-          ]
-        },
-        {
-          "aspect": "đường số 8",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            17,
-            19
-          ],
-          "opinion_span": [
-            44,
-            44
-          ]
-        },
-        {
-          "aspect": "Thông Tây Hội",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            22,
-            25
-          ],
-          "opinion_span": [
-            44,
-            44
-          ]
-        },
-        {
-          "aspect": "TP.HCM",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            27,
-            29
-          ],
-          "opinion_span": [
-            44,
-            44
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 1.0,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            44,
-            44
-          ]
+          "confidence": 0.88
         }
       ],
       "freshness": "strict_2h",
@@ -1090,7 +649,7 @@
           "text": "Ghi nhận vào chiều tối 10/9, tại khu vực đường Nguyễn Văn Khối và đường số 8 (phường Thông Tây Hội, TP.HCM), sau trận mưa lớn, nước mưa dâng nhanh, gây ngập một số đoạn đường khiến việc đi lại của người dân gặp nhiều khó khăn.",
           "url": "https://danviet.vn/mua-lon-chieu-10-9-nhieu-nguoi-dan-tphcm-vat-va-loi-nuoc-xe-chet-may-d1458403.html",
           "platform": "news",
-          "create_time": 1794756206
+          "create_time": 1794818451
         }
       ]
     },
@@ -1130,139 +689,24 @@
       "weight": 1.2,
       "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
       "veracity": {
-        "confidence_score": 0.76,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
+        "confidence_score": 0.64,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.85,
+          "content_score": 0.55,
           "triplets": [
             {
-              "aspect": "Bình Dương",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                6,
-                7
-              ],
-              "opinion_span": [
-                12,
-                12
-              ]
-            },
-            {
               "aspect": "ĐT748",
-              "opinion": "ngập",
+              "opinion": "ngập úng cục bộ",
               "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                15,
-                17
-              ],
-              "opinion_span": [
-                12,
-                12
-              ]
-            },
-            {
-              "aspect": "Thuận Giao",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                28,
-                29
-              ],
-              "opinion_span": [
-                12,
-                12
-              ]
-            },
-            {
-              "aspect": "Phan Huy Ích",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                49,
-                52
-              ],
-              "opinion_span": [
-                12,
-                12
-              ]
-            },
-            {
-              "aspect": "An Bình",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                55,
-                57
-              ],
-              "opinion_span": [
-                12,
-                12
-              ]
-            },
-            {
-              "aspect": "2-8-9.",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                78,
-                80
-              ],
-              "opinion_span": [
-                12,
-                12
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 1.0,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                12,
-                12
-              ]
+              "confidence": 0.88
             }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -1273,134 +717,21 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:45:03.401123+00:00"
+        "evaluated_at": "2026-11-16T09:02:34.236726+00:00"
       },
-      "create_time": 1794755713,
-      "created_at_iso": "2026-11-15T15:15:13+00:00",
-      "relative_time": "33 phút trước",
+      "create_time": 1794817958,
+      "created_at_iso": "2026-11-16T08:32:38+00:00",
+      "relative_time": "29 phút trước",
       "lat": 10.7681,
       "lon": 106.6919,
-      "timestamp": 1794755713,
+      "timestamp": 1794817958,
       "polarity": "NEG",
       "triplets": [
         {
-          "aspect": "Bình Dương",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            6,
-            7
-          ],
-          "opinion_span": [
-            12,
-            12
-          ]
-        },
-        {
           "aspect": "ĐT748",
-          "opinion": "ngập",
+          "opinion": "ngập úng cục bộ",
           "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            15,
-            17
-          ],
-          "opinion_span": [
-            12,
-            12
-          ]
-        },
-        {
-          "aspect": "Thuận Giao",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            28,
-            29
-          ],
-          "opinion_span": [
-            12,
-            12
-          ]
-        },
-        {
-          "aspect": "Phan Huy Ích",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            49,
-            52
-          ],
-          "opinion_span": [
-            12,
-            12
-          ]
-        },
-        {
-          "aspect": "An Bình",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            55,
-            57
-          ],
-          "opinion_span": [
-            12,
-            12
-          ]
-        },
-        {
-          "aspect": "2-8-9.",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            78,
-            80
-          ],
-          "opinion_span": [
-            12,
-            12
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 1.0,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            12,
-            12
-          ]
+          "confidence": 0.88
         }
       ],
       "freshness": "strict_2h",
@@ -1417,7 +748,7 @@
           "text": "Danh sách tại khu vực Bình Dương cũ có các điểm ngập trên đường ĐT748, ĐT744, Bùi Thị Xuân, Thuận Giao 19, khu dân cư Tràng An, khu dân cư Nhị Đồng 1, Phạm Ngũ Lão - Phan Huy Ích, đường An Bình, Bế Văn Đàn, quốc lộ 1K, Bình Thung, Nguyễn Tri Phương và đường 2-8-9.",
           "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
           "platform": "news",
-          "create_time": 1794755713
+          "create_time": 1794817958
         }
       ]
     },
@@ -1461,71 +792,24 @@
       "weight": 1.2,
       "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
       "veracity": {
-        "confidence_score": 0.76,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
+        "confidence_score": 0.64,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.85,
+          "content_score": 0.55,
           "triplets": [
             {
-              "aspect": "Lã Xuân Oai",
-              "opinion": "điểm ngập",
-              "polarity": "NEU",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "LOW",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.9959,
-              "aspect_span": [
-                8,
-                12
-              ],
-              "opinion_span": [
-                6,
-                7
-              ]
-            },
-            {
-              "aspect": "dự án nạo vét các tuyến rạch thoát nước",
-              "opinion": "kế hoạch đưa vào",
-              "polarity": "NEU",
-              "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.8955,
-              "aspect_span": [
-                18,
-                26
-              ],
-              "opinion_span": [
-                14,
-                17
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "điểm ngập",
-              "polarity": "NEU",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "LOW",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 0.9698,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                6,
-                7
-              ]
+              "aspect": "lã xuân oai",
+              "opinion": "ngập úng cục bộ",
+              "polarity": "NEG",
+              "confidence": 0.88
             }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -1536,66 +820,21 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:45:04.659215+00:00"
+        "evaluated_at": "2026-11-16T09:02:36.082396+00:00"
       },
-      "create_time": 1794753742,
-      "created_at_iso": "2026-11-15T14:42:22+00:00",
-      "relative_time": "1 giờ 6 phút trước",
+      "create_time": 1794815987,
+      "created_at_iso": "2026-11-16T07:59:47+00:00",
+      "relative_time": "1 giờ 2 phút trước",
       "lat": 10.8415,
       "lon": 106.793,
-      "timestamp": 1794753742,
-      "polarity": "NEU",
+      "timestamp": 1794815987,
+      "polarity": "NEG",
       "triplets": [
         {
-          "aspect": "Lã Xuân Oai",
-          "opinion": "điểm ngập",
-          "polarity": "NEU",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "LOW",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.9959,
-          "aspect_span": [
-            8,
-            12
-          ],
-          "opinion_span": [
-            6,
-            7
-          ]
-        },
-        {
-          "aspect": "dự án nạo vét các tuyến rạch thoát nước",
-          "opinion": "kế hoạch đưa vào",
-          "polarity": "NEU",
-          "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.8955,
-          "aspect_span": [
-            18,
-            26
-          ],
-          "opinion_span": [
-            14,
-            17
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "điểm ngập",
-          "polarity": "NEU",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "LOW",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 0.9698,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            6,
-            7
-          ]
+          "aspect": "lã xuân oai",
+          "opinion": "ngập úng cục bộ",
+          "polarity": "NEG",
+          "confidence": 0.88
         }
       ],
       "freshness": "strict_2h",
@@ -1612,7 +851,7 @@
           "text": "Trong đó để giải quyết điểm ngập Lã Xuân Oai, kế hoạch đưa vào dự án nạo vét các tuyến rạch thoát nước khu vực chợ Tăng Nhơn Phú A.",
           "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
           "platform": "news",
-          "create_time": 1794753742
+          "create_time": 1794815987
         }
       ]
     },
@@ -1656,71 +895,24 @@
       "weight": 1.2,
       "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
       "veracity": {
-        "confidence_score": 0.76,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
+        "confidence_score": 0.64,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.85,
+          "content_score": 0.55,
           "triplets": [
             {
-              "aspect": "Lã Xuân Oai",
-              "opinion": "ngập vừa.",
+              "aspect": "Thủ Đức",
+              "opinion": "ngập úng cục bộ",
               "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                10,
-                13
-              ],
-              "opinion_span": [
-                22,
-                25
-              ]
-            },
-            {
-              "aspect": "Nguyễn Duy Trinh",
-              "opinion": "ngập vừa.",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                15,
-                17
-              ],
-              "opinion_span": [
-                22,
-                25
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập vừa.",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 0.9994,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                22,
-                25
-              ]
+              "confidence": 0.88
             }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -1731,66 +923,21 @@
         },
         "is_tidal_point": true,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:45:06.025447+00:00"
+        "evaluated_at": "2026-11-16T09:02:37.934576+00:00"
       },
-      "create_time": 1794753249,
-      "created_at_iso": "2026-11-15T14:34:09+00:00",
-      "relative_time": "1 giờ 14 phút trước",
+      "create_time": 1794815494,
+      "created_at_iso": "2026-11-16T07:51:34+00:00",
+      "relative_time": "1 giờ 10 phút trước",
       "lat": 10.7908,
       "lon": 106.786,
-      "timestamp": 1794753249,
+      "timestamp": 1794815494,
       "polarity": "NEG",
       "triplets": [
         {
-          "aspect": "Lã Xuân Oai",
-          "opinion": "ngập vừa.",
+          "aspect": "Thủ Đức",
+          "opinion": "ngập úng cục bộ",
           "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            10,
-            13
-          ],
-          "opinion_span": [
-            22,
-            25
-          ]
-        },
-        {
-          "aspect": "Nguyễn Duy Trinh",
-          "opinion": "ngập vừa.",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            15,
-            17
-          ],
-          "opinion_span": [
-            22,
-            25
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập vừa.",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 0.9994,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            22,
-            25
-          ]
+          "confidence": 0.88
         }
       ],
       "freshness": "strict_2h",
@@ -1807,7 +954,7 @@
           "text": "Tại khu vực TP Thủ Đức cũ, đường Lã Xuân Oai và Nguyễn Duy Trinh đều được xếp mức ngập vừa.",
           "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
           "platform": "news",
-          "create_time": 1794753249
+          "create_time": 1794815494
         }
       ]
     },
@@ -1855,54 +1002,24 @@
       "weight": 1.2,
       "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
       "veracity": {
-        "confidence_score": 0.76,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
+        "confidence_score": 0.64,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.85,
+          "content_score": 0.55,
           "triplets": [
             {
-              "aspect": "tỉnh lộ 10",
-              "opinion": "ngập vừa",
+              "aspect": "Bà Hom",
+              "opinion": "ngập úng cục bộ",
               "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                4,
-                6
-              ],
-              "opinion_span": [
-                10,
-                13
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập vừa",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 0.9996,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                10,
-                13
-              ]
+              "confidence": 0.88
             }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -1913,49 +1030,21 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:45:07.344988+00:00"
+        "evaluated_at": "2026-11-16T09:02:39.774402+00:00"
       },
-      "create_time": 1794752756,
-      "created_at_iso": "2026-11-15T14:25:56+00:00",
-      "relative_time": "1 giờ 22 phút trước",
+      "create_time": 1794815001,
+      "created_at_iso": "2026-11-16T07:43:21+00:00",
+      "relative_time": "1 giờ 18 phút trước",
       "lat": 10.75748,
       "lon": 106.61838,
-      "timestamp": 1794752756,
+      "timestamp": 1794815001,
       "polarity": "NEG",
       "triplets": [
         {
-          "aspect": "tỉnh lộ 10",
-          "opinion": "ngập vừa",
+          "aspect": "Bà Hom",
+          "opinion": "ngập úng cục bộ",
           "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            4,
-            6
-          ],
-          "opinion_span": [
-            10,
-            13
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập vừa",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 0.9996,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            10,
-            13
-          ]
+          "confidence": 0.88
         }
       ],
       "freshness": "strict_2h",
@@ -1972,7 +1061,7 @@
           "text": "Trong khi đó tỉnh lộ 10 được xếp mức ngập vừa, liên quan dự án xây dựng mới cầu Bà Hom.",
           "url": "https://tuoitre.vn/nhung-diem-ngap-nao-o-tphcm-duoc-dua-vao-ke-hoach-giai-quyet-ngap-nam-2026-100260911182314895.htm",
           "platform": "news",
-          "create_time": 1794752756
+          "create_time": 1794815001
         }
       ]
     },
@@ -2012,71 +1101,24 @@
       "weight": 1.2,
       "url": "https://vietnamnet.vn/tphcm-sau-tran-mua-lon-hiem-gap-ngap-ca-dem-nguoi-dan-deo-ung-bi-bom-don-nha-2554307.html",
       "veracity": {
-        "confidence_score": 0.76,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
+        "confidence_score": 0.64,
+        "status": "suspect",
+        "status_label": "Nghi vấn (Chờ kiểm chứng)",
         "evidence_count": 1,
         "correlated_event_ids": [],
         "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
+          "source": "heuristic_baseline",
+          "branch": "heuristic",
           "visual_verified": false,
-          "content_score": 0.85,
+          "content_score": 0.55,
           "triplets": [
             {
-              "aspect": "đường số 40",
-              "opinion": "ngập",
+              "aspect": "tuyến đường ngập",
+              "opinion": "ngập úng cục bộ",
               "polarity": "NEG",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                8,
-                10
-              ],
-              "opinion_span": [
-                3,
-                3
-              ]
-            },
-            {
-              "aspect": "Hiệp Bình.",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                13,
-                14
-              ],
-              "opinion_span": [
-                3,
-                3
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 1.0,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                3,
-                3
-              ]
+              "confidence": 0.88
             }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
+          ]
         },
         "weather_check": {
           "checked": true,
@@ -2087,66 +1129,21 @@
         },
         "is_tidal_point": false,
         "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:45:09.369148+00:00"
+        "evaluated_at": "2026-11-16T09:02:42.632177+00:00"
       },
-      "create_time": 1794750784,
-      "created_at_iso": "2026-11-15T13:53:04+00:00",
-      "relative_time": "1 giờ 55 phút trước",
+      "create_time": 1794813029,
+      "created_at_iso": "2026-11-16T07:10:29+00:00",
+      "relative_time": "1 giờ 51 phút trước",
       "lat": 10.8444,
       "lon": 106.7331,
-      "timestamp": 1794750784,
+      "timestamp": 1794813029,
       "polarity": "NEG",
       "triplets": [
         {
-          "aspect": "đường số 40",
-          "opinion": "ngập",
+          "aspect": "tuyến đường ngập",
+          "opinion": "ngập úng cục bộ",
           "polarity": "NEG",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            8,
-            10
-          ],
-          "opinion_span": [
-            3,
-            3
-          ]
-        },
-        {
-          "aspect": "Hiệp Bình.",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            13,
-            14
-          ],
-          "opinion_span": [
-            3,
-            3
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 1.0,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            3,
-            3
-          ]
+          "confidence": 0.88
         }
       ],
       "freshness": "strict_2h",
@@ -2163,944 +1160,7 @@
           "text": "Tình trạng ngập cũng xảy ra tại đường số 40, phường Hiệp Bình.",
           "url": "https://vietnamnet.vn/tphcm-sau-tran-mua-lon-hiem-gap-ngap-ca-dem-nguoi-dan-deo-ung-bi-bom-don-nha-2554307.html",
           "platform": "news",
-          "create_time": 1794750784
-        }
-      ]
-    },
-    {
-      "id": "news_9c14af9d80_s01",
-      "platform": "news",
-      "published_at": "2026-09-11T07:00:00+00:00",
-      "historical_timestamp": 1789110000,
-      "media_type": "post",
-      "author": "Báo VietNamNet",
-      "text": "Trận mưa lớn kéo dài tối qua khiến đường Nguyễn Văn Hưởng (phường An Khánh, TPHCM) ngập sâu khoảng nửa mét.",
-      "location": {
-        "street": "Đường Nguyễn Văn Hưởng",
-        "display_name": "Đường Nguyễn Văn Hưởng",
-        "ward": "Phường An Khánh",
-        "administrative_unit": "Phường An Khánh",
-        "district": "TP.HCM",
-        "region": "TPHCM",
-        "lat": 10.809,
-        "lon": 106.731,
-        "heat_points": [
-          [
-            10.809,
-            106.731
-          ]
-        ],
-        "priority": 3,
-        "type": "Tuyến đường Đường Nguyễn Văn Hưởng",
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "annotated_dataset_v1"
-      },
-      "aspect": "nguyễn văn hưởng",
-      "opinion": "ngập sâu gây cản trở và đảo lộn giao thông",
-      "sentiment": "negative",
-      "severity": "high",
-      "weight": 3.0,
-      "url": "https://vietnamnet.vn/tphcm-sau-tran-mua-lon-hiem-gap-ngap-ca-dem-nguoi-dan-deo-ung-bi-bom-don-nha-2554307.html",
-      "veracity": {
-        "confidence_score": 0.76,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
-          "visual_verified": false,
-          "content_score": 0.85,
-          "triplets": [
-            {
-              "aspect": "Nguyễn Văn Hưởng",
-              "opinion": "ngập sâu khoảng nửa mét.",
-              "polarity": "NEU",
-              "aspect_category": "LOCATION_STREET",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.996,
-              "aspect_span": [
-                10,
-                12
-              ],
-              "opinion_span": [
-                23,
-                28
-              ]
-            },
-            {
-              "aspect": "phường",
-              "opinion": "ngập sâu khoảng nửa mét.",
-              "polarity": "NEU",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.865,
-              "aspect_span": [
-                14,
-                14
-              ],
-              "opinion_span": [
-                23,
-                28
-              ]
-            },
-            {
-              "aspect": "An Khánh",
-              "opinion": "ngập sâu khoảng nửa mét.",
-              "polarity": "NEU",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.991,
-              "aspect_span": [
-                15,
-                17
-              ],
-              "opinion_span": [
-                23,
-                28
-              ]
-            },
-            {
-              "aspect": "TPHCM",
-              "opinion": "ngập sâu khoảng nửa mét.",
-              "polarity": "NEU",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.9793,
-              "aspect_span": [
-                19,
-                21
-              ],
-              "opinion_span": [
-                23,
-                28
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập sâu khoảng nửa mét.",
-              "polarity": "NEU",
-              "aspect_category": "HYDROLOGY",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 0.9207,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                23,
-                28
-              ]
-            }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.7,
-          "score": 0.85,
-          "plausible": true,
-          "reason": "Trạm khí tượng lịch sử đối soát: Có mưa (0.7 mm/h lúc 14h ngày 2026-09-11)"
-        },
-        "is_tidal_point": false,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:44:54.072309+00:00"
-      },
-      "create_time": 1794750292,
-      "created_at_iso": "2026-11-15T13:44:52+00:00",
-      "relative_time": "2 giờ 3 phút trước",
-      "lat": 10.809,
-      "lon": 106.731,
-      "timestamp": 1794750292,
-      "polarity": "NEU",
-      "triplets": [
-        {
-          "aspect": "Nguyễn Văn Hưởng",
-          "opinion": "ngập sâu khoảng nửa mét.",
-          "polarity": "NEU",
-          "aspect_category": "LOCATION_STREET",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.996,
-          "aspect_span": [
-            10,
-            12
-          ],
-          "opinion_span": [
-            23,
-            28
-          ]
-        },
-        {
-          "aspect": "phường",
-          "opinion": "ngập sâu khoảng nửa mét.",
-          "polarity": "NEU",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.865,
-          "aspect_span": [
-            14,
-            14
-          ],
-          "opinion_span": [
-            23,
-            28
-          ]
-        },
-        {
-          "aspect": "An Khánh",
-          "opinion": "ngập sâu khoảng nửa mét.",
-          "polarity": "NEU",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.991,
-          "aspect_span": [
-            15,
-            17
-          ],
-          "opinion_span": [
-            23,
-            28
-          ]
-        },
-        {
-          "aspect": "TPHCM",
-          "opinion": "ngập sâu khoảng nửa mét.",
-          "polarity": "NEU",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.9793,
-          "aspect_span": [
-            19,
-            21
-          ],
-          "opinion_span": [
-            23,
-            28
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập sâu khoảng nửa mét.",
-          "polarity": "NEU",
-          "aspect_category": "HYDROLOGY",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 0.9207,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            23,
-            28
-          ]
-        }
-      ],
-      "freshness": "recent_4h",
-      "status_tag": "🟠 ĐỢT MƯA VỪA DỨT (2-4 GIỜ)",
-      "report_count": 1,
-      "sources": [
-        "news"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "Báo VietNamNet",
-          "text": "Trận mưa lớn kéo dài tối qua khiến đường Nguyễn Văn Hưởng (phường An Khánh, TPHCM) ngập sâu khoảng nửa mét.",
-          "url": "https://vietnamnet.vn/tphcm-sau-tran-mua-lon-hiem-gap-ngap-ca-dem-nguoi-dan-deo-ung-bi-bom-don-nha-2554307.html",
-          "platform": "news",
-          "create_time": 1794750292
-        }
-      ]
-    },
-    {
-      "id": "6c0b289ddf7067e1",
-      "canonical_id": "facebook_6c0b289ddf7067e1",
-      "platform": "facebook",
-      "media_type": "post",
-      "author": "saigonbizz",
-      "text": "Dự án chống ngập hơn 10.000 tỷ đồng ở TPHCM dự kiến 30/11 vận hành 6 cống ngăn triều Chiều 14/11, Giám đốc Sở Tài chính TP.HCM Hoàng Vũ Thảnh cùng đại diện các đơn vị liên quan kiểm tra thực địa Dự án giải quyết ngập do triều khu vực TP.HCM c",
-      "create_time": 1794705272,
-      "created_at_iso": "2026-11-15T01:14:32+00:00",
-      "timestamp": 1794705272,
-      "historical_timestamp": null,
-      "relative_time": "14 giờ 34 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
-        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "heat_points": [
-          [
-            10.7769,
-            106.7009
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "opinion": "kỳ vọng hết ngập / giải quyết ngập",
-      "severity": "low",
-      "weight": 2.5,
-      "url": "https://www.facebook.com/saigonbizz/posts/d%E1%BB%B1-%C3%A1n-ch%E1%BB%91ng-ng%E1%BA%ADp-h%C6%A1n-10000-t%E1%BB%B7-%C4%91%E1%BB%93ng-%E1%BB%9F-tphcm-d%E1%BB%B1-ki%E1%BA%BFn-3011-v%E1%BA%ADn-h%C3%A0nh-6-c%E1%BB%91ng-ng%C4%83n-tri/122186114738969016/",
-      "polarity": "POS",
-      "sentiment": "positive",
-      "triplets": [
-        {
-          "aspect": "cống ngăn triều",
-          "opinion": "vận hành",
-          "polarity": "POS",
-          "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-          "severity": "LOW",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.9996,
-          "aspect_span": [
-            17,
-            19
-          ],
-          "opinion_span": [
-            14,
-            15
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "vận hành",
-          "polarity": "POS",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "LOW",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 0.9969,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            14,
-            15
-          ]
-        }
-      ],
-      "veracity": {
-        "confidence_score": 0.76,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
-          "visual_verified": false,
-          "content_score": 0.85,
-          "triplets": [
-            {
-              "aspect": "cống ngăn triều",
-              "opinion": "vận hành",
-              "polarity": "POS",
-              "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-              "severity": "LOW",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.9996,
-              "aspect_span": [
-                17,
-                19
-              ],
-              "opinion_span": [
-                14,
-                15
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "vận hành",
-              "polarity": "POS",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "LOW",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 0.9969,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                14,
-                15
-              ]
-            }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 2.2,
-          "score": 0.85,
-          "plausible": true,
-          "reason": "Trạm khí tượng thời gian thực: Có mưa (2.2 mm/h lúc 8h)"
-        },
-        "is_tidal_point": false,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:48:34.410797+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "facebook"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "saigonbizz",
-          "text": "Dự án chống ngập hơn 10.000 tỷ đồng ở TPHCM dự kiến 30/11 vận hành 6 cống ngăn triều Chiều 14/11, Giám đốc Sở Tài chính TP.HCM Hoàng Vũ Thảnh cùng đại diện các đơn vị liên quan kiểm tra thực địa Dự án giải quyết ngập do triều khu vực TP.HCM c",
-          "url": "https://www.facebook.com/saigonbizz/posts/d%E1%BB%B1-%C3%A1n-ch%E1%BB%91ng-ng%E1%BA%ADp-h%C6%A1n-10000-t%E1%BB%B7-%C4%91%E1%BB%93ng-%E1%BB%9F-tphcm-d%E1%BB%B1-ki%E1%BA%BFn-3011-v%E1%BA%ADn-h%C3%A0nh-6-c%E1%BB%91ng-ng%C4%83n-tri/122186114738969016/",
-          "platform": "facebook",
-          "create_time": 1794705272
-        }
-      ]
-    },
-    {
-      "id": "c0d8aba518cfac69",
-      "canonical_id": "facebook_c0d8aba518cfac69",
-      "platform": "facebook",
-      "media_type": "post",
-      "author": "mrtoducquynh",
-      "text": "😅😅😅 Dự án chống ngập 10.000 tỷ ở TP.HCM sau 10 năm lỡ hẹn 10 năm mới xong, dân Sài Gòn chắc quen ngập rồi nhỉ?",
-      "create_time": 1794730571,
-      "created_at_iso": "2026-11-15T08:16:11+00:00",
-      "timestamp": 1794730571,
-      "historical_timestamp": null,
-      "relative_time": "7 giờ 32 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
-        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "heat_points": [
-          [
-            10.7769,
-            106.7009
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "opinion": "ngập úng cục bộ",
-      "severity": "low",
-      "weight": 1.2,
-      "url": "https://www.facebook.com/mrtoducquynh/posts/-d%E1%BB%B1-%C3%A1n-ch%E1%BB%91ng-ng%E1%BA%ADp-10000-t%E1%BB%B7-%E1%BB%9F-tphcm-sau-10-n%C4%83m-l%E1%BB%A1-h%E1%BA%B9n10-n%C4%83m-m%E1%BB%9Bi-xong-d%C3%A2n-s%C3%A0i-g%C3%B2n-/1719855289699041/",
-      "polarity": "NEG",
-      "sentiment": "negative",
-      "triplets": [
-        {
-          "aspect": "Dự án chống",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            4,
-            6
-          ],
-          "opinion_span": [
-            7,
-            7
-          ]
-        },
-        {
-          "aspect": "Sài Gòn",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            25,
-            26
-          ],
-          "opinion_span": [
-            7,
-            7
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 1.0,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            7,
-            7
-          ]
-        }
-      ],
-      "veracity": {
-        "confidence_score": 0.72,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
-        "evidence_count": 2,
-        "correlated_event_ids": [
-          "34b7f0d9eb366154"
-        ],
-        "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
-          "visual_verified": false,
-          "content_score": 0.85,
-          "triplets": [
-            {
-              "aspect": "Dự án chống",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                4,
-                6
-              ],
-              "opinion_span": [
-                7,
-                7
-              ]
-            },
-            {
-              "aspect": "Sài Gòn",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                25,
-                26
-              ],
-              "opinion_span": [
-                7,
-                7
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 1.0,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                7,
-                7
-              ]
-            }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.0,
-          "score": 0.5,
-          "plausible": true,
-          "reason": "Không ghi nhận mưa lúc 15h (ngập do triều cường hoặc đọng nước)"
-        },
-        "is_tidal_point": false,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:48:13.008797+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "facebook"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "mrtoducquynh",
-          "text": "😅😅😅 Dự án chống ngập 10.000 tỷ ở TP.HCM sau 10 năm lỡ hẹn 10 năm mới xong, dân Sài Gòn chắc quen ngập rồi nhỉ?",
-          "url": "https://www.facebook.com/mrtoducquynh/posts/-d%E1%BB%B1-%C3%A1n-ch%E1%BB%91ng-ng%E1%BA%ADp-10000-t%E1%BB%B7-%E1%BB%9F-tphcm-sau-10-n%C4%83m-l%E1%BB%A1-h%E1%BA%B9n10-n%C4%83m-m%E1%BB%9Bi-xong-d%C3%A2n-s%C3%A0i-g%C3%B2n-/1719855289699041/",
-          "platform": "facebook",
-          "create_time": 1794730571
-        }
-      ]
-    },
-    {
-      "id": "9c004f30c68c055d",
-      "canonical_id": "news_9c004f30c68c055d",
-      "platform": "news",
-      "media_type": "news",
-      "author": "Báo Thanhnien",
-      "text": "Mưa lớn gây ngập đường ở TP.HCM sáng cuối tuần, hàng quán ế ẩm, khách Tây chật vật Thanh Niên",
-      "create_time": 1794739980,
-      "created_at_iso": "2026-11-15T10:53:00+00:00",
-      "timestamp": 1794739980,
-      "historical_timestamp": null,
-      "relative_time": "4 giờ 55 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "display_name": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
-        "administrative_unit": "Toàn thành phố (Chưa rõ phường/xã)",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "heat_points": [
-          [
-            10.7769,
-            106.7009
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)",
-      "opinion": "ngập đường",
-      "severity": "medium",
-      "weight": 2.0,
-      "url": "https://thanhnien.vn/mua-lon-gay-ngap-duong-o-tphcm-sang-cuoi-tuan-hang-quan-e-am-khach-tay-chat-vat-185261115175125033.htm",
-      "polarity": "NEG",
-      "sentiment": "negative",
-      "triplets": [
-        {
-          "aspect": "TP.HCM",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            7,
-            8
-          ],
-          "opinion_span": [
-            4,
-            4
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 1.0,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            4,
-            4
-          ]
-        }
-      ],
-      "veracity": {
-        "confidence_score": 0.64,
-        "status": "suspect",
-        "status_label": "Nghi vấn (Chờ kiểm chứng)",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
-          "visual_verified": false,
-          "content_score": 0.85,
-          "triplets": [
-            {
-              "aspect": "TP.HCM",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                7,
-                8
-              ],
-              "opinion_span": [
-                4,
-                4
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 1.0,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                4,
-                4
-              ]
-            }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.0,
-          "score": 0.5,
-          "plausible": true,
-          "reason": "Không ghi nhận mưa lúc 17h (ngập do triều cường hoặc đọng nước)"
-        },
-        "is_tidal_point": false,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:44:25.691642+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "news"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "Báo Thanhnien",
-          "text": "Mưa lớn gây ngập đường ở TP.HCM sáng cuối tuần, hàng quán ế ẩm, khách Tây chật vật Thanh Niên",
-          "url": "https://thanhnien.vn/mua-lon-gay-ngap-duong-o-tphcm-sang-cuoi-tuan-hang-quan-e-am-khach-tay-chat-vat-185261115175125033.htm",
-          "platform": "news",
-          "create_time": 1794739980
-        }
-      ]
-    },
-    {
-      "id": "1022_PAKN20261115-133645",
-      "canonical_id": "citizen_report_1022_PAKN20261115-133645",
-      "platform": "citizen_report",
-      "media_type": "incident_report",
-      "author": "Cổng 1022 TP.HCM • Phòng Kinh tế, Hạ tầng và Đô thị Phường An Phú Đông",
-      "text": "[Cổng 1022 TP.HCM • Mã PAKN20261115-133645] Hạ tầng đô thị: Phường An Phú Đông thi công bờ kè kênh Bà Ngâu có chặn ngang kênh thoát nước gây ngập nước , tôi có phản ánh thì chỉ bơm nước có một lần và những lần sau không thấy bơm nước nữa nay tôi đề nghị có hướng xử lý cho bớt ngập. (Đơn vị: Phòng Kinh tế, Hạ tầng và Đô thị Phường An Phú Đông - Trạng thái: Đang xử lý)",
-      "create_time": 1794732050,
-      "created_at_iso": "2026-11-15T08:40:50+00:00",
-      "timestamp": 1794732050,
-      "historical_timestamp": null,
-      "relative_time": "7 giờ 7 phút trước",
-      "freshness": "within_24h",
-      "status_tag": "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
-      "location": {
-        "street": "Hà Huy Giáp",
-        "display_name": "Hà Huy Giáp",
-        "ward": "Phường An Phú Đông",
-        "administrative_unit": "Phường An Phú Đông",
-        "district": "TP.HCM",
-        "lat": 10.865,
-        "lon": 106.6815,
-        "heat_points": [
-          [
-            10.865,
-            106.6815
-          ]
-        ],
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp",
-        "source": "pyspark_streaming_engine"
-      },
-      "aspect": "Hà Huy Giáp",
-      "opinion": "ngập nước",
-      "severity": "medium",
-      "weight": 2.0,
-      "url": "https://1022.tphcm.gov.vn/vi/phan-anh-kien-nghi/tra-cuu/chi-tiet/6af970138b9d835b1e6ba615",
-      "polarity": "NEG",
-      "sentiment": "negative",
-      "triplets": [
-        {
-          "aspect": "bờ kè",
-          "opinion": "ngập nước",
-          "polarity": "NEG",
-          "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 0.9997,
-          "aspect_span": [
-            30,
-            31
-          ],
-          "opinion_span": [
-            43,
-            44
-          ]
-        },
-        {
-          "aspect": "kênh Bà Ngâu",
-          "opinion": "ngập nước",
-          "polarity": "NEG",
-          "aspect_category": "OTHER",
-          "severity": "HIGH",
-          "grounding_provenance": "SPAN_MATCHED",
-          "confidence": 1.0,
-          "aspect_span": [
-            32,
-            35
-          ],
-          "opinion_span": [
-            43,
-            44
-          ]
-        },
-        {
-          "aspect": "TP. Hồ Chí Minh",
-          "opinion": "ngập nước",
-          "polarity": "NEG",
-          "aspect_category": "LOCATION_ADMIN",
-          "severity": "HIGH",
-          "grounding_provenance": "DOC_FALLBACK",
-          "confidence": 1.0,
-          "aspect_span": [
-            0,
-            0
-          ],
-          "opinion_span": [
-            43,
-            44
-          ]
-        }
-      ],
-      "veracity": {
-        "confidence_score": 0.78,
-        "status": "confirmed",
-        "status_label": "Đã xác thực",
-        "evidence_count": 1,
-        "correlated_event_ids": [],
-        "content_check": {
-          "source": "friend_multimodal_ai",
-          "branch": "fast_path",
-          "visual_verified": false,
-          "content_score": 0.85,
-          "triplets": [
-            {
-              "aspect": "bờ kè",
-              "opinion": "ngập nước",
-              "polarity": "NEG",
-              "aspect_category": "INFRASTRUCTURE_DRAINAGE",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 0.9997,
-              "aspect_span": [
-                30,
-                31
-              ],
-              "opinion_span": [
-                43,
-                44
-              ]
-            },
-            {
-              "aspect": "kênh Bà Ngâu",
-              "opinion": "ngập nước",
-              "polarity": "NEG",
-              "aspect_category": "OTHER",
-              "severity": "HIGH",
-              "grounding_provenance": "SPAN_MATCHED",
-              "confidence": 1.0,
-              "aspect_span": [
-                32,
-                35
-              ],
-              "opinion_span": [
-                43,
-                44
-              ]
-            },
-            {
-              "aspect": "TP. Hồ Chí Minh",
-              "opinion": "ngập nước",
-              "polarity": "NEG",
-              "aspect_category": "LOCATION_ADMIN",
-              "severity": "HIGH",
-              "grounding_provenance": "DOC_FALLBACK",
-              "confidence": 1.0,
-              "aspect_span": [
-                0,
-                0
-              ],
-              "opinion_span": [
-                43,
-                44
-              ]
-            }
-          ],
-          "audio_transcript": "",
-          "timeout_used": 0.5
-        },
-        "weather_check": {
-          "checked": true,
-          "precipitation_mm": 0.0,
-          "score": 0.9,
-          "plausible": true,
-          "reason": "Điểm ngập triều cường đặc trưng (PC08 CSGT) - Triều dâng ven sông/kênh rạch (không phụ thuộc mưa)"
-        },
-        "is_tidal_point": true,
-        "consensus_window_minutes": 60,
-        "evaluated_at": "2026-11-15T15:44:25.888429+00:00"
-      },
-      "report_count": 1,
-      "sources": [
-        "citizen_report"
-      ],
-      "cluster_label": "Báo cáo đơn lẻ",
-      "is_cluster": false,
-      "posts_summary": [
-        {
-          "author": "Cổng 1022 TP.HCM • Phòng Kinh tế, Hạ tầng và Đô thị Phường An Phú Đông",
-          "text": "[Cổng 1022 TP.HCM • Mã PAKN20261115-133645] Hạ tầng đô thị: Phường An Phú Đông thi công bờ kè kênh Bà Ngâu có chặn ngang kênh thoát nước gây ngập nước , tôi có phản ánh thì chỉ bơm nước có một lần và những lần sau không thấy bơm nước nữa nay tôi đề nghị có hướng xử lý cho bớt ngập. (Đơn vị: Phòng Kinh tế, Hạ tầng và Đô thị Phường An Phú Đông - Trạng thái: Đang xử lý)",
-          "url": "https://1022.tphcm.gov.vn/vi/phan-anh-kien-nghi/tra-cuu/chi-tiet/6af970138b9d835b1e6ba615",
-          "platform": "citizen_report",
-          "create_time": 1794732050
+          "create_time": 1794813029
         }
       ]
     }

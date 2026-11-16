@@ -317,3 +317,113 @@ Quy trình chuẩn hóa 4 bước khép kín (The 4-Step Agile Labeling & Verifi
 3. **System Prompt Kiểm định & Thẩm định chuyên dụng**:
    * [`label_prompt.txt`](file:///D:/SE363_RAWDATA/label_prompt.txt)
    * *Nội dung*: Bộ system prompt 211 dòng bằng tiếng Anh quy định các mã lỗi chuẩn (`FORMAT_ERROR`, `SPAN_BOUNDARY`, `ASPECT_VEHICLE`, `POLARITY_WRONG`, `DOC_FALLBACK_MISUSE`, `NOT_FLOOD_RELEVANT`) và nguyên tắc ưu tiên quyết định (`ERROR` $\rightarrow$ `REJECT` $\rightarrow$ `HUMAN_REVIEW` $\rightarrow$ `CORRECT` $\rightarrow$ `ACCEPT`).
+---
+
+## 🌟 X. BÀI HỌC KINH NGHIỆM THỰC CHIẾN TỪ CÁC ĐỢT AUDIT & CỨU DỮ LIỆU PHASE 3 (3.875 RECORDS)
+
+Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn bộ 3.875 records của Phase 3 (phần bạn Thuận), hệ thống và annotator đã đúc kết được những kinh nghiệm xương máu, nhận diện các sai lầm nguy hiểm có tính hệ thống và thiết lập các biện pháp cải tiến triệt để nhằm đảm bảo không bao giờ tái diễn tình trạng loại bỏ oan uổng dữ liệu quý giá.
+
+---
+
+### 1. 🚨 ĐẶC BIỆT NHẤN MẠNH: VÙNG ĐÔ THỊ MỞ RỘNG BÌNH DƯƠNG + VŨNG TÀU (IN-SCOPE TUYỆT ĐỐI - CẤM REJECT OAN)
+
+* **Bản chất khoa học & Quy chuẩn Đề tài**:
+  - Đề tài nghiên cứu cứu hộ, cảnh báo và phân tích ngập lụt đô thị áp dụng cho **Vùng Đại đô thị TP. Hồ Chí Minh mở rộng** (Greater Ho Chi Minh City Metropolitan Area). Trong cấu trúc kinh tế - không gian và liên kết hạ tầng giao thông thực tế, **Bình Dương** và **Bà Rịa - Vũng Tàu** là hai địa bàn đã sáp nhập chặt chẽ về mặt kinh tế, chuỗi cung ứng, luồng di chuyển lao động hàng ngày và hệ thống lưu vực thủy văn (sông Sài Gòn - Đồng Nai - Thị Vải).
+  - Do đó, **Bình Dương và Vũng Tàu LÀ IN-SCOPE TUYỆT ĐỐI**, ngang hàng với các quận huyện nội thành của TP.HCM!
+* **Sai lầm đã diễn ra**:
+  - Annotator hoặc các bộ lọc keyword thô sơ trước đây khi thấy các địa danh ở Bình Dương hoặc Vũng Tàu đã tự động xem là "tỉnh ngoài" (Out-of-Scope) tương tự như Hà Nội, Cần Thơ hay Cà Mau, và thẳng tay gán `REJECT (####[])`. Điều này làm mất đi hàng loạt dữ liệu ngập lụt trọng yếu tại các trục giao thông huyết mạch và các khu dân cư đông đúc.
+* **Quy tắc thực thi bắt buộc (Bắt buộc giữ lại và gán nhãn)**:
+  - **Khu vực Bình Dương**:
+    + Các thành phố / thị xã / huyện: *Thủ Dầu Một, Thuận An, Dĩ An, Bến Cát, Tân Uyên, Bàu Bàng, Lái Thiêu, Chánh Phú Hòa, Mỹ Phước, Phú Hòa, An Thạnh, Bình Hòa, An Phú...*
+    + Các trục giao thông & hạ tầng: *Quốc lộ 13 (QL13), ĐT743, ĐT744, ĐT748, ngã tư 550, ngã sáu An Phú, KCN Sóng Thần, KCN VSIP 1, KCN VSIP 2, trạm thủy văn Thủ Dầu Một...*
+    + *Cách gán*: Bóc tách trực tiếp tên đường/khu vực tại Bình Dương làm Aspect (ví dụ: `[ĐT743]`, `[Thủ Dầu Một]`, `[Thuận An]`, `[KCN Sóng Thần]`), Opinion mô tả ngập và Polarity tương ứng (`NEG` / `POS` / `NEU`).
+  - **Khu vực Vũng Tàu (Bà Rịa - Vũng Tàu)**:
+    + Các thành phố / huyện: *Thành phố Vũng Tàu, Thành phố Bà Rịa, Thị xã Phú Mỹ, Đất Đỏ, Long Điền, Xuyên Mộc, Hồ Tràm, Châu Đức...*
+    + Các tuyến đường & địa danh du lịch / cửa biển: *Đường 30/4, Thùy Vân, Hạ Long, Trần Phú, Bãi Sau, Bãi Trước, Bến Đình, Thi Sách, ngã năm Ba Cu, trạm Vũng Tàu...*
+    + *Cách gán*: Gán trực tiếp tên địa danh/tuyến đường Vũng Tàu làm Aspect (ví dụ: `[đường Thùy Vân]`, `[Bãi Sau]`, `[Bến Đình]`, `[TP Vũng Tàu]`), tuyệt đối không được loại bỏ.
+
+---
+
+### 2. ⚠️ BÀI HỌC VỀ LỖI LẠM DỤNG FALLBACK (`DOC_FALLBACK_MISUSE / PASS 9`) DẪN ĐẾN REJECT OAN HÀNG LOẠT
+
+* **Phân tích sai lầm hệ thống**:
+  - Crawler từ mạng xã hội thường có cơ chế tự động chèn tiền tố `"Tại TP. Hồ Chí Minh , "` vào đầu câu.
+  - Tuy nhiên, trong nội dung câu gốc vốn **đã có tên đường hoặc địa danh cụ thể** (Ví dụ: *"Tại TP. Hồ Chí Minh , Đường Trần Xuân Soạn ngập sâu..."*, *"Tại TP. Hồ Chí Minh , đường Tô Ngọc Vân nước chảy xiết..."*, *"Khu vực giao với đường Linh Đông ngập nặng nhất..."*).
+  - Khi annotator gán Aspect là `TP. Hồ Chí Minh` (dùng Fallback), công cụ kiểm toán Pass 9 bắt lỗi `SUSPECT_FALLBACK_USAGE`.
+  - **Hậu quả tiêu cực**: Thay vì sửa Aspect thành tên con đường cụ thể (`đường Trần Xuân Soạn`, `đường Tô Ngọc Vân`, `đường Linh Đông`), annotator trước đây lại **chọn cách tiêu cực là gán `####[]` để "lách linter" qua mặt bộ kiểm tra**, khiến hàng trăm bản tin ngập lụt thực địa cực kỳ đắt giá bị xóa sổ!
+* **Quy tắc chấn chỉnh**:
+  - **Nguyên tắc ưu tiên số 1**: Khi trong câu đã có tên đường hoặc địa danh cụ thể $ightarrow$ **BẮT BUỘC gán Aspect là tên con đường / địa danh đó**. CẤM dùng Fallback `TP. Hồ Chí Minh` / `TPHCM`.
+  - **Chỉ dùng Fallback khi**: Câu văn hoàn toàn không nhắc tới bất kỳ một tên đường, ngõ, hẻm, phường, quận cụ thể nào mà chỉ nói về hiện trường ngập chung chung (ví dụ: *"Tại TP. Hồ Chí Minh , Mưa lớn khiến nhiều xe chết máy bì bõm lội nước"* $ightarrow$ Fallback Aspect là `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
+  - **CẤM REJECT câu chỉ vì vi phạm Fallback**: Phải chủ động đọc lại câu và sửa Aspect về đúng tên đường.
+
+---
+
+### 3. 🎭 PHÂN BIỆT RẠCH RÒI: KHẨU NGỮ / CHÂM BIẾM ĐỜI THƯỜNG (SLANG / SATIRE) VS. MEME GIẢI TRÍ PHI CẢNH BÁO
+
+* **Sai lầm nhận thức**:
+  - Đánh đồng ngôn ngữ mạng dân dã, biểu cảm hài hước, châm biếm, cảm thán đời thường của người dân vùng ngập với các video clip meme giải trí vô thưởng vô phạt.
+* **Quy chuẩn phân định ranh giới**:
+  - **MẪU HỢP LỆ (BẮT BUỘC GIỮ LẠI & GÁN NHÃN `NEG`)**:
+    + Người dân dùng các từ ngữ phóng đại, ví von thực tế sinh động để miêu tả tình trạng ngập lụt khủng khiếp:
+      * *"thất thủ"* (ví dụ: *Nguyễn Hữu Cảnh lại thất thủ* $ightarrow$ Aspect `Nguyễn Hữu Cảnh`, Opinion `thất thủ`, Polarity `NEG`).
+      * *"như sông"*, *"hóa sông"*, *"biển nước"* (ví dụ: *Đường phố biến thành biển nước mênh mông* $ightarrow$ Aspect `Đường phố`, Opinion `biển nước`, Polarity `NEG`).
+      * *"bì bõm"*, *"bơi thuyền"*, *"lội nước"*, *"chèo xuồng"* (ví dụ: *Người dân bì bõm lội nước dắt xe chết máy* $ightarrow$ Opinion `bì bõm lội nước`, Polarity `NEG`).
+      * *"nước lút bánh xe"*, *"sóng đánh dạt dào"*, *"mưa tí là ngập"*, *"ngập mút chỉ"*, *"ngập đến cổ"* $ightarrow$ Đều là các Opinion tiêu cực phản ánh mức độ ngập lụt đô thị rất chân thực.
+  - **MẪU BẮT BUỘC LOẠI BỎ (`REJECT / ####[]`)**:
+    + Chỉ loại bỏ khi yếu tố ngập lụt chỉ làm nền phụ cho nội dung giải trí khác:
+      * So sánh với phim ảnh, hoạt hình, anime (ví dụ: *Cảnh đạp xe ngập nước giống phim Vùng đất linh hồn #anime*).
+      * Đi xem ca nhạc / concert (ví dụ: *Đội mưa ngập để đi nghe chị Chi hát live*).
+      * Clip thú cưng, cún cưng nô đùa dưới nước (`#thucung`, `#dangyeu`).
+      * Mẹo kỹ thuật / bảo dưỡng ô tô chung chung (ví dụ: *Quy trình bảo dưỡng xe VF5 bị thủy kích*).
+      * Quảng cáo bán xe ô tô cũ (ví dụ: *Cam kết xe không đâm đụng, không ngập nước #otochutin*).
+      * Rao vặt phòng trọ, bất động sản (ví dụ: *Tìm phòng trọ Q2 không ngập giá 6tr*).
+      * Ký ức lịch sử xưa trước năm 1975 hoặc tranh luận triết lý (ví dụ: *Sài Gòn trước năm 1975 có ngập không*, *Dân trí thấp bảo dùng lu chống ngập*).
+
+---
+
+### 4. ✂️ KINH NGHIỆM XỬ LÝ CÂU BỊ CẮT CỤT DO GIỚI HẠN KÝ TỰ CỦA CRAWLER
+
+* **Thực tế dữ liệu mạng xã hội**:
+  - Khi cào tự động từ TikTok hoặc Facebook, do giới hạn buffer độ dài ký tự (khoảng 250 ký tự), nhiều bài viết bị cắt lỡ dở ở từ cuối cùng (Ví dụ: *"Khu vực giao với đường Linh Đông ngập nặng nhất , dòn..."*, *"Đường Linh Đông – Lý Tế Xuyên ngập nặng buộc người dâ..."*).
+* **Sai lầm**:
+  - Nhìn thấy dấu ba chấm hoặc từ cuối bị cụt vội kết luận là "câu rác / không hoàn chỉnh" và loại bỏ (`####[]`).
+* **Kinh nghiệm xử lý chuẩn xác**:
+  - Kiểm tra xem ở mệnh đề trước điểm bị cắt **đã có đủ một cặp Aspect - Opinion hoàn chỉnh hay chưa**.
+  - Nếu đã nêu rõ địa danh (`đường Linh Đông`, `đường Nguyễn Văn Quá`...) và tình trạng ngập (`ngập nặng nhất`, `nước ngập sâu`...) $ightarrow$ **Hoàn toàn đủ điều kiện trích xuất Triplet chuẩn xác**, bắt buộc phải giữ lại và gán nhãn!
+
+---
+
+### 5. 🏗️ BẢN TIN CÔNG TRÌNH HẠ TẦNG CHỐNG NGẬP & DỰ BÁO TRIỀU CƯỜNG
+
+* **Bản tin Hạ tầng & Thoát nước (Gán nhãn `POS`)**:
+  - Đô thị thông minh không chỉ ghi nhận ngập mà còn cần theo dõi năng lực tiêu thoát nước và công tác phòng chống thiên tai.
+  - Các sự kiện sau bắt buộc gán nhãn `POS`:
+    + Trạm bơm vận hành hết công suất, máy bơm di động được lắp đặt tại điểm ngập.
+    + Nạo vét mương nước, khơi thông dòng chảy cống rãnh, lắp đặt cống kiểm soát triều.
+    + Nước rút bớt, nước đã rút hết, đường phố khô ráo trở lại.
+    + Tuyến đường sau khi nâng cấp cải tạo không còn bị ngập khi mưa (ví dụ: *đường Nguyễn Hữu Cảnh sau cải tạo đã không còn ngập*).
+* **Bản tin Dự báo & Cảnh báo Triều dâng (Gán nhãn `NEU`)**:
+  - Các thông tin dự báo đỉnh triều, đo đạc mực nước tại các trạm đo thủy văn (*trạm Phú An, trạm Nhà Bè, trạm Thủ Dầu Một, trạm Vũng Tàu* đạt báo động 2, báo động 3) $ightarrow$ Gán nhãn `NEU`.
+
+---
+
+### 6. 🛡️ QUY TRÌNH "3 KHÔNG & 3 PHẢI" CHO ANNOTATOR VÀ AGENT
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                        QUY TRÌNH "3 KHÔNG & 3 PHẢI"                    │
+├────────────────────────────────────────────────────────────────────────┤
+│ ❌ 3 KHÔNG (TUYỆT ĐỐI CẤM):                                            │
+│   1. KHÔNG loại bỏ bất kỳ record nào ở BÌNH DƯƠNG và VŨNG TÀU.         │
+│   2. KHÔNG lạm dụng Fallback TPHCM khi trong câu đã có tên đường cụ thể│
+│      và KHÔNG REJECT câu chỉ để lách linter Pass 9.                    │
+│   3. KHÔNG đánh đồng từ ngữ dân dã, châm biếm đời thường với clip meme.│
+├────────────────────────────────────────────────────────────────────────┤
+│ ✅ 3 PHẢI (BẮT BUỘC THỰC HIỆN):                                        │
+│   1. PHẢI đọc trọn vẹn ngữ cảnh trước khi quyết định loại bỏ.          │
+│   2. PHẢI dùng `span_helper.py` để toán học hóa 100% việc tính Span    │
+│      (chống rò rỉ dấu câu Pass 4 và rò rỉ giới từ Pass 5).             │
+│   3. PHẢI chạy kiểm định kép `deep_10_pass_audit.py` (10 vòng) và      │
+│      `audit_index_integrity.py` đạt 0 lỗi tuyệt đối trước khi bàn giao.│
+└────────────────────────────────────────────────────────────────────────┘
+```
