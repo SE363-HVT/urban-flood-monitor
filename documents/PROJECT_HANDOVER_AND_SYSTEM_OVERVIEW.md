@@ -1,12 +1,12 @@
 # 📘 BÀN GIAO TOÀN DIỆN DỰ ÁN & CẨM NANG HỆ THỐNG (PROJECT HANDOVER & SYSTEM OVERVIEW)
 ## Real-Time Multimodal Urban Flood Monitoring & Veracity Verification System (TP. Hồ Chí Minh & Vùng Đô Thị Mở Rộng)
 
-> **Dự án**: Đồ án Chuyên ngành Dữ liệu lớn (SE363) - Trường ĐH Công nghệ Thông tin (UIT - VNU-HCM) & Mục tiêu Công bố Quốc tế (ICWSM / EMNLP).  
+> **Dự án**: Đồ án Chuyên ngành Dữ liệu lớn (SE363) - Khoa Kỹ thuật Phần mềm, Trường ĐH Công nghệ Thông tin (UIT - VNU-HCM) & Mục tiêu Công bố Bài báo Quốc tế (ICWSM / EMNLP).  
 > **Nhóm thực hiện**: 
 > - **Thuận** (System Lead & Primary Annotator / Gold Reference)
 > - **Hùng** (Co-worker & Independent Peer Annotator)
 > 
-> **Mục đích tài liệu**: Cung cấp bức tranh toàn cảnh 100% về kiến trúc hệ thống, toàn bộ mã nguồn đang triển khai (Big Data, Crawler, Dashboard, AI), kho ngữ liệu ASTE (10.249 records), phân định rõ ràng **ĐÃ LÀM GÌ - ĐANG LÀM GÌ - SẼ LÀM GÌ**, cùng các kinh nghiệm thực chiến xương máu để **Agent ở tài khoản Pro mới có thể đọc hiểu và tiếp tục dự án ngay lập tức mà không gặp bất kỳ trở ngại nào**.
+> **Mục đích tài liệu**: Cung cấp bức tranh toàn cảnh 100% về kiến trúc hệ thống, toàn bộ mã nguồn đang triển khai (Big Data, Crawler, 7-Panel Dashboard, AI Microservice Fast/Slow Path), kho ngữ liệu ASTE (10.249 records), phân định rõ ràng **ĐÃ LÀM GÌ - ĐANG LÀM GÌ - SẼ LÀM GÌ**, cùng các kinh nghiệm thực chiến xương máu để **Agent ở tài khoản Pro mới có thể đọc hiểu và tiếp tục dự án ngay lập tức mà không gặp bất kỳ trở ngại nào**.
 
 ---
 
@@ -18,14 +18,14 @@
    - 3.2. [Tầng Hàng Đợi & Luồng Dữ Liệu Lớn (Kafka & PySpark Streaming)](#32-tầng-hàng-đợi--luồng-dữ-liệu-lớn-kafka--pyspark-streaming)
    - 3.3. [Tầng Kiểm Chứng Tin Giả & Khí Tượng Vật Lý (Veracity Engine)](#33-tầng-kiểm-chứng-tin-giả--khí-tượng-vật-lý-veracity-engine)
    - 3.4. [Tầng Lưu Trữ & Bộ Nhớ Nóng (Redis Hot Store & Delta Lakehouse)](#34-tầng-lưu-trữ--bộ-nhớ-nóng-redis-hot-store--delta-lakehouse)
-   - 3.5. [Tầng Giao Diện Tác Chiến & Bản Đồ Nhiệt (GIS Dashboard & Heatmap)](#35-tầng-giao-diện-tác-chiến--bản-đồ-nhiệt-gis-dashboard--heatmap)
+   - 3.5. [Tầng Giao Diện Tác Chiến Đa Bảng Điều Khiển (Modular 7-Panel GIS Dashboard)](#35-tầng-giao-diện-tác-chiến-đa-bảng-điều-khiển-modular-7-panel-gis-dashboard)
 4. [TỔNG KẾT TIẾN ĐỘ DỰ ÁN: ĐÃ LÀM GÌ – ĐANG LÀM GÌ – SẼ LÀM GÌ](#4-tổng-kết-tiến-độ-dự-án-đã-làm-gì--đang-làm-gì--sẽ-làm-gì)
    - 4.1. [ĐÃ LÀM ĐƯỢC GÌ (Completed Milestones)](#41-đã-làm-được-gì-completed-milestones)
    - 4.2. [ĐANG LÀM GÌ (In-Progress State)](#42-đang-làm-gì-in-progress-state)
    - 4.3. [SẼ LÀM GÌ (Upcoming Roadmap & AI Upgrade)](#43-sẽ-làm-gì-upcoming-roadmap--ai-upgrade)
 5. [ĐẶC TẢ KIẾN TRÚC AI NÂNG CAO: FAST PATH, SLOW PATH & ĐỊNH HƯỚNG CCTV](#5-đặc-tả-kiến-trúc-ai-nâng-cao-fast-path-slow-path--định-hướng-cctv)
-   - 5.1. [Đường Suy Luận Nhanh (Fast Path - Text Stream)](#51-đường-suy-luận-nhanh-fast-path---text-stream)
-   - 5.2. [Đường Suy Luận Đa Phương Thức Chuyên Sâu (Slow Path - Vision & Audio)](#52-đường-suy-luận-đa-phương-thức-chuyên-sâu-slow-path---vision--audio)
+   - 5.1. [Hiện trạng Mã Nguồn Fast Path & Slow Path Đã Xây Dựng](#51-hiện-trạng-mã-nguồn-fast-path--slow-path-đã-xây-dựng)
+   - 5.2. [Lý Do Chưa Áp Dụng Chính Thức & Kế Hoạch Benchmark Đạt F1 >= 70%](#52-lý-do-chưa-áp-dụng-chính-thức--kế-hoạch-benchmark-đạt-f1--70)
    - 5.3. [Định Hướng Ứng Dụng Camera Giao Thông (CCTV) Vào AI Theo Chỉ Đạo Của Thầy](#53-định-hướng-ứng-dụng-camera-giao-thông-cctv-vào-ai-theo-chỉ-đạo-của-thầy)
 6. [KHO NGỮ LIỆU ASTE MASTER 10.249 RECORDS & PHÂN CÔNG THUẬN - HÙNG](#6-kho-ngữ-liệu-aste-master-10249-records--phân-công-thuận---hùng)
 7. [BỘ KINH NGHIỆM THỰC CHIẾN XƯƠNG MÁU & NGUYÊN TẮC CỐT TỬ CỦA USER](#7-bộ-kinh-nghiệm-thực-chiến-xương-máu--nguyên-tắc-cốt-tử-của-user)
@@ -73,6 +73,8 @@ flowchart TB
         subgraph Engine2["Engine 2: Apify Deep Social Poller (Mạng xã hội)"]
             E2_1["TikTok Flood Stream<br/>(clockworks~free-tiktok-scraper)"]
             E2_2["Facebook Traffic Posts<br/>(danek~facebook-search-ppr)"]
+            E2_3["Apify Key Pool Manager<br/>(Auto-Rotation & Failover 401/402)"]
+            E2_1 & E2_2 --- E2_3
         end
         subgraph Engine3["Engine 3: Simulation Replayer"]
             E3_1["3.818 Mẫu Lịch Sử Sạch<br/>(Kiểm thử & Offline Demo)"]
@@ -125,11 +127,11 @@ flowchart TB
         CLUST["DBSCAN Spatio-Temporal Clusterer<br/>(Gom cụm sự kiện ngập đô thị)"]
         
         subgraph ASTE["Mô hình Học sâu ASTE Triplet Extraction (SemEval V2)"]
-            M_PHO["PhoBERT (base_v2 / large)"]
-            M_BART["BARTpho (syllable / word base)"]
-            M_MT5["mT5 (Multilingual base)"]
+            M_FAST["Fast Path: PhoBERT-base (Text <= 10ms)"]
+            M_SLOW["Slow Path: CLIP + PhoWhisper + BARTpho (Multimodal)"]
+            M_CCTV["Định hướng: Tích hợp Camera CCTV Giao thông TP.HCM"]
             M_TRIP["Trích xuất cấu trúc: [Aspect | Opinion | Polarity]<br/>Aspect: Tuyến đường / Địa danh In-Scope<br/>Opinion: Độ sâu / Tình trạng ngập lụt<br/>Polarity: NEG (Ngập) / POS (Nước rút) / NEU (Dự báo)"]
-            M_PHO & M_BART & M_MT5 --> M_TRIP
+            M_FAST & M_SLOW & M_CCTV --> M_TRIP
         end
     end
 
@@ -142,18 +144,21 @@ flowchart TB
     end
 
     %% -------------------------------------------------------------
-    %% LAYER 6: ACTIONABLE GIS DASHBOARD
+    %% LAYER 6: MODULAR 7-PANEL GIS DASHBOARD
     %% -------------------------------------------------------------
-    subgraph L6["6. TẦNG GIAO DIỆN & ĐIỀU HÀNH THỜI GIAN THỰC (ACTIONABLE DASHBOARD)"]
+    subgraph L6["6. TẦNG GIAO DIỆN TÁC CHIẾN ĐA BẢNG ĐIỀU KHIỂN (MODULAR 7-PANEL DASHBOARD)"]
         direction TB
         SRV["Dashboard Server (Python HTTP, Port 8050)"]
         
-        subgraph UI["Giao diện GIS Tác chiến (Leaflet Engine)"]
-            UI1["Bản đồ Nhiệt Leaflet Heatmap"]
-            UI2["Pin Jitter Algorithm<br/>(Chống đè chồng lấp markers)"]
-            UI3["Hệ thống Cảnh báo Màu sắc:<br/>🔴 Đỏ: Ngập sâu / Chết máy (NEG)<br/>🟡 Vàng: Ứ nước nhẹ / Dự báo triều (NEU)<br/>🟢 Xanh lá: Nước đã rút / Thông thoáng (POS)"]
-            UI4["Lộ trình Điều hướng Tránh ngập (Emergency Detour Routing)"]
-            UI1 --- UI2 --- UI3 --- UI4
+        subgraph UI["7 Panels Điều Hành Chuyên Sâu"]
+            P1["📍 Panel 1: Bản đồ Nhiệt Leaflet Heatmap Core + Pin Jitter"]
+            P2["📊 Panel 2: Xếp hạng Điểm ngập theo 168 Phường mới (NQ 1685)"]
+            P3["📈 Panel 3: Biểu đồ Xu hướng Ngập Time-Series theo Giờ"]
+            P4["⚡ Panel 4: Thông lượng Ingestion & Kiểm định Veracity"]
+            P5["🔔 Panel 5: Dòng Tin tức Hiện trường Mới nhất (Live Feed)"]
+            P6["💓 Panel 6: Giám sát Trạng thái Vi dịch vụ (System Health)"]
+            P7["🔑 Panel 7: Quản Lý Pool Multi-Account API Key Apify"]
+            P1 --- P2 --- P3 --- P4 --- P5 --- P6 --- P7
         end
         SRV --> UI
     end
@@ -181,7 +186,7 @@ flowchart TB
 - **Engine 2 - Apify Deep Social Poller (`pipeline/tiktok_poller.py`, `pipeline/facebook_poller.py`)**:
   + Quét video TikTok theo hashtag ngập lụt (`#ngapsaigon`, `#muangap`, `#trieucuong`...).
   + Quét các bài viết trên Fanpage và nhóm giao thông Facebook lớn tại TP.HCM.
-  + Được bảo vệ bởi bộ quản lý `core/apify_pool.py`: tự động xoay vòng key khi key hiện tại hết credit hoặc gặp lỗi HTTP 401/402.
+  + Được quản lý bởi bộ `core/apify_pool.py`: tự động xoay vòng key khi key hiện tại hết credit hoặc gặp lỗi HTTP 401/402.
 - **Engine 3 - Simulation Replayer (`pipeline/simulation_replayer.py`)**:
   + Đọc 3.818 mẫu lịch sử sạch trong `data/raw/episodes` để tái hiện các cơn mưa ngập lịch sử, phục vụ việc kiểm thử hiệu năng và demo offline.
 
@@ -199,67 +204,78 @@ Nằm tại `pipeline/veracity_checker.py`, thực hiện 3 tầng bảo vệ ng
 1. **Lọc Heuristic & Rao vặt BĐS**: Loại bỏ ngay các bài quảng cáo phòng trọ, bán ô tô cũ, bán bạt chắn nước.
 2. **Đối soát Khí tượng Vật lý Open-Meteo**: 
    - Khi bài viết đăng tin ngập lụt, hệ thống gọi Open-Meteo API để kiểm tra tổng lượng mưa thực tế tích lũy trong 72 giờ qua tại tọa độ tương ứng.
-   - Nếu lượng mưa $\approx 0\text{mm}$ và thời tiết đang nắng ráo $\rightarrow$ Gắn cờ cảnh báo **Recycled Video** (tin câu tương tác dùng clip cũ).
+   - Nếu lượng mưa $pprox 0	ext{mm}$ và thời tiết đang nắng ráo $ightarrow$ Gắn cờ cảnh báo **Recycled Video** (tin câu tương tác dùng clip cũ).
 3. **Đồng thuận Không gian - Thời gian (Spatio-Temporal Consensus)**:
    - Gom các tin phản ánh trong bán kính 500m và khung thời gian 60 phút. Càng có nhiều nguồn độc lập cùng báo ngập, độ tin cậy càng tiệm cận 100%.
 
 ### 3.4. Tầng Lưu Trữ & Bộ Nhớ Nóng (Redis Hot Store & Delta Lakehouse)
 - **Redis 7.2 In-Memory Hot Store (Port 6379)**:
   + Lưu trữ trạng thái nóng tức thời của các tuyến đường và điểm ngập hiện tại.
-  + Độ trễ phản hồi cực thấp ($< 3\text{ms}$), giúp Dashboard truy vấn liên tục mà không gây tải cho cơ sở dữ liệu chính.
+  + Độ trễ phản hồi cực thấp ($< 3	ext{ms}$), giúp Dashboard truy vấn liên tục mà không gây tải cho cơ sở dữ liệu chính.
 - **Delta Lakehouse (Parquet Storage)** tại `bigdata/lakehouse/`:
-  + Phân tầng dữ liệu theo chuẩn công nghiệp: **Bronze** (dữ liệu thô) $\rightarrow$ **Silver** (dữ liệu đã làm sạch & chuẩn hóa tọa độ) $\rightarrow$ **Gold** (bảng tổng hợp thống kê lịch sử ngập phục vụ nghiên cứu).
+  + Phân tầng dữ liệu theo chuẩn công nghiệp: **Bronze** (dữ liệu thô) $ightarrow$ **Silver** (dữ liệu đã làm sạch & chuẩn hóa tọa độ) $ightarrow$ **Gold** (bảng tổng hợp thống kê lịch sử ngập phục vụ nghiên cứu).
 
-### 3.5. Tầng Giao Diện Tác Chiến Đa Bảng Điều Khiển (Modular Multi-Panel GIS Dashboard)
-Nằm tại `dashboard/server.py` (Port 8050) và `dashboard/index.html`. Hệ thống giao diện điều hành đã được nâng cấp toàn diện từ một màn hình bản đồ đơn lẻ thành **Hệ Thống Bảng Điều Khiển Đa Phân Hệ (Modular Multi-Panel Dashboard)** chuẩn tác chiến công nghiệp, trong đó **Bản đồ Heatmap đóng vai trò là Trái tim cốt lõi (Core Component)** và được bao quanh, bổ trợ đắc lực bởi **5 phân hệ vệ tinh**:
+### 3.5. Tầng Giao Diện Tác Chiến Đa Bảng Điều Khiển (Modular 7-Panel GIS Dashboard)
+Nằm tại `dashboard/server.py` (Port 8050) và `dashboard/index.html`. Hệ thống giao diện điều hành đã được nâng cấp toàn diện thành **Hệ Thống Bảng Điều Khiển Đa Phân Hệ gồm 7 Panels Chuyên Sâu**, trong đó **Bản đồ Heatmap đóng vai trò là Trái tim cốt lõi (Core Component)** và được bao quanh, bổ trợ đắc lực bởi **6 phân hệ vệ tinh**:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│             HỆ THỐNG ĐIỀU HÀNH 6 PHÂN HỆ (MODULAR MULTI-PANEL DASHBOARD)               │
+│             HỆ THỐNG ĐIỀU HÀNH 7 PHÂN HỆ (MODULAR MULTI-PANEL DASHBOARD)               │
 ├───────────────────────────────────────────┬────────────────────────────────────────────┤
 │ 📍 PANEL 1: BẢN ĐỒ NHIỆT GIS CORE         │ 📊 PANEL 2: XẾP HẠNG ĐIỂM ĐEN THEO NQ 1685 │
 │ • Bản đồ Leaflet Heatmap mật độ ngập      │ • Top điểm ngập theo 168 phường/xã mới     │
 │ • Pin Jitter chống đè marker trùng đường  │ • Phân loại vùng đô thị lõi vs giáp ranh   │
 │ • Routing dẫn đường tránh điểm ngập       │ • Thống kê tần suất ngập lụt lũy kế        │
 ├───────────────────────────────────────────┼────────────────────────────────────────────┤
-│ 💓 PANEL 3: GIÁM SÁT SỨC KHỎE VI DỊCH VỤ  │ 📈 PANEL 4: DIỄN BIẾN NGẬP THEO THỜI GIAN  │
-│ • Heartbeat & độ trễ Redis (<3ms)         │ • Time-Series xu hướng ngập theo giờ/ngày  │
-│ • Trạng thái Kafka Broker, PySpark        │ • Chu kỳ triều cường kết hợp vũ lượng mưa  │
-│ • Quản lý tài nguyên Apify Key Pool       │ • Dự báo đỉnh triều và điểm bùng phát      │
+│ 📈 PANEL 3: DIỄN BIẾN NGẬP THEO THỜI GIAN  │ ⚡ PANEL 4: TỐC ĐỘ THU THẬP & KIỂM ĐỊNH   │
+│ • Time-Series xu hướng ngập theo giờ/ngày  │ • Ingestion Throughput (Events/giây)      │
+│ • Chu kỳ triều cường kết hợp vũ lượng mưa  │ • Tỷ lệ tin rác bị Veracity Engine chặn   │
+│ • Dự báo đỉnh triều và điểm bùng phát      │ • Tỷ lệ xác thực khí tượng Open-Meteo     │
 ├───────────────────────────────────────────┼────────────────────────────────────────────┤
-│ ⚡ PANEL 5: TỐC ĐỘ THU THẬP & KIỂM ĐỊNH   │ 🔔 PANEL 6: DÒNG TIN TỨC HIỆN TRƯỜNG LIVE  │
-│ • Ingestion Throughput (Events/giây)      │ • Ticker tin tức nóng từ TikTok, FB, VOV   │
-│ • Tỷ lệ tin rác bị Veracity Engine chặn   │ • Badge màu sắc trực quan (Đỏ/Vàng/Xanh)   │
-│ • Tỷ lệ xác thực khí tượng Open-Meteo     │ • Click xem video/audio và tọa độ thực tế  │
-└───────────────────────────────────────────┴────────────────────────────────────────────┘
+│ 🔔 PANEL 5: DÒNG TIN TỨC HIỆN TRƯỜNG LIVE  │ 💓 PANEL 6: GIÁM SÁT SỨC KHỎE VI DỊCH VỤ  │
+│ • Ticker tin tức nóng từ TikTok, FB, VOV   │ • Heartbeat & độ trễ Redis (<3ms)         │
+│ • Badge màu sắc trực quan (Đỏ/Vàng/Xanh)   │ • Trạng thái Kafka Broker, PySpark        │
+│ • Click xem video/audio và tọa độ thực tế  │ • Tình trạng kết nối các daemon crawler   │
+├───────────────────────────────────────────┴────────────────────────────────────────────┤
+│ 🔑 PANEL 7: QUẢN LÝ POOL MULTI-ACCOUNT API KEY APIFY (ĐÃ TÍCH HỢP HOÀN CHỈNH)          │
+│ • Chế độ Xoay Vòng: Auto Rotation (Tự động đổi key khi hết hạn) vs Manual             │
+│ • Giám sát 9 tài khoản Apify với tổng hạn mức $45.0 USD miễn phí                       │
+│ • Theo dõi chi tiết: Username, Email, Monthly Limit, Remaining USD, Usage Percent (%) │
+│ • Tự động Failover: Tự động bắt lỗi HTTP 401 (Unauthorized) & HTTP 402 (Hết credit)   │
+│   để lập tức chuyển sang token kế tiếp mà không làm gián đoạn luồng cào mạng xã hội    │
+│ • Nút Nạp Lại (Refresh All API) và thêm / xóa Token trực tiếp trên giao diện           │
+└────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### Chi tiết 6 Panels Điều hành Thực tế:
+#### Chi tiết 7 Panels Điều hành Thực tế:
 1. **Panel 1: Bản đồ Nhiệt Ngập lụt Thời gian thực (Geospatial Heatmap Core)**:
-   - Trái tim của toàn hệ thống, trực quan hóa cường độ ngập theo thời gian thực trên nền bản đồ Leaflet.
+   - Trực quan hóa cường độ ngập theo thời gian thực trên nền bản đồ Leaflet.
    - **Thuật toán Pin Jitter**: Tự động phân tách vi sai tọa độ của các ghim cùng nằm trên một con đường, chống hoàn toàn hiện tượng marker đè chồng lấp lên nhau.
-   - **Hệ thống điều khiển chuyên sâu**: Thanh trượt cửa sổ thời gian (Time Window: 15m, 30m, 60m, 120m), chuyển đổi chế độ Trực tiếp (Live Stream) vs Giả lập (Simulation Replayer), kích hoạt cào sâu (Deep Crawl / Apify Poll), quét lân cận (Proximity Scan), và lớp cảnh báo điều tiết của CSGT.
-   - **Emergency Detour Routing**: Tự động tính toán đường vòng thay thế an toàn khi lộ trình phương tiện giao thông cắt qua các vùng ngập đỏ.
+   - **Điều khiển chuyên sâu**: Thanh trượt cửa sổ thời gian (15m, 30m, 60m, 120m), chuyển đổi chế độ Trực tiếp vs Giả lập, kích hoạt cào sâu, quét lân cận (Proximity Scan), và lớp cảnh báo CSGT.
+   - **Emergency Detour Routing**: Tự động tính toán đường vòng thay thế an toàn khi lộ trình cắt qua vùng ngập đỏ.
 2. **Panel 2: Bảng Xếp hạng Điểm ngập theo Phường / Xã Mới (Theo Nghị quyết 1685)**:
-   - Thống kê và xếp hạng top các điểm nóng ngập lụt được ánh xạ chuẩn xác theo 168 đơn vị hành chính mới sau sáp nhập tại TP.HCM (Thủ Đức, Quận 1 đến 12, Bình Thạnh, Gò Vấp, Bình Tân...) cùng vùng giáp ranh Bình Dương & Vũng Tàu.
-3. **Panel 3: Giám sát Trạng thái Vi dịch vụ (System & Node Health)**:
-   - Theo dõi nhịp tim (Heartbeat) và tài nguyên của cụm hạ tầng: Kafka Broker (Port 9092), Redis In-Memory Hot Store (Port 6379), PySpark Streaming worker, và tình trạng credit/hạn mức của Apify Key Pool.
-4. **Panel 4: Biểu đồ Diễn biến Ngập theo Thời gian (Time-Series Flood Trend)**:
-   - Đồ thị đường biến thiên thể hiện số lượng sự cố ngập lụt theo từng khung giờ trong ngày, đối sánh tương quan giữa đỉnh triều dâng và thời điểm mưa cực đoan đổ xuống.
-5. **Panel 5: Tốc độ Thu thập & Kiểm định Dữ liệu (Ingestion Throughput & Veracity Analytics)**:
+   - Thống kê top điểm nóng ngập lụt được ánh xạ chuẩn xác theo 168 đơn vị hành chính mới sau sáp nhập tại TP.HCM cùng vùng giáp ranh Bình Dương & Vũng Tàu.
+3. **Panel 3: Biểu đồ Diễn biến Ngập theo Thời gian (Time-Series Flood Trend)**:
+   - Đồ thị đường biến thiên số lượng sự cố ngập lụt theo từng khung giờ trong ngày, đối sánh tương quan giữa đỉnh triều dâng và thời điểm mưa cực đoan đổ xuống.
+4. **Panel 4: Tốc độ Thu thập & Kiểm định Dữ liệu (Ingestion Throughput & Veracity Analytics)**:
    - Đo lường thông lượng dữ liệu đầu vào (Events per second), thống kê tỷ lệ phần trăm tin rác quảng cáo BĐS bị loại bỏ, và tỷ lệ bài đăng được Veracity Engine thẩm định thành công qua khí tượng Open-Meteo.
-6. **Panel 6: Dòng Tin tức Hiện trường Mới nhất (Live Alerts Feed)**:
+5. **Panel 5: Dòng Tin tức Hiện trường Mới nhất (Live Alerts Feed)**:
    - Luồng cấp tin tức thời gian thực hiển thị từng bài đăng mới nhất từ TikTok, Facebook, Cổng 1022 và VOV Giao thông kèm nhãn phân cực cảm xúc (Đỏ: Ngập sâu/Chết máy, Vàng: Ứ nước/Triều dâng, Xanh lá: Nước đã rút).
+6. **Panel 6: Giám sát Trạng thái Vi dịch vụ (System & Node Health)**:
+   - Theo dõi nhịp tim (Heartbeat) và tài nguyên của cụm hạ tầng: Kafka Broker (Port 9092), Redis In-Memory Hot Store (Port 6379), PySpark Streaming worker.
+7. **Panel 7: Quản Lý Pool Multi-Account API Key Apify (`core/apify_pool.py`)**:
+   - Quản trị viên theo dõi và điều phối 9 tài khoản Apify (mỗi tài khoản có $5.0 Free Credit, tổng cộng $45.0 credit cào mạng xã hội).
+   - Tự động phát hiện token bị lỗi hoặc cạn tiền (HTTP 401/402) để tự động kích hoạt token tiếp theo, đảm bảo luồng cào TikTok/Facebook chạy 24/7 không bị đứt đoạn.
 
 #### Các Cải Tiến Công Nghệ Vượt Trội Trên Dashboard:
-- **Chuẩn hóa Icon Vectơ Lucide (Enterprise Lucide SVG Icons)**: Toàn bộ các icon hoạt họa/emoji cũ đã được thay thế 100% bằng bộ icon vectơ chuyên nghiệp của Lucide, đồng bộ màu sắc phân cấp theo từng nhóm chức năng ở thanh Sidebar.
+- **Chuẩn hóa Icon Vectơ Lucide (Enterprise Lucide SVG Icons)**: Toàn bộ icon emoji cũ đã được thay thế 100% bằng bộ icon vectơ chuyên nghiệp của Lucide, đồng bộ màu sắc phân cấp theo từng nhóm chức năng ở thanh Sidebar.
 - **Cơ chế Điều hướng Đa Chế Độ & Phím Tắt Tác Chiến**:
-  + **Chế độ Lưới Tổng quan (Grid Overview Mode)**: Hiển thị đồng thời cả 6 ô panel trên một màn hình lớn để bao quát toàn diện hệ thống.
-  + **Chế độ Phóng to Tiêu điểm (Focus Mode)**: Hỗ trợ phím tắt số từ `1` đến `6` để lập tức phóng to bất kỳ panel nào ra 100% toàn màn hình; bấm `0` hoặc `Esc` để thu nhỏ về màn hình lưới.
+  + **Chế độ Lưới Tổng quan (Grid Overview Mode)**: Hiển thị đồng thời các ô panel trên một màn hình lớn để bao quát toàn diện.
+  + **Chế độ Phóng to Tiêu điểm (Focus Mode)**: Hỗ trợ phím tắt số từ `1` đến `7` để lập tức phóng to bất kỳ panel nào ra 100% toàn màn hình; bấm `0` hoặc `Esc` để thu nhỏ về màn hình lưới.
 - **Khắc phục Triệt để Lỗi Vỡ Gạch Bản đồ (Leaflet ResizeObserver & Dual-Tick Fallback)**:
   + Tích hợp API hiện đại `ResizeObserver` kết hợp cơ chế kích hoạt 2 nhịp (`requestAnimationFrame` + `300ms fallback`) để tự động gọi `map.invalidateSize()` mỗi khi chuyển đổi qua lại giữa các panel, **triệt tiêu hoàn toàn lỗi xám gạch (grey tiles) hoặc lệch tâm bản đồ**.
 - **Không Gây Tải Máy Chủ (Zero Server Compute Overhead)**:
-  + Toàn bộ hiệu ứng chuyển panel và đồ thị biểu đồ được kết xuất 100% ở phía máy khách (Client-Side Rendering bằng JavaScript), máy chủ backend chỉ phân phối các gói JSON siêu nhẹ (< 15 KB), dành trọn vẹn tài nguyên CPU/GPU cho AI và PySpark.
+  + Toàn bộ hiệu ứng chuyển panel và đồ thị biểu đồ được kết xuất 100% ở phía máy khách (Client-Side Rendering bằng JavaScript), máy chủ backend chỉ phân phối các gói JSON siêu nhẹ ($< 15	ext{ KB}$), dành trọn vẹn tài nguyên CPU/GPU cho AI và PySpark.
 - *Định hướng cải thiện thêm*: Trong giai đoạn tới, có thể tinh chỉnh thêm độ mượt của gradient lớp phủ Heatmap và bổ sung biểu đồ phân tích trực quan kết nối dữ liệu camera CCTV.
 
 ---
@@ -276,7 +292,10 @@ Nằm tại `dashboard/server.py` (Port 8050) và `dashboard/index.html`. Hệ t
 │    ✅ Xây dựng & tích hợp hoàn chỉnh hệ thống Big Data (Kafka KRaft, Redis 7.2, Docker)│
 │    ✅ Hoàn thiện bộ crawlers đa nguồn (16 luồng free + Apify pool + Replayer)          │
 │    ✅ Hoàn thành Dashboard GIS Leaflet Heatmap, Pin Jitter, điều hướng tránh ngập      │
+│    ✅ Nâng cấp thành công Modular 7-Panel Dashboard (kèm Panel Quản lý Apify Key Pool) │
 │    ✅ Xây dựng động cơ Veracity kiểm chứng khí tượng Open-Meteo & Consensus 500m       │
+│    ✅ Đã lập trình xong kiến trúc AI 2 nhánh: Fast Path (PhoBERT) & Slow Path (CLIP,   │
+│       PhoWhisper, BARTpho) tại bigdata/ai_service/ai_microservice.py                   │
 │    ✅ Dataset Phase 1: 500 records (Thuận) đã audit chuẩn mực                          │
 │    ✅ Dataset Phase 2: 2.000 records (Thuận & Hùng mù đôi, đạt Cohen's Kappa κ = 0.88) │
 │    ✅ Dataset Phase 3 (Phần Thuận): 3.875 records ĐÃ XONG 100%, cứu 782 records reject │
@@ -286,15 +305,19 @@ Nằm tại `dashboard/server.py` (Port 8050) và `dashboard/index.html`. Hệ t
 │ 2. ĐANG LÀM GÌ (IN-PROGRESS):                                                          │
 │    ⏳ Phân công Phase 3: Bạn HÙNG ĐANG THỰC HIỆN phần của Hùng (3.874 records, dòng    │
 │       6.376 đến 10.249). Bạn THUẬN ĐỢI HÙNG LÀM XONG RỒI DÒ / ĐỐI SOÁT LẠI.            │
-│    ⏳ Mô hình AI trong hệ thống hiện tại đang chạy mô hình CŨ TẠM THỜI (do huấn luyện  │
-│       trên dataset cũ chưa được chuẩn hóa kỹ).                                         │
+│    ⏳ Mô hình AI trong hệ thống hiện tại đang chạy MÔ HÌNH CŨ TẠM THỜI (do huấn luyện  │
+│       trên dataset cũ chưa được chuẩn hóa kỹ, F1 chưa đạt ngưỡng kỳ vọng >= 70%).      │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │ 3. SẼ LÀM GÌ (UPCOMING ROADMAP):                                                       │
-│    🎯 Đợi Hùng xong Phase 3 ➔ Dò soát lại ➔ Gộp toàn bộ 3 Phase thành MASTER 10K CHUẨN │
-│    🎯 Chạy lại Benchmark (PhoBERT, BARTpho, mT5, XLM-R, LLMs) trên toàn bộ Master 10K   │
-│    🎯 ÁP DỤNG VÀO PRODUCTION NẾU F1 ĐẠT TRÊN 70% (F1 >= 70%)                            │
-│    🎯 Chuẩn hóa kiến trúc AI 2 nhánh: FAST PATH (Text stream) & SLOW PATH (Multimodal) │
-│    🎯 TÍCH HỢP CAMERA GIAO THÔNG (CCTV) TP.HCM VÀO AI THEO ĐỊNH HƯỚNG CỦA THẦY          │
+│    🎯 Đợi Hùng xong Phase 3 ➔ Thuận dò soát lại ➔ Gộp toàn bộ 3 Phase thành MASTER     │
+│       DATASET 10.249 RECORDS HOÀN CHỈNH & SẠCH 100%.                                   │
+│    🎯 Chạy lại Benchmark các mô hình (PhoBERT, BARTpho, mT5, XLM-R, LLMs) trên 10K.    │
+│    🎯 ÁP DỤNG VÀO PRODUCTION NẾU F1 ĐẠT TRÊN 70% (F1 >= 70%).                          │
+│    🎯 Kích hoạt chính thức kiến trúc AI 2 nhánh: Fast Path (Text) & Slow Path (Media)  │
+│    🎯 TÍCH HỢP CAMERA GIAO THÔNG (CCTV) TP.HCM VÀO AI THEO ĐỊNH HƯỚNG CỦA THẦY:       │
+│       - Kết nối dữ liệu luồng camera giao thông công cộng TP.HCM tại các nút giao.     │
+│       - Ứng dụng Computer Vision nhận diện trực quan vùng ngập trên mặt đường.         │
+│       - Đối soát chéo giữa tin mạng xã hội và hình ảnh CCTV thực tế.                   │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -302,7 +325,7 @@ Nằm tại `dashboard/server.py` (Port 8050) và `dashboard/index.html`. Hệ t
 
 ## 5. ĐẶC TẢ KIẾN TRÚC AI NÂNG CAO: FAST PATH, SLOW PATH & ĐỊNH HƯỚNG CCTV
 
-Mã nguồn triển khai thử nghiệm hiện có tại `bigdata/ai_service/ai_microservice.py` (Port 8001). Sau khi hoàn thành Master Dataset 10K và đạt $F_1 \ge 70\%$, hệ thống AI sẽ được nâng cấp theo kiến trúc 2 nhánh chuyên biệt:
+Mã nguồn triển khai hoàn chỉnh hiện có tại `bigdata/ai_service/ai_microservice.py` (FastAPI, Port 8001):
 
 ```
                                   ┌───────────────────────────┐
@@ -316,6 +339,7 @@ Mã nguồn triển khai thử nghiệm hiện có tại `bigdata/ai_service/ai_
        │   NHÁNH 1: FAST PATH      │                         │    NHÁNH 2: SLOW PATH     │
        │   (Real-Time Text ASTE)   │                         │  (Multimodal Verification)│
        ├───────────────────────────┤                         ├───────────────────────────┤
+       │ • Endpoint: /predict-fast │                         │ • Endpoint: /predict-slow │
        │ • Backbone: PhoBERT-base  │                         │ • ASR: PhoWhisper (Audio) │
        │ • Input: Text ngắn/tiêu đề│                         │ • Vision: CLIP ViT-B/32   │
        │ • Độ trễ: <= 10ms trên GPU│                         │ • Generative: BARTpho     │
@@ -335,17 +359,28 @@ Mã nguồn triển khai thử nghiệm hiện có tại `bigdata/ai_service/ai_
                                   └───────────────────────────┘
 ```
 
-### 5.1. Đường Suy Luận Nhanh (Fast Path - Text Stream)
-- **Mục tiêu**: Phục vụ luồng xử lý streaming tốc độ cao (SLA $\le 35\text{ms}$, trên GPU thực tế $\le 10\text{ms}$).
-- **Backbone**: `vinai/phobert-base-v2` huấn luyện theo dạng Span Extraction / Table Filling.
-- **Nhiệm vụ**: Nhận diện trực tiếp thực thể con đường và vị ngữ ngập trong các tiêu đề tin tức, ticker VOV, và bài đăng văn bản để cập nhật tức thì lên bản đồ.
+### 5.1. Hiện trạng Mã Nguồn Fast Path & Slow Path Đã Xây Dựng
+Trong file `bigdata/ai_service/ai_microservice.py`:
+1. **Fast Path (`/api/v1/predict-fast`)**:
+   - Sử dụng backbone `vinai/phobert-base-v2` để bóc tách nhanh các Span Aspect & Opinion dạng Sequence Labeling / Table Filling.
+   - Tốc độ cực nhanh ($\le 10	ext{ms}$ trên GPU, đáp ứng SLA luồng streaming $\le 35	ext{ms}$).
+2. **Slow Path (`/api/v1/predict-slow`)**:
+   - Tích hợp 3 mô hình học sâu chuyên biệt:
+     + **FFmpeg + PhoWhisper (`vinai/phowhisper-base`)**: Gỡ băng âm thanh lời nói của người dân trong video thành văn bản tiếng Việt.
+     + **OpenCV + CLIP (`openai/clip-vit-base-patch32`)**: Thẩm định khung hình ngập Zero-shot (ngưỡng tương đồng cosine $> 80\%$) để loại bỏ các video không liên quan đến ngập nước.
+     + **BARTpho-syllable (`AI/bartpho/syllable_base/finetune/checkpoints/best_model.pt`)**: Trích xuất bộ ba quan hệ ngữ nghĩa ASTE theo hướng Generative Seq2Seq.
+   - Độ trễ dao động từ $1.5	ext{s} - 5.0	ext{s}$, đảm bảo tính xác thực tối đa.
+3. **Unified Router (`/api/v1/predict-multimodal`)**:
+   - Tự động định tuyến: Nếu bài viết chỉ là văn bản $ightarrow$ kích hoạt Fast Path; nếu có đính kèm video/audio hoặc cần thẩm định đa phương thức $ightarrow$ kích hoạt Slow Path.
 
-### 5.2. Đường Suy Luận Đa Phương Thức Chuyên Sâu (Slow Path - Vision & Audio)
-- **Mục tiêu**: Xử lý các bài đăng có đính kèm video, âm thanh tiếng nói của người dân tại hiện trường ngập (SLA $\le 5\text{s}$).
-- **Các thành phần phối hợp**:
-  + **FFmpeg & PhoWhisper ASR**: Trích xuất luồng âm thanh 16kHz mono từ video TikTok/Facebook và gỡ băng tiếng nói địa phương thành văn bản.
-  + **OpenCV & CLIP ViT-B/32**: Trích xuất khung hình (0.5 FPS), thẩm định thị giác Zero-shot xem khung hình có thực sự xuất hiện cảnh ngập nước (độ tương đồng cosine $> 80\%$) hay không.
-  + **BARTpho-syllable**: Mô hình Generative ASTE tổng hợp các đặc trưng đa phương thức để đưa ra bộ ba Triplet có độ tin cậy tuyệt đối.
+### 5.2. Lý Do Chưa Áp Dụng Chính Thức & Kế Hoạch Benchmark Đạt F1 >= 70%
+- **Vấn đề cốt lõi**: Mặc dù kiến trúc mã nguồn của 2 nhánh Fast Path & Slow Path đã được lập trình hoàn chỉnh, **các checkpoints mô hình hiện tại được huấn luyện trên tập dữ liệu cũ chưa được chuẩn hóa tốt** (tập dữ liệu cũ còn tồn tại lỗi rò rỉ ranh giới token, rò rỉ giới từ, lạm dụng fallback và loại bỏ nhầm Bình Dương / Vũng Tàu).
+- **Hậu quả**: Khi benchmark trên tập dữ liệu chuẩn mực, F1-score của các mô hình cũ chưa đạt ngưỡng kỳ vọng $\ge 70\%$.
+- **Giải pháp dứt điểm của dự án**:
+  1. Trong thời gian này, hệ thống đang chạy **mô hình cũ tạm thời / heuristic an toàn** để duy trì luồng phục vụ demo.
+  2. Ngay sau khi bạn Hùng hoàn tất 3.874 records Phase 3 và bạn Thuận đối soát xong $ightarrow$ Gộp cả 3 Phase thành **Master Dataset 10.249 records chuẩn hóa 100%**.
+  3. Tiến hành **Tái huấn luyện (Retrain) toàn diện** PhoBERT, BARTpho, mT5 trên tập Master sạch này.
+  4. **Chỉ khi mô hình đạt $F_1 \ge 70\%$**, hệ thống mới chính thức thay thế checkpoint cũ và kích hoạt đưa vào sản xuất (production) trong `ai_microservice.py`!
 
 ### 5.3. Định Hướng Ứng Dụng Camera Giao Thông (CCTV) Vào AI Theo Chỉ Đạo Của Thầy
 Theo định hướng của Thầy hướng dẫn đề tài, một bước đột phá sắp tới là **kết nối mạng lưới Camera CCTV giao thông công cộng của TP.HCM** vào hệ thống AI:
@@ -353,7 +388,7 @@ Theo định hướng của Thầy hướng dẫn đề tài, một bước đ�
 - **Giải pháp triển khai**:
   1. Kết nối luồng RTSP / Snapshot từ hệ thống camera giao thông đô thị TP.HCM tại các nút giao trọng điểm (như Hàng Xanh, ngã tư Thủ Đức, đường Trần Xuân Soạn, Quốc Hương...).
   2. Ứng dụng mô hình Thị giác Máy tính (Computer Vision / Segmentation) để nhận diện vùng ngập nước trên mặt đường, đo lường mức ngập tương đối so với vỉa hè hoặc bánh xe.
-  3. **Đối soát chéo (Cross-Validation)**: Khi mạng xã hội báo tin ngập tại một tuyến đường có camera, AI lập tức soi chiếu hình ảnh camera tại đó. Nếu hình ảnh xác nhận có nước ngập $\rightarrow$ Tự động nâng độ tin cậy lên 100% và kích hoạt cảnh báo khẩn cấp trên bản đồ!
+  3. **Đối soát chéo (Cross-Validation)**: Khi mạng xã hội báo tin ngập tại một tuyến đường có camera, AI lập tức soi chiếu hình ảnh camera tại đó. Nếu hình ảnh xác nhận có nước ngập $ightarrow$ Tự động nâng độ tin cậy lên 100% và kích hoạt cảnh báo khẩn cấp trên bản đồ!
 
 ---
 
@@ -397,15 +432,15 @@ Kho ngữ liệu chuẩn quốc tế lưu tại [master_10k_triplets.txt](file:/
 
 ### 1. 🚨 BẮT BUỘC LƯU Ý: Bình Dương & Vũng Tàu LÀ IN-SCOPE (TUYỆT ĐỐI CẤM REJECT)
 - **Căn cứ**: Đề tài nghiên cứu áp dụng cho **Vùng Đại đô thị TP.HCM mở rộng (Greater HCMC Metropolitan Area)**. Về kinh tế, chuỗi cung ứng, luồng di chuyển lao động hàng ngày và lưu vực thủy văn (sông Sài Gòn - Đồng Nai), **Bình Dương** và **Vũng Tàu** là hai địa bàn đã sáp nhập kinh tế - không gian chặt chẽ với TP.HCM.
-- **Khu vực Bình Dương**: *Thủ Dầu Một, Thuận An, Dĩ An, Bến Cát, Tân Uyên, Bàu Bàng, Lái Thiêu, ĐT743, ĐT744, ĐT748, QL13, KCN Sóng Thần, VSIP...* $\rightarrow$ **Bắt buộc giữ lại và gán nhãn** trực tiếp cho địa danh đó.
-- **Khu vực Vũng Tàu**: *TP Vũng Tàu, TP Bà Rịa, TX Phú Mỹ, Đất Đỏ, Long Điền, Xuyên Mộc, Hồ Tràm, Đường 30/4, Thùy Vân, Hạ Long, Bãi Sau, Bãi Trước, Bến Đình...* $\rightarrow$ **Bắt buộc giữ lại và gán nhãn**.
+- **Khu vực Bình Dương**: *Thủ Dầu Một, Thuận An, Dĩ An, Bến Cát, Tân Uyên, Bàu Bàng, Lái Thiêu, ĐT743, ĐT744, ĐT748, QL13, KCN Sóng Thần, VSIP...* $ightarrow$ **Bắt buộc giữ lại và gán nhãn** trực tiếp cho địa danh đó.
+- **Khu vực Vũng Tàu**: *TP Vũng Tàu, TP Bà Rịa, TX Phú Mỹ, Đất Đỏ, Long Điền, Xuyên Mộc, Hồ Tràm, Đường 30/4, Thùy Vân, Hạ Long, Bãi Sau, Bãi Trước, Bến Đình...* $ightarrow$ **Bắt buộc giữ lại và gán nhãn**.
 - **Chỉ gán `REJECT (####[])` khi**: Sự kiện ngập diễn ra ở tỉnh ngoài thực sự (*Hà Nội, Cần Thơ, Cà Mau, Gia Lai, Tam Kỳ, Thái Lan/Bangkok, Trung Quốc...*).
 
 ### 2. ⚠️ Lỗi Lạm Dụng Fallback (`DOC_FALLBACK_MISUSE / PASS 9`)
 - **Nguyên nhân sai lầm cũ**: Crawler tự động dán tiền tố `Tại TP. Hồ Chí Minh , ` vào câu. Khi trong câu **đã có tên đường cụ thể** (*đường Trần Xuân Soạn, đường Tô Ngọc Vân, đường Đặng Thùy Trâm, đường Linh Đông...*), annotator cũ gán Aspect là `TP. Hồ Chí Minh` khiến linter Pass 9 báo lỗi `SUSPECT_FALLBACK_USAGE`. Thay vì sửa Aspect thành tên đường, annotator cũ lại **thẳng tay gắn `####[]` để lách linter**, làm mất hàng trăm bản tin ngập lụt quý giá!
 - **Quy tắc chuẩn**:
-  + **Ưu tiên số 1**: Khi câu đã có tên đường / địa danh cụ thể $\rightarrow$ **BẮT BUỘC gán Aspect là tên đường / địa danh đó**, CẤM dùng Fallback `TP. Hồ Chí Minh`.
-  + **Chỉ dùng Fallback khi**: Câu hoàn toàn không nhắc tới bất kỳ một tên đường cụ thể nào mà chỉ nói về hiện trường ngập chung chung (ví dụ: *"Tại TP. Hồ Chí Minh , Mưa lớn khiến hàng loạt xe chết máy"* $\rightarrow$ Aspect `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
+  + **Ưu tiên số 1**: Khi câu đã có tên đường / địa danh cụ thể $ightarrow$ **BẮT BUỘC gán Aspect là tên đường / địa danh đó**, CẤM dùng Fallback `TP. Hồ Chí Minh`.
+  + **Chỉ dùng Fallback khi**: Câu hoàn toàn không nhắc tới bất kỳ một tên đường cụ thể nào mà chỉ nói về hiện trường ngập chung chung (ví dụ: *"Tại TP. Hồ Chí Minh , Mưa lớn khiến hàng loạt xe chết máy"* $ightarrow$ Aspect `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
   + **TUYỆT ĐỐI CẤM REJECT câu chỉ vì vi phạm Pass 9**: Phải sửa Aspect về đúng tên đường.
 
 ### 3. 🎭 Phân Biệt Khẩu Ngữ Châm Biếm Đời Thường (Slang/Satire) vs. Meme Giải Trí
@@ -420,11 +455,11 @@ Kho ngữ liệu chuẩn quốc tế lưu tại [master_10k_triplets.txt](file:/
 
 ### 4. ✂️ Xử Lý Câu Bị Cắt Cụt Do Buffer Crawler
 - Các bài viết từ TikTok/Facebook do giới hạn buffer (~250 ký tự) thường bị cắt ngang ở từ cuối (ví dụ: *"Khu vực giao với đường Linh Đông ngập nặng nhất , dòn..."*).
-- **Quy tắc**: Nếu ở vế trước đã có đầy đủ địa danh (`đường Linh Đông`) và tình trạng ngập (`ngập nặng nhất`) $\rightarrow$ **Bắt buộc trích xuất Triplet**, không được vội vã đánh đồng là câu cụt để reject!
+- **Quy tắc**: Nếu ở vế trước đã có đầy đủ địa danh (`đường Linh Đông`) và tình trạng ngập (`ngập nặng nhất`) $ightarrow$ **Bắt buộc trích xuất Triplet**, không được vội vã đánh đồng là câu cụt để reject!
 
 ### 5. 🏗️ Phân Định Công Trình Hạ Tầng (`POS`) & Dự Báo Đỉnh Triều (`NEU`)
-- Trạm bơm vận hành hết công suất, máy bơm di động, nạo vét kênh mương, cống kiểm soát triều, nước rút bớt, đường sau nâng cấp không còn ngập $\rightarrow$ Gán nhãn **`POS`**.
-- Dự báo đỉnh triều, đo đạc mực nước tại các trạm Phú An, Nhà Bè, Thủ Dầu Một, Vũng Tàu $\rightarrow$ Gán nhãn **`NEU`**.
+- Trạm bơm vận hành hết công suất, máy bơm di động, nạo vét kênh mương, cống kiểm soát triều, nước rút bớt, đường sau nâng cấp không còn ngập $ightarrow$ Gán nhãn **`POS`**.
+- Dự báo đỉnh triều, đo đạc mực nước tại các trạm Phú An, Nhà Bè, Thủ Dầu Một, Vũng Tàu $ightarrow$ Gán nhãn **`NEU`**.
 
 ### 6. 🔄 Nguyên Tắc Nhất Quán Tuyệt Đối & Micro-Batching
 - **User đặc biệt lưu ý**: Không được đổi quy tắc gán nhãn giữa chừng sau vài chục lô. Mọi lô từ đầu đến cuối phải tuân thủ nghiêm ngặt [BI_QUYET_GAN_NHAN_VA_AUDIT_DATASET_ASTE.md](file:///D:/SE363_RAWDATA/documents/BI_QUYET_GAN_NHAN_VA_AUDIT_DATASET_ASTE.md).
@@ -507,10 +542,13 @@ docker-compose -f bigdata/docker-compose.yml up -d
 # 2. Khởi động Dashboard Web Server (Port 8050)
 .\.venv\Scripts\python.exe dashboard/server.py
 
-# 3. Khởi động PySpark Streaming Pipeline (Xử lý micro-batch 5s)
+# 3. Khởi động AI Microservice Fast Path & Slow Path (Port 8001)
+.\.venv\Scripts\python.exe bigdata/ai_service/ai_microservice.py
+
+# 4. Khởi động PySpark Streaming Pipeline (Xử lý micro-batch 5s)
 .\.venv\Scripts\python.exe bigdata/run_streaming_pipeline.py
 
-# 4. Khởi động Crawler thu nạp đa nguồn miễn phí
+# 5. Khởi động Crawler thu nạp đa nguồn miễn phí
 .\.venv\Scripts\python.exe pipeline/live_free_crawler.py
 ```
 
@@ -529,7 +567,8 @@ git push origin main
 
 ## 📌 DANH SÁCH TÀI LIỆU QUY CHUẨN ĐỌC THÊM
 1. [BI_QUYET_GAN_NHAN_VA_AUDIT_DATASET_ASTE.md](file:///D:/SE363_RAWDATA/documents/BI_QUYET_GAN_NHAN_VA_AUDIT_DATASET_ASTE.md): **KIM CHỈ NAM QUY TẮC GÁN NHÃN VÀ AUDIT (ĐỌC KỸ TỪ MỤC I ĐẾN MỤC X)**.
-2. [PHASE3_RECOVERY_AUDIT_REPORT.md](file:///D:/SE363_RAWDATA/documents/PHASE3_RECOVERY_AUDIT_REPORT.md): Báo cáo chi tiết quá trình rà soát và phục hồi 782 records reject Phase 3 của Thuận.
-3. [PHASE2_EVALUATION_COHEN_KAPPA_AND_PHASE3_ALLOCATION.md](file:///D:/SE363_RAWDATA/documents/PHASE2_EVALUATION_COHEN_KAPPA_AND_PHASE3_ALLOCATION.md): Báo cáo đánh giá Cohen's Kappa Phase 2 ($\kappa = 0.88$) và kế hoạch phân công Phase 3.
-4. [SYSTEM_ARCHITECTURE_AND_RUNBOOK.md](file:///D:/SE363_RAWDATA/documents/SYSTEM_ARCHITECTURE_AND_RUNBOOK.md): Cẩm nang chi tiết vận hành toàn trình Crawling - Streaming - Dashboard.
-5. [UNIFIED_SYSTEM_GUIDE.md](file:///D:/SE363_RAWDATA/documents/UNIFIED_SYSTEM_GUIDE.md): Bản đặc tả kiến trúc học thuật phục vụ bài báo quốc tế (ICWSM/EMNLP).
+2. [MODULAR_MULTI_PANEL_DASHBOARD_ARCHITECTURE.md](file:///D:/SE363_RAWDATA/documents/MODULAR_MULTI_PANEL_DASHBOARD_ARCHITECTURE.md): Kiến trúc kỹ thuật chi tiết của hệ thống điều hành đa bảng điều khiển 7 panels.
+3. [PHASE3_RECOVERY_AUDIT_REPORT.md](file:///D:/SE363_RAWDATA/documents/PHASE3_RECOVERY_AUDIT_REPORT.md): Báo cáo chi tiết quá trình rà soát và phục hồi 782 records reject Phase 3 của Thuận.
+4. [PHASE2_EVALUATION_COHEN_KAPPA_AND_PHASE3_ALLOCATION.md](file:///D:/SE363_RAWDATA/documents/PHASE2_EVALUATION_COHEN_KAPPA_AND_PHASE3_ALLOCATION.md): Báo cáo đánh giá Cohen's Kappa Phase 2 ($\kappa = 0.88$) và kế hoạch phân công Phase 3.
+5. [SYSTEM_ARCHITECTURE_AND_RUNBOOK.md](file:///D:/SE363_RAWDATA/documents/SYSTEM_ARCHITECTURE_AND_RUNBOOK.md): Cẩm nang chi tiết vận hành toàn trình Crawling - Streaming - Dashboard.
+6. [UNIFIED_SYSTEM_GUIDE.md](file:///D:/SE363_RAWDATA/documents/UNIFIED_SYSTEM_GUIDE.md): Bản đặc tả kiến trúc học thuật phục vụ bài báo quốc tế (ICWSM/EMNLP).
