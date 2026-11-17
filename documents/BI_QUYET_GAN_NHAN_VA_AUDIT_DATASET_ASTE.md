@@ -220,14 +220,28 @@ Bộ công cụ tự động kiểm định 10 chiều độc lập:
 9. `NON_HCM_PROVINCE`: Câu có nhắc tên tỉnh ngoài (*Cần Thơ, Hà Nội, Cà Mau, Sa Đéc, Đồng Nai...*) mà không bị loại bỏ (`REJECT`).
 10. `DOC_FALLBACK_MISUSE`: Dùng tiền tố `TP. Hồ Chí Minh` làm Aspect trong khi câu văn có nhắc tên đường hoặc địa danh cụ thể.
 
-### 3. Bộ Đôi Script Kiểm Định Chuẩn Hóa Cốt Lõi (Single Source of Truth)
+### 3. Bộ 3 Script Kiểm Định Chuẩn Hóa và Cú Pháp CLI
 
-Cả 2 script đều hỗ trợ truyền đường dẫn file linh hoạt qua tham số dòng lệnh (CLI parameter) trên cả Windows PowerShell và Linux/macOS:
+Tất cả 3 script đều hỗ trợ truyền đường dẫn file linh hoạt qua tham số dòng lệnh (CLI parameter) trên cả Windows PowerShell và Linux/macOS:
 
-#### 🔹 Script 1: Kiểm định chuyên sâu 10 vòng lặp [scripts/deep_10_pass_audit.py](file:///D:/SE363_RAWDATA/scripts/deep_10_pass_audit.py)
+#### 🔹 Script 1: Kiểm tra cuốn chiếu từng lô 50 mẫu [`scripts/verify_batch_50.py`](file:///D:/SE363_RAWDATA/scripts/verify_batch_50.py)
+* **Mục đích**: Chạy kiểm tra tức thì ngay sau khi gán nhãn xong mỗi block 50 mẫu, khoanh vùng lỗi trong phạm vi hẹp để sửa ngay lập tức.
+* **Cú pháp lệnh**:
+  ```powershell
+  # Kiểm tra block từ record 1 đến 50:
+  .\.venv\Scripts\python.exe scripts/verify_batch_50.py <đường_dẫn_file> 0 50
+
+  # Kiểm tra block từ record 51 đến 100:
+  .\.venv\Scripts\python.exe scripts/verify_batch_50.py <đường_dẫn_file> 50 100
+
+  # Ví dụ chạy kiểm tra Phase 2:
+  .\.venv\Scripts\python.exe scripts/verify_batch_50.py data/validate_label/thuan/phase2.txt 0 50
+  ```
+
+#### 🔹 Script 2: Kiểm định chuyên sâu 10 vòng lặp [`scripts/deep_10_pass_audit.py`](file:///D:/SE363_RAWDATA/scripts/deep_10_pass_audit.py)
 * **Mục đích**: Quét toàn bộ file qua **10 vòng độc lập** để bắt trọn vẹn 10 nhóm lỗi nêu trên. Đảm bảo toàn bộ dataset đạt 100% 0 lỗi trước khi bàn giao.
 * **Cú pháp lệnh**:
-  `powershell
+  ```powershell
   # Chạy kiểm định 10 vòng cho toàn bộ file:
   .\.venv\Scripts\python.exe scripts/deep_10_pass_audit.py <đường_dẫn_file>
 
@@ -236,42 +250,42 @@ Cả 2 script đều hỗ trợ truyền đường dẫn file linh hoạt qua th
 
   # Ví dụ kiểm định Phase 2 (2.000 records):
   .\.venv\Scripts\python.exe scripts/deep_10_pass_audit.py data/validate_label/thuan/phase2.txt
+  ```
 
-  # Ví dụ kiểm định Phase 3 (3.875 records):
-  .\.venv\Scripts\python.exe scripts/deep_10_pass_audit.py data/validate_label/thuan/phase3.txt
-  `
-
-#### 🔹 Script 2: Giải mã ngược kiểm tra tính toàn vẹn Index [scripts/audit_index_integrity.py](file:///D:/SE363_RAWDATA/scripts/audit_index_integrity.py)
-* **Mục đích**: Tự động lấy các số nguyên trong spect_indices và opinion_indices để trích xuất ngược lại từng từ vựng trong câu văn gốc (	okens[i]), đối soát trực tiếp xem có bị lệch chữ, rỗng nhãn, hay dính dấu câu hay không.
+#### 🔹 Script 3: Giải mã ngược kiểm tra tính toàn vẹn Index [`scripts/audit_index_integrity.py`](file:///D:/SE363_RAWDATA/scripts/audit_index_integrity.py)
+* **Mục đích**: Tự động lấy các số nguyên trong `aspect_indices` và `opinion_indices` để trích xuất ngược lại từng từ vựng trong câu văn gốc (`tokens[i]`), đối soát trực tiếp xem có bị lệch chữ, rỗng nhãn, hay dính dấu câu hay không.
 * **Cú pháp lệnh**:
-  `powershell
+  ```powershell
   # Chạy đối soát giải mã ngược toàn bộ file:
   .\.venv\Scripts\python.exe scripts/audit_index_integrity.py <đường_dẫn_file>
 
-  # Ví dụ đối soát Phase 3:
-  .\.venv\Scripts\python.exe scripts/audit_index_integrity.py data/validate_label/thuan/phase3.txt
-  `
+  # Ví dụ đối soát Phase 2:
+  .\.venv\Scripts\python.exe scripts/audit_index_integrity.py data/validate_label/thuan/phase2.txt
+  ```
 
 ---
 
 ## 🚀 VIII. QUY TRÌNH TRIỂN KHAI THỰC CHIẾN (STEP-BY-STEP WORKFLOW)
 
-Quy trình chuẩn hóa 3 bước khép kín (The 3-Step Agile Labeling & Verification Loop) áp dụng cho mọi annotator và agent:
+Quy trình chuẩn hóa 4 bước khép kín (The 4-Step Agile Labeling & Verification Loop) áp dụng cho mọi annotator và agent:
 
-`
+```
 ┌────────────────────────────────────────────────────────────────────────┐
-│             QUY TRÌNH 3 BƯỚC THỰC CHIẾN (AGILE LABELING LOOP)          │
+│             QUY TRÌNH 4 BƯỚC THỰC CHIẾN (AGILE LABELING LOOP)          │
 └────────────────────────────────────────────────────────────────────────┘
-  [Bước 1] Gán nhãn cuốn chiếu theo đợt (Đọc trọn vẹn ngữ cảnh + hashtag + span_helper)
+  [Bước 1] Gán nhãn 50 mẫu cuốn chiếu (Đọc trọn vẹn ngữ cảnh + hashtag)
      │
      ▼
-  [Bước 2] Nghiệm thu toàn diện với deep_10_pass_audit.py (10 vòng độc lập)
-     │       ├── Có cảnh báo/lỗi ➔ Mở file hiệu chỉnh triệt để ➔ Chạy lại Bước 2
-     │       └── 10/10 PASSES   ➔ Đạt chuẩn chất lượng khoa học
+  [Bước 2] Chạy `verify_batch_50.py` kiểm tra tức thì block 50 vừa gán
+     │       ├── Có lỗi ➔ Mở file sửa tay ngay tại chỗ ➔ Chạy lại Bước 2
+     │       └── 0 lỗi  ➔ Tiến hành lô 50 tiếp theo
      ▼
-  [Bước 3] Đối soát giải mã ngược với udit_index_integrity.py
-             └── Nghiệm thu 100% khớp từ vựng thực tế ➔ Commit dữ liệu an toàn
-`
+  [Bước 3] Nghiệm thu toàn file với `deep_10_pass_audit.py` (10 vòng độc lập)
+     │       └── Phát hiện bất kỳ cảnh báo nào ➔ Hiệu chỉnh triệt để
+     ▼
+  [Bước 4] Đối soát giải mã ngược với `audit_index_integrity.py`
+             └── Nghiệm thu 100% khớp từ vựng ➔ Commit dữ liệu an toàn
+```
 
 ### 1. Triển khai Phase 2: Tập Overlap 2.000 Records (Từ dòng 501 ➔ 2.500)
 * **Quy tắc Mù Đôi (Double-Blind Independent Annotation)**:
@@ -290,7 +304,7 @@ Quy trình chuẩn hóa 3 bước khép kín (The 3-Step Agile Labeling & Verifi
 
 ## 📚 IX. TÀI LIỆU THAM KHẢO CỐT LÕI (CORE REFERENCE DOCUMENTS)
 
-Để thực hiện gán nhãn và kiểm định chính xác tuyệt đối cho các giai đoạn tiếp theo (Phase 2 & Phase 3), Agent / Annotator bắt buộc phải đọc kết hợp đầy đủ **3 tài liệu nền tảng** sau:
+Để thực hiện gán nhãn và kiểm định chính xác tuyệt đối cho các giai đoạn tiếp theo (Phase 2 & Phase 3), Agent / Annotator chỉ cần đọc kết hợp **2 tài liệu nền tảng** sau:
 
 1. **Cẩm nang chuyên gia gốc tiếng Việt**:
    * [`documents/CAM_NANG_BI_QUYET_GAN_NHAN_ASTE_CHUAN_EXPERT.md`](file:///D:/SE363_RAWDATA/documents/CAM_NANG_BI_QUYET_GAN_NHAN_ASTE_CHUAN_EXPERT.md)
@@ -300,10 +314,6 @@ Quy trình chuẩn hóa 3 bước khép kín (The 3-Step Agile Labeling & Verifi
    * [`documents/UNIFIED_SYSTEM_GUIDE.md`](file:///D:/SE363_RAWDATA/documents/UNIFIED_SYSTEM_GUIDE.md)
    * *Nội dung*: Bản đặc tả kiến trúc Single Source of Truth (SSOT) chuẩn hóa theo định dạng quốc tế SemEval ASTE-Data-V2 (Xu et al., EMNLP 2020), định nghĩa mô hình học sâu Dual-Branch và 4 tầng đối soát thực địa GIS.
 
-3. **System Prompt Kiểm định & Thẩm định chuyên dụng**:
-   * [`label_prompt.txt`](file:///D:/SE363_RAWDATA/label_prompt.txt)
-   * *Nội dung*: Bộ system prompt 211 dòng bằng tiếng Anh quy định các mã lỗi chuẩn (`FORMAT_ERROR`, `SPAN_BOUNDARY`, `ASPECT_VEHICLE`, `POLARITY_WRONG`, `DOC_FALLBACK_MISUSE`, `NOT_FLOOD_RELEVANT`) và nguyên tắc ưu tiên quyết định (`ERROR` $\rightarrow$ `REJECT` $\rightarrow$ `HUMAN_REVIEW` $\rightarrow$ `CORRECT` $\rightarrow$ `ACCEPT`).
----
 
 ## 🌟 X. BÀI HỌC KINH NGHIỆM THỰC CHIẾN TỪ CÁC ĐỢT AUDIT & CỨU DỮ LIỆU PHASE 3 (3.875 RECORDS)
 
