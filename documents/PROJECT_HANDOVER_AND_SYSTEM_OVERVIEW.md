@@ -9,12 +9,13 @@
 
 ## 📑 MỤC LỤC CHI TIẾT
 1. [TỔNG QUAN DỰ ÁN & MỤC TIÊU NGHIÊN CỨU](#1-tổng-quan-dự-án--mục-tiêu-nghiên-cứu)
-2. [BẢN ĐỒ KIẾN TRÚC & MÔ TẢ CHI TIẾT TOÀN BỘ SOURCE CODE](#2-bản-đồ-kiến-trúc--mô-tả-chi-tiết-toàn-bộ-source-code)
-3. [KHO NGỮ LIỆU ASTE MASTER 10.249 RECORDS & HIỆN TRẠNG 3 PHASES](#3-kho-ngữ-liệu-aste-master-10249-records--hiện-trạng-3-phases)
-4. [BỘ KINH NGHIỆM THỰC CHIẾN XƯƠNG MÁU & NGUYÊN TẮC CỐT TỬ CỦA USER](#4-bộ-kinh-nghiệm-thực-chiến-xương-máu--nguyên-tắc-cốt-tử-của-user)
-5. [CÔNG CỤ KIỂM ĐỊNH KÉP & BỘ HELPER TOÁN HỌC](#5-công-cụ-kiểm-định-kép--bộ-helper-toán-học)
-6. [CÔNG VIỆC ĐANG LÀM VÀ HƯỚNG DẪN BẮT TAY LÀM TIẾP (NEXT STEPS RUNBOOK)](#6-công-việc-đang-làm-và-hướng-dẫn-bắt-tay-làm-tiếp-next-steps-runbook)
-7. [BẢNG TRA CỨU LỆNH NHANH (CHEATSHEET)](#7-bảng-tra-cứu-lệnh-nhanh-cheatsheet)
+2. [SƠ ĐỒ KIẾN TRÚC HỆ THỐNG TỔNG QUÁT (END-TO-END ARCHITECTURE)](#2-sơ-đồ-kiến-trúc-hệ-thống-tổng-quát-end-to-end-architecture)
+3. [BẢN ĐỒ MÃ NGUỒN & MÔ TẢ CHI TIẾT CÁC MODULE (SOURCE CODE MAP)](#3-bản-đồ-mã-nguồn--mô-tả-chi-tiết-các-module-source-code-map)
+4. [KHO NGỮ LIỆU ASTE MASTER 10.249 RECORDS & HIỆN TRẠNG 3 PHASES](#4-kho-ngữ-liệu-aste-master-10249-records--hiện-trạng-3-phases)
+5. [BỘ KINH NGHIỆM THỰC CHIẾN XƯƠNG MÁU & NGUYÊN TẮC CỐT TỬ CỦA USER](#5-bộ-kinh-nghiệm-thực-chiến-xương-máu--nguyên-tắc-cốt-tử-của-user)
+6. [CÔNG CỤ KIỂM ĐỊNH KÉP & BỘ HELPER TOÁN HỌC](#6-công-cụ-kiểm-định-kép--bộ-helper-toán-học)
+7. [CÔNG VIỆC ĐANG LÀM VÀ HƯỚNG DẪN BẮT TAY LÀM TIẾP (NEXT STEPS RUNBOOK)](#7-công-việc-đang-làm-và-hướng-dẫn-bắt-tay-làm-tiếp-next-steps-runbook)
+8. [BẢNG TRA CỨU LỆNH NHANH (CHEATSHEET)](#8-bảng-tra-cứu-lệnh-nhanh-cheatsheet)
 
 ---
 
@@ -38,7 +39,124 @@ Xây dựng một hệ thống **Big Data Streaming kết hợp AI Đa phương 
 
 ---
 
-## 2. BẢN ĐỒ KIẾN TRÚC & MÔ TẢ CHI TIẾT TOÀN BỘ SOURCE CODE
+## 2. SƠ ĐỒ KIẾN TRÚC HỆ THỐNG TỔNG QUÁT (END-TO-END ARCHITECTURE)
+
+Hệ thống được thiết kế theo kiến trúc **Streaming Lambda / Kappa hiện đại**, liên kết chặt chẽ từ tầng thu nạp đa nguồn, xử lý luồng phân tán, kiểm chứng tin giả, mô hình AI trích xuất thực thể ASTE cho tới giao diện giám sát tác chiến GIS:
+
+```mermaid
+flowchart TB
+    %% -------------------------------------------------------------
+    %% LAYER 1: DATA INGESTION
+    %% -------------------------------------------------------------
+    subgraph L1["1. TẦNG THU NẠP ĐA NGUỒN (MULTI-ENGINE INGESTION LAYER)"]
+        direction TB
+        subgraph Engine1["Engine 1: Live Free Crawler (100% Miễn phí - 16 Workers)"]
+            E1_1["Cổng 1022 TP.HCM<br/>(API JSON chính thức)"]
+            E1_2["VOV Giao Thông Ticker<br/>(Tin nóng tắc đường / ngập)"]
+            E1_3["YouTube Shorts & Videos<br/>(yt-dlp bộ lọc 24h)"]
+            E1_4["Báo chí Chính thống<br/>(VnExpress, Tuổi Trẻ, Thanh Niên)"]
+            E1_5["Google Discovery & Bing RSS<br/>(Circuit Breaker Fallback)"]
+        end
+        subgraph Engine2["Engine 2: Apify Deep Social Poller (Mạng xã hội)"]
+            E2_1["TikTok Flood Stream<br/>(clockworks~free-tiktok-scraper)"]
+            E2_2["Facebook Traffic Posts<br/>(danek~facebook-search-ppr)"]
+        end
+        subgraph Engine3["Engine 3: Simulation Replayer"]
+            E3_1["3.818 Mẫu Lịch Sử Sạch<br/>(Kiểm thử & Offline Demo)"]
+        end
+    end
+
+    %% -------------------------------------------------------------
+    %% LAYER 2: BUFFER & QUEUE
+    %% -------------------------------------------------------------
+    subgraph L2["2. TẦNG HÀNG ĐỢI PHÂN TÁN (BUFFER & QUEUE LAYER)"]
+        K1["Apache Kafka 4.3.1 KRaft Mode (Port 9092)"]
+        T1["Topic: social.live.raw / social.sim.raw"]
+        FB1["Local Disk Buffer Fallback (data/buffer_*.jsonl)"]
+        DLQ["Dead Letter Queue: social.flood.dlq"]
+        K1 --- T1
+        K1 --- FB1
+        K1 --- DLQ
+    end
+
+    %% -------------------------------------------------------------
+    %% LAYER 3: STREAMING & MULTIMODAL PERCEPTION
+    %% -------------------------------------------------------------
+    subgraph L3["3. TẦNG XỬ LÝ LUỒNG & ĐA PHƯƠNG THỨC (STREAMING & PERCEPTION LAYER)"]
+        direction TB
+        SP["PySpark Structured Streaming Engine<br/>(Micro-batch 5s)"]
+        
+        subgraph MediaProc["Xử lý Media Đa phương thức"]
+            FF["FFmpeg Audio Extractor (16kHz Mono)"]
+            CV["OpenCV Frame Sampler (0.5 FPS)"]
+            ASR["PhoWhisper ASR<br/>(Gỡ băng âm thanh thành chữ)"]
+            CLIP["CLIP ViT-B/32<br/>(Thẩm định ngập Zero-shot >80%)"]
+            FF --> ASR
+            CV --> CLIP
+        end
+        
+        subgraph Veracity["Động cơ Kiểm chứng Tin giả (Veracity Verification Engine)"]
+            V1["Bộ lọc rác & rao vặt BĐS"]
+            V2["Kiểm chứng Khí tượng Open-Meteo<br/>(Mưa 72h thực tế vs Bài đăng)"]
+            V3["Đồng thuận Không gian - Thời gian<br/>(Consensus 500m quanh điểm ngập)"]
+            V1 --> V2 --> V3
+        end
+    end
+
+    %% -------------------------------------------------------------
+    %% LAYER 4: SPATIAL MAPPING & AI ASTE EXTRACTION
+    %% -------------------------------------------------------------
+    subgraph L4["4. TẦNG TRÍ TUỆ NHÂN TẠO & KHÔNG GIAN ĐỊA LÝ (AI & GIS LAYER)"]
+        direction TB
+        GIS["GIS Gazetteer 168 ĐVHC mới (NQ 1685)<br/>+ 122 Điểm ngập trọng điểm PC08"]
+        CLUST["DBSCAN Spatio-Temporal Clusterer<br/>(Gom cụm sự kiện ngập đô thị)"]
+        
+        subgraph ASTE["Mô hình Học sâu ASTE Triplet Extraction (SemEval V2)"]
+            M_PHO["PhoBERT (base_v2 / large)"]
+            M_BART["BARTpho (syllable / word base)"]
+            M_MT5["mT5 (Multilingual base)"]
+            M_TRIP["Trích xuất cấu trúc: [Aspect | Opinion | Polarity]<br/>Aspect: Tuyến đường / Địa danh In-Scope<br/>Opinion: Độ sâu / Tình trạng ngập lụt<br/>Polarity: NEG (Ngập) / POS (Nước rút) / NEU (Dự báo)"]
+            M_PHO & M_BART & M_MT5 --> M_TRIP
+        end
+    end
+
+    %% -------------------------------------------------------------
+    %% LAYER 5: STORAGE & SERVING
+    %% -------------------------------------------------------------
+    subgraph L5["5. TẦNG LƯU TRỮ & BỘ NHỚ ĐỆM PHỤC VỤ (STORAGE & SERVING LAYER)"]
+        REDIS["Redis 7.2 In-Memory Hot Store<br/>(<3ms Hot Cache, Port 6379)"]
+        LAKE["Delta Lakehouse (Parquet)<br/>Bronze ➔ Silver ➔ Gold"]
+    end
+
+    %% -------------------------------------------------------------
+    %% LAYER 6: ACTIONABLE GIS DASHBOARD
+    %% -------------------------------------------------------------
+    subgraph L6["6. TẦNG GIAO DIỆN & ĐIỀU HÀNH THỜI GIAN THỰC (ACTIONABLE DASHBOARD)"]
+        direction TB
+        SRV["Dashboard Server (Python HTTP, Port 8050)"]
+        
+        subgraph UI["Giao diện GIS Tác chiến (Leaflet Engine)"]
+            UI1["Bản đồ Nhiệt Leaflet Heatmap"]
+            UI2["Pin Jitter Algorithm<br/>(Chống đè chồng lấp markers)"]
+            UI3["Hệ thống Cảnh báo Màu sắc:<br/>🔴 Đỏ: Ngập sâu / Chết máy (NEG)<br/>🟡 Vàng: Ứ nước nhẹ / Dự báo triều (NEU)<br/>🟢 Xanh lá: Nước đã rút / Thông thoáng (POS)"]
+            UI4["Lộ trình Điều hướng Tránh ngập (Emergency Detour Routing)"]
+            UI1 --- UI2 --- UI3 --- UI4
+        end
+        SRV --> UI
+    end
+
+    %% Data Flow Connections
+    Engine1 & Engine2 & Engine3 --> L2
+    L2 --> SP
+    SP --> MediaProc & Veracity
+    MediaProc & Veracity --> L4
+    GIS & CLUST & ASTE --> REDIS & LAKE
+    REDIS --> SRV
+```
+
+---
+
+## 3. BẢN ĐỒ MÃ NGUỒN & MÔ TẢ CHI TIẾT CÁC MODULE (SOURCE CODE MAP)
 
 Thư mục gốc của dự án: `D:\SE363_RAWDATA`
 
@@ -55,14 +173,14 @@ SE363_RAWDATA/
 └── tests/                 # Unit tests & smoke tests kiểm thử hệ thống
 ```
 
-### 2.1. Thư mục `core/` (Cấu hình & Xử lý Địa danh)
+### 3.1. Thư mục `core/` (Cấu hình & Xử lý Địa danh)
 - `core/config.py`: Cấu hình chung toàn hệ thống (Apify tokens, hashtag TikTok, danh sách Fanpage Facebook uy tín, tham số crawler).
 - `core/admin_resolver.py`: Bộ phân giải đơn vị hành chính TP.HCM theo Nghị quyết mới 1685/NQ-UBTVQH15 (168 phường/xã/thị trấn mới, tọa độ 122 điểm ngập trọng điểm của PC08).
 - `core/gazetteer.py`: Từ điển không gian địa lý (GIS Gazetteer) ánh xạ tên đường, cầu, nút giao về tọa độ kinh độ/vĩ độ (Lat/Lon).
 - `core/apify_pool.py`: Bộ quản lý xoay vòng API Key Apify tự động (Key Pool Manager với cơ chế tự động chuyển key khi gặp HTTP 401/402 hết tiền).
 - `core/state_manager.py`: Quản lý trạng thái luồng thu thập.
 
-### 2.2. Thư mục `pipeline/` (Động cơ Thu thập & Lọc Dữ liệu)
+### 3.2. Thư mục `pipeline/` (Động cơ Thu thập & Lọc Dữ liệu)
 - `pipeline/live_free_crawler.py`: Động cơ thu thập 100% miễn phí chạy đa luồng (16 workers):
   + Cổng thông tin 1022 TP.HCM (API JSON chính thức).
   + VOV Giao thông Ticker (Tin nóng tắc đường, ngập lụt).
@@ -79,13 +197,13 @@ SE363_RAWDATA/
 - `pipeline/spatio_temporal_clusterer.py`: Gom cụm các cảnh báo ngập lụt theo thuật toán DBSCAN không gian - thời gian.
 - `pipeline/multimodal_streamer.py`: Điều phối luồng xử lý đa phương thức (Text + Video frames).
 
-### 2.3. Thư mục `bigdata/` (Tầng Xử lý Dữ liệu Lớn Phân tán)
+### 3.3. Thư mục `bigdata/` (Tầng Xử lý Dữ liệu Lớn Phân tán)
 - `bigdata/docker-compose.yml`: Triển khai hạ tầng hạ tầng gồm Apache Kafka 4.3.1 (KRaft mode, Port 9092) và Redis 7.2 In-Memory Hot Store (Port 6379).
 - `bigdata/run_streaming_pipeline.py`: Khởi chạy PySpark Structured Streaming với micro-batch 5 giây.
 - `bigdata/streaming/`: Mã nguồn PySpark streaming, xử lý JSON từ Kafka topic `social.live.raw`, giải nén và làm giàu dữ liệu qua Gazetteer.
 - `bigdata/lakehouse/`: Tầng lưu trữ Delta Parquet (Bronze $\rightarrow$ Silver $\rightarrow$ Gold) phục vụ phân tích lịch sử ngập.
 
-### 2.4. Thư mục `dashboard/` (Giao diện Bản đồ Điều hành)
+### 3.4. Thư mục `dashboard/` (Giao diện Bản đồ Điều hành)
 - `dashboard/server.py`: HTTP Server viết bằng Python (Port 8050) phục vụ API dữ liệu ngập thời gian thực từ Redis hot store.
 - `dashboard/index.html`: Giao diện Dashboard chuyên nghiệp:
   + Bản đồ Leaflet Heatmap hiển thị cường độ ngập theo thời gian thực.
@@ -93,7 +211,7 @@ SE363_RAWDATA/
   + Lucide Vector SVG Icons phân loại trực quan (Đỏ: Ngập sâu/Chết máy, Vàng: Ứ nước nhẹ, Xanh lá: Nước đã rút).
   + Lộ trình điều hướng tránh điểm ngập cho phương tiện giao thông.
 
-### 2.5. Thư mục `AI/` (Nghiên cứu Mô hình Học sâu ASTE)
+### 3.5. Thư mục `AI/` (Nghiên cứu Mô hình Học sâu ASTE)
 Gồm các kiến trúc mô hình được huấn luyện và đánh giá trên bộ dữ liệu của đề tài:
 - `AI/phobert/`: Mô hình PhoBERT (base_v2 và large).
 - `AI/bartpho/`: Mô hình BARTpho (syllable_base và word_base) theo hướng Generative ASTE.
@@ -102,7 +220,7 @@ Gồm các kiến trúc mô hình được huấn luyện và đánh giá trên 
 - `AI/llm/`: Đánh giá Zero-shot / Few-shot với LLM mã nguồn mở (Gemma 26B, Qwen 27B).
 - `AI/results/`: Kết quả bảng so sánh Benchmark F1-score (`BENCHMARK_TABLE.md`, `benchmark_comparison.csv`).
 
-### 2.6. Thư mục `scripts/` (Bộ Công cụ Kiểm định & Thao tác Dữ liệu Cốt lõi)
+### 3.6. Thư mục `scripts/` (Bộ Công cụ Kiểm định & Thao tác Dữ liệu Cốt lõi)
 - **`scripts/deep_10_pass_audit.py`**: **LINTER KIỂM ĐỊNH TỐI CAO CỦA DỰ ÁN**. Bộ kiểm tra 10 chiều độc lập hoàn toàn Read-only (không tự ý sửa file), phát hiện mọi lỗi cú pháp, rò rỉ ranh giới, token offset và vi phạm quy chuẩn.
 - **`scripts/audit_index_integrity.py`**: Bộ kiểm toán giải mã ngược (De-tokenization), lấy danh sách số thứ tự `[start...end]` đối soát ngược lại với văn bản gốc để chứng minh 100% khớp từ vựng, không có hiện tượng lệch token.
 - **`scripts/span_helper.py`**: **BỘ HELPER TOÁN HỌC SINH TRIPLET AN TOÀN**. Chứa hàm `make_triplet(text, asp_phrase, opi_phrase, polarity)` giúp tự động định vị token span, tự động gọt sạch dấu câu ở biên (Pass 4) và giới từ ở đầu (Pass 5).
@@ -110,7 +228,7 @@ Gồm các kiến trúc mô hình được huấn luyện và đánh giá trên 
 
 ---
 
-## 3. KHO NGỮ LIỆU ASTE MASTER 10.249 RECORDS & HIỆN TRẠNG 3 PHASES
+## 4. KHO NGỮ LIỆU ASTE MASTER 10.249 RECORDS & HIỆN TRẠNG 3 PHASES
 
 Toàn bộ kho ngữ liệu gốc được chuẩn hóa theo chuẩn quốc tế SemEval ASTE-Data-V2 lưu tại [master_10k_triplets.txt](file:///D:/SE363_RAWDATA/data/processed/aste_v2_format/master_10k_triplets.txt) với đúng **10.249 dòng văn bản**:
 $$\text{Cấu trúc: } \text{token}_0 \text{ token}_1 \dots \text{ token}_n \text{ #### } [([\text{asp}], [\text{opi}], '\text{POL}')]$$
@@ -147,7 +265,7 @@ $$\text{Cấu trúc: } \text{token}_0 \text{ token}_1 \dots \text{ token}_n \tex
 
 ---
 
-## 4. BỘ KINH NGHIỆM THỰC CHIẾN XƯƠNG MÁU & NGUYÊN TẮC CỐT TỬ CỦA USER
+## 5. BỘ KINH NGHIỆM THỰC CHIẾN XƯƠNG MÁU & NGUYÊN TẮC CỐT TỬ CỦA USER
 
 > [!IMPORTANT]
 > Đây là những nguyên tắc tối cao đã được kiểm chứng và chấn chỉnh qua hàng chục phiên làm việc với User. **Agent mới tuyệt đối không được vi phạm hay tự ý thay đổi bất kỳ quy tắc nào!**
@@ -189,7 +307,7 @@ $$\text{Cấu trúc: } \text{token}_0 \text{ token}_1 \dots \text{ token}_n \tex
 
 ---
 
-## 5. CÔNG CỤ KIỂM ĐỊNH KÉP & BỘ HELPER TOÁN HỌC
+## 6. CÔNG CỤ KIỂM ĐỊNH KÉP & BỘ HELPER TOÁN HỌC
 
 Kiến trúc kiểm định của dự án áp dụng mô hình **Dual-Engine Audit**:
 
@@ -210,7 +328,7 @@ Kiến trúc kiểm định của dự án áp dụng mô hình **Dual-Engine Au
 └──────────────────────────────────┘   └──────────────────────────────────┘
 ```
 
-### 5.1. Danh mục 10 Nhóm Lỗi Được Quét Bởi `deep_10_pass_audit.py`
+### 6.1. Danh mục 10 Nhóm Lỗi Được Quét Bởi `deep_10_pass_audit.py`
 1. **Pass 1: Syntax Format**: Kiểm tra cú pháp phân cách `####` và cấu trúc danh sách Python `[([a], [o], 's')]`.
 2. **Pass 2: Token Offset**: Kiểm tra chỉ số token có vượt quá số từ trong câu không.
 3. **Pass 3: Overlap**: Kiểm tra xem Aspect và Opinion có bị trùng đè vị trí lên nhau không.
@@ -222,7 +340,7 @@ Kiến trúc kiểm định của dự án áp dụng mô hình **Dual-Engine Au
 9. **Pass 9: Fallback Misuse**: Phát hiện câu đã có tên đường cụ thể nhưng lại dùng Fallback `TP. Hồ Chí Minh`.
 10. **Pass 10: Bare Noun as Opinion**: Bắt lỗi các danh từ hiện tượng trơ trọi không có tính từ/vị ngữ (*"điểm ngập"*, *"vùng ngập"*, *"mực nước"*).
 
-### 5.2. Công Cụ Sinh Triplet Chuẩn Xác `span_helper.py`
+### 6.2. Công Cụ Sinh Triplet Chuẩn Xác `span_helper.py`
 Khi cần tạo hoặc sửa Triplet, **bắt buộc gọi qua `span_helper.py`**:
 ```python
 from scripts.span_helper import make_triplet
@@ -240,13 +358,13 @@ trip = make_triplet(
 
 ---
 
-## 6. CÔNG VIỆC ĐANG LÀM VÀ HƯỚNG DẪN BẮT TAY LÀM TIẾP (NEXT STEPS RUNBOOK)
+## 7. CÔNG VIỆC ĐANG LÀM VÀ HƯỚNG DẪN BẮT TAY LÀM TIẾP (NEXT STEPS RUNBOOK)
 
-### 6.1. Mục tiêu trước mắt: Triển khai Gán nhãn Phase 3 Phần của Hùng
+### 7.1. Mục tiêu trước mắt: Triển khai Gán nhãn Phase 3 Phần của Hùng
 - **Nhiệm vụ tiếp theo**: Thực hiện gán nhãn cho **3.874 records** thuộc Phase 3 của bạn Hùng (tương ứng từ **dòng 6.376 đến dòng 10.249** trong file `data/processed/aste_v2_format/master_10k_triplets.txt`).
 - **Tệp đích cần ghi**: `data/validate_label/hung/phase3.txt`.
 
-### 6.2. Quy trình 4 Bước Bắt Buộc Khi Làm Từng Lô
+### 7.2. Quy trình 4 Bước Bắt Buộc Khi Làm Từng Lô
 ```
 [Bước 1: Đọc & Trích xuất]
    ├── Lấy lô 50 - 100 records từ dòng 6.376 trở đi trong master_10k_triplets.txt
@@ -263,7 +381,7 @@ trip = make_triplet(
    └── Xác nhận 100% token offset khớp chuẩn từ vựng thực tế trước khi chuyển sang lô tiếp theo
 ```
 
-### 6.3. Sau khi Hoàn tất Toàn bộ Phase 3
+### 7.3. Sau khi Hoàn tất Toàn bộ Phase 3
 1. Ghép nối Master Dataset hoàn chỉnh 10.249 records:
    $$\text{Master 10K} = \text{Phase 1 (Thuận)} + \text{Phase 2 (Thuận)} + \text{Phase 3 (Thuận)} + \text{Phase 3 (Hùng)}$$
 2. Chạy tái huấn luyện (Retrain) và đánh giá Benchmark các mô hình ASTE (`PhoBERT`, `BARTpho`, `mT5`) trong thư mục `AI/`.
@@ -271,11 +389,11 @@ trip = make_triplet(
 
 ---
 
-## 7. BẢNG TRA CỨU LỆNH NHANH (CHEATSHEET)
+## 8. BẢNG TRA CỨU LỆNH NHANH (CHEATSHEET)
 
 Mọi thao tác chạy lệnh trên Windows PowerShell, sử dụng môi trường ảo: `.\.venv\Scripts\python.exe`.
 
-### 7.1. Kiểm định Dữ liệu ASTE
+### 8.1. Kiểm định Dữ liệu ASTE
 ```powershell
 # 1. Kiểm định kép 10 vòng độc lập (Bắt buộc đạt 10/10 PASSES: 0 LỖI)
 .\.venv\Scripts\python.exe scripts/deep_10_pass_audit.py data/validate_label/thuan/phase3.txt
@@ -287,7 +405,7 @@ Mọi thao tác chạy lệnh trên Windows PowerShell, sử dụng môi trườ
 .\.venv\Scripts\python.exe scripts/stats_phase3.py
 ```
 
-### 7.2. Khởi động Toàn Trình Hệ Thống (End-to-End System)
+### 8.2. Khởi động Toàn Trình Hệ Thống (End-to-End System)
 ```powershell
 # 1. Khởi động hạ tầng Kafka KRaft & Redis 7.2 (Docker)
 docker-compose -f bigdata/docker-compose.yml up -d
@@ -302,7 +420,7 @@ docker-compose -f bigdata/docker-compose.yml up -d
 .\.venv\Scripts\python.exe pipeline/live_free_crawler.py
 ```
 
-### 7.3. Thao tác Git An Toàn
+### 8.3. Thao tác Git An Toàn
 ```powershell
 # Kiểm tra trạng thái
 git status
