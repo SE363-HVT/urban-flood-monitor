@@ -1,13 +1,21 @@
 # 📦 Cấu Trúc Phân Loại Mô-đun Thư Mục Scripts (`scripts/`)
 
-Thư mục `scripts/` đã được chuẩn hóa và tái cấu trúc toàn diện thành **6 gói chuyên biệt (subpackages)**. Thư mục gốc chỉ chứa các thư mục con tương ứng, không còn các tệp script rời rạc giúp cấu trúc dự án tinh gọn, chuyên nghiệp và dễ quản lý trên IDE (PyCharm / VS Code).
+Thư mục `scripts/` đã được chuẩn hóa và tái cấu trúc toàn diện thành **6 gói chuyên biệt (subpackages)** và 1 thư mục dành riêng cho Agent (`scratch/`). Thư mục gốc chỉ chứa các công cụ kiểm toán cốt lõi, không còn các tệp script tạm bợ giúp cấu trúc dự án tinh gọn, chuyên nghiệp và dễ quản lý trên IDE (PyCharm / VS Code).
+
+---
+
+## 🛠️ Công Cụ Kiểm Toán & Đo Lường Cốt Lõi (Thư Mục Gốc)
+* [`deep_10_pass_audit.py`](./deep_10_pass_audit.py): Bộ kiểm toán toán học 10 vòng độc lập (Single Source of Truth của hệ thống ASTE).
+* [`audit_index_integrity.py`](./audit_index_integrity.py): Bộ giải mã ngược đối soát token offset khớp 100% văn bản.
+* [`span_helper.py`](./span_helper.py): Thư viện toán học `make_triplet` gọt sạch dấu câu và giới từ.
+* [`verify_batch_50.py`](./verify_batch_50.py): Công cụ kiểm tra cuốn chiếu từng lô 50 mẫu (được dẫn trong Cẩm nang gán nhãn).
+* [`stats_phase3.py`](./stats_phase3.py): Báo cáo thống kê phân bổ nhãn và tỷ lệ dữ liệu.
 
 ---
 
 ## 📁 1. `scripts/crawlers/` — Thu thập & Cào Dữ liệu
 Các script chuyên trách cào dữ liệu từ mạng xã hội, diễn đàn và CSGT (cả online và offline):
-* [`free_social_crawler.py`](./crawlers/free_social_crawler.py): Bộ cào đa nền tảng thời gian thực miễn phí (Facebook, Threads, TikTok, YouTube).
-* [`crawl_threads_flood.py`](./crawlers/crawl_threads_flood.py): Cào dữ liệu chuyên sâu ngập lụt trên Meta Threads.
+* [`free_social_crawler.py`](./crawlers/free_social_crawler.py): Bộ cào đa nền tảng thời gian thực miễn phí (Facebook, TikTok, YouTube Shorts, News). *(Lưu ý: Nền tảng Threads đã loại bỏ do kém hiệu quả và cơ chế chặn bot gắt gao)*.
 * [`crawl_targeted_pos.py`](./crawlers/crawl_targeted_pos.py): Cào bài đăng nhắm mục tiêu để bổ sung mẫu Positive.
 * [`crawl_hcm_core_csgt.py`](./crawlers/crawl_hcm_core_csgt.py): Cào thông tin cảnh báo ngập lụt chính thống từ kênh CSGT TP.HCM.
 * [`append_new_social_crawl.py`](./crawlers/append_new_social_crawl.py): Nối dữ liệu cào mới vào kho dữ liệu master.
@@ -73,11 +81,8 @@ Các script vẽ biểu đồ phân phối dữ liệu phục vụ báo cáo/kh�
 * [`run_live_multimodal_pipeline.py`](./pipeline/run_live_multimodal_pipeline.py): Khởi chạy luồng pipeline thời gian thực tổng hợp.
 
 ---
-> [!TIP]
-> **Quy ước Import chuẩn**:
-> Tất cả các câu lệnh import trong dự án sử dụng định dạng module phân cấp rõ ràng, ví dụ:
-> ```python
-> from scripts.crawlers.organize_raw_episodes import determine_episode_id
-> from scripts.training.train_phobert_aste import PhoBertASTEPredictor
-> from scripts.dataset.reannotate_expert_batches import extract_expert_triplets
-> ```
+
+## 📁 7. `scripts/scratch/` — Khu Vực Thao Tác Tạm Của Agent (Scratchpad)
+* Dành riêng cho các Agent AI tạo các script kiểm tra tạm thời (dump, view, test, debug, patch tạm 1 lần).
+* Mọi file sinh ra trong quá trình agent suy luận/thao tác bắt buộc phải đặt trong thư mục này.
+* Giữ cho thư mục `scripts/` luôn sạch sẽ và có thể dọn dẹp định kỳ an toàn.
