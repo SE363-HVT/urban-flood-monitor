@@ -220,28 +220,14 @@ Bộ công cụ tự động kiểm định 10 chiều độc lập:
 9. `NON_HCM_PROVINCE`: Câu có nhắc tên tỉnh ngoài (*Cần Thơ, Hà Nội, Cà Mau, Sa Đéc, Đồng Nai...*) mà không bị loại bỏ (`REJECT`).
 10. `DOC_FALLBACK_MISUSE`: Dùng tiền tố `TP. Hồ Chí Minh` làm Aspect trong khi câu văn có nhắc tên đường hoặc địa danh cụ thể.
 
-### 3. Bộ 3 Script Kiểm Định Chuẩn Hóa và Cú Pháp CLI
+### 3. Bộ Đôi Script Kiểm Định Chuẩn Hóa Cốt Lõi (Single Source of Truth)
 
-Tất cả 3 script đều hỗ trợ truyền đường dẫn file linh hoạt qua tham số dòng lệnh (CLI parameter) trên cả Windows PowerShell và Linux/macOS:
+Cả 2 script đều hỗ trợ truyền đường dẫn file linh hoạt qua tham số dòng lệnh (CLI parameter) trên cả Windows PowerShell và Linux/macOS:
 
-#### 🔹 Script 1: Kiểm tra cuốn chiếu từng lô 50 mẫu [`scripts/verify_batch_50.py`](file:///D:/SE363_RAWDATA/scripts/verify_batch_50.py)
-* **Mục đích**: Chạy kiểm tra tức thì ngay sau khi gán nhãn xong mỗi block 50 mẫu, khoanh vùng lỗi trong phạm vi hẹp để sửa ngay lập tức.
-* **Cú pháp lệnh**:
-  ```powershell
-  # Kiểm tra block từ record 1 đến 50:
-  .\.venv\Scripts\python.exe scripts/verify_batch_50.py <đường_dẫn_file> 0 50
-
-  # Kiểm tra block từ record 51 đến 100:
-  .\.venv\Scripts\python.exe scripts/verify_batch_50.py <đường_dẫn_file> 50 100
-
-  # Ví dụ chạy kiểm tra Phase 2:
-  .\.venv\Scripts\python.exe scripts/verify_batch_50.py data/validate_label/thuan/phase2.txt 0 50
-  ```
-
-#### 🔹 Script 2: Kiểm định chuyên sâu 10 vòng lặp [`scripts/deep_10_pass_audit.py`](file:///D:/SE363_RAWDATA/scripts/deep_10_pass_audit.py)
+#### 🔹 Script 1: Kiểm định chuyên sâu 10 vòng lặp [scripts/deep_10_pass_audit.py](file:///D:/SE363_RAWDATA/scripts/deep_10_pass_audit.py)
 * **Mục đích**: Quét toàn bộ file qua **10 vòng độc lập** để bắt trọn vẹn 10 nhóm lỗi nêu trên. Đảm bảo toàn bộ dataset đạt 100% 0 lỗi trước khi bàn giao.
 * **Cú pháp lệnh**:
-  ```powershell
+  `powershell
   # Chạy kiểm định 10 vòng cho toàn bộ file:
   .\.venv\Scripts\python.exe scripts/deep_10_pass_audit.py <đường_dẫn_file>
 
@@ -250,42 +236,42 @@ Tất cả 3 script đều hỗ trợ truyền đường dẫn file linh hoạt 
 
   # Ví dụ kiểm định Phase 2 (2.000 records):
   .\.venv\Scripts\python.exe scripts/deep_10_pass_audit.py data/validate_label/thuan/phase2.txt
-  ```
 
-#### 🔹 Script 3: Giải mã ngược kiểm tra tính toàn vẹn Index [`scripts/audit_index_integrity.py`](file:///D:/SE363_RAWDATA/scripts/audit_index_integrity.py)
-* **Mục đích**: Tự động lấy các số nguyên trong `aspect_indices` và `opinion_indices` để trích xuất ngược lại từng từ vựng trong câu văn gốc (`tokens[i]`), đối soát trực tiếp xem có bị lệch chữ, rỗng nhãn, hay dính dấu câu hay không.
+  # Ví dụ kiểm định Phase 3 (3.875 records):
+  .\.venv\Scripts\python.exe scripts/deep_10_pass_audit.py data/validate_label/thuan/phase3.txt
+  `
+
+#### 🔹 Script 2: Giải mã ngược kiểm tra tính toàn vẹn Index [scripts/audit_index_integrity.py](file:///D:/SE363_RAWDATA/scripts/audit_index_integrity.py)
+* **Mục đích**: Tự động lấy các số nguyên trong spect_indices và opinion_indices để trích xuất ngược lại từng từ vựng trong câu văn gốc (	okens[i]), đối soát trực tiếp xem có bị lệch chữ, rỗng nhãn, hay dính dấu câu hay không.
 * **Cú pháp lệnh**:
-  ```powershell
+  `powershell
   # Chạy đối soát giải mã ngược toàn bộ file:
   .\.venv\Scripts\python.exe scripts/audit_index_integrity.py <đường_dẫn_file>
 
-  # Ví dụ đối soát Phase 2:
-  .\.venv\Scripts\python.exe scripts/audit_index_integrity.py data/validate_label/thuan/phase2.txt
-  ```
+  # Ví dụ đối soát Phase 3:
+  .\.venv\Scripts\python.exe scripts/audit_index_integrity.py data/validate_label/thuan/phase3.txt
+  `
 
 ---
 
 ## 🚀 VIII. QUY TRÌNH TRIỂN KHAI THỰC CHIẾN (STEP-BY-STEP WORKFLOW)
 
-Quy trình chuẩn hóa 4 bước khép kín (The 4-Step Agile Labeling & Verification Loop) áp dụng cho mọi annotator và agent:
+Quy trình chuẩn hóa 3 bước khép kín (The 3-Step Agile Labeling & Verification Loop) áp dụng cho mọi annotator và agent:
 
-```
+`
 ┌────────────────────────────────────────────────────────────────────────┐
-│             QUY TRÌNH 4 BƯỚC THỰC CHIẾN (AGILE LABELING LOOP)          │
+│             QUY TRÌNH 3 BƯỚC THỰC CHIẾN (AGILE LABELING LOOP)          │
 └────────────────────────────────────────────────────────────────────────┘
-  [Bước 1] Gán nhãn 50 mẫu cuốn chiếu (Đọc trọn vẹn ngữ cảnh + hashtag)
+  [Bước 1] Gán nhãn cuốn chiếu theo đợt (Đọc trọn vẹn ngữ cảnh + hashtag + span_helper)
      │
      ▼
-  [Bước 2] Chạy `verify_batch_50.py` kiểm tra tức thì block 50 vừa gán
-     │       ├── Có lỗi ➔ Mở file sửa tay ngay tại chỗ ➔ Chạy lại Bước 2
-     │       └── 0 lỗi  ➔ Tiến hành lô 50 tiếp theo
+  [Bước 2] Nghiệm thu toàn diện với deep_10_pass_audit.py (10 vòng độc lập)
+     │       ├── Có cảnh báo/lỗi ➔ Mở file hiệu chỉnh triệt để ➔ Chạy lại Bước 2
+     │       └── 10/10 PASSES   ➔ Đạt chuẩn chất lượng khoa học
      ▼
-  [Bước 3] Nghiệm thu toàn file với `deep_10_pass_audit.py` (10 vòng độc lập)
-     │       └── Phát hiện bất kỳ cảnh báo nào ➔ Hiệu chỉnh triệt để
-     ▼
-  [Bước 4] Đối soát giải mã ngược với `audit_index_integrity.py`
-             └── Nghiệm thu 100% khớp từ vựng ➔ Commit dữ liệu an toàn
-```
+  [Bước 3] Đối soát giải mã ngược với udit_index_integrity.py
+             └── Nghiệm thu 100% khớp từ vựng thực tế ➔ Commit dữ liệu an toàn
+`
 
 ### 1. Triển khai Phase 2: Tập Overlap 2.000 Records (Từ dòng 501 ➔ 2.500)
 * **Quy tắc Mù Đôi (Double-Blind Independent Annotation)**:
@@ -352,8 +338,10 @@ Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn b
   - Khi annotator gán Aspect là `TP. Hồ Chí Minh` (dùng Fallback), công cụ kiểm toán Pass 9 bắt lỗi `SUSPECT_FALLBACK_USAGE`.
   - **Hậu quả tiêu cực**: Thay vì sửa Aspect thành tên con đường cụ thể (`đường Trần Xuân Soạn`, `đường Tô Ngọc Vân`, `đường Linh Đông`), annotator trước đây lại **chọn cách tiêu cực là gán `####[]` để "lách linter" qua mặt bộ kiểm tra**, khiến hàng trăm bản tin ngập lụt thực địa cực kỳ đắt giá bị xóa sổ!
 * **Quy tắc chấn chỉnh**:
-  - **Nguyên tắc ưu tiên số 1**: Khi trong câu đã có tên đường hoặc địa danh cụ thể $ightarrow$ **BẮT BUỘC gán Aspect là tên con đường / địa danh đó**. CẤM dùng Fallback `TP. Hồ Chí Minh` / `TPHCM`.
-  - **Chỉ dùng Fallback khi**: Câu văn hoàn toàn không nhắc tới bất kỳ một tên đường, ngõ, hẻm, phường, quận cụ thể nào mà chỉ nói về hiện trường ngập chung chung (ví dụ: *"Tại TP. Hồ Chí Minh , Mưa lớn khiến nhiều xe chết máy bì bõm lội nước"* $ightarrow$ Fallback Aspect là `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
+  - **Nguyên tắc ưu tiên số 1**: Khi trong câu đã có tên đường hoặc địa danh cụ thể $
+ightarrow$ **BẮT BUỘC gán Aspect là tên con đường / địa danh đó**. CẤM dùng Fallback `TP. Hồ Chí Minh` / `TPHCM`.
+  - **Chỉ dùng Fallback khi**: Câu văn hoàn toàn không nhắc tới bất kỳ một tên đường, ngõ, hẻm, phường, quận cụ thể nào mà chỉ nói về hiện trường ngập chung chung (ví dụ: *"Tại TP. Hồ Chí Minh , Mưa lớn khiến nhiều xe chết máy bì bõm lội nước"* $
+ightarrow$ Fallback Aspect là `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
   - **CẤM REJECT câu chỉ vì vi phạm Fallback**: Phải chủ động đọc lại câu và sửa Aspect về đúng tên đường.
 
 ---
@@ -365,10 +353,14 @@ Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn b
 * **Quy chuẩn phân định ranh giới**:
   - **MẪU HỢP LỆ (BẮT BUỘC GIỮ LẠI & GÁN NHÃN `NEG`)**:
     + Người dân dùng các từ ngữ phóng đại, ví von thực tế sinh động để miêu tả tình trạng ngập lụt khủng khiếp:
-      * *"thất thủ"* (ví dụ: *Nguyễn Hữu Cảnh lại thất thủ* $ightarrow$ Aspect `Nguyễn Hữu Cảnh`, Opinion `thất thủ`, Polarity `NEG`).
-      * *"như sông"*, *"hóa sông"*, *"biển nước"* (ví dụ: *Đường phố biến thành biển nước mênh mông* $ightarrow$ Aspect `Đường phố`, Opinion `biển nước`, Polarity `NEG`).
-      * *"bì bõm"*, *"bơi thuyền"*, *"lội nước"*, *"chèo xuồng"* (ví dụ: *Người dân bì bõm lội nước dắt xe chết máy* $ightarrow$ Opinion `bì bõm lội nước`, Polarity `NEG`).
-      * *"nước lút bánh xe"*, *"sóng đánh dạt dào"*, *"mưa tí là ngập"*, *"ngập mút chỉ"*, *"ngập đến cổ"* $ightarrow$ Đều là các Opinion tiêu cực phản ánh mức độ ngập lụt đô thị rất chân thực.
+      * *"thất thủ"* (ví dụ: *Nguyễn Hữu Cảnh lại thất thủ* $
+ightarrow$ Aspect `Nguyễn Hữu Cảnh`, Opinion `thất thủ`, Polarity `NEG`).
+      * *"như sông"*, *"hóa sông"*, *"biển nước"* (ví dụ: *Đường phố biến thành biển nước mênh mông* $
+ightarrow$ Aspect `Đường phố`, Opinion `biển nước`, Polarity `NEG`).
+      * *"bì bõm"*, *"bơi thuyền"*, *"lội nước"*, *"chèo xuồng"* (ví dụ: *Người dân bì bõm lội nước dắt xe chết máy* $
+ightarrow$ Opinion `bì bõm lội nước`, Polarity `NEG`).
+      * *"nước lút bánh xe"*, *"sóng đánh dạt dào"*, *"mưa tí là ngập"*, *"ngập mút chỉ"*, *"ngập đến cổ"* $
+ightarrow$ Đều là các Opinion tiêu cực phản ánh mức độ ngập lụt đô thị rất chân thực.
   - **MẪU BẮT BUỘC LOẠI BỎ (`REJECT / ####[]`)**:
     + Chỉ loại bỏ khi yếu tố ngập lụt chỉ làm nền phụ cho nội dung giải trí khác:
       * So sánh với phim ảnh, hoạt hình, anime (ví dụ: *Cảnh đạp xe ngập nước giống phim Vùng đất linh hồn #anime*).
@@ -389,7 +381,8 @@ Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn b
   - Nhìn thấy dấu ba chấm hoặc từ cuối bị cụt vội kết luận là "câu rác / không hoàn chỉnh" và loại bỏ (`####[]`).
 * **Kinh nghiệm xử lý chuẩn xác**:
   - Kiểm tra xem ở mệnh đề trước điểm bị cắt **đã có đủ một cặp Aspect - Opinion hoàn chỉnh hay chưa**.
-  - Nếu đã nêu rõ địa danh (`đường Linh Đông`, `đường Nguyễn Văn Quá`...) và tình trạng ngập (`ngập nặng nhất`, `nước ngập sâu`...) $ightarrow$ **Hoàn toàn đủ điều kiện trích xuất Triplet chuẩn xác**, bắt buộc phải giữ lại và gán nhãn!
+  - Nếu đã nêu rõ địa danh (`đường Linh Đông`, `đường Nguyễn Văn Quá`...) và tình trạng ngập (`ngập nặng nhất`, `nước ngập sâu`...) $
+ightarrow$ **Hoàn toàn đủ điều kiện trích xuất Triplet chuẩn xác**, bắt buộc phải giữ lại và gán nhãn!
 
 ---
 
@@ -403,7 +396,8 @@ Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn b
     + Nước rút bớt, nước đã rút hết, đường phố khô ráo trở lại.
     + Tuyến đường sau khi nâng cấp cải tạo không còn bị ngập khi mưa (ví dụ: *đường Nguyễn Hữu Cảnh sau cải tạo đã không còn ngập*).
 * **Bản tin Dự báo & Cảnh báo Triều dâng (Gán nhãn `NEU`)**:
-  - Các thông tin dự báo đỉnh triều, đo đạc mực nước tại các trạm đo thủy văn (*trạm Phú An, trạm Nhà Bè, trạm Thủ Dầu Một, trạm Vũng Tàu* đạt báo động 2, báo động 3) $ightarrow$ Gán nhãn `NEU`.
+  - Các thông tin dự báo đỉnh triều, đo đạc mực nước tại các trạm đo thủy văn (*trạm Phú An, trạm Nhà Bè, trạm Thủ Dầu Một, trạm Vũng Tàu* đạt báo động 2, báo động 3) $
+ightarrow$ Gán nhãn `NEU`.
 
 ---
 
