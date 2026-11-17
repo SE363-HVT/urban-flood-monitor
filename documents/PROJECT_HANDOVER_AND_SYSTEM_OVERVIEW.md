@@ -2,46 +2,59 @@
 ## Real-Time Multimodal Urban Flood Monitoring & Veracity Verification System (TP. Hồ Chí Minh & Vùng Đô Thị Mở Rộng)
 
 > **Dự án**: Đồ án Chuyên ngành Dữ liệu lớn (SE363) - Trường ĐH Công nghệ Thông tin (UIT - VNU-HCM) & Mục tiêu Công bố Quốc tế (ICWSM / EMNLP).  
-> **Người thực hiện**: Nhóm nghiên cứu SE363 (Thuận - Primary Annotator / System Lead & Hùng - Independent Peer Annotator).  
-> **Mục đích tài liệu**: Cung cấp bức tranh toàn cảnh 100% về kiến trúc hệ thống, toàn bộ mã nguồn (source code), kho ngữ liệu ASTE (10.249 records), tiến độ thực tế, các kinh nghiệm thực chiến xương máu và quy trình thao tác chuẩn xác để **bất kỳ AI Agent / Chuyên gia mới nào tiếp nhận dự án đều có thể đọc hiểu và tiếp tục công việc ngay lập tức mà không gặp bất kỳ trở ngại nào**.
+> **Nhóm thực hiện**: 
+> - **Thuận** (System Lead & Primary Annotator / Gold Reference)
+> - **Hùng** (Co-worker & Independent Peer Annotator)
+> 
+> **Mục đích tài liệu**: Cung cấp bức tranh toàn cảnh 100% về kiến trúc hệ thống, toàn bộ mã nguồn đang triển khai (Big Data, Crawler, Dashboard, AI), kho ngữ liệu ASTE (10.249 records), phân định rõ ràng **ĐÃ LÀM GÌ - ĐANG LÀM GÌ - SẼ LÀM GÌ**, cùng các kinh nghiệm thực chiến xương máu để **Agent ở tài khoản Pro mới có thể đọc hiểu và tiếp tục dự án ngay lập tức mà không gặp bất kỳ trở ngại nào**.
 
 ---
 
 ## 📑 MỤC LỤC CHI TIẾT
-1. [TỔNG QUAN DỰ ÁN & MỤC TIÊU NGHIÊN CỨU](#1-tổng-quan-dự-án--mục-tiêu-nghiên-cứu)
-2. [SƠ ĐỒ KIẾN TRÚC HỆ THỐNG TỔNG QUÁT (END-TO-END ARCHITECTURE)](#2-sơ-đồ-kiến-trúc-hệ-thống-tổng-quát-end-to-end-architecture)
-3. [BẢN ĐỒ MÃ NGUỒN & MÔ TẢ CHI TIẾT CÁC MODULE (SOURCE CODE MAP)](#3-bản-đồ-mã-nguồn--mô-tả-chi-tiết-các-module-source-code-map)
-4. [KHO NGỮ LIỆU ASTE MASTER 10.249 RECORDS & HIỆN TRẠNG 3 PHASES](#4-kho-ngữ-liệu-aste-master-10249-records--hiện-trạng-3-phases)
-5. [BỘ KINH NGHIỆM THỰC CHIẾN XƯƠNG MÁU & NGUYÊN TẮC CỐT TỬ CỦA USER](#5-bộ-kinh-nghiệm-thực-chiến-xương-máu--nguyên-tắc-cốt-tử-của-user)
-6. [CÔNG CỤ KIỂM ĐỊNH KÉP & BỘ HELPER TOÁN HỌC](#6-công-cụ-kiểm-định-kép--bộ-helper-toán-học)
-7. [CÔNG VIỆC ĐANG LÀM VÀ HƯỚNG DẪN BẮT TAY LÀM TIẾP (NEXT STEPS RUNBOOK)](#7-công-việc-đang-làm-và-hướng-dẫn-bắt-tay-làm-tiếp-next-steps-runbook)
-8. [BẢNG TRA CỨU LỆNH NHANH (CHEATSHEET)](#8-bảng-tra-cứu-lệnh-nhanh-cheatsheet)
+1. [TỔNG QUAN DỰ ÁN & BÀI TOÁN KHOA HỌC](#1-tổng-quan-dự-án--bài-toán-khoa-học)
+2. [SƠ ĐỒ KIẾN TRÚC HỆ THỐNG TOÀN TRÌNH (END-TO-END ARCHITECTURE)](#2-sơ-đồ-kiến-trúc-hệ-thống-toàn-trình-end-to-end-architecture)
+3. [CHI TIẾT TOÀN DIỆN CÁC THÀNH PHẦN HỆ THỐNG ĐANG TRIỂN KHAI](#3-chi-tiết-toàn-diện-các-thành-phần-hệ-thống-đang-triển-khai)
+   - 3.1. [Tầng Thu Nạp Đa Nguồn (Multi-Engine Ingestion)](#31-tầng-thu-nạp-đa-nguồn-multi-engine-ingestion)
+   - 3.2. [Tầng Hàng Đợi & Luồng Dữ Liệu Lớn (Kafka & PySpark Streaming)](#32-tầng-hàng-đợi--luồng-dữ-liệu-lớn-kafka--pyspark-streaming)
+   - 3.3. [Tầng Kiểm Chứng Tin Giả & Khí Tượng Vật Lý (Veracity Engine)](#33-tầng-kiểm-chứng-tin-giả--khí-tượng-vật-lý-veracity-engine)
+   - 3.4. [Tầng Lưu Trữ & Bộ Nhớ Nóng (Redis Hot Store & Delta Lakehouse)](#34-tầng-lưu-trữ--bộ-nhớ-nóng-redis-hot-store--delta-lakehouse)
+   - 3.5. [Tầng Giao Diện Tác Chiến & Bản Đồ Nhiệt (GIS Dashboard & Heatmap)](#35-tầng-giao-diện-tác-chiến--bản-đồ-nhiệt-gis-dashboard--heatmap)
+4. [TỔNG KẾT TIẾN ĐỘ DỰ ÁN: ĐÃ LÀM GÌ – ĐANG LÀM GÌ – SẼ LÀM GÌ](#4-tổng-kết-tiến-độ-dự-án-đã-làm-gì--đang-làm-gì--sẽ-làm-gì)
+   - 4.1. [ĐÃ LÀM ĐƯỢC GÌ (Completed Milestones)](#41-đã-làm-được-gì-completed-milestones)
+   - 4.2. [ĐANG LÀM GÌ (In-Progress State)](#42-đang-làm-gì-in-progress-state)
+   - 4.3. [SẼ LÀM GÌ (Upcoming Roadmap & AI Upgrade)](#43-sẽ-làm-gì-upcoming-roadmap--ai-upgrade)
+5. [ĐẶC TẢ KIẾN TRÚC AI NÂNG CAO: FAST PATH, SLOW PATH & ĐỊNH HƯỚNG CCTV](#5-đặc-tả-kiến-trúc-ai-nâng-cao-fast-path-slow-path--định-hướng-cctv)
+   - 5.1. [Đường Suy Luận Nhanh (Fast Path - Text Stream)](#51-đường-suy-luận-nhanh-fast-path---text-stream)
+   - 5.2. [Đường Suy Luận Đa Phương Thức Chuyên Sâu (Slow Path - Vision & Audio)](#52-đường-suy-luận-đa-phương-thức-chuyên-sâu-slow-path---vision--audio)
+   - 5.3. [Định Hướng Ứng Dụng Camera Giao Thông (CCTV) Vào AI Theo Chỉ Đạo Của Thầy](#53-định-hướng-ứng-dụng-camera-giao-thông-cctv-vào-ai-theo-chỉ-đạo-của-thầy)
+6. [KHO NGỮ LIỆU ASTE MASTER 10.249 RECORDS & PHÂN CÔNG THUẬN - HÙNG](#6-kho-ngữ-liệu-aste-master-10249-records--phân-công-thuận---hùng)
+7. [BỘ KINH NGHIỆM THỰC CHIẾN XƯƠNG MÁU & NGUYÊN TẮC CỐT TỬ CỦA USER](#7-bộ-kinh-nghiệm-thực-chiến-xương-máu--nguyên-tắc-cốt-tử-của-user)
+8. [CÔNG CỤ KIỂM ĐỊNH KÉP & BỘ HELPER TOÁN HỌC](#8-công-cụ-kiểm-định-kép--bộ-helper-toán-học)
+9. [BẢNG TRA CỨU LỆNH NHANH (RUNBOOK CHEATSHEET)](#9-bảng-tra-cứu-lệnh-nhanh-runbook-cheatsheet)
 
 ---
 
-## 1. TỔNG QUAN DỰ ÁN & MỤC TIÊU NGHIÊN CỨU
+## 1. TỔNG QUAN DỰ ÁN & BÀI TOÁN KHOA HỌC
 
-### 1.1. Bối cảnh & Bài toán
-TP. Hồ Chí Minh chịu ảnh hưởng nặng nề bởi triều cường và mưa lớn cực đoan. Tuy nhiên:
-- **Cảm biến thủy văn vật lý quá thưa thớt**: Chỉ được lắp tại một số kênh rạch lớn, hàng nghìn tuyến đường đô thị hoàn toàn không có cảm biến.
-- **Dữ liệu mạng xã hội (TikTok, Facebook, VOV, Báo chí) cực kỳ phong phú và tức thời**, nhưng chứa đầy **nhiễu**:
-  + Quảng cáo thương mại / rao vặt bất động sản (*"phòng trọ Huỳnh Tấn Phát ngập tràn ánh sáng"*, *"chậu hoa ngập kho"*).
-  + Video câu like tái sử dụng (recycled clips) từ mùa mưa các năm trước đăng lại khi trời đang nắng ráo.
-  + Mất cân bằng dữ liệu nghiêm trọng: Người dân chỉ kêu ca khi ngập (`NEG`), hầu như không ai đăng bài khi nước đã rút (`POS`), khiến hệ thống cảnh báo bị treo vĩnh viễn nếu không có cơ chế phát hiện nước rút.
-  + Người dân quen than phiền về phương tiện (*"xe chết máy"*, *"hỏng bugi"*) thay vì nói thẳng tên tuyến đường.
+### 1.1. Bối cảnh & Thách thức
+TP. Hồ Chí Minh và vùng đô thị giáp ranh (Bình Dương, Bà Rịa - Vũng Tàu) thường xuyên bị ngập úng nghiêm trọng do triều cường sông Sài Gòn - Đồng Nai và các cơn mưa dông cực đoan:
+- **Cảm biến thủy văn vật lý quá thưa thớt**: Toàn thành phố chỉ có trạm đo ở một vài cửa sông/kênh chính; hàng nghìn tuyến phố, khu dân cư hoàn toàn không có cảm biến.
+- **Mạng xã hội (TikTok, Facebook, VOV Giao thông, Báo chí) là nguồn "cảm biến đám đông" (Crowdsourced Sensing) tức thời nhất**, nhưng chứa đầy **nhiễu nghiêm trọng**:
+  + Tin rác thương mại / bất động sản (*"Huỳnh Tấn Phát 1tr8 phòng trọ ngập tràn ánh sáng"*, *"chậu cây ngập kho"*).
+  + Clip câu tương tác tái sử dụng (recycled clips): lấy clip ngập từ các năm trước đăng lại khi trời đang nắng ráo.
+  + Thói quen than phiền gián tiếp: người dân thường kêu xe bị chết máy, hỏng bugi thay vì nói thẳng tên tuyến đường.
+  + Mất cân bằng nhãn: Người dân chỉ đăng bài khi ngập lụt (`NEG`), hầu như không ai đăng bài khi nước rút (`POS`), khiến các điểm cảnh báo ngập trên bản đồ bị "treo vĩnh viễn" nếu không phát hiện được trạng thái phục hồi.
 
-### 1.2. Giải pháp Cốt lõi của Dự án
-Xây dựng một hệ thống **Big Data Streaming kết hợp AI Đa phương thức (Multimodal AI) toàn trình**:
-1. **Thu nạp đa nguồn thời gian thực (Multi-Engine Ingestion)**: Cào song song từ Cổng 1022 TP.HCM, VOV Giao thông, YouTube Shorts, Báo chí (VnExpress, Tuổi Trẻ, Thanh Niên), TikTok Video và Facebook Posts.
-2. **Trích xuất thông tin cấu trúc bằng AI (ASTE - Aspect Sentiment Triplet Extraction)**: Trích xuất bộ 3 `(Aspect, Opinion, Polarity)` theo chuẩn quốc tế SemEval ASTE-Data-V2.
-3. **Xác thực đa nguồn chống tin giả (Veracity Verification Engine)**: Kiểm chứng chéo với API thời tiết vật lý Open-Meteo và cơ chế đồng thuận không gian - thời gian bán kính 500m.
-4. **Bản đồ Giám sát & Điều hướng Thời gian thực (Live Actionable GIS Dashboard)**: Hiển thị bản đồ nhiệt (Heatmap), cảnh báo điểm ngập, trạng thái nước rút và lộ trình tránh điểm ngập trên nền Leaflet.
+### 1.2. Giải pháp Toàn Diện Của Hệ Thống
+Dự án xây dựng một giải pháp hoàn chỉnh từ Big Data Ingestion, Streaming, AI Veracity Verification, Multimodal ASTE cho tới Interactive GIS Dashboard:
+1. **Thu nạp đa nguồn**: Kết hợp crawler mạng xã hội và nguồn chính thống (1022, VOV, Báo đài).
+2. **Kiểm chứng tin giả**: Đối soát dữ liệu lượng mưa thực tế thời gian thực từ Open-Meteo và cơ chế đồng thuận 500m.
+3. **Mô hình AI ASTE**: Trích xuất bộ ba cấu trúc `(Aspect, Opinion, Polarity)` theo chuẩn quốc tế SemEval ASTE-Data-V2.
+4. **Bản đồ Heatmap & Điều hướng Tránh Ngập**: Phục vụ người dân và cơ quan quản lý đô thị theo thời gian thực.
 
 ---
 
-## 2. SƠ ĐỒ KIẾN TRÚC HỆ THỐNG TỔNG QUÁT (END-TO-END ARCHITECTURE)
-
-Hệ thống được thiết kế theo kiến trúc **Streaming Lambda / Kappa hiện đại**, liên kết chặt chẽ từ tầng thu nạp đa nguồn, xử lý luồng phân tán, kiểm chứng tin giả, mô hình AI trích xuất thực thể ASTE cho tới giao diện giám sát tác chiến GIS:
+## 2. SƠ ĐỒ KIẾN TRÚC HỆ THỐNG TOÀN TRÌNH (END-TO-END ARCHITECTURE)
 
 ```mermaid
 flowchart TB
@@ -156,116 +169,187 @@ flowchart TB
 
 ---
 
-## 3. BẢN ĐỒ MÃ NGUỒN & MÔ TẢ CHI TIẾT CÁC MODULE (SOURCE CODE MAP)
+## 3. CHI TIẾT TOÀN DIỆN CÁC THÀNH PHẦN HỆ THỐNG ĐANG TRIỂN KHAI
 
-Thư mục gốc của dự án: `D:\SE363_RAWDATA`
+### 3.1. Tầng Thu Nạp Đa Nguồn (Multi-Engine Ingestion)
+- **Engine 1 - Live Free Crawler (`pipeline/live_free_crawler.py`)**: 
+  + Vận hành 16 luồng thu thập không tốn phí bản quyền.
+  + Kết nối API Cổng 1022 TP.HCM (phản ánh ngập chính thức của người dân).
+  + Thu thập Ticker VOV Giao thông theo thời gian thực.
+  + Cào YouTube Shorts bằng `yt-dlp` lọc video trong vòng 24 giờ.
+  + Quét RSS báo điện tử chính thống (VnExpress, Tuổi Trẻ, Thanh Niên).
+- **Engine 2 - Apify Deep Social Poller (`pipeline/tiktok_poller.py`, `pipeline/facebook_poller.py`)**:
+  + Quét video TikTok theo hashtag ngập lụt (`#ngapsaigon`, `#muangap`, `#trieucuong`...).
+  + Quét các bài viết trên Fanpage và nhóm giao thông Facebook lớn tại TP.HCM.
+  + Được bảo vệ bởi bộ quản lý `core/apify_pool.py`: tự động xoay vòng key khi key hiện tại hết credit hoặc gặp lỗi HTTP 401/402.
+- **Engine 3 - Simulation Replayer (`pipeline/simulation_replayer.py`)**:
+  + Đọc 3.818 mẫu lịch sử sạch trong `data/raw/episodes` để tái hiện các cơn mưa ngập lịch sử, phục vụ việc kiểm thử hiệu năng và demo offline.
 
-```
-SE363_RAWDATA/
-├── core/                  # Thư viện nền tảng & cấu hình hệ thống
-├── pipeline/              # Động cơ thu thập đa nguồn, clusterer, veracity checker
-├── bigdata/               # Kiến trúc luồng phân tán (Kafka, PySpark, Lakehouse)
-├── dashboard/             # Giao diện bản đồ nhiệt Leaflet & Web Server
-├── AI/                    # Các mô hình ASTE Benchmark (PhoBERT, BARTpho, mT5, LLMs)
-├── data/                  # Kho dữ liệu raw, processed, splits & validate_label
-├── documents/             # Toàn bộ tài liệu quy chuẩn, cẩm nang và báo cáo
-├── scripts/               # Bộ công cụ kiểm định kép (Linter), helper toán học & crawlers
-└── tests/                 # Unit tests & smoke tests kiểm thử hệ thống
-```
+### 3.2. Tầng Hàng Đợi & Luồng Dữ Liệu Lớn (Kafka & PySpark Streaming)
+- **Apache Kafka 4.3.1 (KRaft Mode)**:
+  + Chạy qua Docker (`bigdata/docker-compose.yml`, Port 9092).
+  + Topic chính: `social.live.raw` (dữ liệu cào thực) và `social.sim.raw` (dữ liệu giả lập).
+  + Cơ chế Fallback an toàn: Nếu Kafka chưa khởi động hoặc gặp sự cố, crawler tự động lưu tạm vào file cục bộ `data/buffer_*.jsonl` để không bị mất dữ liệu.
+- **PySpark Structured Streaming (`bigdata/run_streaming_pipeline.py`)**:
+  + Chạy micro-batch mỗi 5 giây để đọc dữ liệu từ Kafka.
+  + Bóc tách JSON, phân tích cấu trúc, gắn nhãn thời gian (watermark), và đẩy dữ liệu qua các mô-đun lọc Veracity và Gazetteer.
 
-### 3.1. Thư mục `core/` (Cấu hình & Xử lý Địa danh)
-- `core/config.py`: Cấu hình chung toàn hệ thống (Apify tokens, hashtag TikTok, danh sách Fanpage Facebook uy tín, tham số crawler).
-- `core/admin_resolver.py`: Bộ phân giải đơn vị hành chính TP.HCM theo Nghị quyết mới 1685/NQ-UBTVQH15 (168 phường/xã/thị trấn mới, tọa độ 122 điểm ngập trọng điểm của PC08).
-- `core/gazetteer.py`: Từ điển không gian địa lý (GIS Gazetteer) ánh xạ tên đường, cầu, nút giao về tọa độ kinh độ/vĩ độ (Lat/Lon).
-- `core/apify_pool.py`: Bộ quản lý xoay vòng API Key Apify tự động (Key Pool Manager với cơ chế tự động chuyển key khi gặp HTTP 401/402 hết tiền).
-- `core/state_manager.py`: Quản lý trạng thái luồng thu thập.
+### 3.3. Tầng Kiểm Chứng Tin Giả & Khí Tượng Vật Lý (Veracity Engine)
+Nằm tại `pipeline/veracity_checker.py`, thực hiện 3 tầng bảo vệ nghiêm ngặt:
+1. **Lọc Heuristic & Rao vặt BĐS**: Loại bỏ ngay các bài quảng cáo phòng trọ, bán ô tô cũ, bán bạt chắn nước.
+2. **Đối soát Khí tượng Vật lý Open-Meteo**: 
+   - Khi bài viết đăng tin ngập lụt, hệ thống gọi Open-Meteo API để kiểm tra tổng lượng mưa thực tế tích lũy trong 72 giờ qua tại tọa độ tương ứng.
+   - Nếu lượng mưa $\approx 0\text{mm}$ và thời tiết đang nắng ráo $\rightarrow$ Gắn cờ cảnh báo **Recycled Video** (tin câu tương tác dùng clip cũ).
+3. **Đồng thuận Không gian - Thời gian (Spatio-Temporal Consensus)**:
+   - Gom các tin phản ánh trong bán kính 500m và khung thời gian 60 phút. Càng có nhiều nguồn độc lập cùng báo ngập, độ tin cậy càng tiệm cận 100%.
 
-### 3.2. Thư mục `pipeline/` (Động cơ Thu thập & Lọc Dữ liệu)
-- `pipeline/live_free_crawler.py`: Động cơ thu thập 100% miễn phí chạy đa luồng (16 workers):
-  + Cổng thông tin 1022 TP.HCM (API JSON chính thức).
-  + VOV Giao thông Ticker (Tin nóng tắc đường, ngập lụt).
-  + YouTube Shorts & Videos qua `yt-dlp` (bộ lọc 24h).
-  + RSS Báo chí chính thống (VnExpress, Tuổi Trẻ, Thanh Niên).
-  + Google Discovery & Bing RSS làm fallback.
-- `pipeline/tiktok_poller.py`: Cào video TikTok theo hashtag ngập lụt sử dụng Apify Actor `clockworks~free-tiktok-scraper`.
-- `pipeline/facebook_poller.py`: Cào bài đăng Facebook sử dụng Apify Actor `danek~facebook-search-ppr`.
-- `pipeline/simulation_replayer.py`: Động cơ phát lại (replay) 3.818 mẫu lịch sử sạch để demo hoặc chạy offline không cần mạng.
-- `pipeline/veracity_checker.py`: Bộ kiểm định tin giả đa tầng:
-  + Tầng 1: Heuristic lọc từ khóa rao vặt bất động sản/bán xe.
-  + Tầng 2: Đối soát khí tượng thực tế Open-Meteo (nếu bài đăng bảo ngập sâu mà thời tiết 72h qua lượng mưa = 0mm $\rightarrow$ gắn cờ Recycled Video).
-  + Tầng 3: Đồng thuận không gian - thời gian (Spatio-Temporal Consensus trong bán kính 500m).
-- `pipeline/spatio_temporal_clusterer.py`: Gom cụm các cảnh báo ngập lụt theo thuật toán DBSCAN không gian - thời gian.
-- `pipeline/multimodal_streamer.py`: Điều phối luồng xử lý đa phương thức (Text + Video frames).
+### 3.4. Tầng Lưu Trữ & Bộ Nhớ Nóng (Redis Hot Store & Delta Lakehouse)
+- **Redis 7.2 In-Memory Hot Store (Port 6379)**:
+  + Lưu trữ trạng thái nóng tức thời của các tuyến đường và điểm ngập hiện tại.
+  + Độ trễ phản hồi cực thấp ($< 3\text{ms}$), giúp Dashboard truy vấn liên tục mà không gây tải cho cơ sở dữ liệu chính.
+- **Delta Lakehouse (Parquet Storage)** tại `bigdata/lakehouse/`:
+  + Phân tầng dữ liệu theo chuẩn công nghiệp: **Bronze** (dữ liệu thô) $\rightarrow$ **Silver** (dữ liệu đã làm sạch & chuẩn hóa tọa độ) $\rightarrow$ **Gold** (bảng tổng hợp thống kê lịch sử ngập phục vụ nghiên cứu).
 
-### 3.3. Thư mục `bigdata/` (Tầng Xử lý Dữ liệu Lớn Phân tán)
-- `bigdata/docker-compose.yml`: Triển khai hạ tầng hạ tầng gồm Apache Kafka 4.3.1 (KRaft mode, Port 9092) và Redis 7.2 In-Memory Hot Store (Port 6379).
-- `bigdata/run_streaming_pipeline.py`: Khởi chạy PySpark Structured Streaming với micro-batch 5 giây.
-- `bigdata/streaming/`: Mã nguồn PySpark streaming, xử lý JSON từ Kafka topic `social.live.raw`, giải nén và làm giàu dữ liệu qua Gazetteer.
-- `bigdata/lakehouse/`: Tầng lưu trữ Delta Parquet (Bronze $\rightarrow$ Silver $\rightarrow$ Gold) phục vụ phân tích lịch sử ngập.
-
-### 3.4. Thư mục `dashboard/` (Giao diện Bản đồ Điều hành)
-- `dashboard/server.py`: HTTP Server viết bằng Python (Port 8050) phục vụ API dữ liệu ngập thời gian thực từ Redis hot store.
-- `dashboard/index.html`: Giao diện Dashboard chuyên nghiệp:
-  + Bản đồ Leaflet Heatmap hiển thị cường độ ngập theo thời gian thực.
-  + Pin Jitter Algorithm: Thuật toán làm lệch nhẹ tọa độ marker để chống hiện tượng đè chồng lấp khi nhiều tin cùng báo một con đường.
-  + Lucide Vector SVG Icons phân loại trực quan (Đỏ: Ngập sâu/Chết máy, Vàng: Ứ nước nhẹ, Xanh lá: Nước đã rút).
-  + Lộ trình điều hướng tránh điểm ngập cho phương tiện giao thông.
-
-### 3.5. Thư mục `AI/` (Nghiên cứu Mô hình Học sâu ASTE)
-Gồm các kiến trúc mô hình được huấn luyện và đánh giá trên bộ dữ liệu của đề tài:
-- `AI/phobert/`: Mô hình PhoBERT (base_v2 và large).
-- `AI/bartpho/`: Mô hình BARTpho (syllable_base và word_base) theo hướng Generative ASTE.
-- `AI/mt5/`: Mô hình đa ngôn ngữ mT5 base.
-- `AI/xlm_roberta/` & `AI/xlm_v/`: Các backbone Transformer đa ngôn ngữ.
-- `AI/llm/`: Đánh giá Zero-shot / Few-shot với LLM mã nguồn mở (Gemma 26B, Qwen 27B).
-- `AI/results/`: Kết quả bảng so sánh Benchmark F1-score (`BENCHMARK_TABLE.md`, `benchmark_comparison.csv`).
-
-### 3.6. Thư mục `scripts/` (Bộ Công cụ Kiểm định & Thao tác Dữ liệu Cốt lõi)
-- **`scripts/deep_10_pass_audit.py`**: **LINTER KIỂM ĐỊNH TỐI CAO CỦA DỰ ÁN**. Bộ kiểm tra 10 chiều độc lập hoàn toàn Read-only (không tự ý sửa file), phát hiện mọi lỗi cú pháp, rò rỉ ranh giới, token offset và vi phạm quy chuẩn.
-- **`scripts/audit_index_integrity.py`**: Bộ kiểm toán giải mã ngược (De-tokenization), lấy danh sách số thứ tự `[start...end]` đối soát ngược lại với văn bản gốc để chứng minh 100% khớp từ vựng, không có hiện tượng lệch token.
-- **`scripts/span_helper.py`**: **BỘ HELPER TOÁN HỌC SINH TRIPLET AN TOÀN**. Chứa hàm `make_triplet(text, asp_phrase, opi_phrase, polarity)` giúp tự động định vị token span, tự động gọt sạch dấu câu ở biên (Pass 4) và giới từ ở đầu (Pass 5).
-- **`scripts/stats_phase3.py`**: Xuất thống kê chi tiết tỷ lệ nhãn, số triplet, phân bố `NEG`/`POS`/`NEU` và top các thực thể xuất hiện nhiều nhất.
+### 3.5. Tầng Giao Diện Tác Chiến & Bản Đồ Nhiệt (GIS Dashboard & Heatmap)
+Nằm tại `dashboard/server.py` (Port 8050) và `dashboard/index.html`:
+- **Bản đồ tương tác Leaflet**: Hiển thị lớp bản đồ nhiệt (Heatmap) thể hiện mức độ tập trung của các điểm ngập.
+- **Thuật toán Pin Jitter**: Tự động làm lệch nhẹ tọa độ hiển thị của các marker cùng nằm trên một con đường, chống hoàn toàn hiện tượng các ghim bị đè chồng lấp lên nhau khiến người dùng không click xem chi tiết được.
+- **Phân loại trạng thái giao thông bằng màu sắc**:
+  + 🔴 **Màu đỏ (`NEG`)**: Đoạn đường ngập sâu, nước xiết, xe chết máy hàng loạt, khuyến cáo không lưu thông.
+  + 🟡 **Màu vàng (`NEU`)**: Ứ nước nhẹ, thông tin dự báo đỉnh triều, xe gầm cao có thể qua được.
+  + 🟢 **Màu xanh lá (`POS`)**: Nước đã rút, trạm bơm đã xử lý xong, đường khô ráo trở lại.
+- **Điều hướng Tránh Điểm Ngập (Detour Routing)**: Đề xuất cung đường thay thế an toàn khi lộ trình của người dân đi qua điểm ngập đỏ.
+- *Lưu ý nâng cấp*: Giao diện Heatmap hiện tại đã chạy ổn định nhưng có thể tiếp tục tinh chỉnh thêm về độ mượt của gradient màu và bổ sung biểu đồ thống kê thời gian thực theo quận huyện.
 
 ---
 
-## 4. KHO NGỮ LIỆU ASTE MASTER 10.249 RECORDS & HIỆN TRẠNG 3 PHASES
+## 4. TỔNG KẾT TIẾN ĐỘ DỰ ÁN: ĐÃ LÀM GÌ – ĐANG LÀM GÌ – SẼ LÀM GÌ
 
-Toàn bộ kho ngữ liệu gốc được chuẩn hóa theo chuẩn quốc tế SemEval ASTE-Data-V2 lưu tại [master_10k_triplets.txt](file:///D:/SE363_RAWDATA/data/processed/aste_v2_format/master_10k_triplets.txt) với đúng **10.249 dòng văn bản**:
-$$\text{Cấu trúc: } \text{token}_0 \text{ token}_1 \dots \text{ token}_n \text{ #### } [([\text{asp}], [\text{opi}], '\text{POL}')]$$
+Đây là phần định vị tiến độ quan trọng nhất để Agent mới nắm rõ bức tranh toàn cục:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        CẤU TRÚC PHÂN CHIA 3 PHASES CỦA DỰ ÁN                           │
+│                        BỨC TRANH TIẾN ĐỘ 3 CỘT MỐC CỦA DỰ ÁN                           │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
-│ • PHASE 1 (Dòng 1 ➔ 500: 500 records):                                                 │
-│   Tập Benchmark Vàng sơ khởi do Thuận gán nhãn & đã audit chuẩn mực.                   │
-│   Tệp lưu: data/validate_label/thuan/phase1.txt                                        │
+│ 1. ĐÃ LÀM ĐƯỢC GÌ (COMPLETED):                                                         │
+│    ✅ Xây dựng & tích hợp hoàn chỉnh hệ thống Big Data (Kafka KRaft, Redis 7.2, Docker)│
+│    ✅ Hoàn thiện bộ crawlers đa nguồn (16 luồng free + Apify pool + Replayer)          │
+│    ✅ Hoàn thành Dashboard GIS Leaflet Heatmap, Pin Jitter, điều hướng tránh ngập      │
+│    ✅ Xây dựng động cơ Veracity kiểm chứng khí tượng Open-Meteo & Consensus 500m       │
+│    ✅ Dataset Phase 1: 500 records (Thuận) đã audit chuẩn mực                          │
+│    ✅ Dataset Phase 2: 2.000 records (Thuận & Hùng mù đôi, đạt Cohen's Kappa κ = 0.88) │
+│    ✅ Dataset Phase 3 (Phần Thuận): 3.875 records ĐÃ XONG 100%, cứu 782 records reject │
+│       oan, đạt 3.798 records có nhãn (98.01%), vượt qua 10/10 Passes Linter đạt 0 lỗi  │
+│    ✅ Bộ kiểm định kép: deep_10_pass_audit.py & audit_index_integrity.py               │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
-│ • PHASE 2 (Dòng 501 ➔ 2.500: 2.000 records):                                           │
-│   Tập Đánh giá Mù Đôi (Double-Blind) giữa Thuận & Hùng để tính Cohen's Kappa.          │
-│   Độ đồng thuận cảm xúc đạt κ = 0.88 (Substantial / Almost Perfect Agreement).         │
-│   Tệp lưu: data/validate_label/thuan/phase2.txt & data/validate_label/hung/phase2.txt │
+│ 2. ĐANG LÀM GÌ (IN-PROGRESS):                                                          │
+│    ⏳ Phân công Phase 3: Bạn HÙNG ĐANG THỰC HIỆN phần của Hùng (3.874 records, dòng    │
+│       6.376 đến 10.249). Bạn THUẬN ĐỢI HÙNG LÀM XONG RỒI DÒ / ĐỐI SOÁT LẠI.            │
+│    ⏳ Mô hình AI trong hệ thống hiện tại đang chạy mô hình CŨ TẠM THỜI (do huấn luyện  │
+│       trên dataset cũ chưa được chuẩn hóa kỹ).                                         │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
-│ • PHASE 3 (Dòng 2.501 ➔ 10.249: 7.749 records còn lại): Chia đôi khối lượng:          │
-│   1. PHẦN THUẬN (Dòng 2.501 ➔ 6.375: 3.875 records):                                   │
-│      👉 TRẠNG THÁI: ĐÃ HOÀN TẤT 100%, ĐÃ AUDIT 10/10 PASSES ĐẠT 0 LỖI!                │
-│      Tệp lưu: data/validate_label/thuan/phase3.txt                                     │
-│   2. PHẦN HÙNG (Dòng 6.376 ➔ 10.249: 3.874 records):                                  │
-│      👉 TRẠNG THÁI: ĐANG CHỜ TRIỂN KHAI (Hiện file đang trống 0 dòng).                │
-│      Tệp lưu: data/validate_label/hung/phase3.txt                                      │
+│ 3. SẼ LÀM GÌ (UPCOMING ROADMAP):                                                       │
+│    🎯 Đợi Hùng xong Phase 3 ➔ Dò soát lại ➔ Gộp toàn bộ 3 Phase thành MASTER 10K CHUẨN │
+│    🎯 Chạy lại Benchmark (PhoBERT, BARTpho, mT5, XLM-R, LLMs) trên toàn bộ Master 10K   │
+│    🎯 ÁP DỤNG VÀO PRODUCTION NẾU F1 ĐẠT TRÊN 70% (F1 >= 70%)                            │
+│    🎯 Chuẩn hóa kiến trúc AI 2 nhánh: FAST PATH (Text stream) & SLOW PATH (Multimodal) │
+│    🎯 TÍCH HỢP CAMERA GIAO THÔNG (CCTV) TP.HCM VÀO AI THEO ĐỊNH HƯỚNG CỦA THẦY          │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Thống kê Nghiệm thu Chi tiết Phase 3 (Phần Thuận - 3.875 records vừa hoàn thành):
-- **Số records có nhãn Triplet**: **3.798 records (98.01%)**.
-- **Số records bị Reject thực sự (`####[]`)**: **Đúng 77 records (1.99%)** (chỉ gồm tỉnh ngoài như Bangkok, Hà Nội, Gia Lai và quảng cáo mua bán xe/phòng trọ).
-- **Tổng số Triplets**: **4.976 triplets** (`NEG`: 3.286 | `POS`: 1.195 | `NEU`: 495).
-- **Kiểm định kép 10-Pass Linter**: **10/10 PASSES: 0 LỖI (100% ĐẠT CHUẨN TOÁN HỌC)**.
-- **Tính toàn vẹn Index**: **100% khớp từ vựng, 0 lỗi lệch token offset**.
+---
+
+## 5. ĐẶC TẢ KIẾN TRÚC AI NÂNG CAO: FAST PATH, SLOW PATH & ĐỊNH HƯỚNG CCTV
+
+Mã nguồn triển khai thử nghiệm hiện có tại `bigdata/ai_service/ai_microservice.py` (Port 8001). Sau khi hoàn thành Master Dataset 10K và đạt $F_1 \ge 70\%$, hệ thống AI sẽ được nâng cấp theo kiến trúc 2 nhánh chuyên biệt:
+
+```
+                                  ┌───────────────────────────┐
+                                  │   DỮ LIỆU ĐẦU VÀO ĐẾN     │
+                                  └─────────────┬─────────────┘
+                                                │
+                     ┌──────────────────────────┴──────────────────────────┐
+                     │                                                     │
+                     ▼ (Chỉ có Text / Cần phản hồi <10ms)                  ▼ (Có Video / Audio / Nghi vấn tin giả)
+       ┌───────────────────────────┐                         ┌───────────────────────────┐
+       │   NHÁNH 1: FAST PATH      │                         │    NHÁNH 2: SLOW PATH     │
+       │   (Real-Time Text ASTE)   │                         │  (Multimodal Verification)│
+       ├───────────────────────────┤                         ├───────────────────────────┤
+       │ • Backbone: PhoBERT-base  │                         │ • ASR: PhoWhisper (Audio) │
+       │ • Input: Text ngắn/tiêu đề│                         │ • Vision: CLIP ViT-B/32   │
+       │ • Độ trễ: <= 10ms trên GPU│                         │ • Generative: BARTpho     │
+       │ • Bóc tách Span tức thì   │                         │ • Độ trễ: 1.5s - 5.0s     │
+       └─────────────┬─────────────┘                         └─────────────┬─────────────┘
+                     │                                                     │
+                     └──────────────────────────┬──────────────────────────┘
+                                                ▼
+                                  ┌───────────────────────────┐
+                                  │   TÍCH HỢP CAMERA CCTV    │
+                                  │   GIAO THÔNG ĐÔ THỊ TP.HCM│
+                                  │  (Computer Vision & Kè bờ)│
+                                  └─────────────┬─────────────┘
+                                                ▼
+                                  ┌───────────────────────────┐
+                                  │   BẢN ĐỒ TÁC CHIẾN GIS    │
+                                  └───────────────────────────┘
+```
+
+### 5.1. Đường Suy Luận Nhanh (Fast Path - Text Stream)
+- **Mục tiêu**: Phục vụ luồng xử lý streaming tốc độ cao (SLA $\le 35\text{ms}$, trên GPU thực tế $\le 10\text{ms}$).
+- **Backbone**: `vinai/phobert-base-v2` huấn luyện theo dạng Span Extraction / Table Filling.
+- **Nhiệm vụ**: Nhận diện trực tiếp thực thể con đường và vị ngữ ngập trong các tiêu đề tin tức, ticker VOV, và bài đăng văn bản để cập nhật tức thì lên bản đồ.
+
+### 5.2. Đường Suy Luận Đa Phương Thức Chuyên Sâu (Slow Path - Vision & Audio)
+- **Mục tiêu**: Xử lý các bài đăng có đính kèm video, âm thanh tiếng nói của người dân tại hiện trường ngập (SLA $\le 5\text{s}$).
+- **Các thành phần phối hợp**:
+  + **FFmpeg & PhoWhisper ASR**: Trích xuất luồng âm thanh 16kHz mono từ video TikTok/Facebook và gỡ băng tiếng nói địa phương thành văn bản.
+  + **OpenCV & CLIP ViT-B/32**: Trích xuất khung hình (0.5 FPS), thẩm định thị giác Zero-shot xem khung hình có thực sự xuất hiện cảnh ngập nước (độ tương đồng cosine $> 80\%$) hay không.
+  + **BARTpho-syllable**: Mô hình Generative ASTE tổng hợp các đặc trưng đa phương thức để đưa ra bộ ba Triplet có độ tin cậy tuyệt đối.
+
+### 5.3. Định Hướng Ứng Dụng Camera Giao Thông (CCTV) Vào AI Theo Chỉ Đạo Của Thầy
+Theo định hướng của Thầy hướng dẫn đề tài, một bước đột phá sắp tới là **kết nối mạng lưới Camera CCTV giao thông công cộng của TP.HCM** vào hệ thống AI:
+- **Ý nghĩa khoa học & thực tiễn**: Mạng xã hội cho biết người dân *nói* gì về ngập, nhưng hình ảnh từ Camera CCTV giao thông cho biết mặt đường *thực tế* đang ngập ở mức độ nào.
+- **Giải pháp triển khai**:
+  1. Kết nối luồng RTSP / Snapshot từ hệ thống camera giao thông đô thị TP.HCM tại các nút giao trọng điểm (như Hàng Xanh, ngã tư Thủ Đức, đường Trần Xuân Soạn, Quốc Hương...).
+  2. Ứng dụng mô hình Thị giác Máy tính (Computer Vision / Segmentation) để nhận diện vùng ngập nước trên mặt đường, đo lường mức ngập tương đối so với vỉa hè hoặc bánh xe.
+  3. **Đối soát chéo (Cross-Validation)**: Khi mạng xã hội báo tin ngập tại một tuyến đường có camera, AI lập tức soi chiếu hình ảnh camera tại đó. Nếu hình ảnh xác nhận có nước ngập $\rightarrow$ Tự động nâng độ tin cậy lên 100% và kích hoạt cảnh báo khẩn cấp trên bản đồ!
 
 ---
 
-## 5. BỘ KINH NGHIỆM THỰC CHIẾN XƯƠNG MÁU & NGUYÊN TẮC CỐT TỬ CỦA USER
+## 6. KHO NGỮ LIỆU ASTE MASTER 10.249 RECORDS & PHÂN CÔNG THUẬN - HÙNG
+
+Kho ngữ liệu chuẩn quốc tế lưu tại [master_10k_triplets.txt](file:///D:/SE363_RAWDATA/data/processed/aste_v2_format/master_10k_triplets.txt) gồm đúng **10.249 records**:
+
+```text
+========================================================================================
+                      BẢNG PHÂN CÔNG GÁN NHÃN VÀ TRẠNG THÁI HIỆN TẠI
+========================================================================================
+• PHASE 1 (Dòng 1 đến Dòng 500: 500 records):
+  - Người làm: Thuận
+  - Trạng thái: ĐÃ HOÀN TẤT & AUDIT CHUẨN MỰC
+  - File: data/validate_label/thuan/phase1.txt
+
+• PHASE 2 (Dòng 501 đến Dòng 2.500: 2.000 records):
+  - Người làm: Thuận & Hùng (Double-Blind Independent Annotation)
+  - Trạng thái: ĐÃ HOÀN TẤT, ĐẠT COHEN'S KAPPA κ = 0.88 (Polarity)
+  - File: data/validate_label/thuan/phase2.txt & data/validate_label/hung/phase2.txt
+
+• PHASE 3 (Dòng 2.501 đến Dòng 10.249: 7.749 records):
+  1. PHẦN THUẬN (Dòng 2.501 đến 6.375: 3.875 records):
+     - Trạng thái: ĐÃ HOÀN TẤT 100%, ĐÃ CỨU 782 RECORDS REJECT OAN
+     - Kết quả: 3.798 records có nhãn (98.01%), 4.976 triplets, chỉ còn 77 rejects (1.99%)
+     - Nghiệm thu: ĐẠT 10/10 PASSES: 0 LỖI (deep_10_pass_audit.py)
+     - File: data/validate_label/thuan/phase3.txt
+  
+  2. PHẦN HÙNG (Dòng 6.376 đến 10.249: 3.874 records):
+     - Trạng thái: HÙNG ĐANG LÀM, THUẬN ĐỢI HÙNG LÀM XONG SẼ DÒ / ĐỐI SOÁT LẠI
+     - File đích: data/validate_label/hung/phase3.txt (hiện đang trống)
+========================================================================================
+```
+
+---
+
+## 7. BỘ KINH NGHIỆM THỰC CHIẾN XƯƠNG MÁU & NGUYÊN TẮC CỐT TỬ CỦA USER
 
 > [!IMPORTANT]
 > Đây là những nguyên tắc tối cao đã được kiểm chứng và chấn chỉnh qua hàng chục phiên làm việc với User. **Agent mới tuyệt đối không được vi phạm hay tự ý thay đổi bất kỳ quy tắc nào!**
@@ -307,7 +391,7 @@ $$\text{Cấu trúc: } \text{token}_0 \text{ token}_1 \dots \text{ token}_n \tex
 
 ---
 
-## 6. CÔNG CỤ KIỂM ĐỊNH KÉP & BỘ HELPER TOÁN HỌC
+## 8. CÔNG CỤ KIỂM ĐỊNH KÉP & BỘ HELPER TOÁN HỌC
 
 Kiến trúc kiểm định của dự án áp dụng mô hình **Dual-Engine Audit**:
 
@@ -328,7 +412,7 @@ Kiến trúc kiểm định của dự án áp dụng mô hình **Dual-Engine Au
 └──────────────────────────────────┘   └──────────────────────────────────┘
 ```
 
-### 6.1. Danh mục 10 Nhóm Lỗi Được Quét Bởi `deep_10_pass_audit.py`
+### 8.1. Danh mục 10 Nhóm Lỗi Được Quét Bởi `deep_10_pass_audit.py`
 1. **Pass 1: Syntax Format**: Kiểm tra cú pháp phân cách `####` và cấu trúc danh sách Python `[([a], [o], 's')]`.
 2. **Pass 2: Token Offset**: Kiểm tra chỉ số token có vượt quá số từ trong câu không.
 3. **Pass 3: Overlap**: Kiểm tra xem Aspect và Opinion có bị trùng đè vị trí lên nhau không.
@@ -340,7 +424,7 @@ Kiến trúc kiểm định của dự án áp dụng mô hình **Dual-Engine Au
 9. **Pass 9: Fallback Misuse**: Phát hiện câu đã có tên đường cụ thể nhưng lại dùng Fallback `TP. Hồ Chí Minh`.
 10. **Pass 10: Bare Noun as Opinion**: Bắt lỗi các danh từ hiện tượng trơ trọi không có tính từ/vị ngữ (*"điểm ngập"*, *"vùng ngập"*, *"mực nước"*).
 
-### 6.2. Công Cụ Sinh Triplet Chuẩn Xác `span_helper.py`
+### 8.2. Công Cụ Sinh Triplet Chuẩn Xác `span_helper.py`
 Khi cần tạo hoặc sửa Triplet, **bắt buộc gọi qua `span_helper.py`**:
 ```python
 from scripts.span_helper import make_triplet
@@ -358,42 +442,11 @@ trip = make_triplet(
 
 ---
 
-## 7. CÔNG VIỆC ĐANG LÀM VÀ HƯỚNG DẪN BẮT TAY LÀM TIẾP (NEXT STEPS RUNBOOK)
-
-### 7.1. Mục tiêu trước mắt: Triển khai Gán nhãn Phase 3 Phần của Hùng
-- **Nhiệm vụ tiếp theo**: Thực hiện gán nhãn cho **3.874 records** thuộc Phase 3 của bạn Hùng (tương ứng từ **dòng 6.376 đến dòng 10.249** trong file `data/processed/aste_v2_format/master_10k_triplets.txt`).
-- **Tệp đích cần ghi**: `data/validate_label/hung/phase3.txt`.
-
-### 7.2. Quy trình 4 Bước Bắt Buộc Khi Làm Từng Lô
-```
-[Bước 1: Đọc & Trích xuất]
-   ├── Lấy lô 50 - 100 records từ dòng 6.376 trở đi trong master_10k_triplets.txt
-   ├── Đọc kỹ toàn bộ ngữ cảnh từng câu văn bản
-   └── Xác định Aspect (tên đường/Bình Dương/Vũng Tàu), Opinion, Polarity theo Section V
-        ▼
-[Bước 2: Chuẩn hóa Span qua span_helper.py]
-   └── Sử dụng make_triplet() để tính toán index chính xác, chống rò rỉ dấu câu/giới từ
-        ▼
-[Bước 3: Chạy Linter Kiểm định deep_10_pass_audit.py]
-   └── Chạy kiểm tra tệp đích: Bắt buộc đạt 10/10 PASSES: 0 LỖI
-        ▼
-[Bước 4: Giải mã ngược audit_index_integrity.py]
-   └── Xác nhận 100% token offset khớp chuẩn từ vựng thực tế trước khi chuyển sang lô tiếp theo
-```
-
-### 7.3. Sau khi Hoàn tất Toàn bộ Phase 3
-1. Ghép nối Master Dataset hoàn chỉnh 10.249 records:
-   $$\text{Master 10K} = \text{Phase 1 (Thuận)} + \text{Phase 2 (Thuận)} + \text{Phase 3 (Thuận)} + \text{Phase 3 (Hùng)}$$
-2. Chạy tái huấn luyện (Retrain) và đánh giá Benchmark các mô hình ASTE (`PhoBERT`, `BARTpho`, `mT5`) trong thư mục `AI/`.
-3. Tích hợp mô hình ASTE tốt nhất vào luồng PySpark streaming thời gian thực (`bigdata/run_streaming_pipeline.py`).
-
----
-
-## 8. BẢNG TRA CỨU LỆNH NHANH (CHEATSHEET)
+## 9. BẢNG TRA CỨU LỆNH NHANH (RUNBOOK CHEATSHEET)
 
 Mọi thao tác chạy lệnh trên Windows PowerShell, sử dụng môi trường ảo: `.\.venv\Scripts\python.exe`.
 
-### 8.1. Kiểm định Dữ liệu ASTE
+### 9.1. Kiểm định Dữ liệu ASTE
 ```powershell
 # 1. Kiểm định kép 10 vòng độc lập (Bắt buộc đạt 10/10 PASSES: 0 LỖI)
 .\.venv\Scripts\python.exe scripts/deep_10_pass_audit.py data/validate_label/thuan/phase3.txt
@@ -405,7 +458,7 @@ Mọi thao tác chạy lệnh trên Windows PowerShell, sử dụng môi trườ
 .\.venv\Scripts\python.exe scripts/stats_phase3.py
 ```
 
-### 8.2. Khởi động Toàn Trình Hệ Thống (End-to-End System)
+### 9.2. Khởi động Toàn Trình Hệ Thống (End-to-End System)
 ```powershell
 # 1. Khởi động hạ tầng Kafka KRaft & Redis 7.2 (Docker)
 docker-compose -f bigdata/docker-compose.yml up -d
@@ -420,7 +473,7 @@ docker-compose -f bigdata/docker-compose.yml up -d
 .\.venv\Scripts\python.exe pipeline/live_free_crawler.py
 ```
 
-### 8.3. Thao tác Git An Toàn
+### 9.3. Thao tác Git An Toàn
 ```powershell
 # Kiểm tra trạng thái
 git status
