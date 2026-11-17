@@ -304,7 +304,7 @@ Quy trình chuẩn hóa 4 bước khép kín (The 4-Step Agile Labeling & Verifi
 
 ## 📚 IX. TÀI LIỆU THAM KHẢO CỐT LÕI (CORE REFERENCE DOCUMENTS)
 
-Để thực hiện gán nhãn và kiểm định chính xác tuyệt đối cho các giai đoạn tiếp theo (Phase 2 & Phase 3), Agent / Annotator chỉ cần đọc kết hợp **2 tài liệu nền tảng** sau:
+Để thực hiện gán nhãn và kiểm định chính xác tuyệt đối cho các giai đoạn tiếp theo (Phase 2 & Phase 3), Agent / Annotator bắt buộc phải đọc kết hợp đầy đủ **2 tài liệu nền tảng** sau:
 
 1. **Cẩm nang chuyên gia gốc tiếng Việt**:
    * [`documents/CAM_NANG_BI_QUYET_GAN_NHAN_ASTE_CHUAN_EXPERT.md`](file:///D:/SE363_RAWDATA/documents/CAM_NANG_BI_QUYET_GAN_NHAN_ASTE_CHUAN_EXPERT.md)
@@ -314,6 +314,7 @@ Quy trình chuẩn hóa 4 bước khép kín (The 4-Step Agile Labeling & Verifi
    * [`documents/UNIFIED_SYSTEM_GUIDE.md`](file:///D:/SE363_RAWDATA/documents/UNIFIED_SYSTEM_GUIDE.md)
    * *Nội dung*: Bản đặc tả kiến trúc Single Source of Truth (SSOT) chuẩn hóa theo định dạng quốc tế SemEval ASTE-Data-V2 (Xu et al., EMNLP 2020), định nghĩa mô hình học sâu Dual-Branch và 4 tầng đối soát thực địa GIS.
 
+---
 
 ## 🌟 X. BÀI HỌC KINH NGHIỆM THỰC CHIẾN TỪ CÁC ĐỢT AUDIT & CỨU DỮ LIỆU PHASE 3 (3.875 RECORDS)
 
@@ -348,10 +349,8 @@ Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn b
   - Khi annotator gán Aspect là `TP. Hồ Chí Minh` (dùng Fallback), công cụ kiểm toán Pass 9 bắt lỗi `SUSPECT_FALLBACK_USAGE`.
   - **Hậu quả tiêu cực**: Thay vì sửa Aspect thành tên con đường cụ thể (`đường Trần Xuân Soạn`, `đường Tô Ngọc Vân`, `đường Linh Đông`), annotator trước đây lại **chọn cách tiêu cực là gán `####[]` để "lách linter" qua mặt bộ kiểm tra**, khiến hàng trăm bản tin ngập lụt thực địa cực kỳ đắt giá bị xóa sổ!
 * **Quy tắc chấn chỉnh**:
-  - **Nguyên tắc ưu tiên số 1**: Khi trong câu đã có tên đường hoặc địa danh cụ thể $
-ightarrow$ **BẮT BUỘC gán Aspect là tên con đường / địa danh đó**. CẤM dùng Fallback `TP. Hồ Chí Minh` / `TPHCM`.
-  - **Chỉ dùng Fallback khi**: Câu văn hoàn toàn không nhắc tới bất kỳ một tên đường, ngõ, hẻm, phường, quận cụ thể nào mà chỉ nói về hiện trường ngập chung chung (ví dụ: *"Tại TP. Hồ Chí Minh , Mưa lớn khiến nhiều xe chết máy bì bõm lội nước"* $
-ightarrow$ Fallback Aspect là `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
+  - **Nguyên tắc ưu tiên số 1**: Khi trong câu đã có tên đường hoặc địa danh cụ thể $ightarrow$ **BẮT BUỘC gán Aspect là tên con đường / địa danh đó**. CẤM dùng Fallback `TP. Hồ Chí Minh` / `TPHCM`.
+  - **Chỉ dùng Fallback khi**: Câu văn hoàn toàn không nhắc tới bất kỳ một tên đường, ngõ, hẻm, phường, quận cụ thể nào mà chỉ nói về hiện trường ngập chung chung (ví dụ: *"Tại TP. Hồ Chí Minh , Mưa lớn khiến nhiều xe chết máy bì bõm lội nước"* $ightarrow$ Fallback Aspect là `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
   - **CẤM REJECT câu chỉ vì vi phạm Fallback**: Phải chủ động đọc lại câu và sửa Aspect về đúng tên đường.
 
 ---
@@ -363,14 +362,10 @@ ightarrow$ Fallback Aspect là `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
 * **Quy chuẩn phân định ranh giới**:
   - **MẪU HỢP LỆ (BẮT BUỘC GIỮ LẠI & GÁN NHÃN `NEG`)**:
     + Người dân dùng các từ ngữ phóng đại, ví von thực tế sinh động để miêu tả tình trạng ngập lụt khủng khiếp:
-      * *"thất thủ"* (ví dụ: *Nguyễn Hữu Cảnh lại thất thủ* $
-ightarrow$ Aspect `Nguyễn Hữu Cảnh`, Opinion `thất thủ`, Polarity `NEG`).
-      * *"như sông"*, *"hóa sông"*, *"biển nước"* (ví dụ: *Đường phố biến thành biển nước mênh mông* $
-ightarrow$ Aspect `Đường phố`, Opinion `biển nước`, Polarity `NEG`).
-      * *"bì bõm"*, *"bơi thuyền"*, *"lội nước"*, *"chèo xuồng"* (ví dụ: *Người dân bì bõm lội nước dắt xe chết máy* $
-ightarrow$ Opinion `bì bõm lội nước`, Polarity `NEG`).
-      * *"nước lút bánh xe"*, *"sóng đánh dạt dào"*, *"mưa tí là ngập"*, *"ngập mút chỉ"*, *"ngập đến cổ"* $
-ightarrow$ Đều là các Opinion tiêu cực phản ánh mức độ ngập lụt đô thị rất chân thực.
+      * *"thất thủ"* (ví dụ: *Nguyễn Hữu Cảnh lại thất thủ* $ightarrow$ Aspect `Nguyễn Hữu Cảnh`, Opinion `thất thủ`, Polarity `NEG`).
+      * *"như sông"*, *"hóa sông"*, *"biển nước"* (ví dụ: *Đường phố biến thành biển nước mênh mông* $ightarrow$ Aspect `Đường phố`, Opinion `biển nước`, Polarity `NEG`).
+      * *"bì bõm"*, *"bơi thuyền"*, *"lội nước"*, *"chèo xuồng"* (ví dụ: *Người dân bì bõm lội nước dắt xe chết máy* $ightarrow$ Opinion `bì bõm lội nước`, Polarity `NEG`).
+      * *"nước lút bánh xe"*, *"sóng đánh dạt dào"*, *"mưa tí là ngập"*, *"ngập mút chỉ"*, *"ngập đến cổ"* $ightarrow$ Đều là các Opinion tiêu cực phản ánh mức độ ngập lụt đô thị rất chân thực.
   - **MẪU BẮT BUỘC LOẠI BỎ (`REJECT / ####[]`)**:
     + Chỉ loại bỏ khi yếu tố ngập lụt chỉ làm nền phụ cho nội dung giải trí khác:
       * So sánh với phim ảnh, hoạt hình, anime (ví dụ: *Cảnh đạp xe ngập nước giống phim Vùng đất linh hồn #anime*).
@@ -391,8 +386,7 @@ ightarrow$ Đều là các Opinion tiêu cực phản ánh mức độ ngập l�
   - Nhìn thấy dấu ba chấm hoặc từ cuối bị cụt vội kết luận là "câu rác / không hoàn chỉnh" và loại bỏ (`####[]`).
 * **Kinh nghiệm xử lý chuẩn xác**:
   - Kiểm tra xem ở mệnh đề trước điểm bị cắt **đã có đủ một cặp Aspect - Opinion hoàn chỉnh hay chưa**.
-  - Nếu đã nêu rõ địa danh (`đường Linh Đông`, `đường Nguyễn Văn Quá`...) và tình trạng ngập (`ngập nặng nhất`, `nước ngập sâu`...) $
-ightarrow$ **Hoàn toàn đủ điều kiện trích xuất Triplet chuẩn xác**, bắt buộc phải giữ lại và gán nhãn!
+  - Nếu đã nêu rõ địa danh (`đường Linh Đông`, `đường Nguyễn Văn Quá`...) và tình trạng ngập (`ngập nặng nhất`, `nước ngập sâu`...) $ightarrow$ **Hoàn toàn đủ điều kiện trích xuất Triplet chuẩn xác**, bắt buộc phải giữ lại và gán nhãn!
 
 ---
 
@@ -406,8 +400,7 @@ ightarrow$ **Hoàn toàn đủ điều kiện trích xuất Triplet chuẩn xác
     + Nước rút bớt, nước đã rút hết, đường phố khô ráo trở lại.
     + Tuyến đường sau khi nâng cấp cải tạo không còn bị ngập khi mưa (ví dụ: *đường Nguyễn Hữu Cảnh sau cải tạo đã không còn ngập*).
 * **Bản tin Dự báo & Cảnh báo Triều dâng (Gán nhãn `NEU`)**:
-  - Các thông tin dự báo đỉnh triều, đo đạc mực nước tại các trạm đo thủy văn (*trạm Phú An, trạm Nhà Bè, trạm Thủ Dầu Một, trạm Vũng Tàu* đạt báo động 2, báo động 3) $
-ightarrow$ Gán nhãn `NEU`.
+  - Các thông tin dự báo đỉnh triều, đo đạc mực nước tại các trạm đo thủy văn (*trạm Phú An, trạm Nhà Bè, trạm Thủ Dầu Một, trạm Vũng Tàu* đạt báo động 2, báo động 3) $ightarrow$ Gán nhãn `NEU`.
 
 ---
 
