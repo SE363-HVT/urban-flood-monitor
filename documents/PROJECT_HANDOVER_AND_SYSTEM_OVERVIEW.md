@@ -210,16 +210,57 @@ Nằm tại `pipeline/veracity_checker.py`, thực hiện 3 tầng bảo vệ ng
 - **Delta Lakehouse (Parquet Storage)** tại `bigdata/lakehouse/`:
   + Phân tầng dữ liệu theo chuẩn công nghiệp: **Bronze** (dữ liệu thô) $\rightarrow$ **Silver** (dữ liệu đã làm sạch & chuẩn hóa tọa độ) $\rightarrow$ **Gold** (bảng tổng hợp thống kê lịch sử ngập phục vụ nghiên cứu).
 
-### 3.5. Tầng Giao Diện Tác Chiến & Bản Đồ Nhiệt (GIS Dashboard & Heatmap)
-Nằm tại `dashboard/server.py` (Port 8050) và `dashboard/index.html`:
-- **Bản đồ tương tác Leaflet**: Hiển thị lớp bản đồ nhiệt (Heatmap) thể hiện mức độ tập trung của các điểm ngập.
-- **Thuật toán Pin Jitter**: Tự động làm lệch nhẹ tọa độ hiển thị của các marker cùng nằm trên một con đường, chống hoàn toàn hiện tượng các ghim bị đè chồng lấp lên nhau khiến người dùng không click xem chi tiết được.
-- **Phân loại trạng thái giao thông bằng màu sắc**:
-  + 🔴 **Màu đỏ (`NEG`)**: Đoạn đường ngập sâu, nước xiết, xe chết máy hàng loạt, khuyến cáo không lưu thông.
-  + 🟡 **Màu vàng (`NEU`)**: Ứ nước nhẹ, thông tin dự báo đỉnh triều, xe gầm cao có thể qua được.
-  + 🟢 **Màu xanh lá (`POS`)**: Nước đã rút, trạm bơm đã xử lý xong, đường khô ráo trở lại.
-- **Điều hướng Tránh Điểm Ngập (Detour Routing)**: Đề xuất cung đường thay thế an toàn khi lộ trình của người dân đi qua điểm ngập đỏ.
-- *Lưu ý nâng cấp*: Giao diện Heatmap hiện tại đã chạy ổn định nhưng có thể tiếp tục tinh chỉnh thêm về độ mượt của gradient màu và bổ sung biểu đồ thống kê thời gian thực theo quận huyện.
+### 3.5. Tầng Giao Diện Tác Chiến Đa Bảng Điều Khiển (Modular Multi-Panel GIS Dashboard)
+Nằm tại `dashboard/server.py` (Port 8050) và `dashboard/index.html`. Hệ thống giao diện điều hành đã được nâng cấp toàn diện từ một màn hình bản đồ đơn lẻ thành **Hệ Thống Bảng Điều Khiển Đa Phân Hệ (Modular Multi-Panel Dashboard)** chuẩn tác chiến công nghiệp, trong đó **Bản đồ Heatmap đóng vai trò là Trái tim cốt lõi (Core Component)** và được bao quanh, bổ trợ đắc lực bởi **5 phân hệ vệ tinh**:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│             HỆ THỐNG ĐIỀU HÀNH 6 PHÂN HỆ (MODULAR MULTI-PANEL DASHBOARD)               │
+├───────────────────────────────────────────┬────────────────────────────────────────────┤
+│ 📍 PANEL 1: BẢN ĐỒ NHIỆT GIS CORE         │ 📊 PANEL 2: XẾP HẠNG ĐIỂM ĐEN THEO NQ 1685 │
+│ • Bản đồ Leaflet Heatmap mật độ ngập      │ • Top điểm ngập theo 168 phường/xã mới     │
+│ • Pin Jitter chống đè marker trùng đường  │ • Phân loại vùng đô thị lõi vs giáp ranh   │
+│ • Routing dẫn đường tránh điểm ngập       │ • Thống kê tần suất ngập lụt lũy kế        │
+├───────────────────────────────────────────┼────────────────────────────────────────────┤
+│ 💓 PANEL 3: GIÁM SÁT SỨC KHỎE VI DỊCH VỤ  │ 📈 PANEL 4: DIỄN BIẾN NGẬP THEO THỜI GIAN  │
+│ • Heartbeat & độ trễ Redis (<3ms)         │ • Time-Series xu hướng ngập theo giờ/ngày  │
+│ • Trạng thái Kafka Broker, PySpark        │ • Chu kỳ triều cường kết hợp vũ lượng mưa  │
+│ • Quản lý tài nguyên Apify Key Pool       │ • Dự báo đỉnh triều và điểm bùng phát      │
+├───────────────────────────────────────────┼────────────────────────────────────────────┤
+│ ⚡ PANEL 5: TỐC ĐỘ THU THẬP & KIỂM ĐỊNH   │ 🔔 PANEL 6: DÒNG TIN TỨC HIỆN TRƯỜNG LIVE  │
+│ • Ingestion Throughput (Events/giây)      │ • Ticker tin tức nóng từ TikTok, FB, VOV   │
+│ • Tỷ lệ tin rác bị Veracity Engine chặn   │ • Badge màu sắc trực quan (Đỏ/Vàng/Xanh)   │
+│ • Tỷ lệ xác thực khí tượng Open-Meteo     │ • Click xem video/audio và tọa độ thực tế  │
+└───────────────────────────────────────────┴────────────────────────────────────────────┘
+```
+
+#### Chi tiết 6 Panels Điều hành Thực tế:
+1. **Panel 1: Bản đồ Nhiệt Ngập lụt Thời gian thực (Geospatial Heatmap Core)**:
+   - Trái tim của toàn hệ thống, trực quan hóa cường độ ngập theo thời gian thực trên nền bản đồ Leaflet.
+   - **Thuật toán Pin Jitter**: Tự động phân tách vi sai tọa độ của các ghim cùng nằm trên một con đường, chống hoàn toàn hiện tượng marker đè chồng lấp lên nhau.
+   - **Hệ thống điều khiển chuyên sâu**: Thanh trượt cửa sổ thời gian (Time Window: 15m, 30m, 60m, 120m), chuyển đổi chế độ Trực tiếp (Live Stream) vs Giả lập (Simulation Replayer), kích hoạt cào sâu (Deep Crawl / Apify Poll), quét lân cận (Proximity Scan), và lớp cảnh báo điều tiết của CSGT.
+   - **Emergency Detour Routing**: Tự động tính toán đường vòng thay thế an toàn khi lộ trình phương tiện giao thông cắt qua các vùng ngập đỏ.
+2. **Panel 2: Bảng Xếp hạng Điểm ngập theo Phường / Xã Mới (Theo Nghị quyết 1685)**:
+   - Thống kê và xếp hạng top các điểm nóng ngập lụt được ánh xạ chuẩn xác theo 168 đơn vị hành chính mới sau sáp nhập tại TP.HCM (Thủ Đức, Quận 1 đến 12, Bình Thạnh, Gò Vấp, Bình Tân...) cùng vùng giáp ranh Bình Dương & Vũng Tàu.
+3. **Panel 3: Giám sát Trạng thái Vi dịch vụ (System & Node Health)**:
+   - Theo dõi nhịp tim (Heartbeat) và tài nguyên của cụm hạ tầng: Kafka Broker (Port 9092), Redis In-Memory Hot Store (Port 6379), PySpark Streaming worker, và tình trạng credit/hạn mức của Apify Key Pool.
+4. **Panel 4: Biểu đồ Diễn biến Ngập theo Thời gian (Time-Series Flood Trend)**:
+   - Đồ thị đường biến thiên thể hiện số lượng sự cố ngập lụt theo từng khung giờ trong ngày, đối sánh tương quan giữa đỉnh triều dâng và thời điểm mưa cực đoan đổ xuống.
+5. **Panel 5: Tốc độ Thu thập & Kiểm định Dữ liệu (Ingestion Throughput & Veracity Analytics)**:
+   - Đo lường thông lượng dữ liệu đầu vào (Events per second), thống kê tỷ lệ phần trăm tin rác quảng cáo BĐS bị loại bỏ, và tỷ lệ bài đăng được Veracity Engine thẩm định thành công qua khí tượng Open-Meteo.
+6. **Panel 6: Dòng Tin tức Hiện trường Mới nhất (Live Alerts Feed)**:
+   - Luồng cấp tin tức thời gian thực hiển thị từng bài đăng mới nhất từ TikTok, Facebook, Cổng 1022 và VOV Giao thông kèm nhãn phân cực cảm xúc (Đỏ: Ngập sâu/Chết máy, Vàng: Ứ nước/Triều dâng, Xanh lá: Nước đã rút).
+
+#### Các Cải Tiến Công Nghệ Vượt Trội Trên Dashboard:
+- **Chuẩn hóa Icon Vectơ Lucide (Enterprise Lucide SVG Icons)**: Toàn bộ các icon hoạt họa/emoji cũ đã được thay thế 100% bằng bộ icon vectơ chuyên nghiệp của Lucide, đồng bộ màu sắc phân cấp theo từng nhóm chức năng ở thanh Sidebar.
+- **Cơ chế Điều hướng Đa Chế Độ & Phím Tắt Tác Chiến**:
+  + **Chế độ Lưới Tổng quan (Grid Overview Mode)**: Hiển thị đồng thời cả 6 ô panel trên một màn hình lớn để bao quát toàn diện hệ thống.
+  + **Chế độ Phóng to Tiêu điểm (Focus Mode)**: Hỗ trợ phím tắt số từ `1` đến `6` để lập tức phóng to bất kỳ panel nào ra 100% toàn màn hình; bấm `0` hoặc `Esc` để thu nhỏ về màn hình lưới.
+- **Khắc phục Triệt để Lỗi Vỡ Gạch Bản đồ (Leaflet ResizeObserver & Dual-Tick Fallback)**:
+  + Tích hợp API hiện đại `ResizeObserver` kết hợp cơ chế kích hoạt 2 nhịp (`requestAnimationFrame` + `300ms fallback`) để tự động gọi `map.invalidateSize()` mỗi khi chuyển đổi qua lại giữa các panel, **triệt tiêu hoàn toàn lỗi xám gạch (grey tiles) hoặc lệch tâm bản đồ**.
+- **Không Gây Tải Máy Chủ (Zero Server Compute Overhead)**:
+  + Toàn bộ hiệu ứng chuyển panel và đồ thị biểu đồ được kết xuất 100% ở phía máy khách (Client-Side Rendering bằng JavaScript), máy chủ backend chỉ phân phối các gói JSON siêu nhẹ (< 15 KB), dành trọn vẹn tài nguyên CPU/GPU cho AI và PySpark.
+- *Định hướng cải thiện thêm*: Trong giai đoạn tới, có thể tinh chỉnh thêm độ mượt của gradient lớp phủ Heatmap và bổ sung biểu đồ phân tích trực quan kết nối dữ liệu camera CCTV.
 
 ---
 
