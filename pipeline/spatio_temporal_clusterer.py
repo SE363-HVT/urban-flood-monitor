@@ -12,6 +12,7 @@ hợp nhất thành 1 marker lớn với nhãn "Được báo cáo bởi 20 ngư
 
 import math
 import time
+from copy import deepcopy
 from typing import List, Dict, Any
 
 try:
@@ -45,20 +46,27 @@ class SpatioTemporalClusterer:
         sẽ được gộp lại thành 1 sự kiện trọng điểm.
         """
         clusters: List[Dict[str, Any]] = []
+        seen_reports = set()
 
         for ev in raw_events:
-            loc = ev.get("location", {})
+            report_id = ev.get("canonical_id") or ev.get("id")
+            if report_id:
+                if report_id in seen_reports:
+                    continue
+                seen_reports.add(report_id)
+
+            loc = ev.get("location") or {}
             lat = loc.get("lat") or ev.get("lat")
             lon = loc.get("lon") or ev.get("lon")
             ev_time = ev.get("create_time") or ev.get("timestamp") or int(time.time())
 
             if not lat or not lon:
-                clusters.append(ev)
+                clusters.append(deepcopy(ev))
                 continue
 
             merged = False
             for c in clusters:
-                c_loc = c.get("location", {})
+                c_loc = c.get("location") or {}
                 c_lat = c_loc.get("lat") or c.get("lat")
                 c_lon = c_loc.get("lon") or c.get("lon")
                 c_time = c.get("create_time") or c.get("timestamp") or int(time.time())
@@ -118,13 +126,13 @@ class SpatioTemporalClusterer:
                         new_pts = loc.get("heat_points", [[lat, lon]])
                         for pt in new_pts:
                             if pt not in c_loc["heat_points"]:
-                                c_loc["heat_points"].append(pt)
+                                c_loc["heat_points"].append(deepcopy(pt))
 
                     merged = True
                     break
 
             if not merged:
-                ev_copy = dict(ev)
+                ev_copy = deepcopy(ev)
                 ev_copy["report_count"] = 1
                 ev_copy["sources"] = [ev.get("platform", "social")]
                 ev_copy["cluster_label"] = "Báo cáo đơn lẻ"

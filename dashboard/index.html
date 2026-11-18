@@ -1532,7 +1532,7 @@
             </div>
 
             <div class="nav-section-title analytics">Phân Tích Dữ Liệu</div>
-            <div class="nav-link" data-panel="panel-trends" onclick="switchPanel('panel-trends', 'DIỄN BIẾN THEO THỜI GIAN (6H QUA)')">
+                <div class="nav-link" data-panel="panel-trends" onclick="switchPanel('panel-trends', 'DIỄN BIẾN THEO THỜI GIAN (6 KHUNG GIỜ)')">
                 <div class="nav-link-left">
                     <span class="nav-icon" title="Diễn Biến Theo Giờ">
                         <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
@@ -1799,7 +1799,7 @@
                 <div class="analytics-container">
                     <div class="analytics-header-card">
                         <div>
-                            <div class="analytics-title">Diễn Biến Tình Hình Ngập Theo Mốc Thời Gian (6 Giờ Qua)</div>
+                            <div class="analytics-title">Diễn Biến Tình Hình Ngập (6 Khung Giờ Gần Nhất)</div>
                             <div class="analytics-subtitle">Phân tách theo 3 sắc thái: Tiêu cực (NEG), Dự báo/Thủy văn (NEU), Nước rút (POS)</div>
                         </div>
                     </div>
@@ -1823,13 +1823,13 @@
                     <div class="throughput-layout">
                         <div class="throughput-left">
                             <div class="kpi-card">
-                                <span class="kpi-title">TỐC ĐỘ THU THẬP HIỆN TẠI</span>
-                                <span id="stat-throughput-rpm" class="kpi-value">12 RPM</span>
-                                <span class="kpi-sub">Bài viết / phút (Bình thường)</span>
+                                <span class="kpi-title">SỰ KIỆN TRONG PHÚT QUA</span>
+                                <span id="stat-throughput-rpm" class="kpi-value">—</span>
+                                <span class="kpi-sub">Theo thời gian sự kiện đang hiển thị</span>
                             </div>
                             <div class="kpi-card">
                                 <span class="kpi-title">TỶ LỆ XÁC THỰC VERACITY</span>
-                                <span id="stat-veracity-rate" class="kpi-value" style="color: #10b981;">94.2%</span>
+                                <span id="stat-veracity-rate" class="kpi-value" style="color: #10b981;">—</span>
                                 <span class="kpi-sub">Đạt chuẩn kiểm định độ tin cậy</span>
                             </div>
                         </div>
@@ -1876,16 +1876,16 @@
                                     <span class="health-node-title">🤖 AI Microservice</span>
                                     <span class="health-node-desc">PhoBERT Aspect Extraction & PhoWhisper Audio Transcription</span>
                                 </div>
-                                <span id="health-badge-ai" class="health-status-badge online">ONLINE</span>
+                                <span id="health-badge-ai" class="health-status-badge offline">UNKNOWN</span>
                             </div>
                             <div class="health-metrics-table">
                                 <div class="health-m-cell">
                                     <span class="health-m-label">Cổng kết nối</span>
-                                    <span class="health-m-val">localhost:8000</span>
+                                    <span id="health-port-ai" class="health-m-val">—</span>
                                 </div>
                                 <div class="health-m-cell">
-                                    <span class="health-m-label">Độ trễ bắt tay TCP</span>
-                                    <span id="health-latency-ai" class="health-m-val">42.0 ms</span>
+                                    <span class="health-m-label">Độ trễ kiểm tra HTTP</span>
+                                    <span id="health-latency-ai" class="health-m-val">—</span>
                                 </div>
                             </div>
                         </div>
@@ -1896,16 +1896,16 @@
                                     <span class="health-node-title">⚡ Redis In-Memory Hot Store</span>
                                     <span class="health-node-desc">GEO Radius Queries & ZSET Sliding Window Storage</span>
                                 </div>
-                                <span id="health-badge-redis" class="health-status-badge online">ONLINE</span>
+                                <span id="health-badge-redis" class="health-status-badge offline">UNKNOWN</span>
                             </div>
                             <div class="health-metrics-table">
                                 <div class="health-m-cell">
                                     <span class="health-m-label">Cổng kết nối</span>
-                                    <span class="health-m-val">localhost:6379</span>
+                                    <span id="health-port-redis" class="health-m-val">—</span>
                                 </div>
                                 <div class="health-m-cell">
-                                    <span class="health-m-label">Độ trễ bắt tay TCP</span>
-                                    <span id="health-latency-redis" class="health-m-val">2.1 ms</span>
+                                    <span class="health-m-label">Độ trễ kiểm tra Redis</span>
+                                    <span id="health-latency-redis" class="health-m-val">—</span>
                                 </div>
                             </div>
                         </div>
@@ -1916,16 +1916,16 @@
                                     <span class="health-node-title">📬 Kafka Streaming Broker</span>
                                     <span class="health-node-desc">Distributed Event Ingestion & Dead Letter Queue</span>
                                 </div>
-                                <span id="health-badge-kafka" class="health-status-badge online">ONLINE</span>
+                                <span id="health-badge-kafka" class="health-status-badge offline">UNKNOWN</span>
                             </div>
                             <div class="health-metrics-table">
                                 <div class="health-m-cell">
                                     <span class="health-m-label">Cổng kết nối</span>
-                                    <span class="health-m-val">localhost:9092</span>
+                                    <span id="health-port-kafka" class="health-m-val">—</span>
                                 </div>
                                 <div class="health-m-cell">
                                     <span class="health-m-label">Độ trễ bắt tay TCP</span>
-                                    <span id="health-latency-kafka" class="health-m-val">5.0 ms</span>
+                                    <span id="health-latency-kafka" class="health-m-val">—</span>
                                 </div>
                             </div>
                         </div>
@@ -1936,16 +1936,16 @@
                                     <span class="health-node-title">🕷️ Multi-Platform Social Crawler</span>
                                     <span class="health-node-desc">TikTok Poller, Facebook Public Feeds, YouTube & 1022 TP.HCM API</span>
                                 </div>
-                                <span id="health-badge-crawler" class="health-status-badge scanning">SCANNING</span>
+                                <span id="health-badge-crawler" class="health-status-badge offline">UNKNOWN</span>
                             </div>
                             <div class="health-metrics-table">
                                 <div class="health-m-cell">
-                                    <span class="health-m-label">Trạng thái luồng</span>
-                                    <span class="health-m-val" style="color: #10b981;">Đang hoạt động</span>
+                                    <span class="health-m-label">Theo dõi crawler</span>
+                                    <span class="health-m-val">Chưa có heartbeat</span>
                                 </div>
                                 <div class="health-m-cell">
-                                    <span class="health-m-label">Tốc độ nạp trung bình</span>
-                                    <span id="health-crawler-rate" class="health-m-val">12 posts/phút</span>
+                                    <span class="health-m-label">Sự kiện hiển thị trong phút qua</span>
+                                    <span id="health-crawler-rate" class="health-m-val">—</span>
                                 </div>
                             </div>
                         </div>
@@ -2091,7 +2091,8 @@
         // Khởi tạo bản đồ trung tâm TP.HCM với Renderer Canvas tối ưu chống lag
         const map = L.map('map', {
             zoomControl: true,
-            preferCanvas: true
+            preferCanvas: true,
+            trackResize: false
         }).setView([10.7769, 106.7009], 12);
         window.map = map;
 
@@ -2350,13 +2351,20 @@
         function toggleHeatmap() {
             isHeatmapVisible = !isHeatmapVisible;
             const btn = document.getElementById('btn-heatmap');
-            if (isHeatmapVisible) {
-                btn.classList.add("active");
-                if (heatLayer) map.addLayer(heatLayer);
-            } else {
-                btn.classList.remove("active");
-                if (heatLayer) map.removeLayer(heatLayer);
+            btn.classList.toggle('active', isHeatmapVisible);
+            syncHeatmapLayer();
+        }
+
+        function eventDisplayPolarity(event, primaryTriplet) {
+            const aliases = { POSITIVE: 'POS', NEGATIVE: 'NEG', NEUTRAL: 'NEU' };
+            for (const value of [primaryTriplet.polarity, event.polarity, event.sentiment, event.status_tag]) {
+                const label = String(value || '').trim().toUpperCase();
+                const polarity = aliases[label] || label;
+                if (['POS', 'NEG', 'NEU'].includes(polarity)) return polarity;
             }
+            const severity = String(event.severity || '').toLowerCase();
+            if (severity === 'recovered' || severity.includes('an toàn') || severity.includes('nước rút')) return 'POS';
+            return severity.includes('dự báo') ? 'NEU' : 'NEG';
         }
 
         // Vẽ các điểm cảnh báo CSGT (Hiển thị CẢ ĐOẠN ĐƯỜNG CẢNH BÁO + Icon vàng cố định)
@@ -2626,7 +2634,7 @@
 
                 const aspectSpan = primaryTriplet.aspect || ev.aspect || cleanStreet || (rawStreet || 'Điểm ngập TP.HCM');
                 const opinionSpan = primaryTriplet.opinion || ev.opinion || 'ngập nước';
-                const polarityRaw = (primaryTriplet.polarity || ev.polarity || 'NEG').toUpperCase();
+                const polarityRaw = eventDisplayPolarity(ev, primaryTriplet);
                 
                 let modelSource = 'PhoBERT Fast Path';
                 if (contentCheck.source === 'friend_multimodal_ai') {
@@ -2885,12 +2893,8 @@
 
             // Cập nhật Heatmap mượt mà in-place, không hủy và tạo lại Canvas gây giật lag
             if (heatLayer) {
+                if (!mapHasSize()) syncHeatmapLayer();
                 heatLayer.setLatLngs(heatPoints);
-                if (isHeatmapVisible && !map.hasLayer(heatLayer)) {
-                    map.addLayer(heatLayer);
-                } else if (!isHeatmapVisible && map.hasLayer(heatLayer)) {
-                    map.removeLayer(heatLayer);
-                }
             } else if (heatPoints.length > 0) {
                 heatLayer = L.heatLayer(heatPoints, {
                     radius: 25,
@@ -2899,10 +2903,8 @@
                     minOpacity: 0.35,
                     gradient: { 0.2: '#38bdf8', 0.5: '#f97316', 0.8: '#ef4444' }
                 });
-                if (isHeatmapVisible) {
-                    heatLayer.addTo(map);
-                }
             }
+            syncHeatmapLayer();
         }
 
         // BẢNG XẾP HẠNG PHƯỜNG / XÃ (LEADERBOARD)
@@ -3331,6 +3333,8 @@
 
             if (panelId === 'panel-heatmap') {
                 triggerMapResizeSafe();
+            } else {
+                syncHeatmapLayer();
             }
             if (panelId === 'panel-apify-pool') {
                 fetchApifyPoolStatus();
@@ -3364,26 +3368,43 @@
     
 
         // 3. LEAFLET RESIZE
+        function mapHasSize() {
+            const container = map.getContainer();
+            return container.clientWidth > 0 && container.clientHeight > 0;
+        }
+
+        function syncHeatmapLayer() {
+            if (!heatLayer) return;
+            const visible = isHeatmapVisible && mapHasSize();
+            if (visible && !map.hasLayer(heatLayer)) {
+                map.addLayer(heatLayer);
+            } else if (!visible && map.hasLayer(heatLayer)) {
+                map.removeLayer(heatLayer);
+            }
+        }
+
+        let mapResizeFrame = null;
+        function queueMapResize() {
+            if (mapResizeFrame !== null) return;
+            mapResizeFrame = requestAnimationFrame(() => {
+                mapResizeFrame = null;
+                if (mapHasSize()) map.invalidateSize();
+                syncHeatmapLayer();
+            });
+        }
+
         function initMapResizeObserver() {
-            const mc = document.getElementById('map-container');
-            if (window.ResizeObserver && mc) {
-                const ro = new ResizeObserver(() => {
-                    if (window.map) {
-                        window.map.invalidateSize();
-                    }
-                });
-                ro.observe(mc);
+            if (window.ResizeObserver) {
+                const observer = new ResizeObserver(queueMapResize);
+                observer.observe(map.getContainer());
+            } else {
+                window.addEventListener('resize', queueMapResize);
             }
         }
 
         function triggerMapResizeSafe() {
-            if (!window.map) return;
-            requestAnimationFrame(() => {
-                if (window.map) window.map.invalidateSize();
-            });
-            setTimeout(() => {
-                if (window.map) window.map.invalidateSize();
-            }, 300);
+            queueMapResize();
+            setTimeout(queueMapResize, 300);
         }
 
         // 4. SPA ROUTER & KEYBOARD SHORTCUTS
@@ -3391,7 +3412,7 @@
             routes: {
                 '#/heatmap': () => switchPanel('panel-heatmap', 'BẢN ĐỒ NHIỆT NGẬP LỤT THỜI GIAN THỰC'),
                 '#/wards': () => switchPanel('panel-wards', 'XẾP HẠNG ĐIỂM NGẬP THEO PHƯỜNG / XÃ MỚI (NQ 1685)'),
-                '#/trends': () => switchPanel('panel-trends', 'DIỄN BIẾN THEO THỜI GIAN (6H QUA)'),
+                '#/trends': () => switchPanel('panel-trends', 'DIỄN BIẾN THEO THỜI GIAN (6 KHUNG GIỜ)'),
                 '#/throughput': () => switchPanel('panel-throughput', 'TỐC ĐỘ THU THẬP & KIỂM ĐỊNH DỮ LIỆU'),
                 '#/feed': () => switchPanel('panel-feed', 'DÒNG TIN HIỆN TRƯỜNG THỜI GIAN THỰC'),
                 '#/system-health': () => switchPanel('panel-health', 'TRẠNG THÁI HỆ THỐNG & VI DỊCH VỤ'),
@@ -3416,7 +3437,7 @@
                     }
                     if (e.key === 'Escape' || e.key === '1') switchPanel('panel-heatmap', 'BẢN ĐỒ NHIỆT NGẬP LỤT THỜI GIAN THỰC');
                     if (e.key === '2') switchPanel('panel-wards', 'XẾP HẠNG ĐIỂM NGẬP THEO PHƯỜNG / XÃ MỚI (NQ 1685)');
-                    if (e.key === '3') switchPanel('panel-trends', 'DIỄN BIẾN THEO THỜI GIAN (6H QUA)');
+                    if (e.key === '3') switchPanel('panel-trends', 'DIỄN BIẾN THEO THỜI GIAN (6 KHUNG GIỜ)');
                     if (e.key === '4') switchPanel('panel-throughput', 'TỐC ĐỘ THU THẬP & KIỂM ĐỊNH DỮ LIỆU');
                     if (e.key === '5') switchPanel('panel-feed', 'DÒNG TIN HIỆN TRƯỜNG THỜI GIAN THỰC');
                     if (e.key === '6') switchPanel('panel-health', 'TRẠNG THÁI HỆ THỐNG & VI DỊCH VỤ');
@@ -3773,51 +3794,39 @@
             throughputChart.setOption(option);
 
             const elRpm = document.getElementById('stat-throughput-rpm');
-            if (elRpm) elRpm.innerText = `${throughputData.current_rpm || 12} RPM`;
+            if (elRpm) elRpm.innerText = throughputData.current_rpm ?? '—';
 
             const elVeracity = document.getElementById('stat-veracity-rate');
-            if (elVeracity) elVeracity.innerText = `${throughputData.veracity_pass_rate || 94.2}%`;
+            if (elVeracity) elVeracity.innerText = throughputData.total_posts > 0
+                ? `${throughputData.veracity_pass_rate}%` : '—';
         }
 
         function updateSystemHealthUI(healthData) {
             if (!healthData) return;
 
-            const ai = healthData.ai_service || {};
-            const elAiBadge = document.getElementById('health-badge-ai');
-            const elAiLat = document.getElementById('health-latency-ai');
-            if (elAiBadge) {
-                elAiBadge.innerText = ai.status || 'ONLINE';
-                elAiBadge.className = 'health-status-badge ' + ((ai.status === 'ONLINE') ? 'online' : 'offline');
+            for (const [key, id] of [['ai_service', 'ai'], ['redis', 'redis'], ['kafka', 'kafka']]) {
+                const service = healthData[key] || {};
+                const badge = document.getElementById(`health-badge-${id}`);
+                const latency = document.getElementById(`health-latency-${id}`);
+                const port = document.getElementById(`health-port-${id}`);
+                if (badge) {
+                    badge.innerText = service.status || 'UNKNOWN';
+                    badge.className = 'health-status-badge ' + (service.status === 'ONLINE' ? 'online' : 'offline');
+                }
+                if (latency) latency.innerText = Number.isFinite(service.latency_ms) && service.latency_ms >= 0
+                    ? `${service.latency_ms} ms` : '—';
+                if (port) port.innerText = service.port ?? '—';
             }
-            if (elAiLat) elAiLat.innerText = `${ai.latency_ms || 42.0} ms`;
-
-            const red = healthData.redis || {};
-            const elRedBadge = document.getElementById('health-badge-redis');
-            const elRedLat = document.getElementById('health-latency-redis');
-            if (elRedBadge) {
-                elRedBadge.innerText = red.status || 'ONLINE';
-                elRedBadge.className = 'health-status-badge ' + ((red.status === 'ONLINE') ? 'online' : 'offline');
-            }
-            if (elRedLat) elRedLat.innerText = `${red.latency_ms || 2.1} ms`;
-
-            const kaf = healthData.kafka || {};
-            const elKafBadge = document.getElementById('health-badge-kafka');
-            const elKafLat = document.getElementById('health-latency-kafka');
-            if (elKafBadge) {
-                elKafBadge.innerText = kaf.status || 'ONLINE';
-                elKafBadge.className = 'health-status-badge ' + ((kaf.status === 'ONLINE') ? 'online' : 'offline');
-            }
-            if (elKafLat) elKafLat.innerText = `${kaf.latency_ms || 5.0} ms`;
 
             const crawl = healthData.crawler || {};
             const elCrawlBadge = document.getElementById('health-badge-crawler');
             const elCrawlRate = document.getElementById('health-crawler-rate');
             if (elCrawlBadge) {
-                elCrawlBadge.innerText = (crawl.active_poller) ? 'SCANNING' : 'ONLINE';
-                elCrawlBadge.className = 'health-status-badge ' + ((crawl.active_poller) ? 'scanning' : 'online');
+                elCrawlBadge.innerText = crawl.active_poller ? 'SCANNING' : (crawl.status || 'UNKNOWN');
+                elCrawlBadge.className = 'health-status-badge ' + (crawl.active_poller ? 'scanning' : 'offline');
             }
             if (elCrawlRate) {
-                elCrawlRate.innerText = `${cachedDashboardSummary?.throughput?.current_rpm || 12} posts/phút`;
+                elCrawlRate.innerText = cachedDashboardSummary?.throughput?.current_rpm ?? '—';
             }
         }
 

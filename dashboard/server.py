@@ -10,11 +10,14 @@ Tích hợp Cầu nối PySpark Streaming & In-Memory Redis Hot Serving Store (G
 import http.server
 import socketserver
 import json
+import math
 import os
 import sys
 import time
 import socket
 import threading
+from urllib.parse import urlsplit
+from urllib.request import urlopen
 from typing import List, Dict, Any
 
 if sys.platform == "win32":
@@ -31,13 +34,15 @@ if ROOT_DIR not in sys.path:
 from datetime import datetime, timezone
 from pipeline.multi_poller import MultiPlatformPoller
 from pipeline.live_free_crawler import LiveFreeSocialCrawler
-from pipeline.veracity_checker import VeracityChecker
+from pipeline.veracity_checker import AI_MICROSERVICE_URL, VeracityChecker
 from pipeline.spatio_temporal_clusterer import SpatioTemporalClusterer
 from pipeline.event_processor import format_relative_time
 from core.config import APIFY_TOKEN, DEFAULT_PORT, DEFAULT_WINDOW_MINUTES, FB_CRAWL_STRATEGY
 
 try:
     import redis
+    from redis.backoff import NoBackoff
+    from redis.retry import Retry
     REDIS_AVAILABLE = True
 except ImportError:
     redis = None
@@ -60,12 +65,15 @@ CLUSTERER = SpatioTemporalClusterer(radius_meters=400.0, time_window_seconds=270
 # =============================================================================
 
 _SERVER_START_TIME = time.time()
+_AI_ENDPOINT = urlsplit(AI_MICROSERVICE_URL)
+_AI_PORT = _AI_ENDPOINT.port or (443 if _AI_ENDPOINT.scheme == "https" else 80)
+_KAFKA_BOOTSTRAP = os.environ.get("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
 SYSTEM_HEALTH_CACHE = {
-    "ai_service": {"status": "ONLINE", "latency_ms": 42.0, "port": 8000},
-    "redis": {"status": "ONLINE" if REDIS_AVAILABLE else "STANDBY", "latency_ms": 2.1, "port": REDIS_PORT},
-    "kafka": {"status": "ONLINE", "latency_ms": 5.0, "port": 9092},
-    "crawler": {"status": "ONLINE", "active_poller": True},
-    "last_checked": int(time.time()),
+    "ai_service": {"status": "UNKNOWN", "latency_ms": -1.0, "port": _AI_PORT},
+    "redis": {"status": "UNKNOWN", "latency_ms": -1.0, "port": REDIS_PORT},
+    "kafka": {"status": "UNKNOWN", "latency_ms": -1.0, "port": 9092},
+    "crawler": {"status": "UNKNOWN", "active_poller": False},
+    "last_checked": 0,
     "uptime_seconds": 0
 }
 _HEALTH_WORKER_STARTED = False
@@ -73,13 +81,67 @@ _HEALTH_WORKER_STARTED = False
 
 def _ping_service_socket(host: str, port: int, timeout_sec: float = 0.8) -> tuple:
     """Ping socket voi timeout an toan 0.8s trong luong ngam doc lap, do dac do tre ms."""
-    t0 = time.time()
+    t0 = time.monotonic()
     try:
         with socket.create_connection((host, port), timeout=timeout_sec):
-            latency = round((time.time() - t0) * 1000, 1)
+            latency = round((time.monotonic() - t0) * 1000, 1)
             return True, latency
     except Exception:
         return False, -1.0
+
+
+def _probe_ai_health():
+    result = {"status": "STANDBY", "latency_ms": -1.0, "port": _AI_PORT}
+    started = time.monotonic()
+    try:
+        with urlopen(f"{_AI_ENDPOINT.scheme}://{_AI_ENDPOINT.netloc}/health", timeout=0.8) as response:
+            payload = json.load(response)
+        if payload.get("status") == "healthy":
+            models = payload.get("models") or {}
+            ready = models.get("branch_1_phobert_fast") == "active" and all(
+                state == "active" for state in models.values()
+            )
+            result.update(
+                status="ONLINE" if ready else "DEGRADED",
+                latency_ms=round((time.monotonic() - started) * 1000, 1),
+                models=models,
+            )
+    except (OSError, ValueError, AttributeError):
+        pass
+    return result
+
+
+def _probe_kafka_health():
+    result = {"status": "STANDBY", "latency_ms": -1.0, "port": 9092, "check": "tcp"}
+    for endpoint in _KAFKA_BOOTSTRAP.split(","):
+        try:
+            address = urlsplit("//" + endpoint.strip())
+            host, port = address.hostname, address.port or 9092
+        except ValueError:
+            continue
+        if not host:
+            continue
+        reachable, latency = _ping_service_socket(host, port)
+        result.update(port=port, latency_ms=latency)
+        if reachable:
+            result["status"] = "ONLINE"
+            break
+    return result
+
+
+def _probe_redis_health():
+    result = {"status": "STANDBY", "latency_ms": -1.0, "port": REDIS_PORT}
+    if not REDIS_AVAILABLE:
+        return result
+    started = time.monotonic()
+    try:
+        with redis.Redis(host=REDIS_HOST, port=REDIS_PORT, socket_connect_timeout=0.2,
+                         socket_timeout=0.2, retry=Retry(NoBackoff(), 0)) as client:
+            if client.ping():
+                result.update(status="ONLINE", latency_ms=round((time.monotonic() - started) * 1000, 1))
+    except (OSError, redis.RedisError):
+        pass
+    return result
 
 
 def start_background_health_worker(interval_seconds: int = 10):
@@ -90,51 +152,17 @@ def start_background_health_worker(interval_seconds: int = 10):
     _HEALTH_WORKER_STARTED = True
 
     def _worker_loop():
-        failure_counters = {"ai": 0, "redis": 0, "kafka": 0}
+        global SYSTEM_HEALTH_CACHE
         while True:
-            try:
-                # 1. Kiem tra AI Service (Port 8001 hoac 8000)
-                ai_ok, ai_lat = _ping_service_socket("localhost", 8001, timeout_sec=0.8)
-                ai_port = 8001
-                if not ai_ok:
-                    ai_ok, ai_lat = _ping_service_socket("localhost", 8000, timeout_sec=0.8)
-                    ai_port = 8000
-                if ai_ok:
-                    failure_counters["ai"] = 0
-                    SYSTEM_HEALTH_CACHE["ai_service"] = {"status": "ONLINE", "latency_ms": ai_lat, "port": ai_port}
-                else:
-                    failure_counters["ai"] += 1
-                    if failure_counters["ai"] >= 2:
-                        SYSTEM_HEALTH_CACHE["ai_service"] = {"status": "STANDBY", "latency_ms": -1.0, "port": ai_port}
-
-                # 2. Kiem tra Redis (Port 6379)
-                r_ok, r_lat = _ping_service_socket(REDIS_HOST, REDIS_PORT, timeout_sec=0.8)
-                if r_ok:
-                    failure_counters["redis"] = 0
-                    SYSTEM_HEALTH_CACHE["redis"] = {"status": "ONLINE", "latency_ms": r_lat, "port": REDIS_PORT}
-                else:
-                    failure_counters["redis"] += 1
-                    if failure_counters["redis"] >= 2:
-                        SYSTEM_HEALTH_CACHE["redis"] = {"status": "STANDBY", "latency_ms": -1.0, "port": REDIS_PORT}
-
-                # 3. Kiem tra Kafka (Port 9092)
-                k_ok, k_lat = _ping_service_socket("localhost", 9092, timeout_sec=0.8)
-                if k_ok:
-                    failure_counters["kafka"] = 0
-                    SYSTEM_HEALTH_CACHE["kafka"] = {"status": "ONLINE", "latency_ms": k_lat, "port": 9092}
-                else:
-                    failure_counters["kafka"] += 1
-                    if failure_counters["kafka"] >= 2:
-                        SYSTEM_HEALTH_CACHE["kafka"] = {"status": "STANDBY", "latency_ms": -1.0, "port": 9092}
-
-                SYSTEM_HEALTH_CACHE["crawler"] = {
-                    "status": "ONLINE",
-                    "active_poller": GLOBAL_STATE.get("poller") is not None or GLOBAL_STATE.get("mode") == "live"
-                }
-                SYSTEM_HEALTH_CACHE["last_checked"] = int(time.time())
-                SYSTEM_HEALTH_CACHE["uptime_seconds"] = int(time.time() - _SERVER_START_TIME)
-            except Exception:
-                pass
+            SYSTEM_HEALTH_CACHE = {
+                "ai_service": _probe_ai_health(),
+                "redis": _probe_redis_health(),
+                "kafka": _probe_kafka_health(),
+                "crawler": {"status": "STANDBY" if GLOBAL_STATE["mode"] == "simulation" else "UNKNOWN",
+                            "active_poller": False},
+                "last_checked": int(time.time()),
+                "uptime_seconds": int(time.time() - _SERVER_START_TIME),
+            }
             time.sleep(interval_seconds)
 
     t = threading.Thread(target=_worker_loop, daemon=True, name="DashboardHealthWorker")
@@ -229,42 +257,62 @@ def compute_admin_ward_metrics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
-def compute_time_series_metrics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """Phan tich dien bien ngap 6 gio gan nhat theo sac thai NEG, NEU, POS."""
-    now = time.time()
-    hours = []
-    neg_counts = [0] * 6
-    neu_counts = [0] * 6
-    pos_counts = [0] * 6
+def _event_timestamp(event):
+    for key in ("create_time", "timestamp"):
+        value = event.get(key)
+        if isinstance(value, bool):
+            continue
+        try:
+            timestamp = float(value)
+        except (TypeError, ValueError, OverflowError):
+            continue
+        if math.isfinite(timestamp) and timestamp > 0:
+            return timestamp
+    return None
 
-    for i in range(5, -1, -1):
-        slot_t = now - i * 3600
-        hour_str = time.strftime("%H:00", time.localtime(slot_t))
-        hours.append(hour_str)
+
+def _normalized_polarity(value):
+    value = str(value or "").strip().upper()
+    return {"POSITIVE": "POS", "NEGATIVE": "NEG", "NEUTRAL": "NEU"}.get(value, value)
+
+
+def _event_polarity(event):
+    candidates = [event.get("polarity")]
+    content = (event.get("veracity") or {}).get("content_check") or {}
+    for triplets in (content.get("triplets"), event.get("triplets"), event.get("aste_triplets")):
+        if isinstance(triplets, list) and triplets and isinstance(triplets[0], dict):
+            candidates.append(triplets[0].get("polarity"))
+            break
+    candidates.extend((event.get("sentiment"), event.get("status_tag")))
+    for value in candidates:
+        polarity = _normalized_polarity(value)
+        if polarity in {"NEG", "NEU", "POS"}:
+            return polarity
+
+    severity = str(event.get("severity") or "").casefold()
+    if severity == "recovered" or any(s in severity for s in ("an toàn", "nước rút")):
+        return "POS"
+    if "dự báo" in severity:
+        return "NEU"
+    return "NEG"
+
+
+def compute_time_series_metrics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Đếm theo giờ hiện tại và năm giờ liền trước, dùng thời gian sự kiện."""
+    now = time.time()
+    local_now = time.localtime(now)
+    hour_start = int(now) - local_now.tm_min * 60 - local_now.tm_sec
+    first_slot = hour_start - 5 * 3600
+    hours = [time.strftime("%H:00", time.localtime(first_slot + i * 3600)) for i in range(6)]
+    counts = {"NEG": [0] * 6, "NEU": [0] * 6, "POS": [0] * 6}
 
     for ev in events:
-        ev_t = ev.get("create_time") or ev.get("timestamp") or now
-        diff_hours = (now - ev_t) / 3600.0
-        if 0 <= diff_hours < 6.0:
-            idx = 5 - int(diff_hours)
-            if 0 <= idx < 6:
-                sev = (ev.get("severity") or "").lower()
-                pol = (ev.get("sentiment") or ev.get("status_tag") or "").upper()
-                if "pos" in pol or "an toàn" in sev or "nước rút" in sev:
-                    pos_counts[idx] += 1
-                elif "neu" in pol or "dự báo" in sev:
-                    neu_counts[idx] += 1
-                else:
-                    neg_counts[idx] += 1
-        else:
-            neg_counts[5] += 1
+        timestamp = _event_timestamp(ev)
+        if timestamp is not None and first_slot <= timestamp <= now:
+            slot = int((timestamp - first_slot) // 3600)
+            counts[_event_polarity(ev)][slot] += 1
 
-    return {
-        "hours": hours,
-        "neg": neg_counts,
-        "neu": neu_counts,
-        "pos": pos_counts
-    }
+    return {"hours": hours, "neg": counts["NEG"], "neu": counts["NEU"], "pos": counts["POS"]}
 
 
 def compute_throughput_metrics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -278,8 +326,13 @@ def compute_throughput_metrics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
     veracity_passed = 0
     total = len(events)
+    now = time.time()
+    recent = 0
 
     for ev in events:
+        timestamp = _event_timestamp(ev)
+        if timestamp is not None and now - 60 < timestamp <= now:
+            recent += 1
         p = (ev.get("platform") or "").lower()
         src = (ev.get("source") or "").lower()
         txt = (ev.get("text") or "").lower()
@@ -296,14 +349,22 @@ def compute_throughput_metrics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
             platforms["news_rss"] += 1
 
         ver = ev.get("veracity") or {}
-        if ver.get("status") in ["verified", "passed", "cluster_confirmed"] or ver.get("confidence", 1.0) >= 0.7:
+        status = str(ver.get("status") or "").strip().lower()
+        if status in {"confirmed", "verified", "passed", "cluster_confirmed"}:
             veracity_passed += 1
+        elif not status:
+            score = ver.get("confidence_score")
+            if isinstance(score, (int, float)) and score >= 0.75:
+                veracity_passed += 1
+            elif score is None:
+                legacy_score = ver.get("confidence")
+                if isinstance(legacy_score, (int, float)) and legacy_score >= 0.7:
+                    veracity_passed += 1
 
-    pass_rate = round((veracity_passed / total * 100), 1) if total > 0 else 95.0
-    current_rpm = min(max(total // 2, 8), 35)
+    pass_rate = round((veracity_passed / total * 100), 1) if total else 0.0
 
     return {
-        "current_rpm": current_rpm,
+        "current_rpm": recent,
         "platforms": platforms,
         "total_posts": total,
         "veracity_pass_rate": pass_rate
@@ -393,6 +454,7 @@ def get_redis_client():
                 db=0,
                 socket_connect_timeout=0.2,
                 socket_timeout=0.2,
+                retry=Retry(NoBackoff(), 0),
                 decode_responses=True
             )
         _REDIS_CLIENT.ping()
@@ -1244,6 +1306,7 @@ def start_server(port: int = DEFAULT_PORT, mode: str = "live", apify_token: str 
         httpd = socketserver.ThreadingTCPServer(server_address, HeatmapRequestHandler)
 
     with httpd:
+        start_background_health_worker()
         print(f"\n>> Bản đồ nhiệt đang hoạt động tại: http://localhost:{port}")
         print(f"   (Mở trình duyệt vào địa chỉ trên để xem)")
         print(f"   (Nhấn Ctrl+C trong terminal để dừng server)\n")
