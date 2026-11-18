@@ -2224,7 +2224,7 @@
 
                 // CHỐNG LAG: Tạo chữ ký băm kiểm tra sự thay đổi của tập dữ liệu
                 const newSignature = `${serverCurrentMode}_${currentEvents.length}_` + 
-                    currentEvents.map(e => `${e.canonical_id || e.id || ''}_${e.create_time || e.timestamp || ''}`).join('|');
+                    currentEvents.map(e => `${e.canonical_id || e.id || ''}_${e.create_time || e.timestamp || ''}_${e.report_count || 1}_${e.incident_status || ''}_${e.incident_updated_at || ''}_${e.report_version || ''}`).join('|');
 
                 // CHỈ VẼ LẠI MAP VÀ DOM KHI DỮ LIỆU THỰC SỰ THAY ĐỔI
                 if (newSignature !== lastEventsSignature) {
@@ -2517,7 +2517,7 @@
                 const rawStreet = loc.street || '';
                 const rawWard = loc.ward || '';
                 const rawDistrict = loc.district || '';
-                const isCitywide = rawWard.includes('Toàn thành phố') || (!rawStreet && !rawWard) || loc.display_name === 'Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)';
+                const isCitywide = loc.precision === 'city' || rawWard.includes('Toàn thành phố') || (!rawStreet && !rawWard) || loc.display_name === 'Khu vực Toàn TP. Hồ Chí Minh (Diện rộng)';
                 const platform = (ev.platform || 'facebook').toLowerCase();
                 const isHigh = ev.severity === 'high';
 
@@ -2525,7 +2525,7 @@
                 // 1) Khi bài viết có tên đường -> Tên đường là yếu tố chính (tiêu đề to rõ), Phường là yếu tố phụ
                 // 2) Khi không có tên đường -> Phường là yếu tố chính
                 // 3) Khi không có cả 2 -> Toàn thành phố là yếu tố chính
-                const hasStreet = rawStreet && rawStreet.trim() && !rawStreet.toLowerCase().startsWith('khu vực') && !rawStreet.toLowerCase().startsWith('toàn');
+                const hasStreet = !isCitywide && loc.precision !== 'ward' && rawStreet && rawStreet.trim() && !rawStreet.toLowerCase().startsWith('khu vực') && !rawStreet.toLowerCase().startsWith('toàn');
 
                 let primaryTitle = '';
                 let secondarySubtitle = '';
@@ -2589,7 +2589,8 @@
 
                 if (hasStreet) {
                     primaryTitle = cleanStreet || rawStreet;
-                    secondarySubtitle = `<b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${displayWard}</span> ${regionTag}`;
+                    const locationNote = loc.coordinate_kind === 'direct' ? 'Tọa độ do nguồn cung cấp' : 'Ghim đại diện trên tuyến đường';
+                    secondarySubtitle = `<b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${displayWard}</span> ${regionTag}<br>${locationNote}`;
                 } else if (rawWard && !isCitywide) {
                     primaryTitle = `${displayWard} ${regionTag}`;
                     secondarySubtitle = `<span style="color: #64748b; font-style: italic;">Khu vực ĐVHC (Không có tên đường cụ thể)</span>`;
@@ -2604,19 +2605,24 @@
                 const vScore = v.confidence_score !== undefined ? Math.round(v.confidence_score * 100) : 75;
                 const vLabel = v.status_label || (vStatus === 'confirmed' ? 'Đã xác thực' : (vStatus === 'suspect' ? 'Nghi vấn' : 'Chưa kiểm chứng'));
                 const weatherCheck = v.weather_check || {};
-                const weatherReason = weatherCheck.reason || 'Trạm khí tượng ghi nhận lượng mưa bình thường';
+                const weatherReason = weatherCheck.reason || 'Chưa có dữ liệu Open-Meteo';
                 const evidenceCount = v.evidence_count || 1;
                 const originalUrl = ev.url || '';
 
                 // Heat points
                 const pts = loc.heat_points && loc.heat_points.length > 0 ? loc.heat_points : [[lat, lon]];
-                const intensity = isCitywide ? 0.8 : (isHigh ? 1.0 : 0.6);
-                pts.forEach(p => heatPoints.push([p[0], p[1], intensity]));
+                const incidentLabels = {receded: 'Có báo cáo nước đã rút', forecast: 'Tin dự báo nguy cơ ngập', response: 'Tin về hoạt động ứng phó'};
+                const incidentNote = incidentLabels[ev.incident_status];
+                if (hasStreet && !incidentNote) {
+                    pts.forEach(p => heatPoints.push([p[0], p[1], isHigh ? 1.0 : 0.6]));
+                }
 
                 // Marker icon
                 let markerHtml = '';
                 if (isCitywide) {
                     markerHtml = `<div class="citywide-marker-pin" title="Phản ánh diện rộng">🌐</div>`;
+                } else if (!hasStreet) {
+                    markerHtml = '<div class="citywide-marker-pin" title="Vị trí đại diện phường/xã">◎</div>';
                 } else if (platform === 'youtube') {
                     markerHtml = `<div class="live-marker-pin youtube-marker-pin" title="${loc.display_name || 'YouTube'}">▶</div>`;
                 } else if (platform === 'citizen_report' || (ev.text && ev.text.includes('1022'))) {
@@ -2627,9 +2633,8 @@
 
                 // Trích xuất ASTE Triplet cho Đề xuất 3
                 const contentCheck = v.content_check || {};
-                const tripletsList = (contentCheck.triplets && contentCheck.triplets.length > 0) 
-                    ? contentCheck.triplets 
-                    : (ev.triplets || ev.aste_triplets || []);
+                const tripletsList = [ev.aste_triplets, ev.triplets, contentCheck.triplets]
+                    .find(triplets => Array.isArray(triplets) && triplets.length > 0) || [];
                 const primaryTriplet = tripletsList[0] || {};
 
                 const aspectSpan = primaryTriplet.aspect || ev.aspect || cleanStreet || (rawStreet || 'Điểm ngập TP.HCM');
@@ -2696,7 +2701,7 @@
                         ${ev.report_count && ev.report_count > 1 ? `
                         <div style="background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-bottom: 6px; display: flex; align-items: center; gap: 4px;">
                             <span>👥</span>
-                            <span><b>Điểm ngập trọng điểm:</b> Được báo cáo bởi ${ev.report_count} người</span>
+                            <span>${ev.report_count} báo cáo về sự cố</span>
                         </div>
                         ` : ''}
                         <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; color: #0f172a;">${primaryTitle}</div>
@@ -2753,9 +2758,7 @@
                             ${originalUrl ? `<a href="${originalUrl}" target="_blank" style="color: #0284c7; text-decoration: underline; font-weight: 700; font-size: 11px;">🔗 Xem bài đăng gốc ↗</a>` : ''}
                         </div>
 
-                        <div style="font-size: 10px; color: #b91c1c; font-weight: bold; border-top: 1px solid #f1f5f9; padding-top: 4px;">
-                            🚨 Khuyến cáo: Nước ngập sâu, người tham gia giao thông nên né đoạn đường này!
-                        </div>
+                        ${incidentNote ? `<div style="font-size: 11px; color: #475569; font-weight: bold;">${incidentNote}</div>` : ''}
                     </div>
                 `;
 
@@ -3822,8 +3825,10 @@
             const elCrawlBadge = document.getElementById('health-badge-crawler');
             const elCrawlRate = document.getElementById('health-crawler-rate');
             if (elCrawlBadge) {
-                elCrawlBadge.innerText = crawl.active_poller ? 'SCANNING' : (crawl.status || 'UNKNOWN');
-                elCrawlBadge.className = 'health-status-badge ' + (crawl.active_poller ? 'scanning' : 'offline');
+                const scanning = crawl.active_poller && crawl.phase === 'scanning';
+                elCrawlBadge.innerText = scanning ? 'SCANNING' : (crawl.status || 'UNKNOWN');
+                elCrawlBadge.title = crawl.active_poller && crawl.phase === 'idle' ? 'Chu kỳ vừa xong, chưa có tin mới' : '';
+                elCrawlBadge.className = 'health-status-badge ' + (scanning ? 'scanning' : crawl.status === 'ONLINE' ? 'online' : 'offline');
             }
             if (elCrawlRate) {
                 elCrawlRate.innerText = cachedDashboardSummary?.throughput?.current_rpm ?? '—';

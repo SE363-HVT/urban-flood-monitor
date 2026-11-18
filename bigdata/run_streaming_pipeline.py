@@ -105,21 +105,33 @@ def main():
     try:
         # Dọn dẹp và khởi tạo state ban đầu
         state_file = os.path.join(ROOT_DIR, "data", "live_stream_state.json")
+        from bigdata.streaming.stream_storage import crawler_heartbeat_path, write_json_atomic
+        heartbeat_file = crawler_heartbeat_path(os.path.join(ROOT_DIR, "data"), args.mode)
+        same_mode = False
+        try:
+            with open(state_file, encoding="utf-8") as stream:
+                same_mode = str(json.load(stream).get("mode") or "").endswith(args.mode)
+        except (OSError, ValueError, TypeError, AttributeError):
+            pass
         try:
             import redis
-            r = redis.Redis(host="localhost", port=6379, db=0, socket_connect_timeout=0.2, decode_responses=True)
-            if r.ping():
+            r = redis.Redis(host="localhost", port=6379, db=0, socket_connect_timeout=0.2,
+                            socket_timeout=0.2, decode_responses=True)
+            if r.ping() and r.get("flood:serving:mode") != args.mode:
                 # Dọn dẹp sạch sẽ các key cũ để chống nhiễm chéo giữa Live và Simulation
                 keys = r.keys("flood:event:*")
                 if keys:
                     r.delete(*keys)
                 r.delete("flood:timeline:zset", "flood:geo:index")
+                r.delete("flood:serving:updated_at")
                 r.set("flood:serving:mode", args.mode)
                 r.set("flood:serving:window", "120 phút")
         except Exception:
             r = None
 
-        if args.mode == "live":
+        if same_mode:
+            print("   ✓ Giữ các sự kiện hiện có khi khởi động lại cùng chế độ.")
+        elif args.mode == "live":
             # CHẾ ĐỘ LIVE: TUYỆT ĐỐI KHÔNG DÙNG SIMULATION REPLAYER!
             # Khởi tạo trạng thái hoàn toàn sạch để chờ luồng tin tức Near Real-Time thật
             with open(state_file, "w", encoding="utf-8") as sf:
@@ -188,7 +200,10 @@ def main():
         if not args.skip_dashboard:
             print("\n[3/5] Khởi động Leaflet Heatmap Dashboard Web Server (Port 8050)...")
             server_script = os.path.join(ROOT_DIR, "dashboard", "server.py")
-            p_dash = subprocess.Popen([PYTHON_EXE, server_script, "--port", "8050", "--mode", args.mode], cwd=ROOT_DIR)
+            p_dash = subprocess.Popen(
+                [PYTHON_EXE, server_script, "--port", "8050", "--mode", args.mode, "--clean"],
+                cwd=ROOT_DIR,
+            )
             processes.append(("Dashboard Server", p_dash))
             time.sleep(1.5)
             print("   ✅ Dashboard đang chạy tại: http://localhost:8050")
@@ -211,19 +226,47 @@ def main():
         from bigdata.producers.social_producer import SocialKafkaProducer
         producer = SocialKafkaProducer()
 
+        def record_crawler_status(status, **fields):
+            checked_at = int(time.time())
+            try:
+                write_json_atomic(heartbeat_file, {
+                    "status": status, "checked_at": checked_at,
+                    "expires_at": checked_at + max(120, args.interval + 60), **fields,
+                })
+            except OSError as error:
+                print(f"   Cảnh báo ghi trạng thái crawler: {error}")
+
         cycle = 0
         while True:
             cycle += 1
             print(f"\n--- [Cycle #{cycle}] Thu nạp sự kiện ngập lụt lúc {time.strftime('%H:%M:%S')} ---")
             if args.mode == "live":
-                stats = producer.run_live_cycle(enable_free_crawler=True, enable_apify_deep=args.enable_apify)
-                print(f"   📡 [Live Free Ingestion] Phát hiện: {stats['total_discovered']} tin | Đã bắn vào Kafka: {stats['published_to_kafka']} tin")
+                record_crawler_status("ONLINE", phase="scanning")
+                try:
+                    stats = producer.run_live_cycle(enable_free_crawler=True, enable_apify_deep=args.enable_apify)
+                    count = stats["total_discovered"]
+                    record_crawler_status("ONLINE", phase="idle" if count == 0 else "completed",
+                                          discovered=count, published=stats["published_to_kafka"],
+                                          buffered=stats["buffered_locally"])
+                    print(f"   📡 [Live Free Ingestion] Phát hiện: {count} tin | Đã bắn vào Kafka: {stats['published_to_kafka']} tin")
+                except Exception as error:
+                    record_crawler_status("DEGRADED", phase="failed", error_type=type(error).__name__)
+                    print(f"   Cảnh báo chu kỳ crawler: {error}")
             else:
                 stats = producer.run_simulation_cycle(batch_size=10)
                 print(f"   📡 [Simulation Replayer] Đã bắn: {stats['published_to_kafka']} tin vào Kafka topic {stats['topic']}")
 
             print(f"   ⏱️ Đang chờ {args.interval} giây cho chu kỳ tiếp theo... (Nhấn Ctrl+C để dừng)")
-            time.sleep(args.interval)
+            deadline = time.monotonic() + args.interval
+            while time.monotonic() < deadline:
+                if p_spark.poll() is not None:
+                    print(f"   PySpark dừng (mã {p_spark.returncode}). Khởi động lại từ offset đã xác nhận.")
+                    time.sleep(3)
+                    processes.remove(("PySpark Engine", p_spark))
+                    p_spark = subprocess.Popen([PYTHON_EXE, "-u", spark_script, "--mode", args.mode],
+                                               stdout=spark_log, stderr=spark_log, cwd=ROOT_DIR)
+                    processes.append(("PySpark Engine", p_spark))
+                time.sleep(min(1, max(0, deadline - time.monotonic())))
 
     except KeyboardInterrupt:
         print("\n\n[*] Đang dừng toàn bộ các tiến trình streaming an toàn...")

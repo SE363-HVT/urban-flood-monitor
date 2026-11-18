@@ -37,8 +37,10 @@ if sys.platform == "win32":
 
 import json
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from collections import defaultdict
+from hashlib import sha256
+from pathlib import Path
 from typing import Dict, Any, List, Optional
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -51,12 +53,13 @@ from pipeline.veracity_checker import VeracityChecker
 from pipeline.event_processor import clean_stream_text, analyze_severity_heuristic, format_relative_time
 from pipeline.spatio_temporal_clusterer import SpatioTemporalClusterer
 from scripts.crawlers.organize_raw_episodes import determine_episode_id
+from bigdata.streaming.stream_storage import write_json_atomic
 
 os.environ['PYSPARK_PYTHON'] = sys.executable
 os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import from_json, col, udf
+from pyspark.sql.functions import coalesce, col, udf
 from pyspark.sql.types import (
     StructType, StructField, StringType, LongType, DoubleType
 )
@@ -70,6 +73,8 @@ except ImportError:
 
 try:
     from kafka import KafkaProducer, KafkaConsumer
+    from kafka.errors import KafkaConfigurationError
+    from kafka.structs import OffsetAndMetadata
     KAFKA_AVAILABLE = True
 except ImportError:
     KafkaProducer = None
@@ -104,7 +109,8 @@ EVENT_SCHEMA = StructType([
     StructField("freshness", StringType(), True),
     StructField("status_tag", StringType(), True),
     StructField("weight", DoubleType(), True),
-    StructField("crawler_source", StringType(), True)
+    StructField("crawler_source", StringType(), True),
+    StructField("_source_version", StringType(), True),
 ])
 
 GIS_OUTPUT_SCHEMA = StructType([
@@ -114,6 +120,8 @@ GIS_OUTPUT_SCHEMA = StructType([
     StructField("lat", DoubleType(), True),
     StructField("lon", DoubleType(), True),
     StructField("display_name", StringType(), True),
+    StructField("precision", StringType(), True),
+    StructField("coordinate_kind", StringType(), True),
     StructField("cause", StringType(), True),
     StructField("cause_label", StringType(), True)
 ])
@@ -147,7 +155,7 @@ def extract_gis_udf(text):
         if not matched:
             return default_res
 
-        st = matched.get("street") or matched.get("display_name", "")
+        st = matched.get("street") or ""
         w = matched.get("ward", "")
         off_w = RESOLVER.resolve_to_official_ward(w, "") or w or "Toàn TP.HCM"
 
@@ -158,6 +166,8 @@ def extract_gis_udf(text):
             "lat": float(matched.get("lat") or 10.7769),
             "lon": float(matched.get("lon") or 106.7009),
             "display_name": str(matched.get("display_name") or st or "Điểm ngập TP.HCM"),
+            "precision": matched.get("precision"),
+            "coordinate_kind": matched.get("coordinate_kind"),
             "cause": str(matched.get("cause", "rain") or "rain"),
             "cause_label": str(matched.get("cause_label", "Mưa lớn, nước không thoát kịp") or "Mưa lớn")
         }
@@ -187,8 +197,21 @@ class SparkFloodProcessor:
         self.spark = self._create_spark_session()
         self.active_events_cache: List[Dict[str, Any]] = []
         self.redis_client = self._init_redis()
+        self._hot_needs_retry = False
+        self._hot_retry_at = 0.0
         self.dlq_producer = self._init_dlq_producer()
         self._warm_up_cache()
+        self.recent_reports = {}
+        now = datetime.now(timezone.utc)
+        for day in (now - timedelta(days=1), now):
+            files = Path(LAKEHOUSE_DIR).glob(f"episode_id=*/date={day:%Y-%m-%d}/report-{self.mode}-*.jsonl")
+            for path in sorted(files, key=lambda item: item.stat().st_mtime_ns):
+                with path.open(encoding="utf-8") as stream:
+                    event = json.load(stream)
+                if (event.get("create_time") or 0) >= now.timestamp() - 86400:
+                    self.recent_reports[event["canonical_id"]] = event
+        if self.recent_reports:
+            self._publish_verified_batch([], batch_id=0)
 
     def _warm_up_cache(self):
         """Khởi động nạp trước các sự kiện còn hiệu lực trong 24 giờ từ Redis hoặc file đệm."""
@@ -277,7 +300,8 @@ class SparkFloodProcessor:
             p = KafkaProducer(
                 bootstrap_servers="localhost:9092",
                 value_serializer=lambda v: json.dumps(v, ensure_ascii=False).encode('utf-8'),
-                request_timeout_ms=1500
+                request_timeout_ms=1500,
+                max_block_ms=1500,
             )
             return p
         except Exception:
@@ -294,15 +318,14 @@ class SparkFloodProcessor:
         }
         if self.dlq_producer:
             try:
-                self.dlq_producer.send("social.flood.dlq", value=dlq_event)
+                self.dlq_producer.send("social.flood.dlq", value=dlq_event).get(timeout=3)
                 return
-            except Exception:
-                pass
-        try:
-            with open(DLQ_FILE, "a", encoding="utf-8") as f:
-                f.write(json.dumps(dlq_event, ensure_ascii=False) + "\n")
-        except Exception:
-            pass
+            except Exception as error:
+                print(f"[Spark Engine] DLQ Kafka chưa xác nhận: {error}")
+        with open(DLQ_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(dlq_event, ensure_ascii=False) + "\n")
+            f.flush()
+            os.fsync(f.fileno())
 
     def process_micro_batch(self, batch_df, batch_id: int, raw_records: Optional[List[Dict[str, Any]]] = None):
         """
@@ -317,12 +340,13 @@ class SparkFloodProcessor:
 
         # Áp dụng Spark UDFs song song
         transformed_df = batch_df \
-            .withColumn("gis", extract_gis_udf(col("text"))) \
-            .withColumn("sev", extract_severity_udf(col("text")))
+            .withColumn("gis", extract_gis_udf(coalesce(col("text"), col("title")))) \
+            .withColumn("sev", extract_severity_udf(coalesce(col("text"), col("title"))))
 
         rows = transformed_df.collect()
         verified_batch = []
-        raw_map = {r.get("canonical_id") or str(r.get("id")): r for r in (raw_records or [])}
+        raw_map = {self._fingerprint(r): r for r in (raw_records or [])}
+        raw_by_id = {r.get("canonical_id") or str(r.get("id")): r for r in (raw_records or [])}
 
         payload_list = []
         for row in rows:
@@ -351,8 +375,9 @@ class SparkFloodProcessor:
                 self.send_dlq("CorruptedTextError", "Text length too short", record)
                 continue
 
-            cid = record.get("canonical_id") or str(record.get("id"))
-            orig = raw_map.get(cid) or raw_map.get(str(record.get("id"))) or {}
+            orig = raw_map.get(record.get("_source_version"))
+            if orig is None:
+                orig = raw_by_id.get(record.get("canonical_id") or str(record.get("id")), {})
             orig_loc = orig.get("location") if isinstance(orig.get("location"), dict) else {}
 
             st_name = orig_loc.get("street") or gis.get("street") or ""
@@ -360,7 +385,7 @@ class SparkFloodProcessor:
             lat = float(orig_loc.get("lat") or gis.get("lat") or 10.7769)
             lon = float(orig_loc.get("lon") or gis.get("lon") or 106.7009)
 
-            ctime = record.get("create_time") or orig.get("create_time") or int(time.time())
+            ctime = record.get("create_time") or record.get("timestamp") or int(time.time())
             hist_ts = record.get("historical_timestamp") or orig.get("historical_timestamp")
 
             event_payload = {
@@ -396,8 +421,7 @@ class SparkFloodProcessor:
                 "weight": float(sev.get("weight") or 2.0),
                 "url": record.get("url") or ""
             }
-            if orig.get("veracity"):
-                event_payload["veracity"] = orig["veracity"]
+            self._preserve_source_fields(event_payload, orig, gis)
             payload_list.append(event_payload)
 
         # Xử lý song song 8 luồng VeracityChecker để hoàn thành micro-batch trong < 0.3s
@@ -409,16 +433,51 @@ class SparkFloodProcessor:
         with ThreadPoolExecutor(max_workers=8) as pool:
             verified_batch = list(pool.map(_verify_one, payload_list))
 
-        # 2. Gom cụm không - thời gian (Spatio-Temporal Flood Clustering)
-        clustered_batch = self.clusterer.cluster_events(verified_batch)
+        self._publish_verified_batch(verified_batch, batch_id)
 
-        # 3. CẬP NHẬT HOT PATH: Redis In-Memory Serving Store & File Fallback
-        self._update_hot_dashboard_state(clustered_batch)
+    def _preserve_source_fields(self, event, original, resolved):
+        for field in ("aspect", "opinion", "polarity", "sentiment", "triplets", "aste_triplets",
+                      "media_urls", "video_url", "media", "historical_timestamp", "crawler_source"):
+            if original.get(field) is not None:
+                event[field] = original[field]
+        location = event["location"]
+        source_location = original.get("location")
+        if not isinstance(source_location, dict):
+            source_location = {}
+        if location.get("street"):
+            level, kind = "street", "street_center"
+        elif str(location.get("ward") or "").lower().startswith(("phường", "xã", "đặc khu")):
+            level, kind = "ward", "administrative_center"
+        else:
+            level, kind = "city", "administrative_center"
+        metadata = source_location or resolved
+        location["precision"] = metadata.get("precision") or level
+        location["coordinate_kind"] = metadata.get("coordinate_kind") or kind
+        if metadata.get("source"):
+            location["coordinate_source"] = metadata["source"]
+        event["stream_mode"] = self.mode
+        event["report_version"] = self._fingerprint(original or event)
 
-        # 4. CẬP NHẬT COLD PATH: Data Lakehouse Partitioning
-        self._append_cold_lakehouse(verified_batch)
+    @staticmethod
+    def _fingerprint(record):
+        stable = {k: v for k, v in record.items() if k not in {
+            "ingested_at_iso", "created_at_iso", "relative_time", "freshness", "status_tag",
+        }}
+        return sha256(json.dumps(stable, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
 
-        print(f"[PySpark Stream] Hoàn tất micro-batch #{batch_id}. Đã xuất bản {len(clustered_batch)} sự kiện (đã gom cụm & xác thực)!")
+    def _publish_verified_batch(self, events, batch_id):
+        self._append_cold_lakehouse(events)
+        cutoff = int(time.time()) - 86400
+        self.recent_reports = {
+            cid: event for cid, event in self.recent_reports.items()
+            if (event.get("create_time") or 0) >= cutoff
+        }
+        for event in events:
+            if (event.get("create_time") or 0) >= cutoff:
+                self.recent_reports[event["canonical_id"]] = event
+        clustered = self.clusterer.cluster_events(list(self.recent_reports.values()))
+        self._update_hot_dashboard_state(clustered)
+        print(f"[PySpark Stream] Micro-batch #{batch_id}: {len(events)} báo cáo đã lưu, {len(clustered)} sự kiện đang phục vụ.")
 
     def _update_hot_dashboard_state(self, new_events: List[Dict[str, Any]]):
         """Cập nhật Hot Cache phục vụ Leaflet Dashboard tức thì (< 3ms) theo cơ chế cộng dồn (Cumulative Ingestion)."""
@@ -468,7 +527,14 @@ class SparkFloodProcessor:
             if cid and cid not in combined_map:
                 combined_map[cid] = ev
 
-        # d. Thêm batch sự kiện mới từ micro-batch hiện tại
+        report_ids = {report_id for ev in new_events for report_id in ev.get("report_ids", [])}
+        if report_ids:
+            combined_map = {
+                cid: ev for cid, ev in combined_map.items()
+                if cid not in report_ids and report_ids.isdisjoint(ev.get("report_ids", []))
+            }
+
+        # d. Thêm snapshot cụm đã cập nhật
         for ev in new_events:
             cid = ev.get("canonical_id") or ev.get("id")
             if cid:
@@ -557,9 +623,11 @@ class SparkFloodProcessor:
         }
 
         # 4. GHI REDIS THEO CƠ CHẾ UPSERT (< 3ms)
+        self._hot_needs_retry = REDIS_AVAILABLE and self.redis_client is None
         if self.redis_client:
             try:
                 pipe = self.redis_client.pipeline()
+                pipe.delete("flood:geo:index", "flood:timeline:zset")
                 for ev in deduped:
                     cid = ev.get("canonical_id") or ev.get("id")
                     if not cid:
@@ -576,33 +644,70 @@ class SparkFloodProcessor:
 
                 pipe.set("flood:serving:mode", self.mode)
                 pipe.set("flood:serving:window", window_title)
+                pipe.set("flood:serving:updated_at", current_time)
                 pipe.execute()
             except Exception as e:
+                self._hot_needs_retry = True
                 print(f"[Spark Engine] Lỗi ghi Redis: {e}")
 
         # 5. GHI FILE ĐỆM CỤC BỘ NGUYÊN TỬ (Atomic Replace)
         try:
-            temp_file = f"{STREAM_STATE_FILE}.tmp"
-            with open(temp_file, "w", encoding="utf-8") as f:
-                json.dump(out_data, f, ensure_ascii=False, indent=2)
-            os.replace(temp_file, STREAM_STATE_FILE)
+            write_json_atomic(STREAM_STATE_FILE, out_data)
         except Exception as e:
+            self._hot_needs_retry = True
             print(f"[Spark Engine] Lỗi ghi file đệm: {e}")
+
+    def _recover_hot_snapshot(self):
+        if not getattr(self, "_hot_needs_retry", False) or time.monotonic() < self._hot_retry_at:
+            return
+        self._hot_retry_at = time.monotonic() + 10
+        if self.redis_client is None:
+            self.redis_client = self._init_redis()
+        self._publish_verified_batch([], batch_id=0)
 
     def _append_cold_lakehouse(self, events: List[Dict[str, Any]]):
         """Lưu trữ sự kiện vào Medallion Lakehouse Cold Path theo phân vùng."""
-        today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         for ev in events:
-            try:
-                raw_time = ev.get("create_time") or ev.get("timestamp") or int(time.time())
-                ep_id = determine_episode_id(raw_time)
-                partition_dir = os.path.join(LAKEHOUSE_DIR, f"episode_id={ep_id}", f"date={today_str}")
-                os.makedirs(partition_dir, exist_ok=True)
-                target_jsonl = os.path.join(partition_dir, "events_bronze.jsonl")
-                with open(target_jsonl, "a", encoding="utf-8") as f:
-                    f.write(json.dumps(ev, ensure_ascii=False) + "\n")
-            except Exception:
-                pass
+            event_time = ev.get("create_time") or ev.get("timestamp") or int(time.time())
+            target = self._normalized_path(event_time, ev["report_version"])
+            if not target.exists():
+                write_json_atomic(target, ev, durable=True)
+
+    def _normalized_path(self, event_time, version):
+        date = datetime.fromtimestamp(event_time, timezone.utc).strftime("%Y-%m-%d")
+        episode = determine_episode_id(event_time)
+        return Path(LAKEHOUSE_DIR) / f"episode_id={episode}" / f"date={date}" / f"report-{self.mode}-{version}.jsonl"
+
+    def _process_ingress_batch(self, records, batch_id):
+        distinct = {self._fingerprint(record): record for record in records}
+        pending = {}
+        recovered = []
+        for version, record in distinct.items():
+            target = Path(LAKEHOUSE_DIR).parent / "raw_reports" / self.mode / version[:2] / f"{version}.jsonl"
+            if not target.exists():
+                write_json_atomic(target, record, durable=True)
+            event_time = record.get("create_time") or record.get("timestamp")
+            if isinstance(event_time, (int, float)) and 0 < event_time < 4102444800:
+                try:
+                    with self._normalized_path(event_time, version).open(encoding="utf-8") as stream:
+                        recovered.append(json.load(stream))
+                    continue
+                except FileNotFoundError:
+                    pass
+            pending[version] = record
+        if recovered:
+            self._publish_verified_batch(recovered, batch_id)
+        if not pending:
+            return
+        try:
+            spark_records = [dict(record, _source_version=version) for version, record in pending.items()]
+            df = self.spark.createDataFrame(spark_records, schema=EVENT_SCHEMA)
+            self.process_micro_batch(df, batch_id=batch_id, raw_records=list(pending.values()))
+        except OSError:
+            raise
+        except Exception as error:
+            print(f"[Spark Engine Warning] Lỗi micro-batch #{batch_id}: {error}")
+            self._fallback_process_records(list(pending.values()), batch_id=batch_id)
 
     def start_kafka_streaming(self, bootstrap_servers: str = "localhost:9092", topics: Optional[List[str]] = None, batch_interval_sec: float = 1.0):
         """Lắng nghe sự kiện từ Kafka Topics và chạy xử lý phân tán qua Spark."""
@@ -616,29 +721,33 @@ class SparkFloodProcessor:
 
         if not KAFKA_AVAILABLE:
             print("[PySpark Stream Error] Thư viện kafka-python chưa được cài đặt!")
+            self._start_buffer_watcher(topics, batch_interval_sec)
             return
 
         max_batch_size = 15
         print(f"\n[*] Đang kết nối tới Kafka Broker ({bootstrap_servers}) cho topics: {topics}...")
-        try:
-            consumer = KafkaConsumer(
-                *topics,
-                bootstrap_servers=bootstrap_servers,
-                auto_offset_reset='earliest',
-                enable_auto_commit=True,
-                group_id=f'pyspark-flood-{self.mode}-streaming-group',
-                consumer_timeout_ms=1000,
-                max_poll_records=max_batch_size
-            )
-            print("[*] ĐÃ KẾT NỐI THÀNH CÔNG TỚI KAFKA BROKER!")
-            print(f"[*] Kafka → PySpark ({self.mode.upper()}) đang sẵn sàng xử lý các đợt ngập...")
-        except Exception as e:
-            print(f"[PySpark Stream Error] Không thể kết nối tới Kafka Broker: {e}")
-            print("[*] Chuyển sang chế độ Local Buffer Watcher để tiếp tục xử lý...")
-            self._start_buffer_watcher(topics, batch_interval_sec)
-            return
-
         batch_counter = 0
+        while True:
+            try:
+                consumer = KafkaConsumer(
+                    *topics,
+                    bootstrap_servers=bootstrap_servers,
+                    auto_offset_reset='earliest',
+                    enable_auto_commit=False,
+                    group_id=f'pyspark-flood-{self.mode}-streaming-group',
+                    consumer_timeout_ms=1000,
+                    max_poll_records=max_batch_size,
+                )
+                print(f"[*] Kafka → PySpark ({self.mode.upper()}) đang sẵn sàng xử lý các đợt ngập...")
+                break
+            except KafkaConfigurationError:
+                raise
+            except Exception as error:
+                print(f"[PySpark Stream Warning] Đang dùng file đệm, sẽ kết nối lại Kafka: {error}")
+                batch_counter = self._drain_buffer(topics, batch_counter, max_batch_size)
+                self._recover_hot_snapshot()
+                time.sleep(batch_interval_sec)
+
         try:
             while True:
                 records = []
@@ -666,50 +775,66 @@ class SparkFloodProcessor:
 
                 for start in range(0, len(records), max_batch_size):
                     batch_counter += 1
-                    batch_to_process = records[start:start + max_batch_size]
-                    try:
-                        df = self.spark.createDataFrame(batch_to_process, schema=EVENT_SCHEMA)
-                        dedup_df = df.dropDuplicates(["canonical_id"])
-                        self.process_micro_batch(dedup_df, batch_id=batch_counter, raw_records=batch_to_process)
-                    except Exception as batch_err:
-                        print(f"[Spark Engine Warning] Lỗi micro-batch #{batch_counter}: {batch_err}")
-                        self._fallback_process_records(batch_to_process, batch_id=batch_counter)
+                    self._process_ingress_batch(records[start:start + max_batch_size], batch_counter)
+                if msg_pack:
+                    consumer.commit({
+                        partition: OffsetAndMetadata(messages[-1].offset + 1, "")
+                        for partition, messages in msg_pack.items() if messages
+                    })
+                batch_counter = self._drain_buffer(topics, batch_counter, max_batch_size)
+                self._recover_hot_snapshot()
         except KeyboardInterrupt:
             print("\n[*] Dừng luồng PySpark Streaming theo lệnh người dùng.")
         finally:
             consumer.close()
 
     def _start_buffer_watcher(self, topics: List[str], batch_interval_sec: float = 2.0):
-        """Giám sát local buffer files khi Kafka broker đang offline."""
+        """Consume finished spool files while Kafka is unavailable."""
         batch_counter = 0
         while True:
-            all_records = []
-            for t in topics:
-                bf = os.path.join(DATA_DIR, f"buffer_{t}.jsonl")
-                if os.path.exists(bf):
-                    try:
-                        with open(bf, "r", encoding="utf-8") as f:
-                            lines = f.readlines()
-                        if lines:
-                            for l in lines:
-                                l = l.strip()
-                                if l:
-                                    rec = json.loads(l)
-                                    if self.mode == "live" and (rec.get("platform") in ["simulation", "sim"] or str(rec.get("canonical_id", "")).startswith("sim_")):
-                                        continue
-                                    all_records.append(rec)
-                            with open(bf, "w", encoding="utf-8") as f:
-                                f.write("")
-                    except Exception:
-                        pass
-
-            if all_records:
-                batch_counter += 1
-                df = self.spark.createDataFrame(all_records, schema=EVENT_SCHEMA)
-                dedup_df = df.dropDuplicates(["canonical_id"])
-                self.process_micro_batch(dedup_df, batch_id=batch_counter)
-
+            batch_counter = self._drain_buffer(topics, batch_counter, 15)
+            self._recover_hot_snapshot()
             time.sleep(batch_interval_sec)
+
+    def _drain_buffer(self, topics, batch_counter, batch_size):
+        for topic in topics:
+            folder = Path(DATA_DIR) / "lakehouse" / "_ingress_spool" / topic
+            legacy = Path(DATA_DIR) / f"buffer_{topic}.jsonl"
+            if legacy.exists():
+                folder.mkdir(parents=True, exist_ok=True)
+                legacy.replace(folder / f"legacy-{time.time_ns()}.jsonl")
+            files = sorted(folder.glob("*.jsonl"))[:batch_size]
+            records = []
+            for path in files:
+                with path.open(encoding="utf-8", errors="backslashreplace") as stream:
+                    for line_number, line in enumerate(stream, start=1):
+                        if not line.strip():
+                            continue
+                        try:
+                            value = json.loads(line)
+                            if not isinstance(value, dict):
+                                raise ValueError("Expected a JSON object")
+                        except (ValueError, RecursionError) as error:
+                            self.send_dlq("LocalBufferPayloadError", str(error), {
+                                "file": path.name, "line": line_number, "value": line.rstrip(),
+                            })
+                            continue
+                        if self.mode == "live" and (
+                            value.get("platform") in ("simulation", "sim")
+                            or str(value.get("canonical_id", "")).startswith("sim_")
+                        ):
+                            continue
+                        records.append(value)
+                        if len(records) == batch_size:
+                            batch_counter += 1
+                            self._process_ingress_batch(records, batch_counter)
+                            records = []
+            if records:
+                batch_counter += 1
+                self._process_ingress_batch(records, batch_counter)
+            for path in files:
+                path.unlink()
+        return batch_counter
 
     def _fallback_process_records(self, raw_records: List[Dict[str, Any]], batch_id: int):
         """Fallback an toàn xử lý trực tiếp bản ghi nếu Spark Session gặp lỗi môi trường."""
@@ -719,15 +844,16 @@ class SparkFloodProcessor:
                 raw_text = record.get("text") or record.get("title") or ""
                 cleaned_txt = clean_stream_text(raw_text) or raw_text.strip()
                 if len(cleaned_txt) < 8:
+                    self.send_dlq("CorruptedTextError", "Text length too short", record)
                     continue
                 orig_loc = record.get("location") if isinstance(record.get("location"), dict) else {}
                 matched = match_hotspot(cleaned_txt) or {}
-                st_name = orig_loc.get("street") or matched.get("street") or matched.get("display_name", "")
+                st_name = orig_loc.get("street") or matched.get("street") or ""
                 off_w = orig_loc.get("ward") or matched.get("ward") or "Toàn TP.HCM"
                 lat = float(orig_loc.get("lat") or matched.get("lat") or 10.7769)
                 lon = float(orig_loc.get("lon") or matched.get("lon") or 106.7009)
 
-                ctime = record.get("create_time", int(time.time()))
+                ctime = record.get("create_time") or record.get("timestamp") or int(time.time())
                 event_payload = {
                     "id": str(record.get("id")),
                     "canonical_id": record.get("canonical_id") or f"{record.get('platform')}_{record.get('id')}",
@@ -759,25 +885,19 @@ class SparkFloodProcessor:
                     "weight": 2.0,
                     "url": record.get("url", "")
                 }
-                if record.get("veracity"):
-                    event_payload["veracity"] = record["veracity"]
+                self._preserve_source_fields(event_payload, record, matched)
                 verified_batch.append(self.veracity_checker.verify_event(event_payload))
-            except Exception:
-                pass
+            except (ValueError, TypeError, AttributeError, OverflowError) as error:
+                self.send_dlq("RecordProcessingError", str(error), record)
 
         if verified_batch:
-            clustered = self.clusterer.cluster_events(verified_batch)
-            self._update_hot_dashboard_state(clustered)
-            self._append_cold_lakehouse(verified_batch)
-            print(f"[Fallback Processor] Hoàn tất micro-batch #{batch_id} an toàn ({len(clustered)} sự kiện)!")
+            self._publish_verified_batch(verified_batch, batch_id)
 
     def run_batch_simulation_job(self, input_records: List[Dict[str, Any]]):
         """Chạy một job xử lý lô hoàn chỉnh trên Spark (Dùng cho kiểm thử & benchmark)."""
         if not input_records:
             return
-        df = self.spark.createDataFrame(input_records, schema=EVENT_SCHEMA)
-        dedup_df = df.dropDuplicates(["canonical_id"])
-        self.process_micro_batch(dedup_df, batch_id=1)
+        self._process_ingress_batch(input_records, batch_id=1)
 
     def stop(self):
         if self.spark:

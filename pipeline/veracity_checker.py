@@ -1,4 +1,3 @@
-from pipeline.event_processor import analyze_severity_heuristic
 # -*- coding: utf-8 -*-
 """
 pipeline/veracity_checker.py
@@ -25,6 +24,11 @@ Hỗ trợ đồng nhất cả Live Mode (thời gian thực) và Simulation Mod
 """
 
 import math
+from collections import OrderedDict
+from concurrent.futures import Future
+from threading import BoundedSemaphore, Lock
+
+from pipeline.event_processor import analyze_severity_heuristic, report_url
 import time
 import json
 import urllib.request
@@ -101,7 +105,11 @@ class VeracityChecker:
         self.recent_events: List[Dict[str, Any]] = []
 
         # Cache kết quả thời tiết theo tọa độ và thời gian
-        self.weather_cache: Dict[str, Dict[str, Any]] = {}
+        self.weather_cache = OrderedDict()
+        self._weather_inflight = {}
+        self._weather_lock = Lock()
+        self._consensus_lock = Lock()
+        self._media_slots = BoundedSemaphore(2)
 
     # =========================================================================
     # ĐIỂM CẮM TÍCH HỢP (EXTENSION POINT) CHO MÔ HÌNH AI VỚI DYNAMIC TIMEOUT
@@ -135,7 +143,12 @@ class VeracityChecker:
         ai_timeout = 3.5 if has_media else 0.5
 
         # 1. Thử kết nối Microservice AI với Dynamic Timeout
+        started = time.monotonic()
+        acquired = has_media and self._media_slots.acquire(blocking=False)
+        fallback_reason = "inference_unavailable"
         try:
+            if has_media and not acquired:
+                raise BlockingIOError("media_capacity")
             effective_media = media_urls
             if not effective_media and is_video_link:
                 effective_media = [raw_url]
@@ -166,16 +179,26 @@ class VeracityChecker:
                             "content_score": round(float(ai_resp.get("content_confidence_score", 0.85)), 2),
                             "triplets": triplets,
                             "audio_transcript": ai_resp.get("audio_transcript", ""),
-                            "timeout_used": ai_timeout
+                            "timeout_used": ai_timeout,
+                            "elapsed_ms": round((time.monotonic() - started) * 1000, 1),
                         }
-        except Exception:
-            pass
+        except BlockingIOError:
+            fallback_reason = "media_capacity"
+        except TimeoutError:
+            fallback_reason = "timeout"
+        except urllib.error.URLError as error:
+            fallback_reason = "timeout" if isinstance(error.reason, TimeoutError) else "ai_unreachable"
+        except (ValueError, TypeError, AttributeError, OSError):
+            fallback_reason = "invalid_or_unavailable_response"
+        finally:
+            if acquired:
+                self._media_slots.release()
 
         # 2. CƠ CHẾ DỰ PHÒNG (HEURISTIC BASELINE):
         text = str(event.get("text", "")).lower()
 
         if has_media:
-            visual_verified = True
+            visual_verified = False
             content_score = 0.75
         else:
             visual_verified = False
@@ -214,184 +237,122 @@ class VeracityChecker:
             "branch": "heuristic",
             "visual_verified": visual_verified,
             "content_score": round(content_score, 2),
-            "triplets": triplets
+            "triplets": triplets,
+            "fallback_reason": fallback_reason,
+            "elapsed_ms": round((time.monotonic() - started) * 1000, 1),
         }
 
     # =========================================================================
     # TẦNG 2: ĐỐI SOÁT KHÍ TƯỢNG (THEO TỌA ĐỘ ĐỊA ĐIỂM & KHUNG GIỜ ĐĂNG TẢI)
     # =========================================================================
+    def _weather_series(self, lat, lon, local_day, historical):
+        lat, lon = round(lat, 2), round(lon, 2)
+        key = (lat, lon, local_day if historical else None)
+        with self._weather_lock:
+            cached = self.weather_cache.get(key)
+            if cached and cached[0] > time.monotonic():
+                self.weather_cache.move_to_end(key)
+                return cached[1]
+            pending = self._weather_inflight.get(key)
+            if pending is None:
+                pending = self._weather_inflight[key] = Future()
+                fetch = True
+            else:
+                fetch = False
+        if not fetch:
+            return pending.result()
+
+        try:
+            if historical:
+                endpoint = "https://archive-api.open-meteo.com/v1/archive"
+                dates = f"start_date={local_day}&end_date={local_day}"
+            else:
+                endpoint = "https://api.open-meteo.com/v1/forecast"
+                dates = "past_days=1&forecast_days=1"
+            url = f"{endpoint}?latitude={lat}&longitude={lon}&{dates}&hourly=precipitation,rain&timezone=Asia%2FBangkok"
+            req = urllib.request.Request(url, headers={"User-Agent": "SE363-UrbanFlood-Monitor/1.0"})
+            with urllib.request.urlopen(req, timeout=6) as response:
+                hourly = json.load(response)["hourly"]
+            series = {}
+            for field in ("precipitation", "rain"):
+                for hour, value in zip(hourly["time"], hourly.get(field, [])):
+                    if isinstance(value, (int, float)) and math.isfinite(value) and value >= 0:
+                        series[hour] = max(value, series.get(hour, 0))
+            if not series:
+                raise ValueError("Open-Meteo hourly precipitation is missing")
+            result = series, None
+            ttl = 86400 if historical else 300
+        except (OSError, TypeError, ValueError, KeyError) as error:
+            result = {}, type(error).__name__
+            ttl = 30
+        finally:
+            with self._weather_lock:
+                self._weather_inflight.pop(key, None)
+                if "result" in locals():
+                    self.weather_cache[key] = (time.monotonic() + ttl, result)
+                    self.weather_cache.move_to_end(key)
+                    if len(self.weather_cache) > 512:
+                        self.weather_cache.popitem(last=False)
+                    pending.set_result(result)
+                else:
+                    pending.cancel()
+        return result
+
     def check_weather_plausibility(self, lat: float, lon: float, timestamp: int, is_tidal: bool = False) -> Dict[str, Any]:
-        """
-        Kiểm tra thời tiết thực tế tại tọa độ sự kiện.
-        - Tọa độ: Lấy chính xác tọa độ GPS của điểm ngập.
-        - Thời gian: Lấy theo khung giờ bài viết được đăng tải (Asia/Bangkok +7).
-        """
+        """Score rainfall near the original posting time using Open-Meteo."""
         if not self.enable_weather or not lat or not lon:
             return {"checked": False, "score": 0.60, "plausible": True, "reason": "Weather check bypassed"}
+        started = time.monotonic()
+        local_time = datetime.fromtimestamp(timestamp, timezone(timedelta(hours=7)))
+        historical = timestamp < time.time() - 86400
+        series, error = self._weather_series(lat, lon, local_time.date().isoformat(), historical)
+        target = local_time.strftime("%Y-%m-%dT%H:00")
+        value = None
+        if target in series:
+            window = 2 if historical else 1
+            hours = [(local_time + timedelta(hours=i)).strftime("%Y-%m-%dT%H:00")
+                     for i in range(-window, window + 1)]
+            value = max(series[hour] for hour in hours if hour in series)
 
-        now = int(time.time())
-        # Nếu mốc thời gian khác biệt quá 24h so với thời điểm chạy máy -> Bắt buộc gọi Archive API
-        is_historical = (abs(now - timestamp) > 86400) or (timestamp < now - 3600*24)
-        lat_grid = round(lat, 2)
-        lon_grid = round(lon, 2)
-
-        if is_historical:
-            # 1. ĐỐI SOÁT LỊCH SỬ: Theo tọa độ điểm ngập và giờ đăng bài gốc theo múi giờ Việt Nam (Archive API)
-            tz_vn = timezone(timedelta(hours=7))
-            post_dt = datetime.fromtimestamp(timestamp, tz_vn)
-            hour = post_dt.hour
-            date_str = post_dt.strftime("%Y-%m-%d")
-            cache_key = f"hist_{lat_grid}_{lon_grid}_{date_str}_{hour // 2}"
-            if cache_key in self.weather_cache:
-                return self.weather_cache[cache_key]
-
-            try:
-                date_str = datetime.fromtimestamp(timestamp, timezone.utc).strftime("%Y-%m-%d")
-                url = (
-                    f"https://archive-api.open-meteo.com/v1/archive?"
-                    f"latitude={lat}&longitude={lon}&start_date={date_str}&end_date={date_str}&hourly=precipitation,rain&timezone=Asia%2FBangkok"
-                )
-                req = urllib.request.Request(url, headers={"User-Agent": "SE363-UrbanFlood-Monitor/1.0"})
-                with urllib.request.urlopen(req, timeout=6) as response:
-                    payload = json.loads(response.read().decode("utf-8"))
-
-                hourly_precip = payload.get("hourly", {}).get("precipitation", [])
-                val = 0.0
-                if hourly_precip and len(hourly_precip) > hour:
-                    start_h = max(0, hour - 2)
-                    end_h = min(len(hourly_precip), hour + 3)
-                    val = max(hourly_precip[start_h:end_h]) if hourly_precip[start_h:end_h] else 0.0
-
-                if val >= 5.0:
-                    score = 1.0
-                    plausible = True
-                    desc = f"Trạm khí tượng lịch sử đối soát: Mưa lớn ({val} mm/h lúc {hour}h ngày {date_str})"
-                elif val > 0.0:
-                    score = 0.85
-                    plausible = True
-                    desc = f"Trạm khí tượng lịch sử đối soát: Có mưa ({val} mm/h lúc {hour}h ngày {date_str})"
-                else:
-                    score = 0.50
-                    plausible = True
-                    desc = f"Trạm khí tượng lịch sử ghi nhận không mưa (0.0 mm/h lúc {hour}h ngày {date_str})"
-
-                res = {
-                    "checked": True,
-                    "precipitation_mm": val,
-                    "score": score,
-                    "plausible": plausible,
-                    "reason": desc
-                }
-                self.weather_cache[cache_key] = res
-                return res
-
-            except Exception as e:
-                date_str = datetime.fromtimestamp(timestamp, timezone.utc).strftime("%d/%m/%Y")
-                hour = datetime.fromtimestamp(timestamp, timezone.utc).hour
-                res = {
-                    "checked": False,
-                    "precipitation_mm": 0.0,
-                    "score": 0.60,
-                    "plausible": True,
-                    "reason": f"Không có dữ liệu trạm khí tượng lưu trữ lúc {hour}h ngày {date_str} ({e})"
-                }
-                self.weather_cache[cache_key] = res
-                return res
-
+        if value is None:
+            score = 0.90 if is_tidal and not historical else 0.60
+            reason = f"Open-Meteo thiếu dữ liệu giờ đăng ({error or 'missing_hour'})"
+            if is_tidal and not historical:
+                reason += ". Có bằng chứng điểm triều cường"
+        elif value >= 5.0:
+            score, reason = 1.0, f"Open-Meteo ghi nhận mưa lớn ({value} mm/h)"
+        elif value > 0:
+            score, reason = 0.85, f"Open-Meteo ghi nhận có mưa ({value} mm/h)"
+        elif is_tidal and not historical:
+            score, reason = 0.90, "Open-Meteo ghi nhận không mưa. Đây là điểm có bằng chứng triều cường"
         else:
-            # 2. LIVE MODE: Thời gian thực theo đúng tọa độ điểm ngập VÀ KHUNG GIỜ ĐĂNG BÀI
-            # Open-Meteo Forecast endpoint trả về 48h (hôm qua + hôm nay)
-            tz_vn = timezone(timedelta(hours=7))
-            post_dt = datetime.fromtimestamp(timestamp, tz_vn)
-            target_hour_str = post_dt.strftime("%Y-%m-%dT%H:00")
-            cache_key = f"live_{lat_grid}_{lon_grid}_{target_hour_str}"
-            if cache_key in self.weather_cache:
-                return self.weather_cache[cache_key]
-
-            try:
-                url = (
-                    f"https://api.open-meteo.com/v1/forecast?"
-                    f"latitude={lat}&longitude={lon}&hourly=precipitation,rain&past_days=1&forecast_days=1&timezone=Asia%2FBangkok"
-                )
-                req = urllib.request.Request(url, headers={"User-Agent": "SE363-UrbanFlood-Monitor/1.0"})
-                with urllib.request.urlopen(req, timeout=6) as response:
-                    payload = json.loads(response.read().decode("utf-8"))
-
-                hourly = payload.get("hourly", {})
-                times = hourly.get("time", [])
-                precips = hourly.get("precipitation", [])
-                rains = hourly.get("rain", [])
-
-                val = 0.0
-                if target_hour_str in times:
-                    idx = times.index(target_hour_str)
-                    start_i = max(0, idx - 1)
-                    end_i = min(len(times), idx + 2)
-                    for i in range(start_i, end_i):
-                        p = float(precips[i]) if i < len(precips) else 0.0
-                        r = float(rains[i]) if i < len(rains) else 0.0
-                        val = max(val, p, r)
-
-                if val >= 5.0:
-                    score = 1.0
-                    plausible = True
-                    desc = f"Trạm khí tượng thời gian thực: Mưa lớn ({val} mm/h lúc {post_dt.hour}h)"
-                elif val > 0.0:
-                    score = 0.85
-                    plausible = True
-                    desc = f"Trạm khí tượng thời gian thực: Có mưa ({val} mm/h lúc {post_dt.hour}h)"
-                else:
-                    if is_tidal:
-                        score = 0.90
-                        plausible = True
-                        desc = "Điểm ngập triều cường đặc trưng (PC08 CSGT) - Triều dâng ven sông/kênh rạch (không phụ thuộc mưa)"
-                    else:
-                        score = 0.50
-                        plausible = True
-                        desc = f"Không ghi nhận mưa lúc {post_dt.hour}h (ngập do triều cường hoặc đọng nước)"
-
-                res = {
-                    "checked": True,
-                    "precipitation_mm": val,
-                    "score": score,
-                    "plausible": plausible,
-                    "reason": desc
-                }
-                self.weather_cache[cache_key] = res
-                return res
-
-            except Exception as e:
-                if is_tidal:
-                    fallback_res = {
-                        "checked": True,
-                        "precipitation_mm": 0.0,
-                        "score": 0.90,
-                        "plausible": True,
-                        "reason": f"Điểm ngập triều cường đặc trưng (PC08 CSGT) - Triều dâng ven sông/kênh rạch (Open-Meteo fallback: {e})"
-                    }
-                else:
-                    fallback_res = {
-                        "checked": False,
-                        "score": 0.60,
-                        "plausible": True,
-                        "reason": f"Weather API offline fallback ({e})"
-                    }
-                return fallback_res
+            score, reason = 0.50, "Open-Meteo ghi nhận không mưa (0 mm/h)"
+        return {
+            "checked": value is not None,
+            "precipitation_mm": value,
+            "score": score,
+            "plausible": True,
+            "reason": reason,
+            "source": "open_meteo_archive" if historical else "open_meteo_forecast",
+            "elapsed_ms": round((time.monotonic() - started) * 1000, 1),
+        }
 
     # =========================================================================
     # TẦNG 3: ĐỒNG THUẬN KHÔNG - THỜI GIAN (60 PHÚT & BÁN KÍNH 500M)
     # =========================================================================
-    def calculate_consensus(self, lat: float, lon: float, event_time: int) -> Tuple[float, int, List[str]]:
+    def calculate_consensus(self, lat: float, lon: float, event_time: int, identity=None, url="") -> Tuple[float, int, List[str]]:
         """
         Tìm kiếm các sự kiện lân cận trong bán kính 500m và thời gian 60 phút.
         Trả về: (Điểm đồng thuận, Số lượng bằng chứng, Danh sách ID bằng chứng).
         """
         evidence_ids = []
+        seen_ids = {identity} if identity else set()
+        seen_urls = {url} if url else set()
         now = int(time.time())
         is_cur_sim = (abs(now - event_time) > 86400)
 
         cutoff_time = event_time - (self.window_seconds * 2)
-        self.recent_events = [e for e in self.recent_events if e.get("timestamp", 0) >= cutoff_time or is_cur_sim]
+        self.recent_events = [e for e in self.recent_events[-2048:] if e.get("timestamp", 0) >= cutoff_time or is_cur_sim]
 
         for past in self.recent_events:
             p_lat = past.get("lat")
@@ -405,8 +366,13 @@ class VeracityChecker:
             time_diff = abs(event_time - p_time)
 
             if dist <= self.radius_meters and time_diff <= self.window_seconds:
-                if past.get("id"):
-                    evidence_ids.append(str(past["id"]))
+                previous_id, previous_url = past.get("id"), past.get("url")
+                if not previous_id or previous_id in seen_ids or (previous_url and previous_url in seen_urls):
+                    continue
+                evidence_ids.append(str(previous_id))
+                seen_ids.add(previous_id)
+                if previous_url:
+                    seen_urls.add(previous_url)
 
         evidence_count = len(evidence_ids) + 1
         if evidence_count >= 3:
@@ -455,14 +421,18 @@ class VeracityChecker:
             weather_score = weather_eval["score"]
 
             # 3. Tính điểm đồng thuận không gian - thời gian (60 phút / 500m)
-            if lat and lon:
-                consensus_score, evidence_count, evidence_ids = self.calculate_consensus(lat, lon, event_time)
-                self.recent_events.append({
-                    "id": event.get("id"),
-                    "lat": lat,
-                    "lon": lon,
-                    "timestamp": event_time
-                })
+            if lat and lon and loc_dict.get("precision") not in ("ward", "city"):
+                raw_identity = event.get("canonical_id") or event.get("id")
+                identity = str(raw_identity) if raw_identity else None
+                url = report_url(event.get("url"))
+                with self._consensus_lock:
+                    consensus_score, evidence_count, evidence_ids = self.calculate_consensus(
+                        lat, lon, event_time, identity, url
+                    )
+                    if identity:
+                        self.recent_events.append({
+                            "id": identity, "url": url, "lat": lat, "lon": lon, "timestamp": event_time,
+                        })
             else:
                 consensus_score = 0.40
                 evidence_count = 1

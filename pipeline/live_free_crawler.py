@@ -1254,7 +1254,7 @@ class LiveFreeSocialCrawler:
             media_type = "video" if platform in ["tiktok", "youtube"] else ("news" if platform == "news" else "post")
 
             for spot_idx, spot in enumerate(matched_spots[:1]):
-                st_name = spot.get("street") or spot.get("display_name", "")
+                st_name = spot.get("street") or ""
                 sub_id = f"{post_id}_s{spot_idx}" if len(matched_spots) > 1 else str(post_id)
                 canonical_id = f"{platform}_{sub_id}"
 
@@ -1273,7 +1273,7 @@ class LiveFreeSocialCrawler:
                     "relative_time": format_relative_time(pub_unix, current_time),
                     "location": {
                         "street": st_name,
-                        "display_name": st_name if st_name else "Toàn TP. Hồ Chí Minh",
+                        "display_name": spot.get("display_name") or st_name or "Toàn TP. Hồ Chí Minh",
                         "ward": spot.get("ward", "Toàn TP.HCM"),
                         "administrative_unit": spot.get("ward", "Toàn TP.HCM"),
                         "district": spot.get("district", "TP.HCM"),
@@ -1285,7 +1285,10 @@ class LiveFreeSocialCrawler:
                         "type": spot.get("type", "ngập úng đô thị"),
                         "cause": spot.get("cause", "rain"),
                         "cause_label": spot.get("cause_label", "Mưa lớn hoặc triều cường"),
-                        "source": "live_free_crawler"
+                        "source": "live_free_crawler",
+                        "coordinate_source": spot.get("source"),
+                        "precision": spot.get("precision"),
+                        "coordinate_kind": spot.get("coordinate_kind"),
                     },
                     "aspect": st_name or spot.get("ward", ""),
                     "opinion": (analyze_severity_heuristic(quote_text) or {}).get("opinion", "ngập nước"),

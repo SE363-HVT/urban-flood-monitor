@@ -37,6 +37,7 @@ from pipeline.live_free_crawler import LiveFreeSocialCrawler
 from pipeline.veracity_checker import AI_MICROSERVICE_URL, VeracityChecker
 from pipeline.spatio_temporal_clusterer import SpatioTemporalClusterer
 from pipeline.event_processor import format_relative_time
+from bigdata.streaming.stream_storage import crawler_heartbeat_path, write_json_atomic
 from core.config import APIFY_TOKEN, DEFAULT_PORT, DEFAULT_WINDOW_MINUTES, FB_CRAWL_STRATEGY
 
 try:
@@ -158,8 +159,7 @@ def start_background_health_worker(interval_seconds: int = 10):
                 "ai_service": _probe_ai_health(),
                 "redis": _probe_redis_health(),
                 "kafka": _probe_kafka_health(),
-                "crawler": {"status": "STANDBY" if GLOBAL_STATE["mode"] == "simulation" else "UNKNOWN",
-                            "active_poller": False},
+                "crawler": _probe_crawler_health(GLOBAL_STATE["mode"]),
                 "last_checked": int(time.time()),
                 "uptime_seconds": int(time.time() - _SERVER_START_TIME),
             }
@@ -169,25 +169,67 @@ def start_background_health_worker(interval_seconds: int = 10):
     t.start()
 
 
+_SNAPSHOT_LOCK = threading.Lock()
+_SNAPSHOT = None
+
+
+def _probe_crawler_health(mode):
+    if mode.endswith("simulation"):
+        return {"status": "STANDBY", "active_poller": False}
+    try:
+        with crawler_heartbeat_path(os.path.join(ROOT_DIR, "data"), "live").open(encoding="utf-8") as stream:
+            heartbeat = json.load(stream)
+        active = time.time() < heartbeat["expires_at"]
+        return {**heartbeat, "status": heartbeat["status"] if active else "STANDBY", "active_poller": active}
+    except (OSError, ValueError, KeyError, TypeError):
+        return {"status": "UNKNOWN", "active_poller": False}
+
+
+def get_serving_snapshot():
+    """Use one short-lived snapshot for both metrics and the heatmap."""
+    global _SNAPSHOT
+    requested_mode = GLOBAL_STATE["mode"]
+    mode = "simulation" if requested_mode.endswith("simulation") else "live"
+    with _SNAPSHOT_LOCK:
+        now = time.monotonic()
+        if _SNAPSHOT and _SNAPSHOT["mode"] == mode and now < _SNAPSHOT["expires"]:
+            return _SNAPSHOT
+        snapshot = {
+            "mode": mode, "events": GLOBAL_STATE.get("events", []),
+            "window": GLOBAL_STATE.get("active_window"), "served_from": "memory",
+            "updated_at": GLOBAL_STATE.get("last_updated"), "expires": now + 2,
+        }
+        client = get_redis_client()
+        if client:
+            try:
+                redis_mode, window, updated_at = client.mget(
+                    "flood:serving:mode", "flood:serving:window", "flood:serving:updated_at"
+                )
+                if redis_mode == mode:
+                    events = fetch_events_from_redis(client)
+                    if events:
+                        snapshot.update(events=events, window=window or snapshot["window"],
+                                        updated_at=int(updated_at) if updated_at else snapshot["updated_at"],
+                                        served_from="redis")
+            except (OSError, ValueError, redis.RedisError):
+                pass
+        if snapshot["served_from"] != "redis":
+            try:
+                with open(os.path.join(ROOT_DIR, "data", "live_stream_state.json"), encoding="utf-8") as stream:
+                    data = json.load(stream)
+                if str(data.get("mode") or "").endswith(mode) and isinstance(data.get("events"), list):
+                    updated_at = data.get("updated_at")
+                    snapshot.update(events=data["events"], window=data.get("window") or snapshot["window"],
+                                    updated_at=int(datetime.fromisoformat(updated_at).timestamp()) if updated_at else None,
+                                    served_from="local_file_buffer")
+            except (OSError, ValueError, TypeError):
+                pass
+        _SNAPSHOT = snapshot
+        return snapshot
+
+
 def get_current_active_events() -> List[Dict[str, Any]]:
-    """Lay danh sach su kien hien tai tu Redis hoac Local File Buffer hoac GLOBAL_STATE."""
-    r_client = get_redis_client()
-    if r_client:
-        evs = fetch_events_from_redis(r_client)
-        if evs:
-            return evs
-
-    stream_state_file = os.path.join(ROOT_DIR, "data", "live_stream_state.json")
-    if os.path.exists(stream_state_file):
-        try:
-            with open(stream_state_file, "r", encoding="utf-8") as sf:
-                st = json.load(sf)
-                if st.get("events") is not None:
-                    return st.get("events", [])
-        except Exception:
-            pass
-
-    return GLOBAL_STATE.get("events", [])
+    return get_serving_snapshot()["events"]
 
 
 WARD_TO_CLUSTER_MAP = {}
@@ -373,7 +415,8 @@ def compute_throughput_metrics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 def compute_dashboard_summary() -> Dict[str, Any]:
     """Gom toan bo so lieu 6 Panels vao mot payload JSON duy nhat phuc vu Client (< 10 KB)."""
-    events = get_current_active_events()
+    snapshot = get_serving_snapshot()
+    events = snapshot["events"]
     admin_wards = compute_admin_ward_metrics(events)
     time_series = compute_time_series_metrics(events)
     throughput = compute_throughput_metrics(events)
@@ -397,8 +440,9 @@ def compute_dashboard_summary() -> Dict[str, Any]:
     return {
         "status": "ok",
         "timestamp": int(time.time()),
-        "mode": GLOBAL_STATE.get("mode", "live"),
-        "active_window": GLOBAL_STATE.get("active_window", "120 phút"),
+        "mode": snapshot["mode"],
+        "active_window": snapshot["window"],
+        "snapshot_updated_at": snapshot["updated_at"],
         "events_count": len(events),
         "system_health": SYSTEM_HEALTH_CACHE,
         "admin_wards": admin_wards,
@@ -657,6 +701,7 @@ def sync_to_storage(events: List[Dict[str, Any]], mode: str, window_label: str):
 
             pipe.set("flood:serving:mode", mode)
             pipe.set("flood:serving:window", window_label)
+            pipe.set("flood:serving:updated_at", int(time.time()))
             pipe.execute()
         except Exception as e:
             print(f"[Dashboard Server] Lỗi đồng bộ Redis: {e}")
@@ -671,10 +716,7 @@ def sync_to_storage(events: List[Dict[str, Any]], mode: str, window_label: str):
             "events_count": len(events),
             "events": events
         }
-        temp_file = f"{stream_state_file}.tmp"
-        with open(temp_file, "w", encoding="utf-8") as sf:
-            json.dump(out_data, sf, ensure_ascii=False, indent=2)
-        os.replace(temp_file, stream_state_file)
+        write_json_atomic(stream_state_file, out_data)
     except Exception as e:
         print(f"[Dashboard Server] Lỗi ghi file fallback: {e}")
 
@@ -790,59 +832,26 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
             return
 
         elif self.path.startswith("/api/realtime-heatmap"):
-            events = GLOBAL_STATE.get("events", [])
-            served_from = "memory"
-
-            # 1. ƯU TIÊN 1: In-Memory Redis Hot Serving Store (< 3ms)
-            r_client = get_redis_client()
-            if r_client:
-                redis_events = fetch_events_from_redis(r_client)
-                if redis_events:
-                    events = redis_events
-                    served_from = "redis"
-                    r_mode = r_client.get("flood:serving:mode")
-                    if r_mode:
-                        GLOBAL_STATE["mode"] = r_mode
-                    r_window = r_client.get("flood:serving:window")
-                    if r_window:
-                        GLOBAL_STATE["active_window"] = r_window
-                    GLOBAL_STATE["last_updated"] = int(time.time())
-
-            # 2. ƯU TIÊN 2 (FALLBACK): Đọc file live_stream_state.json nếu Redis chưa có hoặc offline
-            if served_from != "redis":
-                stream_state_file = os.path.join(ROOT_DIR, "data", "live_stream_state.json")
-                if os.path.exists(stream_state_file):
-                    try:
-                        with open(stream_state_file, "r", encoding="utf-8") as sf:
-                            st_data = json.load(sf)
-                            if st_data.get("events") is not None:
-                                events = st_data.get("events", [])
-                                if st_data.get("mode"):
-                                    GLOBAL_STATE["mode"] = st_data["mode"]
-                                if st_data.get("window"):
-                                    GLOBAL_STATE["active_window"] = st_data["window"]
-                                GLOBAL_STATE["last_updated"] = int(time.time())
-                                served_from = "local_file_buffer"
-                    except Exception:
-                        pass
+            snapshot = get_serving_snapshot()
+            events = snapshot["events"]
 
             ward_counts = {}
             citywide_count = 0
             for ev in events:
                 loc = ev.get("location", {})
                 w = loc.get("ward") or "Toàn thành phố (Chưa rõ phường/xã)"
-                if "Toàn thành phố" in w or "Đô thị trung tâm" in w or w == "TP.HCM":
+                if loc.get("precision") == "city" or "Toàn thành phố" in w or "Đô thị trung tâm" in w or w == "TP.HCM":
                     citywide_count += 1
                 else:
                     ward_counts[w] = ward_counts.get(w, 0) + 1
 
             payload = {
                 "status": "success",
-                "mode": GLOBAL_STATE["mode"],
-                "window": GLOBAL_STATE.get("active_window", f"{GLOBAL_STATE['window_minutes']} phút"),
+                "mode": snapshot["mode"],
+                "window": snapshot["window"] or f"{GLOBAL_STATE['window_minutes']} phút",
                 "total_events": len(events),
-                "last_updated": GLOBAL_STATE["last_updated"],
-                "served_from": served_from,
+                "last_updated": snapshot["updated_at"],
+                "served_from": snapshot["served_from"],
                 "events": events,
                 "ward_stats": ward_counts,
                 "citywide_count": citywide_count

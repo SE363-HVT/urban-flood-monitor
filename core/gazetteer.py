@@ -2120,6 +2120,16 @@ BOGUS_ROAD_PHRASES = set([
     "nội thành", "ngoại thành", "ven đô", "ngoại ô"
 ])
 
+def _ward_context(clean_text):
+    matches = []
+    for unit in ADMIN_HOTSPOTS:
+        for keyword in unit.get("keywords", []):
+            pattern = r'(?:\b|^|#)' + re.escape(keyword) + r'(?:\b|$|[#\s.,!?])'
+            if re.search(pattern, clean_text):
+                matches.append((len(keyword), unit["ward"], unit))
+    return max(matches, key=lambda match: match[:2])[2] if matches else None
+
+
 def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
     """
     Bộ bóc tách thực thể địa lý đa tầng chuẩn mực (Strict Spatial Hierarchy):
@@ -2152,16 +2162,22 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
     # =========================================================================
     best_street = None
     best_street_len = 0
+    best_street_context = False
+    context_ward = _ward_context(clean_text)
 
     # 1.A: So khớp với danh mục 122 điểm CSGT & các tuyến đường hạt nhân (Priority 3)
     for spot in (STREET_HOTSPOTS + CSGT_HOTSPOTS):
+        candidate_ward = spot.get("ward", "")
+        in_context = bool(context_ward and candidate_ward and
+                          normalize_text(candidate_ward) == normalize_text(context_ward["ward"]))
         for kw in spot.get("keywords", []):
             kw_clean = kw.strip()
             if kw_clean.isdigit() or len(kw_clean) <= 2:
                 continue
             pattern = r'(?:\b|^|#)' + re.escape(kw_clean) + r'(?:\b|$|[#\s.,!?])'
             if re.search(pattern, clean_text):
-                if len(kw) > best_street_len:
+                if (in_context, len(kw)) > (best_street_context, best_street_len):
+                    best_street_context = in_context
                     best_street_len = len(kw)
                     st_name = spot.get("street") or spot.get("display_name", "")
                     best_street = {
@@ -2228,15 +2244,15 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
         # Nếu điểm đường này chưa có phường xác định (ví dụ đường mới phát hiện qua OSM):
         # Mới quét tìm xem bài viết có đề cập Phường / Xã cụ thể nào không
         # Ưu tiên Phường/Xã được nhắc trực tiếp trong bài viết
-        for u in ADMIN_HOTSPOTS:
-            for kw in u.get("keywords", []):
-                pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
-                if re.search(pattern, clean_text):
-                    best_street["ward"] = u["ward"]
-                    best_street["administrative_unit"] = u["ward"]
-                    best_street["district"] = u.get("district", best_street.get("district", "TP.HCM"))
-                    break
-        return _finalize_match(best_street)
+        known_ward = best_street.get("ward", "")
+        if context_ward and not known_ward:
+            best_street["ward"] = context_ward["ward"]
+            best_street["administrative_unit"] = context_ward["ward"]
+            best_street["district"] = context_ward.get("district", best_street.get("district", "TP.HCM"))
+        if not context_ward or not known_ward or normalize_text(known_ward) == normalize_text(context_ward["ward"]):
+            best_street["precision"] = "street"
+            best_street["coordinate_kind"] = "street_center"
+            return _finalize_match(best_street)
 
     # =========================================================================
     # TẦNG 2: NẾU KHÔNG CÓ TÊN ĐƯỜNG -> SO KHỚP ĐƠN VỊ HÀNH CHÍNH (PHƯỜNG / XÃ)
@@ -2268,6 +2284,8 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
                     }
 
     if best_ward:
+        best_ward["precision"] = "ward"
+        best_ward["coordinate_kind"] = "administrative_center"
         return _finalize_match(best_ward)
 
     # =========================================================================
@@ -2285,6 +2303,8 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
                 res = dict(spot)
                 res["street"] = ""
                 res["priority"] = 1
+                res["precision"] = "city"
+                res["coordinate_kind"] = "administrative_center"
                 return _finalize_match(res)
 
     return None
@@ -2309,9 +2329,14 @@ def match_all_hotspots(text: str, max_spots: int = 5) -> List[Dict[str, Any]]:
 
     found_spots = []
     seen_keys = set()
+    context_ward = _ward_context(clean_text)
+    ward = normalize_text(context_ward["ward"]) if context_ward else ""
 
     # 1. Quet tim tat ca cac tuyen duong trung khop (STREET_HOTSPOTS)
     for spot in (STREET_HOTSPOTS + CSGT_HOTSPOTS):
+        spot_ward = normalize_text(spot.get("ward", ""))
+        if ward and spot_ward and ward != spot_ward:
+            continue
         st_name = spot.get('street') or spot.get('display_name', '')
         st_norm = normalize_text(st_name).strip()
         st_key = re.sub(r'^(?:đường|duong|tuyến đường|tuyen duong|đại lộ|dai lo)\s+', '', st_norm).strip()
@@ -2339,7 +2364,9 @@ def match_all_hotspots(text: str, max_spots: int = 5) -> List[Dict[str, Any]]:
                     'type': spot.get('type', f'Điểm cảnh báo tuyến đường {st_name}'),
                     'cause': spot.get('cause', 'rain'),
                     'cause_label': spot.get('cause_label', 'Mưa lớn, nước không thoát kịp'),
-                    'source': spot.get('source', 'csgt_or_seed')
+                    'source': spot.get('source', 'csgt_or_seed'),
+                    'precision': 'street',
+                    'coordinate_kind': 'street_center',
                 }
                 finalized = _finalize_match(spot_copy)
                 if finalized:

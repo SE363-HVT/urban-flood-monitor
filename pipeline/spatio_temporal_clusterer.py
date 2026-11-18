@@ -11,9 +11,9 @@ hợp nhất thành 1 marker lớn với nhãn "Được báo cáo bởi 20 ngư
 """
 
 import math
-import time
 from copy import deepcopy
 from typing import List, Dict, Any
+from pipeline.event_processor import report_url
 
 try:
     from pipeline.veracity_checker import haversine_distance_meters
@@ -40,110 +40,107 @@ class SpatioTemporalClusterer:
         self.window = time_window_seconds
 
     def cluster_events(self, raw_events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """
-        Gom cụm danh sách sự kiện ngập lụt.
-        Các sự kiện gần nhau (< radius_meters) và diễn ra trong cùng khoảng thời gian (< time_window_seconds)
-        sẽ được gộp lại thành 1 sự kiện trọng điểm.
-        """
-        clusters: List[Dict[str, Any]] = []
-        seen_reports = set()
+        """Group unique reports in a deterministic order and retain incident history."""
+        def event_time(event):
+            return event.get("create_time") or event.get("timestamp") or 0
 
-        for ev in raw_events:
-            report_id = ev.get("canonical_id") or ev.get("id")
-            if report_id:
-                if report_id in seen_reports:
-                    continue
-                seen_reports.add(report_id)
+        def report_id(event):
+            return str(event.get("canonical_id") or event.get("id") or "")
 
-            loc = ev.get("location") or {}
-            lat = loc.get("lat") or ev.get("lat")
-            lon = loc.get("lon") or ev.get("lon")
-            ev_time = ev.get("create_time") or ev.get("timestamp") or int(time.time())
+        def place(event):
+            location = event.get("location") or {}
+            return (
+                str(location.get("street") or "").strip().casefold(),
+                str(location.get("ward") or "").strip().casefold(),
+                location.get("precision"),
+            )
 
-            if not lat or not lon:
-                clusters.append(deepcopy(ev))
+        def status(event):
+            text = str(event.get("text") or event.get("title") or "").casefold()
+            no_recovery = any(phrase in text for phrase in ("chưa rút", "chưa hết ngập", "chờ nước rút"))
+            if not no_recovery and any(phrase in text for phrase in ("nước đã rút", "nước rút hết", "hết ngập")):
+                return "receded"
+            if "ngập" in text and any(phrase in text for phrase in ("dự báo", "nguy cơ ngập", "có thể ngập")):
+                return "forecast"
+            if str(event.get("polarity") or "").upper() == "POS" and any(
+                phrase in text for phrase in ("cảm ơn", "cứu hộ", "hỗ trợ")
+            ):
+                return "response"
+            return "reported"
+
+        clusters = []
+        seen = set()
+        for event in sorted(raw_events, key=lambda e: (event_time(e), report_id(e), str(e.get("text") or ""))):
+            identity = report_id(event)
+            url = report_url(event.get("url"))
+            tokens = {("id", identity)} if identity else set()
+            if url:
+                tokens.add(("url", url))
+            if tokens & seen:
                 continue
+            seen.update(tokens)
 
-            merged = False
-            for c in clusters:
-                c_loc = c.get("location") or {}
-                c_lat = c_loc.get("lat") or c.get("lat")
-                c_lon = c_loc.get("lon") or c.get("lon")
-                c_time = c.get("create_time") or c.get("timestamp") or int(time.time())
+            loc = event.get("location") or {}
+            lat, lon = loc.get("lat") or event.get("lat"), loc.get("lon") or event.get("lon")
+            timestamp = event_time(event)
+            street, ward, precision = place(event)
+            condition = status(event)
+            candidates = []
+            if lat and lon and timestamp and precision not in ("ward", "city"):
+                for candidate in reversed(clusters):
+                    difference = timestamp - event_time(candidate)
+                    if difference > self.window:
+                        break
+                    other = candidate.get("location") or {}
+                    other_lat = other.get("lat") or candidate.get("lat")
+                    other_lon = other.get("lon") or candidate.get("lon")
+                    other_street, other_ward, other_precision = place(candidate)
+                    if not other_lat or not other_lon or other_precision in ("ward", "city"):
+                        continue
+                    if street != other_street or (ward and other_ward and ward != other_ward):
+                        continue
+                    if condition in ("forecast", "response") or candidate["incident_status"] in ("forecast", "response"):
+                        continue
+                    distance = haversine_distance_meters(lat, lon, other_lat, other_lon)
+                    if distance <= self.radius:
+                        candidates.append((distance, difference, report_id(candidate), candidate))
 
-                if not c_lat or not c_lon:
-                    continue
+            if candidates:
+                cluster = min(candidates, key=lambda item: item[:3])[3]
+                cluster["incident_status"] = condition
+                cluster["incident_updated_at"] = timestamp
+                if condition == "reported":
+                    cluster.pop("recovery_report", None)
+                if condition == "receded":
+                    cluster["recovery_report"] = identity
+                cluster["weight"] = max(cluster.get("weight", 1.0), event.get("weight", 1.0))
+                anchor = cluster.get("location") or {}
+                points = anchor.get("heat_points")
+                if isinstance(points, list):
+                    for point in loc.get("heat_points") or [[lat, lon]]:
+                        if point not in points:
+                            points.append(deepcopy(point))
+            else:
+                cluster = deepcopy(event)
+                cluster.update(report_count=0, report_ids=[], sources=[], posts_summary=[],
+                               incident_status=condition, incident_updated_at=timestamp)
+                clusters.append(cluster)
 
-                dist = haversine_distance_meters(lat, lon, c_lat, c_lon)
-                time_diff = abs(ev_time - c_time)
-
-                if dist <= self.radius and time_diff <= self.window:
-                    # Tăng số lượng người báo cáo
-                    current_count = c.get("report_count", 1) + 1
-                    c["report_count"] = current_count
-
-                    # Hợp nhất các nguồn (TikTok, Facebook, RSS,...)
-                    cur_sources = c.get("sources", [c.get("platform", "social")])
-                    new_src = ev.get("platform", "social")
-                    if new_src not in cur_sources:
-                        cur_sources.append(new_src)
-                    c["sources"] = cur_sources
-
-                    # Tăng trọng số hiển thị do có nhiều nguồn xác nhận
-                    c["weight"] = max(c.get("weight", 1.0), ev.get("weight", 1.0)) + 0.5
-
-                    # Ghi nhãn Master Incident
-                    c["cluster_label"] = f"Được báo cáo bởi {current_count} người"
-                    c["is_cluster"] = True
-
-                    # Tăng bằng chứng Veracity nếu có
-                    if "veracity" in c and isinstance(c["veracity"], dict):
-                        c["veracity"]["evidence_count"] = max(
-                            c["veracity"].get("evidence_count", 1),
-                            current_count
-                        )
-                        c["veracity"]["spatial_consensus_count"] = current_count
-                        c["veracity"]["confidence_score"] = min(
-                            0.98,
-                            c["veracity"].get("confidence_score", 0.75) + 0.05
-                        )
-                        c["veracity"]["status"] = "confirmed"
-                        c["veracity"]["status_label"] = "Đã xác thực (Đồng thuận cao)"
-
-                    # Tổng hợp tóm tắt các bài viết
-                    cur_posts = c.get("posts_summary", [])
-                    cur_posts.append({
-                        "author": ev.get("author", "Người dân"),
-                        "text": ev.get("text") or ev.get("title", ""),
-                        "url": ev.get("url", ""),
-                        "platform": ev.get("platform", "social"),
-                        "create_time": ev_time
-                    })
-                    c["posts_summary"] = cur_posts
-
-                    # Mở rộng quầng nhiệt nếu có nhiều điểm xung quanh
-                    if "heat_points" in c_loc and isinstance(c_loc["heat_points"], list):
-                        new_pts = loc.get("heat_points", [[lat, lon]])
-                        for pt in new_pts:
-                            if pt not in c_loc["heat_points"]:
-                                c_loc["heat_points"].append(deepcopy(pt))
-
-                    merged = True
-                    break
-
-            if not merged:
-                ev_copy = deepcopy(ev)
-                ev_copy["report_count"] = 1
-                ev_copy["sources"] = [ev.get("platform", "social")]
-                ev_copy["cluster_label"] = "Báo cáo đơn lẻ"
-                ev_copy["is_cluster"] = False
-                ev_copy["posts_summary"] = [{
-                    "author": ev.get("author", "Người dân"),
-                    "text": ev.get("text") or ev.get("title", ""),
-                    "url": ev.get("url", ""),
-                    "platform": ev.get("platform", "social"),
-                    "create_time": ev_time
-                }]
-                clusters.append(ev_copy)
+            cluster["report_count"] += 1
+            if identity:
+                cluster["report_ids"].append(identity)
+            platform = event.get("platform", "social")
+            if platform not in cluster["sources"]:
+                cluster["sources"].append(platform)
+            count = cluster["report_count"]
+            cluster["is_cluster"] = count > 1
+            cluster["cluster_label"] = f"{count} báo cáo" if count > 1 else "Báo cáo đơn lẻ"
+            cluster["posts_summary"].append({
+                "author": event.get("author", "Người dân"),
+                "text": event.get("text") or event.get("title", ""),
+                "url": event.get("url", ""),
+                "platform": platform,
+                "create_time": timestamp,
+            })
 
         return clusters

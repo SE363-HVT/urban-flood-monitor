@@ -35,6 +35,7 @@ from pipeline.live_free_crawler import LiveFreeSocialCrawler
 from pipeline.simulation_replayer import SimulationReplayer
 from pipeline.tiktok_poller import TikTokPoller
 from pipeline.facebook_poller import FacebookPoller
+from bigdata.streaming.stream_storage import spool_record
 
 try:
     from pydantic import BaseModel, Field
@@ -70,6 +71,8 @@ class SocialKafkaProducer:
         self.bootstrap_servers = bootstrap_servers
         self.producer = None
         self.seen_canonical_ids = set()
+        self.kafka_retry_at = 0.0
+        self.buffered_count = 0
         self.free_crawler = LiveFreeSocialCrawler()
         self.tiktok_poller = TikTokPoller()
         self.facebook_poller = FacebookPoller()
@@ -103,12 +106,18 @@ class SocialKafkaProducer:
                 key_serializer=lambda k: k.encode('utf-8') if k else None,
                 acks=1,
                 retries=3,
-                request_timeout_ms=3000
+                request_timeout_ms=3000,
+                max_block_ms=3000,
             )
             print(f"[Producer Info] Đã kết nối thành công tới Kafka Broker tại {self.bootstrap_servers}")
         except Exception as e:
             print(f"[Producer Warning] Không thể kết nối tới Kafka Broker ({e}). Sẽ sử dụng Local Buffer fallback.")
             self.producer = None
+
+    def _recover_kafka(self):
+        if self.producer is None and time.monotonic() >= self.kafka_retry_at:
+            self.kafka_retry_at = time.monotonic() + 30
+            self._init_kafka()
 
     def send_to_dlq(self, source_topic: str, error_type: str, error_message: str, raw_payload: Any) -> bool:
         """
@@ -125,7 +134,7 @@ class SocialKafkaProducer:
 
         if self.producer:
             try:
-                self.producer.send(TOPIC_FLOOD_DLQ, value=dlq_event)
+                self.producer.send(TOPIC_FLOOD_DLQ, value=dlq_event).get(timeout=5)
                 return True
             except Exception as e:
                 print(f"[DLQ Error] Không thể gửi DLQ qua Kafka: {e}")
@@ -135,6 +144,8 @@ class SocialKafkaProducer:
         try:
             with open(dlq_file, "a", encoding="utf-8") as f:
                 f.write(json.dumps(dlq_event, ensure_ascii=False) + "\n")
+                f.flush()
+                os.fsync(f.fileno())
             return True
         except Exception:
             return False
@@ -164,27 +175,29 @@ class SocialKafkaProducer:
         if canonical_id in self.seen_canonical_ids:
             return False  # Chống trùng lặp tầng 1
 
-        self.seen_canonical_ids.add(canonical_id)
         event["canonical_id"] = canonical_id
         event["ingested_at_iso"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
         if self.producer:
             try:
-                self.producer.send(topic, key=canonical_id, value=event)
+                self.producer.send(topic, key=canonical_id, value=event).get(timeout=5)
+                self.seen_canonical_ids.add(canonical_id)
                 return True
             except Exception as e:
                 print(f"[Producer Error] Lỗi khi gửi message vào topic {topic}: {e}")
-                self.send_to_dlq(topic, "KafkaProducerException", str(e), event)
-                return False
-        else:
-            # Local fallback: Ghi vào buffer file để Spark hoặc hệ thống đọc
-            buffer_file = os.path.join(ROOT_DIR, "data", f"buffer_{topic}.jsonl")
-            try:
-                with open(buffer_file, "a", encoding="utf-8") as f:
-                    f.write(json.dumps(event, ensure_ascii=False) + "\n")
-                return True
-            except Exception:
-                return False
+                try:
+                    self.producer.close(timeout=0)
+                except Exception as close_error:
+                    print(f"[Producer Warning] Lỗi đóng kết nối Kafka: {close_error}")
+                self.producer = None
+                self.kafka_retry_at = time.monotonic() + 30
+        try:
+            spool_record(os.path.join(ROOT_DIR, "data"), topic, event)
+            self.seen_canonical_ids.add(canonical_id)
+            self.buffered_count += 1
+        except OSError as error:
+            print(f"[Producer Error] Không thể lưu bản ghi {canonical_id} chờ thử lại: {error}")
+        return False
 
     def run_live_cycle(
         self,
@@ -199,6 +212,8 @@ class SocialKafkaProducer:
         """
         published_count = 0
         total_discovered = 0
+        buffered_before = self.buffered_count
+        self._recover_kafka()
 
         # 1. Thu thập từ Free Crawler (Engine 1)
         if enable_free_crawler:
@@ -220,13 +235,11 @@ class SocialKafkaProducer:
             except Exception as e:
                 print(f"[Producer Apify Error] Không thể cào sâu qua Apify: {e}")
 
-        if self.producer:
-            self.producer.flush()
-
         return {
             "mode": "live",
             "total_discovered": total_discovered,
             "published_to_kafka": published_count,
+            "buffered_locally": self.buffered_count - buffered_before,
             "topic": TOPIC_LIVE_RAW,
             "kafka_connected": self.producer is not None
         }
@@ -240,6 +253,8 @@ class SocialKafkaProducer:
         replayer = SimulationReplayer.get_instance()
         events, stats = replayer.poll(batch_size=batch_size)
         published_count = 0
+        buffered_before = self.buffered_count
+        self._recover_kafka()
         now_ts = int(time.time())
 
         for ev in events:
@@ -257,13 +272,11 @@ class SocialKafkaProducer:
             if self.publish_event(TOPIC_SIM_RAW, ev):
                 published_count += 1
 
-        if self.producer:
-            self.producer.flush()
-
         return {
             "mode": "simulation",
             "batch_size": batch_size,
             "published_to_kafka": published_count,
+            "buffered_locally": self.buffered_count - buffered_before,
             "topic": TOPIC_SIM_RAW,
             "kafka_connected": self.producer is not None
         }

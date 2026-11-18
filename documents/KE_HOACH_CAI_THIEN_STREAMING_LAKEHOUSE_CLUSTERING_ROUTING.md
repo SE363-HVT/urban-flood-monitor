@@ -8,6 +8,10 @@ Ngày lập: 18/11/2026.
 
 Các tiêu chí chuyển luồng trong tài liệu áp dụng cho những đợt thay engine hoặc định dạng lưu trữ. Native Structured Streaming và Delta Lake đang ở giai đoạn thiết kế. Các bản sửa trên đã có hiệu lực trong mã vận hành chính.
 
+Đường chạy Kafka → PySpark đã bổ sung xác nhận gửi từ Kafka, xác nhận offset theo partition sau khi lưu đầu ra bền vững, và đọc lại file đệm nguyên tử. Báo cáo nguồn mới nằm trong `data/lakehouse/raw_reports/`. Báo cáo đã xác thực được lưu thành JSONL theo phân vùng trong `flood_events/` để có thể dựng lại sự kiện đang phục vụ. Compaction đọc được JSONL cũ và mới, xuất Parquet và đưa đầu ra JSONL dự phòng vào thư mục riêng.
+
+Các báo cáo về cùng sự cố được gom xuyên lô. Heatmap phân biệt ghim đại diện cho đường, phường/xã và thành phố, đồng thời giữ nội dung ASTE nguồn. Dashboard và API chỉ số dùng chung snapshot, có trạng thái theo chu kỳ của crawler. Veracity tiếp tục dùng Open-Meteo Forecast và Archive, phân biệt 0 mm với thiếu dữ liệu, dùng chung lần gọi theo ô tọa độ và giới hạn luồng AI xử lý media.
+
 ## 1. Mục tiêu và nguyên tắc bảo toàn hệ thống
 
 Mục tiêu là cải thiện tính đúng đắn, khả năng phục hồi và chất lượng kết quả của hệ thống đang có. Tài liệu này không yêu cầu thay toàn bộ kiến trúc hoặc nâng cấp đồng loạt thư viện. Các phần dưới đây có mức hoàn thiện khác nhau: Spark đã xử lý batch, kho dữ liệu đã lưu JSONL/Parquet, bộ gom cụm đã hoạt động theo khoảng cách và thời gian, dashboard đã tìm điểm ngập lân cận. Những phần còn thiếu cần được bổ sung có kiểm soát.

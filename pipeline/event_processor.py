@@ -9,8 +9,23 @@ import json
 import unicodedata
 from datetime import datetime, timezone
 from typing import Dict, Any, Optional, List
+from urllib.parse import parse_qsl, urlencode, urlsplit
 
 from core.gazetteer import match_hotspot, normalize_text
+
+
+def report_url(value):
+    """Remove tracking parameters while retaining IDs encoded in the query."""
+    url = str(value or "").strip()
+    try:
+        parsed = urlsplit(url)
+        query = [
+            (key, item) for key, item in parse_qsl(parsed.query, keep_blank_values=True)
+            if not key.lower().startswith("utm_") and key.lower() not in {"fbclid", "gclid"}
+        ]
+        return parsed._replace(query=urlencode(sorted(query)), fragment="").geturl()
+    except ValueError:
+        return url
 
 BDS_SPAM_KEYWORDS = [
   "bán nhà",
