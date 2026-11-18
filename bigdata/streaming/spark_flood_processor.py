@@ -619,6 +619,7 @@ class SparkFloodProcessor:
             print("[PySpark Stream Error] Thư viện kafka-python chưa được cài đặt!")
             return
 
+        max_batch_size = 15
         print(f"\n[*] Đang kết nối tới Kafka Broker ({bootstrap_servers}) cho topics: {topics}...")
         try:
             consumer = KafkaConsumer(
@@ -627,12 +628,11 @@ class SparkFloodProcessor:
                 auto_offset_reset='earliest',
                 enable_auto_commit=True,
                 group_id=f'pyspark-flood-{self.mode}-streaming-group',
-                value_deserializer=lambda x: json.loads(x.decode('utf-8')),
                 consumer_timeout_ms=1000,
-                max_poll_records=15
+                max_poll_records=max_batch_size
             )
             print("[*] ĐÃ KẾT NỐI THÀNH CÔNG TỚI KAFKA BROKER!")
-            print(f"[*] PySpark Native Structured Streaming Engine ({self.mode.upper()}) đang sẵn sàng xử lý các đợt ngập...")
+            print(f"[*] Kafka → PySpark ({self.mode.upper()}) đang sẵn sàng xử lý các đợt ngập...")
         except Exception as e:
             print(f"[PySpark Stream Error] Không thể kết nối tới Kafka Broker: {e}")
             print("[*] Chuyển sang chế độ Local Buffer Watcher để tiếp tục xử lý...")
@@ -640,39 +640,41 @@ class SparkFloodProcessor:
             return
 
         batch_counter = 0
-        current_batch = []
-        last_flush_time = time.time()
-
         try:
             while True:
+                records = []
                 msg_pack = consumer.poll(timeout_ms=1000)
-                for tp, messages in msg_pack.items():
+                for messages in msg_pack.values():
                     for msg in messages:
-                        if isinstance(msg.value, dict):
-                            val = msg.value
-                            # Trong chế độ LIVE: Khử sạch mọi message vô tình sót từ simulation
-                            if self.mode == "live":
-                                if val.get("platform") in ["simulation", "sim"] or str(val.get("canonical_id", "")).startswith("sim_"):
-                                    continue
-                            current_batch.append(val)
+                        try:
+                            value = json.loads(msg.value.decode("utf-8")) if msg.value is not None else None
+                            if not isinstance(value, dict):
+                                raise ValueError("Expected a JSON object")
+                        except (ValueError, RecursionError) as error:
+                            self.send_dlq("KafkaPayloadError", str(error), {
+                                "topic": msg.topic,
+                                "partition": msg.partition,
+                                "offset": msg.offset,
+                                "value": msg.value.decode("utf-8", errors="backslashreplace") if msg.value is not None else None,
+                            })
+                            continue
+                        if self.mode == "live" and (
+                            value.get("platform") in ("simulation", "sim")
+                            or str(value.get("canonical_id", "")).startswith("sim_")
+                        ):
+                            continue
+                        records.append(value)
 
-                now = time.time()
-                # Phản hồi tức thì: Flush ngay khi có bản ghi (>= 1) sau 1.0s hoặc đủ 10 bản ghi
-                if current_batch and (len(current_batch) >= 1 or (now - last_flush_time) >= 1.0):
+                for start in range(0, len(records), max_batch_size):
                     batch_counter += 1
-                    batch_to_process = current_batch[:15]
-                    current_batch = current_batch[15:]
-                    raw_batch_copy = list(batch_to_process)
+                    batch_to_process = records[start:start + max_batch_size]
                     try:
                         df = self.spark.createDataFrame(batch_to_process, schema=EVENT_SCHEMA)
                         dedup_df = df.dropDuplicates(["canonical_id"])
-                        self.process_micro_batch(dedup_df, batch_id=batch_counter, raw_records=raw_batch_copy)
+                        self.process_micro_batch(dedup_df, batch_id=batch_counter, raw_records=batch_to_process)
                     except Exception as batch_err:
                         print(f"[Spark Engine Warning] Lỗi micro-batch #{batch_counter}: {batch_err}")
-                        self._fallback_process_records(raw_batch_copy, batch_id=batch_counter)
-                    finally:
-                        current_batch = []
-                        last_flush_time = now
+                        self._fallback_process_records(batch_to_process, batch_id=batch_counter)
         except KeyboardInterrupt:
             print("\n[*] Dừng luồng PySpark Streaming theo lệnh người dùng.")
         finally:
