@@ -1,6 +1,12 @@
 # Kế hoạch cải thiện Streaming, Lakehouse, gom cụm và Heatmap ASTE
 
-Ngày lập: 18/11/2026. Phạm vi: đề xuất thiết kế dựa trên mã nguồn đã đọc; chưa triển khai hay chạy kiểm chứng thay đổi.
+Ngày lập: 18/11/2026.
+
+## Trạng thái triển khai
+
+`main` đã tích hợp các bản sửa dashboard và gom cụm (`02fa140`) cùng bản sửa tiếp nhận Kafka → Spark (`a3488ba`). Entrypoint `bigdata/run_streaming_pipeline.py` tự dùng các bản sửa này khi khởi động ở chế độ live hoặc simulation. Hai chế độ chọn nguồn dữ liệu, cùng dùng mã dashboard và Spark processor hiện hành.
+
+Các tiêu chí chuyển luồng trong tài liệu áp dụng cho những đợt thay engine hoặc định dạng lưu trữ. Native Structured Streaming và Delta Lake đang ở giai đoạn thiết kế. Các bản sửa trên đã có hiệu lực trong mã vận hành chính.
 
 ## 1. Mục tiêu và nguyên tắc bảo toàn hệ thống
 
@@ -10,7 +16,7 @@ Yêu cầu “không làm hư hệ thống” phải được cụ thể hóa th
 
 Các nguyên tắc bắt buộc khi triển khai:
 
-1. Giữ đường chạy hiện tại làm mặc định trong suốt giai đoạn phát triển. Mỗi tính năng mới có cấu hình bật/tắt riêng; tắt tính năng phải phục hồi hành vi cũ mà không cần sửa dữ liệu ngược lại.
+1. Tích hợp bản sửa đã kiểm chứng trực tiếp vào đường chạy chính. Khi thử thay engine hoặc đổi định dạng lưu trữ, thực hiện đối chiếu trong môi trường riêng và chuẩn bị phương án phục hồi dữ liệu, offset trước khi chuyển luồng phục vụ.
 2. Chạy đối chiếu bằng bản sao dữ liệu hoặc môi trường thử riêng. Với Kafka, dùng consumer group riêng; với Redis, dùng namespace riêng; với file, Delta và checkpoint, dùng thư mục riêng. Bản thử không được ghi vào trạng thái dashboard đang phục vụ.
 3. Không đổi tên, xóa hoặc thay kiểu các trường API hiện có. Nếu bổ sung metadata, thêm trường tùy chọn và giữ lớp chuyển đổi về cấu trúc cũ.
 4. Không sửa nhãn ASTE, master dataset, các phase audit hay checkpoint AI để phục vụ việc nâng cấp hạ tầng. Không khởi chạy crawler tính phí khi kiểm thử có thể dùng dữ liệu đã lưu.

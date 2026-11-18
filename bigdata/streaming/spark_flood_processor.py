@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 bigdata/streaming/spark_flood_processor.py
-PySpark Structured Streaming Engine cho Hệ thống Giám sát Ngập lụt SE363.
+Kafka → PySpark micro-batch cho Hệ thống Giám sát Ngập lụt SE363.
 
 Cải tiến toàn diện theo SSOT Blueprint (Section 4.1 & Section 4.3):
-1. NATIVE SPARK STRUCTURED STREAMING & SPARK UDFs:
-   - Thay thế hoàn toàn vòng lặp đơn luồng bằng Spark UDFs (extract_gis_udf, extract_severity_udf)
-   - Tận dụng 100% CPU cores của máy qua master("local[*]").
-   - Watermark và Checkpoint lưu trữ an toàn tại data/lakehouse/_checkpoints/native_stream.
+1. KAFKA CONSUMER & SPARK UDFs:
+   - KafkaConsumer.poll() lấy bản ghi để ứng dụng tạo từng Spark DataFrame.
+   - Spark UDFs (extract_gis_udf, extract_severity_udf) chạy song song qua master("local[*]").
 2. PHỤC VỤ KHÔNG KHÓA FILE (IN-MEMORY REDIS SERVING STORE):
    - Hot Path ghi trực tiếp vào Redis GEO & Sorted Set (< 3ms)
    - Hỗ trợ Fallback file data/live_stream_state.json nếu Redis chưa bật.
