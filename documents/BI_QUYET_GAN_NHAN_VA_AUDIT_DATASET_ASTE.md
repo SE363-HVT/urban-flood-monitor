@@ -183,6 +183,12 @@ Khi cào dữ liệu từ mạng xã hội (TikTok / Facebook), crawler thườn
 
 ## 🛠️ VII. KIẾN TRÚC KIỂM ĐỊNH KÉP (DUAL-ENGINE AUDIT) & BỘ CÔNG CỤ SCRIPT TỰ ĐỘNG
 
+> **Cập nhật công cụ 18/11/2026:** xem [hướng dẫn sử dụng và phạm vi kiểm tra thực tế](HUONG_DAN_CONG_CU_AUDIT_ASTE.md).
+> Ba CLI dùng chung bộ rules và phân biệt `ERROR` / `REVIEW`; “10 nhóm kiểm tra” không phải 10 lượt đọc hiểu độc lập.
+> `0 ERROR` không chứng nhận đúng ngữ nghĩa hoặc sẵn sàng train. Giải mã index phải đối chiếu cụm từ **và lần xuất hiện** đã đọc hiểu;
+> dùng `--expected` để kiểm tra quyết định đó trên text cuối. `span_helper.py` không còn tự chọn lần đầu hoặc âm thầm cắt phrase.
+> Các quy tắc gán nhãn trong tài liệu giữ nguyên; thay đổi này sửa công cụ để hỗ trợ đúng các quy tắc đó.
+
 Nhằm giải quyết triệt để mối lo ngại về việc script tự động có thể hiểu sai ngữ cảnh gây lệch lạc dữ liệu, hệ thống áp dụng **Kiến trúc Kiểm định Kép (Dual-Engine)** phân định ranh giới trách nhiệm rõ ràng:
 
 ```
@@ -208,17 +214,17 @@ Nhằm giải quyết triệt để mối lo ngại về việc script tự đ�
 * **Con người / Agent quyết định sửa chữa**: Mọi chỉnh sửa đều phải do Chuyên gia / Agent đọc lại dòng đó, hiểu nguyên nhân ngữ nghĩa và chủ động cập nhật.
 
 ### 2. Danh Mục 10 Nhóm Lỗi Được Tự Động Quét Sâu (10-Pass Linter)
-Bộ công cụ tự động kiểm định 10 chiều độc lập:
-1. `FORMAT_ERROR`: Thiếu dấu phân cách `####` hoặc cấu trúc dòng sai lệch.
-2. `SYNTAX_ERROR`: Cú pháp Python tuple/list không hợp lệ (`ast.literal_eval` thất bại).
-3. `OUT_OF_BOUNDS`: Index của Aspect/Opinion vượt quá tổng số tokens của câu (`idx >= len(tokens)`).
-4. `NON_CONTIGUOUS`: Dãy index không tăng dần liên tục từng đơn vị (ví dụ: `[1, 3]` thay vì `[1, 2, 3]`).
-5. `OVERLAP_INDEX`: Trùng lặp vị trí giữa Aspect và Opinion trong cùng một triplet ($Span_{asp} \cap Span_{opi} \neq \emptyset$).
-6. `PREP_LEAKAGE`: Aspect bị dính giới từ vị trí ở token đầu tiên (*ở, tại, trên, dưới, trong, ngoài, từ, đến, gần, cạnh, bên, phía, thuộc, của*).
-7. `PUNCT_LEAKAGE`: Opinion bị dính dấu câu đứng độc lập ở đầu hoặc cuối (*.,;:!?…”"'()[]-–|*).
-8. `VEHICLE_ASPECT`: Gán nhầm phương tiện giao thông làm Aspect (*xe máy, ô tô, xe buýt, xe tải...*).
-9. `NON_HCM_PROVINCE`: Câu có nhắc tên tỉnh ngoài (*Cần Thơ, Hà Nội, Cà Mau, Sa Đéc, Đồng Nai...*) mà không bị loại bỏ (`REJECT`).
-10. `DOC_FALLBACK_MISUSE`: Dùng tiền tố `TP. Hồ Chí Minh` làm Aspect trong khi câu văn có nhắc tên đường hoặc địa danh cụ thể.
+Bộ công cụ hiện báo cáo 10 nhóm sau; các kiểm tra cần ngữ cảnh chỉ tạo `REVIEW`, không tự quyết định thay annotator:
+1. **Format / syntax / schema**: dấu phân cách, dòng trắng, text rỗng, cú pháp, cấu trúc list/tuple.
+2. **Index**: kiểu số nguyên (không nhận bool/float), span rỗng, phạm vi và tính liên tục.
+3. **Overlap**: `OVERLAP_INDEX` khi Aspect và Opinion giao index trong cùng triplet.
+4. **Dấu câu / emoji**: `PUNCT_LEAKAGE` ở rìa Aspect/Opinion; dấu phẩy giữa Opinion không tự bị loại.
+5. **Giới từ**: đủ danh sách III.2.3, kể cả Aspect chỉ gồm một giới từ; địa danh một token vẫn hợp lệ.
+6. **Polarity / triplet trùng**: bộ ba POS/NEG/NEU và trùng lặp triplet chính xác.
+7. **Quy tắc span tường minh**: các Aspect xe/người/generic liệt kê, triều trơ, Opinion danh từ trơ và động từ nhân quả.
+8. **REVIEW ngữ nghĩa**: dấu hiệu thiếu phủ định/trạng thái, ranh giới, polarity, tiền tố và Opinion chung.
+9. **REVIEW ngữ cảnh**: fallback, địa lý, mọi quyết định REJECT và text trùng. Tên tỉnh ngoài hoặc hashtag chỉ là dấu hiệu, không phải căn cứ tự động REJECT.
+10. **Đối chiếu quyết định đã duyệt**: `--expected` so text cuối, cụm từ, vị trí xuất hiện, polarity và số lượng triplet; thiếu manifest thì chưa thực hiện nhóm này.
 
 ### 3. Bộ 3 Script Kiểm Định Chuẩn Hóa và Cú Pháp CLI
 
@@ -239,7 +245,7 @@ Tất cả 3 script đều hỗ trợ truyền đường dẫn file linh hoạt 
   ```
 
 #### 🔹 Script 2: Kiểm định chuyên sâu 10 vòng lặp [`scripts/deep_10_pass_audit.py`](file:///D:/SE363_RAWDATA/scripts/deep_10_pass_audit.py)
-* **Mục đích**: Quét toàn bộ file qua **10 vòng độc lập** để bắt trọn vẹn 10 nhóm lỗi nêu trên. Đảm bảo toàn bộ dataset đạt 100% 0 lỗi trước khi bàn giao.
+* **Mục đích**: Kiểm tra toàn file theo 10 nhóm kỹ thuật/cảnh báo được liệt kê trong báo cáo CLI hiện tại. Phải phân xử cảnh báo và đọc hiểu từng record; 0 lỗi kỹ thuật không chứng minh 100% đúng ngữ nghĩa.
 * **Cú pháp lệnh**:
   ```powershell
   # Chạy kiểm định 10 vòng cho toàn bộ file:
@@ -253,7 +259,7 @@ Tất cả 3 script đều hỗ trợ truyền đường dẫn file linh hoạt 
   ```
 
 #### 🔹 Script 3: Giải mã ngược kiểm tra tính toàn vẹn Index [`scripts/audit_index_integrity.py`](file:///D:/SE363_RAWDATA/scripts/audit_index_integrity.py)
-* **Mục đích**: Tự động lấy các số nguyên trong `aspect_indices` và `opinion_indices` để trích xuất ngược lại từng từ vựng trong câu văn gốc (`tokens[i]`), đối soát trực tiếp xem có bị lệch chữ, rỗng nhãn, hay dính dấu câu hay không.
+* **Mục đích**: Kiểm tra kỹ thuật và giải mã từ `tokens[i]`; dùng `--show-tokens` để đọc đối chiếu và `--expected` để so với phrase/vị trí đã duyệt độc lập. Chỉ giải mã index không thể phát hiện mọi trường hợp chọn nhầm từ trong câu.
 * **Cú pháp lệnh**:
   ```powershell
   # Chạy đối soát giải mã ngược toàn bộ file:
@@ -280,11 +286,11 @@ Quy trình chuẩn hóa 4 bước khép kín (The 4-Step Agile Labeling & Verifi
      │       ├── Có lỗi ➔ Mở file sửa tay ngay tại chỗ ➔ Chạy lại Bước 2
      │       └── 0 lỗi  ➔ Tiến hành lô 50 tiếp theo
      ▼
-  [Bước 3] Nghiệm thu toàn file với `deep_10_pass_audit.py` (10 vòng độc lập)
-     │       └── Phát hiện bất kỳ cảnh báo nào ➔ Hiệu chỉnh triệt để
+  [Bước 3] Kiểm tra toàn file với `deep_10_pass_audit.py` (10 nhóm kiểm tra)
+     │       └── Có ERROR ➔ Sửa; có REVIEW ➔ Đọc phân xử, không sửa chỉ để lách cảnh báo
      ▼
   [Bước 4] Đối soát giải mã ngược với `audit_index_integrity.py`
-             └── Nghiệm thu 100% khớp từ vựng ➔ Commit dữ liệu an toàn
+             └── Đối chiếu phrase + lần xuất hiện đã duyệt, kiểm định ngữ nghĩa ➔ Chốt dữ liệu
 ```
 
 ### 1. Triển khai Phase 2: Tập Overlap 2.000 Records (Từ dòng 501 ➔ 2.500)
