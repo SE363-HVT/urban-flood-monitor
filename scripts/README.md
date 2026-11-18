@@ -5,10 +5,12 @@ Thư mục `scripts/` đã được chuẩn hóa và tái cấu trúc toàn di�
 ---
 
 ## 🛠️ Công Cụ Kiểm Toán & Đo Lường Cốt Lõi (Thư Mục Gốc)
-* [`deep_10_pass_audit.py`](./deep_10_pass_audit.py): Bộ kiểm toán toán học 10 vòng độc lập (Single Source of Truth của hệ thống ASTE).
-* [`audit_index_integrity.py`](./audit_index_integrity.py): Bộ giải mã ngược đối soát token offset khớp 100% văn bản.
-* [`span_helper.py`](./span_helper.py): Thư viện toán học `make_triplet` gọt sạch dấu câu và giới từ.
+* [`deep_10_pass_audit.py`](./deep_10_pass_audit.py): Báo cáo 10 nhóm kiểm tra kỹ thuật/cảnh báo; không chứng nhận độ đúng ngữ nghĩa.
+* [`audit_index_integrity.py`](./audit_index_integrity.py): Giải mã span; `--expected` đối chiếu với cụm từ và lần xuất hiện đã duyệt.
+* [`span_helper.py`](./span_helper.py): Tính index từ phrase nguyên văn; bắt buộc chọn rõ vị trí khi cụm lặp, không tự gọt phrase.
 * [`verify_batch_50.py`](./verify_batch_50.py): Công cụ kiểm tra cuốn chiếu từng lô 50 mẫu (được dẫn trong Cẩm nang gán nhãn).
+* [`aste_audit_core.py`](./aste_audit_core.py), [`aste_audit_cli.py`](./aste_audit_cli.py): Rules/schema và giao diện dùng chung cho ba lệnh audit, hoàn toàn read-only với dataset.
+* [`test_aste_audit.py`](./test_aste_audit.py): Kiểm thử hồi quy. Xem [hướng dẫn audit](../documents/HUONG_DAN_CONG_CU_AUDIT_ASTE.md) cho mã thoát, manifest đối chiếu và giới hạn ngữ nghĩa.
 * [`stats_phase3.py`](./stats_phase3.py): Báo cáo thống kê phân bổ nhãn và tỷ lệ dữ liệu.
 
 ---
