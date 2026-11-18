@@ -8,8 +8,8 @@ feedparser>=6.0.11
 
 # Messaging & Distributed Computing
 kafka-python>=3.0.0
-pyspark>=3.5.0
-delta-spark>=3.1.0
+pyspark==4.2.0
+delta-spark==4.4.1
 
 # Database & In-Memory Serving
 redis>=5.0.0

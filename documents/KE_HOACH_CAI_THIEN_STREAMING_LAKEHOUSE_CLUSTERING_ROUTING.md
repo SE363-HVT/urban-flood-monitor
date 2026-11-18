@@ -6,11 +6,17 @@ Ngày lập: 18/11/2026.
 
 `main` đã tích hợp các bản sửa dashboard và gom cụm (`02fa140`) cùng bản sửa tiếp nhận Kafka → Spark (`a3488ba`). Entrypoint `bigdata/run_streaming_pipeline.py` tự dùng các bản sửa này khi khởi động ở chế độ live hoặc simulation. Hai chế độ chọn nguồn dữ liệu, cùng dùng mã dashboard và Spark processor hiện hành.
 
-Các tiêu chí chuyển luồng trong tài liệu áp dụng cho những đợt thay engine hoặc định dạng lưu trữ. Native Structured Streaming và Delta Lake đang ở giai đoạn thiết kế. Các bản sửa trên đã có hiệu lực trong mã vận hành chính.
-
 Đường chạy Kafka → PySpark đã bổ sung xác nhận gửi từ Kafka, xác nhận offset theo partition sau khi lưu đầu ra bền vững, và đọc lại file đệm nguyên tử. Báo cáo nguồn mới nằm trong `data/lakehouse/raw_reports/`. Báo cáo đã xác thực được lưu thành JSONL theo phân vùng trong `flood_events/` để có thể dựng lại sự kiện đang phục vụ. Compaction đọc được JSONL cũ và mới, xuất Parquet và đưa đầu ra JSONL dự phòng vào thư mục riêng.
 
 Các báo cáo về cùng sự cố được gom xuyên lô. Heatmap phân biệt ghim đại diện cho đường, phường/xã và thành phố, đồng thời giữ nội dung ASTE nguồn. Dashboard và API chỉ số dùng chung snapshot, có trạng thái theo chu kỳ của crawler. Veracity tiếp tục dùng Open-Meteo Forecast và Archive, phân biệt 0 mm với thiếu dữ liệu, dùng chung lần gọi theo ô tọa độ và giới hạn luồng AI xử lý media.
+
+### Structured Streaming và Delta Lake
+
+Đường chạy chuẩn dùng Kafka Structured Streaming qua `readStream` và `writeStream`. Bộ phiên bản được ghim ở PySpark 4.2.0 và Delta Lake 4.4.1. JVM tải connector từ Maven Central khi chạy lần đầu. Spark lưu checkpoint riêng cho live và simulation trong `data/lakehouse/_checkpoints/structured_flood/`. Lúc chuyển lần đầu, chương trình lấy offset tiếp theo mà consumer group cũ đã xác nhận cho từng partition. Partition chưa có offset bắt đầu từ đầu phần dữ liệu còn trong Kafka. Các lần khởi động lại dùng checkpoint đã lưu. Nếu offset cần đọc đã hết hạn trong Kafka, truy vấn báo lỗi để đối soát.
+
+Bảng lịch sử báo cáo đã xác thực nằm trong `data/lakehouse/delta/verified_reports/{mode}`. Bảng giữ thông tin địa danh, giờ sự kiện, lượng mưa và nội dung báo cáo đầy đủ. Khóa `report_version` cho phép phát lại cùng một phiên bản mà không thêm dòng. JSONL nguồn và JSONL phục hồi tiếp tục được lưu. Redis vẫn phục vụ snapshot dashboard. Khi ghi Delta lỗi, Spark giữ lô để đọc lại, còn dashboard phục vụ snapshot gần nhất đang có.
+
+Khi pipeline cùng chế độ đã dừng, có thể nhập lịch sử JSONL đã xác thực bằng lệnh `python bigdata/streaming/structured_flood_stream.py --mode live --backfill-delta` hoặc `--mode simulation --backfill-delta`. Nhập lại cùng dữ liệu dùng lại khóa phiên bản. Mục 2 trở đi mô tả hiện trạng lúc lập kế hoạch và các bước phát triển tiếp theo. Watermark cho phép tổng hợp dữ liệu theo giờ sự kiện sẽ được chọn sau khi đo phân bố độ trễ của tin thực tế.
 
 ## 1. Mục tiêu và nguyên tắc bảo toàn hệ thống
 

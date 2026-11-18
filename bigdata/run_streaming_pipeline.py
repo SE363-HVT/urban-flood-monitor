@@ -7,7 +7,7 @@ cho Hệ Thống Giám Sát Ngập Lụt Đô Thị SE363.
 Điều phối các tầng kiến trúc:
 1. Cụm Apache Kafka 4.3.1 (KRaft Mode) & Kafka-UI (Port 8080) & Redis (Port 6379).
 2. Leaflet Heatmap Dashboard Web Server (Port 8050).
-3. Kafka → PySpark micro-batches (Parallel UDFs, Hot State Redis, Lakehouse).
+3. Kafka → Spark Structured Streaming (Delta Lake history, Redis serving).
 4. Multi-Source Kafka Producer (Live Free Crawler hoặc Simulation Replayer) & Dead Letter Queue.
 5. Multimodal AI Microservice (Port 8001 - Tùy chọn).
 """
@@ -208,17 +208,16 @@ def main():
             time.sleep(1.5)
             print("   ✅ Dashboard đang chạy tại: http://localhost:8050")
 
-        # 4. Khởi động bộ xử lý Kafka → PySpark
-        print("\n[4/5] Khởi động bộ xử lý Kafka → PySpark theo micro-batch...")
-        spark_script = os.path.join(ROOT_DIR, "bigdata", "streaming", "spark_flood_processor.py")
+        # 4. Khởi động bộ xử lý Structured Streaming
+        print("\n[4/5] Khởi động Spark Structured Streaming và Delta Lake...")
+        spark_script = os.path.join(ROOT_DIR, "bigdata", "streaming", "structured_flood_stream.py")
         spark_log_path = os.path.join(ROOT_DIR, "data", "spark_engine.log")
         spark_log = open(spark_log_path, "a", encoding="utf-8")
         log_files.append(spark_log)
         p_spark = subprocess.Popen([PYTHON_EXE, "-u", spark_script, "--mode", args.mode], stdout=spark_log, stderr=spark_log, cwd=ROOT_DIR)
         processes.append(("PySpark Engine", p_spark))
-        print("   Đang đợi 8 giây để PySpark khởi tạo và kết nối Kafka & Redis...")
+        print("   PySpark đang khởi tạo. Lần đầu cần tải các connector từ Maven Central.")
         time.sleep(8)
-        print("   ✅ PySpark Streaming Processor đã sẵn sàng xử lý micro-batch!")
         print(f"   ℹ️  Chi tiết log động cơ PySpark được ghi vào: data/spark_engine.log")
 
         # 5. Khởi chạy Producer Ingestion Loop
@@ -260,7 +259,7 @@ def main():
             deadline = time.monotonic() + args.interval
             while time.monotonic() < deadline:
                 if p_spark.poll() is not None:
-                    print(f"   PySpark dừng (mã {p_spark.returncode}). Khởi động lại từ offset đã xác nhận.")
+                    print(f"   PySpark dừng (mã {p_spark.returncode}). Khởi động lại từ checkpoint.")
                     time.sleep(3)
                     processes.remove(("PySpark Engine", p_spark))
                     p_spark = subprocess.Popen([PYTHON_EXE, "-u", spark_script, "--mode", args.mode],

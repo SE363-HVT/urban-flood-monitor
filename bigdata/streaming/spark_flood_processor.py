@@ -24,7 +24,6 @@ Cải tiến toàn diện theo SSOT Blueprint (Section 4.1 & Section 4.3):
 import os
 import sys
 import warnings
-import argparse
 
 warnings.filterwarnings("ignore")
 
@@ -189,12 +188,15 @@ def extract_severity_udf(text):
 
 
 class SparkFloodProcessor:
-    def __init__(self, mode: str = "live", app_name: str = "SE363-Native-Structured-Streaming"):
+    def __init__(self, mode: str = "live", app_name: str = "SE363-Spark-Flood-Processor",
+                 *, restore_serving: bool = True):
         self.mode = mode
         self.app_name = app_name
         self.veracity_checker = VeracityChecker(window_minutes=60, radius_meters=500.0)
         self.clusterer = SpatioTemporalClusterer(radius_meters=400.0, time_window_seconds=2700)
         self.spark = self._create_spark_session()
+        if not restore_serving:
+            return
         self.active_events_cache: List[Dict[str, Any]] = []
         self.redis_client = self._init_redis()
         self._hot_needs_retry = False
@@ -332,18 +334,15 @@ class SparkFloodProcessor:
         Xử lý micro-batch phân tán:
         Đã chuyển hoá dữ liệu GIS và Severity qua Spark UDFs trên các core.
         """
-        count = batch_df.count()
-        if count == 0:
-            return
-
-        print(f"\n[PySpark Stream] Micro-batch #{batch_id} nhận được {count} sự kiện. Đang xử lý phân tán...")
-
         # Áp dụng Spark UDFs song song
         transformed_df = batch_df \
             .withColumn("gis", extract_gis_udf(coalesce(col("text"), col("title")))) \
             .withColumn("sev", extract_severity_udf(coalesce(col("text"), col("title"))))
 
         rows = transformed_df.collect()
+        if not rows:
+            return
+        print(f"\n[PySpark Stream] Micro-batch #{batch_id}: xử lý {len(rows)} báo cáo.")
         verified_batch = []
         raw_map = {self._fingerprint(r): r for r in (raw_records or [])}
         raw_by_id = {r.get("canonical_id") or str(r.get("id")): r for r in (raw_records or [])}
@@ -709,6 +708,24 @@ class SparkFloodProcessor:
             print(f"[Spark Engine Warning] Lỗi micro-batch #{batch_id}: {error}")
             self._fallback_process_records(list(pending.values()), batch_id=batch_id)
 
+    def _decode_ingress_record(self, payload, topic, partition, offset):
+        try:
+            value = json.loads(payload.decode("utf-8")) if payload is not None else None
+            if not isinstance(value, dict):
+                raise ValueError("Expected a JSON object")
+        except (ValueError, RecursionError) as error:
+            self.send_dlq("KafkaPayloadError", str(error), {
+                "topic": topic, "partition": partition, "offset": offset,
+                "value": payload.decode("utf-8", errors="backslashreplace") if payload is not None else None,
+            })
+            return None
+        if self.mode == "live" and (
+            value.get("platform") in ("simulation", "sim")
+            or str(value.get("canonical_id", "")).startswith("sim_")
+        ):
+            return None
+        return value
+
     def start_kafka_streaming(self, bootstrap_servers: str = "localhost:9092", topics: Optional[List[str]] = None, batch_interval_sec: float = 1.0):
         """Lắng nghe sự kiện từ Kafka Topics và chạy xử lý phân tán qua Spark."""
         if topics is None:
@@ -754,24 +771,9 @@ class SparkFloodProcessor:
                 msg_pack = consumer.poll(timeout_ms=1000)
                 for messages in msg_pack.values():
                     for msg in messages:
-                        try:
-                            value = json.loads(msg.value.decode("utf-8")) if msg.value is not None else None
-                            if not isinstance(value, dict):
-                                raise ValueError("Expected a JSON object")
-                        except (ValueError, RecursionError) as error:
-                            self.send_dlq("KafkaPayloadError", str(error), {
-                                "topic": msg.topic,
-                                "partition": msg.partition,
-                                "offset": msg.offset,
-                                "value": msg.value.decode("utf-8", errors="backslashreplace") if msg.value is not None else None,
-                            })
-                            continue
-                        if self.mode == "live" and (
-                            value.get("platform") in ("simulation", "sim")
-                            or str(value.get("canonical_id", "")).startswith("sim_")
-                        ):
-                            continue
-                        records.append(value)
+                        value = self._decode_ingress_record(msg.value, msg.topic, msg.partition, msg.offset)
+                        if value is not None:
+                            records.append(value)
 
                 for start in range(0, len(records), max_batch_size):
                     batch_counter += 1
@@ -905,12 +907,6 @@ class SparkFloodProcessor:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="PySpark Urban Flood Streaming Processor")
-    parser.add_argument("--mode", choices=["live", "simulation"], default="live", help="Streaming mode")
-    p_args = parser.parse_args()
+    from bigdata.streaming.structured_flood_stream import main
 
-    print("=" * 70)
-    print(f"🌊 KHỞI CHẠY PYSPARK URBAN FLOOD STREAMING PROCESSOR ({p_args.mode.upper()})")
-    print("=" * 70)
-    processor = SparkFloodProcessor(mode=p_args.mode)
-    processor.start_kafka_streaming()
+    main()
