@@ -26,6 +26,12 @@ Khi pipeline cùng chế độ đã dừng, có thể nhập lịch sử JSONL �
 - Ca tải 5 phút trên máy Windows dùng 5 tin/giây, thêm một đợt 30 tin và bản sao 9.973 phiên bản Delta simulation. Cả 1.530 tin mới đi qua checkpoint và xuất hiện đúng một lần trong Delta qua 20 micro-batch. P95 từ lúc gửi đến khi hoàn tất lô là 35,75 giây. Sau tin cuối, luồng xử lý hết hàng chờ trong 25,69 giây. Trung vị micro-batch là 15.872 ms.
 - Tái lập bằng `python scripts/pipeline/benchmark_structured_stream.py --seconds 300 --rate 5 --burst 30 --with-history`. Phép thử dùng topic ba partition riêng và thư mục tạm, chạy Kafka, Spark, Delta và truy vấn watermark thật. AI, Open-Meteo và Redis dùng điều kiện giả lập hoặc dự phòng. Kết quả đo áp dụng cho luồng xử lý và lưu trữ trên máy thử.
 
+### Đo độ trễ qua ba chu kỳ live
+
+Ba chu kỳ crawler miễn phí liên tiếp mất 46,30 giây, 38,84 giây và 49,86 giây, thu và gửi lần lượt 9, 1 và 1 tin. Kafka, Spark, Delta, Redis, AI và Open-Meteo đều chạy thật. Topic, checkpoint, bảng Delta và Redis DB của phép thử được cô lập. Cả 11 tin có trong Delta và được API heatmap đọc từ Redis. Độ trễ trung vị từ Kafka xác nhận đến API lần đầu trả tin là 19,05 giây, tối đa 19,07 giây, đo bằng polling 0,5 giây. Trung vị thời gian gọi API là 3,30 ms.
+
+Runner tính `--interval` live theo khoảng cách mục tiêu giữa hai lần bắt đầu quét, với khoảng nghỉ tối thiểu 30 giây ở cấu hình mặc định 60 giây. Hai khoảng cách bắt đầu đo được là 76,30 và 68,84 giây. Theo công thức cũ và cùng thời gian quét, hai khoảng cách tương ứng là 106,30 và 98,84 giây. Simulation giữ lịch chờ sau mỗi lô. Phép đo này tập trung vào nhịp thu thập và xử lý các tin tìm được, chưa đo tải video cao hoặc độ trễ kéo dài nhiều giờ.
+
 Mục 2 trở đi ghi lại hiện trạng và các hướng phát triển tại thời điểm lập kế hoạch.
 
 ## 1. Mục tiêu và nguyên tắc bảo toàn hệ thống

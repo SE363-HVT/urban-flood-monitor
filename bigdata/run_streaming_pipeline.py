@@ -68,6 +68,11 @@ def start_docker_services():
         print("   Hệ thống sẽ chạy với Local Buffer fallback.")
 
 
+def live_cycle_delay(interval_seconds, elapsed_seconds):
+    """Maintain the scan cadence with a cooldown between live cycles."""
+    return max(min(30, interval_seconds), interval_seconds - elapsed_seconds)
+
+
 def main():
     parser = argparse.ArgumentParser(description="SE363 - End-to-End Big Data Streaming Pipeline Runner")
     parser.add_argument("--mode", choices=["live", "simulation"], default="live",
@@ -77,13 +82,15 @@ def main():
     parser.add_argument("--enable-ai", action="store_true",
                         help="Khởi chạy Multimodal AI Microservice trên cổng 8001")
     parser.add_argument("--interval", type=int, default=None,
-                        help="Chu kỳ cào / phát lại (giây). Mặc định 60 giây")
+                        help="Khoảng cách mục tiêu giữa lần bắt đầu quét live, hoặc thời gian chờ simulation (giây)")
     parser.add_argument("--skip-dashboard", action="store_true",
                         help="Bỏ qua không chạy Dashboard Web Server")
 
     args = parser.parse_args()
     if args.interval is None:
         args.interval = 5 if args.mode == "simulation" else 60
+    if args.interval <= 0:
+        parser.error("--interval phải lớn hơn 0")
 
     print("=" * 75)
     print("🚀 SE363: URBAN FLOOD MONITORING - END-TO-END STREAMING PIPELINE")
@@ -238,6 +245,7 @@ def main():
         cycle = 0
         while True:
             cycle += 1
+            cycle_started = time.monotonic()
             print(f"\n--- [Cycle #{cycle}] Thu nạp sự kiện ngập lụt lúc {time.strftime('%H:%M:%S')} ---")
             if args.mode == "live":
                 record_crawler_status("ONLINE", phase="scanning")
@@ -246,7 +254,8 @@ def main():
                     count = stats["total_discovered"]
                     record_crawler_status("ONLINE", phase="idle" if count == 0 else "completed",
                                           discovered=count, published=stats["published_to_kafka"],
-                                          buffered=stats["buffered_locally"])
+                                          buffered=stats["buffered_locally"],
+                                          cycle_duration_seconds=round(time.monotonic() - cycle_started, 2))
                     print(f"   📡 [Live Free Ingestion] Phát hiện: {count} tin | Đã bắn vào Kafka: {stats['published_to_kafka']} tin")
                 except Exception as error:
                     record_crawler_status("DEGRADED", phase="failed", error_type=type(error).__name__)
@@ -255,8 +264,10 @@ def main():
                 stats = producer.run_simulation_cycle(batch_size=10)
                 print(f"   📡 [Simulation Replayer] Đã bắn: {stats['published_to_kafka']} tin vào Kafka topic {stats['topic']}")
 
-            print(f"   ⏱️ Đang chờ {args.interval} giây cho chu kỳ tiếp theo... (Nhấn Ctrl+C để dừng)")
-            deadline = time.monotonic() + args.interval
+            elapsed = time.monotonic() - cycle_started
+            delay = live_cycle_delay(args.interval, elapsed) if args.mode == "live" else args.interval
+            print(f"   ⏱️ Đang chờ {delay:.1f} giây cho chu kỳ tiếp theo... (Nhấn Ctrl+C để dừng)")
+            deadline = time.monotonic() + delay
             while time.monotonic() < deadline:
                 if p_spark.poll() is not None:
                     print(f"   PySpark dừng (mã {p_spark.returncode}). Khởi động lại từ checkpoint.")
