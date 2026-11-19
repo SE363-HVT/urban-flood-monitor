@@ -2,6 +2,9 @@ import io
 import time
 import unittest
 from collections import Counter
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from threading import Event
 from unittest.mock import Mock, patch
 from urllib.error import HTTPError
 
@@ -14,12 +17,18 @@ class FreeCrawlSourceTests(unittest.TestCase):
     def setUp(self):
         self.source = crawler.LiveFreeSocialCrawler()
         self.cls = type(self.source)
+        temp_dir = TemporaryDirectory()
+        self.addCleanup(temp_dir.cleanup)
+        state = patch.object(crawler, "YOUTUBE_SEARCH_STATE", Path(temp_dir.name) / "youtube.sqlite3")
+        state.start()
+        self.addCleanup(state.stop)
 
     def test_google_rotates_and_direct_sources_run_during_cooldown(self):
         with (
             patch.object(self.cls, "_google_next_scan", 0),
             patch.object(self.cls, "_google_circuit_broken_until", 0),
             patch.object(self.cls, "_youtube_next_scan", float("inf")),
+            patch.object(self.source, "_youtube_api_candidates", return_value=[]),
             patch.object(self.source, "_fetch_google_query", return_value=[]) as google,
             patch.object(self.source, "_fetch_direct_news_rss", return_value=[]) as news,
             patch.object(self.source, "_fetch_vov_traffic_reports", return_value=[]) as vov,
@@ -82,17 +91,124 @@ class FreeCrawlSourceTests(unittest.TestCase):
         self.assertEqual(events[0]["media_type"], "short_video")
 
     def test_youtube_api_rotation_is_rate_limited(self):
-        now = int(time.time())
+        now = 1_800_000_000
         with (
             patch.dict(crawler.os.environ, {"YOUTUBE_DATA_API_KEY": "test-key"}),
-            patch.object(self.cls, "_youtube_api_next_scan", 0),
-            patch.object(self.cls, "_youtube_api_offset", 0),
             patch.object(crawler.requests, "get", return_value=Mock(status_code=200, json=lambda: {})) as request,
         ):
             self.source._youtube_api_candidates(now)
-            self.source._youtube_api_candidates(now + 60)
+            self.cls()._youtube_api_candidates(now + 299)
             request.assert_called_once()
-            self.source._youtube_api_candidates(now + 1200)
+            self.cls()._youtube_api_candidates(now + 300)
         first, second = request.call_args_list
         self.assertNotEqual(first.kwargs["params"]["q"], second.kwargs["params"]["q"])
         self.assertIn("publishedAfter", first.kwargs["params"])
+        self.assertEqual(first.kwargs["params"]["videoDuration"], "short")
+        self.assertNotIn("key", first.kwargs["params"])
+
+    def test_fresh_local_signal_can_trigger_search_early_but_repeats_are_limited(self):
+        now = 1_800_000_000
+        with (
+            patch.dict(crawler.os.environ, {"YOUTUBE_DATA_API_KEY": "test-key"}),
+            patch.object(crawler, "YOUTUBE_SEARCH_LIMIT", 2),
+            patch.object(crawler.requests, "get", return_value=Mock(status_code=200, json=lambda: {})) as request,
+        ):
+            self.source._youtube_api_candidates(now)
+            self.source._youtube_api_candidates(now + 119, "Thảo Điền")
+            request.assert_called_once()
+            restarted = self.cls()
+            restarted._youtube_api_candidates(now + 120, "Thảo Điền")
+            self.assertEqual(request.call_args.kwargs["params"]["q"], "ngập Thảo Điền")
+            self.assertEqual(request.call_args.kwargs["params"]["videoDuration"], "short")
+            restarted._youtube_api_candidates(now + 420, "Nguyễn Hữu Cảnh")
+            self.assertEqual(request.call_count, 2)
+            restarted._youtube_api_candidates(now + crawler.YOUTUBE_SEARCH_WINDOW + 1, "Thảo Điền")
+            self.assertEqual(request.call_count, 3)
+
+    def test_youtube_runs_in_parallel_and_merges_same_video_as_short(self):
+        started = Event()
+        finish = Event()
+        now = int(time.time()) - 30
+        title = "TP.HCM ngập sâu trên đường Nguyễn Hữu Cảnh, xe chết máy"
+
+        def api_search(*args):
+            started.set()
+            self.assertTrue(finish.wait(2))
+            return [("https://www.youtube.com/watch?v=12345678901", title, now, "Channel", 0, "")]
+
+        def ytdlp_search(*args):
+            self.assertTrue(started.wait(2))
+            finish.set()
+            return [("https://www.youtube.com/shorts/12345678901", title, now, "Channel", 0, "")]
+
+        with (
+            patch.object(self.source, "_youtube_api_candidates", side_effect=api_search),
+            patch.object(self.source, "_fetch_ytdlp_candidates", side_effect=ytdlp_search),
+            patch.object(crawler, "match_all_hotspots", return_value=[
+                {"street": "Nguyễn Hữu Cảnh", "lat": 10.78, "lon": 106.7},
+            ]),
+        ):
+            events = self.source._fetch_youtube_hotspots()
+        self.assertEqual([event["media_type"] for event in events], ["short_video"])
+
+    def test_poll_returns_youtube_results_in_the_cycle_that_finds_them(self):
+        now = 1_800_000_000
+        titles = (
+            "TP.HCM ngập sâu trên đường Nguyễn Hữu Cảnh",
+            "TP.HCM ngập trên đường Nguyễn Hữu Cảnh, xe chết máy",
+            "Mưa lớn gây ngập đường Nguyễn Hữu Cảnh ở TP.HCM",
+            "Nước dâng ngập đường Nguyễn Hữu Cảnh ở TP.HCM",
+        )
+        api_response = Mock(status_code=200, json=lambda: {"items": [
+            {"id": {"videoId": "12345678902"}, "snippet": {
+                "title": titles[1], "publishedAt": "2027-01-15T07:59:00Z",
+            }},
+            {"id": {"videoId": "12345678904"}, "snippet": {
+                "title": titles[3], "publishedAt": "2027-01-15T08:04:00Z",
+            }},
+        ]})
+        with (
+            patch.dict(crawler.os.environ, {"YOUTUBE_DATA_API_KEY": "test-key"}),
+            patch.object(self.cls, "_youtube_next_scan", 0),
+            patch.object(self.source, "_fetch_vov_traffic_reports", return_value=[]),
+            patch.object(self.source, "_fetch_1022_public_reports", return_value=[]),
+            patch.object(self.source, "_fetch_direct_news_rss", return_value=[]),
+            patch.object(self.source, "_fetch_ytdlp_candidates", side_effect=[
+                [("https://www.youtube.com/shorts/12345678901", titles[0], now - 30, "Citizen", 0, "")],
+                [("https://www.youtube.com/shorts/12345678903", titles[2], now + 90, "Citizen", 0, "")],
+                [],
+            ]) as ytdlp,
+            patch.object(crawler.requests, "get", return_value=api_response) as api,
+            patch.object(crawler, "match_all_hotspots", return_value=[
+                {"street": "Nguyễn Hữu Cảnh", "lat": 10.78, "lon": 106.7},
+            ]),
+            patch.object(crawler.time, "time", return_value=now) as clock,
+            patch.object(crawler.time, "monotonic", return_value=0) as monotonic,
+        ):
+            results = []
+            for elapsed in (0, 120, 240, 300):
+                clock.return_value = now + elapsed
+                monotonic.return_value = elapsed
+                events, _ = self.source.poll_live_stream(max_queries=0)
+                results.append({event["title"] for event in events})
+        self.assertEqual(results, [{titles[0], titles[1]}, {titles[2]}, set(), {titles[3]}])
+        self.assertEqual(ytdlp.call_count, 3)
+        self.assertEqual(api.call_count, 2)
+
+    def test_poll_keeps_a_fresh_1022_signal_until_the_api_can_search(self):
+        now = 1_800_000_000
+        report = {"create_time": now + 45, "location": {"street": "Nguyễn Hữu Cảnh"}}
+        with (
+            patch.dict(crawler.os.environ, {"YOUTUBE_DATA_API_KEY": "test-key"}),
+            patch.object(self.cls, "_youtube_next_scan", float("inf")),
+            patch.object(self.source, "_fetch_vov_traffic_reports", return_value=[]),
+            patch.object(self.source, "_fetch_1022_public_reports", side_effect=[[], [report], [], []]),
+            patch.object(self.source, "_fetch_direct_news_rss", return_value=[]),
+            patch.object(crawler.requests, "get", return_value=Mock(status_code=200, json=lambda: {})) as request,
+            patch.object(crawler.time, "time", return_value=now) as clock,
+        ):
+            for elapsed in (0, 60, 120, 240):
+                clock.return_value = now + elapsed
+                self.source.poll_live_stream(max_queries=0)
+        self.assertEqual(request.call_count, 2)
+        self.assertEqual(request.call_args.kwargs["params"]["q"], "ngập Nguyễn Hữu Cảnh")

@@ -36,7 +36,9 @@ Runner tính `--interval` live theo khoảng cách mục tiêu giữa hai lần 
 
 Runner mặc định nhắm chu kỳ live 30 giây. Các lượt chạy nối tiếp với khoảng nghỉ tối thiểu 5 giây. Google News RSS có lịch riêng 150 giây, mỗi lượt xoay vòng tối đa 8 truy vấn gồm 4 Facebook, 3 TikTok và 1 báo chí, với tối đa 2 worker. Khi Google trả HTTP 429 hoặc 503, crawler tạm dừng ít nhất 3 phút và tôn trọng `Retry-After` dài hơn. HTTP 403 dùng khoảng nghỉ tối thiểu 15 phút. Báo chí, VOV và 1022 vẫn được gọi khi Google đang nghỉ, YouTube có lịch riêng 120 giây.
 
-Nhánh YouTube Data API dùng biến môi trường `YOUTUBE_DATA_API_KEY` tùy chọn và gửi tối đa một truy vấn tìm kiếm mỗi 20 phút trong một tiến trình chạy liên tục. Nhánh yt-dlp hiện có tiếp tục hoạt động khi máy chưa cấu hình khóa. Nhãn Shorts dựa trên URL Shorts đã xác nhận. RSS báo chí đọc trực tiếp các mục thời sự, giao thông và xã hội với timeout, chọn tin mới nhất sau khi kiểm tra nội dung, khu vực và giờ đăng. Thiếu giờ đăng hợp lệ thì tin không đi vào heatmap.
+Nhánh YouTube Data API dùng biến môi trường `YOUTUBE_DATA_API_KEY` tùy chọn. API tìm kiếm khoảng mỗi 5 phút và có thể tìm sớm theo địa điểm từ phản ánh mới của VOV hoặc Cổng 1022, với khoảng cách tối thiểu 2 phút giữa các lượt gọi. FreeCrawl lưu số lượt gọi trong SQLite trên máy để các tiến trình dùng cùng thư mục dự án chia sẻ giới hạn 90 lượt trong cửa sổ 25 giờ. Nhánh yt-dlp quét khoảng mỗi 2 phút. Hai nhánh tìm đồng thời khi cùng đến hạn và mỗi vòng đưa kết quả đạt lọc vào luồng live trong chính vòng đó. Cả hai ưu tiên video ngắn công khai, còn nhãn Shorts dựa trên URL Shorts đã xác nhận.
+
+RSS báo chí đọc trực tiếp các mục thời sự, giao thông và xã hội với timeout, chọn tin mới nhất sau khi kiểm tra nội dung, khu vực và giờ đăng. Thiếu giờ đăng hợp lệ thì tin không đi vào heatmap.
 
 Phép thử một lượt chỉ dùng nguồn trực tiếp trả 1 tin YouTube và 3 tin từ 1022 trong 41,62 giây, không gửi truy vấn Google RSS. RSS báo chí phản hồi nhưng không có tin đạt bộ lọc trong lượt thử. Nhánh Data API được kiểm tra bằng phản hồi giả lập do máy chưa cấu hình khóa.
 

@@ -29,9 +29,11 @@ import time
 import calendar
 import hashlib
 import random
+import sqlite3
 import urllib.parse
 import urllib.request
 import urllib.error
+from contextlib import closing
 from email.utils import parsedate_to_datetime
 from threading import Lock
 from datetime import datetime, timezone
@@ -52,6 +54,23 @@ if sys.platform == "win32":
         pass
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+YOUTUBE_SEARCH_STATE = os.path.join(ROOT_DIR, "data", "freecrawl_youtube.sqlite3")
+YOUTUBE_SEARCH_INTERVAL = 300
+YOUTUBE_SIGNAL_INTERVAL = 120
+YOUTUBE_SIGNAL_MAX_AGE = 15 * 60
+# Keep headroom under Google's 100 calls, including a 25-hour Pacific reset day.
+YOUTUBE_SEARCH_WINDOW = 25 * 60 * 60
+YOUTUBE_SEARCH_LIMIT = 90
+YOUTUBE_SEARCH_TERMS = (
+    ("ngập nước TP HCM", True),
+    ("triều cường Sài Gòn", True),
+    ("mưa lớn xe chết máy ngập đường TP HCM", True),
+    ("ngập đường TP HCM", False),
+    ("ngập Thủ Đức Sài Gòn", True),
+    ("ngập Bình Dương", True),
+    ("mưa ngập Vũng Tàu", True),
+    ("cảnh ngập nước Sài Gòn", False),
+)
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
@@ -270,8 +289,7 @@ class LiveFreeSocialCrawler:
     _google_next_scan = 0.0
     _google_schedule_lock = Lock()
     _youtube_next_scan = 0.0
-    _youtube_api_next_scan = 0.0
-    _youtube_api_offset = 0
+    _youtube_schedule_lock = Lock()
     _token_1022 = None
     _token_1022_exp = 0.0
     _rr_1022_kw_idx = 0
@@ -279,6 +297,8 @@ class LiveFreeSocialCrawler:
     def __init__(self):
         self.seen_urls: Set[str] = set()
         self.seen_hashes: Set[str] = set()
+        self._youtube_results_lock = Lock()
+        self._youtube_signal: Optional[Tuple[int, str]] = None
 
     def is_valid_content(self, text: str) -> bool:
         if not text:
@@ -468,27 +488,81 @@ class LiveFreeSocialCrawler:
         except Exception:
             return vid_url, "", None, "", 0, ""
 
-    def _youtube_api_candidates(self, current_time):
+    def _reserve_youtube_search(self, current_time: int, signal: Optional[str]):
+        with closing(sqlite3.connect(YOUTUBE_SEARCH_STATE, timeout=0.25)) as db, db:
+            db.execute("""
+                CREATE TABLE IF NOT EXISTS youtube_searches (
+                    requested_at INTEGER PRIMARY KEY,
+                    signal TEXT,
+                    blocked_until INTEGER NOT NULL DEFAULT 0
+                )
+            """)
+            db.execute("BEGIN IMMEDIATE")
+            count, latest, blocked_until = db.execute("""
+                SELECT COUNT(*), MAX(requested_at), MAX(blocked_until)
+                FROM youtube_searches WHERE requested_at > ?
+            """, (current_time - YOUTUBE_SEARCH_WINDOW,)).fetchone()
+            if count >= YOUTUBE_SEARCH_LIMIT or (blocked_until or 0) > current_time:
+                return None
+
+            elapsed = current_time - latest if latest is not None else YOUTUBE_SEARCH_INTERVAL
+            if elapsed < YOUTUBE_SIGNAL_INTERVAL:
+                return None
+            recent_signal = signal and db.execute("""
+                SELECT 1 FROM youtube_searches
+                WHERE signal = ? AND requested_at > ? LIMIT 1
+            """, (signal, current_time - YOUTUBE_SIGNAL_MAX_AGE)).fetchone()
+            if signal and not recent_signal:
+                query, short_only = f"ngập {signal}", True
+            elif elapsed >= YOUTUBE_SEARCH_INTERVAL:
+                signal = None
+                regular_count = db.execute("""
+                    SELECT COUNT(*) FROM youtube_searches
+                    WHERE signal IS NULL AND requested_at > ?
+                """, (current_time - YOUTUBE_SEARCH_WINDOW,)).fetchone()[0]
+                query, short_only = YOUTUBE_SEARCH_TERMS[regular_count % len(YOUTUBE_SEARCH_TERMS)]
+            else:
+                return None
+
+            db.execute("DELETE FROM youtube_searches WHERE requested_at <= ?", (current_time - YOUTUBE_SEARCH_WINDOW,))
+            db.execute("INSERT INTO youtube_searches (requested_at, signal) VALUES (?, ?)", (current_time, signal))
+            return query, short_only, bool(signal)
+
+    def _youtube_api_candidates(self, current_time: int, signal: Optional[str] = None):
         key = os.environ.get("YOUTUBE_DATA_API_KEY", "").strip()
-        cls = LiveFreeSocialCrawler
-        if not key or current_time < cls._youtube_api_next_scan:
+        if not key:
             return []
-        cls._youtube_api_next_scan = current_time + 20 * 60
-        terms = ("ngập nước TP HCM", "triều cường Sài Gòn", "ngập Bình Dương", "mưa ngập Vũng Tàu")
-        query = terms[cls._youtube_api_offset % len(terms)]
-        cls._youtube_api_offset += 1
+        try:
+            search = self._reserve_youtube_search(current_time, signal)
+        except sqlite3.Error:
+            print("[FreeCrawl] YouTube Data API search state unavailable")
+            return []
+        if search is None:
+            return []
+        query, short_only, targeted = search
+        params = {
+            "part": "snippet", "type": "video", "q": query, "order": "date",
+            "regionCode": "VN", "relevanceLanguage": "vi", "maxResults": 25,
+            "publishedAfter": datetime.fromtimestamp(
+                current_time - (7200 if targeted else 86400), timezone.utc
+            ).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        }
+        if short_only:
+            params["videoDuration"] = "short"
         try:
             response = requests.get(
                 "https://www.googleapis.com/youtube/v3/search",
-                params={"key": key, "part": "snippet", "type": "video", "q": query,
-                        "order": "date", "regionCode": "VN", "relevanceLanguage": "vi", "maxResults": 25,
-                        "publishedAfter": datetime.fromtimestamp(current_time - 86400, timezone.utc)
-                        .strftime("%Y-%m-%dT%H:%M:%SZ")},
+                params=params,
+                headers={"X-Goog-Api-Key": key},
                 timeout=5,
             )
             if response.status_code != 200:
                 if response.status_code in (403, 429):
-                    cls._youtube_api_next_scan = current_time + 3600
+                    with closing(sqlite3.connect(YOUTUBE_SEARCH_STATE, timeout=0.25)) as db, db:
+                        db.execute(
+                            "UPDATE youtube_searches SET blocked_until = ? WHERE requested_at = ?",
+                            (current_time + 3600, current_time),
+                        )
                 print(f"[FreeCrawl] YouTube Data API HTTP {response.status_code}")
                 return []
             results = []
@@ -510,20 +584,16 @@ class LiveFreeSocialCrawler:
                     results.append((f"https://www.youtube.com/watch?v={video_id}", title,
                                     timestamp, snippet.get("channelTitle", ""), 0, details))
             return results
-        except (requests.RequestException, ValueError):
+        except (requests.RequestException, ValueError, sqlite3.Error):
             return []
 
-    def _fetch_youtube_hotspots(self, max_items_per_query: int = 3) -> List[Dict[str, Any]]:
+    def _fetch_ytdlp_candidates(self, max_items_per_query: int):
         """
         ĐỘNG CƠ CÀO YOUTUBE VIDEOS & SHORTS TRONG 24H (ĐỀ XUẤT 1):
         - Sử dụng sp=EgIIAg%253D%253D (bộ lọc chính thức của YouTube để chỉ lấy video trong ngày).
         - Trích xuất THỜI GIAN ĐĂNG TẢI THẬT và phân bổ vào 3 tầng: < 2h, 2-4h, 4-24h.
         - Bất kỳ video nào quá 24h (> 86400s) đều bị loại bỏ ngay lập tức.
         """
-        events = []
-        current_time = int(time.time())
-        cutoff_24h = current_time - 86400
-
         ydl_opts_search = {
             'logger': YtDlpMuteLogger(),
             'quiet': True,
@@ -536,19 +606,23 @@ class LiveFreeSocialCrawler:
         }
 
         # Cơ chế Cuộn / Luân phiên Truy vấn (Rolling Query Pagination)
-        n_queries = len(YOUTUBE_TODAY_SEARCH_URLS)
+        short_queries = [query for query in YOUTUBE_TODAY_SEARCH_URLS if query[1] == "shorts"]
+        video_queries = [query for query in YOUTUBE_TODAY_SEARCH_URLS if query[1] == "video"]
+        n_queries = len(short_queries)
         start_idx = LiveFreeSocialCrawler._rr_yt_offset % n_queries
         selected_queries = [
-            YOUTUBE_TODAY_SEARCH_URLS[(start_idx + i) % n_queries]
-            for i in range(min(6, n_queries))
+            queries[(start_idx + offset) % len(queries)]
+            for queries, offset in (
+                (short_queries, 0), (short_queries, 1), (video_queries, 0),
+                (short_queries, 2), (short_queries, 3), (video_queries, 1),
+            )
         ]
-        LiveFreeSocialCrawler._rr_yt_offset = (start_idx + 4) % n_queries
+        LiveFreeSocialCrawler._rr_yt_offset = (start_idx + 1) % n_queries
 
-        candidate_entries = []
-        api_candidates = self._youtube_api_candidates(current_time)
+        candidate_urls = {}
         try:
             with YoutubeDL(ydl_opts_search) as ydl:
-                for search_url, search_type in selected_queries:
+                for search_url, _ in selected_queries:
                     try:
                         res = ydl.extract_info(search_url, download=False)
                         if not res or 'entries' not in res:
@@ -569,22 +643,40 @@ class LiveFreeSocialCrawler:
                             if "/shorts/" in (entry.get("url") or ""):
                                 watch_url = f"https://www.youtube.com/shorts/{vid_id}"
 
-                            if watch_url in self.seen_urls:
+                            if f"https://www.youtube.com/watch?v={vid_id}" in self.seen_urls:
                                 continue
 
-                            candidate_entries.append((watch_url, vid_id, raw_title, search_type))
+                            if vid_id not in candidate_urls or "/shorts/" in watch_url:
+                                candidate_urls[vid_id] = watch_url
                     except Exception:
                         pass
         except Exception:
             pass
 
-        if not candidate_entries and not api_candidates:
+        if not candidate_urls:
             return []
 
         # 4 Workers song song xác thực thời gian đăng thật
         with ThreadPoolExecutor(max_workers=8) as pool:
-            futures = [pool.submit(self._fetch_single_yt_details, c[0]) for c in candidate_entries[:16]]
-            verified_candidates = [f.result() for f in as_completed(futures)]
+            urls = list(candidate_urls.values())[:16]
+            futures = [pool.submit(self._fetch_single_yt_details, url) for url in urls]
+            return [future.result() for future in as_completed(futures)]
+
+    def _fetch_youtube_hotspots(
+        self, max_items_per_query: int = 3, *, scan_ytdlp: bool = True, signal: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
+        current_time = int(time.time())
+        events = []
+        if scan_ytdlp:
+            with ThreadPoolExecutor(max_workers=2) as pool:
+                api_search = pool.submit(self._youtube_api_candidates, current_time, signal)
+                verified_candidates = self._fetch_ytdlp_candidates(max_items_per_query)
+                api_candidates = api_search.result()
+        else:
+            verified_candidates = []
+            api_candidates = self._youtube_api_candidates(current_time, signal)
+
+        with self._youtube_results_lock:
             for v_url, real_title, real_ts, channel, duration, context in verified_candidates + api_candidates:
                 try:
                     if not real_ts or not real_title:
@@ -1399,14 +1491,6 @@ class LiveFreeSocialCrawler:
                 }
                 events_window.append(event)
 
-        # 2. ĐỘNG CƠ CÀO YOUTUBE VIDEOS & SHORTS TRONG 24H (4 WORKERS - ĐỀ XUẤT 1)
-        yt_events = []
-        if time.monotonic() >= cls._youtube_next_scan:
-            cls._youtube_next_scan = time.monotonic() + 120
-            yt_events = self._fetch_youtube_hotspots(max_items_per_query=3)
-        events_window.extend(yt_events)
-        total_scanned += len(yt_events)
-
         # 3. ĐỘNG CƠ CÀO VOV GIAO THÔNG LIVE CITIZEN TICKER (4 WORKERS - ĐỀ XUẤT 2)
         vov_events = self._fetch_vov_traffic_reports(max_items=4)
         events_window.extend(vov_events)
@@ -1416,6 +1500,34 @@ class LiveFreeSocialCrawler:
         p1022_events = self._fetch_1022_public_reports(max_items=4)
         events_window.extend(p1022_events)
         total_scanned += len(p1022_events)
+
+        # Use fresh, localized reports to guide an early YouTube search.
+        youtube_now = int(time.time())
+        for event in vov_events + p1022_events:
+            reported_at = event["create_time"]
+            if not 0 <= youtube_now - reported_at <= YOUTUBE_SIGNAL_MAX_AGE:
+                continue
+            location = event["location"]
+            place = (location.get("street") or location.get("ward") or "").strip()
+            if not place or normalize_text(place) in {
+                "tp.hcm", "tphcm", "tp hcm", "tp. hồ chí minh", "hồ chí minh",
+                "toàn tp.hcm", "toàn tp. hồ chí minh", "khu vực dân cư tp.hcm",
+            }:
+                continue
+            if self._youtube_signal is None or reported_at > self._youtube_signal[0]:
+                self._youtube_signal = (reported_at, place)
+
+        signal = None
+        if self._youtube_signal and youtube_now - self._youtube_signal[0] <= YOUTUBE_SIGNAL_MAX_AGE:
+            signal = self._youtube_signal[1]
+        with cls._youtube_schedule_lock:
+            now = time.monotonic()
+            scan_ytdlp = now >= cls._youtube_next_scan
+            if scan_ytdlp:
+                cls._youtube_next_scan = now + 120
+        yt_events = self._fetch_youtube_hotspots(scan_ytdlp=scan_ytdlp, signal=signal)
+        events_window.extend(yt_events)
+        total_scanned += len(yt_events)
 
         # 5. ĐỘNG CƠ CÀO TRỰC TIẾP RSS BÁO CHÍ (TUỔI TRẺ, THANH NIÊN - 100% ĐỘC LẬP KHÔNG QUA GOOGLE)
         direct_news_events = self._fetch_direct_news_rss(max_items=3)
