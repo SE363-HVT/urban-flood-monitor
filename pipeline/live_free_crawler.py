@@ -32,6 +32,8 @@ import random
 import urllib.parse
 import urllib.request
 import urllib.error
+from email.utils import parsedate_to_datetime
+from threading import Lock
 from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Any, List, Set, Optional, Tuple
@@ -265,6 +267,11 @@ class LiveFreeSocialCrawler:
     _rr_tiktok_offset = 0
     _rr_news_offset = 0
     _google_circuit_broken_until = 0.0
+    _google_next_scan = 0.0
+    _google_schedule_lock = Lock()
+    _youtube_next_scan = 0.0
+    _youtube_api_next_scan = 0.0
+    _youtube_api_offset = 0
     _token_1022 = None
     _token_1022_exp = 0.0
     _rr_1022_kw_idx = 0
@@ -372,9 +379,9 @@ class LiveFreeSocialCrawler:
 
     def get_interleaved_queries(self, max_queries: int = 40) -> List[Tuple[str, str]]:
         """Phân bổ hạn ngạch truy vấn: 90% Mạng Xã Hội (Facebook 55%, TikTok 35%) & 10% Báo Chí."""
-        fb_count = max(1, int(max_queries * 0.55))
-        tiktok_count = max(1, int(max_queries * 0.35))
-        news_count = max(1, max_queries - fb_count - tiktok_count)
+        fb_count = round(max_queries * 0.55)
+        tiktok_count = round(max_queries * 0.35)
+        news_count = max_queries - fb_count - tiktok_count
 
         selected = []
         for i in range(fb_count):
@@ -411,14 +418,28 @@ class LiveFreeSocialCrawler:
                     if feed.entries:
                         return [(entry, platform) for entry in feed.entries[:max_items_per_query]]
         except urllib.error.HTTPError as he:
-            if he.code in (429, 503):
-                LiveFreeSocialCrawler._google_circuit_broken_until = now_ts + 60.0
+            if he.code in (403, 429, 503):
+                minimum = 900 if he.code == 403 else 180
+                retry_at = time.time() + minimum
+                retry_after = (he.headers or {}).get("Retry-After", "")
+                if retry_after.isdecimal():
+                    retry_at = max(retry_at, time.time() + int(retry_after))
+                elif retry_after:
+                    try:
+                        retry_at = max(retry_at, parsedate_to_datetime(retry_after).timestamp())
+                    except (ValueError, TypeError, OverflowError):
+                        pass
+                with LiveFreeSocialCrawler._google_schedule_lock:
+                    LiveFreeSocialCrawler._google_circuit_broken_until = max(
+                        LiveFreeSocialCrawler._google_circuit_broken_until, retry_at
+                    )
+                print(f"[FreeCrawl] Google News RSS HTTP {he.code}; next retry in at least {minimum}s")
         except Exception:
             pass
 
         return []
 
-    def _fetch_single_yt_details(self, vid_url: str) -> Tuple[str, str, Optional[int], str, int]:
+    def _fetch_single_yt_details(self, vid_url: str) -> Tuple[str, str, Optional[int], str, int, str]:
         """Trích xuất metadata chi tiết và THỜI GIAN ĐĂNG TẢI THẬT (real upload timestamp)."""
         ydl_opts_single = {
             'logger': YtDlpMuteLogger(),
@@ -426,23 +447,71 @@ class LiveFreeSocialCrawler:
             'skip_download': True,
             'no_warnings': True,
             'ignoreerrors': True,
+            'socket_timeout': 5,
+            'retries': 0,
         }
         try:
             with YoutubeDL(ydl_opts_single) as ydl:
                 info = ydl.extract_info(vid_url, download=False)
                 if not info or info.get('live_status') in ('is_upcoming', 'post_live') or info.get('is_live'):
-                    return vid_url, "", None, "", 0
+                    return vid_url, "", None, "", 0, ""
                 title = info.get('title') or ""
                 real_ts = info.get('timestamp')
-                if not real_ts and info.get('upload_date'):
-                    ud = info.get('upload_date')
-                    dt = datetime.strptime(ud, "%Y%m%d").replace(hour=12, minute=0, tzinfo=timezone.utc)
-                    real_ts = int(dt.timestamp())
                 channel = info.get('uploader') or info.get('channel') or "YouTube Creator"
                 duration = info.get('duration') or 0
-                return vid_url, title, real_ts, channel, duration
+                page_url = info.get("webpage_url") or vid_url
+                if re.fullmatch(r"https://www\.youtube\.com/shorts/[a-zA-Z0-9_-]{11}", page_url):
+                    vid_url = page_url
+                description = str(info.get("description") or "")[:350]
+                context = f"{title}. {description}" if description else title
+                return vid_url, title, real_ts, channel, duration, context
         except Exception:
-            return vid_url, "", None, "", 0
+            return vid_url, "", None, "", 0, ""
+
+    def _youtube_api_candidates(self, current_time):
+        key = os.environ.get("YOUTUBE_DATA_API_KEY", "").strip()
+        cls = LiveFreeSocialCrawler
+        if not key or current_time < cls._youtube_api_next_scan:
+            return []
+        cls._youtube_api_next_scan = current_time + 20 * 60
+        terms = ("ngập nước TP HCM", "triều cường Sài Gòn", "ngập Bình Dương", "mưa ngập Vũng Tàu")
+        query = terms[cls._youtube_api_offset % len(terms)]
+        cls._youtube_api_offset += 1
+        try:
+            response = requests.get(
+                "https://www.googleapis.com/youtube/v3/search",
+                params={"key": key, "part": "snippet", "type": "video", "q": query,
+                        "order": "date", "regionCode": "VN", "relevanceLanguage": "vi", "maxResults": 25,
+                        "publishedAfter": datetime.fromtimestamp(current_time - 86400, timezone.utc)
+                        .strftime("%Y-%m-%dT%H:%M:%SZ")},
+                timeout=5,
+            )
+            if response.status_code != 200:
+                if response.status_code in (403, 429):
+                    cls._youtube_api_next_scan = current_time + 3600
+                print(f"[FreeCrawl] YouTube Data API HTTP {response.status_code}")
+                return []
+            results = []
+            for item in response.json().get("items", []):
+                snippet = item.get("snippet") or {}
+                video_id = (item.get("id") or {}).get("videoId", "")
+                if not re.fullmatch(r"[a-zA-Z0-9_-]{11}", video_id):
+                    continue
+                if snippet.get("liveBroadcastContent") in ("upcoming", "live"):
+                    continue
+                title = snippet.get("title", "")
+                description = str(snippet.get("description") or "")[:350]
+                details = f"{title}. {description}" if description else title
+                if self.is_valid_content(details):
+                    try:
+                        timestamp = int(datetime.fromisoformat(snippet["publishedAt"]).timestamp())
+                    except (KeyError, ValueError, TypeError):
+                        continue
+                    results.append((f"https://www.youtube.com/watch?v={video_id}", title,
+                                    timestamp, snippet.get("channelTitle", ""), 0, details))
+            return results
+        except (requests.RequestException, ValueError):
+            return []
 
     def _fetch_youtube_hotspots(self, max_items_per_query: int = 3) -> List[Dict[str, Any]]:
         """
@@ -462,6 +531,8 @@ class LiveFreeSocialCrawler:
             'extract_flat': True,
             'no_warnings': True,
             'ignoreerrors': True,
+            'socket_timeout': 5,
+            'retries': 0,
         }
 
         # Cơ chế Cuộn / Luân phiên Truy vấn (Rolling Query Pagination)
@@ -474,6 +545,7 @@ class LiveFreeSocialCrawler:
         LiveFreeSocialCrawler._rr_yt_offset = (start_idx + 4) % n_queries
 
         candidate_entries = []
+        api_candidates = self._youtube_api_candidates(current_time)
         try:
             with YoutubeDL(ydl_opts_search) as ydl:
                 for search_url, search_type in selected_queries:
@@ -488,11 +560,13 @@ class LiveFreeSocialCrawler:
                             if not vid_id:
                                 continue
                             raw_title = entry.get('title') or ""
-                            if not self.is_valid_content(raw_title):
+                            if not any(word in raw_title.lower() for word in FLOOD_INTENT_KEYWORDS):
                                 continue
 
-                            watch_url = entry.get('url') or f"https://www.youtube.com/watch?v={vid_id}"
-                            if "/shorts/" in search_url or "shorts" in raw_title.lower():
+                            if not re.fullmatch(r"[a-zA-Z0-9_-]{11}", vid_id):
+                                continue
+                            watch_url = f"https://www.youtube.com/watch?v={vid_id}"
+                            if "/shorts/" in (entry.get("url") or ""):
                                 watch_url = f"https://www.youtube.com/shorts/{vid_id}"
 
                             if watch_url in self.seen_urls:
@@ -504,15 +578,15 @@ class LiveFreeSocialCrawler:
         except Exception:
             pass
 
-        if not candidate_entries:
+        if not candidate_entries and not api_candidates:
             return []
 
         # 4 Workers song song xác thực thời gian đăng thật
         with ThreadPoolExecutor(max_workers=8) as pool:
             futures = [pool.submit(self._fetch_single_yt_details, c[0]) for c in candidate_entries[:16]]
-            for f in as_completed(futures):
+            verified_candidates = [f.result() for f in as_completed(futures)]
+            for v_url, real_title, real_ts, channel, duration, context in verified_candidates + api_candidates:
                 try:
-                    v_url, real_title, real_ts, channel, duration = f.result()
                     if not real_ts or not real_title:
                         continue
 
@@ -521,19 +595,17 @@ class LiveFreeSocialCrawler:
                     if age_seconds > 86400 or age_seconds < 0:
                         continue
 
-                    if not self.is_valid_content(real_title):
+                    full_text = context or real_title
+                    if not self.is_valid_content(full_text):
                         continue
 
                     c_hash = hashlib.md5(real_title.lower().encode("utf-8")).hexdigest()
                     if c_hash in self.seen_hashes:
                         continue
 
-                    matched_spots = match_all_hotspots(real_title)
+                    matched_spots = match_all_hotspots(full_text)
                     if not matched_spots:
                         continue
-
-                    self.seen_urls.add(v_url)
-                    self.seen_hashes.add(c_hash)
 
                     # PHÂN LOẠI CHUẨN XÁC THEO 3 TẦNG ĐỘ TƯƠI DỰA TRÊN TIMESTAMP THẬT
                     if age_seconds <= 7200:
@@ -552,23 +624,24 @@ class LiveFreeSocialCrawler:
                         event_weight = 2.5
                         event_priority = 3
 
-                    # Nhận diện chính xác YouTube Shorts (qua URL, thời lượng <= 60s hoặc query tag)
+                    # Only use the Shorts label when the source URL identifies it.
                     clean_id_m = re.search(r'(?:v=|/shorts/|youtu\.be/)([a-zA-Z0-9_-]{11})', v_url)
                     raw_id = clean_id_m.group(1) if clean_id_m else hashlib.md5(v_url.encode("utf-8")).hexdigest()[:11]
-                    is_short = bool("/shorts/" in v_url or (duration and duration <= 60) or ("shorts" in v_url.lower()))
-                    if is_short and "/shorts/" not in v_url:
-                        final_url = f"https://www.youtube.com/shorts/{raw_id}"
-                    else:
-                        final_url = v_url
+                    is_short = "/shorts/" in v_url
+                    final_url = v_url
 
                     vid_tag = "YouTube Shorts" if is_short else "YouTube Video"
                     media_type = "short_video" if is_short else "video"
-                    desc = f"[{vid_tag} • {channel}] {real_title} (Thời lượng: {duration}s)"
+                    stable_url = f"https://www.youtube.com/watch?v={raw_id}"
+                    if stable_url in self.seen_urls:
+                        continue
+                    desc = f"[{vid_tag} • {channel}] {full_text}"
+                    analysis = analyze_severity_heuristic(full_text) or {}
                     pub_iso = datetime.fromtimestamp(real_ts, timezone.utc).isoformat()
                     vid_id = hashlib.md5(final_url.encode("utf-8")).hexdigest()[:12]
 
                     for spot_idx, spot in enumerate(matched_spots[:1]):
-                        st_name = spot.get("street") or spot.get("display_name", "")
+                        st_name = spot.get("street") or ""
                         sub_id = f"{vid_id}_s{spot_idx}" if len(matched_spots) > 1 else str(vid_id)
                         canonical_id = f"youtube_shorts_{sub_id}" if is_short else f"youtube_{sub_id}"
 
@@ -599,17 +672,19 @@ class LiveFreeSocialCrawler:
                                 "type": spot.get("type", "ngập úng đô thị"),
                                 "cause": spot.get("cause", "rain"),
                                 "cause_label": spot.get("cause_label", "Mưa lớn hoặc triều cường"),
-                                "source": "youtube_realtime_crawler"
+                                "source": "youtube_realtime_crawler",
+                                "precision": spot.get("precision"),
+                                "coordinate_kind": spot.get("coordinate_kind"),
                             },
                             "aspect": st_name or spot.get("ward", ""),
-                            "opinion": (analyze_severity_heuristic(full_text) or {}).get("opinion", "mưa lớn ngập đường"),
-                            "polarity": (analyze_severity_heuristic(full_text) or {}).get("polarity", "NEG"),
-                            "sentiment": (analyze_severity_heuristic(full_text) or {}).get("sentiment", "negative"),
-                            "severity": (analyze_severity_heuristic(full_text) or {}).get("severity_level", "medium"),
+                            "opinion": analysis.get("opinion", "mưa lớn ngập đường"),
+                            "polarity": analysis.get("polarity", "NEG"),
+                            "sentiment": analysis.get("sentiment", "negative"),
+                            "severity": analysis.get("severity_level", "medium"),
                             "triplets": [{
                                 "aspect": st_name or spot.get("ward", ""),
-                                "opinion": (analyze_severity_heuristic(full_text) or {}).get("opinion", "mưa lớn ngập đường"),
-                                "polarity": (analyze_severity_heuristic(full_text) or {}).get("polarity", "NEG"),
+                                "opinion": analysis.get("opinion", "mưa lớn ngập đường"),
+                                "polarity": analysis.get("polarity", "NEG"),
                                 "confidence": 0.88
                             }],
                             "weight": event_weight,
@@ -618,6 +693,8 @@ class LiveFreeSocialCrawler:
                             "crawler_source": "youtube_realtime_crawler"
                         }
                         events.append(event)
+                        self.seen_urls.update((v_url, final_url, stable_url))
+                        self.seen_hashes.add(c_hash)
                 except Exception:
                     pass
 
@@ -1018,7 +1095,7 @@ class LiveFreeSocialCrawler:
     def _fetch_direct_news_rss(self, max_items: int = 4) -> List[Dict[str, Any]]:
         """
         ĐỘNG CƠ CÀO TRỰC TIẾP RSS BÁO CHÍ CHÍNH THỐNG (Tuổi Trẻ, Thanh Niên):
-        - Hoàn toàn độc lập, KHÔNG phụ thuộc Google RSS, không bao giờ bị chặn IP.
+        - Đọc trực tiếp RSS của tòa soạn.
         - Lấy tin tức đô thị, hạ tầng giao thông và ngập lụt trực tiếp từ nguồn tòa soạn.
         - Đường dẫn thật 100% trỏ thẳng về bài báo gốc trên tuoitre.vn / thanhnien.vn.
         """
@@ -1026,25 +1103,32 @@ class LiveFreeSocialCrawler:
         current_time = int(time.time())
         feeds = [
             ("Báo VnExpress", "https://vnexpress.net/rss/thoi-su.rss"),
+            ("Báo VnExpress", "https://vnexpress.net/rss/giao-thong.rss"),
             ("Báo Tuổi Trẻ", "https://tuoitre.vn/rss/thoi-su.rss"),
+            ("Báo Tuổi Trẻ", "https://tuoitre.vn/rss/xa-hoi.rss"),
             ("Báo Thanh Niên", "https://thanhnien.vn/rss/thoi-su.rss")
         ]
 
-        for publisher, feed_url in feeds:
-            if len(events) >= max_items:
-                break
+        def fetch(feed_url):
             try:
-                f = feedparser.parse(feed_url)
-                for entry in f.entries[:20]:
-                    if len(events) >= max_items:
-                        break
+                response = requests.get(feed_url, timeout=5)
+                return feedparser.parse(response.content).entries if response.ok else []
+            except requests.RequestException:
+                return []
+
+        with ThreadPoolExecutor(max_workers=3) as pool:
+            feed_entries = list(pool.map(fetch, (url for _, url in feeds)))
+        selected_urls = set()
+        for (publisher, _), entries in zip(feeds, feed_entries):
+            try:
+                for entry in entries[:60]:
                     raw_title = getattr(entry, "title", "")
                     raw_summary = getattr(entry, "summary", "")
                     raw_url = getattr(entry, "link", "")
                     if not raw_title or not raw_url:
                         continue
 
-                    full_text = f"{raw_title} {raw_summary}".strip()
+                    full_text = self.extract_clean_quote(raw_title, raw_summary)
                     low = full_text.lower()
                     strict_flood_keywords = [
                         "ngập", "ngập lụt", "ngập úng", "ngập sâu", "ngập nước",
@@ -1060,23 +1144,18 @@ class LiveFreeSocialCrawler:
                     if any(irr in low for irr in irrelevant_news):
                         continue
 
+                    if not self.is_valid_content(full_text):
+                        continue
+
+                    posted = entry.get("published_parsed")
+                    if not posted or raw_url in self.seen_urls or raw_url in selected_urls:
+                        continue
+                    pub_unix = calendar.timegm(posted)
+                    age_seconds = current_time - pub_unix
+                    if not 0 <= age_seconds <= 86400:
+                        continue
                     matched_spots = match_all_hotspots(full_text)
                     if not matched_spots:
-                        continue
-
-                    if raw_url in self.seen_urls:
-                        continue
-                    self.seen_urls.add(raw_url)
-
-                    pub_unix = current_time - 3600
-                    if hasattr(entry, "published_parsed") and entry.published_parsed:
-                        try:
-                            pub_unix = calendar.timegm(entry.published_parsed)
-                        except Exception:
-                            pub_unix = current_time - 3600
-
-                    age_seconds = max(0, current_time - pub_unix)
-                    if age_seconds > 86400:
                         continue
 
                     if age_seconds <= 7200:
@@ -1093,7 +1172,7 @@ class LiveFreeSocialCrawler:
                         weight = 2.0
 
                     spot = matched_spots[0]
-                    st_name = spot.get("street") or spot.get("display_name", "")
+                    st_name = spot.get("street") or ""
                     sub_id = hashlib.md5(raw_url.encode("utf-8")).hexdigest()[:12]
                     clean_title = re.sub(r'\s*-\s*[^-\n]+$', '', raw_title).strip()
 
@@ -1104,7 +1183,7 @@ class LiveFreeSocialCrawler:
                         "platform": "news",
                         "media_type": "news",
                         "author": publisher,
-                        "text": f"[{publisher}] {clean_title}",
+                        "text": f"[{publisher}] {full_text}",
                         "title": clean_title,
                         "create_time": pub_unix,
                         "created_at_iso": datetime.fromtimestamp(pub_unix, timezone.utc).isoformat(),
@@ -1124,7 +1203,9 @@ class LiveFreeSocialCrawler:
                             "type": spot.get("type", "ngập úng đô thị"),
                             "cause": "rain",
                             "cause_label": "Thông tin báo chí chính thống & CSGT đô thị",
-                            "source": "direct_news_rss"
+                            "source": "direct_news_rss",
+                            "precision": spot.get("precision"),
+                            "coordinate_kind": spot.get("coordinate_kind"),
                         },
                         "aspect": st_name or spot.get("ward", ""),
                         "weight": weight,
@@ -1133,15 +1214,18 @@ class LiveFreeSocialCrawler:
                         "crawler_source": "direct_news_rss"
                     }
                     events.append(event)
+                    selected_urls.add(raw_url)
             except Exception:
                 pass
 
-        return events
+        selected = sorted(events, key=lambda event: event["create_time"], reverse=True)[:max_items]
+        self.seen_urls.update(event["url"] for event in selected)
+        return selected
 
     def poll_live_stream(
         self,
         window_minutes: int = 120,
-        max_queries: int = 30,
+        max_queries: int = 8,
         max_items_per_query: int = 4
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
@@ -1158,10 +1242,17 @@ class LiveFreeSocialCrawler:
         total_scanned = 0
 
         # 1. QUÉT GOOGLE RSS VỚI 4 WORKERS (GIẢM TẢI ĐỂ IP NGUỘI)
-        active_queries = self.get_interleaved_queries(max_queries=max_queries)
+        cls = LiveFreeSocialCrawler
+        with cls._google_schedule_lock:
+            now = time.monotonic()
+            if max_queries > 0 and time.time() >= cls._google_circuit_broken_until and now >= cls._google_next_scan:
+                cls._google_next_scan = now + 150
+                active_queries = self.get_interleaved_queries(max_queries=min(8, max_queries))
+            else:
+                active_queries = []
         raw_entries: List[Tuple[Any, str]] = []
 
-        with ThreadPoolExecutor(max_workers=4) as g_pool:
+        with ThreadPoolExecutor(max_workers=2) as g_pool:
             g_futures = [g_pool.submit(self._fetch_google_query, q, p, max_items_per_query) for q, p in active_queries]
             for f in as_completed(g_futures):
                 try:
@@ -1309,7 +1400,10 @@ class LiveFreeSocialCrawler:
                 events_window.append(event)
 
         # 2. ĐỘNG CƠ CÀO YOUTUBE VIDEOS & SHORTS TRONG 24H (4 WORKERS - ĐỀ XUẤT 1)
-        yt_events = self._fetch_youtube_hotspots(max_items_per_query=3)
+        yt_events = []
+        if time.monotonic() >= cls._youtube_next_scan:
+            cls._youtube_next_scan = time.monotonic() + 120
+            yt_events = self._fetch_youtube_hotspots(max_items_per_query=3)
         events_window.extend(yt_events)
         total_scanned += len(yt_events)
 
@@ -1352,7 +1446,11 @@ class LiveFreeSocialCrawler:
             "social_priority_ratio": "97% Social Media & Citizen Reports : 3% News",
             "window_minutes": window_minutes,
             "active_window": active_window_label,
-            "max_queries": max_queries,
+            "max_queries": min(8, max_queries),
+            "google_queries_scheduled": len(active_queries),
+            "google_cooldown_seconds": max(0, int(cls._google_circuit_broken_until - time.time())),
+            "youtube_reports": len(yt_events),
+            "direct_news_reports": len(direct_news_events),
             "active_workers": 16
         }
 

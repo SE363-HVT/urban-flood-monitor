@@ -70,7 +70,7 @@ def start_docker_services():
 
 def live_cycle_delay(interval_seconds, elapsed_seconds):
     """Maintain the scan cadence with a cooldown between live cycles."""
-    return max(min(30, interval_seconds), interval_seconds - elapsed_seconds)
+    return max(min(5, interval_seconds), interval_seconds - elapsed_seconds)
 
 
 def main():
@@ -88,7 +88,7 @@ def main():
 
     args = parser.parse_args()
     if args.interval is None:
-        args.interval = 5 if args.mode == "simulation" else 60
+        args.interval = 5 if args.mode == "simulation" else 30
     if args.interval <= 0:
         parser.error("--interval phải lớn hơn 0")
 
@@ -255,6 +255,7 @@ def main():
                     record_crawler_status("ONLINE", phase="idle" if count == 0 else "completed",
                                           discovered=count, published=stats["published_to_kafka"],
                                           buffered=stats["buffered_locally"],
+                                          free_sources=stats["free_sources"],
                                           cycle_duration_seconds=round(time.monotonic() - cycle_started, 2))
                     print(f"   📡 [Live Free Ingestion] Phát hiện: {count} tin | Đã bắn vào Kafka: {stats['published_to_kafka']} tin")
                 except Exception as error:

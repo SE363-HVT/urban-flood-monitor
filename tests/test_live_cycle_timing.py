@@ -8,8 +8,8 @@ class LiveCycleTimingTests(unittest.TestCase):
         self.assertEqual(live_cycle_delay(60, 12), 48)
 
     def test_slow_scan_retains_cooldown(self):
-        self.assertEqual(live_cycle_delay(60, 53), 30)
-        self.assertEqual(live_cycle_delay(60, 90), 30)
+        self.assertEqual(live_cycle_delay(30, 28), 5)
+        self.assertEqual(live_cycle_delay(30, 90), 5)
 
     def test_short_explicit_interval_remains_a_cooldown(self):
         self.assertEqual(live_cycle_delay(5, 8), 5)

@@ -32,6 +32,14 @@ Ba chu kỳ crawler miễn phí liên tiếp mất 46,30 giây, 38,84 giây và 
 
 Runner tính `--interval` live theo khoảng cách mục tiêu giữa hai lần bắt đầu quét, với khoảng nghỉ tối thiểu 30 giây ở cấu hình mặc định 60 giây. Hai khoảng cách bắt đầu đo được là 76,30 và 68,84 giây. Theo công thức cũ và cùng thời gian quét, hai khoảng cách tương ứng là 106,30 và 98,84 giây. Simulation giữ lịch chờ sau mỗi lô. Phép đo này tập trung vào nhịp thu thập và xử lý các tin tìm được, chưa đo tải video cao hoặc độ trễ kéo dài nhiều giờ.
 
+### Lịch Google RSS và nguồn trực tiếp
+
+Runner mặc định nhắm chu kỳ live 30 giây. Các lượt chạy nối tiếp với khoảng nghỉ tối thiểu 5 giây. Google News RSS có lịch riêng 150 giây, mỗi lượt xoay vòng tối đa 8 truy vấn gồm 4 Facebook, 3 TikTok và 1 báo chí, với tối đa 2 worker. Khi Google trả HTTP 429 hoặc 503, crawler tạm dừng ít nhất 3 phút và tôn trọng `Retry-After` dài hơn. HTTP 403 dùng khoảng nghỉ tối thiểu 15 phút. Báo chí, VOV và 1022 vẫn được gọi khi Google đang nghỉ, YouTube có lịch riêng 120 giây.
+
+Nhánh YouTube Data API dùng biến môi trường `YOUTUBE_DATA_API_KEY` tùy chọn và gửi tối đa một truy vấn tìm kiếm mỗi 20 phút trong một tiến trình chạy liên tục. Nhánh yt-dlp hiện có tiếp tục hoạt động khi máy chưa cấu hình khóa. Nhãn Shorts dựa trên URL Shorts đã xác nhận. RSS báo chí đọc trực tiếp các mục thời sự, giao thông và xã hội với timeout, chọn tin mới nhất sau khi kiểm tra nội dung, khu vực và giờ đăng. Thiếu giờ đăng hợp lệ thì tin không đi vào heatmap.
+
+Phép thử một lượt chỉ dùng nguồn trực tiếp trả 1 tin YouTube và 3 tin từ 1022 trong 41,62 giây, không gửi truy vấn Google RSS. RSS báo chí phản hồi nhưng không có tin đạt bộ lọc trong lượt thử. Nhánh Data API được kiểm tra bằng phản hồi giả lập do máy chưa cấu hình khóa.
+
 Mục 2 trở đi ghi lại hiện trạng và các hướng phát triển tại thời điểm lập kế hoạch.
 
 ## 1. Mục tiêu và nguyên tắc bảo toàn hệ thống

@@ -214,10 +214,11 @@ class SocialKafkaProducer:
         total_discovered = 0
         buffered_before = self.buffered_count
         self._recover_kafka()
+        free_stats = {}
 
         # 1. Thu thập từ Free Crawler (Engine 1)
         if enable_free_crawler:
-            events, stats = self.free_crawler.poll_live_stream(window_minutes=window_minutes)
+            events, free_stats = self.free_crawler.poll_live_stream(window_minutes=window_minutes)
             total_discovered += len(events)
             for ev in events:
                 if self.publish_event(TOPIC_LIVE_RAW, ev):
@@ -240,6 +241,9 @@ class SocialKafkaProducer:
             "total_discovered": total_discovered,
             "published_to_kafka": published_count,
             "buffered_locally": self.buffered_count - buffered_before,
+            "free_sources": {key: free_stats.get(key, 0) for key in (
+                "google_queries_scheduled", "google_cooldown_seconds", "youtube_reports", "direct_news_reports",
+            )},
             "topic": TOPIC_LIVE_RAW,
             "kafka_connected": self.producer is not None
         }
