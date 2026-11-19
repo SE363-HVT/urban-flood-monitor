@@ -392,6 +392,10 @@ def predict_multimodal(req: UnifiedPredictionRequest):
 # CLI RUNNER
 # =============================================================================
 def run_ai_service(host: str = "0.0.0.0", port: int = PORT):
+    if sys.platform == "win32":
+        for stream in (sys.stdout, sys.stderr):
+            if hasattr(stream, "reconfigure"):
+                stream.reconfigure(encoding="utf-8", errors="backslashreplace")
     print(f"[*] Starting RadiNet AI Microservice on http://{host}:{port}")
     uvicorn.run(app, host=host, port=port, log_level="info")
 
