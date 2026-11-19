@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
+from threading import Lock
 
 from kafka.structs import OffsetAndMetadata, TopicPartition
 
@@ -11,6 +12,48 @@ from bigdata.streaming.structured_flood_stream import StructuredFloodStream, leg
 
 
 class StructuredFloodTests(unittest.TestCase):
+    def test_hourly_failure_is_reported_without_stopping_ingestion(self):
+        with tempfile.TemporaryDirectory() as folder:
+            lakehouse = Path(folder)
+            stream = StructuredFloodStream.__new__(StructuredFloodStream)
+            stream.mode = "live"
+            stream.delta_path = lakehouse / "delta" / "verified_reports" / "live"
+            stream.checkpoint = lakehouse / "checkpoint"
+            stream.processing_lock = Lock()
+            stream.spark = Mock()
+            ingestion = Mock(isActive=True, lastProgress={"batchId": 1})
+            ingestion.awaitTermination.side_effect = [False, True]
+            stream.start_query = Mock(return_value=ingestion)
+            stream._drain_buffer = Mock(return_value=0)
+            stream._recover_hot_snapshot = Mock()
+            with patch("bigdata.streaming.structured_flood_stream.HourlyReportCounts") as rollup:
+                rollup.return_value.start.side_effect = RuntimeError("unavailable analytics")
+                stream.run("local:9092")
+            status = json.loads(
+                (lakehouse / "_operations" / "structured_live.json").read_text(encoding="utf-8")
+            )
+        self.assertEqual(status["hourly_status"], "failed")
+        self.assertEqual(status["ingestion_batch_id"], 1)
+        self.assertEqual(ingestion.awaitTermination.call_count, 2)
+        ingestion.stop.assert_called_once()
+
+    def test_operational_snapshot_reports_actual_watermark_and_late_counts(self):
+        stream = StructuredFloodStream.__new__(StructuredFloodStream)
+        stream.mode = "live"
+        ingestion = Mock(lastProgress={"batchId": 11, "batchDuration": 1000})
+        hourly = Mock(isActive=True, lastProgress={
+            "eventTime": {"watermark": "2026-11-18T00:00:00Z"},
+            "stateOperators": [{"numRowsDroppedByWatermark": 2, "numRowsTotal": 5}],
+        })
+        with tempfile.TemporaryDirectory() as folder:
+            stream._write_stream_progress(ingestion, hourly, Path(folder), None)
+            state_file = Path(folder) / "_operations" / "structured_live.json"
+            state = json.loads(state_file.read_text(encoding="utf-8"))
+        self.assertEqual(state["hourly_status"], "active")
+        self.assertEqual(state["hourly_watermark"], "2026-11-18T00:00:00Z")
+        self.assertEqual(state["hourly_rows_dropped_last_batch"], 2)
+        self.assertEqual(state["hourly_state_rows"], 5)
+
     def test_cutover_uses_next_committed_offset_and_earliest_for_new_partitions(self):
         admin = Mock()
         admin.describe_topics.return_value = [{

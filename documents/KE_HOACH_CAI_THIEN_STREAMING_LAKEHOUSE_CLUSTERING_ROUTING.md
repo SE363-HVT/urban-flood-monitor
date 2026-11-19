@@ -16,7 +16,17 @@ Các báo cáo về cùng sự cố được gom xuyên lô. Heatmap phân biệ
 
 Bảng lịch sử báo cáo đã xác thực nằm trong `data/lakehouse/delta/verified_reports/{mode}`. Bảng giữ thông tin địa danh, giờ sự kiện, lượng mưa và nội dung báo cáo đầy đủ. Khóa `report_version` cho phép phát lại cùng một phiên bản mà không thêm dòng. JSONL nguồn và JSONL phục hồi tiếp tục được lưu. Redis vẫn phục vụ snapshot dashboard. Khi ghi Delta lỗi, Spark giữ lô để đọc lại, còn dashboard phục vụ snapshot gần nhất đang có.
 
-Khi pipeline cùng chế độ đã dừng, có thể nhập lịch sử JSONL đã xác thực bằng lệnh `python bigdata/streaming/structured_flood_stream.py --mode live --backfill-delta` hoặc `--mode simulation --backfill-delta`. Nhập lại cùng dữ liệu dùng lại khóa phiên bản. Mục 2 trở đi mô tả hiện trạng lúc lập kế hoạch và các bước phát triển tiếp theo. Watermark cho phép tổng hợp dữ liệu theo giờ sự kiện sẽ được chọn sau khi đo phân bố độ trễ của tin thực tế.
+Khi pipeline cùng chế độ đã dừng, có thể nhập lịch sử JSONL đã xác thực bằng lệnh `python bigdata/streaming/structured_flood_stream.py --mode live --backfill-delta` hoặc `--mode simulation --backfill-delta`. Nhập lại cùng dữ liệu dùng lại khóa phiên bản.
+
+### Watermark và kiểm thử tải
+
+- Ngày 19/11/2026, 12 bản ghi còn lưu trong `social.live.raw` có cả giờ đăng và giờ nhập từ producer. Độ trễ trung vị là 412,1 phút và lớn nhất là 813,5 phút. Đây là mẫu nhỏ qua hai ngày. Chọn **24 giờ** làm khoảng chờ bảo thủ cho thống kê, tương ứng với phạm vi báo cáo trong ngày của dự án.
+- Truy vấn thống kê đọc các phiên bản mới từ Delta sau khi được kích hoạt, tổng hợp theo **giờ đăng UTC** và ghi các khung giờ đã chốt vào `data/lakehouse/delta/hourly_report_counts/{mode}`. Nó có checkpoint riêng, dùng giờ mô phỏng trong chế độ simulation, và loại mốc đăng sau giờ nhận khỏi phép tính để bảo vệ watermark. Cửa sổ chỉ chốt khi giờ sự kiện trong luồng tiến đủ xa. Khi không có tin mới, watermark có thể đứng yên.
+- Kho báo cáo gốc, bảng Delta đã xác thực, checkpoint Kafka và ba nhóm thời gian trên dashboard vẫn theo hợp đồng hiện có. Tin đến quá muộn có thể nằm ngoài số đếm theo giờ và vẫn đọc được trong `verified_reports`. JSON vận hành ở `data/lakehouse/_operations/structured_{mode}.json` ghi tốc độ, thời gian xử lý, watermark và số dòng bị loại khỏi phép tổng hợp trong lô gần nhất.
+- Ca tải 5 phút trên máy Windows dùng 5 tin/giây, thêm một đợt 30 tin và bản sao 9.973 phiên bản Delta simulation. Cả 1.530 tin mới đi qua checkpoint và xuất hiện đúng một lần trong Delta qua 20 micro-batch. P95 từ lúc gửi đến khi hoàn tất lô là 35,75 giây. Sau tin cuối, luồng xử lý hết hàng chờ trong 25,69 giây. Trung vị micro-batch là 15.872 ms.
+- Tái lập bằng `python scripts/pipeline/benchmark_structured_stream.py --seconds 300 --rate 5 --burst 30 --with-history`. Phép thử dùng topic ba partition riêng và thư mục tạm, chạy Kafka, Spark, Delta và truy vấn watermark thật. AI, Open-Meteo và Redis dùng điều kiện giả lập hoặc dự phòng. Kết quả đo áp dụng cho luồng xử lý và lưu trữ trên máy thử.
+
+Mục 2 trở đi ghi lại hiện trạng và các hướng phát triển tại thời điểm lập kế hoạch.
 
 ## 1. Mục tiêu và nguyên tắc bảo toàn hệ thống
 

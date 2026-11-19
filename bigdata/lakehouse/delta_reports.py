@@ -8,6 +8,7 @@ from pyspark.sql.types import (
 )
 
 from scripts.crawlers.organize_raw_episodes import determine_episode_id
+from bigdata.streaming.spark_records import frame_from_records
 
 
 REPORT_SCHEMA = StructType([
@@ -58,7 +59,13 @@ class DeltaReportHistory:
         from delta.tables import DeltaTable
 
         rows = {event["report_version"]: record_row(event) for event in reports}
-        data = self.spark.createDataFrame(list(rows.values()), schema=REPORT_SCHEMA)
+        if len(rows) <= 120:
+            fields = REPORT_SCHEMA.fieldNames()
+            data = frame_from_records(
+                self.spark, [dict(zip(fields, row)) for row in rows.values()], REPORT_SCHEMA, partitions=1
+            )
+        else:
+            data = self.spark.createDataFrame(list(rows.values()), schema=REPORT_SCHEMA)
         uri = self.path.as_uri()
         if not (self.path / "_delta_log").exists():
             data.write.format("delta").mode("errorifexists").save(uri)

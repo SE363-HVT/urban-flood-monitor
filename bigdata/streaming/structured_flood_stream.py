@@ -23,10 +23,13 @@ from pyspark.sql import SparkSession
 
 from bigdata.lakehouse.delta_reports import DeltaReportHistory
 from bigdata.streaming import spark_flood_processor as processing
+from bigdata.streaming.hourly_report_counts import HourlyReportCounts, REPORT_WATERMARK
+from bigdata.streaming.spark_records import frame_from_records
 from bigdata.streaming.stream_storage import write_json_atomic
 
 
-MAX_OFFSETS = 15
+MAX_OFFSETS = 120
+SPOOL_BATCH_SIZE = 15
 TOPICS = {"live": "social.live.raw", "simulation": "social.sim.raw"}
 
 
@@ -44,7 +47,7 @@ def _resolve_local_jars(packages, exclusions, ivy_settings):
             if line.startswith("jar=")]
     if not jars or any(not jar.is_file() for jar in jars):
         raise RuntimeError("Could not resolve the local Spark connectors")
-    return ",".join(jar.as_uri().replace("file:", "local:", 1) for jar in jars)
+    return os.pathsep.join(str(jar) for jar in jars)
 
 
 def structured_builder(builder, *, kafka=True, local=False):
@@ -57,17 +60,23 @@ def structured_builder(builder, *, kafka=True, local=False):
         "org.apache.parquet:parquet-hadoop", "org.apache.parquet:parquet-column",
         "org.apache.parquet:parquet-common", "org.apache.parquet:parquet-encoding",
         "org.apache.parquet:parquet-format-structures", "org.apache.parquet:parquet-jackson",
+        "org.slf4j:slf4j-api", "org.apache.logging.log4j:log4j-api",
+        "org.apache.logging.log4j:log4j-core", "org.apache.logging.log4j:log4j-slf4j2-impl",
+        "com.fasterxml.jackson.core:jackson-core", "com.fasterxml.jackson.core:jackson-databind",
+        "com.fasterxml.jackson.core:jackson-annotations", "com.google.code.findbugs:jsr305",
+        "org.scala-lang.modules:scala-parallel-collections_2.13", "org.xerial.snappy:snappy-java",
+        "at.yawk.lz4:lz4-java", "org.roaringbitmap:RoaringBitmap",
     ]
     exclusions = ",".join(bundled)
     settings = Path(__file__).with_name("ivysettings.xml").resolve().as_uri()
     builder.config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
     builder.config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
     if local and os.name == "nt":
-        # Load from the Ivy cache so a Windows executor does not fetch JARs from its own driver.
+        # The local driver and executor share the resolved JARs without keeping temporary copies open.
         spark_minor = ".".join(pyspark.__version__.split(".")[:2])
         delta_package = f"io.delta:delta-spark_{spark_minor}_2.13:{version('delta-spark')}"
-        jars = _resolve_local_jars(",".join([delta_package, *packages]), exclusions, settings)
-        return builder.config("spark.jars", jars)
+        classpath = _resolve_local_jars(",".join([delta_package, *packages]), exclusions, settings)
+        return builder.config("spark.driver.extraClassPath", classpath).config("spark.executor.extraClassPath", classpath)
     builder.config("spark.jars.excludes", exclusions).config("spark.jars.ivySettings", settings)
     return configure_spark_with_delta_pip(builder, extra_packages=packages)
 
@@ -185,7 +194,7 @@ class StructuredFloodStream(processing.SparkFloodProcessor):
     def _consume_batch(self, frame, batch_id):
         with self.processing_lock:
             records = []
-            for row in frame.toLocalIterator():
+            for row in frame.collect():
                 value = self._decode_ingress_record(row.value, row.topic, row.partition, row.offset)
                 if value is not None:
                     records.append(value)
@@ -194,6 +203,9 @@ class StructuredFloodStream(processing.SparkFloodProcessor):
                         records = []
             if records:
                 self._process_ingress_batch(records, batch_id)
+
+    def _create_ingress_frame(self, records):
+        return frame_from_records(self.spark, records, processing.EVENT_SCHEMA, partitions=4)
 
     def start_query(self, bootstrap_servers, topics, legacy_group, *, available_now=False):
         offsets = self._get_starting_offsets(bootstrap_servers, topics, legacy_group)
@@ -214,24 +226,78 @@ class StructuredFloodStream(processing.SparkFloodProcessor):
         topics = [TOPICS[self.mode]]
         group = f"pyspark-flood-{self.mode}-streaming-group"
         spool_batch = 0
+        lakehouse = self.delta_path.parents[2]
+        rollup = HourlyReportCounts(
+            self.spark, self.delta_path, lakehouse / "delta" / "hourly_report_counts" / self.mode,
+            self.checkpoint / "hourly_report_counts",
+        )
+        hourly_query = None
+        hourly_retry_at = 0
+        try:
+            rollup.prepare()
+        except Exception as error:
+            print(f"[Hourly counts] Chưa tạo được checkpoint: {error}")
         while True:
             try:
                 query = self.start_query(bootstrap_servers, topics, group)
                 break
             except KafkaError as error:
                 print(f"[Structured Streaming] Kafka chưa sẵn sàng, đang xử lý file đệm: {error}")
-                spool_batch = self._drain_buffer(topics, spool_batch, MAX_OFFSETS)
+                spool_batch = self._drain_buffer(topics, spool_batch, SPOOL_BATCH_SIZE)
                 self._recover_hot_snapshot()
                 time.sleep(2)
         try:
             print(f"[Structured Streaming] {self.mode}: {query.id}")
             while not query.awaitTermination(1):
                 with self.processing_lock:
-                    spool_batch = self._drain_buffer(topics, spool_batch, MAX_OFFSETS)
+                    spool_batch = self._drain_buffer(topics, spool_batch, SPOOL_BATCH_SIZE)
                     self._recover_hot_snapshot()
+                if time.monotonic() >= hourly_retry_at:
+                    hourly_retry_at = time.monotonic() + 30
+                    hourly_error = None
+                    try:
+                        if hourly_query is None or not hourly_query.isActive:
+                            if hourly_query is not None and hourly_query.exception() is not None:
+                                print(f"[Hourly counts] Khởi động lại sau lỗi: {hourly_query.exception()}")
+                            rollup.prepare()
+                            hourly_query = rollup.start()
+                    except Exception as error:
+                        hourly_error = type(error).__name__
+                        print(f"[Hourly counts] Chưa chạy được thống kê: {error}")
+                    try:
+                        self._write_stream_progress(query, hourly_query, lakehouse, hourly_error)
+                    except Exception as error:
+                        print(f"[Structured Streaming] Chưa ghi được trạng thái: {error}")
         finally:
-            if query.isActive:
-                query.stop()
+            try:
+                if hourly_query is not None and hourly_query.isActive:
+                    hourly_query.stop()
+            finally:
+                if query.isActive:
+                    query.stop()
+
+    def _write_stream_progress(self, query, hourly_query, lakehouse, hourly_error):
+        hourly_progress = hourly_query.lastProgress if hourly_query is not None else None
+        ingestion = query.lastProgress or {}
+        hourly = hourly_progress or {}
+        operators = hourly.get("stateOperators", [])
+        state = {
+            "checked_at": int(time.time()),
+            "ingestion_batch_id": ingestion.get("batchId"),
+            "ingestion_batch_duration_ms": ingestion.get("batchDuration"),
+            "input_rows_per_second": ingestion.get("inputRowsPerSecond"),
+            "processed_rows_per_second": ingestion.get("processedRowsPerSecond"),
+            "hourly_status": ("failed" if hourly_error else
+                              "active" if hourly_query is not None and hourly_query.isActive else "pending"),
+            "hourly_error": hourly_error,
+            "hourly_watermark_delay": REPORT_WATERMARK,
+            "hourly_watermark": hourly.get("eventTime", {}).get("watermark"),
+            "hourly_state_rows": sum(operator.get("numRowsTotal", 0) for operator in operators),
+            "hourly_rows_dropped_last_batch": sum(
+                operator.get("numRowsDroppedByWatermark", 0) for operator in operators
+            ),
+        }
+        write_json_atomic(lakehouse / "_operations" / f"structured_{self.mode}.json", state)
 
 
 def main():

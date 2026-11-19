@@ -436,7 +436,8 @@ class SparkFloodProcessor:
 
     def _preserve_source_fields(self, event, original, resolved):
         for field in ("aspect", "opinion", "polarity", "sentiment", "triplets", "aste_triplets",
-                      "media_urls", "video_url", "media", "historical_timestamp", "crawler_source"):
+                      "media_urls", "video_url", "media", "historical_timestamp", "crawler_source",
+                      "ingested_at_iso"):
             if original.get(field) is not None:
                 event[field] = original[field]
         location = event["location"]
@@ -700,13 +701,16 @@ class SparkFloodProcessor:
             return
         try:
             spark_records = [dict(record, _source_version=version) for version, record in pending.items()]
-            df = self.spark.createDataFrame(spark_records, schema=EVENT_SCHEMA)
+            df = self._create_ingress_frame(spark_records)
             self.process_micro_batch(df, batch_id=batch_id, raw_records=list(pending.values()))
         except OSError:
             raise
         except Exception as error:
             print(f"[Spark Engine Warning] Lỗi micro-batch #{batch_id}: {error}")
             self._fallback_process_records(list(pending.values()), batch_id=batch_id)
+
+    def _create_ingress_frame(self, records):
+        return self.spark.createDataFrame(records, schema=EVENT_SCHEMA)
 
     def _decode_ingress_record(self, payload, topic, partition, offset):
         try:
