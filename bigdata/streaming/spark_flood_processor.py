@@ -65,6 +65,8 @@ from pyspark.sql.types import (
 
 try:
     import redis
+    from redis.backoff import NoBackoff
+    from redis.retry import Retry
     REDIS_AVAILABLE = True
 except ImportError:
     redis = None
@@ -279,7 +281,8 @@ class SparkFloodProcessor:
         try:
             r = redis.Redis(
                 host=REDIS_HOST, port=REDIS_PORT, db=0,
-                socket_connect_timeout=0.4, socket_timeout=0.4, decode_responses=True
+                socket_connect_timeout=0.4, socket_timeout=0.4,
+                retry=Retry(NoBackoff(), 0), decode_responses=True
             )
             r.ping()
             print(f"[Spark Engine] Đã kết nối thành công tới Redis Serving Store ({REDIS_HOST}:{REDIS_PORT})")
