@@ -29,6 +29,14 @@ ROAD_CACHE_FILE = os.path.join(DATA_DIR, "road_geometry_cache.sqlite3")
 CSGT_FILE = os.path.join(DATA_DIR, "csgt_122_flood_hotspots.json")
 ADMIN_UNITS_FILE = os.path.join(DATA_DIR, "hcmc_168_administrative_units.json")
 
+
+def configure_local_osm_index():
+    """Find the installed map unless the caller explicitly configured a path."""
+    path = os.environ.get("RADINET_OSM_ROAD_INDEX", os.path.join(DATA_DIR, "osm_named_roads.sqlite3"))
+    if os.path.isfile(path):
+        return os.environ.setdefault("RADINET_OSM_ROAD_INDEX", path)
+    return None
+
 def load_csgt_hotspots() -> List[Dict[str, Any]]:
     if os.path.exists(CSGT_FILE):
         try:

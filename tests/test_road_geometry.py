@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 from core import gazetteer
 from core.road_geometry import representative_local_road, representative_ward_point, select_road, snap_local_road
+from pipeline.simulation_replayer import _resolve_replay_location
 
 
 def way(name="Đường Hoa Mai", ward="Phường Một", lon=106.7):
@@ -30,6 +31,26 @@ def official_ward(ward, district):
 
 
 class RoadGeometryTests(unittest.TestCase):
+    def test_simulation_uses_shared_osm_pin_and_protects_historical_road(self):
+        historical = {"street": "Đường Hoa Mai", "ward": "Phường Một", "precision": "street",
+                      "lat": 10.8, "lon": 106.7, "heat_points": [[10.8, 106.7]], "source": "annotated_dataset_v1"}
+        candidate = {**historical, "street": "Hoa Mai", "lat": 10.8002, "heat_points": [[10.8002, 106.7]],
+                     "coordinate_kind": "osm_road_centerline", "resolution_reason": "named_road"}
+        with patch("pipeline.simulation_replayer.match_hotspot", return_value=candidate) as match:
+            shared = _resolve_replay_location("Hoa Mai ngập", historical)
+            self.assertEqual((shared["lat"], shared["heat_points"], shared["coordinate_source"]),
+                             (10.8002, [[10.8002, 106.7]], "OpenStreetMap"))
+            self.assertEqual(historical["lat"], 10.8)
+            for replacement in (
+                {**candidate, "street": "Hoa Lan"},
+                {**candidate, "lat": 10.85},
+                {**candidate, "ward": "Phường Hai"},
+                {**candidate, "precision": "ward", "coordinate_kind": "administrative_center"},
+                None,
+            ):
+                match.return_value = replacement
+                self.assertIs(_resolve_replay_location("Hoa Mai ngập", historical), historical)
+
     def test_three_levels_and_service_boundary(self):
         with tempfile.TemporaryDirectory() as folder:
             index = Path(folder) / "roads.sqlite3"

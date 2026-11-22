@@ -151,8 +151,11 @@ Access the interactive web dashboard at:
 
 ### Road location resolution
 
-The main live runner automatically loads `data/osm_named_roads.sqlite3` when
-present. Build it from an OpenStreetMap PBF extract with the optional `osmium`
+The streaming runner automatically loads `data/osm_named_roads.sqlite3` for both
+modes when present. Simulation applies the same resolver when replaying reports.
+It retains historical road pins if the resolver cannot verify the same road or
+would move the pin by more than 150 m. Build the index from an OpenStreetMap PBF
+extract with the optional `osmium`
 package and `python -m scripts.build_osm_road_index path/to/region.osm.pbf`.
 Live location levels are a representative pin on the named road, a ward or
 commune reference, and a city reference, in that order. Road pins are selected

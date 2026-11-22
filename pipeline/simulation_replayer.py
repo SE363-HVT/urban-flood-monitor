@@ -24,14 +24,50 @@ from core.gazetteer import (
     BOGUS_ROAD_PHRASES,
     STOP_CANDIDATE_WORDS,
     clean_road_candidate,
+    configure_local_osm_index,
+    match_hotspot,
     normalize_text,
     ADMIN_HOTSPOTS
 )
+from core.road_geometry import distance_m, road_key, ward_key
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 ANNOTATED_FILE = os.path.join(DATA_DIR, "processed", "hcmc_flood_annotated_v1.json")
 ADMIN_UNITS_FILE = os.path.join(DATA_DIR, "hcmc_168_administrative_units.json")
+MAX_REPLAY_ROAD_SHIFT_M = 150
+
+
+def _resolve_replay_location(text, historical):
+    """Apply current OSM evidence while retaining the historical replay fallback."""
+    candidate = match_hotspot(text)
+    if not candidate:
+        return historical
+
+    historical_road = historical.get("street", "")
+    historical_ward = historical.get("ward", "") if historical.get("precision") != "city" else ""
+    candidate_ward = candidate.get("ward", "")
+    if historical_ward and candidate_ward and ward_key(historical_ward) != ward_key(candidate_ward):
+        return historical
+
+    if candidate.get("coordinate_kind") == "osm_road_centerline":
+        if historical_road:
+            if road_key(historical_road) != road_key(candidate["street"]):
+                return historical
+            old_point = historical["lat"], historical["lon"]
+            new_point = candidate["lat"], candidate["lon"]
+            if distance_m(old_point, new_point) > MAX_REPLAY_ROAD_SHIFT_M:
+                return historical
+    elif historical_road or candidate.get("precision") != "ward" or candidate.get("coordinate_source") != "OpenStreetMap":
+        return historical
+
+    fields = ("street", "display_name", "ward", "district", "lat", "lon", "heat_points", "priority",
+              "precision", "coordinate_kind", "resolution_reason")
+    location = {**historical, **{field: candidate[field] for field in fields if field in candidate}}
+    location["ward"] = candidate_ward or historical_ward
+    location["administrative_unit"] = location["ward"]
+    location["coordinate_source"] = "OpenStreetMap"
+    return location
 
 # Historical fixtures used by the replay dataset.
 try:
@@ -455,6 +491,8 @@ class SimulationReplayer:
                     "lon": lon,
                     "heat_points": heat_pts,
                     "priority": priority,
+                    "precision": "street" if st_cand else ("ward" if priority == 2 else "city"),
+                    "coordinate_kind": "gazetteer_reference" if st_cand else "administrative_reference",
                     "type": type_label,
                     "cause": cause,
                     "cause_label": cause_label,
@@ -536,10 +574,13 @@ class SimulationReplayer:
             batch_events.append(dict(pool[idx]))
 
         current_time = int(time.time())
+        osm_index = configure_local_osm_index()
         window_minutes = 120
         span_seconds = window_minutes * 60
 
         for idx, ev in enumerate(batch_events):
+            if osm_index:
+                ev["location"] = _resolve_replay_location(ev["text"], ev["location"])
             offset_seconds = int((idx / max(batch_size - 1, 1)) * (span_seconds - 300))
             post_time = current_time - span_seconds + offset_seconds
             ev["create_time"] = post_time
