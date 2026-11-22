@@ -765,8 +765,10 @@ class LiveFreeSocialCrawler:
                                 "cause": spot.get("cause", "rain"),
                                 "cause_label": spot.get("cause_label", "Mưa lớn hoặc triều cường"),
                                 "source": "youtube_realtime_crawler",
+                                "coordinate_source": spot.get("coordinate_source") or spot.get("source"),
                                 "precision": spot.get("precision"),
                                 "coordinate_kind": spot.get("coordinate_kind"),
+                                "resolution_reason": spot.get("resolution_reason"),
                             },
                             "aspect": st_name or spot.get("ward", ""),
                             "opinion": analysis.get("opinion", "mưa lớn ngập đường"),
@@ -853,7 +855,7 @@ class LiveFreeSocialCrawler:
                     author_name, item_id = self.extract_author_and_id(href, "vov_traffic")
 
                     for spot_idx, spot in enumerate(matched_spots[:1]):
-                        st_name = spot.get("street") or spot.get("display_name", "")
+                        st_name = spot.get("street") or ""
                         sub_id = f"vov_{item_id}_s{spot_idx}" if len(matched_spots) > 1 else f"vov_{item_id}"
                         canonical_id = f"vov_{sub_id}"
 
@@ -884,7 +886,11 @@ class LiveFreeSocialCrawler:
                                 "type": spot.get("type", "ngập úng đô thị"),
                                 "cause": spot.get("cause", "rain"),
                                 "cause_label": spot.get("cause_label", "Phản ánh giao thông & mưa ngập"),
-                                "source": "vov_traffic_ticker"
+                                "source": "vov_traffic_ticker",
+                                "coordinate_source": spot.get("coordinate_source") or spot.get("source"),
+                                "precision": spot.get("precision"),
+                                "coordinate_kind": spot.get("coordinate_kind"),
+                                "resolution_reason": spot.get("resolution_reason"),
                             },
                             "aspect": st_name or spot.get("ward", ""),
                             "opinion": (analyze_severity_heuristic(raw_title) or {}).get("opinion", "ngập úng giao thông"),
@@ -1106,18 +1112,19 @@ class LiveFreeSocialCrawler:
                         weight = 2.0
 
                     # Khớp tọa độ GIS
-                    full_text = f"{full_address} {desc} {ward_name} {district_name}"
+                    full_text = ", ".join(part for part in (full_address, desc, ward_name, district_name) if part)
                     matched_spots = match_all_hotspots(full_text)
                     if matched_spots:
                         spot = matched_spots[0]
-                        st_name = spot.get("street") or spot.get("display_name", "")
+                        st_name = spot.get("street") or ""
                         lat = spot["lat"]
                         lon = spot["lon"]
                         heat_pts = spot.get("heat_points", [[lat, lon]])
                         final_ward = ward_name or spot.get("ward", "Toàn TP.HCM")
                         final_dist = district_name or spot.get("district", "TP.HCM")
                     else:
-                        st_name = full_address or "Khu vực dân cư TP.HCM"
+                        spot = {}
+                        st_name = ""
                         lat = 10.7769
                         lon = 106.7009
                         heat_pts = [[lat, lon]]
@@ -1145,7 +1152,7 @@ class LiveFreeSocialCrawler:
                         "relative_time": format_relative_time(pub_unix, current_time),
                         "location": {
                             "street": st_name,
-                            "display_name": f"{st_name}, {final_ward}, {final_dist}" if final_ward else st_name,
+                            "display_name": spot.get("display_name") or full_address or "Khu vực TP. Hồ Chí Minh",
                             "ward": final_ward,
                             "administrative_unit": final_ward,
                             "district": final_dist,
@@ -1157,7 +1164,11 @@ class LiveFreeSocialCrawler:
                             "type": "ngập úng đô thị / triều cường",
                             "cause": "rain_and_tide",
                             "cause_label": f"Phản ánh người dân ({kw})",
-                            "source": "portal_1022_official_api"
+                            "source": "portal_1022_official_api",
+                            "coordinate_source": spot.get("coordinate_source") or spot.get("source"),
+                            "precision": spot.get("precision", "city"),
+                            "coordinate_kind": spot.get("coordinate_kind", "administrative_center"),
+                            "resolution_reason": spot.get("resolution_reason"),
                         },
                         "aspect": st_name,
                         "opinion": analysis_1022.get("opinion", "cống nghẹt trào nước"),
@@ -1296,8 +1307,10 @@ class LiveFreeSocialCrawler:
                             "cause": "rain",
                             "cause_label": "Thông tin báo chí chính thống & CSGT đô thị",
                             "source": "direct_news_rss",
+                            "coordinate_source": spot.get("coordinate_source") or spot.get("source"),
                             "precision": spot.get("precision"),
                             "coordinate_kind": spot.get("coordinate_kind"),
+                            "resolution_reason": spot.get("resolution_reason"),
                         },
                         "aspect": st_name or spot.get("ward", ""),
                         "weight": weight,
@@ -1469,9 +1482,10 @@ class LiveFreeSocialCrawler:
                         "cause": spot.get("cause", "rain"),
                         "cause_label": spot.get("cause_label", "Mưa lớn hoặc triều cường"),
                         "source": "live_free_crawler",
-                        "coordinate_source": spot.get("source"),
+                        "coordinate_source": spot.get("coordinate_source") or spot.get("source"),
                         "precision": spot.get("precision"),
                         "coordinate_kind": spot.get("coordinate_kind"),
+                        "resolution_reason": spot.get("resolution_reason"),
                     },
                     "aspect": st_name or spot.get("ward", ""),
                     "opinion": (analyze_severity_heuristic(quote_text) or {}).get("opinion", "ngập nước"),

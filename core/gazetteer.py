@@ -15,10 +15,17 @@ import json
 import urllib.request
 import urllib.parse
 import unicodedata
+import sqlite3
+import time
+from contextlib import closing
+
+from core.road_geometry import (
+    distance_m, name_key, representative_local_road, representative_ward_point, road_key, select_road,
+)
 from typing import Optional, Dict, Any, List
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
-CACHE_FILE = os.path.join(DATA_DIR, "gazetteer_dynamic_cache.json")
+ROAD_CACHE_FILE = os.path.join(DATA_DIR, "road_geometry_cache.sqlite3")
 CSGT_FILE = os.path.join(DATA_DIR, "csgt_122_flood_hotspots.json")
 ADMIN_UNITS_FILE = os.path.join(DATA_DIR, "hcmc_168_administrative_units.json")
 
@@ -64,28 +71,6 @@ def load_admin_hotspots() -> List[Dict[str, Any]]:
     return []
 
 ADMIN_HOTSPOTS: List[Dict[str, Any]] = load_admin_hotspots()
-
-DYNAMIC_CACHE: Dict[str, Dict[str, Any]] = {}
-FAILED_DYNAMIC_CACHE = set()
-
-def load_dynamic_cache():
-    global DYNAMIC_CACHE
-    if os.path.exists(CACHE_FILE):
-        try:
-            with open(CACHE_FILE, "r", encoding="utf-8") as f:
-                DYNAMIC_CACHE = json.load(f)
-        except Exception:
-            DYNAMIC_CACHE = {}
-
-def save_dynamic_cache():
-    os.makedirs(DATA_DIR, exist_ok=True)
-    try:
-        with open(CACHE_FILE, "w", encoding="utf-8") as f:
-            json.dump(DYNAMIC_CACHE, f, ensure_ascii=False, indent=2)
-    except Exception:
-        pass
-
-load_dynamic_cache()
 
 # =========================================================================
 # DANH MỤC HẠT NHÂN (SEED HOTSPOTS) - ĐÃ ĐƯỢC ĐO CHUẨN XÁC TIM ĐƯỜNG THEO OPENSTREETMAP (HIGHWAY)
@@ -1822,9 +1807,9 @@ for h in HOTSPOTS:
 OUT_OF_SCOPE_LOCATIONS = [
     # Miền Bắc
     "hà nội", "ha noi", "hanoi", "hà đông", "ha dong", "hadong", "cầu giấy", "cau giay", "hoàn kiếm", "hoan kiem",
-    "đống đa", "dong da", "ba đình", "ba dinh", "hai bà trưng", "thanh xuân", "hoàng mai", "long biên", "hoàng ngân", "hoang ngan", "quan nhân", "quan nhan", "royal city", "royalcity", "nguyễn trãi hà nội", "tây hồ", "mỹ đình", "nam từ liêm", "bắc từ liêm",
+    "đống đa", "dong da", "ba đình", "ba dinh", "quận hai bà trưng", "quan hai ba trung", "thanh xuân", "hoàng mai", "long biên", "hoàng ngân", "hoang ngan", "quan nhân", "quan nhan", "royal city", "royalcity", "nguyễn trãi hà nội", "tây hồ", "mỹ đình", "nam từ liêm", "bắc từ liêm",
     "thái nguyên", "thai nguyen", "thainguyen", "yên bái", "yen bai", "yenbai", "lào cai", "lao cai", "laocai",
-    "quảng ninh", "quang ninh", "quangninh", "hạ long", "ha long", "halong", "hải phòng", "hai phong", "haiphong",
+    "quảng ninh", "quang ninh", "quangninh", "thành phố hạ long", "tp hạ long", "tp. hạ long", "hải phòng", "hai phong", "haiphong",
     "hải dương", "hai duong", "bắc ninh", "bac ninh", "bắc giang", "bac giang", "phú thọ", "phu tho",
     "việt trì", "viet tri", "vĩnh phúc", "vinh phuc", "vĩnh yên", "nam định", "nam dinh", "ninh bình", "ninh binh",
     "thái bình", "thai binh", "hà nam", "ha nam", "hưng yên", "hung yen", "hà giang", "ha giang", "cao bằng", "cao bang",
@@ -1832,7 +1817,7 @@ OUT_OF_SCOPE_LOCATIONS = [
     "lai châu", "lai chau", "hòa bình", "hoa binh", "miền bắc", "mien bac", "mienbac",
 
     # Miền Trung
-    "thanh hóa", "thanh hoa", "thanhhoa", "nghệ an", "nghe an", "nghean", "tp vinh", "tp. vinh", "thành phố vinh", "tpvinh",
+    "thanh hóa", "thanh hoa", "thanhhoa", "nghệ an", "nghe an", "nghean", "cửa lò", "cua lo", "tp vinh", "tp. vinh", "thành phố vinh", "tpvinh",
     "hà tĩnh", "ha tinh", "hatinh", "hatinhnho", "quảng bình", "quang binh", "quangbinh", "đồng hới",
     "quảng trị", "quang tri", "đông hà", "thừa thiên huế", "huế", "hue", "đà nẵng", "da nang", "danang",
     "quảng nam", "quang nam", "quangnam", "hội an", "tam kỳ", "quảng ngãi", "quang ngai",
@@ -1908,156 +1893,94 @@ def clean_road_candidate(candidate: str) -> str:
         return ""
     return res
 
-def geocode_osm_dynamic(query: str) -> Optional[Dict[str, Any]]:
-    """
-    Tự động truy vấn OpenStreetMap Nominatim khi phát hiện tên đường/địa điểm mới chưa có trong Gazetteer.
-    Chuẩn hóa lấy đúng tim đường (highway) hoặc công trình/khu dân cư để ghim marker chính xác.
-    Có bộ nhớ đệm tự lưu (Self-learning Cache) để không cần gọi lại lần 2.
-    """
-    clean_q = query.strip().lower()
-
-    # Bóc tách tên đường thuần túy nếu có tiền tố số nhà hoặc công trình
-    street_clean = re.sub(
-        r'^(?:đường|đại lộ|tuyến đường|phố|hẻm|ngõ|ngách|chung\s+cư|cao\s+ốc|tòa\s+nhà|khu\s+căn\s+hộ|kdc|khu\s+dân\s+cư|kđt|khu\s+đô\s+thị|kcn|khu\s+công\s+nghiệp|chợ|số|đoạn)\s+',
-        '',
-        query,
-        flags=re.IGNORECASE
-    ).strip()
-    street_clean = re.sub(r'^\d+[\w/]*\s+', '', street_clean).strip()
-    clean_street_q = street_clean.lower()
-
-    if clean_q in DYNAMIC_CACHE:
-        return DYNAMIC_CACHE[clean_q]
-    if clean_street_q in DYNAMIC_CACHE:
-        return DYNAMIC_CACHE[clean_street_q]
-    if clean_q in FAILED_DYNAMIC_CACHE or clean_street_q in FAILED_DYNAMIC_CACHE:
-        return None
-
-    # Kiểm duyệt chất lượng: Tuyệt đối không geocode từ rác / từ không phải địa danh
-    if any(b in clean_q for b in BOGUS_ROAD_PHRASES) or any(b in clean_street_q for b in BOGUS_ROAD_PHRASES):
-        FAILED_DYNAMIC_CACHE.add(clean_q)
-        return None
-
-    search_target = street_clean if len(street_clean.split()) >= 2 or any(ch.isdigit() for ch in street_clean) else query
-    words = search_target.split()
-    if len(words) < 2 and not any(ch.isdigit() for ch in search_target):
-        return None
-
-    headers = {"User-Agent": "SE363-PrecisionGIS/5.0 (contact: student@hcmut.edu.vn)"}
-    ACCEPTED_OSM_CLASSES = {"highway", "building", "place", "landuse", "amenity", "tourism", "boundary"}
-
-    ROAD_RANK = {
-        "motorway": 110,
-        "trunk": 100,
-        "primary": 90,
-        "secondary": 80,
-        "tertiary": 70,
-        "unclassified": 50,
-        "residential": 40
-    }
-
-    def _select_best_centerline(items_list: list) -> Optional[dict]:
-        candidates = []
-        for d in items_list:
-            if d.get("class") != "highway":
-                continue
-            disp_name = d.get("display_name", "")
-            # Ưu tiên trục đường chính, bỏ qua hẻm/ngách nhánh phụ khi tìm kiếm tên đường lớn
-            is_alley = any(h in disp_name.lower() for h in ["hẻm", "ngách", "ngõ", "kiệt"])
-            rtype = d.get("type", "")
-            base_rank = ROAD_RANK.get(rtype, 20)
-            if is_alley:
-                base_rank -= 30
-            candidates.append((base_rank, float(d.get("importance", 0)), d))
-        if candidates:
-            candidates.sort(key=lambda x: (x[0], x[1]), reverse=True)
-            return candidates[0][2]
-        return None
-
-    item = None
-    # 1. Thử truy vấn cấu trúc street + city với search_target và osm_type=W (Chỉ lấy Way tim đường)
+def _cached_road(key, result=None):
+    """Persist verified matches across the crawler and Spark worker processes."""
     try:
-        url_structured = f"https://nominatim.openstreetmap.org/search?street={urllib.parse.quote(search_target)}&city={urllib.parse.quote('Thành phố Hồ Chí Minh')}&format=json&limit=10&osm_type=W"
-        req1 = urllib.request.Request(url_structured, headers=headers)
-        with urllib.request.urlopen(req1, timeout=6) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            item = _select_best_centerline(data)
-    except Exception:
-        item = None
+        with closing(sqlite3.connect(ROAD_CACHE_FILE, timeout=0.2)) as connection, connection:
+            connection.execute(
+                "CREATE TABLE IF NOT EXISTS roads (key TEXT PRIMARY KEY, result TEXT, expires REAL)"
+            )
+            if result is not None:
+                connection.execute(
+                    "INSERT OR REPLACE INTO roads VALUES (?, ?, ?)",
+                    (key, json.dumps(result, ensure_ascii=False), time.time() + (30 * 86400 if result else 3600)),
+                )
+            else:
+                row = connection.execute(
+                    "SELECT result FROM roads WHERE key = ? AND expires > ?", (key, time.time())
+                ).fetchone()
+                if row:
+                    return json.loads(row[0])
+    except (sqlite3.Error, ValueError):
+        pass
+    return None
 
-    # 2. Dự phòng truy vấn toàn văn với search_target và osm_type=W
-    if not item:
-        try:
-            url_fallback = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(search_target + ', Hồ Chí Minh, Việt Nam')}&format=json&limit=10&osm_type=W"
-            req2 = urllib.request.Request(url_fallback, headers=headers)
-            with urllib.request.urlopen(req2, timeout=6) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                item = _select_best_centerline(data)
-                if not item:
-                    for d in data:
-                        if d.get("class") in ACCEPTED_OSM_CLASSES:
-                            item = d
-                            break
-        except Exception:
-            item = None
 
-    # 3. Dự phòng với query gốc nếu search_target khác query
-    if not item and search_target != query:
-        try:
-            url_fallback2 = f"https://nominatim.openstreetmap.org/search?q={urllib.parse.quote(query + ', Hồ Chí Minh, Việt Nam')}&format=json&limit=10"
-            req3 = urllib.request.Request(url_fallback2, headers=headers)
-            with urllib.request.urlopen(req3, timeout=6) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                item = _select_best_centerline(data)
-                if not item:
-                    for d in data:
-                        if d.get("class") in ACCEPTED_OSM_CLASSES:
-                            item = d
-                            break
-        except Exception:
-            item = None
-
-    if not item:
-        FAILED_DYNAMIC_CACHE.add(clean_q)
-        FAILED_DYNAMIC_CACHE.add(clean_street_q)
+def geocode_osm_dynamic(query: str, *, ward: str = "", anchor=None) -> Optional[Dict[str, Any]]:
+    """Resolve a named road using a configured Nominatim-compatible provider."""
+    endpoint = os.environ.get("RADINET_NOMINATIM_SEARCH_URL", "").strip()
+    if not endpoint:
+        return None
+    query = query.strip()
+    if not road_key(query):
         return None
 
-    lat = round(float(item["lat"]), 4)
-    lon = round(float(item["lon"]), 4)
+    key = json.dumps([endpoint, road_key(query), name_key(ward), anchor])
+    cached = _cached_road(key)
+    if cached is not None:
+        return cached or None
 
-    # Ranh giới địa lý chuẩn xác của TP.HCM mở rộng
-    if not (10.38 <= lat <= 11.15 and 106.35 <= lon <= 107.02):
+    params = {
+
+        "countrycodes": "vn",
+        "viewbox": "106.35,11.15,107.02,10.38",
+        "bounded": 1,
+        "format": "jsonv2",
+        "limit": 20,
+        "dedupe": 0,
+        "addressdetails": 1,
+        "namedetails": 1,
+        "polygon_geojson": 1,
+    }
+    if ward:
+        params["q"] = f"{query}, {ward}, Thành phố Hồ Chí Minh"
+    else:
+        params.update(street=query, city="Thành phố Hồ Chí Minh")
+    try:
+        request = urllib.request.Request(
+            f"{endpoint}?{urllib.parse.urlencode(params)}", headers={"User-Agent": "RadiNet/1.0"}
+        )
+        with urllib.request.urlopen(request, timeout=3) as response:
+            items = json.load(response)
+        if not isinstance(items, list):
+            return None
+        selected = select_road(items, query, ward, RESOLVER.resolve_to_official_ward, anchor)
+    except (OSError, ValueError, TypeError, AttributeError):
         return None
 
-    disp = item.get("display_name", "")
-    parts = [p.strip() for p in disp.split(",")]
-    ward = "Đô thị TP.HCM"
-    district = "TP.HCM"
-    for p in parts:
-        if any(k in p for k in ["Phường", "Xã", "Thị trấn"]):
-            ward = p
-        elif any(k in p for k in ["Quận", "Huyện", "Thủ Đức"]):
-            district = p
-
-    title_name = search_target.title()
-    if not any(title_name.lower().startswith(p) for p in ["đường", "cầu", "ngã", "vòng", "chợ", "chung cư", "kdc"]):
-        title_name = f"Đường {title_name}"
-
-    res = {
+    if not selected:
+        _cached_road(key, {})
+        return None
+    (lat, lon), ward_name, district = selected
+    title = query if road_key(query) != name_key(query) else f"Đường {query}"
+    result = {
         "matched_keyword": query,
-        "display_name": title_name,
-        "ward": ward,
+        "street": title,
+        "display_name": title,
+        "ward": ward_name,
         "district": district,
         "region": "TPHCM",
         "lat": lat,
         "lon": lon,
         "heat_points": [[lat, lon]],
-        "type": "ngập đô thị (OSM tim đường chính xác)"
+        "priority": 3,
+        "precision": "street",
+        "coordinate_kind": "osm_road_centerline",
+        "source": "OpenStreetMap",
+        "type": "Điểm đại diện trên tuyến đường",
     }
-    DYNAMIC_CACHE[clean_q] = res
-    DYNAMIC_CACHE[clean_street_q] = res
-    save_dynamic_cache()
-    return res
+    _cached_road(key, result)
+    return result
 
 def _finalize_match(res: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
     if not res:
@@ -2068,9 +1991,6 @@ def _finalize_match(res: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
     if off_w:
         res["ward"] = off_w
         res["administrative_unit"] = off_w
-    elif "24" in cur_w or "bình thạnh" in cur_w.lower():
-        res["ward"] = "Phường Bình Thạnh"
-        res["administrative_unit"] = "Phường Bình Thạnh"
     res["district"] = "TP.HCM"
     return res
 
@@ -2130,7 +2050,140 @@ def _ward_context(clean_text):
     return max(matches, key=lambda match: match[:2])[2] if matches else None
 
 
+def _match_streets(clean_text, max_spots):
+    context = _ward_context(clean_text)
+    ward = context["ward"] if context else ""
+    index_path = os.environ.get("RADINET_OSM_ROAD_INDEX", "")
+    has_index = os.path.isfile(index_path)
+    groups = {}
+    references = {}
+    for spot in STREET_HOTSPOTS + CSGT_HOTSPOTS:
+        name = spot.get("street") or spot.get("display_name", "")
+        key = road_key(name)
+        references.setdefault(key, []).append(spot)
+        keywords = [
+            kw for kw in spot.get("keywords", [])
+            if len(kw.strip()) > 2 and not kw.strip().isdigit()
+            and re.search(r"(?<!\w)" + re.escape(kw.strip()) + r"(?!\w)", clean_text)
+        ]
+        if keywords:
+            groups.setdefault(key, []).append((spot, max(keywords, key=len), name))
+
+    resolved = []
+    ranked = sorted(groups.values(), key=lambda group: max(len(kw) for _, kw, _ in group), reverse=True)
+    for group in ranked:
+        spot, keyword, name = max(
+            group, key=lambda entry: (bool(ward and name_key(entry[0].get("ward", "")) == name_key(ward)), len(entry[1]))
+        )
+        if has_index:
+            # Use the same reference for all aliases of a road in the same context.
+            spot = max(references[road_key(name)], key=lambda entry: bool(
+                ward and name_key(entry.get("ward", "")) == name_key(ward)
+            ))
+        anchor = (spot["lat"], spot["lon"])
+        projected = representative_local_road(index_path, name, ward=ward, anchor=anchor) if has_index else None
+        if projected and not ward and spot.get("ward") and distance_m(anchor, projected) > 1000:
+            # A curated ward prevents a city-wide match from jumping to a same-named
+            # road when the original reference cannot be snapped.
+            reference_ward = RESOLVER.resolve_to_official_ward(spot["ward"], spot.get("district", "")) or spot["ward"]
+            projected = representative_local_road(index_path, name, ward=reference_ward, anchor=anchor)
+        if has_index and not projected:
+            continue
+        result = {
+            **spot,
+            "matched_keyword": keyword,
+            "street": name,
+            "display_name": spot.get("display_name") or name,
+            "ward": ward or spot.get("ward", ""),
+            "administrative_unit": ward or spot.get("ward", ""),
+            "district": spot.get("district", "TP.HCM"),
+            "region": spot.get("region", "TPHCM"),
+            "heat_points": spot.get("heat_points", [list(anchor)]),
+            "priority": 3,
+            "precision": "street",
+            "resolution_reason": "named_road",
+            "coordinate_kind": "gazetteer_reference",
+            "type": spot.get("type", f"Điểm cảnh báo tuyến đường {name}"),
+            "cause": spot.get("cause", "rain"),
+            "cause_label": spot.get("cause_label", "Mưa lớn, nước không thoát kịp"),
+            "source": spot.get("source", "csgt_or_seed"),
+        }
+        if projected:
+            lat, lon = projected
+            result.update(lat=lat, lon=lon, heat_points=[[lat, lon]],
+                          coordinate_kind="osm_road_centerline", coordinate_source="OpenStreetMap")
+        resolved.append(_finalize_match(result))
+        if len(resolved) >= max_spots:
+            return resolved, True
+
+    queried = set(groups)
+    dynamic_pattern = re.compile(
+        rf"\b((?:đường|duong|đại lộ|dai lo|phố|pho|quốc lộ|quoc lo|tỉnh lộ|tinh lo)\s+[^,.;:\n()]+?){ROAD_STOP_LOOKAHEAD}",
+        re.IGNORECASE,
+    )
+    explicit = dynamic_pattern.findall(clean_text)
+    explicit = re.findall(r"\b(?:đường|duong)\s+30\s*(?:/|tháng\s+|thang\s+)\s*0?4\b", clean_text) + explicit
+    explicit.extend(re.findall(r"(?<!\w)(?:ql|đt|dt|tl)\.?\s*\d{1,3}[a-z]?(?!\w)", clean_text))
+    explicit.extend(re.findall(r"(?<!\w)(?:cmt\s*8|cách mạng tháng (?:8|tám)|cach mang thang (?:8|tam))(?!\w)", clean_text))
+    bare = re.findall(
+        r"(?:^|\b(?:trên|tại|ở|gần|đoạn)\s+)([\w]+(?:\s+[\w]+){0,4}?)\s+(?:bị\s+|đang\s+)?ngập\b",
+        clean_text,
+    ) if has_index else []
+    road_mentioned = bool(groups)
+    for candidate, is_explicit in [(candidate, True) for candidate in explicit] + [(candidate, False) for candidate in bare]:
+        candidate = re.sub(r"^(?:đường|duong|đại lộ|dai lo|phố|pho)\s+", "", candidate)
+        # Retain the number in numbered street names such as "Đường số 15".
+        name = candidate.strip() if (
+            road_key(candidate) == "30 thang 4" or re.fullmatch(r"(?:số|so)\s+\d+\w*", candidate.strip())
+        ) else clean_road_candidate(candidate)
+        key = road_key(name)
+        if not key or key in queried or name in STOP_CANDIDATE_WORDS or len(name.split()) > 5:
+            continue
+        if key in {"vung tau", "binh duong", "ba ria", "ho chi minh", "sai gon", "tp hcm", "tphcm"}:
+            continue
+        road_mentioned = road_mentioned or is_explicit
+        if re.match(r"^(?:so )?\d", key) and key != "30 thang 4" and not ward:
+            continue
+        queried.add(key)
+        if has_index:
+            known = references.get(key, [])
+            anchor = None
+            if known:
+                spot = max(known, key=lambda entry: bool(ward and name_key(entry.get("ward", "")) == name_key(ward)))
+                anchor = (spot["lat"], spot["lon"])
+            place = ward or (spot.get("ward", "") if known else "")
+            point = representative_local_road(index_path, name, ward=place, anchor=anchor)
+            match = None
+            if point:
+                lat, lon = point
+                if key.startswith(("quoc lo ", "tinh lo ")):
+                    prefix = "Quốc lộ" if key.startswith("quoc lo ") else "Tỉnh lộ"
+                    title = f"{prefix} {key.split()[-1].upper()}"
+                elif key == "cach mang thang tam":
+                    title = "Đường Cách Mạng Tháng Tám"
+                elif key == "30 thang 4":
+                    title = "Đường 30 Tháng 4"
+                else:
+                    title = f"Đường {name.title()}"
+                match = {
+                    "street": title, "display_name": title, "ward": ward, "district": "TP.HCM",
+                    "lat": lat, "lon": lon, "heat_points": [[lat, lon]], "priority": 3, "precision": "street",
+                    "coordinate_kind": "osm_road_centerline", "source": "OpenStreetMap", "type": "Điểm đại diện trên đường",
+                }
+        else:
+            match = geocode_osm_dynamic(name, ward=ward)
+        if match:
+            match["resolution_reason"] = "named_road"
+            resolved.append(_finalize_match(match))
+            if len(resolved) >= max_spots:
+                break
+    return resolved, road_mentioned
+
+
 def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
+    return _match_hotspot(text, include_streets=True)
+
+def _match_hotspot(text: str, *, include_streets: bool, road_mentioned=False) -> Optional[Dict[str, Any]]:
     """
     Bộ bóc tách thực thể địa lý đa tầng chuẩn mực (Strict Spatial Hierarchy):
     Quy tắc cốt lõi:
@@ -2157,102 +2210,10 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
             if re.search(pat, clean_text):
                 return None
 
-    # =========================================================================
-    # TẦNG 1: ƯU TIÊN SỐ 1 - BÓC TÁCH TUYẾN ĐƯỜNG (STREET-FIRST RESOLUTION)
-    # =========================================================================
-    best_street = None
-    best_street_len = 0
-    best_street_context = False
-    context_ward = _ward_context(clean_text)
-
-    # 1.A: So khớp với danh mục 122 điểm CSGT & các tuyến đường hạt nhân (Priority 3)
-    for spot in (STREET_HOTSPOTS + CSGT_HOTSPOTS):
-        candidate_ward = spot.get("ward", "")
-        in_context = bool(context_ward and candidate_ward and
-                          normalize_text(candidate_ward) == normalize_text(context_ward["ward"]))
-        for kw in spot.get("keywords", []):
-            kw_clean = kw.strip()
-            if kw_clean.isdigit() or len(kw_clean) <= 2:
-                continue
-            pattern = r'(?:\b|^|#)' + re.escape(kw_clean) + r'(?:\b|$|[#\s.,!?])'
-            if re.search(pattern, clean_text):
-                if (in_context, len(kw)) > (best_street_context, best_street_len):
-                    best_street_context = in_context
-                    best_street_len = len(kw)
-                    st_name = spot.get("street") or spot.get("display_name", "")
-                    best_street = {
-                        "matched_keyword": kw,
-                        "street": st_name,
-                        "display_name": spot.get("display_name") or st_name,
-                        "ward": spot.get("ward", ""),
-                        "administrative_unit": spot.get("ward", ""),
-                        "district": spot.get("district", "TP.HCM"), 
-                        "region": spot.get("region", "TPHCM"),
-                        "lat": spot["lat"],
-                        "lon": spot["lon"],
-                        "heat_points": spot.get("heat_points", [[spot["lat"], spot["lon"]]]),
-                        "priority": 3,
-                        "type": spot.get("type", f"Điểm cảnh báo tuyến đường {st_name}"),
-                        "cause": spot.get("cause", "rain"),
-                        "cause_label": spot.get("cause_label", "Mưa lớn, nước không thoát kịp"),
-                        "source": spot.get("source", "csgt_or_seed")
-                    }
-
-    # 1.B: So khớp với bộ nhớ đệm tự học tuyến đường (Dynamic Cache)
-    if not best_street:
-        for cached_kw, cached_data in DYNAMIC_CACHE.items():
-            ck_clean = cached_kw.strip()
-            if ck_clean.isdigit() or len(ck_clean) <= 2:
-                continue
-            if any(bw in ck_clean for bw in BOGUS_ROAD_PHRASES):
-                continue
-            pattern = r'(?:\b|^|#)' + re.escape(ck_clean) + r'(?:\b|$|[#\s.,!?])'
-            if re.search(pattern, clean_text):
-                c_data = dict(cached_data)
-                c_data["street"] = c_data.get("display_name", cached_kw)
-                c_data["priority"] = 3
-                best_street = c_data
-                break
-
-    # 1.C: Nhận diện thực thể tên đường mới qua ROAD_PATTERN & OSM Geocoding (Kiểm soát nghiêm ngặt)
-    if not best_street:
-        matches = ROAD_PATTERN.findall(text)
-        for cand in matches:
-            cleaned_cand = clean_road_candidate(cand)
-            cand_low = cleaned_cand.lower()
-            if len(cleaned_cand) < 4 or len(cleaned_cand.split()) > 5:
-                continue
-            if any(bw in cand_low for bw in BOGUS_ROAD_PHRASES):
-                continue
-            if any(sw in cand_low for sw in ["tp hcm", "tphcm", "sài gòn", "saigon", "ngập", "ngap", "này", "kia", "đó", "xe", "nhà", "lội", "loi", "tại", "tai", "thuộc", "trũng", "na3", "mưa", "khu vực", "khu vuc", "trung tâm", "trung tam", "mọi người", "moi nguoi", "cứu", "né"]):
-                continue
-            if cand_low in STOP_CANDIDATE_WORDS:
-                continue
-            dynamic_spot = geocode_osm_dynamic(cleaned_cand)
-            if dynamic_spot:
-                d_copy = dict(dynamic_spot)
-                disp_n = d_copy.get("display_name", cleaned_cand)
-                if any(bw in disp_n.lower() for bw in BOGUS_ROAD_PHRASES):
-                    continue
-                d_copy["street"] = disp_n
-                d_copy["priority"] = 3
-                best_street = d_copy
-                break
-
-    # KẾT QUẢ TẦNG 1: Nếu đã tìm thấy TÊN ĐƯỜNG -> Tuyến đường là YẾU TỐ CHÍNH!
-    if best_street:
-        # Nếu điểm đường này chưa có phường xác định (ví dụ đường mới phát hiện qua OSM):
-        # Mới quét tìm xem bài viết có đề cập Phường / Xã cụ thể nào không
-        # Ưu tiên Phường/Xã được nhắc trực tiếp trong bài viết
-        known_ward = best_street.get("ward", "")
-        if context_ward and not known_ward:
-            best_street["ward"] = context_ward["ward"]
-            best_street["administrative_unit"] = context_ward["ward"]
-            best_street["district"] = context_ward.get("district", best_street.get("district", "TP.HCM"))
-        if not context_ward or not known_ward or normalize_text(known_ward) == normalize_text(context_ward["ward"]):
-            best_street["precision"] = "street"
-            best_street["coordinate_kind"] = "street_center"
-            return _finalize_match(best_street)
+    if include_streets:
+        streets, road_mentioned = _match_streets(clean_text, max_spots=1)
+        if streets:
+            return streets[0]
 
     # =========================================================================
     # TẦNG 2: NẾU KHÔNG CÓ TÊN ĐƯỜNG -> SO KHỚP ĐƠN VỊ HÀNH CHÍNH (PHƯỜNG / XÃ)
@@ -2284,8 +2245,17 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
                     }
 
     if best_ward:
-        best_ward["precision"] = "ward"
         best_ward["coordinate_kind"] = "administrative_center"
+        index_path = os.environ.get("RADINET_OSM_ROAD_INDEX", "")
+        if os.path.isfile(index_path):
+            point = representative_ward_point(index_path, best_ward["ward"], (best_ward["lat"], best_ward["lon"]))
+            if point:
+                lat, lon = point
+                best_ward.update(lat=lat, lon=lon, heat_points=[[lat, lon]], coordinate_source="OpenStreetMap")
+            else:
+                best_ward["coordinate_kind"] = "administrative_reference"
+        best_ward["precision"] = "ward"
+        best_ward["resolution_reason"] = "road_unverified" if road_mentioned else "ward_only"
         return _finalize_match(best_ward)
 
     # =========================================================================
@@ -2300,12 +2270,11 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
         for kw in spot.get("keywords", []):
             pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
             if re.search(pattern, clean_text):
-                res = dict(spot)
-                res["street"] = ""
-                res["priority"] = 1
-                res["precision"] = "city"
-                res["coordinate_kind"] = "administrative_center"
-                return _finalize_match(res)
+                return {
+                    **HOTSPOTS[-1], "street": "", "priority": 1, "precision": "city",
+                    "coordinate_kind": "administrative_center", "matched_keyword": kw,
+                    "resolution_reason": "road_unverified" if road_mentioned else "city_only",
+                }
 
     return None
 
@@ -2316,7 +2285,7 @@ def match_all_hotspots(text: str, max_spots: int = 5) -> List[Dict[str, Any]]:
     Phan ra thanh danh sach cac hotspot doc lap (Fan-out Pattern).
     Tuan thu 100% kiem soat dia gioi ngoai tinh: neu dinh ngoai tinh -> return []
     """
-    if not text:
+    if not text or max_spots <= 0:
         return []
 
     clean_text = normalize_text(text)
@@ -2327,62 +2296,12 @@ def match_all_hotspots(text: str, max_spots: int = 5) -> List[Dict[str, Any]]:
         if re.search(pat, clean_text):
             return []
 
-    found_spots = []
-    seen_keys = set()
-    context_ward = _ward_context(clean_text)
-    ward = normalize_text(context_ward["ward"]) if context_ward else ""
-
-    # 1. Quet tim tat ca cac tuyen duong trung khop (STREET_HOTSPOTS)
-    for spot in (STREET_HOTSPOTS + CSGT_HOTSPOTS):
-        spot_ward = normalize_text(spot.get("ward", ""))
-        if ward and spot_ward and ward != spot_ward:
-            continue
-        st_name = spot.get('street') or spot.get('display_name', '')
-        st_norm = normalize_text(st_name).strip()
-        st_key = re.sub(r'^(?:đường|duong|tuyến đường|tuyen duong|đại lộ|dai lo)\s+', '', st_norm).strip()
-        if st_key in seen_keys or st_norm in seen_keys:
-            continue
-
-        for kw in spot.get('keywords', []):
-            kw_clean = kw.strip()
-            if kw_clean.isdigit() or len(kw_clean) <= 2:
-                continue
-            pattern = r'(?:\b|^|#)' + re.escape(kw_clean) + r'(?:\b|$|[#\s.,!?])'
-            if re.search(pattern, clean_text):
-                spot_copy = {
-                    'matched_keyword': kw,
-                    'street': st_name,
-                    'display_name': spot.get('display_name') or st_name,
-                    'ward': spot.get('ward', ''),
-                    'administrative_unit': spot.get('ward', ''),
-                    'district': spot.get('district', 'TP.HCM'), 
-                    'region': spot.get('region', 'TPHCM'),
-                    'lat': spot['lat'],
-                    'lon': spot['lon'],
-                    'heat_points': spot.get('heat_points', [[spot['lat'], spot['lon']]]),
-                    'priority': 3,
-                    'type': spot.get('type', f'Điểm cảnh báo tuyến đường {st_name}'),
-                    'cause': spot.get('cause', 'rain'),
-                    'cause_label': spot.get('cause_label', 'Mưa lớn, nước không thoát kịp'),
-                    'source': spot.get('source', 'csgt_or_seed'),
-                    'precision': 'street',
-                    'coordinate_kind': 'street_center',
-                }
-                finalized = _finalize_match(spot_copy)
-                if finalized:
-                    found_spots.append(finalized)
-                    seen_keys.add(st_key)
-                    seen_keys.add(st_norm)
-                break
-        if len(found_spots) >= max_spots:
-            return found_spots
-
-    # 2. Neu da tim thay it nhat 1 tuyen duong -> tra ve ngay danh sach cac tuyen duong
+    found_spots, road_mentioned = _match_streets(clean_text, max_spots)
     if found_spots:
         return found_spots
 
-    # 3. Neu khong co ten duong cu the nao -> fallback goi match_hotspot don (Admin hoac Citywide)
-    single = match_hotspot(text)
+    # Skip a second road lookup when applying the administrative fallback.
+    single = _match_hotspot(text, include_streets=False, road_mentioned=road_mentioned)
     if single:
         return [single]
     return []

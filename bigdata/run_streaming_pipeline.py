@@ -92,6 +92,11 @@ def main():
     if args.interval <= 0:
         parser.error("--interval phải lớn hơn 0")
 
+    if args.mode == "live":
+        osm_index = os.path.join(ROOT_DIR, "data", "osm_named_roads.sqlite3")
+        if os.path.isfile(osm_index):
+            os.environ.setdefault("RADINET_OSM_ROAD_INDEX", osm_index)
+
     print("=" * 75)
     print("🚀 SE363: URBAN FLOOD MONITORING - END-TO-END STREAMING PIPELINE")
     print("=" * 75)
@@ -100,6 +105,8 @@ def main():
     print(f" • AI Microservice (8001): {'BẬT' if args.enable_ai else 'TẮT'}")
     print(f" • Chu kỳ chuỗi sự kiện  : {args.interval} giây")
     print(f" • Python Runtime       : {PYTHON_EXE}")
+    if args.mode == "live" and os.environ.get("RADINET_OSM_ROAD_INDEX"):
+        print(f" • Chỉ mục đường OSM    : {os.environ['RADINET_OSM_ROAD_INDEX']}")
     print("=" * 75)
 
     # 1. Kiểm tra Kafka & Redis Docker

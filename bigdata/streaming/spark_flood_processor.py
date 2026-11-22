@@ -123,6 +123,8 @@ GIS_OUTPUT_SCHEMA = StructType([
     StructField("display_name", StringType(), True),
     StructField("precision", StringType(), True),
     StructField("coordinate_kind", StringType(), True),
+    StructField("resolution_reason", StringType(), True),
+    StructField("source", StringType(), True),
     StructField("cause", StringType(), True),
     StructField("cause_label", StringType(), True)
 ])
@@ -169,6 +171,8 @@ def extract_gis_udf(text):
             "display_name": str(matched.get("display_name") or st or "Điểm ngập TP.HCM"),
             "precision": matched.get("precision"),
             "coordinate_kind": matched.get("coordinate_kind"),
+            "resolution_reason": matched.get("resolution_reason"),
+            "source": matched.get("coordinate_source") or matched.get("source"),
             "cause": str(matched.get("cause", "rain") or "rain"),
             "cause_label": str(matched.get("cause_label", "Mưa lớn, nước không thoát kịp") or "Mưa lớn")
         }
@@ -382,10 +386,17 @@ class SparkFloodProcessor:
                 orig = raw_by_id.get(record.get("canonical_id") or str(record.get("id")), {})
             orig_loc = orig.get("location") if isinstance(orig.get("location"), dict) else {}
 
-            st_name = orig_loc.get("street") or gis.get("street") or ""
-            off_w = orig_loc.get("ward") or gis.get("ward") or "Toàn TP.HCM"
-            lat = float(orig_loc.get("lat") or gis.get("lat") or 10.7769)
-            lon = float(orig_loc.get("lon") or gis.get("lon") or 106.7009)
+            try:
+                source_lat, source_lon = float(orig_loc.get("lat")), float(orig_loc.get("lon"))
+                source_has_point = -90 <= source_lat <= 90 and -180 <= source_lon <= 180
+            except (TypeError, ValueError):
+                source_has_point = False
+            spatial = orig_loc if source_has_point else gis
+            st_name = spatial.get("street") or ""
+            off_w = spatial.get("ward") or "Toàn TP.HCM"
+            lat, lon = (source_lat, source_lon) if source_has_point else (
+                float(gis.get("lat") or 10.7769), float(gis.get("lon") or 106.7009)
+            )
 
             ctime = record.get("create_time") or record.get("timestamp") or int(time.time())
             hist_ts = record.get("historical_timestamp") or orig.get("historical_timestamp")
@@ -406,10 +417,11 @@ class SparkFloodProcessor:
                 "status_tag": orig.get("status_tag") or "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
                 "location": {
                     "street": st_name,
-                    "display_name": st_name if st_name else (f"{off_w} (TP.HCM)" if off_w != "Toàn TP.HCM" else "Toàn TP. Hồ Chí Minh"),
+                    "display_name": spatial.get("display_name") or st_name or
+                    (f"{off_w} (TP.HCM)" if off_w != "Toàn TP.HCM" else "Toàn TP. Hồ Chí Minh"),
                     "ward": off_w,
                     "administrative_unit": off_w,
-                    "district": gis.get("district", "TP.HCM"),
+                    "district": spatial.get("district") or "TP.HCM",
                     "lat": lat,
                     "lon": lon,
                     "heat_points": [[lat, lon]],
@@ -423,7 +435,7 @@ class SparkFloodProcessor:
                 "weight": float(sev.get("weight") or 2.0),
                 "url": record.get("url") or ""
             }
-            self._preserve_source_fields(event_payload, orig, gis)
+            self._preserve_source_fields(event_payload, orig, spatial)
             payload_list.append(event_payload)
 
         # Xử lý song song 8 luồng VeracityChecker để hoàn thành micro-batch trong < 0.3s
@@ -444,20 +456,19 @@ class SparkFloodProcessor:
             if original.get(field) is not None:
                 event[field] = original[field]
         location = event["location"]
-        source_location = original.get("location")
-        if not isinstance(source_location, dict):
-            source_location = {}
         if location.get("street"):
-            level, kind = "street", "street_center"
+            level, kind = "street", "gazetteer_reference"
         elif str(location.get("ward") or "").lower().startswith(("phường", "xã", "đặc khu")):
             level, kind = "ward", "administrative_center"
         else:
             level, kind = "city", "administrative_center"
-        metadata = source_location or resolved
-        location["precision"] = metadata.get("precision") or level
-        location["coordinate_kind"] = metadata.get("coordinate_kind") or kind
-        if metadata.get("source"):
-            location["coordinate_source"] = metadata["source"]
+        location["precision"] = resolved.get("precision") or level
+        location["coordinate_kind"] = resolved.get("coordinate_kind") or kind
+        if resolved.get("resolution_reason"):
+            location["resolution_reason"] = resolved["resolution_reason"]
+        coordinate_source = resolved.get("coordinate_source") or resolved.get("source")
+        if coordinate_source:
+            location["coordinate_source"] = coordinate_source
         event["stream_mode"] = self.mode
         event["report_version"] = self._fingerprint(original or event)
 

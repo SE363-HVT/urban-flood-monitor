@@ -1837,6 +1837,16 @@
                             <div id="chart-throughput"></div>
                         </div>
                     </div>
+                    <details class="kpi-card">
+                        <summary class="kpi-title">ĐỊNH VỊ TRONG KHUNG HIỆN TẠI</summary>
+                        <dl>
+                            <dt>Đã ghim theo đường</dt><dd id="location-named_road">—</dd>
+                            <dt>Có nhắc đường, chưa xác minh được ghim</dt><dd id="location-road_unverified">—</dd>
+                            <dt>Chỉ xác định được phường/xã</dt><dd id="location-ward_only">—</dd>
+                            <dt>Chỉ xác định được TP.HCM</dt><dd id="location-city_only">—</dd>
+                            <dt>Chưa ghi lý do định vị</dt><dd id="location-legacy_or_unknown">—</dd>
+                        </dl>
+                    </details>
                 </div>
             </section>
 
@@ -2589,11 +2599,16 @@
 
                 if (hasStreet) {
                     primaryTitle = cleanStreet || rawStreet;
-                    const locationNote = loc.coordinate_kind === 'direct' ? 'Tọa độ do nguồn cung cấp' : 'Ghim đại diện trên tuyến đường';
-                    secondarySubtitle = `<b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${displayWard}</span> ${regionTag}<br>${locationNote}`;
+                    const locationNotes = {
+                        osm_road_centerline: 'Điểm đại diện trên tim đường theo OpenStreetMap'
+                    };
+                    const locationNote = locationNotes[loc.coordinate_kind] || 'Tọa độ tham chiếu của địa danh';
+                    secondarySubtitle = `<b>ĐVHC mới:</b> <span style="color: #0284c7; font-weight: 600;">${escapeHtml(displayWard)}</span> ${regionTag}<br>${locationNote}`;
                 } else if (rawWard && !isCitywide) {
                     primaryTitle = `${displayWard} ${regionTag}`;
-                    secondarySubtitle = `<span style="color: #64748b; font-style: italic;">Khu vực ĐVHC (Không có tên đường cụ thể)</span>`;
+                    const wardNote = loc.coordinate_source === 'OpenStreetMap' ? 'Điểm đại diện khu vực theo OpenStreetMap' :
+                        'Tọa độ tham chiếu của khu vực';
+                    secondarySubtitle = `<span style="color: #64748b; font-style: italic;">${wardNote}</span>`;
                 } else {
                     primaryTitle = `Toàn thành phố Hồ Chí Minh`;
                     secondarySubtitle = `<span style="color: #64748b; font-style: italic;">Tin cảnh báo diện rộng TP.HCM</span>`;
@@ -2704,7 +2719,7 @@
                             <span>${ev.report_count} báo cáo về sự cố</span>
                         </div>
                         ` : ''}
-                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; color: #0f172a;">${primaryTitle}</div>
+                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px; color: #0f172a;">${escapeHtml(primaryTitle)}</div>
                         <div style="font-size: 11px; color: #475569; margin-bottom: 6px;">
                             ${secondarySubtitle}
                         </div>
@@ -2851,7 +2866,7 @@
 
                         <div class="card-title-row">
                             <span class="card-pin">📍</span>
-                            <span class="card-street-name">${primaryTitle}</span>
+                            <span class="card-street-name">${escapeHtml(primaryTitle)}</span>
                         </div>
                         <div class="card-ward-sub">${secondarySubtitle}</div>
 
@@ -3855,6 +3870,10 @@
                 updateAdminWardsChart(data.admin_wards);
                 updateTimeSeriesChart(data.time_series);
                 updateThroughputChart(data.throughput);
+                const reasons = data.location_quality;
+                for (const key of ['named_road', 'road_unverified', 'ward_only', 'city_only', 'legacy_or_unknown']) {
+                    document.getElementById(`location-${key}`).textContent = reasons ? (reasons[key] ?? 0) : '—';
+                }
                 updateSystemHealthUI(data.system_health);
             } catch (err) {
                 console.warn("[V3] Dashboard summary poll timeout or network error (silent fallback):", err.message);

@@ -1,0 +1,424 @@
+{
+  "baseline": {
+    "counts": {
+      "reports": 16,
+      "administrative_center": 7,
+      "level_labels": 16,
+      "correct_level": 13,
+      "osm_road_centerline": 8,
+      "road_labels": 11,
+      "correct_road": 7,
+      "on_centerline": 8,
+      "ward_labels": 1,
+      "correct_ward": 1,
+      "missed_road": 3,
+      "wrong_road": 1,
+      "unresolved": 1
+    },
+    "point_predictions": 0,
+    "median_error_m": null,
+    "p90_error_m": null,
+    "centerline_checks": 8,
+    "max_centerline_error_m": 0.0,
+    "predictions": [
+      {
+        "id": "hcm-city",
+        "level": "city",
+        "street": "",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "pin": [
+          10.7769,
+          106.7009
+        ],
+        "reason": null
+      },
+      {
+        "id": "hcm-phan-huy-ich",
+        "level": "street",
+        "street": "Đường Phan Huy Ích",
+        "ward": "Phường An Hội Tây",
+        "pin": [
+          10.837192595025698,
+          106.6362177765744
+        ],
+        "reason": null
+      },
+      {
+        "id": "hcm-pham-van-dong",
+        "level": "street",
+        "street": "Đại lộ Phạm Văn Đồng",
+        "ward": "Phường Hạnh Thông",
+        "pin": [
+          10.85013845,
+          106.7493244
+        ],
+        "reason": null
+      },
+      {
+        "id": "hcm-ma-lo",
+        "level": "street",
+        "street": "Mã Lò",
+        "ward": "Phường Bình Trị Đông",
+        "pin": [
+          10.759537448934408,
+          106.60567705941861
+        ],
+        "reason": null
+      },
+      {
+        "id": "hcm-tran-xuan-soan",
+        "level": "street",
+        "street": "Trần Xuân Soạn",
+        "ward": "Phường Tân Hưng",
+        "pin": [
+          10.7518113,
+          106.7082099
+        ],
+        "reason": null
+      },
+      {
+        "id": "hcm-quoc-huong",
+        "level": "street",
+        "street": "Đường Quốc Hương",
+        "ward": "Phường An Khánh",
+        "pin": [
+          10.802809832130846,
+          106.73244115749516
+        ],
+        "reason": null
+      },
+      {
+        "id": "hcm-bui-van-ba",
+        "level": "street",
+        "street": "Đường Bùi Văn Ba",
+        "ward": "Phường Tân Thuận",
+        "pin": [
+          10.747722,
+          106.74036670000001
+        ],
+        "reason": null
+      },
+      {
+        "id": "bd-thuan-an",
+        "level": "ward",
+        "street": "",
+        "ward": "Phường Thuận An",
+        "pin": [
+          10.9422028,
+          106.68252670897797
+        ],
+        "reason": null
+      },
+      {
+        "id": "bd-dt746-short",
+        "level": "ward",
+        "street": "",
+        "ward": "Phường Tân Hiệp",
+        "pin": [
+          11.037350175,
+          106.74693337813673
+        ],
+        "reason": null
+      },
+      {
+        "id": "bd-cmt8-long",
+        "level": "ward",
+        "street": "",
+        "ward": "Phường Thuận An",
+        "pin": [
+          10.9422028,
+          106.68252670897797
+        ],
+        "reason": null
+      },
+      {
+        "id": "bd-cmt8-short",
+        "level": "ward",
+        "street": "",
+        "ward": "Phường Thủ Dầu Một",
+        "pin": [
+          10.982856,
+          106.64825643027059
+        ],
+        "reason": null
+      },
+      {
+        "id": "bd-dt746-full",
+        "level": "street",
+        "street": "Đt746",
+        "ward": "Phường Tân Hiệp",
+        "pin": [
+          11.050452499999999,
+          106.7611181
+        ],
+        "reason": null
+      },
+      {
+        "id": "bd-area",
+        "level": "city",
+        "street": "",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "pin": [
+          10.7769,
+          106.7009
+        ],
+        "reason": null
+      },
+      {
+        "id": "vt-area",
+        "level": "city",
+        "street": "",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "pin": [
+          10.7769,
+          106.7009
+        ],
+        "reason": null
+      },
+      {
+        "id": "vt-30-april",
+        "level": "street",
+        "street": "Đường 30/4",
+        "ward": "Phường Rạch Dừa",
+        "pin": [
+          10.381390870710955,
+          107.09327821067575
+        ],
+        "reason": null
+      },
+      {
+        "id": "outside-cua-lo",
+        "level": "unresolved",
+        "street": "",
+        "ward": "",
+        "pin": null,
+        "reason": null
+      }
+    ]
+  },
+  "candidate": {
+    "counts": {
+      "reports": 16,
+      "administrative_center": 4,
+      "level_labels": 16,
+      "correct_level": 16,
+      "osm_road_centerline": 11,
+      "road_labels": 11,
+      "correct_road": 11,
+      "on_centerline": 11,
+      "ward_labels": 1,
+      "correct_ward": 1,
+      "unresolved": 1
+    },
+    "point_predictions": 0,
+    "median_error_m": null,
+    "p90_error_m": null,
+    "centerline_checks": 11,
+    "max_centerline_error_m": 0.0,
+    "predictions": [
+      {
+        "id": "hcm-city",
+        "level": "city",
+        "street": "",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "pin": [
+          10.7769,
+          106.7009
+        ],
+        "reason": "city_only"
+      },
+      {
+        "id": "hcm-phan-huy-ich",
+        "level": "street",
+        "street": "Đường Phan Huy Ích",
+        "ward": "Phường An Hội Tây",
+        "pin": [
+          10.837192595025698,
+          106.6362177765744
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "hcm-pham-van-dong",
+        "level": "street",
+        "street": "Đại lộ Phạm Văn Đồng",
+        "ward": "Phường Hạnh Thông",
+        "pin": [
+          10.8170088,
+          106.6847456
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "hcm-ma-lo",
+        "level": "street",
+        "street": "Mã Lò",
+        "ward": "Phường Bình Trị Đông",
+        "pin": [
+          10.759537448934408,
+          106.60567705941861
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "hcm-tran-xuan-soan",
+        "level": "street",
+        "street": "Trần Xuân Soạn",
+        "ward": "Phường Tân Hưng",
+        "pin": [
+          10.7518113,
+          106.7082099
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "hcm-quoc-huong",
+        "level": "street",
+        "street": "Đường Quốc Hương",
+        "ward": "Phường An Khánh",
+        "pin": [
+          10.802809832130846,
+          106.73244115749516
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "hcm-bui-van-ba",
+        "level": "street",
+        "street": "Đường Bùi Văn Ba",
+        "ward": "Phường Tân Thuận",
+        "pin": [
+          10.747722,
+          106.74036670000001
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "bd-thuan-an",
+        "level": "ward",
+        "street": "",
+        "ward": "Phường Thuận An",
+        "pin": [
+          10.9422028,
+          106.68252670897797
+        ],
+        "reason": "ward_only"
+      },
+      {
+        "id": "bd-dt746-short",
+        "level": "street",
+        "street": "Tỉnh lộ 746",
+        "ward": "Phường Tân Hiệp",
+        "pin": [
+          11.050452499999999,
+          106.7611181
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "bd-cmt8-long",
+        "level": "street",
+        "street": "Đường Cách Mạng Tháng Tám",
+        "ward": "Phường Thuận An",
+        "pin": [
+          10.9421087,
+          106.69008855
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "bd-cmt8-short",
+        "level": "street",
+        "street": "Đường Cách Mạng Tháng Tám",
+        "ward": "Phường Thủ Dầu Một",
+        "pin": [
+          10.9648374,
+          106.66948894999999
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "bd-dt746-full",
+        "level": "street",
+        "street": "Tỉnh lộ 746",
+        "ward": "Phường Tân Hiệp",
+        "pin": [
+          11.050452499999999,
+          106.7611181
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "bd-area",
+        "level": "city",
+        "street": "",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "pin": [
+          10.7769,
+          106.7009
+        ],
+        "reason": "city_only"
+      },
+      {
+        "id": "vt-area",
+        "level": "city",
+        "street": "",
+        "ward": "Toàn thành phố (Chưa rõ phường/xã)",
+        "pin": [
+          10.7769,
+          106.7009
+        ],
+        "reason": "city_only"
+      },
+      {
+        "id": "vt-30-april",
+        "level": "street",
+        "street": "Đường 30/4",
+        "ward": "Phường Rạch Dừa",
+        "pin": [
+          10.381390870710955,
+          107.09327821067575
+        ],
+        "reason": "named_road"
+      },
+      {
+        "id": "outside-cua-lo",
+        "level": "unresolved",
+        "street": "",
+        "ward": "",
+        "pin": null,
+        "reason": null
+      }
+    ]
+  },
+  "review": [
+    {
+      "id": "hcm-pham-van-dong",
+      "shift_m": 7956.98,
+      "downgraded": false,
+      "changed_road": false,
+      "changed_ward": false
+    },
+    {
+      "id": "bd-dt746-short",
+      "shift_m": 2125.81,
+      "downgraded": false,
+      "changed_road": false,
+      "changed_ward": false
+    },
+    {
+      "id": "bd-cmt8-long",
+      "shift_m": 825.62,
+      "downgraded": false,
+      "changed_road": false,
+      "changed_ward": false
+    },
+    {
+      "id": "bd-cmt8-short",
+      "shift_m": 3063.73,
+      "downgraded": false,
+      "changed_road": false,
+      "changed_ward": false
+    }
+  ]
+}

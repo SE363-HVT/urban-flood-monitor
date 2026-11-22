@@ -5,7 +5,7 @@ Bộ phát lại bài đăng mô phỏng (Simulation Replayer) phục vụ nghi�
 Được tối ưu hóa triệt để theo 3 nguyên tắc:
 1. STRICT STREET-FIRST: Khi bài viết có tên đường -> 100% ưu tiên tên đường lên title hàng đầu.
    Loại bỏ mọi trường hợp nuốt mất tên đường do trùng từ khóa hành chính (như xã Vĩnh Lộc, Bán đảo...).
-2. HIGHWAY CENTERLINE GEOCODING: Khi nhận diện tên đường -> Ghim chính xác 100% vào tim đường.
+2. Tọa độ tham chiếu lịch sử: Phát lại các ghim địa danh có sẵn trong dữ liệu mô phỏng.
 3. SSOT NQ 1685: 100% Phường/Xã hiển thị ĐVHC mới sau sáp nhập, loại bỏ hoàn toàn tên cũ.
 """
 
@@ -20,13 +20,11 @@ from pipeline.event_processor import clean_stream_text, analyze_severity_heurist
 from core.admin_resolver import RESOLVER
 from core.gazetteer import (
     STREET_HOTSPOTS,
-    DYNAMIC_CACHE,
     ROAD_PATTERN,
     BOGUS_ROAD_PHRASES,
     STOP_CANDIDATE_WORDS,
     clean_road_candidate,
     normalize_text,
-    geocode_osm_dynamic,
     ADMIN_HOTSPOTS
 )
 
@@ -34,6 +32,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 ANNOTATED_FILE = os.path.join(DATA_DIR, "processed", "hcmc_flood_annotated_v1.json")
 ADMIN_UNITS_FILE = os.path.join(DATA_DIR, "hcmc_168_administrative_units.json")
+
+# Historical fixtures used by the replay dataset.
+try:
+    with open(os.path.join(DATA_DIR, "gazetteer_dynamic_cache.json"), encoding="utf-8") as stream:
+        HISTORICAL_ROAD_REFERENCES = json.load(stream)
+except (OSError, ValueError):
+    HISTORICAL_ROAD_REFERENCES = {}
 
 # Danh sách từ dừng bổ sung khi trích xuất tên đường
 EXTRA_STOP_WORDS = set([
@@ -127,7 +132,7 @@ class SimulationReplayer:
                 road_keywords_dict[kw_c] = (st_name, s)
 
         # Bổ sung các từ khóa trong Dynamic Cache
-        for c_kw, c_val in DYNAMIC_CACHE.items():
+        for c_kw, c_val in HISTORICAL_ROAD_REFERENCES.items():
             ck_c = c_kw.strip().lower()
             if len(ck_c) >= 3 and ck_c not in road_keywords_dict:
                 st_n = clean_road_title(c_val.get("street") or c_val.get("display_name", ""))
@@ -184,7 +189,7 @@ class SimulationReplayer:
 
             # =================================================================
             # PHÂN CẤP ƯU TIÊN 3 TẦNG CHUẨN XÁC (STRICT 3-TIER SPATIAL HIERARCHY):
-            # TẦNG 1: Tên đường / Cầu / Nút giao chuẩn xác (Ghim đúng tim đường)
+            # TẦNG 1: Tên đường / Cầu / Nút giao có tọa độ tham chiếu
             # TẦNG 2: Khu vực theo Phường/Xã (Khi không có tên đường chuẩn)
             # TẦNG 3: Toàn TP. Hồ Chí Minh (Khi không có cả đường lẫn phường)
             # =================================================================
@@ -227,9 +232,9 @@ class SimulationReplayer:
                     if c_low in STOP_CANDIDATE_WORDS:
                         continue
 
-                    # Kiểm tra trong DYNAMIC_CACHE
-                    if c_low in DYNAMIC_CACHE:
-                        matched_spot = DYNAMIC_CACHE[c_low]
+                    # Kiểm tra trong HISTORICAL_ROAD_REFERENCES
+                    if c_low in HISTORICAL_ROAD_REFERENCES:
+                        matched_spot = HISTORICAL_ROAD_REFERENCES[c_low]
                         st_cand = clean_road_title(matched_spot.get("street") or matched_spot.get("display_name", ""))
                         break
 
@@ -256,8 +261,8 @@ class SimulationReplayer:
                         continue
                     if any(cand_low.startswith(p) for p in ["phường", "xã", "thị trấn", "quận", "huyện"]):
                         continue
-                    if cand_low in DYNAMIC_CACHE:
-                        matched_spot = DYNAMIC_CACHE[cand_low]
+                    if cand_low in HISTORICAL_ROAD_REFERENCES:
+                        matched_spot = HISTORICAL_ROAD_REFERENCES[cand_low]
                         st_cand = clean_road_title(matched_spot.get("street") or cand_clean)
                         break
                     cand_norm = normalize_text(cand_clean)
@@ -300,7 +305,7 @@ class SimulationReplayer:
 
             if st_cand:
                 # -------------------------------------------------------------
-                # CẤP ĐỘ 1 (PRIORITY 1 - TÊN ĐƯỜNG CHUẨN XÁC, TIM ĐƯỜNG 100%)
+                # CẤP ĐỘ 1 (PRIORITY 1 - TỌA ĐỘ THAM CHIẾU ĐỊA DANH)
                 # -------------------------------------------------------------
                 event_priority = 3
                 st_low = st_cand.lower()
@@ -313,15 +318,15 @@ class SimulationReplayer:
                     cause_label = matched_spot.get("cause_label", "Mưa lớn, nước không thoát kịp")
                     if (not off_w or off_w == "Toàn TP.HCM") and matched_spot.get("ward"):
                         off_w = RESOLVER.resolve_to_official_ward(matched_spot["ward"], "") or matched_spot["ward"]
-                elif st_low in DYNAMIC_CACHE:
-                    c_entry = DYNAMIC_CACHE[st_low]
+                elif st_low in HISTORICAL_ROAD_REFERENCES:
+                    c_entry = HISTORICAL_ROAD_REFERENCES[st_low]
                     lat = c_entry["lat"]
                     lon = c_entry["lon"]
                     heat_pts = c_entry.get("heat_points", [[lat, lon]])
                     if c_entry.get("ward"):
                         off_w = RESOLVER.resolve_to_official_ward(c_entry["ward"], "") or c_entry["ward"]
-                elif st_core in DYNAMIC_CACHE:
-                    c_entry = DYNAMIC_CACHE[st_core]
+                elif st_core in HISTORICAL_ROAD_REFERENCES:
+                    c_entry = HISTORICAL_ROAD_REFERENCES[st_core]
                     lat = c_entry["lat"]
                     lon = c_entry["lon"]
                     heat_pts = c_entry.get("heat_points", [[lat, lon]])

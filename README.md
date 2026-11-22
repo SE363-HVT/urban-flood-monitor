@@ -139,14 +139,58 @@ python run_pipeline_test.py --mode simulation --window 120
 ```
 
 #### Option B: Live Streaming Mode
-Ingests live crowdsourced streams directly from TikTok and Facebook:
+Starts the free-source crawler, Kafka, Spark Structured Streaming, Redis and the
+dashboard. Pass `--enable-apify` to enable the optional Apify sources:
 
 ```bash
-python run_pipeline_test.py --mode live --window 60
+python bigdata/run_streaming_pipeline.py --mode live
 ```
 
 Access the interactive web dashboard at:
 👉 **`http://localhost:8050`**
+
+### Road location resolution
+
+The main live runner automatically loads `data/osm_named_roads.sqlite3` when
+present. Build it from an OpenStreetMap PBF extract with the optional `osmium`
+package and `python -m scripts.build_osm_road_index path/to/region.osm.pbf`.
+Live location levels are a representative pin on the named road, a ward or
+commune reference, and a city reference, in that order. Road pins are selected
+from OSM geometry inside the expanded Ho Chi Minh City service area, which
+covers the former city, Bình Dương and Bà Rịa–Vũng Tàu. Ward or commune pins use
+a representative point within their mapped boundary when available.
+Use the [Geofabrik Vietnam extract](https://download.geofabrik.de/asia/vietnam/index.html)
+for the full service area. Map data © OpenStreetMap contributors under the
+[Open Database License](https://www.openstreetmap.org/copyright).
+
+Compare two indexes with an independently georeferenced JSONL benchmark using
+`python -m scripts.evaluate_geolocation reports.jsonl --index candidate.sqlite3 --baseline-index previous.sqlite3`.
+Each row needs `text` or an archived source record. Add `level`, `road` or `ward`
+to score manually verified labels. Include `lat` and `lon` to score distance to
+an independently verified point.
+
+The [review sample](data/processed/geolocation_review_sample.jsonl) uses manually
+labelled text from archived reports. It omits field coordinates and scores the
+road name, location level and distance to the mapped centerline. Use
+`--baseline-results data/processed/geolocation_review_results.json` to compare
+with the reviewed release and flag large pin movements, ward changes and
+precision downgrades.
+The live dashboard summary API exposes `location_quality` counts for the current
+window. `road_unverified` means the text contained an apparent road mention and
+the resolver used a broader location.
+
+Set `RADINET_NOMINATIM_SEARCH_URL` to the full `/search` URL of a self-hosted
+Nominatim instance or a compatible provider that permits continuous geocoding.
+Set it for both the crawler and Spark when those processes run separately.
+The live resolver uses the road name and available ward context, then calculates
+a representative pin on the OSM way. For a known hotspot, it only moves the
+reference pin when the matching way is close enough and the projection is
+unambiguous. A pin on a road represents the location evidence in the report.
+When the provider is unavailable or unconfigured, the curated gazetteer and
+administrative fallbacks are available without network access.
+
+The public OpenStreetMap Nominatim endpoint has separate restrictions for
+periodic and distributed lookups. See the [Nominatim usage policy](https://operations.osmfoundation.org/policies/nominatim/).
 
 ---
 

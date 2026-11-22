@@ -757,7 +757,11 @@ def process_tiktok_item(item: Dict[str, Any], reference_time: Optional[int] = No
             "type": hotspot["type"],
             "cause": hotspot.get("cause", "rain"),
             "cause_label": hotspot.get("cause_label", "Mưa lớn, nước không thoát kịp"),
-            "source": hotspot.get("source", "seed")
+            "source": hotspot.get("source", "seed"),
+            "coordinate_source": hotspot.get("coordinate_source") or hotspot.get("source"),
+            "precision": hotspot.get("precision"),
+            "coordinate_kind": hotspot.get("coordinate_kind"),
+            "resolution_reason": hotspot.get("resolution_reason"),
         },
         "aspect": hotspot["display_name"],
         "opinion": analysis["opinion"],

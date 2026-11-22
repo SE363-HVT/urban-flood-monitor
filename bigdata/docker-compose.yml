@@ -8,6 +8,7 @@ services:
     environment:
       # Cấu hình Kafka KRaft Cluster Node ID và vai trò
       KAFKA_NODE_ID: 1
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
       KAFKA_PROCESS_ROLES: broker,controller
       # Cấu hình Dual-Listener: 9092 cho máy ngoài (Python/Windows), 29092 cho mạng nội bộ Docker (Kafka-UI)
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093

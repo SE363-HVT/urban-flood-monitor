@@ -1,0 +1,8 @@
+{"id":"to-ngoc-van","source_file":"data/raw/episodes/historical_archive/news_raw.json","record_index":152,"text_field":"title","level":"street","road":"Tô Ngọc Vân"}
+{"id":"ho-hoc-lam","source_file":"data/raw/episodes/historical_archive/news_raw.json","record_index":174,"text_field":"title","level":"street","road":"Hồ Học Lãm"}
+{"id":"le-van-luong","source_file":"data/raw/episodes/historical_archive/news_raw.json","record_index":176,"text_field":"title","level":"street","road":"Lê Văn Lương"}
+{"id":"hcm","source_file":"data/raw/episodes/historical_archive/news_raw.json","record_index":190,"text_field":"title","level":"city"}
+{"id":"vt-april","source_file":"data/raw/episodes/historical_archive/facebook_raw.json","record_index":351,"level":"street","road":"30 Tháng 4"}
+{"id":"phu-my","source_file":"data/raw/episodes/historical_archive/facebook_raw.json","record_index":366,"level":"ward","ward":"Phường Phú Mỹ"}
+{"id":"tan-khanh","source_file":"data/raw/episodes/episode_04_2026-10-01_trieu-cuong-ram-thang-tam/facebook_raw.json","record_index":110,"level":"ward","ward":"Phường Tân Khánh"}
+{"id":"vt-city","source_file":"data/raw/episodes/sporadic_flood_events/tiktok_raw.json","record_index":111,"level":"city"}

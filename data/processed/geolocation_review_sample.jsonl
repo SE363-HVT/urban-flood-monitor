@@ -1,0 +1,16 @@
+{"id":"hcm-city","source_file":"data/raw/episodes/episode_01_2026-09-10_mua-giong-dau-thang-9/news_raw.json","record_index":0,"text_field":"title","level":"city"}
+{"id":"hcm-phan-huy-ich","source_file":"data/raw/episodes/episode_03_2026-09-27_trieu-cuong-dinh-diem-cuoi-thang-9/news_raw.json","record_index":4,"text_field":"title","level":"street","road":"Phan Huy Ích"}
+{"id":"hcm-pham-van-dong","source_file":"data/raw/episodes/episode_03_2026-09-27_trieu-cuong-dinh-diem-cuoi-thang-9/news_raw.json","record_index":6,"text_field":"title","level":"street","road":"Phạm Văn Đồng"}
+{"id":"hcm-ma-lo","source_file":"data/raw/episodes/episode_03_2026-09-27_trieu-cuong-dinh-diem-cuoi-thang-9/news_raw.json","record_index":35,"text_field":"title","level":"street","road":"Mã Lò"}
+{"id":"hcm-tran-xuan-soan","source_file":"data/raw/episodes/episode_03_2026-09-27_trieu-cuong-dinh-diem-cuoi-thang-9/news_raw.json","record_index":47,"text_field":"title","level":"street","road":"Trần Xuân Soạn"}
+{"id":"hcm-quoc-huong","source_file":"data/raw/episodes/sporadic_flood_events/news_raw.json","record_index":16,"text_field":"title","level":"street","road":"Quốc Hương"}
+{"id":"hcm-bui-van-ba","source_file":"data/raw/episodes/sporadic_flood_events/news_raw.json","record_index":23,"text_field":"title","level":"street","road":"Bùi Văn Ba"}
+{"id":"bd-thuan-an","source_file":"data/raw/episodes/sporadic_flood_events/facebook_raw.json","record_index":40,"level":"ward","ward":"Phường Thuận An"}
+{"id":"bd-dt746-short","source_file":"data/raw/episodes/sporadic_flood_events/facebook_raw.json","record_index":98,"level":"street","road":"ĐT746"}
+{"id":"bd-cmt8-long","source_file":"data/raw/episodes/sporadic_flood_events/facebook_raw.json","record_index":99,"level":"street","road":"Cách Mạng Tháng Tám"}
+{"id":"bd-cmt8-short","source_file":"data/raw/episodes/sporadic_flood_events/facebook_raw.json","record_index":100,"level":"street","road":"Cách Mạng Tháng Tám"}
+{"id":"bd-dt746-full","source_file":"data/raw/episodes/sporadic_flood_events/facebook_raw.json","record_index":108,"level":"street","road":"ĐT746"}
+{"id":"bd-area","source_file":"data/raw/episodes/episode_03_2026-09-27_trieu-cuong-dinh-diem-cuoi-thang-9/tiktok_raw.json","record_index":145,"level":"city"}
+{"id":"vt-area","source_file":"data/raw/episodes/historical_archive/facebook_raw.json","record_index":350,"level":"city"}
+{"id":"vt-30-april","source_file":"data/raw/episodes/historical_archive/facebook_raw.json","record_index":364,"level":"street","road":"30 Tháng 4"}
+{"id":"outside-cua-lo","source_file":"data/raw/episodes/sporadic_flood_events/facebook_raw.json","record_index":111,"level":"unresolved"}

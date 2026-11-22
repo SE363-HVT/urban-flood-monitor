@@ -420,6 +420,12 @@ def compute_dashboard_summary() -> Dict[str, Any]:
     admin_wards = compute_admin_ward_metrics(events)
     time_series = compute_time_series_metrics(events)
     throughput = compute_throughput_metrics(events)
+    location_quality = {}
+    for event in events:
+        reason = (event.get("location") or {}).get("resolution_reason")
+        if reason not in {"named_road", "road_unverified", "ward_only", "city_only"}:
+            reason = "legacy_or_unknown"
+        location_quality[reason] = location_quality.get(reason, 0) + 1
 
     # Format live feed items
     formatted_feed = []
@@ -448,6 +454,7 @@ def compute_dashboard_summary() -> Dict[str, Any]:
         "admin_wards": admin_wards,
         "time_series": time_series,
         "throughput": throughput,
+        "location_quality": location_quality,
         "live_feed": formatted_feed
     }
 
