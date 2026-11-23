@@ -151,10 +151,12 @@ Access the interactive web dashboard at:
 
 ### Road location resolution
 
-The streaming runner automatically loads `data/osm_named_roads.sqlite3` for both
-modes when present. Simulation applies the same resolver when replaying reports.
-It retains historical road pins if the resolver cannot verify the same road or
-would move the pin by more than 150 m. Build the index from an OpenStreetMap PBF
+Live and Simulation automatically load `data/osm_named_roads.sqlite3` when
+present. Without ward or reference context, the resolver falls back to a broader
+location when same-named OSM ways form geographically separate groups.
+Simulation looks for its historical road among the resolved mentions and retains
+the historical pin if the road cannot be verified or would move by more than
+150 m. Build the index from an OpenStreetMap PBF
 extract with the optional `osmium`
 package and `python -m scripts.build_osm_road_index path/to/region.osm.pbf`.
 Live location levels are a representative pin on the named road, a ward or
@@ -166,11 +168,11 @@ Use the [Geofabrik Vietnam extract](https://download.geofabrik.de/asia/vietnam/i
 for the full service area. Map data © OpenStreetMap contributors under the
 [Open Database License](https://www.openstreetmap.org/copyright).
 
-Compare two indexes with an independently georeferenced JSONL benchmark using
+Compare two indexes with a manually labelled JSONL benchmark using
 `python -m scripts.evaluate_geolocation reports.jsonl --index candidate.sqlite3 --baseline-index previous.sqlite3`.
-Each row needs `text` or an archived source record. Add `level`, `road` or `ward`
-to score manually verified labels. Include `lat` and `lon` to score distance to
-an independently verified point.
+Each row needs `text` or an archived source record. Label the expected level as
+`street`, `ward` or `city`. Include the expected road or ward name when the report
+supports that level. Use `unresolved` for negative controls outside the service area.
 
 The [review sample](data/processed/geolocation_review_sample.jsonl) uses manually
 labelled text from archived reports. It omits field coordinates and scores the

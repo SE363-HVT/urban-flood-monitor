@@ -36,20 +36,25 @@ class RoadGeometryTests(unittest.TestCase):
                       "lat": 10.8, "lon": 106.7, "heat_points": [[10.8, 106.7]], "source": "annotated_dataset_v1"}
         candidate = {**historical, "street": "Hoa Mai", "lat": 10.8002, "heat_points": [[10.8002, 106.7]],
                      "coordinate_kind": "osm_road_centerline", "resolution_reason": "named_road"}
-        with patch("pipeline.simulation_replayer.match_hotspot", return_value=candidate) as match:
+        other_road = {**candidate, "street": "Hoa Lan"}
+        with patch("pipeline.simulation_replayer.match_all_hotspots", return_value=[other_road, candidate]) as match:
             shared = _resolve_replay_location("Hoa Mai ngập", historical)
             self.assertEqual((shared["lat"], shared["heat_points"], shared["coordinate_source"]),
                              (10.8002, [[10.8002, 106.7]], "OpenStreetMap"))
             self.assertEqual(historical["lat"], 10.8)
             for replacement in (
-                {**candidate, "street": "Hoa Lan"},
+                other_road,
                 {**candidate, "lat": 10.85},
                 {**candidate, "ward": "Phường Hai"},
                 {**candidate, "precision": "ward", "coordinate_kind": "administrative_center"},
                 None,
             ):
-                match.return_value = replacement
+                match.return_value = [replacement] if replacement else []
                 self.assertIs(_resolve_replay_location("Hoa Mai ngập", historical), historical)
+
+            match.return_value = [other_road, candidate]
+            area = {**historical, "street": "", "precision": "ward"}
+            self.assertIs(_resolve_replay_location("Hoa Mai và Hoa Lan ngập", area), area)
 
     def test_three_levels_and_service_boundary(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -62,7 +67,10 @@ class RoadGeometryTests(unittest.TestCase):
                     CREATE TABLE admin_areas (name, regional, south, north, west, east, polygons);
                     INSERT INTO named_ways VALUES
                         ('hoa mai', 10.8, 10.802, 106.7, 106.7, '[[106.7,10.8],[106.7,10.802]]'),
-                        ('hoa lan', 10.8, 10.802, 107.2, 107.2, '[[107.2,10.8],[107.2,10.802]]');
+                        ('hoa lan', 10.8, 10.802, 107.2, 107.2, '[[107.2,10.8],[107.2,10.802]]'),
+                        ('hoa hue', 10.8, 10.802, 106.7, 106.7, '[[106.7,10.8],[106.7,10.802]]'),
+                        ('hoa hue', 10.8, 10.802, 106.75, 106.75, '[[106.75,10.8],[106.75,10.802]]'),
+                        ('hoa mai', 10.802, 10.803, 106.7, 106.7, '[[106.7,10.802],[106.7,10.803]]');
                 """)
                 connection.executemany(
                     "INSERT INTO admin_areas VALUES (?, ?, 10.7, 11, 106.6, 106.9, ?)",
@@ -72,6 +80,9 @@ class RoadGeometryTests(unittest.TestCase):
             finally:
                 connection.close()
             self.assertIsNone(representative_local_road(index, "Hoa Lan"))
+            self.assertIsNone(representative_local_road(index, "Hoa Huệ"))
+            self.assertIsNotNone(representative_local_road(index, "Hoa Mai"))
+            self.assertEqual(representative_local_road(index, "Hoa Huệ", anchor=(10.801, 106.75)), (10.801, 106.75))
             self.assertIsNotNone(representative_ward_point(index, "Phường Một", (10.8, 107)))
             ward = {"keywords": ["phường một"], "display_name": "Phường Một", "ward": "Phường Một", "lat": 10.8, "lon": 107}
             with (
@@ -97,6 +108,9 @@ class RoadGeometryTests(unittest.TestCase):
                 self.assertEqual((unavailable["precision"], unavailable["resolution_reason"]), ("ward", "road_unverified"))
                 self.assertEqual(city["heat_points"], [[10.7769, 106.7009]])
                 self.assertEqual(gazetteer.match_all_hotspots("Đường Hoa Mai, Hà Nội, bị ngập."), [])
+                mixed = "Đường Hoa Mai, Hà Nội, bị ngập; TP.HCM có mưa."
+                self.assertIsNone(gazetteer.match_hotspot(mixed))
+                self.assertEqual(gazetteer.match_all_hotspots(mixed), [])
 
     def test_local_index_requires_nearby_road_with_matching_name(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -143,7 +157,7 @@ class RoadGeometryTests(unittest.TestCase):
         with (
             tempfile.TemporaryDirectory() as folder,
             patch.object(gazetteer, "ROAD_CACHE_FILE", str(Path(folder) / "roads.sqlite3")),
-            patch.dict(os.environ, {"RADINET_NOMINATIM_SEARCH_URL": "http://example.test/search"}),
+            patch.dict(os.environ, {"RADINET_OSM_ROAD_INDEX": "", "RADINET_NOMINATIM_SEARCH_URL": "http://example.test/search"}),
             patch.object(gazetteer, "STREET_HOTSPOTS", []),
             patch.object(gazetteer, "CSGT_HOTSPOTS", []),
             patch.object(gazetteer, "ADMIN_HOTSPOTS", []),

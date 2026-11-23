@@ -18,6 +18,7 @@ import unicodedata
 import sqlite3
 import time
 from contextlib import closing
+from functools import lru_cache
 
 from core.road_geometry import (
     distance_m, name_key, representative_local_road, representative_ward_point, road_key, select_road,
@@ -2048,12 +2049,19 @@ BOGUS_ROAD_PHRASES = set([
     "nội thành", "ngoại thành", "ven đô", "ngoại ô"
 ])
 
+@lru_cache(maxsize=8192)
+def _location_keyword_pattern(keyword, *, street=False):
+    escaped = re.escape(keyword)
+    if street:
+        return re.compile(r"(?<!\w)" + escaped + r"(?!\w)")
+    return re.compile(r'(?:\b|^|#)' + escaped + r'(?:\b|$|[#\s.,!?])')
+
+
 def _ward_context(clean_text):
     matches = []
     for unit in ADMIN_HOTSPOTS:
         for keyword in unit.get("keywords", []):
-            pattern = r'(?:\b|^|#)' + re.escape(keyword) + r'(?:\b|$|[#\s.,!?])'
-            if re.search(pattern, clean_text):
+            if _location_keyword_pattern(keyword).search(clean_text):
                 matches.append((len(keyword), unit["ward"], unit))
     return max(matches, key=lambda match: match[:2])[2] if matches else None
 
@@ -2061,8 +2069,8 @@ def _ward_context(clean_text):
 def _match_streets(clean_text, max_spots):
     context = _ward_context(clean_text)
     ward = context["ward"] if context else ""
-    index_path = os.environ.get("RADINET_OSM_ROAD_INDEX", "")
-    has_index = os.path.isfile(index_path)
+    index_path = configure_local_osm_index()
+    has_index = bool(index_path)
     groups = {}
     references = {}
     for spot in STREET_HOTSPOTS + CSGT_HOTSPOTS:
@@ -2072,7 +2080,7 @@ def _match_streets(clean_text, max_spots):
         keywords = [
             kw for kw in spot.get("keywords", [])
             if len(kw.strip()) > 2 and not kw.strip().isdigit()
-            and re.search(r"(?<!\w)" + re.escape(kw.strip()) + r"(?!\w)", clean_text)
+            and _location_keyword_pattern(kw.strip(), street=True).search(clean_text)
         ]
         if keywords:
             groups.setdefault(key, []).append((spot, max(keywords, key=len), name))
@@ -2083,6 +2091,11 @@ def _match_streets(clean_text, max_spots):
         spot, keyword, name = max(
             group, key=lambda entry: (bool(ward and name_key(entry[0].get("ward", "")) == name_key(ward)), len(entry[1]))
         )
+        if ward and not has_index:
+            reference_ward = spot.get("ward", "")
+            official_ward = RESOLVER.resolve_to_official_ward(reference_ward, spot.get("district", ""))
+            if name_key(ward) not in {name_key(reference_ward), name_key(official_ward or "")}:
+                continue
         if has_index:
             # Use the same reference for all aliases of a road in the same context.
             spot = max(references[road_key(name)], key=lambda entry: bool(
@@ -2189,39 +2202,10 @@ def _match_streets(clean_text, max_spots):
 
 
 def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
-    return _match_hotspot(text, include_streets=True)
+    matches = match_all_hotspots(text, max_spots=1)
+    return matches[0] if matches else None
 
-def _match_hotspot(text: str, *, include_streets: bool, road_mentioned=False) -> Optional[Dict[str, Any]]:
-    """
-    Bộ bóc tách thực thể địa lý đa tầng chuẩn mực (Strict Spatial Hierarchy):
-    Quy tắc cốt lõi:
-    1. Khi bài viết có TÊN ĐƯỜNG -> Ưu tiên TUYỆT ĐỐI hiển thị tên đường (Yếu tố chính).
-       Phường/Xã chỉ đóng vai trò yếu tố phụ (Metadata).
-    2. Khi bài viết KHÔNG CÓ TÊN ĐƯỜNG -> Mới hiển thị Phường/Xã làm yếu tố chính.
-    3. Khi bài viết KHÔNG CÓ CẢ ĐƯỜNG LẪN PHƯỜNG -> Hiển thị Toàn thành phố làm yếu tố chính.
-    Tuyệt đối không bịa hoặc tách câu sai kiểu ghép từ "có nơi", "thành sông".
-    """
-    if not text:
-        return None
-    
-    clean_text = normalize_text(text)
-
-    # BƯỚC 0: KIỂM SOÁT ĐỊA GIỚI NGHIÊM NGẶT - LOẠI TRỪ 100% CÁC TỈNH/THÀNH NGOÀI TP.HCM
-    has_hcm_affirmation = any(k in clean_text for k in [
-        "tphcm", "tp hcm", "tp.hcm", "sài gòn", "sai gon", "hồ chí minh", "ho chi minh",
-        "bình dương", "binh duong", "vũng tàu", "vung tau", "bà rịa", "ba ria",
-        "thủ dầu một", "dĩ an", "thuận an", "bến cát", "tân uyên", "phú mỹ", "côn đảo"
-    ])
-    if not has_hcm_affirmation:
-        for out_loc in OUT_OF_SCOPE_LOCATIONS:
-            pat = r'(?:\b|^|#)' + re.escape(out_loc) + r'(?:\b|$|[#\s.,!?])'
-            if re.search(pat, clean_text):
-                return None
-
-    if include_streets:
-        streets, road_mentioned = _match_streets(clean_text, max_spots=1)
-        if streets:
-            return streets[0]
+def _administrative_fallback(clean_text, road_mentioned) -> Optional[Dict[str, Any]]:
 
     # =========================================================================
     # TẦNG 2: NẾU KHÔNG CÓ TÊN ĐƯỜNG -> SO KHỚP ĐƠN VỊ HÀNH CHÍNH (PHƯỜNG / XÃ)
@@ -2230,14 +2214,13 @@ def _match_hotspot(text: str, *, include_streets: bool, road_mentioned=False) ->
     best_ward_len = 0
     for u in ADMIN_HOTSPOTS:
         for kw in u.get("keywords", []):
-            pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
-            if re.search(pattern, clean_text):
+            if _location_keyword_pattern(kw).search(clean_text):
                 if len(kw) > best_ward_len:
                     best_ward_len = len(kw)
                     best_ward = {
                         "matched_keyword": kw,
                         "street": "", # KHÔNG CÓ TÊN ĐƯỜNG
-                        "display_name": u["display_name"],
+                        "display_name": u.get("display_name") or u["ward"],
                         "ward": u["ward"],
                         "administrative_unit": u["ward"],
                         "district": u.get("district", "TP.HCM"),
@@ -2254,8 +2237,8 @@ def _match_hotspot(text: str, *, include_streets: bool, road_mentioned=False) ->
 
     if best_ward:
         best_ward["coordinate_kind"] = "administrative_center"
-        index_path = os.environ.get("RADINET_OSM_ROAD_INDEX", "")
-        if os.path.isfile(index_path):
+        index_path = configure_local_osm_index()
+        if index_path:
             point = representative_ward_point(index_path, best_ward["ward"], (best_ward["lat"], best_ward["lon"]))
             if point:
                 lat, lon = point
@@ -2269,15 +2252,9 @@ def _match_hotspot(text: str, *, include_streets: bool, road_mentioned=False) ->
     # =========================================================================
     # TẦNG 3: NẾU KHÔNG CÓ CẢ ĐƯỜNG LẪN PHƯỜNG -> TOÀN THÀNH PHỐ / CẤP QUẬN
     # =========================================================================
-    for out_loc in OUT_OF_SCOPE_LOCATIONS:
-        pattern = r'(?:\b|^|#)' + re.escape(out_loc) + r'(?:\b|$|[#\s.,!?])'
-        if re.search(pattern, clean_text):
-            return None
-
     for spot in CITYWIDE_HOTSPOTS:
         for kw in spot.get("keywords", []):
-            pattern = r'(?:\b|^|#)' + re.escape(kw) + r'(?:\b|$|[#\s.,!?])'
-            if re.search(pattern, clean_text):
+            if _location_keyword_pattern(kw).search(clean_text):
                 return {
                     **HOTSPOTS[-1], "street": "", "priority": 1, "precision": "city",
                     "coordinate_kind": "administrative_center", "matched_keyword": kw,
@@ -2300,8 +2277,7 @@ def match_all_hotspots(text: str, max_spots: int = 5) -> List[Dict[str, Any]]:
 
     # KIEM SOAT DIA GIOI NGHIEM NGAT - LOAI TRU 100% NGOAI TINH
     for out_loc in OUT_OF_SCOPE_LOCATIONS:
-        pat = r'(?:\b|^|#)' + re.escape(out_loc) + r'(?:\b|$|[#\s.,!?])'
-        if re.search(pat, clean_text):
+        if _location_keyword_pattern(out_loc).search(clean_text):
             return []
 
     found_spots, road_mentioned = _match_streets(clean_text, max_spots)
@@ -2309,7 +2285,7 @@ def match_all_hotspots(text: str, max_spots: int = 5) -> List[Dict[str, Any]]:
         return found_spots
 
     # Skip a second road lookup when applying the administrative fallback.
-    single = _match_hotspot(text, include_streets=False, road_mentioned=road_mentioned)
+    single = _administrative_fallback(clean_text, road_mentioned)
     if single:
         return [single]
     return []

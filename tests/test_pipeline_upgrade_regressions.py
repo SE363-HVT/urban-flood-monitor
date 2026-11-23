@@ -1,5 +1,6 @@
 import io
 import json
+import os
 import tempfile
 import time
 import unittest
@@ -101,6 +102,7 @@ class IncidentTests(unittest.TestCase):
             {"keywords": [gazetteer.normalize_text("Đường A")], "street": "Đường A", "ward": "Phường Xanh", "lat": 10.9, "lon": 106.7},
         ]
         with (
+            patch.dict(os.environ, {"RADINET_OSM_ROAD_INDEX": ""}),
             patch.object(gazetteer, "ADMIN_HOTSPOTS", wards),
             patch.object(gazetteer, "STREET_HOTSPOTS", streets),
             patch.object(gazetteer, "CSGT_HOTSPOTS", []),
@@ -108,8 +110,12 @@ class IncidentTests(unittest.TestCase):
         ):
             matched = gazetteer.match_hotspot("Đường A, Phường Xanh, TP.HCM, đang bị ngập.")
             multiple = gazetteer.match_all_hotspots("Đường A, Phường Xanh, TP.HCM, đang bị ngập.")
+            with patch.object(gazetteer, "STREET_HOTSPOTS", streets[:1]):
+                fallback = gazetteer.match_hotspot("Đường A, Phường Xanh, TP.HCM, đang bị ngập.")
         self.assertEqual((matched["lat"], matched["precision"]), (10.9, "street"))
         self.assertEqual([(match["lat"], match["precision"]) for match in multiple], [(10.9, "street")])
+        self.assertEqual((fallback["lat"], fallback["precision"], fallback["resolution_reason"]),
+                         (10.79, "ward", "road_unverified"))
 
 
 class ProducerAndServingTests(unittest.TestCase):

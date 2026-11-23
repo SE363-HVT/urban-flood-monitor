@@ -14,6 +14,7 @@ from pathlib import Path
 NON_VEHICULAR_ROADS = {"footway", "path", "steps", "cycleway", "pedestrian", "proposed", "construction"}
 SERVICE_ENVELOPES = ((10.27, 11.51, 105.97, 107.64), (8.34, 8.84, 106.37, 106.85))
 SERVICE_ADMIN_NAMES = {"ho chi minh", "thanh pho ho chi minh", "binh duong", "ba ria vung tau"}
+UNANCHORED_ROAD_GAP_M = 300
 # OSM locality node 13163001708 in the former Hưng Long, retained in the new commune.
 WARD_LOCALITY_REFERENCES = {"xã hưng long": (10.6587154, 106.6388556)}
 
@@ -210,6 +211,26 @@ def representative_local_road(index_path, name, ward="", anchor=None):
         return None
 
 
+def _has_separate_road_areas(bounds):
+    # Group adjacent OSM ways before distinguishing geographically separate namesakes.
+    first, *remaining = sorted(bounds)
+    south, north, west, east = first
+    while remaining:
+        separated = []
+        for other_south, other_north, other_west, other_east in remaining:
+            lat_gap = max(0, south - other_north, other_south - north)
+            lon_gap = max(0, west - other_east, other_west - east)
+            if distance_m((south, west), (south + lat_gap, west + lon_gap)) > UNANCHORED_ROAD_GAP_M:
+                separated.append((other_south, other_north, other_west, other_east))
+            else:
+                south, north = min(south, other_south), max(north, other_north)
+                west, east = min(west, other_west), max(east, other_east)
+        if len(separated) == len(remaining):
+            return True
+        remaining = separated
+    return False
+
+
 @lru_cache(maxsize=4096)
 def _indexed_road_point(index_path, revision, key, ward, anchor):
     uri = Path(index_path).as_uri() + "?mode=ro"
@@ -219,17 +240,28 @@ def _indexed_road_point(index_path, revision, key, ward, anchor):
             if point and _eligible_point(connection, point, ward):
                 return point
         keys = (key, "cach mang thang 8" if key == "cach mang thang tam" else key)
-        ways = connection.execute("SELECT coordinates FROM named_ways WHERE name IN (?, ?)", keys)
-        segments = [
-            segment for (coordinates,) in ways
-            for segment in _road_segments({"type": "LineString", "coordinates": json.loads(coordinates)})
-        ]
+        ways = connection.execute("SELECT south, north, west, east, coordinates FROM named_ways WHERE name IN (?, ?)", keys)
+        segments = []
+        bounds = []
+        for south, north, west, east, coordinates in ways:
+            road = _road_segments({"type": "LineString", "coordinates": json.loads(coordinates)})
+            if not anchor and not ward and any(
+                _eligible_point(connection, _midpoint(a, b), ward) for a, b, _ in road
+            ):
+                bounds.append((south, north, west, east))
+            segments.extend(road)
+        if len(bounds) > 1 and _has_separate_road_areas(bounds):
+            return None
         # A segment midpoint lies on the way and is a useful road-level pin.
         for a, b, _ in sorted(segments, key=lambda segment: (-segment[2], min(segment[:2]), max(segment[:2]))):
-            point = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+            point = _midpoint(a, b)
             if _eligible_point(connection, point, ward):
                 return point
     return None
+
+
+def _midpoint(a, b):
+    return ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
 
 
 def representative_ward_point(index_path, ward, old_point):

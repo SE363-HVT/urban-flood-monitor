@@ -384,19 +384,9 @@ class SparkFloodProcessor:
             orig = raw_map.get(record.get("_source_version"))
             if orig is None:
                 orig = raw_by_id.get(record.get("canonical_id") or str(record.get("id")), {})
-            orig_loc = orig.get("location") if isinstance(orig.get("location"), dict) else {}
-
-            try:
-                source_lat, source_lon = float(orig_loc.get("lat")), float(orig_loc.get("lon"))
-                source_has_point = -90 <= source_lat <= 90 and -180 <= source_lon <= 180
-            except (TypeError, ValueError):
-                source_has_point = False
-            spatial = orig_loc if source_has_point else gis
+            spatial, lat, lon = self._select_location(orig, gis)
             st_name = spatial.get("street") or ""
             off_w = spatial.get("ward") or "Toàn TP.HCM"
-            lat, lon = (source_lat, source_lon) if source_has_point else (
-                float(gis.get("lat") or 10.7769), float(gis.get("lon") or 106.7009)
-            )
 
             ctime = record.get("create_time") or record.get("timestamp") or int(time.time())
             hist_ts = record.get("historical_timestamp") or orig.get("historical_timestamp")
@@ -448,6 +438,18 @@ class SparkFloodProcessor:
             verified_batch = list(pool.map(_verify_one, payload_list))
 
         self._publish_verified_batch(verified_batch, batch_id)
+
+    @staticmethod
+    def _select_location(original, resolved):
+        source = original.get("location")
+        if isinstance(source, dict):
+            try:
+                lat, lon = float(source.get("lat")), float(source.get("lon"))
+                if -90 <= lat <= 90 and -180 <= lon <= 180:
+                    return source, lat, lon
+            except (TypeError, ValueError, OverflowError):
+                pass
+        return resolved, float(resolved.get("lat") or 10.7769), float(resolved.get("lon") or 106.7009)
 
     def _preserve_source_fields(self, event, original, resolved):
         for field in ("aspect", "opinion", "polarity", "sentiment", "triplets", "aste_triplets",
@@ -866,12 +868,10 @@ class SparkFloodProcessor:
                 if len(cleaned_txt) < 8:
                     self.send_dlq("CorruptedTextError", "Text length too short", record)
                     continue
-                orig_loc = record.get("location") if isinstance(record.get("location"), dict) else {}
                 matched = match_hotspot(cleaned_txt) or {}
-                st_name = orig_loc.get("street") or matched.get("street") or ""
-                off_w = orig_loc.get("ward") or matched.get("ward") or "Toàn TP.HCM"
-                lat = float(orig_loc.get("lat") or matched.get("lat") or 10.7769)
-                lon = float(orig_loc.get("lon") or matched.get("lon") or 106.7009)
+                spatial, lat, lon = self._select_location(record, matched)
+                st_name = spatial.get("street") or ""
+                off_w = spatial.get("ward") or "Toàn TP.HCM"
 
                 ctime = record.get("create_time") or record.get("timestamp") or int(time.time())
                 event_payload = {
@@ -889,9 +889,10 @@ class SparkFloodProcessor:
                     "status_tag": record.get("status_tag") or "🟡 CẢNH BÁO TRONG NGÀY (4-24 GIỜ)",
                     "location": {
                         "street": st_name,
-                        "display_name": st_name or off_w,
+                        "display_name": spatial.get("display_name") or st_name or off_w,
                         "ward": off_w,
-                        "district": orig_loc.get("district", "TP.HCM"),
+                        "administrative_unit": off_w,
+                        "district": spatial.get("district") or "TP.HCM",
                         "lat": lat,
                         "lon": lon,
                         "heat_points": [[lat, lon]],
@@ -905,8 +906,9 @@ class SparkFloodProcessor:
                     "weight": 2.0,
                     "url": record.get("url", "")
                 }
-                self._preserve_source_fields(event_payload, record, matched)
-                verified_batch.append(self.veracity_checker.verify_event(event_payload))
+                self._preserve_source_fields(event_payload, record, spatial)
+                reference_time = event_payload.get("historical_timestamp") or ctime
+                verified_batch.append(self.veracity_checker.verify_event(event_payload, reference_time=reference_time))
             except (ValueError, TypeError, AttributeError, OverflowError) as error:
                 self.send_dlq("RecordProcessingError", str(error), record)
 

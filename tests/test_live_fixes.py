@@ -3,7 +3,7 @@
 tests/test_live_fixes.py
 Kiểm tra toàn bộ 5 cải tiến quan trọng:
 1. Lọc sạch bài rác BĐS (Phòng trọ Bình Thạnh) và bình luận chính trị/vĩ mô (Bộ đội Cụ Hồ).
-2. Kiểm tra Open-Meteo API theo giờ đăng bài thực tế (Asia/Bangkok).
+2. Kiểm tra Open-Meteo có dữ liệu lượng mưa theo giờ đăng bài (Asia/Bangkok).
 3. Kiểm tra trích xuất Bùi Văn Ba.
 4. Kiểm tra Live Crawler: không có bài nào cũ quá 24h, phân tầng đúng 3 nhãn.
 """
@@ -11,6 +11,7 @@ Kiểm tra toàn bộ 5 cải tiến quan trọng:
 import sys
 import os
 import time
+import math
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT_DIR not in sys.path:
@@ -64,25 +65,29 @@ for s in spots:
 assert any("Bùi Văn Ba" in s.get("street", "") for s in spots), "Lỗi: Bùi Văn Ba phải được nhận diện!"
 
 print("\n" + "=" * 60)
-print("[TEST 3] Kiểm tra Open-Meteo đối soát thời tiết theo giờ đăng bài (15:00 hôm nay):")
+print("[TEST 3] Kiểm tra dữ liệu Open-Meteo theo giờ đăng bài:")
 print("=" * 60)
 checker = VeracityChecker()
 now = int(time.time())
-post_afternoon = now - 7 * 3600  # 7 tiếng trước (~15:00 - 16:00)
+sample_timestamp = now - 7 * 3600
 sample_event = {
     "id": "test_meteo_live",
     "text": "Ngập sâu ở Bùi Văn Ba chiều nay",
     "lat": 10.7485,
     "lon": 106.7320,
-    "create_time": post_afternoon,
-    "timestamp": post_afternoon
+    "create_time": sample_timestamp,
+    "timestamp": sample_timestamp
 }
 verified = checker.verify_event(sample_event)
 w_check = verified.get("veracity", {}).get("weather_check", {})
 print(f"  - Weather check reason: {w_check.get('reason')}")
 print(f"  - Weather score: {w_check.get('score')}")
 print(f"  - Precipitation mm: {w_check.get('precipitation_mm')} mm/h")
-assert w_check.get("precipitation_mm", 0.0) > 0, "Lỗi: Phải tìm thấy lượng mưa chiều nay từ Open-Meteo!"
+precipitation = w_check.get("precipitation_mm")
+assert w_check.get("checked") is True, f"Open-Meteo thiếu dữ liệu: {w_check.get('reason')}"
+assert (isinstance(precipitation, (int, float)) and math.isfinite(precipitation) and precipitation >= 0), (
+    f"Lượng mưa Open-Meteo không hợp lệ: {precipitation!r}"
+)
 
 print("\n" + "=" * 60)
 print("[TEST 4] Quét Live Crawler thử nghiệm (Giới hạn 24h & 3 nhãn):")

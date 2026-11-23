@@ -25,7 +25,7 @@ from core.gazetteer import (
     STOP_CANDIDATE_WORDS,
     clean_road_candidate,
     configure_local_osm_index,
-    match_hotspot,
+    match_all_hotspots,
     normalize_text,
     ADMIN_HOTSPOTS
 )
@@ -40,20 +40,23 @@ MAX_REPLAY_ROAD_SHIFT_M = 150
 
 def _resolve_replay_location(text, historical):
     """Apply current OSM evidence while retaining the historical replay fallback."""
-    candidate = match_hotspot(text)
+    historical_road = historical.get("street", "")
+    historical_ward = historical.get("ward", "") if historical.get("precision") != "city" else ""
+    candidates = match_all_hotspots(text)
+    if historical_road:
+        candidate = next((location for location in candidates
+                          if road_key(location.get("street", "")) == road_key(historical_road)), None)
+    else:
+        candidate = candidates[0] if len(candidates) == 1 else None
     if not candidate:
         return historical
 
-    historical_road = historical.get("street", "")
-    historical_ward = historical.get("ward", "") if historical.get("precision") != "city" else ""
     candidate_ward = candidate.get("ward", "")
     if historical_ward and candidate_ward and ward_key(historical_ward) != ward_key(candidate_ward):
         return historical
 
     if candidate.get("coordinate_kind") == "osm_road_centerline":
         if historical_road:
-            if road_key(historical_road) != road_key(candidate["street"]):
-                return historical
             old_point = historical["lat"], historical["lon"]
             new_point = candidate["lat"], candidate["lon"]
             if distance_m(old_point, new_point) > MAX_REPLAY_ROAD_SHIFT_M:

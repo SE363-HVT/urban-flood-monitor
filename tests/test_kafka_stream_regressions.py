@@ -37,6 +37,25 @@ class KafkaStreamRegressionTests(unittest.TestCase):
     def submitted_batches(self):
         return [call.kwargs["raw_records"] for call in self.processor.process_micro_batch.call_args_list]
 
+    def test_fallback_keeps_coordinates_and_precision_from_the_same_location(self):
+        original = {"street": "Hoa Mai", "lat": 10.8, "lon": 106.7, "precision": "street",
+                    "coordinate_kind": "gazetteer_reference"}
+        resolved = {"ward": "Phường Một", "lat": 10.9, "lon": 106.8, "precision": "ward",
+                    "coordinate_kind": "administrative_center", "resolution_reason": "road_unverified"}
+        self.processor.veracity_checker = Mock(verify_event=lambda event, **kwargs: event)
+        self.processor._publish_verified_batch = Mock()
+        records = [{"text": "Đường Hoa Mai bị ngập", "location": location} for location in (
+            original, {**original, "lon": "invalid"},
+        )]
+        with patch.object(streaming, "match_hotspot", return_value=resolved):
+            streaming.SparkFloodProcessor._fallback_process_records(self.processor, records, 1)
+        events, _ = self.processor._publish_verified_batch.call_args.args
+        first, second = (event["location"] for event in events)
+        self.assertEqual((first["street"], first["lat"], first["precision"], first["coordinate_kind"]),
+                         ("Hoa Mai", 10.8, "street", "gazetteer_reference"))
+        self.assertEqual((second["street"], second["lat"], second["precision"], second["resolution_reason"]),
+                         ("", 10.9, "ward", "road_unverified"))
+
     def test_drains_records_from_every_partition_in_bounded_batches(self):
         records = [{"canonical_id": f"live_{i}"} for i in range(34)]
         consumer = self.run_stream({
