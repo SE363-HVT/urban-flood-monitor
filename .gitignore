@@ -37,7 +37,6 @@ venv.bak/
 server_out.log
 server_err.log
 *.sqlite3
-!/data/osm_named_roads.sqlite3
 
 # IDE & Editor settings
 .idea/

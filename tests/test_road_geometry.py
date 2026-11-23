@@ -14,6 +14,8 @@ from pipeline.live_free_crawler import expand_report_locations
 from scripts.evaluate_geolocation import evaluate, review_rows
 from core.road_geometry import road_key
 
+LOCAL_OSM_INDEX = Path(__file__).resolve().parents[1] / "data" / "osm_named_roads.sqlite3"
+
 
 def way(name="Đường Hoa Mai", ward="Phường Một", lon=106.7):
     return {
@@ -34,9 +36,10 @@ def official_ward(ward, district):
 
 
 class RoadGeometryTests(unittest.TestCase):
-    def test_bundled_index_matches_all_official_units_and_archived_labels(self):
-        data = Path(__file__).resolve().parents[1] / "data"
-        index = data / "osm_named_roads.sqlite3"
+    @unittest.skipUnless(LOCAL_OSM_INDEX.is_file(), "requires the local OSM index")
+    def test_local_index_matches_all_official_units_and_archived_labels(self):
+        index = LOCAL_OSM_INDEX
+        data = index.parent
         with patch.dict(os.environ, {"RADINET_OSM_ROAD_INDEX": str(index)}):
             self.assertEqual(gazetteer.local_osm_index_status()["status"], "READY")
             names = {unit["ward"] for unit in gazetteer.ADMIN_HOTSPOTS}
@@ -57,6 +60,8 @@ class RoadGeometryTests(unittest.TestCase):
                 with self.subTest(text=text):
                     self.assertEqual(gazetteer.match_hotspot(text)["precision"], "city")
 
+    @unittest.skipUnless(LOCAL_OSM_INDEX.is_file(), "requires the local OSM index")
+    @patch.dict(os.environ, {"RADINET_OSM_ROAD_INDEX": str(LOCAL_OSM_INDEX)})
     def test_multiple_road_ward_pairs_are_preserved_for_live(self):
         pairs = ("Đường Quốc Hương, phường An Khánh", "đường Bùi Văn Ba, phường Tân Thuận")
         expected = {("quoc huong", "Phường An Khánh"), ("bui van ba", "Phường Tân Thuận")}
