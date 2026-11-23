@@ -355,8 +355,8 @@ Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn b
   - Khi annotator gán Aspect là `TP. Hồ Chí Minh` (dùng Fallback), công cụ kiểm toán Pass 9 bắt lỗi `SUSPECT_FALLBACK_USAGE`.
   - **Hậu quả tiêu cực**: Thay vì sửa Aspect thành tên con đường cụ thể (`đường Trần Xuân Soạn`, `đường Tô Ngọc Vân`, `đường Linh Đông`), annotator trước đây lại **chọn cách tiêu cực là gán `####[]` để "lách linter" qua mặt bộ kiểm tra**, khiến hàng trăm bản tin ngập lụt thực địa cực kỳ đắt giá bị xóa sổ!
 * **Quy tắc chấn chỉnh**:
-  - **Nguyên tắc ưu tiên số 1**: Khi trong câu đã có tên đường hoặc địa danh cụ thể $ightarrow$ **BẮT BUỘC gán Aspect là tên con đường / địa danh đó**. CẤM dùng Fallback `TP. Hồ Chí Minh` / `TPHCM`.
-  - **Chỉ dùng Fallback khi**: Câu văn hoàn toàn không nhắc tới bất kỳ một tên đường, ngõ, hẻm, phường, quận cụ thể nào mà chỉ nói về hiện trường ngập chung chung (ví dụ: *"Tại TP. Hồ Chí Minh , Mưa lớn khiến nhiều xe chết máy bì bõm lội nước"* $ightarrow$ Fallback Aspect là `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
+  - **Nguyên tắc ưu tiên số 1**: Khi trong câu đã có tên đường hoặc địa danh cụ thể $\rightarrow$ **BẮT BUỘC gán Aspect là tên con đường / địa danh đó**. CẤM dùng Fallback `TP. Hồ Chí Minh` / `TPHCM`.
+  - **Chỉ dùng Fallback khi**: Câu văn hoàn toàn không nhắc tới bất kỳ một tên đường, ngõ, hẻm, phường, quận cụ thể nào mà chỉ nói về hiện trường ngập chung chung (ví dụ: *"Tại TP. Hồ Chí Minh , Mưa lớn khiến nhiều xe chết máy bì bõm lội nước"* $\rightarrow$ Fallback Aspect là `TP. Hồ Chí Minh` `[1, 2, 3, 4]`).
   - **CẤM REJECT câu chỉ vì vi phạm Fallback**: Phải chủ động đọc lại câu và sửa Aspect về đúng tên đường.
 
 ---
@@ -368,10 +368,10 @@ Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn b
 * **Quy chuẩn phân định ranh giới**:
   - **MẪU HỢP LỆ (BẮT BUỘC GIỮ LẠI & GÁN NHÃN `NEG`)**:
     + Người dân dùng các từ ngữ phóng đại, ví von thực tế sinh động để miêu tả tình trạng ngập lụt khủng khiếp:
-      * *"thất thủ"* (ví dụ: *Nguyễn Hữu Cảnh lại thất thủ* $ightarrow$ Aspect `Nguyễn Hữu Cảnh`, Opinion `thất thủ`, Polarity `NEG`).
-      * *"như sông"*, *"hóa sông"*, *"biển nước"* (ví dụ: *Đường phố biến thành biển nước mênh mông* $ightarrow$ Aspect `Đường phố`, Opinion `biển nước`, Polarity `NEG`).
-      * *"bì bõm"*, *"bơi thuyền"*, *"lội nước"*, *"chèo xuồng"* (ví dụ: *Người dân bì bõm lội nước dắt xe chết máy* $ightarrow$ Opinion `bì bõm lội nước`, Polarity `NEG`).
-      * *"nước lút bánh xe"*, *"sóng đánh dạt dào"*, *"mưa tí là ngập"*, *"ngập mút chỉ"*, *"ngập đến cổ"* $ightarrow$ Đều là các Opinion tiêu cực phản ánh mức độ ngập lụt đô thị rất chân thực.
+      * *"thất thủ"* (ví dụ: *Nguyễn Hữu Cảnh lại thất thủ* $\rightarrow$ Aspect `Nguyễn Hữu Cảnh`, Opinion `thất thủ`, Polarity `NEG`).
+      * *"như sông"*, *"hóa sông"*, *"biển nước"* (ví dụ: *Đường phố biến thành biển nước mênh mông* $\rightarrow$ Aspect `Đường phố`, Opinion `biển nước`, Polarity `NEG`).
+      * *"bì bõm"*, *"bơi thuyền"*, *"lội nước"*, *"chèo xuồng"* (ví dụ: *Người dân bì bõm lội nước dắt xe chết máy* $\rightarrow$ Opinion `bì bõm lội nước`, Polarity `NEG`).
+      * *"nước lút bánh xe"*, *"sóng đánh dạt dào"*, *"mưa tí là ngập"*, *"ngập mút chỉ"*, *"ngập đến cổ"* $\rightarrow$ Đều là các Opinion tiêu cực phản ánh mức độ ngập lụt đô thị rất chân thực.
   - **MẪU BẮT BUỘC LOẠI BỎ (`REJECT / ####[]`)**:
     + Chỉ loại bỏ khi yếu tố ngập lụt chỉ làm nền phụ cho nội dung giải trí khác:
       * So sánh với phim ảnh, hoạt hình, anime (ví dụ: *Cảnh đạp xe ngập nước giống phim Vùng đất linh hồn #anime*).
@@ -392,7 +392,7 @@ Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn b
   - Nhìn thấy dấu ba chấm hoặc từ cuối bị cụt vội kết luận là "câu rác / không hoàn chỉnh" và loại bỏ (`####[]`).
 * **Kinh nghiệm xử lý chuẩn xác**:
   - Kiểm tra xem ở mệnh đề trước điểm bị cắt **đã có đủ một cặp Aspect - Opinion hoàn chỉnh hay chưa**.
-  - Nếu đã nêu rõ địa danh (`đường Linh Đông`, `đường Nguyễn Văn Quá`...) và tình trạng ngập (`ngập nặng nhất`, `nước ngập sâu`...) $ightarrow$ **Hoàn toàn đủ điều kiện trích xuất Triplet chuẩn xác**, bắt buộc phải giữ lại và gán nhãn!
+  - Nếu đã nêu rõ địa danh (`đường Linh Đông`, `đường Nguyễn Văn Quá`...) và tình trạng ngập (`ngập nặng nhất`, `nước ngập sâu`...) $\rightarrow$ **Hoàn toàn đủ điều kiện trích xuất Triplet chuẩn xác**, bắt buộc phải giữ lại và gán nhãn!
 
 ---
 
@@ -406,11 +406,39 @@ Trong quá trình triển khai gán nhãn và kiểm định thực tế toàn b
     + Nước rút bớt, nước đã rút hết, đường phố khô ráo trở lại.
     + Tuyến đường sau khi nâng cấp cải tạo không còn bị ngập khi mưa (ví dụ: *đường Nguyễn Hữu Cảnh sau cải tạo đã không còn ngập*).
 * **Bản tin Dự báo & Cảnh báo Triều dâng (Gán nhãn `NEU`)**:
-  - Các thông tin dự báo đỉnh triều, đo đạc mực nước tại các trạm đo thủy văn (*trạm Phú An, trạm Nhà Bè, trạm Thủ Dầu Một, trạm Vũng Tàu* đạt báo động 2, báo động 3) $ightarrow$ Gán nhãn `NEU`.
+  - Các thông tin dự báo đỉnh triều, đo đạc mực nước tại các trạm đo thủy văn (*trạm Phú An, trạm Nhà Bè, trạm Thủ Dầu Một, trạm Vũng Tàu* đạt báo động 2, báo động 3) $\rightarrow$ Gán nhãn `NEU`.
 
 ---
 
-### 6. 🛡️ QUY TRÌNH "3 KHÔNG & 3 PHẢI" CHO ANNOTATOR VÀ AGENT
+### 6. 🧭 QUY CHUẨN PHÂN XỬ CÁC CA GIÁP RANH & CÂU KHÓ (CẬP NHẬT TỪ AUDIT PHASE 3)
+
+Để bảo đảm tính nhất quán cao nhất khi huấn luyện mô hình ASTE (đặc biệt áp dụng chuẩn cho Phase 3 và các tập tiếp theo), thống nhất bổ sung 4 quy tắc phân xử thực chiến sau:
+
+1. **Phân biệt rạch ròi "Chống ngập bị động / vật lộn" (`NEG`) vs. "Công trình / Cứu hộ hiệu quả" (`POS`) vs. "Chưa có kết quả" (`NEU`)**:
+   - **Người dân tự chống đỡ / khắc phục hậu quả (`NEG`)**: Mọi hành vi gồng mình đối phó với ngập (*tát nước, bơm nước khỏi nhà, đắp bao cát, kê đồ lên cao, nâng nền, tự chế máy bơm, đội mưa khơi thông cống, hì hục dọn bùn sau ngập*) $\rightarrow$ Bắt buộc gán **`NEG`**. Tuyệt đối không nhìn thấy chữ *"chống ngập"* hay *"bơm nước"* là vội đánh `POS`.
+   - **Công trình / Dự án / Lời hứa chưa giảm được ngập**:
+     + Công trình đã triển khai nhưng thực tế **vẫn ngập** (*"nâng cấp đường vẫn ngập"*, *"siêu dự án chống ngập nhưng vẫn ngập nặng"*) $\rightarrow$ Không gán `POS`; chỉ trích xuất `NEG` cho phần ngập thực tế.
+     + Lời hứa tương lai, kỳ vọng, chỉ đạo, túc trực kiểm tra chưa rõ kết quả (*"hứa đến 2030 hết ngập"*, *"mong dự án sớm khởi động"*, *"yêu cầu túc trực kiểm tra"*) $\rightarrow$ Gán **`NEU`**.
+   - **Lực lượng chức năng / Cứu hộ giúp dân thực tế tại điểm ngập (`POS`)**: Các bản tin ghi nhận *CSGT, đội xung kích, công nhân thoát nước, chính quyền địa phương ứng trực kịp thời / nhiệt tình hỗ trợ giúp phương tiện chết máy lưu thông an toàn* $\rightarrow$ Bắt buộc giữ lại và gán **`POS`** (Opinion bắt từ động/tính từ đánh giá như `ứng trực kịp thời , ...`, `kịp thời hỗ trợ , ...`, `nhiệt tình giúp đỡ ...`; Aspect lấy tên đường nếu có hoặc fallback `TPHCM` nếu không có tên đường).
+
+2. **Quy tắc bơm `"ở TPHCM"` cho Cụm Hạ tầng Vô danh (`POS`)**:
+   - Áp dụng cho các câu đánh giá tích cực về hạng mục hạ tầng chung (*`hệ thống cống thoát nước`*, *`máy bơm công suất lớn`*, *`dự án chống ngập`*, *`bờ kè kênh`*) khi bản thân cụm hạ tầng chưa có địa danh đi kèm:
+     + **Nếu text gốc ban đầu ĐÃ có `"Tại TPHCM"` (hoặc `"Tại TP. Hồ Chí Minh"`)**: **Giữ nguyên** chữ `"Tại TPHCM"` có sẵn trong text gốc, đồng thời bơm thêm **`ở TPHCM`** ngay sau cụm hạ tầng để gán trọn cụm làm Aspect `POS`.
+     + **Nếu text gốc ban đầu KHÔNG có `"Tại TPHCM"` sẵn** (chỉ do các vòng trước từng bơm tiền tố `"Tại TPHCM , "` vào đầu câu): Có thể **bỏ lần bơm `"Tại TPHCM , "` trước đó** và bơm **`ở TPHCM`** ngay sau cụm hạ tầng (ví dụ: `hệ thống cống thoát nước ở TPHCM`, `máy bơm công suất lớn ở TPHCM`, `dự án chống ngập ở TPHCM`, `bờ kè kênh ở TPHCM`) rồi gán **nguyên cụm đó** làm Aspect `POS` — vừa đầy đủ thực thể địa lý, vừa tránh lặp `TPHCM` gây cấn câu.
+
+3. **Ranh giới Câu hỏi `NEU` & Các ca `"xe chết máy"`**:
+   - **Câu hỏi thăm dò / Tiêu đề cụm danh từ ngắn (`NEU`)**: Giữ nhãn **`NEU`** cho các câu hỏi tình hình ngập hoặc cụm danh từ ngắn có địa danh rõ ràng (ví dụ: *`Phan Huy Ích Ngập Thế Này Sao`*, *`Đoạn này ngập chưa mọi người`*).
+   - **Phân biệt `"xe chết máy"` thực tế (`NEG`) vs. lo ngại giả định (`[]`)**:
+     + Câu phản ánh thực trạng ngập/mưa khiến xe chết máy, dắt bộ tại TP.HCM (ví dụ: *`Hàng loạt xe chết máy phải dắt bộ`*, *`Nhiều ô tô , xe máy chết máy giữa đường`*) $\rightarrow$ Gán **`NEG`** (gắn vào tên đường cụ thể nếu có, hoặc fallback `TPHCM` / `TP. Hồ Chí Minh`).
+     + Câu **mới chỉ ở mức tâm lý lo ngại giả định, chưa xảy ra sự kiện ngập/chết máy** (*`sợ xe chết máy`*, *`muốn tắt máy xe`*) hoặc câu giao thông bình thường hoàn toàn không có tín hiệu mưa/ngập/phục hồi $\rightarrow$ Gán **`REJECT (####[])`**.
+
+4. **Cắt sạch Tiền tố Định danh Rìa Đầu Aspect (`đầu hầm`, `chân cầu`, `tuyến`, `đoạn`)**:
+   - Ngoài `chân cầu`, `đoạn đường` đã nêu tại Mục III.2.5, phải cắt sạch cả **`đầu hầm`**, **`tuyến`**, **`đoạn`** khi đứng trước công trình hoặc tên đường (ví dụ: `đầu hầm Sông Sài Gòn` $\rightarrow$ `hầm Sông Sài Gòn`; `chân cầu Thủ Thiêm cũ` $\rightarrow$ `cầu Thủ Thiêm cũ`; `đoạn đường Quốc lộ 13` $\rightarrow$ `đường Quốc lộ 13`).
+   - Với chuỗi nhiều đường dùng chung danh từ số nhiều đứng đầu (ví dụ: `các tuyến đường X , Y , Z`), khi tách `1:1` chỉ lấy tên đường riêng (`X`, `Y`, `Z`), không gộp chữ `đường` chung ở đầu vào Aspect đầu tiên. Các số quận ngắn (`4`, `8 cũ`, `12`) vẫn hợp lệ nếu rõ ngữ cảnh TP.HCM.
+
+---
+
+### 7. 🛡️ QUY TRÌNH "3 KHÔNG & 3 PHẢI" CHO ANNOTATOR VÀ AGENT
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
