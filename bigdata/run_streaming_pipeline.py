@@ -92,7 +92,7 @@ def main():
     if args.interval <= 0:
         parser.error("--interval phải lớn hơn 0")
 
-    from core.gazetteer import configure_local_osm_index
+    from core.gazetteer import configure_local_osm_index, local_osm_index_status
     osm_index = configure_local_osm_index()
 
     print("=" * 75)
@@ -105,6 +105,7 @@ def main():
     print(f" • Python Runtime       : {PYTHON_EXE}")
     if osm_index:
         print(f" • Chỉ mục đường OSM    : {osm_index}")
+    print(f" • Phiên bản OSM        : {local_osm_index_status()}")
     print("=" * 75)
 
     # 1. Kiểm tra Kafka & Redis Docker

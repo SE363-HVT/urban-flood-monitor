@@ -31,7 +31,8 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
-from pipeline.live_free_crawler import LiveFreeSocialCrawler
+from core.gazetteer import match_all_hotspots
+from pipeline.live_free_crawler import LiveFreeSocialCrawler, expand_report_locations
 from pipeline.simulation_replayer import SimulationReplayer
 from pipeline.tiktok_poller import TikTokPoller
 from pipeline.facebook_poller import FacebookPoller
@@ -230,9 +231,12 @@ class SocialKafkaProducer:
                 tt_events, _ = self.tiktok_poller.poll_live_apify(window_minutes=window_minutes, max_items=15)
                 fb_events, _ = self.facebook_poller.poll_live_apify(window_minutes=window_minutes, max_items=15)
                 for ev in (tt_events + fb_events):
-                    total_discovered += 1
-                    if self.publish_event(TOPIC_LIVE_RAW, ev):
-                        published_count += 1
+                    locations = match_all_hotspots(ev.get("text") or ev.get("title") or "")
+                    reports = expand_report_locations(ev, locations)
+                    total_discovered += len(reports)
+                    for report in reports:
+                        if self.publish_event(TOPIC_LIVE_RAW, report):
+                            published_count += 1
             except Exception as e:
                 print(f"[Producer Apify Error] Không thể cào sâu qua Apify: {e}")
 

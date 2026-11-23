@@ -1959,6 +1959,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="health-node-card">
+                            <div class="health-node-top">
+                                <div class="health-node-info">
+                                    <span class="health-node-title">Chỉ mục OpenStreetMap</span>
+                                    <span id="health-osm-extract" class="health-node-desc">—</span>
+                                </div>
+                                <span id="health-badge-osm" class="health-status-badge offline">UNKNOWN</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -3821,6 +3830,14 @@
 
         function updateSystemHealthUI(healthData) {
             if (!healthData) return;
+
+            const osm = healthData.osm_index || {};
+            const osmBadge = document.getElementById('health-badge-osm');
+            const osmExtract = document.getElementById('health-osm-extract');
+            osmBadge.textContent = osm.status || 'UNKNOWN';
+            osmBadge.className = 'health-status-badge ' + (osm.status === 'READY' ? 'online' : 'offline');
+            osmExtract.textContent = osm.extract || '—';
+            osmExtract.title = osm.index_sha256 || '';
 
             for (const [key, id] of [['ai_service', 'ai'], ['redis', 'redis'], ['kafka', 'kafka']]) {
                 const service = healthData[key] || {};

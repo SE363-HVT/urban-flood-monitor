@@ -226,6 +226,8 @@ class AdminResolver:
         self.units: List[Dict[str, Any]] = []
         self.by_id: Dict[str, Dict[str, Any]] = {}
         self.by_name_norm: Dict[str, Dict[str, Any]] = {}
+        self.by_name_exact: Dict[str, Dict[str, Any]] = {}
+        self.ambiguous_names: Set[str] = set()
         self.valid_ward_names: Set[str] = set()
         self.old_to_new_map: Dict[str, str] = {}
         self._load_data()
@@ -249,7 +251,11 @@ class AdminResolver:
                 self.by_id[uid] = u
             if name:
                 self.valid_ward_names.add(name)
-                self.by_name_norm[_normalize_str(name)] = u
+                self.by_name_exact[unicodedata.normalize("NFC", name.casefold())] = u
+                norm = _normalize_str(name)
+                if norm in self.by_name_norm and self.by_name_norm[norm]["name"] != name:
+                    self.ambiguous_names.add(norm)
+                self.by_name_norm[norm] = u
             if short_name:
                 self.by_name_norm[_normalize_str(short_name)] = u
 
@@ -281,17 +287,13 @@ class AdminResolver:
 
     def get_unit_by_name(self, name: str) -> Optional[Dict[str, Any]]:
         """Tra cứu theo tên (hỗ trợ có dấu, không dấu, viết hoa/thường)."""
+        exact = self.by_name_exact.get(unicodedata.normalize("NFC", (name or "").strip().casefold()))
         norm = _normalize_str(name)
-        return self.by_name_norm.get(norm)
+        return exact or (None if norm in self.ambiguous_names else self.by_name_norm.get(norm))
 
     def is_valid_new_ward(self, ward_name: str) -> bool:
         """Kiểm tra tên phường/xã có thuộc 168 đơn vị chính thức theo NQ 1685 hay không."""
-        if not ward_name:
-            return False
-        if ward_name in self.valid_ward_names:
-            return True
-        norm = _normalize_str(ward_name)
-        return norm in self.by_name_norm
+        return self.get_unit_by_name(ward_name) is not None
 
     def resolve_to_official_ward(self, ward_input: str, district_context: str = "") -> Optional[str]:
         """
@@ -307,6 +309,8 @@ class AdminResolver:
             return unit["name"] if unit else ward_input
 
         norm_input = _normalize_str(ward_input)
+        if norm_input in self.ambiguous_names:
+            return None
         core_input = re.sub(r'^(phuong|xa|thi tran|p\.|x\.)\s*', '', norm_input).strip()
         norm_dist = _normalize_str(district_context)
         

@@ -46,7 +46,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
-from core.gazetteer import match_hotspot
+from core.gazetteer import match_hotspot, mentions_outside_service_area
 from core.admin_resolver import RESOLVER
 from pipeline.veracity_checker import VeracityChecker
 from pipeline.event_processor import clean_stream_text, analyze_severity_heuristic, format_relative_time
@@ -139,16 +139,7 @@ SEVERITY_OUTPUT_SCHEMA = StructType([
 @udf(returnType=GIS_OUTPUT_SCHEMA)
 def extract_gis_udf(text):
     """Spark UDF: Phân tích GIS Street-First và ĐVHC chuẩn NQ 1685 phân tán trên các core."""
-    default_res = {
-        "street": "",
-        "ward": "Toàn TP.HCM",
-        "district": "TP.HCM",
-        "lat": 10.7769,
-        "lon": 106.7009,
-        "display_name": "Toàn TP.HCM",
-        "cause": "rain",
-        "cause_label": "Mưa lớn, nước không thoát kịp"
-    }
+    default_res = {}
     try:
         if not text:
             return default_res
@@ -156,7 +147,7 @@ def extract_gis_udf(text):
         cleaned = clean_stream_text(str(text)) or str(text)
         matched = match_hotspot(cleaned)
         if not matched:
-            return default_res
+            return {"resolution_reason": "outside_service_area"} if mentions_outside_service_area(cleaned) else default_res
 
         st = matched.get("street") or ""
         w = matched.get("ward", "")
@@ -385,6 +376,8 @@ class SparkFloodProcessor:
             if orig is None:
                 orig = raw_by_id.get(record.get("canonical_id") or str(record.get("id")), {})
             spatial, lat, lon = self._select_location(orig, gis)
+            if spatial is None:
+                continue
             st_name = spatial.get("street") or ""
             off_w = spatial.get("ward") or "Toàn TP.HCM"
 
@@ -441,15 +434,20 @@ class SparkFloodProcessor:
 
     @staticmethod
     def _select_location(original, resolved):
+        if resolved.get("resolution_reason") == "outside_service_area":
+            return None, None, None
+        levels = {"street", "ward", "city"}
         source = original.get("location")
-        if isinstance(source, dict):
+        if isinstance(source, dict) and (source.get("precision") in levels or source.get("street") or source.get("ward")):
             try:
                 lat, lon = float(source.get("lat")), float(source.get("lon"))
                 if -90 <= lat <= 90 and -180 <= lon <= 180:
                     return source, lat, lon
             except (TypeError, ValueError, OverflowError):
                 pass
-        return resolved, float(resolved.get("lat") or 10.7769), float(resolved.get("lon") or 106.7009)
+        if resolved.get("precision") in levels:
+            return resolved, float(resolved["lat"]), float(resolved["lon"])
+        return None, None, None
 
     def _preserve_source_fields(self, event, original, resolved):
         for field in ("aspect", "opinion", "polarity", "sentiment", "triplets", "aste_triplets",
@@ -869,7 +867,11 @@ class SparkFloodProcessor:
                     self.send_dlq("CorruptedTextError", "Text length too short", record)
                     continue
                 matched = match_hotspot(cleaned_txt) or {}
+                if not matched and mentions_outside_service_area(cleaned_txt):
+                    continue
                 spatial, lat, lon = self._select_location(record, matched)
+                if spatial is None:
+                    continue
                 st_name = spatial.get("street") or ""
                 off_w = spatial.get("ward") or "Toàn TP.HCM"
 

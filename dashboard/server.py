@@ -39,6 +39,7 @@ from pipeline.spatio_temporal_clusterer import SpatioTemporalClusterer
 from pipeline.event_processor import format_relative_time
 from bigdata.streaming.stream_storage import crawler_heartbeat_path, write_json_atomic
 from core.config import APIFY_TOKEN, DEFAULT_PORT, DEFAULT_WINDOW_MINUTES, FB_CRAWL_STRATEGY
+from core.gazetteer import local_osm_index_status
 
 try:
     import redis
@@ -450,7 +451,7 @@ def compute_dashboard_summary() -> Dict[str, Any]:
         "active_window": snapshot["window"],
         "snapshot_updated_at": snapshot["updated_at"],
         "events_count": len(events),
-        "system_health": SYSTEM_HEALTH_CACHE,
+        "system_health": {**SYSTEM_HEALTH_CACHE, "osm_index": local_osm_index_status()},
         "admin_wards": admin_wards,
         "time_series": time_series,
         "throughput": throughput,
@@ -789,7 +790,7 @@ class HeatmapRequestHandler(http.server.SimpleHTTPRequestHandler):
             return
 
         elif self.path.startswith("/api/metrics/system-health"):
-            data = SYSTEM_HEALTH_CACHE
+            data = {**SYSTEM_HEALTH_CACHE, "osm_index": local_osm_index_status()}
             body = json.dumps(data, ensure_ascii=False).encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "application/json; charset=utf-8")

@@ -74,8 +74,27 @@ YOUTUBE_SEARCH_TERMS = (
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
-from core.gazetteer import normalize_text, HOTSPOTS, CSGT_HOTSPOTS, OUT_OF_SCOPE_LOCATIONS, match_all_hotspots
+from core.gazetteer import (
+    normalize_text, HOTSPOTS, CSGT_HOTSPOTS, OUT_OF_SCOPE_LOCATIONS,
+    match_all_hotspots, mentions_outside_service_area,
+)
 from pipeline.event_processor import clean_stream_text, contains_spam_or_noise, format_relative_time, analyze_severity_heuristic
+
+
+def expand_report_locations(event, matches):
+    if len(matches) < 2:
+        return [event]
+    reports = []
+    canonical_id = event.get("canonical_id") or f"{event.get('platform', 'mxh')}_{event['id']}"
+    original_location = event.get("location") or {}
+    for index, match in enumerate(matches):
+        location = {**original_location, **match, "source": original_location.get("source") or match.get("source")}
+        location["administrative_unit"] = match.get("ward", "")
+        location["coordinate_source"] = match.get("coordinate_source") or match.get("source")
+        reports.append({**event, "id": f"{event['id']}_s{index}",
+                        "canonical_id": f"{canonical_id}_s{index}",
+                        "aspect": match.get("street") or match.get("ward", ""), "location": location})
+    return reports
 
 # TỪ KHÓA CHỈ DẤU NGẬP TRỰC TIẾP
 DIRECT_FLOOD_KEYWORDS = [
@@ -732,7 +751,7 @@ class LiveFreeSocialCrawler:
                     pub_iso = datetime.fromtimestamp(real_ts, timezone.utc).isoformat()
                     vid_id = hashlib.md5(final_url.encode("utf-8")).hexdigest()[:12]
 
-                    for spot_idx, spot in enumerate(matched_spots[:1]):
+                    for spot_idx, spot in enumerate(matched_spots):
                         st_name = spot.get("street") or ""
                         sub_id = f"{vid_id}_s{spot_idx}" if len(matched_spots) > 1 else str(vid_id)
                         canonical_id = f"youtube_shorts_{sub_id}" if is_short else f"youtube_{sub_id}"
@@ -854,7 +873,7 @@ class LiveFreeSocialCrawler:
                     pub_iso = datetime.fromtimestamp(pub_unix, timezone.utc).isoformat()
                     author_name, item_id = self.extract_author_and_id(href, "vov_traffic")
 
-                    for spot_idx, spot in enumerate(matched_spots[:1]):
+                    for spot_idx, spot in enumerate(matched_spots):
                         st_name = spot.get("street") or ""
                         sub_id = f"vov_{item_id}_s{spot_idx}" if len(matched_spots) > 1 else f"vov_{item_id}"
                         canonical_id = f"vov_{sub_id}"
@@ -909,8 +928,8 @@ class LiveFreeSocialCrawler:
                             "crawler_source": "vov_traffic_ticker"
                         }
                         events.append(event)
-                        if len(events) >= max_items:
-                            break
+                    if len(events) >= max_items:
+                        break
             except Exception:
                 pass
 
@@ -1114,13 +1133,15 @@ class LiveFreeSocialCrawler:
                     # Khớp tọa độ GIS
                     full_text = ", ".join(part for part in (full_address, desc, ward_name, district_name) if part)
                     matched_spots = match_all_hotspots(full_text)
+                    if not matched_spots and mentions_outside_service_area(full_text):
+                        continue
                     if matched_spots:
                         spot = matched_spots[0]
                         st_name = spot.get("street") or ""
                         lat = spot["lat"]
                         lon = spot["lon"]
                         heat_pts = spot.get("heat_points", [[lat, lon]])
-                        final_ward = ward_name or spot.get("ward", "Toàn TP.HCM")
+                        final_ward = spot.get("ward") or "Toàn TP.HCM"
                         final_dist = district_name or spot.get("district", "TP.HCM")
                     else:
                         spot = {}
@@ -1168,7 +1189,7 @@ class LiveFreeSocialCrawler:
                             "coordinate_source": spot.get("coordinate_source") or spot.get("source"),
                             "precision": spot.get("precision", "city"),
                             "coordinate_kind": spot.get("coordinate_kind", "administrative_center"),
-                            "resolution_reason": spot.get("resolution_reason"),
+                            "resolution_reason": spot.get("resolution_reason", "city_only"),
                         },
                         "aspect": st_name,
                         "opinion": analysis_1022.get("opinion", "cống nghẹt trào nước"),
@@ -1189,7 +1210,7 @@ class LiveFreeSocialCrawler:
                         "ticket_status": status_desc,
                         "ticket_agency": agency_name
                     }
-                    events.append(event)
+                    events.extend(expand_report_locations(event, matched_spots))
             except Exception:
                 pass
 
@@ -1318,12 +1339,15 @@ class LiveFreeSocialCrawler:
                         "status_tag": status_tag,
                         "crawler_source": "direct_news_rss"
                     }
-                    events.append(event)
+                    events.extend(expand_report_locations(event, matched_spots))
                     selected_urls.add(raw_url)
             except Exception:
                 pass
 
-        selected = sorted(events, key=lambda event: event["create_time"], reverse=True)[:max_items]
+        grouped = {}
+        for event in sorted(events, key=lambda event: event["create_time"], reverse=True):
+            grouped.setdefault(event["url"], []).append(event)
+        selected = [event for group in list(grouped.values())[:max_items] for event in group]
         self.seen_urls.update(event["url"] for event in selected)
         return selected
 
@@ -1449,7 +1473,7 @@ class LiveFreeSocialCrawler:
             pub_iso = datetime.fromtimestamp(pub_unix, timezone.utc).isoformat()
             media_type = "video" if platform in ["tiktok", "youtube"] else ("news" if platform == "news" else "post")
 
-            for spot_idx, spot in enumerate(matched_spots[:1]):
+            for spot_idx, spot in enumerate(matched_spots):
                 st_name = spot.get("street") or ""
                 sub_id = f"{post_id}_s{spot_idx}" if len(matched_spots) > 1 else str(post_id)
                 canonical_id = f"{platform}_{sub_id}"

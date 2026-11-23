@@ -151,14 +151,21 @@ Access the interactive web dashboard at:
 
 ### Road location resolution
 
-Live and Simulation automatically load `data/osm_named_roads.sqlite3` when
-present. Without ward or reference context, the resolver falls back to a broader
+Live and Simulation default to the versioned
+[`data/osm_named_roads.sqlite3`](data/osm_named_roads.sqlite3) bundled with the
+project. Installations can set `RADINET_OSM_ROAD_INDEX` to a shared replacement
+path. Startup and `/api/metrics/system-health` report the index status, extract
+filename, and source SHA-256. The current extract is `vietnam-261121.osm.pbf`.
+Without ward or reference context, the resolver falls back to a broader
 location when same-named OSM ways form geographically separate groups.
 Simulation looks for its historical road among the resolved mentions and retains
 the historical pin if the road cannot be verified or would move by more than
 150 m. Build the index from an OpenStreetMap PBF
 extract with the optional `osmium`
 package and `python -m scripts.build_osm_road_index path/to/region.osm.pbf`.
+Build a candidate with `--output` and run the benchmark before replacing the
+bundled database. Commit the validated database and update the extract filename
+above together so both modes use the same map revision after checkout.
 Live location levels are a representative pin on the named road, a ward or
 commune reference, and a city reference, in that order. Road pins are selected
 from OSM geometry inside the expanded Ho Chi Minh City service area, which

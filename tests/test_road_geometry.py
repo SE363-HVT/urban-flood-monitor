@@ -10,6 +10,9 @@ from unittest.mock import patch
 from core import gazetteer
 from core.road_geometry import representative_local_road, representative_ward_point, select_road, snap_local_road
 from pipeline.simulation_replayer import _resolve_replay_location
+from pipeline.live_free_crawler import expand_report_locations
+from scripts.evaluate_geolocation import evaluate, review_rows
+from core.road_geometry import road_key
 
 
 def way(name="Đường Hoa Mai", ward="Phường Một", lon=106.7):
@@ -31,6 +34,39 @@ def official_ward(ward, district):
 
 
 class RoadGeometryTests(unittest.TestCase):
+    def test_bundled_index_matches_all_official_units_and_archived_labels(self):
+        data = Path(__file__).resolve().parents[1] / "data"
+        index = data / "osm_named_roads.sqlite3"
+        with patch.dict(os.environ, {"RADINET_OSM_ROAD_INDEX": str(index)}):
+            self.assertEqual(gazetteer.local_osm_index_status()["status"], "READY")
+            names = {unit["ward"] for unit in gazetteer.ADMIN_HOTSPOTS}
+            self.assertEqual(len(names), 168)
+            for name in sorted(names):
+                with self.subTest(ward=name):
+                    match = gazetteer.match_hotspot(f"Nước ngập nhiều nơi tại {name}, TP.HCM.") or {}
+                    self.assertEqual((match.get("ward"), match.get("precision")), (name, "ward"))
+            for sample, total in (("review", 16), ("additional", 8)):
+                path = data / "processed" / f"geolocation_{sample}_sample.jsonl"
+                rows = list(review_rows(json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()))
+                counts = evaluate(rows, index)["counts"]
+                self.assertEqual(counts["correct_level"], total)
+                self.assertEqual(counts["correct_road"], counts["road_labels"])
+                self.assertEqual(counts["correct_ward"], counts["ward_labels"])
+            for text in ("Ngap tai xa thanh an, TP.HCM.", "Thanh pho Ho Chi Minh nhieu noi bi ngap.",
+                         "Phường Tân Thuận và phường An Khánh ở TP.HCM bị ngập."):
+                with self.subTest(text=text):
+                    self.assertEqual(gazetteer.match_hotspot(text)["precision"], "city")
+
+    def test_multiple_road_ward_pairs_are_preserved_for_live(self):
+        pairs = ("Đường Quốc Hương, phường An Khánh", "đường Bùi Văn Ba, phường Tân Thuận")
+        expected = {("quoc huong", "Phường An Khánh"), ("bui van ba", "Phường Tân Thuận")}
+        for mentions in (pairs, pairs[::-1]):
+            matches = gazetteer.match_all_hotspots(" và ".join(mentions) + " đều ngập tại TP.HCM.")
+            self.assertEqual({(road_key(m["street"]), m["ward"]) for m in matches}, expected)
+            reports = expand_report_locations({"id": "case", "platform": "news", "location": {}}, matches)
+            self.assertEqual(len({report["canonical_id"] for report in reports}), 2)
+            self.assertEqual({(road_key(r["location"]["street"]), r["location"]["administrative_unit"]) for r in reports}, expected)
+
     def test_simulation_uses_shared_osm_pin_and_protects_historical_road(self):
         historical = {"street": "Đường Hoa Mai", "ward": "Phường Một", "precision": "street",
                       "lat": 10.8, "lon": 106.7, "heat_points": [[10.8, 106.7]], "source": "annotated_dataset_v1"}

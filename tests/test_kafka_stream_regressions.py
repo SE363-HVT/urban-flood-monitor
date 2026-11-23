@@ -56,6 +56,20 @@ class KafkaStreamRegressionTests(unittest.TestCase):
         self.assertEqual((second["street"], second["lat"], second["precision"], second["resolution_reason"]),
                          ("", 10.9, "ward", "road_unverified"))
 
+    def test_spark_and_fallback_exclude_unresolved_reports_from_the_map(self):
+        outside = "Đường Bùi Văn Ba, Hà Nội, bị ngập; TP.HCM có mưa."
+        unknown = "Nước dâng cao khắp nơi sau cơn mưa."
+        source = {"lat": 10.8, "lon": 106.7}
+        self.assertEqual(streaming.extract_gis_udf.func(outside), {"resolution_reason": "outside_service_area"})
+        self.assertEqual(streaming.extract_gis_udf.func(unknown), {})
+        self.assertIsNone(self.processor._select_location({"location": source}, streaming.extract_gis_udf.func(outside))[0])
+        self.assertIsNone(self.processor._select_location({"location": source}, streaming.extract_gis_udf.func(unknown))[0])
+        self.processor._publish_verified_batch = Mock()
+        streaming.SparkFloodProcessor._fallback_process_records(self.processor, [
+            {"text": outside, "location": source}, {"text": unknown},
+        ], 1)
+        self.processor._publish_verified_batch.assert_not_called()
+
     def test_drains_records_from_every_partition_in_bounded_batches(self):
         records = [{"canonical_id": f"live_{i}"} for i in range(34)]
         consumer = self.run_stream({

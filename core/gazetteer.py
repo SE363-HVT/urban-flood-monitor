@@ -12,6 +12,7 @@ Hệ thống tự động phát hiện địa danh mới (Dynamic Location Disco
 import os
 import re
 import json
+import hashlib
 import urllib.request
 import urllib.parse
 import unicodedata
@@ -19,6 +20,7 @@ import sqlite3
 import time
 from contextlib import closing
 from functools import lru_cache
+from pathlib import Path
 
 from core.road_geometry import (
     distance_m, name_key, representative_local_road, representative_ward_point, road_key, select_road,
@@ -37,6 +39,30 @@ def configure_local_osm_index():
     if os.path.isfile(path):
         return os.environ.setdefault("RADINET_OSM_ROAD_INDEX", path)
     return None
+
+
+def local_osm_index_status():
+    path = configure_local_osm_index()
+    if not path:
+        return {"status": "MISSING"}
+    try:
+        stat = os.stat(path)
+        return _osm_index_info(os.path.abspath(path), stat.st_size, stat.st_mtime_ns).copy()
+    except (OSError, ValueError, sqlite3.Error):
+        return {"status": "INVALID"}
+
+
+@lru_cache(maxsize=8)
+def _osm_index_info(path, size, revision):
+    with closing(sqlite3.connect(Path(path).as_uri() + "?mode=ro", uri=True, timeout=0.2)) as db:
+        filename, digest = db.execute("SELECT filename, sha256 FROM extract").fetchone() or (None, None)
+        if not (filename and digest and db.execute("SELECT 1 FROM named_ways LIMIT 1").fetchone()
+                and db.execute("SELECT 1 FROM admin_areas WHERE regional = 1 LIMIT 1").fetchone()):
+            return {"status": "INVALID"}
+    with open(path, "rb") as artifact:
+        index_digest = hashlib.file_digest(artifact, "sha256").hexdigest()
+    return {"status": "READY", "extract": filename, "source_sha256": digest,
+            "index_sha256": index_digest, "size_bytes": size}
 
 def load_csgt_hotspots() -> List[Dict[str, Any]]:
     if os.path.exists(CSGT_FILE):
@@ -2057,7 +2083,40 @@ def _location_keyword_pattern(keyword, *, street=False):
     return re.compile(r'(?:\b|^|#)' + escaped + r'(?:\b|$|[#\s.,!?])')
 
 
+def _official_ward_mentions(text):
+    matches = []
+    for unit in ADMIN_HOTSPOTS:
+        label = normalize_text(unit["ward"])
+        keys = {label}
+        if name_key(label) not in RESOLVER.ambiguous_names:
+            keys.add(name_key(label))
+        for key in keys:
+            matches.extend((hit.start(), hit.end(), unit) for hit in _location_keyword_pattern(key).finditer(text))
+    result = []
+    for start, end, unit in sorted(matches, key=lambda match: (match[0], -match[1])):
+        if not result or start >= result[-1][1]:
+            result.append((start, end, unit))
+    return result
+
+
+def _without_ward_mentions(text, mentions):
+    for start, end, _ in reversed(mentions):
+        text = text[:start] + "," + " " * (end - start - 1) + text[end:]
+    return text
+
+
+def _contains_outside_place(text):
+    return any(_location_keyword_pattern(place).search(text) for place in OUT_OF_SCOPE_LOCATIONS)
+
+
+def mentions_outside_service_area(text):
+    clean = normalize_text(text)
+    return _contains_outside_place(_without_ward_mentions(clean, _official_ward_mentions(clean)))
+
+
 def _ward_context(clean_text):
+    if any(_location_keyword_pattern(name).search(clean_text) for name in RESOLVER.ambiguous_names):
+        return None
     matches = []
     for unit in ADMIN_HOTSPOTS:
         for keyword in unit.get("keywords", []):
@@ -2066,8 +2125,9 @@ def _ward_context(clean_text):
     return max(matches, key=lambda match: match[:2])[2] if matches else None
 
 
-def _match_streets(clean_text, max_spots):
-    context = _ward_context(clean_text)
+def _match_streets(clean_text, max_spots, mentions):
+    context = mentions[0][2] if mentions else _ward_context(clean_text)
+    clean_text = _without_ward_mentions(clean_text, mentions)
     ward = context["ward"] if context else ""
     index_path = configure_local_osm_index()
     has_index = bool(index_path)
@@ -2205,15 +2265,22 @@ def match_hotspot(text: str) -> Optional[Dict[str, Any]]:
     matches = match_all_hotspots(text, max_spots=1)
     return matches[0] if matches else None
 
-def _administrative_fallback(clean_text, road_mentioned) -> Optional[Dict[str, Any]]:
+def _administrative_fallback(clean_text, road_mentioned, mentions) -> Optional[Dict[str, Any]]:
 
     # =========================================================================
     # TẦNG 2: NẾU KHÔNG CÓ TÊN ĐƯỜNG -> SO KHỚP ĐƠN VỊ HÀNH CHÍNH (PHƯỜNG / XÃ)
     # =========================================================================
     best_ward = None
     best_ward_len = 0
-    for u in ADMIN_HOTSPOTS:
-        for kw in u.get("keywords", []):
+    official = {unit["ward"]: unit for _, _, unit in mentions}
+    use_aliases = not official and not any(
+        _location_keyword_pattern(name).search(clean_text) for name in RESOLVER.ambiguous_names
+    )
+    for u in official.values() if official else (ADMIN_HOTSPOTS if use_aliases else []):
+        keywords = [normalize_text(u["ward"]), name_key(u["ward"])] if len(official) == 1 else (
+            [] if official else u.get("keywords", [])
+        )
+        for kw in keywords:
             if _location_keyword_pattern(kw).search(clean_text):
                 if len(kw) > best_ward_len:
                     best_ward_len = len(kw)
@@ -2252,7 +2319,7 @@ def _administrative_fallback(clean_text, road_mentioned) -> Optional[Dict[str, A
     # =========================================================================
     # TẦNG 3: NẾU KHÔNG CÓ CẢ ĐƯỜNG LẪN PHƯỜNG -> TOÀN THÀNH PHỐ / CẤP QUẬN
     # =========================================================================
-    for spot in CITYWIDE_HOTSPOTS:
+    for spot in [*CITYWIDE_HOTSPOTS, {"keywords": ["thanh pho ho chi minh"]}]:
         for kw in spot.get("keywords", []):
             if _location_keyword_pattern(kw).search(clean_text):
                 return {
@@ -2275,17 +2342,37 @@ def match_all_hotspots(text: str, max_spots: int = 5) -> List[Dict[str, Any]]:
 
     clean_text = normalize_text(text)
 
-    # KIEM SOAT DIA GIOI NGHIEM NGAT - LOAI TRU 100% NGOAI TINH
-    for out_loc in OUT_OF_SCOPE_LOCATIONS:
-        if _location_keyword_pattern(out_loc).search(clean_text):
+    mentions = _official_ward_mentions(clean_text)
+    scope_text = _without_ward_mentions(clean_text, mentions)
+    outside = _contains_outside_place(scope_text)
+    multiple_wards = len({unit["ward"] for _, _, unit in mentions}) > 1
+    if outside or multiple_wards:
+        clauses = re.split(
+            r"[;!?\n]+|(?<=\.)\s+(?!hcm\b)|(?:,\s*|\s+(?:và|va)\s+)(?=(?:đường|duong|đại lộ|quốc lộ)\s)",
+            clean_text,
+        )
+        roads = {}
+        for clause in clauses if len(clauses) > 1 else []:
+            local = _official_ward_mentions(clause)
+            if len({unit["ward"] for _, _, unit in local}) != 1:
+                continue
+            unmasked = _without_ward_mentions(clause, local)
+            if _contains_outside_place(unmasked):
+                continue
+            matches, _ = _match_streets(clause, max_spots, local)
+            for match in matches:
+                roads[(road_key(match["street"]), match.get("ward"))] = match
+        if roads:
+            return list(roads.values())[:max_spots]
+        if outside:
             return []
 
-    found_spots, road_mentioned = _match_streets(clean_text, max_spots)
+    found_spots, road_mentioned = ([], False) if multiple_wards else _match_streets(clean_text, max_spots, mentions)
     if found_spots:
         return found_spots
 
     # Skip a second road lookup when applying the administrative fallback.
-    single = _administrative_fallback(clean_text, road_mentioned)
+    single = _administrative_fallback(clean_text, road_mentioned, mentions)
     if single:
         return [single]
     return []
