@@ -456,7 +456,7 @@ Nhà Thờ Thủ Thiêm giữa Lòng Đô Thị Sài Gòn Thế nhưng mưa tí 
 Phan Huy Ích Quận Tân Bình ngập như sông lun####[([0, 1, 2], [6, 7, 8, 9], 'NEG')]
 Tại TP. Hồ Chí Minh , ối đồi ôi , đây là video hồi tối e nói thấy có người live nuic ngập phần huy ích . đung thảm cảnh # vairal # muabao####[([23, 24, 25], [22], 'NEG')]
 Dự báo đỉnh triều có thể đạt khoảng 2 , 28 m vào ngày 29 / 9 và duy trì ở mức cao đến 2 / 10 , nguy cơ ngập sâu hơn nếu trùng thời điểm mưa lớn . # tiktoknews # nhipsongphuongnam # VTV9 # CanTho # trieucuong # ngaplut####[]
-Chợ đầu mối thủ đức ngập luôn rồi anh chị ơi , chạy xe cẩn thận nha anh chị # LIVEIncentiveProgram # LIVEIsEasy # PaidPartnership####[([0, 1, 2, 3, 4], [5, 6, 7], 'NEG')]
+Chợ đầu mối thủ đức ngập luôn rồi anh chị ơi , chạy xe cẩn thận nha anh chị # LIVEIncentiveProgram # LIVEIsEasy # PaidPartnership####[([0, 1, 2, 3, 4], [5, 6, 7], 'NEG'), ([0, 1, 2, 3, 4], [12, 13, 14, 15, 16], 'NEU')]
 Thành Phố Thủ Đức Linh Đông Mưa To Ngập Lụt Hết rồi 😭 😭 😭####[([4, 5], [6, 7, 8, 9, 10, 11], 'NEG')]
 Thành phố biển Thủ Đức ngày càng ngập hơn # odaycosuoc # ngaplut # thuduc # xuhuong # tiktokgiaitri####[([3, 4], [5, 6, 7, 8], 'NEG')]
 Khoảng 16h , mưa lớn trút xuống khu vực Thủ Đức ( TP HCM ) khiến nhiều tuyến đường ngập sâu . Trên đường Tô Ngọc Vân , chỉ sau khoảng 10 phút mưa nặng hạt , nước đã dâng lút bánh xe , chảy xiết . Khu vực giao với đường Linh Đông ngập nặng nhất , dòng nước cuồn cuộn gây khó khăn cho người đi đường####[([9, 10], [19, 20], 'NEG'), ([23, 24, 25, 26], [37, 38, 39, 40, 41, 42, 43, 44, 45], 'NEG'), ([51, 52, 53], [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68], 'NEG')]
