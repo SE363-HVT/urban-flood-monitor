@@ -1,0 +1,78 @@
+{
+  "dataset_name": "HCMC Urban Flood ASTE Master v2 (aste_v3_format)",
+  "master_file": "data/processed/aste_v3_format/master_v2_10k_triplets.txt",
+  "master_sha256": "ac50ead185fb1fac54c07c9bcc51368a1acccd69bbd30618e48ecf72973afeea",
+  "total_records": 10249,
+  "random_seed": 42,
+  "split_ratio": "80 / 10 / 10",
+  "leakage_checks": {
+    "unique_connected_groups": 6463,
+    "cross_split_norm_text_overlap": 0,
+    "cross_split_parent_id_overlap": 0
+  },
+  "splits": {
+    "train": {
+      "file": "train_triplets.txt",
+      "sha256": "8220c493be2407f7faa306b23b44a23aa7152cabb59f1238d608643a99604e6e",
+      "total_records": 8199,
+      "ratio_pct": 80.0,
+      "labeled_records": 7650,
+      "rejected_records": 549,
+      "rejected_pct": 6.7,
+      "total_triplets": 10222,
+      "polarity": {
+        "NEG": 6041,
+        "NEU": 1612,
+        "POS": 2569
+      },
+      "phases": {
+        "phase1_thuan": 398,
+        "phase2_thuan": 1601,
+        "phase3_thuan": 3100,
+        "phase3_hung": 3100
+      }
+    },
+    "dev": {
+      "file": "dev_triplets.txt",
+      "sha256": "381c26a1583a490513d38a128f733f4f16ec09f21715352306fe66309b01d269",
+      "total_records": 1025,
+      "ratio_pct": 10.0,
+      "labeled_records": 956,
+      "rejected_records": 69,
+      "rejected_pct": 6.73,
+      "total_triplets": 1274,
+      "polarity": {
+        "NEG": 755,
+        "NEU": 201,
+        "POS": 318
+      },
+      "phases": {
+        "phase1_thuan": 52,
+        "phase2_thuan": 199,
+        "phase3_thuan": 387,
+        "phase3_hung": 387
+      }
+    },
+    "test": {
+      "file": "test_triplets.txt",
+      "sha256": "b3c6b8ec1ccd7579ede9c8cf34081c1a7c72e8f44905440aad86109ffbe2c390",
+      "total_records": 1025,
+      "ratio_pct": 10.0,
+      "labeled_records": 956,
+      "rejected_records": 69,
+      "rejected_pct": 6.73,
+      "total_triplets": 1278,
+      "polarity": {
+        "NEG": 756,
+        "NEU": 201,
+        "POS": 321
+      },
+      "phases": {
+        "phase1_thuan": 50,
+        "phase2_thuan": 200,
+        "phase3_thuan": 388,
+        "phase3_hung": 387
+      }
+    }
+  }
+}
