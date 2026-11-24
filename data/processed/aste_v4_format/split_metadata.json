@@ -1,0 +1,103 @@
+{
+  "dataset_name": "HCMC Urban Flood ASTE Master v4 (aste_v4_format)",
+  "master_file": "data/processed/aste_v4_format/master_v4_12k7_triplets.txt",
+  "master_sha256": "e3c37b341d54b6254db10ca69a19dd8858c9ce94f6308290e17accfce9a58faa",
+  "total_records": 12749,
+  "composition": {
+    "phase1_thuan_lines": "1..500 (500)",
+    "phase2_thuan_lines": "501..2500 (2,000)",
+    "phase3_thuan_lines": "2501..6375 (3,875)",
+    "phase3_hung_lines": "6376..10249 (3,874)",
+    "phase4_thuan_lines": "10250..12749 (2,500 synthetic curriculum)"
+  },
+  "random_seed": 42,
+  "split_ratio": "80 / 10 / 10",
+  "leakage_checks": {
+    "unique_connected_groups": 8963,
+    "cross_split_norm_text_overlap": 0,
+    "cross_split_parent_id_overlap": 0
+  },
+  "splits": {
+    "train": {
+      "file": "train_triplets.txt",
+      "sha256": "4584a0236abb1db79e6796295e8a0b461eee520daf5fa286e928695437901c15",
+      "total_records": 10199,
+      "ratio_pct": 80.0,
+      "labeled_records": 9517,
+      "rejected_records": 682,
+      "rejected_pct": 6.69,
+      "total_triplets": 12497,
+      "polarity": {
+        "NEG": 6957,
+        "NEU": 2252,
+        "POS": 3288
+      },
+      "phases": {
+        "phase1_thuan": 400,
+        "phase2_thuan": 1600,
+        "phase3_thuan": 3100,
+        "phase3_hung": 3099,
+        "phase4_thuan": 2000
+      },
+      "phase4_difficulty_tiers": {
+        "EASY": 679,
+        "MEDIUM": 761,
+        "HARD": 560
+      }
+    },
+    "dev": {
+      "file": "dev_triplets.txt",
+      "sha256": "7ad74af0622aa620a8a1c518d39b6e522309fe6167114ea010159963d6eb557a",
+      "total_records": 1275,
+      "ratio_pct": 10.0,
+      "labeled_records": 1190,
+      "rejected_records": 85,
+      "rejected_pct": 6.67,
+      "total_triplets": 1562,
+      "polarity": {
+        "NEG": 870,
+        "NEU": 282,
+        "POS": 410
+      },
+      "phases": {
+        "phase1_thuan": 50,
+        "phase2_thuan": 201,
+        "phase3_thuan": 387,
+        "phase3_hung": 387,
+        "phase4_thuan": 250
+      },
+      "phase4_difficulty_tiers": {
+        "EASY": 86,
+        "MEDIUM": 94,
+        "HARD": 70
+      }
+    },
+    "test": {
+      "file": "test_triplets.txt",
+      "sha256": "5b24b12540a419283bb363fc990711f0e31e63dfdb22129cdb0a9cc1d71a4bbf",
+      "total_records": 1275,
+      "ratio_pct": 10.0,
+      "labeled_records": 1190,
+      "rejected_records": 85,
+      "rejected_pct": 6.67,
+      "total_triplets": 1559,
+      "polarity": {
+        "NEG": 868,
+        "NEU": 281,
+        "POS": 410
+      },
+      "phases": {
+        "phase1_thuan": 50,
+        "phase2_thuan": 199,
+        "phase3_thuan": 388,
+        "phase3_hung": 388,
+        "phase4_thuan": 250
+      },
+      "phase4_difficulty_tiers": {
+        "EASY": 85,
+        "MEDIUM": 95,
+        "HARD": 70
+      }
+    }
+  }
+}
