@@ -7,9 +7,32 @@ Thu thập dữ liệu ngập lụt đô thị gần thời gian thực đa nề
 """
 
 import os
+from pathlib import Path
 
-# Apify API Token - Sử dụng token mới được cung cấp (Free tier có sẵn $5 credit)
-APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "apify_api_wTDd6uCOPAyo3sDLx864GjAmUflbBh1Ff9o0")
+
+def _load_local_env() -> None:
+    """Nạp biến môi trường từ file .env ở thư mục gốc (đã được .gitignore) nếu tồn tại."""
+    env_path = Path(__file__).resolve().parent.parent / ".env"
+    if not env_path.is_file():
+        return
+    try:
+        for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and value:
+                os.environ.setdefault(key, value)
+    except Exception:
+        pass
+
+
+_load_local_env()
+
+# Apify API Token fallback (ưu tiên lấy từ biến môi trường / .env hoặc Dashboard Apify Pool)
+APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "").strip()
 
 # ==========================================
 # 1. Cấu hình Actor cào TikTok Video (Tối ưu phản hồi < 90s, an toàn dưới timeout 300s)

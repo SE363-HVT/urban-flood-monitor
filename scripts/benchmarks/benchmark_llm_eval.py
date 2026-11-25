@@ -55,9 +55,17 @@ socket.getaddrinfo = _custom_getaddrinfo
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+REPO_ROOT = os.path.dirname(PROJECT_ROOT)
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+try:
+    import core.config  # noqa: F401 - loads local .env if present
+except Exception:
+    pass
+
 TEST_FILE = os.path.join(PROJECT_ROOT, "data", "processed", "splits", "test.json")
 
-API_KEY = "sk-uit-V1sRLf30CZhDl4b0ryimuxL8DHGf8HuN"
+API_KEY = os.environ.get("UIT_LLM_API_KEY", "").strip()
 
 LLM_CONFIGS = {
     "gemma": {
@@ -286,6 +294,8 @@ def evaluate_predictions(gold_items: List[Dict[str, Any]], predictions: List[Dic
 # API WORKER
 # ---------------------------------------------------------------------------
 def call_llm_single(cfg: Dict[str, Any], item: Dict[str, Any], max_retries: int = 3) -> Dict[str, Any]:
+    if not API_KEY:
+        raise ValueError("Missing UIT_LLM_API_KEY environment variable (set it in .env or shell).")
     text = item["content"]["text"]
     item_id = item["id"]
 
